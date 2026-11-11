@@ -29,12 +29,12 @@
   var ctr = 0;
   /* n willekeurige bytes. Zonder veilig toeval: HMAC(sleutel, doel|tijd|teller|bericht). Dat is uniek per bericht (tijd + teller)
      en zonder de sleutel niet te voorspellen. Alleen bruikbaar voor nonces/IV's, nooit voor codes. */
-  function nonce(n, key, purpose, msg) {
+  function nonce(n, nkey, purpose, msg) {
     var c = cryptoObj(); if (c) { try { var a = new Uint8Array(n); c.getRandomValues(a); return a; } catch (e) {} }
     ctr = (ctr + 1) >>> 0;
     var t = Date.now(), p = (root.performance && root.performance.now) ? Math.floor(root.performance.now() * 1000) >>> 0 : 0;
     var info = cat(utf8(purpose), u32(Math.floor(t / 4294967296)), u32(t >>> 0), u32(p), u32(ctr), msg || new Uint8Array(0));
-    return N.hmac(N.sha256, key, info).slice(0, n);
+    return N.hmac(N.sha256, nkey, info).slice(0, n);
   }
 
   /* ---------- TL1 (oud formaat, ongewijzigd voor de overstap) ---------- */
@@ -46,12 +46,12 @@
     code = norm(code); if (cache1[code]) return cache1[code];
     var k = N.sha256(utf8("tonaor-leert|" + code));
     for (var i = 0; i < 4000; i++) k = N.sha256(cat(k, utf8(code)));
-    var d = { code: code, key: k, chan: "tl-" + hex(N.sha256(cat(k, utf8("kanaal")))).slice(0, 28) };
+    var d = { code: code, key: k, nkey: N.sha256(cat(k, utf8("nonce"))), chan: "tl-" + hex(N.sha256(cat(k, utf8("kanaal")))).slice(0, 28) };
     cache1[code] = d; return d;
   }
   function stream(key, iv, n) { var o = new Uint8Array(n), c = 0, p = 0; while (p < n) { var blk = N.sha256(cat(key, iv, u32(c))); for (var i = 0; i < 32 && p < n; i++) o[p++] = blk[i]; c++; } return o; }
   function seal(code, obj) {
-    var d = derive(code), pt = utf8(JSON.stringify(obj)), iv = nonce(16, d.key, "TL1 iv", pt), ks = stream(d.key, iv, pt.length), ct = new Uint8Array(pt.length);
+    var d = derive(code), pt = utf8(JSON.stringify(obj)), iv = nonce(16, d.nkey, "TL1 iv", pt), ks = stream(d.key, iv, pt.length), ct = new Uint8Array(pt.length);
     for (var i = 0; i < pt.length; i++) ct[i] = pt[i] ^ ks[i];
     var mac = N.sha256(cat(d.key, utf8("mac"), iv, ct)).subarray(0, 16);
     return "TL1." + b64(cat(iv, mac, ct));
@@ -68,7 +68,10 @@
 
   /* ---------- TL2 (nieuw formaat) ---------- */
   var B32 = "0123456789abcdefghjkmnpqrstvwxyz", LEN2 = 28;
+  /* een oude code (4 woorden + 4 cijfers) is nooit TL2, ook niet als de woorden samen toevallig 24 letters hebben */
+  function isV1(code) { return /^[a-z]+-[a-z]+-[a-z]+-[a-z]+-[0-9]{4}$/.test(norm(code)); }
   function norm2(code) {
+    if (isV1(code)) return "";
     var s = String(code || "").toLowerCase().replace(/[^a-z0-9]/g, "").replace(/[il]/g, "1").replace(/o/g, "0").replace(/u/g, "v");
     if (s.length !== LEN2) return ""; for (var i = 0; i < s.length; i++) if (B32.indexOf(s[i]) < 0) return ""; return s;
   }
@@ -85,15 +88,18 @@
     var c = norm2(code); if (!c) return cb(null);
     var hit = cache2[c]; if (hit && hit.key) return cb(hit); if (hit) { hit.wait.push(cb); return; }
     hit = cache2[c] = { wait: [cb] };
-    N.scryptAsync(utf8(c), utf8("tonaor-leert|TL2|scrypt"), { N: 32768, r: 8, p: 1, dkLen: 32 }).then(function (m) {
+    function fail() { var w = hit.wait; delete cache2[c]; w.forEach(function (f) { f(null); }); }
+    var pr; try { pr = N.scryptAsync(utf8(c), utf8("tonaor-leert|TL2|scrypt"), { N: 32768, r: 8, p: 1, dkLen: 32 }); } catch (e) { return fail(); }
+    pr.then(function (m) {
       hit.key = N.hkdf(N.sha256, m, undefined, utf8("tonaor-leert|TL2|sleutel"), 32);
+      hit.nkey = N.hkdf(N.sha256, m, undefined, utf8("tonaor-leert|TL2|nonce"), 32);
       hit.chan = "tl2-" + hex(N.hkdf(N.sha256, m, undefined, utf8("tonaor-leert|TL2|kanaal"), 16));
       hit.code = c; var w = hit.wait; hit.wait = []; w.forEach(function (f) { f(hit); });
-    }, function () { var w = hit.wait; delete cache2[c]; w.forEach(function (f) { f(null); }); });
+    }).catch(fail);
   }
   function aad(dir) { return utf8("tonaor-leert|TL2|" + dir); }
   function seal2(d, dir, obj) {
-    var pt = utf8(JSON.stringify(obj)), iv = nonce(12, d.key, "TL2 nonce|" + dir, pt);
+    var pt = utf8(JSON.stringify(obj)), iv = nonce(12, d.nkey, "TL2 nonce|" + dir, pt);
     return "TL2." + b64(cat(iv, N.gcmsiv(d.key, iv, aad(dir)).encrypt(pt)));
   }
   function open2(d, dir, txt) {

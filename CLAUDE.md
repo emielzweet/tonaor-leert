@@ -22,7 +22,8 @@ Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteun
 - Voortgang staat in `localStorage` onder sleutel `tonaor-leert-v2` (`S.v===2`). Nooit de sleutel of structuur breken zonder migratie: anders verliest Tonaor zijn/haar voortgang. Nieuwe items worden bij laden automatisch aangevuld.
 - TLSync 2 (issues #1 en #2, 11 nov 2026): versleutelde koppeling met het EDGE Masterplan via ntfy.sh, kanalen `<chan>-up` (app → EDGE) en `-down`. Het formaat volgt uit de code:
   - **TL2** (`S.code2`, 28 tekens Crockford-base32, 140 bits): scrypt (N=2^15, r=8, p=1) + HKDF-SHA256, AES-256-GCM-SIV met de richting als AAD. Nonce uit `crypto.getRandomValues`, zonder veilig toeval afgeleid via HMAC (nooit `Math.random`).
-  - **TL1** (`S.code`, oud): alleen voor de overstap. De app stuurt via beide tot de EDGE een `{type:'hello',v:2}` op TL2-down stuurt; dan `S.v2ok=true` en stopt TL1. Wijzig de TL1-afleiding niet.
+  - **TL1** (`S.code`, oud, 4 woorden + 4 cijfers; `isV1` zorgt dat zo'n code nooit als TL2 telt): alleen voor de overstap. De app stuurt via beide tot de EDGE een `{type:'hello',v:2}` op TL2-down stuurt (elke 6 uur, per code). Dan `S.v2seen` = tijdstip; zolang dat < 3 dagen oud is stopt TL1, daarna stuurt de app weer via beide. Wijzig de TL1-afleiding niet.
+  - Laadt `tlsync.js` niet (oude Safari < 14), dan start de app gewoon zonder automatische koppeling (`TLS` = null). `Object.hasOwn`-polyfill staat vóór de bundel voor iOS < 15.4.
   - Nieuwe installaties krijgen alleen een TL2-code. Wissen (Ik → Alles wissen) bewaart de codes.
   - Kan een toestel geen code maken (geen veilig toeval), dan vult Emiel een code in (Ik → Een code van Emiel invullen); de EDGE toont dan een reservecode.
 - EDGE-widget: `%APPDATA%\Corsair\CUE5\html_widgets\nl\emiel\edgeplan` (geïnstalleerd), pakketten en logboek in `Documents\EDGE` (`LEESMIJ-MASTERPLAN.txt`: altijd op de nieuwste versie verder bouwen). Scherm 19 = `scripts/tonaor.js`.

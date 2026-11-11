@@ -9,5 +9,7 @@ const noble = readFileSync(new URL('noble-2.4.0.min.js', here), 'utf8').trim();
 const src = readFileSync(new URL('tlsync.src.js', here), 'utf8');
 const head = '/* tlsync.js: GEBOUWD BESTAND, niet met de hand wijzigen. Bron: tools/tlsync.src.js, bouwen: node tools/build-tlsync.mjs\n' +
   '   Bevat @noble/ciphers 2.4.0 en @noble/hashes 2.4.0, (c) Paul Miller, MIT-licentie (https://paulmillr.com/noble). */\n';
-writeFileSync(new URL('../tlsync.js', here), head + 'var TLNoble=(function(){' + noble.replace(/^var TLNoble=/, 'return ') + '})();\n' + src);
+// noble roept Object.hasOwn al bij het laden aan; iOS < 15.4 kent die niet, dus de polyfill moet vóór de bundel staan.
+const poly = 'if (typeof Object.hasOwn !== "function") Object.hasOwn = function (o, k) { return Object.prototype.hasOwnProperty.call(o, k); }; /* iOS < 15.4 */\n';
+writeFileSync(new URL('../tlsync.js', here), head + poly + 'var TLNoble=(function(){' + noble.replace(/^var TLNoble=/, 'return ') + '})();\n' + src);
 console.log('tlsync.js gebouwd');
