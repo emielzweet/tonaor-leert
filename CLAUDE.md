@@ -16,6 +16,14 @@ Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteun
 - **De app is generiek; hardcode nooit namen of persoonlijke gegevens.** De huidige leerder en begeleiders zijn een voorbeeld-use-case, geen vaste invulling. Geen namen van personen, plaatsen, werk, rooster, achtergrond of persoonlijk leertraject in code, teksten, inhoud of manifest; zulke dingen komen uit instellingen of een inhoudspakket op het toestel. Teksten zonder geslacht. Bestaande vaste invulling wordt weggewerkt via issues #5 t/m #10 (en #4 voor talen); voeg er geen nieuwe aan toe.
 - **Geen security through obscurity.** De beveiliging mag nooit afhangen van geheime code, verborgen paden, een privé-repo of het weglaten van informatie: ga ervan uit dat een aanvaller alle code en documentatie kent. Alleen de koppelcodes zijn geheim. Privégegevens uit de repo houden is privacy, geen beveiligingsmaatregel.
 
+## Beveiligingsmeldingen
+
+- Beveiligingsproblemen horen in GitHubs **Private vulnerability reporting**, nooit in een openbaar issue, PR, commitbericht of discussie. Volg `SECURITY.md` en gebruik **Security → Advisories → Report a vulnerability**.
+- Begin iedere sessie en review met controleren of private vulnerability reporting aanstaat. Staat het uit of is de knop niet beschikbaar, publiceer dan geen details en probeer het niet via een openbaar issue; meld aan Emiel dat een repositorybeheerder de instelling moet aanzetten.
+- Controleer bij iedere sessie ook `CLAUDE.local.md` op nog niet gemigreerde beveiligingsbevindingen. Verplaats elke bevestigde, nog niet openbaar gemaakte bevinding naar een afzonderlijk privé GitHub-rapport. Verwijder de technische details pas uit het lokale bestand nadat het rapport is aangemaakt; bewaar daar hooguit het private advisory-nummer en de status.
+- Meld geen bevinding opnieuw als die al openbaar is gemaakt of is opgelost. Noteer in de lokale notities dat de melding al openbaar/opgelost is; probeer een openbaar issue niet als privé te behandelen.
+- Gebruik de openbare issuetracker alleen voor algemene verbeteringen en niet-gevoelige opvolging. Zet geen kwetsbaarheidsdetails of links naar privé-rapporten in openbare trackeritems.
+
 ## Herkomst
 
 - Gemaakt in een claude.ai-chat (10 nov 2026). Links naar de oorspronkelijke artifact en het onderbouwde ontwerp (didactiek, thema's, roadmap) staan in `CLAUDE.local.md`.
