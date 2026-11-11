@@ -32,7 +32,9 @@ Open http://127.0.0.1:8765/. De service worker registreert niet in de browser-pa
 
 ## Publiceren
 
-Nog geen GitHub-remote (gh is niet ingelogd). Plan uit LEESMIJ: repo `tonaor-leert` + GitHub Pages, daarna `git push`.
+Live op GitHub Pages: https://emielzweet.github.io/tonaor-leert/ (publieke repo `emielzweet/tonaor-leert`, branch `main`, root; `.nojekyll` aanwezig). Op 10 nov 2026 via de website geüpload; op 11 nov lokaal samengevoegd en als `origin` gekoppeld. `gh` is ingelogd als `emielzweet`.
+
+Release: wijzigen → `CACHE` in `sw.js` verhogen → commit → `git push`. De iPhone haalt de nieuwe versie op zodra hij online is.
 
 ## Roadmap (uit LEESMIJ)
 
