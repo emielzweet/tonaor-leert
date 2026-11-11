@@ -264,7 +264,9 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
   function hex(a) { var s = ""; for (var i = 0; i < a.length; i++) s += (a[i] < 16 ? "0" : "") + a[i].toString(16); return s; }
   function b64(a) { var s = ""; for (var i = 0; i < a.length; i++) s += String.fromCharCode(a[i]); return btoa(s); }
   function unb64(s) { var r = atob(s), a = new Uint8Array(r.length); for (var i = 0; i < r.length; i++) a[i] = r.charCodeAt(i); return a; }
-  function rnd(n) { var a = new Uint8Array(n); try { (root.crypto || root.msCrypto).getRandomValues(a); } catch (e) { for (var i = 0; i < n; i++) a[i] = Math.floor(Math.random() * 256); } return a; }
+  /* Alleen cryptografisch toeval; geen terugval op Math.random (fail closed). Zonder veilig toeval maakt de app geen code en verstuurt hij niets. */
+  function rnd(n) { var a = new Uint8Array(n), c = root.crypto || root.msCrypto; if (!c || typeof c.getRandomValues !== "function") throw new Error("TLSync: geen veilig toeval beschikbaar"); c.getRandomValues(a); return a; }
+  function secure() { try { rnd(1); return true; } catch (e) { return false; } }
 
   var WORDS = ["maan","zon","thee","fiets","tuin","bloem","boom","huis","raam","deur","vis","kat","hond","boot","zee","wolk","regen","sneeuw","berg","rivier","brug","weg","trein","bus","tafel","stoel","lamp","boek","pen","brief","koffie","rijst","soep","appel","peer","mango","banaan","kaas","brood","melk","ster","licht","vuur","wind","blad","gras","roos","lotus","vogel","eend","zwaan","schip","haven","duin","strand","schelp","jas","muts","sjaal","klok","bel","kaars","spiegel","lepel"];
   function newCode() { var r = rnd(6), w = []; for (var i = 0; i < 4; i++) w.push(WORDS[r[i] % WORDS.length]); return w.join("-") + "-" + (1000 + ((r[4] << 8 | r[5]) % 9000)); }
@@ -295,11 +297,13 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
   }
   var HOST = "https://ntfy.sh/";
   function send(code, dir, obj, cb) {
-    var url = HOST + derive(code).chan + "-" + dir, body = seal(code, obj);
+    if (!norm(code)) return cb && cb(false);
+    var url, body; try { url = HOST + derive(code).chan + "-" + dir; body = seal(code, obj); } catch (e) { return cb && cb(false); }
     try { var x = new XMLHttpRequest(); x.open("POST", url); x.onload = function () { cb && cb(x.status >= 200 && x.status < 300); }; x.onerror = function () { cb && cb(false); }; x.send(body); } catch (e) { cb && cb(false); }
   }
   /* haalt de berichten van de laatste 12 uur op, oudste eerst; cb(lijst van ontsleutelde objecten) of cb(null) bij geen verbinding */
   function fetchAll(code, dir, cb) {
+    if (!norm(code)) return cb(null);
     var url = HOST + derive(code).chan + "-" + dir + "/json?poll=1&since=12h";
     try {
       var x = new XMLHttpRequest(); x.open("GET", url);
@@ -307,7 +311,7 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
       x.onerror = function () { cb(null); }; x.send();
     } catch (e) { cb(null); }
   }
-  root.TLSync = { newCode: newCode, norm: norm, seal: seal, open: open, send: send, fetchAll: fetchAll, channel: function (c) { return derive(c).chan; } };
+  root.TLSync = { secure: secure, newCode: newCode, norm: norm, seal: seal, open: open, send: send, fetchAll: fetchAll, channel: function (c) { return derive(c).chan; } };
 })(typeof window !== "undefined" ? window : this);
 
 </script>
@@ -415,7 +419,7 @@ function fresh(){
 let S=load();
 if(!S||S.v!==2)S=fresh();
 [...NL,...EN,...REK].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
-if(!S.code){S.code=TLSync.newCode();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+if(!S.code&&TLSync.secure()){S.code=TLSync.newCode();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 
 /* herhaalmodel: stabiliteit (dagen) groeit bij goed, krimpt bij fout */
 function stage(id){const s=S.items[id].s;return s<=0?0:s<1.5?1:s<4?2:s<10?3:s<25?4:5}
@@ -931,7 +935,7 @@ function vMe(){
   <section class="card stack">${bi('<h3>Mijn plan</h3>','แผนของฉัน')}<p>${bi(S.moment?`Als ik ${momentText[S.moment]}, dan doe ik mijn les.`:'Nog geen vast moment gekozen.','เวลาที่ฉันเลือกไว้สำหรับบทเรียน')}</p>
     <div class="chips" role="group" aria-label="Moment">${[['ochtend','Na het ontbijt'],['pauze','In mijn pauze'],['middag','Na mijn werk'],['avond','Na het avondeten']].map(([k,a])=>`<button data-m="${k}" aria-pressed="${S.moment===k}">${a}</button>`).join('')}</div></section>
   <section class="card stack">${bi('<h3>Koppeling met Emiel</h3>','เชื่อมต่อกับเอมิล')}<p class="small muted">${bi('Je voortgang en je vragen gaan na elke les vanzelf naar Emiel. Zijn antwoorden komen hier terug.','ความก้าวหน้าและคำถามของคุณจะส่งถึงเอมิลโดยอัตโนมัติหลังทุกบทเรียน คำตอบของเขาจะกลับมาที่นี่')}</p>
-    <div class="example" style="text-align:center"><span class="eyebrow">Koppelcode</span><span style="font-family:var(--f-display);font-size:1.3rem;font-weight:800;overflow-wrap:anywhere" id="kcode">${esc(S.code)}</span><span class="small muted">${bi('Emiel vult deze code één keer in bij zijn EDGE.','เอมิลกรอกรหัสนี้ครั้งเดียวที่หน้าจอ EDGE ของเขา')}</span></div>
+    <div class="example" style="text-align:center"><span class="eyebrow">Koppelcode</span><span style="font-family:var(--f-display);font-size:1.3rem;font-weight:800;overflow-wrap:anywhere" id="kcode">${S.code?esc(S.code):'–'}</span><span class="small muted">${bi('Emiel vult deze code één keer in bij zijn EDGE.','เอมิลกรอกรหัสนี้ครั้งเดียวที่หน้าจอ EDGE ของเขา')}</span></div>
     <p class="small muted" id="syncst">${syncText()}</p>
     <div class="btn-row"><button class="btn btn-leaf" id="syncnow">${bi('Nu versturen','ส่งตอนนี้')}</button><button class="btn btn-ghost" id="sendp">${bi('Via WhatsApp','ทาง WhatsApp')}</button></div></section>
   <section class="card stack"><h3>Meekijken</h3><p class="small muted">Voor Emiel en Sjaak: voortgang, hulpvragen en uitlegkaarten.</p><button class="btn btn-ghost" id="emiel">Open de meekijk-weergave</button></section>
@@ -1017,7 +1021,7 @@ async function sendProgress(){
 
 /* ============ automatische koppeling (versleuteld, via TLSync) ============ */
 let upT=null,upBusy=false;
-function syncText(){return S.lastSync?bi(`Laatst verstuurd: ${new Date(S.lastSync).toLocaleString('nl-NL',{weekday:'short',hour:'2-digit',minute:'2-digit'})}`,'ส่งล่าสุดแล้ว'):bi('Nog niets verstuurd.','ยังไม่ได้ส่ง')}
+function syncText(){if(!S.code||!TLSync.secure())return bi('Veilig versturen werkt niet op dit toestel. Gebruik <b>Via WhatsApp</b>.','ส่งอย่างปลอดภัยไม่ได้บนเครื่องนี้ ใช้ WhatsApp แทน');return S.lastSync?bi(`Laatst verstuurd: ${new Date(S.lastSync).toLocaleString('nl-NL',{weekday:'short',hour:'2-digit',minute:'2-digit'})}`,'ส่งล่าสุดแล้ว'):bi('Nog niets verstuurd.','ยังไม่ได้ส่ง')}
 function syncUp(now_,cb){clearTimeout(upT);upT=setTimeout(()=>{if(upBusy){return syncUp(false,cb)}upBusy=true;TLSync.send(S.code,'up',progressData(),ok=>{upBusy=false;if(ok){S.lastSync=now();S.unsent=false;save()}cb&&cb(ok)})},now_?50:4000)}
 function syncDown(){TLSync.fetchAll(S.code,'down',list=>{if(!list)return;let added=0;list.forEach(a=>{if(!a||!a.id||S.answers.some(x=>x.id===a.id))return;S.answers.unshift({id:a.id,t:a.t||now(),ctx:a.ctx||'',text:a.text||'',seen:false});const h=S.help.find(x=>x.t===a.helpT);if(h)h.open=false;added++});if(added){save();syncUp();if(!route&&(tab==='vandaag'||tab==='ik')&&!app.classList.contains('sess'))rerender()}})}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')syncDown();else if(S.unsent||!S.lastSync||now()-S.lastSync>36e5)syncUp(true)});
