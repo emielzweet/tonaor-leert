@@ -342,11 +342,12 @@ let S=load();
 if(!S||S.v!==2)S=fresh();
 [...NL,...EN,...REK].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
 /* koppelcodes: S.code = oude TL1-code, S.code2 = sterke TL2-code, S.v2seen = laatste hello van de EDGE op TL2.
-   Zonder hello in de laatste 3 dagen stuurt de app ook weer via TL1, zodat een EDGE die (weer) de oude code heeft niets mist.
+   S.tl1off: zodra de EDGE ooit een hello op TL2 stuurde, gebruikt de app TL1 nooit meer (besluit 11 nov 2026), ook niet na Alles wissen
+   of een nieuwe code. Tot die eerste hello stuurt de app via beide, zodat een EDGE met de oude code niets mist.
    Laadt tlsync.js niet (oude Safari, ontbrekend bestand), dan werkt de app gewoon zonder automatische koppeling (WhatsApp blijft). */
 const TLS=window.TLSync||null;
 function v2live(){return !!S.v2seen&&now()-S.v2seen<3*DAY}
-function ensureCodes(){if(S.v2ok&&!S.v2seen){S.v2seen=Date.now()}delete S.v2ok;if(!TLS)return;if(TLS.secure()){if(!S.code2){S.code2=TLS.newCode2()}}try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(S.code2)TLS.prepare(S.code2)}
+function ensureCodes(){if(S.v2ok&&!S.v2seen){S.v2seen=Date.now()}delete S.v2ok;if(S.v2seen)S.tl1off=true;if(!TLS)return;if(TLS.secure()){if(!S.code2){S.code2=TLS.newCode2()}}try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(S.code2)TLS.prepare(S.code2)}
 ensureCodes();
 
 /* herhaalmodel: stabiliteit (dagen) groeit bij goed, krimpt bij fout */
@@ -865,7 +866,7 @@ function vMe(){
   <section class="card stack">${bi('<h3>Koppeling met Emiel</h3>','เชื่อมต่อกับเอมิล')}<p class="small muted">${bi('Je voortgang en je vragen gaan na elke les vanzelf naar Emiel. Zijn antwoorden komen hier terug.','ความก้าวหน้าและคำถามของคุณจะส่งถึงเอมิลโดยอัตโนมัติหลังทุกบทเรียน คำตอบของเขาจะกลับมาที่นี่')}</p>
     <div class="example" style="text-align:center"><span class="eyebrow">Koppelcode</span><span style="font-family:var(--f-display);font-size:1.15rem;font-weight:800;overflow-wrap:anywhere;letter-spacing:.02em" id="kcode">${S.code2?esc(S.code2):'–'}</span><span class="small muted">${bi(v2live()?'De EDGE gebruikt deze code. De koppeling is extra goed beveiligd.':'Emiel vult deze code één keer in bij zijn EDGE. Stuur hem met Delen.',v2live()?'EDGE ใช้รหัสนี้แล้ว การเชื่อมต่อปลอดภัยมาก':'เอมิลกรอกรหัสนี้ครั้งเดียวที่ EDGE ส่งให้เขาด้วยปุ่มแชร์')}</span></div>
     ${S.code2?`<div class="btn-row"><button class="btn btn-ghost" id="kcopy">${bi('Kopieer','คัดลอก')}</button><button class="btn btn-ghost" id="kshare">${bi('Delen','แชร์')}</button></div>`:''}
-    ${!v2live()&&S.code?`<p class="small muted">${bi(`Oude code, werkt nog tot de EDGE de nieuwe code heeft: <b>${esc(S.code)}</b>`,'รหัสเก่ายังใช้ได้จนกว่า EDGE จะใช้รหัสใหม่')}</p>`:''}
+    ${!S.tl1off&&S.code?`<p class="small muted">${bi(`Oude code, werkt nog tot de EDGE de nieuwe code heeft: <b>${esc(S.code)}</b>`,'รหัสเก่ายังใช้ได้จนกว่า EDGE จะใช้รหัสใหม่')}</p>`:''}
     <p class="small muted" id="syncst">${syncText()}</p>
     <div class="btn-row"><button class="btn btn-leaf" id="syncnow">${bi('Nu versturen','ส่งตอนนี้')}</button><button class="btn btn-ghost" id="sendp">${bi('Via WhatsApp','ทาง WhatsApp')}</button></div>
     <details${S.code2?'':' open'}><summary class="small muted">${bi('Een code van Emiel invullen','กรอกรหัสจากเอมิล')}</summary>
@@ -885,7 +886,7 @@ function vMe(){
   $('#kset').onclick=()=>{if(!TLS){toast('Automatisch versturen werkt niet op dit toestel. Gebruik Via WhatsApp.');return}const v=TLS.norm2($('#kin').value);if(!v){toast('Deze code klopt niet. Kijk of alle 28 tekens erin staan.');return}S.code2=v.match(/.{4}/g).join('-');S.v2seen=0;save();TLS.prepare(S.code2);toast('Code bewaard · บันทึกแล้ว');syncUp(true);vMe()};
   $('#syncnow').onclick=()=>{syncUp(true,ok=>{toast(ok?'Verstuurd naar Emiel · ส่งแล้ว':'Geen verbinding. Het gaat later vanzelf.');const e=$('#syncst');if(e)e.innerHTML=syncText()});syncDown()};
   $('#reset').onclick=()=>{$('#rc').hidden=false};$('#no').onclick=()=>{$('#rc').hidden=true};
-  $('#yes').onclick=()=>{const keep={code:S.code,code2:S.code2,v2seen:S.v2seen};S=Object.assign(fresh(),keep);save();onb=0;setThai('altijd');setSize('normaal');tab='vandaag';vOnboard()};
+  $('#yes').onclick=()=>{const keep={code:S.code,code2:S.code2,v2seen:S.v2seen,tl1off:S.tl1off};S=Object.assign(fresh(),keep);save();onb=0;setThai('altijd');setSize('normaal');tab='vandaag';vOnboard()};
 }
 
 /* ============ meekijken (Emiel) ============ */
@@ -957,11 +958,11 @@ async function sendProgress(){
 /* ============ automatische koppeling (versleuteld, via TLSync) ============ */
 let upT=null,upBusy=false;
 /* koppelingen waarover we versturen: altijd de sterke TL2-code; de oude TL1-code alleen tot de EDGE TL2 bevestigt (hello) */
-function syncCodes(){const c=[];if(!TLS)return c;if(S.code2)c.push(S.code2);if(S.code&&!v2live())c.push(S.code);return c}
+function syncCodes(){const c=[];if(!TLS)return c;if(S.code2)c.push(S.code2);if(S.code&&!S.tl1off)c.push(S.code);return c}
 function syncText(){if(!TLS)return bi('Automatisch versturen werkt niet op dit toestel. Gebruik <b>Via WhatsApp</b>.','ส่งอัตโนมัติไม่ได้บนเครื่องนี้ ใช้ WhatsApp แทน');if(!syncCodes().length)return bi('Nog geen koppelcode. Vul hieronder de code van Emiel in, of gebruik <b>Via WhatsApp</b>.','ยังไม่มีรหัส กรอกรหัสจากเอมิลด้านล่าง หรือใช้ WhatsApp');return S.lastSync?bi(`Laatst verstuurd: ${new Date(S.lastSync).toLocaleString('nl-NL',{weekday:'short',hour:'2-digit',minute:'2-digit'})}`,'ส่งล่าสุดแล้ว'):bi('Nog niets verstuurd.','ยังไม่ได้ส่ง')}
 function syncUp(now_,cb){clearTimeout(upT);upT=setTimeout(()=>{if(upBusy){return syncUp(false,cb)}const cs=syncCodes();if(!cs.length)return cb&&cb(false);upBusy=true;const data=progressData();let left=cs.length,any=false,all=true;const done=ok=>{any=any||ok;all=all&&ok;if(--left)return;upBusy=false;if(any){S.lastSync=now();if(all)S.unsent=false;else S.unsent=true;save()}cb&&cb(any)};cs.forEach(c=>{try{TLS.send(c,'up',data,done)}catch(e){done(false)}})},now_?50:4000)}
 function gotDown(list,isV2){if(!list)return;let added=0,hello=false;list.forEach(a=>{if(a&&a.type==='hello'&&isV2){hello=true;return}if(!a||!a.id||S.answers.some(x=>x.id===a.id))return;S.answers.unshift({id:a.id,t:a.t||now(),ctx:a.ctx||'',text:a.text||'',seen:false});const h=S.help.find(x=>x.t===a.helpT);if(h)h.open=false;added++});
-  if(hello){const was=v2live();S.v2seen=now();save();if(!was)if(tab==='ik'&&!route&&!app.classList.contains('sess'))rerender()}
+  if(hello){const was=v2live();S.v2seen=now();S.tl1off=true;save();if(!was)if(tab==='ik'&&!route&&!app.classList.contains('sess'))rerender()}
   if(added){save();syncUp();if(!route&&(tab==='vandaag'||tab==='ik')&&!app.classList.contains('sess'))rerender()}}
 function syncDown(){syncCodes().forEach(c=>{try{TLS.fetchAll(c,'down',list=>gotDown(list,TLS.isV2(c)))}catch(e){}})}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')syncDown();else if(S.unsent||!S.lastSync||now()-S.lastSync>36e5)syncUp(true)});
