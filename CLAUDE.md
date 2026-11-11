@@ -1,6 +1,6 @@
 # Tonaor leert Nederlands
 
-Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteuning. Draait als "Zet op beginscherm"-app op Tonaors iPhone. Communiceer met Emiel in het Nederlands.
+Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteuning. Draait als "Zet op beginscherm"-app op Tonaors iPhone. Communiceer met Emiel in het Nederlands. Lokale details (paden, links, thuisopzet) staan in `CLAUDE.local.md`, dat niet in git zit.
 
 ## Werkwijze bij issues, reviews en beveiliging (afspraak met Emiel, 11 nov 2026)
 
@@ -12,13 +12,12 @@ Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteun
   3. vraag Emiel om een besluit en wacht daarop. Pas daarna bouwen.
 - **Functionaliteit behouden is het uitgangspunt:** een functie uitzetten om een probleem op te lossen is geen oplossing, tenzij Emiel daar expliciet voor kiest. Benoem het altijd als een oplossing iets wegneemt of verzwakt.
 - **Naar buiten gerichte stappen apart vragen:** issues sluiten, heropenen of erop reageren, pushen naar de publieke repo, repo-instellingen wijzigen, de EDGE-widget installeren of iCUE herstarten. Let op: "fixes #n" in een commitbericht sluit het issue bij een push automatisch; gebruik dat alleen als Emiel heeft ingestemd met sluiten.
-- **Publieke repo:** zet geen nieuwe persoonlijke gegevens, lokale paden of geheimen in bestanden die naar GitHub gaan zonder dat Emiel dat weet.
+- **Publieke repo: geen privacy-, beveiligings- of geheime informatie.** Alles wat gecommit wordt is openbaar, ook in de git-geschiedenis (een latere commit haalt het daar niet weg). Zet daarom nooit in een bestand dat naar GitHub gaat, ook niet in commitberichten: persoonsgegevens (behalve wat de app zelf al toont), lokale paden en gebruikersnamen van de pc, links naar privédocumenten of artifacts, details van de thuisopzet, koppelcodes, sleutels, tokens of wachtwoorden. Die horen in `CLAUDE.local.md` (staat in `.gitignore`). Controleer vóór elke commit de diff hierop. Twijfel je, of staat het er per ongeluk al in: vraag Emiel, en stel bij een echt geheim voor het te vervangen (een uitgelekte code of sleutel is niet meer geheim, ook niet na het herschrijven van de geschiedenis).
+- **Geen security through obscurity.** De beveiliging mag nooit afhangen van geheime code, verborgen paden, een privé-repo of het weglaten van informatie: ga ervan uit dat een aanvaller alle code en documentatie kent. Alleen de koppelcodes zijn geheim. Privégegevens uit de repo houden is privacy, geen beveiligingsmaatregel.
 
 ## Herkomst
 
-- Gemaakt in een claude.ai-chat (10 nov 2026). Gepubliceerde versie: artifact "Tonaor leert Nederlands" — https://claude.ai/artifact/RtChvdCwPJnQwmC5eZHFQo
-- Onderbouwd ontwerp (didactiek, thema's, roadmap): Claude Docs "Leeromgeving Nederlands en rekenen voor Tonaor – onderbouwd ontwerp" — https://claude.ai/artifact/8HcTBo2SRuYSvqzpNq7BZe
-- Originele export stond in `C:\Users\emiel\Documents\Tonaor leert` (laten staan als back-up; dit project is nu de bron).
+- Gemaakt in een claude.ai-chat (10 nov 2026). Links naar de oorspronkelijke artifact en het onderbouwde ontwerp (didactiek, thema's, roadmap) staan in `CLAUDE.local.md`.
 - **Deze map is leidend.** Werk de artifact alleen bij als Emiel daarom vraagt; dan de body van `index.html` publiceren zonder de PWA-kop (manifest, apple-meta's, sw-registratie), en `tlsync.js` inline zetten (de artifact kent geen losse bestanden).
 
 ## Bestanden
@@ -38,7 +37,7 @@ Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteun
   - Laadt `tlsync.js` niet (oude Safari < 14), dan start de app gewoon zonder automatische koppeling (`TLS` = null). `Object.hasOwn`-polyfill staat vóór de bundel voor iOS < 15.4.
   - Nieuwe installaties krijgen alleen een TL2-code. Wissen (Ik → Alles wissen) bewaart de codes.
   - Kan een toestel geen code maken (geen veilig toeval), dan vult Emiel een code in (Ik → Een code van Emiel invullen); de EDGE toont dan een reservecode.
-- EDGE-widget: `%APPDATA%\Corsair\CUE5\html_widgets\nl\emiel\edgeplan` (geïnstalleerd), pakketten en logboek in `Documents\EDGE` (`LEESMIJ-MASTERPLAN.txt`: altijd op de nieuwste versie verder bouwen). Scherm 19 = `scripts/tonaor.js`.
+- EDGE-widget (iCUE, buiten deze repo): scherm 19 = `scripts/tonaor.js`. Waar de widget staat en hoe je hem bijwerkt, staat in `CLAUDE.local.md`.
 - Alles tweetalig via `bi(nl, th)`. Kleurpalet: pastels, geen rood (bewuste keuze).
 - Doelapparaat is iPhone/Safari: test op 375px breed.
 
@@ -51,7 +50,7 @@ Open http://127.0.0.1:8765/. De service worker registreert niet in de browser-pa
 
 ## Publiceren
 
-Live op GitHub Pages: https://emielzweet.github.io/tonaor-leert/ (publieke repo `emielzweet/tonaor-leert`, branch `main`, root; `.nojekyll` aanwezig). Op 10 nov 2026 via de website geüpload; op 11 nov lokaal samengevoegd en als `origin` gekoppeld. `gh` is ingelogd als `emielzweet`.
+Live op GitHub Pages: https://emielzweet.github.io/tonaor-leert/ (publieke repo `emielzweet/tonaor-leert`, branch `main`, root; `.nojekyll` aanwezig). Op 10 nov 2026 via de website geüpload; op 11 nov lokaal samengevoegd en als `origin` gekoppeld.
 
 Release: wijzigen → `CACHE` in `sw.js` verhogen → commit → `git push`. De iPhone haalt de nieuwe versie op zodra hij online is.
 
