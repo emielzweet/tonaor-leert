@@ -26,7 +26,7 @@ Daarna opent de app als een gewone app, zonder adresbalk, en werkt hij ook offli
 ## Goed om te weten
 
 - **Voortgang staat op de telefoon zelf.** Zolang de server er nog niet is, bewaart de app alles lokaal op de iPhone. Wis dus niet de websitegegevens van Safari.
-- **Koppeling met Emiel:** na elke les gaan voortgang en hulpvragen vanzelf, versleuteld, naar de EDGE (tegel 19). Emiel vult daarvoor één keer de koppelcode uit *Ik → Koppeling met Emiel* in bij de iCUE-instellingen. Zijn antwoorden komen terug in de app.
+- **Koppeling met Emiel:** na elke les gaan voortgang en hulpvragen vanzelf, versleuteld, naar de EDGE (tegel 19). Emiel vult daarvoor één keer de koppelcode uit *Ik → Koppeling met Emiel* in bij de iCUE-instellingen. Zijn antwoorden komen terug in de app. De code heeft 28 tekens; tik in de app op **Delen** om hem naar jezelf te sturen en plak hem in iCUE. Versleuteling: AES-GCM-SIV met scrypt (bibliotheek noble, zie `tools/`).
 - **Bijwerken:** zet een nieuwe `index.html` in de repository. De app haalt de nieuwe versie op zodra de telefoon online is.
 - **Voorlezen** gebruikt de stemmen van de iPhone. De mooiste Nederlandse stem zet je aan via Instellingen → Toegankelijkheid → Gesproken materiaal → Stemmen → Nederlands (bijvoorbeeld een *Verbeterde* stem downloaden).
 - **Opnemen** (spraakdagboek, keukentafelgesprek met AI-feedback) komt met de server, zoals beschreven in het plan.

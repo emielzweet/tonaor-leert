@@ -236,85 +236,7 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
   <button data-tab="ik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Ik<span class="th" lang="th">ฉัน</span></button>
 </div></nav>
 
-<script>
-/* TLSync: automatische, versleutelde koppeling tussen "Tonaor leert" (iPhone) en het EDGE Masterplan.
-   Geen account en geen sleutel nodig: beide kanten delen één koppelcode (bijv. "maan-thee-fiets-zon-4821").
-   Uit die code worden een geheim kanaal op ntfy.sh en een sleutel afgeleid. Alles wat over het kanaal gaat is versleuteld
-   (SHA-256 in tellermodus + controlecode), dus ntfy.sh ziet alleen onleesbare tekens. Berichten blijven daar 12 uur staan;
-   de app stuurt bij elke les de volledige stand opnieuw, dus er gaat niets verloren. Werkt in Safari en in iCUE. */
-(function (root) {
-  "use strict";
-  var K = [0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
-  function sha256(bytes) {
-    var l = bytes.length, n = ((l + 9 + 63) >> 6) << 6, m = new Uint8Array(n), w = new Int32Array(64), i, j;
-    m.set(bytes); m[l] = 0x80; var bits = l * 8; m[n - 4] = bits >>> 24; m[n - 3] = bits >>> 16; m[n - 2] = bits >>> 8; m[n - 1] = bits; m[n - 5] = Math.floor(bits / 4294967296);
-    var h = [0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
-    for (i = 0; i < n; i += 64) {
-      for (j = 0; j < 16; j++) w[j] = (m[i + j * 4] << 24) | (m[i + j * 4 + 1] << 16) | (m[i + j * 4 + 2] << 8) | m[i + j * 4 + 3];
-      for (j = 16; j < 64; j++) { var a = w[j - 15], b = w[j - 2]; var s0 = ((a >>> 7) | (a << 25)) ^ ((a >>> 18) | (a << 14)) ^ (a >>> 3), s1 = ((b >>> 17) | (b << 15)) ^ ((b >>> 19) | (b << 13)) ^ (b >>> 10); w[j] = (w[j - 16] + s0 + w[j - 7] + s1) | 0; }
-      var A = h[0], B = h[1], C = h[2], D = h[3], E = h[4], F = h[5], G = h[6], H = h[7];
-      for (j = 0; j < 64; j++) { var S1 = ((E >>> 6) | (E << 26)) ^ ((E >>> 11) | (E << 21)) ^ ((E >>> 25) | (E << 7)), ch = (E & F) ^ (~E & G), t1 = (H + S1 + ch + K[j] + w[j]) | 0, S0 = ((A >>> 2) | (A << 30)) ^ ((A >>> 13) | (A << 19)) ^ ((A >>> 22) | (A << 10)), mj = (A & B) ^ (A & C) ^ (B & C), t2 = (S0 + mj) | 0; H = G; G = F; F = E; E = (D + t1) | 0; D = C; C = B; B = A; A = (t1 + t2) | 0; }
-      h[0] = (h[0] + A) | 0; h[1] = (h[1] + B) | 0; h[2] = (h[2] + C) | 0; h[3] = (h[3] + D) | 0; h[4] = (h[4] + E) | 0; h[5] = (h[5] + F) | 0; h[6] = (h[6] + G) | 0; h[7] = (h[7] + H) | 0;
-    }
-    var out = new Uint8Array(32); for (i = 0; i < 8; i++) { out[i * 4] = h[i] >>> 24; out[i * 4 + 1] = h[i] >>> 16; out[i * 4 + 2] = h[i] >>> 8; out[i * 4 + 3] = h[i]; } return out;
-  }
-  function utf8(s) { if (typeof TextEncoder !== "undefined") return new TextEncoder().encode(s); var u = unescape(encodeURIComponent(s)), a = new Uint8Array(u.length); for (var i = 0; i < u.length; i++) a[i] = u.charCodeAt(i); return a; }
-  function unutf8(a) { if (typeof TextDecoder !== "undefined") return new TextDecoder().decode(a); var s = ""; for (var i = 0; i < a.length; i++) s += String.fromCharCode(a[i]); return decodeURIComponent(escape(s)); }
-  function cat() { var t = 0, i; for (i = 0; i < arguments.length; i++) t += arguments[i].length; var o = new Uint8Array(t), p = 0; for (i = 0; i < arguments.length; i++) { o.set(arguments[i], p); p += arguments[i].length; } return o; }
-  function hex(a) { var s = ""; for (var i = 0; i < a.length; i++) s += (a[i] < 16 ? "0" : "") + a[i].toString(16); return s; }
-  function b64(a) { var s = ""; for (var i = 0; i < a.length; i++) s += String.fromCharCode(a[i]); return btoa(s); }
-  function unb64(s) { var r = atob(s), a = new Uint8Array(r.length); for (var i = 0; i < r.length; i++) a[i] = r.charCodeAt(i); return a; }
-  /* Alleen cryptografisch toeval; geen terugval op Math.random (fail closed). Zonder veilig toeval maakt de app geen code en verstuurt hij niets. */
-  function rnd(n) { var a = new Uint8Array(n), c = root.crypto || root.msCrypto; if (!c || typeof c.getRandomValues !== "function") throw new Error("TLSync: geen veilig toeval beschikbaar"); c.getRandomValues(a); return a; }
-  function secure() { try { rnd(1); return true; } catch (e) { return false; } }
-
-  var WORDS = ["maan","zon","thee","fiets","tuin","bloem","boom","huis","raam","deur","vis","kat","hond","boot","zee","wolk","regen","sneeuw","berg","rivier","brug","weg","trein","bus","tafel","stoel","lamp","boek","pen","brief","koffie","rijst","soep","appel","peer","mango","banaan","kaas","brood","melk","ster","licht","vuur","wind","blad","gras","roos","lotus","vogel","eend","zwaan","schip","haven","duin","strand","schelp","jas","muts","sjaal","klok","bel","kaars","spiegel","lepel"];
-  function newCode() { var r = rnd(6), w = []; for (var i = 0; i < 4; i++) w.push(WORDS[r[i] % WORDS.length]); return w.join("-") + "-" + (1000 + ((r[4] << 8 | r[5]) % 9000)); }
-  function norm(code) { return String(code || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
-  var cache = {};
-  function derive(code) {
-    code = norm(code); if (cache[code]) return cache[code];
-    var k = sha256(utf8("tonaor-leert|" + code));
-    for (var i = 0; i < 4000; i++) k = sha256(cat(k, utf8(code)));
-    var d = { code: code, key: k, chan: "tl-" + hex(sha256(cat(k, utf8("kanaal")))).slice(0, 28) };
-    cache[code] = d; return d;
-  }
-  function stream(key, iv, n) { var o = new Uint8Array(n), c = 0, p = 0; while (p < n) { var blk = sha256(cat(key, iv, new Uint8Array([c >>> 24, c >>> 16, c >>> 8, c]))); for (var i = 0; i < 32 && p < n; i++) o[p++] = blk[i]; c++; } return o; }
-  function seal(code, obj) {
-    var d = derive(code), iv = rnd(16), pt = utf8(JSON.stringify(obj)), ks = stream(d.key, iv, pt.length), ct = new Uint8Array(pt.length);
-    for (var i = 0; i < pt.length; i++) ct[i] = pt[i] ^ ks[i];
-    var mac = sha256(cat(d.key, utf8("mac"), iv, ct)).subarray(0, 16);
-    return "TL1." + b64(cat(iv, mac, ct));
-  }
-  function open(code, txt) {
-    if (!txt || String(txt).indexOf("TL1.") !== 0) return null;
-    try {
-      var d = derive(code), a = unb64(String(txt).slice(4)), iv = a.subarray(0, 16), mac = a.subarray(16, 32), ct = a.subarray(32);
-      var chk = sha256(cat(d.key, utf8("mac"), iv, ct)); for (var i = 0; i < 16; i++) if (chk[i] !== mac[i]) return null;
-      var ks = stream(d.key, iv, ct.length), pt = new Uint8Array(ct.length); for (i = 0; i < ct.length; i++) pt[i] = ct[i] ^ ks[i];
-      return JSON.parse(unutf8(pt));
-    } catch (e) { return null; }
-  }
-  var HOST = "https://ntfy.sh/";
-  function send(code, dir, obj, cb) {
-    if (!norm(code)) return cb && cb(false);
-    var url, body; try { url = HOST + derive(code).chan + "-" + dir; body = seal(code, obj); } catch (e) { return cb && cb(false); }
-    try { var x = new XMLHttpRequest(); x.open("POST", url); x.onload = function () { cb && cb(x.status >= 200 && x.status < 300); }; x.onerror = function () { cb && cb(false); }; x.send(body); } catch (e) { cb && cb(false); }
-  }
-  /* haalt de berichten van de laatste 12 uur op, oudste eerst; cb(lijst van ontsleutelde objecten) of cb(null) bij geen verbinding */
-  function fetchAll(code, dir, cb) {
-    if (!norm(code)) return cb(null);
-    var url = HOST + derive(code).chan + "-" + dir + "/json?poll=1&since=12h";
-    try {
-      var x = new XMLHttpRequest(); x.open("GET", url);
-      x.onload = function () { if (x.status !== 200) return cb(null); var out = []; String(x.responseText || "").split("\n").forEach(function (ln) { if (!ln) return; try { var j = JSON.parse(ln); if (j.event === "message") { var o = open(code, j.message); if (o) out.push(o); } } catch (e) {} }); cb(out); };
-      x.onerror = function () { cb(null); }; x.send();
-    } catch (e) { cb(null); }
-  }
-  root.TLSync = { secure: secure, newCode: newCode, norm: norm, seal: seal, open: open, send: send, fetchAll: fetchAll, channel: function (c) { return derive(c).chan; } };
-})(typeof window !== "undefined" ? window : this);
-
-</script>
+<script src="tlsync.js"></script>
 <script>
 (function(){
 "use strict";
@@ -419,7 +341,9 @@ function fresh(){
 let S=load();
 if(!S||S.v!==2)S=fresh();
 [...NL,...EN,...REK].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
-if(!S.code&&TLSync.secure()){S.code=TLSync.newCode();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+/* koppelcodes: S.code = oude TL1-code (blijft werken tot de EDGE TL2 bevestigt), S.code2 = sterke TL2-code, S.v2ok = EDGE gebruikt TL2 */
+function ensureCodes(){let ch=false;if(TLSync.secure()){if(!S.code2){S.code2=TLSync.newCode2();ch=true}}if(ch)try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(S.code2)TLSync.prepare(S.code2)}
+ensureCodes();
 
 /* herhaalmodel: stabiliteit (dagen) groeit bij goed, krimpt bij fout */
 function stage(id){const s=S.items[id].s;return s<=0?0:s<1.5?1:s<4?2:s<10?3:s<25?4:5}
@@ -935,9 +859,13 @@ function vMe(){
   <section class="card stack">${bi('<h3>Mijn plan</h3>','แผนของฉัน')}<p>${bi(S.moment?`Als ik ${momentText[S.moment]}, dan doe ik mijn les.`:'Nog geen vast moment gekozen.','เวลาที่ฉันเลือกไว้สำหรับบทเรียน')}</p>
     <div class="chips" role="group" aria-label="Moment">${[['ochtend','Na het ontbijt'],['pauze','In mijn pauze'],['middag','Na mijn werk'],['avond','Na het avondeten']].map(([k,a])=>`<button data-m="${k}" aria-pressed="${S.moment===k}">${a}</button>`).join('')}</div></section>
   <section class="card stack">${bi('<h3>Koppeling met Emiel</h3>','เชื่อมต่อกับเอมิล')}<p class="small muted">${bi('Je voortgang en je vragen gaan na elke les vanzelf naar Emiel. Zijn antwoorden komen hier terug.','ความก้าวหน้าและคำถามของคุณจะส่งถึงเอมิลโดยอัตโนมัติหลังทุกบทเรียน คำตอบของเขาจะกลับมาที่นี่')}</p>
-    <div class="example" style="text-align:center"><span class="eyebrow">Koppelcode</span><span style="font-family:var(--f-display);font-size:1.3rem;font-weight:800;overflow-wrap:anywhere" id="kcode">${S.code?esc(S.code):'–'}</span><span class="small muted">${bi('Emiel vult deze code één keer in bij zijn EDGE.','เอมิลกรอกรหัสนี้ครั้งเดียวที่หน้าจอ EDGE ของเขา')}</span></div>
+    <div class="example" style="text-align:center"><span class="eyebrow">Koppelcode</span><span style="font-family:var(--f-display);font-size:1.15rem;font-weight:800;overflow-wrap:anywhere;letter-spacing:.02em" id="kcode">${S.code2?esc(S.code2):'–'}</span><span class="small muted">${bi(S.v2ok?'De EDGE gebruikt deze code. De koppeling is extra goed beveiligd.':'Emiel vult deze code één keer in bij zijn EDGE. Stuur hem met Delen.',S.v2ok?'EDGE ใช้รหัสนี้แล้ว การเชื่อมต่อปลอดภัยมาก':'เอมิลกรอกรหัสนี้ครั้งเดียวที่ EDGE ส่งให้เขาด้วยปุ่มแชร์')}</span></div>
+    ${S.code2?`<div class="btn-row"><button class="btn btn-ghost" id="kcopy">${bi('Kopieer','คัดลอก')}</button><button class="btn btn-ghost" id="kshare">${bi('Delen','แชร์')}</button></div>`:''}
+    ${!S.v2ok&&S.code?`<p class="small muted">${bi(`Oude code, werkt nog tot de EDGE de nieuwe code heeft: <b>${esc(S.code)}</b>`,'รหัสเก่ายังใช้ได้จนกว่า EDGE จะใช้รหัสใหม่')}</p>`:''}
     <p class="small muted" id="syncst">${syncText()}</p>
-    <div class="btn-row"><button class="btn btn-leaf" id="syncnow">${bi('Nu versturen','ส่งตอนนี้')}</button><button class="btn btn-ghost" id="sendp">${bi('Via WhatsApp','ทาง WhatsApp')}</button></div></section>
+    <div class="btn-row"><button class="btn btn-leaf" id="syncnow">${bi('Nu versturen','ส่งตอนนี้')}</button><button class="btn btn-ghost" id="sendp">${bi('Via WhatsApp','ทาง WhatsApp')}</button></div>
+    <details${S.code2?'':' open'}><summary class="small muted">${bi('Een code van Emiel invullen','กรอกรหัสจากเอมิล')}</summary>
+      <div class="stack" style="margin-top:8px"><input id="kin" class="input" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="xxxx-xxxx-xxxx-xxxx-xxxx-xxxx-xxxx" aria-label="Koppelcode"><button class="btn btn-ghost" id="kset">${bi('Code bewaren','บันทึกรหัส')}</button></div></details></section>
   <section class="card stack"><h3>Meekijken</h3><p class="small muted">Voor Emiel en Sjaak: voortgang, hulpvragen en uitlegkaarten.</p><button class="btn btn-ghost" id="emiel">Open de meekijk-weergave</button></section>
   <button class="linkish muted" id="reset">Alles op dit apparaat wissen en opnieuw beginnen</button>
   <div id="rc" hidden class="card stack"><p>Alle voortgang op dit apparaat wissen?</p><div class="btn-row"><button class="btn btn-ghost" id="no">Nee</button><button class="btn btn-main" id="yes">Ja, wissen</button></div></div>`);
@@ -948,9 +876,12 @@ function vMe(){
   app.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{S.moment=b.dataset.m;save();vMe()});
   $('#emiel').onclick=()=>{tab='emiel';rerender();window.scrollTo(0,0)};
   $('#sendp').onclick=sendProgress;
+  if($('#kcopy'))$('#kcopy').onclick=()=>{try{navigator.clipboard.writeText(S.code2).then(()=>toast('Gekopieerd · คัดลอกแล้ว'),()=>toast(S.code2))}catch(e){toast(S.code2)}};
+  if($('#kshare'))$('#kshare').onclick=async()=>{const t=`Koppelcode voor Tonaor leert (EDGE → iCUE-instellingen → Tonaor → Koppelcode):\n${S.code2}`;try{if(navigator.share){await navigator.share({text:t});return}}catch(e){if(e&&e.name==='AbortError')return}location.href='https://wa.me/?text='+encodeURIComponent(t)};
+  $('#kset').onclick=()=>{const v=TLSync.norm2($('#kin').value);if(!v){toast('Deze code klopt niet. Kijk of alle 28 tekens erin staan.');return}S.code2=v.match(/.{4}/g).join('-');S.v2ok=false;save();TLSync.prepare(S.code2);toast('Code bewaard · บันทึกแล้ว');syncUp(true);vMe()};
   $('#syncnow').onclick=()=>{syncUp(true,ok=>{toast(ok?'Verstuurd naar Emiel · ส่งแล้ว':'Geen verbinding. Het gaat later vanzelf.');const e=$('#syncst');if(e)e.innerHTML=syncText()});syncDown()};
   $('#reset').onclick=()=>{$('#rc').hidden=false};$('#no').onclick=()=>{$('#rc').hidden=true};
-  $('#yes').onclick=()=>{S=fresh();save();onb=0;setThai('altijd');setSize('normaal');tab='vandaag';vOnboard()};
+  $('#yes').onclick=()=>{const keep={code:S.code,code2:S.code2,v2ok:S.v2ok};S=Object.assign(fresh(),keep);save();onb=0;setThai('altijd');setSize('normaal');tab='vandaag';vOnboard()};
 }
 
 /* ============ meekijken (Emiel) ============ */
@@ -1021,9 +952,14 @@ async function sendProgress(){
 
 /* ============ automatische koppeling (versleuteld, via TLSync) ============ */
 let upT=null,upBusy=false;
-function syncText(){if(!S.code||!TLSync.secure())return bi('Veilig versturen werkt niet op dit toestel. Gebruik <b>Via WhatsApp</b>.','ส่งอย่างปลอดภัยไม่ได้บนเครื่องนี้ ใช้ WhatsApp แทน');return S.lastSync?bi(`Laatst verstuurd: ${new Date(S.lastSync).toLocaleString('nl-NL',{weekday:'short',hour:'2-digit',minute:'2-digit'})}`,'ส่งล่าสุดแล้ว'):bi('Nog niets verstuurd.','ยังไม่ได้ส่ง')}
-function syncUp(now_,cb){clearTimeout(upT);upT=setTimeout(()=>{if(upBusy){return syncUp(false,cb)}upBusy=true;TLSync.send(S.code,'up',progressData(),ok=>{upBusy=false;if(ok){S.lastSync=now();S.unsent=false;save()}cb&&cb(ok)})},now_?50:4000)}
-function syncDown(){TLSync.fetchAll(S.code,'down',list=>{if(!list)return;let added=0;list.forEach(a=>{if(!a||!a.id||S.answers.some(x=>x.id===a.id))return;S.answers.unshift({id:a.id,t:a.t||now(),ctx:a.ctx||'',text:a.text||'',seen:false});const h=S.help.find(x=>x.t===a.helpT);if(h)h.open=false;added++});if(added){save();syncUp();if(!route&&(tab==='vandaag'||tab==='ik')&&!app.classList.contains('sess'))rerender()}})}
+/* koppelingen waarover we versturen: altijd de sterke TL2-code; de oude TL1-code alleen tot de EDGE TL2 bevestigt (hello) */
+function syncCodes(){const c=[];if(S.code2)c.push(S.code2);if(S.code&&!S.v2ok)c.push(S.code);return c}
+function syncText(){if(!syncCodes().length)return bi('Nog geen koppelcode. Vul hieronder de code van Emiel in, of gebruik <b>Via WhatsApp</b>.','ยังไม่มีรหัส กรอกรหัสจากเอมิลด้านล่าง หรือใช้ WhatsApp');return S.lastSync?bi(`Laatst verstuurd: ${new Date(S.lastSync).toLocaleString('nl-NL',{weekday:'short',hour:'2-digit',minute:'2-digit'})}`,'ส่งล่าสุดแล้ว'):bi('Nog niets verstuurd.','ยังไม่ได้ส่ง')}
+function syncUp(now_,cb){clearTimeout(upT);upT=setTimeout(()=>{if(upBusy){return syncUp(false,cb)}const cs=syncCodes();if(!cs.length)return cb&&cb(false);upBusy=true;const data=progressData();let left=cs.length,any=false;cs.forEach(c=>TLSync.send(c,'up',data,ok=>{any=any||ok;if(--left)return;upBusy=false;if(any){S.lastSync=now();S.unsent=false;save()}cb&&cb(any)}))},now_?50:4000)}
+function gotDown(list,isV2){if(!list)return;let added=0,hello=false;list.forEach(a=>{if(a&&a.type==='hello'&&isV2){hello=true;return}if(!a||!a.id||S.answers.some(x=>x.id===a.id))return;S.answers.unshift({id:a.id,t:a.t||now(),ctx:a.ctx||'',text:a.text||'',seen:false});const h=S.help.find(x=>x.t===a.helpT);if(h)h.open=false;added++});
+  if(hello&&!S.v2ok){S.v2ok=true;save();if(tab==='ik'&&!route&&!app.classList.contains('sess'))rerender()}
+  if(added){save();syncUp();if(!route&&(tab==='vandaag'||tab==='ik')&&!app.classList.contains('sess'))rerender()}}
+function syncDown(){syncCodes().forEach(c=>TLSync.fetchAll(c,'down',list=>gotDown(list,TLSync.isV2(c))))}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')syncDown();else if(S.unsent||!S.lastSync||now()-S.lastSync>36e5)syncUp(true)});
 setInterval(()=>{if(document.visibilityState==='visible')syncDown()},90000);
 setTimeout(()=>{syncDown();if(!S.lastSync||now()-S.lastSync>6*36e5)syncUp(true)},1500);
