@@ -377,10 +377,33 @@ function gapEx(w){const re=new RegExp('(^|[^a-zà-ÿ])((?:de |het )?'+w.w.replac
 function setThai(m){S.thai=m;document.documentElement.dataset.thai=m;save()}
 function setSize(m){S.size=m;document.documentElement.dataset.size=m;save()}
 document.addEventListener('click',e=>{const b=e.target.closest('.bi');if(b&&S.thai==='tik'&&!e.target.closest('button'))b.classList.toggle('show')});
-const voices={};
-function pickVoice(){try{const vs=speechSynthesis.getVoices();voices.nl=vs.find(v=>/^nl[-_]NL/i.test(v.lang))||vs.find(v=>/^nl/i.test(v.lang))||null;voices.en=vs.find(v=>/^en[-_]GB/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||null}catch(e){}}
-try{speechSynthesis.onvoiceschanged=pickVoice;pickVoice()}catch(e){}
-function say(t,slow,lang){lang=lang||'nl';try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=lang==='en'?'en-GB':'nl-NL';if(voices[lang])u.voice=voices[lang];u.rate=slow?.68:.9;speechSynthesis.speak(u)}catch(e){toast('Voorlezen werkt niet in deze browser')}}
+/* ============ voorlezen ============
+   Altijd een stem in de juiste taal: de gekozen stem (Ik → Voorlezen), anders de beste voor nl-NL (natuurlijk/verbeterd eerst, nl-BE pas daarna).
+   Kent de browser wél stemmen maar geen enkele in deze taal, dan leest de app NIET voor met een anderstalige stem (dat leert een verkeerde
+   uitspraak aan) en legt Ik → Voorlezen uit hoe je er een installeert. Geeft de browser (nog) geen lijst, dan gaat het via lang zoals voorheen. */
+const LANGS={nl:{tag:'nl-NL',re:/^nl/i,main:/^nl[-_]NL/i,adj:'Nederlandse'},en:{tag:'en-GB',re:/^en/i,main:/^en[-_]GB/i,adj:'Engelse'}};
+let allVoices=[];const voiceWarned={};
+function loadVoices(){try{allVoices=speechSynthesis.getVoices()||[]}catch(e){allVoices=[]}return allVoices}
+function voiceScore(v,L){let s=0;if(L.main.test(v.lang))s+=100;if(/natural|neural|premium|enhanced|verbeterd|online|google/i.test(v.name))s+=50;if(/compact|novelty|eloquence/i.test(v.name+' '+(v.voiceURI||'')))s-=40;if(v.localService)s+=5;return s}
+function voicesFor(lang){const L=LANGS[lang]||LANGS.nl;return loadVoices().filter(v=>L.re.test(v.lang)).sort((a,b)=>voiceScore(b,L)-voiceScore(a,L))}
+function voiceFor(lang){const vs=voicesFor(lang),want=S.voice&&S.voice[lang];return (want&&vs.find(v=>(v.voiceURI||v.name)===want))||vs[0]||null}
+function noVoice(lang){return loadVoices().length>0&&!voicesFor(lang).length}
+try{speechSynthesis.onvoiceschanged=()=>{loadVoices();try{if(tab==='ik'&&!route&&!app.classList.contains('sess'))vMe()}catch(e){}};loadVoices()}catch(e){}
+function say(t,slow,lang){lang=LANGS[lang]?lang:'nl';const L=LANGS[lang];try{
+  if(noVoice(lang)){if(!voiceWarned[lang]){voiceWarned[lang]=1;toast(`Geen ${L.adj} stem op dit toestel. Zie Ik → Voorlezen.`)}return}
+  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=L.tag;const v=voiceFor(lang);if(v)u.voice=v;u.rate=slow?.68:.9;speechSynthesis.speak(u)}catch(e){toast('Voorlezen werkt niet in deze browser')}}
+function voiceCard(){const vs=voicesFor('nl'),cur=voiceFor('nl');
+  return `<section class="card stack">${bi('<h3>Voorlezen</h3>','เสียงอ่าน')}
+  ${vs.length?`<label class="small muted" for="vsel">${bi('Nederlandse stem','เสียงภาษาดัตช์')}</label><select id="vsel" class="input">${vs.map(v=>`<option value="${esc(v.voiceURI||v.name)}"${v===cur?' selected':''}>${esc(v.name)} · ${esc(v.lang)}</option>`).join('')}</select>`
+   :noVoice('nl')?`<div class="note">${bi('<b>Er staat geen Nederlandse stem op dit toestel.</b> Daarom leest de app niet voor: met een anderstalige stem leer je een verkeerde uitspraak. Installeer hieronder een Nederlandse stem.','ไม่มีเสียงภาษาดัตช์ในเครื่องนี้ แอปจึงไม่อ่านออกเสียง ติดตั้งเสียงภาษาดัตช์ตามวิธีด้านล่าง')}</div>`
+   :`<p class="small muted">${bi('Dit toestel kiest zelf de Nederlandse stem.','เครื่องนี้เลือกเสียงภาษาดัตช์เอง')}</p>`}
+  <button class="btn btn-ghost" id="vtest">${bi('Probeer de stem','ลองฟังเสียง')}</button>
+  <details${noVoice('nl')?' open':''}><summary class="small muted">${bi('Een (betere) Nederlandse stem installeren','ติดตั้งเสียงภาษาดัตช์')}</summary>
+   <ul class="small" style="margin:8px 0 0;padding-left:18px;display:grid;gap:6px">
+    <li><b>iPhone:</b> Instellingen → Toegankelijkheid → Gesproken materiaal → Stemmen → Nederlands. Kies een stem (bijvoorbeeld Xander of Claire), liefst de versie <i>Verbeterd</i>, en download die.</li>
+    <li><b>Windows:</b> Instellingen → Tijd en taal → Spraak → Stemmen toevoegen → Nederlands. Of open de app in Microsoft Edge: die heeft natuurlijke Nederlandse stemmen.</li>
+    <li><b>Android:</b> Instellingen → Systeem → Talen → Tekst-naar-spraak, en kies Nederlands.</li></ul>
+   <p class="small muted">${bi('Open de app daarna opnieuw.','จากนั้นเปิดแอปใหม่')}</p></details></section>`}
 function toast(m){if(nlOnly())m=m.replace(/\s*·\s*[^·]*[฀-๿][^·]*$/,'');document.querySelectorAll('.toast').forEach(t=>t.remove());const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2600)}
 function hello(){const h=new Date().getHours();return h<12?['Goedemorgen','สวัสดีตอนเช้า']:h<18?['Goedemiddag','สวัสดีตอนบ่าย']:['Goedenavond','สวัสดีตอนเย็น']}
 const thaiSwitch=()=>`<div class="thai-switch" role="group" aria-label="Thai tonen">${[['altijd','ไทย'],['tik','tik'],['uit','NL']].map(([k,l])=>`<button data-thai="${k}" aria-pressed="${S.thai===k}">${l}</button>`).join('')}</div>`;
@@ -866,6 +889,7 @@ function vMe(){
   <section class="card stack">${bi('<h3>Thai in de app</h3>','ภาษาไทยในแอป')}
     <div class="seg" role="group" aria-label="Thai">${[['altijd','Altijd','แสดงเสมอ'],['tik','Als ik tik','เมื่อแตะ'],['uit','Uit (examen)','ปิด (สอบ)']].map(([k,a,b])=>`<button data-th="${k}" aria-pressed="${S.thai===k}">${a}<span class="th" lang="th">${b}</span></button>`).join('')}</div></section>
   <section class="card stack">${bi('<h3>Letters</h3>','ขนาดตัวอักษร')}<div class="seg" role="group" aria-label="Lettergrootte">${[['normaal','Normaal','ปกติ'],['groot','Groter','ใหญ่ขึ้น']].map(([k,a,b])=>`<button data-sz="${k}" aria-pressed="${S.size===k}">${a}<span class="th" lang="th">${b}</span></button>`).join('')}</div></section>
+  ${voiceCard()}
   <section class="card stack">${bi("<h3>Extra's</h3>",'กิจกรรมเสริม')}<div class="seg" role="group" aria-label="Extra's">${[['boeddhisme','Boeddhisme','พุทธศาสนา'],['liedje','Liedje van de week','เพลงประจำสัปดาห์']].map(([k,a,b])=>`<button data-ex="${k}" aria-pressed="${!!S.extras[k]}">${a}<span class="th" lang="th">${b}</span></button>`).join('')}</div></section>
   <section class="card stack">${bi('<h3>Mijn plan</h3>','แผนของฉัน')}<p>${bi(S.moment?`Als ik ${momentText[S.moment]}, dan doe ik mijn les.`:'Nog geen vast moment gekozen.','เวลาที่ฉันเลือกไว้สำหรับบทเรียน')}</p>
     <div class="chips" role="group" aria-label="Moment">${[['ochtend','Na het ontbijt'],['pauze','In mijn pauze'],['middag','Na mijn werk'],['avond','Na het avondeten']].map(([k,a])=>`<button data-m="${k}" aria-pressed="${S.moment===k}">${a}</button>`).join('')}</div></section>
@@ -883,6 +907,8 @@ function vMe(){
   if(unseen){S.answers.forEach(a=>a.seen=true);save()}
   app.querySelectorAll('[data-th]').forEach(b=>b.onclick=()=>{setThai(b.dataset.th);vMe()});
   app.querySelectorAll('[data-sz]').forEach(b=>b.onclick=()=>{setSize(b.dataset.sz);vMe()});
+  if($('#vsel'))$('#vsel').onchange=e=>{S.voice=Object.assign({},S.voice,{nl:e.target.value});save();say('Zo klinkt deze stem. Goedemorgen, hoe gaat het met je?')};
+  $('#vtest').onclick=()=>say('Zo klinkt deze stem. Goedemorgen, hoe gaat het met je?');
   app.querySelectorAll('[data-ex]').forEach(b=>b.onclick=()=>{S.extras[b.dataset.ex]=!S.extras[b.dataset.ex];save();vMe()});
   app.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{S.moment=b.dataset.m;save();vMe()});
   $('#emiel').onclick=()=>{tab='emiel';rerender();window.scrollTo(0,0)};
