@@ -26,7 +26,7 @@ Daarna opent de app als een gewone app, zonder adresbalk, en werkt hij ook offli
 ## Goed om te weten
 
 - **Voortgang staat op de telefoon zelf.** Zolang de server er nog niet is, bewaart de app alles lokaal op de iPhone. Wis dus niet de websitegegevens van Safari.
-- **Meekijken** zit nu nog in de app zelf (Ik → Meekijken). Zodra de server draait, verschijnen voortgang en hulpvragen ook op je EDGE (versie 2.4).
+- **Meekijken** gaat automatisch: voortgang en hulpvragen gaan versleuteld via ntfy.sh naar je EDGE. Vul daar één keer de koppelcode in die in de app onder *Ik* staat. Handmatig kan ook: *Nu versturen* of *Via WhatsApp*.
 - **Bijwerken:** zet een nieuwe `index.html` in de repository. De app haalt de nieuwe versie op zodra de telefoon online is.
 - **Voorlezen** gebruikt de stemmen van de iPhone. De mooiste Nederlandse stem zet je aan via Instellingen → Toegankelijkheid → Gesproken materiaal → Stemmen → Nederlands (bijvoorbeeld een *Verbeterde* stem downloaden).
 - **Opnemen** (spraakdagboek, keukentafelgesprek met AI-feedback) komt met de server, zoals beschreven in het plan.
