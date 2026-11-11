@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Tonaor leert">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<title>Tonaor leert Nederlands</title>
+<meta name="theme-color" content="#f4f6f1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Sans+Thai+Looped:wght@400;500;600&display=swap">
+<style>
+/* Layout: één smalle app-kolom voor de iPhone, vaste balk onderin, één taak per scherm.
+   Palet: rustige pastels. Mint = groei, abrikoos = hoofdknop, hemelsblauw = water/herhalen en Engels, lila = bloemen. Geen rood. */
+:root{
+  --bg:#f4f6f1; --surface:#fdfdfb; --surface-2:#eceee6; --ink:#2c3833; --ink-2:#66736c; --line:#dde3d8;
+  --mint:#dcefe4; --mint-fill:#a9d5bd; --mint-ink:#3e7b5d;
+  --apricot:#fbefd9; --apricot-fill:#f3d89f; --apricot-ink:#8a6220;
+  --sky:#e2eef7; --sky-fill:#b6d4ea; --sky-ink:#3c6d8e;
+  --lilac:#eee9f7; --lilac-fill:#d2c7ec; --lilac-ink:#6c5d98;
+  --shadow:0 1px 2px rgba(44,56,51,.05), 0 8px 24px -16px rgba(44,56,51,.18);
+  --f-display:"Bricolage Grotesque","Figtree",system-ui,sans-serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-thai:"IBM Plex Sans Thai Looped","Thonburi","Leelawadee UI","Noto Sans Thai",sans-serif;
+  --r:22px; --r-s:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1a1f1d; --surface:#242b28; --surface-2:#2d3531; --ink:#e8eee9; --ink-2:#a8b5ad; --line:#38423d;
+  --mint:#24392e; --mint-fill:#4e7c65; --mint-ink:#a6d8bd;
+  --apricot:#372f20; --apricot-fill:#9b7c45; --apricot-ink:#f0d39c;
+  --sky:#213443; --sky-fill:#4c7290; --sky-ink:#b0d1ea;
+  --lilac:#2e2a3d; --lilac-fill:#6a5d92; --lilac-ink:#cec2ec;
+  --shadow:0 1px 2px rgba(0,0,0,.25), 0 10px 28px -16px rgba(0,0,0,.6); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1a1f1d; --surface:#242b28; --surface-2:#2d3531; --ink:#e8eee9; --ink-2:#a8b5ad; --line:#38423d;
+  --mint:#24392e; --mint-fill:#4e7c65; --mint-ink:#a6d8bd;
+  --apricot:#372f20; --apricot-fill:#9b7c45; --apricot-ink:#f0d39c;
+  --sky:#213443; --sky-fill:#4c7290; --sky-ink:#b0d1ea;
+  --lilac:#2e2a3d; --lilac-fill:#6a5d92; --lilac-ink:#cec2ec;
+  --shadow:0 1px 2px rgba(0,0,0,.25), 0 10px 28px -16px rgba(0,0,0,.6); color-scheme:dark}
+:root[data-size="groot"]{font-size:112%}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.45;-webkit-tap-highlight-color:transparent;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0}
+.app{max-width:560px;margin:0 auto;padding-block:10px 124px}
+.app.sess{padding-bottom:40px}
+.view{display:flex;flex-direction:column;gap:16px;animation:in .28s ease both}
+@keyframes in{from{opacity:.001;transform:translateY(6px)}to{opacity:1;transform:none}}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.015em;line-height:1.15}
+h1{font-size:1.9rem;font-weight:800} h2{font-size:1.35rem;font-weight:700} h3{font-size:1.06rem;font-weight:700}
+p{margin:0}
+button,a.btn{font:inherit;color:inherit;cursor:pointer;text-decoration:none}
+button:active{transform:scale(.98)}
+:focus-visible{outline:3px solid var(--sky-fill);outline-offset:2px;border-radius:10px}
+.th{font-family:var(--f-thai);color:var(--ink-2);font-size:.9em;line-height:1.5;display:block;font-weight:400}
+:root[data-thai="uit"] .th{display:none!important}
+:root[data-thai="tik"] .bi .th{display:none}
+:root[data-thai="tik"] .bi.show .th{display:block}
+.muted{color:var(--ink-2)} .small{font-size:.86rem} .num{font-variant-numeric:tabular-nums}
+.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.card{background:var(--surface);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);border:1px solid var(--line)}
+button.card{width:100%;text-align:left}
+.stack{display:grid;gap:12px}
+.row{display:flex;align-items:center;gap:12px}
+.between{justify-content:space-between}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid2>*{min-width:0}
+@media (max-width:480px){.grid2.stack-sm{grid-template-columns:1fr}}
+.top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-top:8px}
+.top>div{min-width:0}
+.thai-switch{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface);flex-shrink:0}
+.thai-switch button{border:0;background:transparent;padding:7px 11px;font-size:.78rem;font-weight:700;color:var(--ink-2)}
+.thai-switch button[aria-pressed="true"]{background:var(--mint-fill);color:var(--ink)}
+.hero{background:var(--mint);border:0;position:relative;overflow:hidden;padding:20px}
+.hero .art{position:absolute;right:-6px;top:-4px;width:140px;height:120px;pointer-events:none}
+.hero h2{font-size:1.5rem}
+.steps{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px;position:relative}
+.steps li{display:flex;align-items:center;gap:10px;font-size:.96rem}
+.steps .dot{width:28px;height:28px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-size:.8rem;font-weight:800;flex-shrink:0;color:var(--mint-ink)}
+.steps .min{margin-left:auto;color:var(--ink-2);font-size:.85rem;white-space:nowrap}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:56px;border-radius:18px;border:0;font-weight:700;font-size:1.06rem;padding:10px 16px;text-align:center;transition:transform .1s ease}
+.btn .bi{display:flex;flex-direction:column;align-items:center}
+.btn .th{font-size:.82em}
+.btn svg{width:20px;height:20px}
+.btn-main{background:var(--apricot-fill);color:var(--ink)}
+.btn-leaf{background:var(--mint-fill);color:var(--ink)}
+.btn-sky{background:var(--sky-fill);color:var(--ink)}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.btn[disabled]{opacity:.45;cursor:default}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.linkish{background:none;border:0;padding:8px 0;color:var(--ink);text-decoration:underline;text-underline-offset:3px;font-weight:600;font-size:.95rem;width:100%;text-align:center}
+.hero .btn-main{margin-top:16px}
+.tiles2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:14px;text-align:left;display:grid;gap:6px;box-shadow:var(--shadow);min-width:0;align-content:start}
+.tile .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center}
+.tile .ic svg{width:22px;height:22px}
+.tile h3{font-size:1rem}
+.tile.mint .ic{background:var(--mint);color:var(--mint-ink)} .tile.sky .ic{background:var(--sky);color:var(--sky-ink)}
+.tile.apricot .ic{background:var(--apricot);color:var(--apricot-ink)} .tile.lilac .ic{background:var(--lilac);color:var(--lilac-ink)}
+.tile.wide{grid-template-columns:auto 1fr;align-items:center;gap:12px;border-color:var(--sky-fill)}
+.flag{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.04em;border-radius:6px;padding:2px 6px;background:var(--sky);color:var(--sky-ink);vertical-align:middle}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 10px;font-size:.78rem;font-weight:700;white-space:nowrap;border:0}
+.pill-mint{background:var(--mint);color:var(--mint-ink)} .pill-sky{background:var(--sky);color:var(--sky-ink)}
+.pill-apricot{background:var(--apricot);color:var(--apricot-ink)} .pill-lilac{background:var(--lilac);color:var(--lilac-ink)}
+.week{display:flex;justify-content:space-between;gap:4px;margin-top:10px}
+.day{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.72rem;color:var(--ink-2);font-weight:700}
+.day i{width:26px;height:26px;border-radius:50%;display:block;border:2px solid var(--line)}
+.day.done i{background:var(--mint-fill);border-color:var(--mint-fill)}
+.day.today i{border-color:var(--apricot-fill);border-width:3px}
+.ring{width:80px;height:80px;flex-shrink:0}
+.goal-pick{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.goal-pick button,.chips button{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:.84rem;font-weight:600}
+.goal-pick button[aria-pressed="true"],.chips button[aria-pressed="true"]{border-color:var(--apricot-fill);background:var(--apricot)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom, 0px);padding-left:max(8px, env(safe-area-inset-left, 0px));padding-right:max(8px, env(safe-area-inset-right, 0px));z-index:20}
+.nav-in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.nav button{border:0;background:none;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:.78rem;font-weight:700;color:var(--ink-2)}
+.nav button .th{font-size:.68rem}
+.nav button[aria-current="page"]{color:var(--mint-ink)}
+.nav button[aria-current="page"] svg{background:var(--mint);border-radius:10px}
+.nav svg{width:44px;height:28px;padding:3px 10px}
+.sess-top{display:flex;align-items:center;gap:12px;padding-top:6px}
+.close{border:0;background:var(--surface-2);width:42px;height:42px;border-radius:50%;font-size:1.2rem;flex-shrink:0;color:var(--ink)}
+.bar{flex:1;height:10px;background:var(--surface-2);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--mint-fill);border-radius:999px;transition:width .45s ease}
+.stage-label{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.prompt{font-family:var(--f-display);font-size:1.6rem;font-weight:700;line-height:1.25}
+.prompt.thai{font-family:var(--f-thai);font-weight:600}
+.input{width:100%;min-height:58px;border-radius:16px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:1.2rem;padding:10px 14px}
+.input:focus{border-color:var(--mint-fill);outline:none}
+textarea.input{min-height:90px;font-size:1rem;resize:vertical}
+.speak{border:0;background:var(--sky);color:var(--sky-ink);border-radius:999px;padding:9px 14px;font-weight:700;font-size:.9rem;display:inline-flex;gap:8px;align-items:center}
+.speak svg{width:16px;height:16px;flex-shrink:0}
+.fb{border-radius:16px;padding:14px 16px;display:grid;gap:4px;animation:in .2s ease both}
+.fb-ok{background:var(--mint)} .fb-ok strong{color:var(--mint-ink)}
+.fb-no{background:var(--apricot)} .fb-no strong{color:var(--apricot-ink)}
+.pieces{display:flex;flex-wrap:wrap;gap:8px;min-height:60px;padding:10px;border-radius:16px;border:2px dashed var(--line);align-content:flex-start}
+.pieces.pool{border-style:solid;background:var(--surface-2);border-color:transparent}
+.piece{border:0;background:var(--surface);border-radius:12px;padding:10px 14px;font-size:1.05rem;font-weight:600;box-shadow:0 0 0 1.5px var(--line) inset}
+.piece.verb{box-shadow:0 0 0 2px var(--apricot-fill) inset;background:var(--apricot)}
+.example{background:var(--surface-2);border-radius:var(--r-s);padding:12px 14px;display:grid;gap:4px}
+.slot{display:inline-block;border-radius:8px;padding:1px 7px;margin:0 1px;font-weight:700}
+.s1{background:var(--sky);color:var(--sky-ink)} .s2{background:var(--apricot);color:var(--apricot-ink)} .s3{background:var(--mint);color:var(--mint-ink)}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choices.one{grid-template-columns:1fr}
+.choice{border:2px solid var(--line);background:var(--surface);border-radius:16px;min-height:64px;font-size:1.12rem;font-weight:700;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.choice.right{border-color:var(--mint-fill);background:var(--mint)}
+.choice.wrong{border-color:var(--apricot-fill);background:var(--apricot)}
+.note{background:var(--apricot);border-radius:var(--r-s);padding:12px 14px;font-size:.94rem}
+.note.sky{background:var(--sky)} .note.lilac{background:var(--lilac)}
+.receipt{font-family:ui-monospace,"SF Mono",Menlo,monospace;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px;font-size:.95rem;max-width:300px;margin-inline:auto;width:100%;box-shadow:var(--shadow)}
+.receipt .r{display:flex;justify-content:space-between;gap:8px}
+.receipt hr{border:0;border-top:1px dashed var(--line);margin:8px 0}
+.worked{display:grid;gap:8px}
+.worked .ln{display:flex;gap:10px;align-items:baseline}
+.worked .ln b{color:var(--mint-ink);min-width:22px}
+.hint-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.hintbtn{border:1.5px dashed var(--lilac-fill);background:var(--lilac);color:var(--lilac-ink);border-radius:999px;padding:7px 12px;font-weight:700;font-size:.85rem}
+.hintbtn .bi{display:inline}
+.hintshow{font-weight:700;color:var(--lilac-ink)}
+.help{border:0;background:none;color:var(--ink-2);font-weight:600;font-size:.88rem;text-decoration:underline;text-underline-offset:3px;padding:6px 0;text-align:left}
+.conf{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.coins{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;padding:8px 0}
+.coin{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.95rem;background:var(--apricot);border:3px solid var(--apricot-fill);color:var(--apricot-ink)}
+.coin.small{width:48px;height:48px;font-size:.8rem}
+.bill{width:96px;height:56px;border-radius:8px;display:grid;place-items:center;font-weight:800;background:var(--mint);border:2px solid var(--mint-fill);color:var(--mint-ink)}
+.clock{width:150px;height:150px;margin:0 auto;display:block}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;text-align:center}
+.trio>div{background:var(--surface-2);border-radius:var(--r-s);padding:10px 6px;display:grid;gap:2px;min-width:0}
+.trio .lg{font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.trio .wd{font-weight:700;font-size:1.04rem;overflow-wrap:anywhere}
+.story .sent{display:block;padding:8px 0;border-bottom:1px dashed var(--line);cursor:pointer;font-size:1.1rem;line-height:1.55}
+.story .sent:last-child{border-bottom:0}
+.speed{font-family:var(--f-display);font-size:3rem;font-weight:800;text-align:center;line-height:1.05;overflow-wrap:anywhere}
+.timer{height:8px;background:var(--surface-2);border-radius:999px;overflow:hidden}
+.timer i{display:block;height:100%;background:var(--sky-fill);transition:width 1s linear}
+.big{font-family:var(--f-display);font-size:3.2rem;font-weight:800;color:var(--mint-ink);line-height:1}
+.celebrate{text-align:center;display:grid;gap:12px;justify-items:center}
+.wordcard{display:grid;gap:8px;text-align:center;justify-items:center;padding:10px 0}
+.wordcard .art{font-weight:800;font-size:.9rem;border-radius:999px;padding:3px 12px}
+.art-de{background:var(--sky);color:var(--sky-ink)} .art-het{background:var(--lilac);color:var(--lilac-ink)}
+.wordcard .w{font-family:var(--f-display);font-size:2.2rem;font-weight:800;overflow-wrap:anywhere}
+.garden{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:10px}
+.plant{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;min-width:0}
+.plant svg{width:64px;height:64px}
+.plant .w{font-weight:700;font-size:.88rem;line-height:1.2;overflow-wrap:anywhere}
+.plant .th{font-size:.74rem}
+.plant.thirsty{border-color:var(--sky-fill);background:var(--sky)}
+.bed{display:grid;gap:10px}
+.legend{display:flex;gap:6px;flex-wrap:wrap}
+.route{display:grid;padding-left:4px}
+.stn{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;position:relative;padding-bottom:18px}
+.stn:not(:last-child)::before{content:"";position:absolute;left:18px;top:32px;bottom:-2px;width:3px;background:var(--line);border-radius:2px}
+.stn.done:not(:last-child)::before{background:var(--mint-fill)}
+.stn .mk{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.8rem;background:var(--surface);border:3px solid var(--line);position:relative;z-index:1}
+.stn.done .mk{background:var(--mint-fill);border-color:var(--mint-fill)}
+.stn.now .mk{border-color:var(--apricot-fill);background:var(--apricot)}
+.stn.gate .mk{border-radius:11px;transform:rotate(45deg)}
+.stn.gate .mk span{transform:rotate(-45deg)}
+.stn .tx{padding-top:6px;display:grid;gap:2px;min-width:0}
+.skill{display:grid;grid-template-columns:96px 1fr 42px;gap:10px;align-items:center;font-size:.92rem}
+.track{height:12px;border-radius:999px;background:var(--surface-2);position:relative;overflow:hidden}
+.track i{position:absolute;inset:0 auto 0 0;border-radius:999px}
+.list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.list li{display:grid;gap:6px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.list li:last-child{border-bottom:0;padding-bottom:0}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-weight:600;font-size:.9rem}
+.seg button[aria-pressed="true"]{border-color:var(--mint-fill);background:var(--mint)}
+.toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom, 0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:600;font-size:.9rem;z-index:30;max-width:calc(100% - 32px);text-align:center}
+#petals{position:fixed;inset:0;pointer-events:none;z-index:40}
+.onb-art{width:100%;max-width:340px;margin:0 auto;display:block}
+.dots{display:flex;gap:6px;justify-content:center}
+.dots i{width:8px;height:8px;border-radius:6px;background:var(--line)}
+.dots i.on{background:var(--mint-fill);width:22px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+</head>
+<body>
+<canvas id="petals" aria-hidden="true"></canvas>
+<main class="app" id="app" aria-live="polite"></main>
+<nav class="nav" id="nav" aria-label="Hoofdmenu" hidden><div class="nav-in">
+  <button data-tab="vandaag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v1.5M12 19.5V21M3 12h1.5M19.5 12H21M5.6 5.6l1 1M17.4 17.4l1 1M5.6 18.4l1-1M17.4 6.6l1-1"/></svg>Vandaag<span class="th" lang="th">วันนี้</span></button>
+  <button data-tab="tuin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21v-9"/><path d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7z"/><path d="M12 15c0-3-2.5-5.5-6-5.5 0 3.5 2.5 5.5 6 5.5z"/><path d="M7 21h10"/></svg>Tuin<span class="th" lang="th">สวน</span></button>
+  <button data-tab="route"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h7a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h7"/></svg>Route<span class="th" lang="th">เส้นทาง</span></button>
+  <button data-tab="ik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Ik<span class="th" lang="th">ฉัน</span></button>
+</div></nav>
+
+<script>
+(function(){
+"use strict";
+const KEY='tonaor-leert-v2', DAY=864e5;
+const now=()=>Date.now();
+const today=()=>{const d=new Date();d.setHours(0,0,0,0);return d.getTime()};
+const $=s=>document.querySelector(s);
+const app=$('#app');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function load(){try{const s=localStorage.getItem(KEY);return s?JSON.parse(s):null}catch(e){return null}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const bi=(nl,th)=>`<span class="bi"><span class="nl">${nl}</span><span class="th" lang="th">${th}</span></span>`;
+const icon={
+  play:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
+  slow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg>',
+  book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg>',
+  chat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>',
+  globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>',
+  bolt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg>',
+  mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>',
+  tv:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/></svg>',
+  lotus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19c-4 0-8-2-9-6 3 0 6 1 9 6zM12 19c4 0 8-2 9-6-3 0-6 1-9 6zM12 19c-2-3-2-8 0-12 2 4 2 9 0 12z"/></svg>'
+};
+
+/* ============ inhoud thema 1 (eigen materiaal) ============ */
+const NL=[
+ {id:'werk',art:'het',w:'werk',th:'งาน',ex:'Ik ga naar mijn werk.'},
+ {id:'dienst',art:'de',w:'dienst',th:'กะทำงาน',ex:'Mijn dienst begint om zes uur.'},
+ {id:'collega',art:'de',w:'collega',th:'เพื่อนร่วมงาน',ex:'Mijn collega helpt me.'},
+ {id:'rooster',art:'het',w:'rooster',th:'ตารางงาน',ex:'Het rooster hangt in de kantine.'},
+ {id:'pauze',art:'de',w:'pauze',th:'เวลาพัก',ex:'In de pauze drink ik thee.'},
+ {id:'fabriek',art:'de',w:'fabriek',th:'โรงงาน',ex:'De fabriek staat in Zwaag.'},
+ {id:'machine',art:'de',w:'machine',th:'เครื่องจักร',ex:'De machine maakt veel lawaai.'},
+ {id:'leidinggevende',art:'de',w:'leidinggevende',th:'หัวหน้างาน',ex:'Mijn leidinggevende maakt het rooster.'},
+ {id:'salaris',art:'het',w:'salaris',th:'เงินเดือน',ex:'Het salaris komt aan het eind van de maand.'},
+ {id:'vrijedag',art:'de',w:'vrije dag',th:'วันหยุด',ex:'Zaterdag is mijn vrije dag.'},
+ {id:'afspraak',art:'de',w:'afspraak',th:'นัดหมาย',ex:'Ik heb een afspraak bij de dokter.'},
+ {id:'fiets',art:'de',w:'fiets',th:'จักรยาน',ex:'Ik ga met de fiets naar mijn werk.'},
+ {id:'huis',art:'het',w:'huis',th:'บ้าน',ex:'Ons huis staat in Hoorn.'},
+ {id:'winkel',art:'de',w:'winkel',th:'ร้านค้า',ex:'De winkel is om negen uur open.'},
+ {id:'korting',art:'de',w:'korting',th:'ส่วนลด',ex:'Ik krijg tien procent korting.'},
+ {id:'geld',art:'het',w:'geld',th:'เงิน',ex:'Ik heb genoeg geld bij me.'},
+ {id:'week',art:'de',w:'week',th:'สัปดาห์',ex:'Ik werk vijf dagen per week.'},
+ {id:'opleiding',art:'de',w:'opleiding',th:'การเรียน / หลักสูตร',ex:'Ik wil een opleiding doen.'}
+];
+const EN=[
+ {id:'en-work',w:'work',nl:'werken',th:'ทำงาน',ex:'I work in a factory.'},
+ {id:'en-colleague',w:'colleague',nl:'de collega',th:'เพื่อนร่วมงาน',ex:'My colleague is very kind.'},
+ {id:'en-break',w:'break',nl:'de pauze',th:'เวลาพัก',ex:'We have a break at ten.'},
+ {id:'en-schedule',w:'schedule',nl:'het rooster',th:'ตารางงาน',ex:'The schedule is on the wall.'},
+ {id:'en-factory',w:'factory',nl:'de fabriek',th:'โรงงาน',ex:'The factory is near Hoorn.'},
+ {id:'en-information',w:'information',nl:'de informatie',th:'ข้อมูล',ex:'I need more information.'},
+ {id:'en-appointment',w:'appointment',nl:'de afspraak',th:'นัดหมาย',ex:'I have an appointment at three.'},
+ {id:'en-money',w:'money',nl:'het geld',th:'เงิน',ex:'Do you have some money?'}
+];
+const REK=[
+ {id:'r-geld',label:'Geld tellen',th:'นับเงิน'},
+ {id:'r-klok',label:'Hoe laat is het?',th:'กี่โมงแล้ว'},
+ {id:'r-10',label:'10% = 1/10',th:'10% = หนึ่งในสิบ'},
+ {id:'r-25',label:'25% = 1/4',th:'25% = หนึ่งในสี่'},
+ {id:'r-komma',label:'€ 9,50 (komma)',th:'ใช้จุลภาคแทนจุดทศนิยม'}
+];
+const SENT=[
+ {parts:['Morgen','werk','ik','in Zwaag.'],verb:'werk',th:'พรุ่งนี้ฉันทำงานที่ซวาก'},
+ {parts:['Om zes uur','begint','mijn dienst.'],verb:'begint',th:'กะของฉันเริ่มตอนหกโมง'},
+ {parts:['In de pauze','drink','ik','thee.'],verb:'drink',th:'ตอนพักฉันดื่มชา'},
+ {parts:['Zaterdag','heb','ik','vrij.'],verb:'heb',th:'วันเสาร์ฉันได้หยุดงาน'}
+];
+const PAIRS=[
+ {say:'man',opts:['man','maan'],th:['ผู้ชาย','ดวงจันทร์'],why:'Kort: <b>man</b>. Lang: <b>maan</b>. Net als in het Thai verandert de lengte van de klinker de betekenis.',whyTh:'เสียงสั้น man เสียงยาว maan ความยาวของสระเปลี่ยนความหมายเหมือนในภาษาไทย'},
+ {say:'geel',opts:['geel','keel'],th:['สีเหลือง','คอ'],why:'De <b>g</b> in geel komt zacht en schurend uit je keel. De <b>k</b> in keel is kort en hard.',whyTh:'g ใน geel เป็นเสียงลมเสียดในลำคอ ส่วน k ใน keel สั้นและแข็ง'},
+ {say:'huis',opts:['huis','hoes'],th:['บ้าน','ปลอก'],why:'<b>ui</b> kent het Thai niet: begin met een open mond en rond dan je lippen.',whyTh:'ui ไม่มีในภาษาไทย เริ่มด้วยปากเปิด แล้วห่อริมฝีปาก'}
+];
+const DICTEE={t:'Mijn dienst begint om zes uur.',th:'กะของฉันเริ่มตอนหกโมง'};
+const STORY={title:'Aflevering 1 · Een nieuwe vraag',th:'ตอนที่ 1 · คำถามใหม่',
+ lines:[
+  ['Mali woont in Hoorn.','มะลิอาศัยอยู่ที่ฮอร์น'],
+  ['Ze werkt in een fabriek in Zwaag.','เธอทำงานที่โรงงานแห่งหนึ่งในซวาก'],
+  ['Haar dienst begint om zes uur.','กะของเธอเริ่มตอนหกโมง'],
+  ["'s Ochtends fietst ze naar haar werk.",'ตอนเช้าเธอปั่นจักรยานไปทำงาน'],
+  ['In de pauze drinkt ze thee met haar collega Sanne.','ตอนพักเธอดื่มชากับซานเนอ เพื่อนร่วมงานของเธอ'],
+  ['Sanne vraagt: "Wil jij ook een opleiding doen?"','ซานเนอถามว่า "เธออยากเรียนต่อด้วยไหม"'],
+  ['Mali denkt na. Ze wil graag iets nieuws leren, maar ze twijfelt.','มะลิคิดอยู่ครู่หนึ่ง เธออยากเรียนรู้สิ่งใหม่ แต่ยังลังเล'],
+  ['"Mijn Nederlands is nog niet goed genoeg," zegt ze.','"ภาษาดัตช์ของฉันยังไม่ดีพอ" เธอพูด'],
+  ['Sanne lacht. "Dat kun je leren!"','ซานเนอหัวเราะ "เรื่องนี้เรียนได้นะ!"'],
+  ["'s Avonds pakt Mali haar telefoon. Ze zoekt iets op...",'ตอนเย็นมะลิหยิบโทรศัพท์ขึ้นมา เธอค้นหาอะไรบางอย่าง...']
+ ],
+ q:[
+  {q:'Waar werkt Mali?',th:'มะลิทำงานที่ไหน',o:['In een winkel','In een fabriek','In een school'],a:1},
+  {q:'Hoe gaat Mali naar haar werk?',th:'มะลิไปทำงานอย่างไร',o:['Met de bus','Lopend','Met de fiets'],a:2},
+  {q:'Waarom twijfelt Mali?',th:'ทำไมมะลิลังเล',o:['Ze vindt haar Nederlands nog niet goed genoeg','Ze heeft geen tijd','Ze vindt Sanne niet aardig'],a:0}
+ ]};
+
+/* ============ staat ============ */
+function item(){return {s:0,due:today(),reps:0,lapses:0,forms:[]}}
+function fresh(){
+  const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
+  return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
+    points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[]};
+}
+let S=load();
+if(!S||S.v!==2)S=fresh();
+[...NL,...EN,...REK].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
+
+/* herhaalmodel: stabiliteit (dagen) groeit bij goed, krimpt bij fout */
+function stage(id){const s=S.items[id].s;return s<=0?0:s<1.5?1:s<4?2:s<10?3:s<25?4:5}
+const STAGES=[['zaadje','เมล็ด'],['kiemplant','ต้นอ่อน'],['plantje','ต้นเล็ก'],['knop','ดอกตูม'],['bloem','ดอกไม้'],['in volle bloei','บานเต็มที่']];
+function thirsty(id){const it=S.items[id];return !!it&&it.reps>0&&it.due<=now()&&stage(id)<5}
+function review(id,ok,form){
+  const it=S.items[id];if(!it)return;
+  if(form&&!it.forms.includes(form))it.forms.push(form);
+  it.reps++;
+  if(ok){it.s=it.s<=0?1:Math.min(120,it.s*2.4);if(it.forms.length<3&&it.s>=10)it.s=9}
+  else{it.lapses++;it.s=Math.max(.5,it.s*.4)}
+  it.due=ok?now()+it.s*DAY:now();
+  S.log.push({t:now(),id,ok});if(S.log.length>600)S.log.shift();
+  save();
+}
+const leeches=()=>Object.entries(S.items).filter(([,v])=>v.lapses>=4).map(([k])=>k);
+const GOALS={licht:{pts:60,l:'Licht'},normaal:{pts:120,l:'Normaal'},extra:{pts:180,l:'Extra'}};
+const pts=()=>S.points[today()]||0;
+function addPts(n){S.points[today()]=pts()+n;S.days[today()]=1;save()}
+
+/* ============ hulpmiddelen ============ */
+function setThai(m){S.thai=m;document.documentElement.dataset.thai=m;save()}
+function setSize(m){S.size=m;document.documentElement.dataset.size=m;save()}
+document.addEventListener('click',e=>{const b=e.target.closest('.bi');if(b&&S.thai==='tik'&&!e.target.closest('button'))b.classList.toggle('show')});
+const voices={};
+function pickVoice(){try{const vs=speechSynthesis.getVoices();voices.nl=vs.find(v=>/^nl[-_]NL/i.test(v.lang))||vs.find(v=>/^nl/i.test(v.lang))||null;voices.en=vs.find(v=>/^en[-_]GB/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||null}catch(e){}}
+try{speechSynthesis.onvoiceschanged=pickVoice;pickVoice()}catch(e){}
+function say(t,slow,lang){lang=lang||'nl';try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=lang==='en'?'en-GB':'nl-NL';if(voices[lang])u.voice=voices[lang];u.rate=slow?.68:.9;speechSynthesis.speak(u)}catch(e){toast('Voorlezen werkt niet in deze browser')}}
+function toast(m){document.querySelectorAll('.toast').forEach(t=>t.remove());const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2600)}
+function hello(){const h=new Date().getHours();return h<12?['Goedemorgen','สวัสดีตอนเช้า']:h<18?['Goedemiddag','สวัสดีตอนบ่าย']:['Goedenavond','สวัสดีตอนเย็น']}
+const thaiSwitch=()=>`<div class="thai-switch" role="group" aria-label="Thai tonen">${[['altijd','ไทย'],['tik','tik'],['uit','NL']].map(([k,l])=>`<button data-thai="${k}" aria-pressed="${S.thai===k}">${l}</button>`).join('')}</div>`;
+function bindCommon(){app.querySelectorAll('[data-thai]').forEach(b=>b.onclick=()=>{setThai(b.dataset.thai);rerender()})}
+const norm=s=>s.toLowerCase().replace(/[.!?,"]/g,'').replace(/\s+/g,' ').trim();
+const isEnglishDay=()=>[2,4].includes(new Date().getDay());
+const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+const momentText={ochtend:'heb ontbeten',pauze:'pauze heb',middag:'thuis ben van mijn werk',avond:'heb gegeten'};
+
+function plant(st,thirst){
+  const leaf='var(--mint-ink)',pot=thirst?'var(--sky-fill)':'var(--line)';
+  let g=`<ellipse cx="32" cy="61" rx="17" ry="2.5" fill="var(--surface-2)"/><path d="M19 49h26l-3 12H22z" fill="${pot}"/><rect x="17" y="45" width="30" height="6" rx="3" fill="${pot}"/>`;
+  if(st===0)g+=`<ellipse cx="32" cy="44" rx="4.5" ry="3.2" fill="var(--apricot-fill)"/>`;
+  if(st>=1){const h=[0,8,15,21,25,27][st],top=45-h;
+    g+=`<path d="M32 45V${top}" stroke="${leaf}" stroke-width="3" stroke-linecap="round" fill="none"/>`;
+    g+=`<path d="M32 ${45-h*.45}c-6-1-9-5-9-9 5 0 9 3 9 9z" fill="var(--mint-fill)"/>`;
+    if(st>=2)g+=`<path d="M32 ${45-h*.72}c6-1 9-5 9-9-5 0-9 3-9 9z" fill="var(--mint-fill)"/>`;
+    if(st===3)g+=`<circle cx="32" cy="${top-2}" r="3.5" fill="var(--mint-fill)"/>`;
+    if(st===4)g+=`<ellipse cx="32" cy="${top-3}" rx="4.2" ry="5.5" fill="var(--lilac-fill)"/>`;
+    if(st===5){for(let i=0;i<8;i++){const a=i*Math.PI/4,cx=(32+Math.cos(a)*6.5).toFixed(1),cy=(top-4+Math.sin(a)*6.5).toFixed(1);g+=`<ellipse cx="${cx}" cy="${cy}" rx="4.3" ry="3.3" transform="rotate(${i*45} ${cx} ${cy})" fill="var(--lilac-fill)"/>`}g+=`<circle cx="32" cy="${top-4}" r="3.8" fill="var(--apricot-fill)"/>`}
+  }
+  if(thirst)g+=`<path d="M51 12c3 4 4 6 4 8a4 4 0 0 1-8 0c0-2 1-4 4-8z" fill="var(--sky-fill)"/>`;
+  return `<svg viewBox="0 0 64 64" aria-hidden="true">${g}</svg>`;
+}
+const heroArt=()=>`<svg class="art" viewBox="0 0 140 120" aria-hidden="true"><circle cx="104" cy="34" r="20" fill="var(--apricot-fill)"/><path d="M0 112c30-14 70-14 140 0v8H0z" fill="var(--mint-fill)" opacity=".7"/>${[30,58,86,112].map((x,i)=>`<g transform="translate(${x} ${92-(i%2)*6})"><path d="M0 18V0" stroke="var(--mint-ink)" stroke-width="2.4" stroke-linecap="round"/><path d="M0 9c-5-1-8-4-8-8 5 0 8 3 8 8z" fill="var(--mint-ink)" opacity=".5"/><circle cx="0" cy="-3" r="${i===1?5:4}" fill="${i%2?'var(--lilac-fill)':'var(--sky-fill)'}"/></g>`).join('')}</svg>`;
+
+/* ============ navigatie ============ */
+let tab='vandaag',route=null;
+function show(t){tab=t;route=null;$('#nav').hidden=false;document.querySelectorAll('#nav [data-tab]').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===t?'page':'false'));app.classList.remove('sess');rerender();window.scrollTo(0,0)}
+document.querySelectorAll('#nav [data-tab]').forEach(b=>b.onclick=()=>show(b.dataset.tab));
+function rerender(){if(route)return route();({vandaag:vToday,tuin:vGarden,route:vRoute,ik:vMe,emiel:vEmiel}[tab])()}
+function paint(html){app.innerHTML=`<div class="view">${html}</div>`;bindCommon()}
+
+/* ============ welkom ============ */
+let onb=0;
+function vOnboard(){
+  $('#nav').hidden=true;app.classList.add('sess');
+  const pages=[
+   ()=>`<svg class="onb-art" viewBox="0 0 320 170" aria-hidden="true"><rect width="320" height="170" rx="24" fill="var(--mint)"/><circle cx="250" cy="50" r="26" fill="var(--apricot-fill)"/><path d="M0 140c80-30 200-30 320 0v30H0z" fill="var(--mint-fill)" opacity=".8"/>${[60,110,160,210].map((x,i)=>`<g transform="translate(${x} ${120-(i%2)*10})"><path d="M0 30V0" stroke="var(--mint-ink)" stroke-width="3" stroke-linecap="round"/><path d="M0 15c-8-2-12-6-12-12 8 0 12 5 12 12z" fill="var(--mint-ink)" opacity=".5"/><circle cx="0" cy="-5" r="7" fill="${['var(--lilac-fill)','var(--sky-fill)','var(--apricot-fill)','var(--lilac-fill)'][i]}"/></g>`).join('')}</svg>
+     ${bi('<h1>Welkom, Tonaor</h1>','ยินดีต้อนรับ')}
+     <p>${bi('Hier leer je elke dag een beetje Nederlands, rekenen en Engels. Alles is ook in het Thai te lezen.','ที่นี่คุณจะได้เรียนภาษาดัตช์ คณิตศาสตร์ และภาษาอังกฤษทีละนิดทุกวัน ทุกอย่างมีภาษาไทยให้อ่านด้วย')}</p>
+     <p class="muted">${bi('Elk woord dat je leert, wordt een plantje in je eigen tuin.','ทุกคำที่คุณเรียนจะกลายเป็นต้นไม้ในสวนของคุณเอง')}</p>`,
+   ()=>`${bi('<h1>Wanneer leer je?</h1>','คุณจะเรียนเมื่อไร')}
+     <p>${bi('Kies een vast moment. Met een vast moment houd je het veel beter vol.','เลือกเวลาที่แน่นอน การมีเวลาแน่นอนช่วยให้ทำได้ต่อเนื่องกว่ามาก')}</p>
+     <div class="chips" role="group" aria-label="Moment">${[['ochtend','Na het ontbijt','หลังอาหารเช้า'],['pauze','In mijn pauze','ตอนพัก'],['middag','Na mijn werk','หลังเลิกงาน'],['avond','Na het avondeten','หลังอาหารเย็น']].map(([k,a,b])=>`<button data-m="${k}" aria-pressed="${S.moment===k}">${a}<span class="th" lang="th">${b}</span></button>`).join('')}</div>
+     <div class="note sky">${bi(`<b>Mijn plan:</b> als ik ${momentText[S.moment]||'…'}, dan doe ik mijn les.`,'<b>แผนของฉัน:</b> เมื่อถึงเวลานั้น ฉันจะทำบทเรียนของฉัน')}</div>`,
+   ()=>`${bi('<h1>Hoeveel Thai wil je zien?</h1>','อยากเห็นภาษาไทยมากแค่ไหน')}
+     <div class="seg" role="group" aria-label="Thai">${[['altijd','Altijd','แสดงเสมอ'],['tik','Als ik tik','เมื่อแตะ'],['uit','Uit','ปิด']].map(([k,a,b])=>`<button data-th="${k}" aria-pressed="${S.thai===k}">${a}<span class="th" lang="th">${b}</span></button>`).join('')}</div>
+     <p class="muted small">${bi('In het begin staat het Thai er altijd bij. Later tik je erop als je het nodig hebt. Je kunt dit altijd veranderen.','ช่วงแรกจะแสดงภาษาไทยเสมอ ต่อไปแตะเมื่อต้องการ เปลี่ยนได้ทุกเมื่อ')}</p>`,
+   ()=>`${bi('<h1>Eerst even kijken waar je staat</h1>','มาดูก่อนว่าคุณอยู่ระดับไหน')}
+     <p>${bi('Een korte meting van ongeveer 8 minuten: woorden, zinnen, luisteren, lezen, rekenen en Engels. Zo weet de app waar je begint.','การวัดสั้นๆ ประมาณ 8 นาที: คำศัพท์ ประโยค การฟัง การอ่าน คณิตศาสตร์ และภาษาอังกฤษ แอปจะได้รู้ว่าคุณเริ่มตรงไหน')}</p>
+     <div class="note">${bi('Dit is een eerste, korte versie. De volledige startmeting volgt in de komende dagen, stukje voor stukje.','นี่คือฉบับสั้นครั้งแรก การวัดเต็มจะตามมาในวันข้างหน้า ทีละนิด')}</div>`
+  ];
+  paint(`<div class="card stack" style="padding:22px">${pages[onb]()}</div>
+   <div class="dots" aria-hidden="true">${pages.map((_,i)=>`<i class="${i===onb?'on':''}"></i>`).join('')}</div>
+   ${onb<3?`<button class="btn btn-leaf" id="nx">${bi('Verder','ต่อไป')}</button>`:`<button class="btn btn-main" id="go">${bi('Begin de meting','เริ่มการวัด')}</button><button class="linkish" id="later">${bi('Later doen','ทำทีหลัง')}</button>`}
+   ${onb>0?`<button class="linkish muted" id="bk">${bi('Terug','กลับ')}</button>`:''}`);
+  app.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{S.moment=b.dataset.m;save();vOnboard()});
+  app.querySelectorAll('[data-th]').forEach(b=>b.onclick=()=>{setThai(b.dataset.th);vOnboard()});
+  if($('#nx'))$('#nx').onclick=()=>{onb++;vOnboard();window.scrollTo(0,0)};
+  if($('#bk'))$('#bk').onclick=()=>{onb--;vOnboard()};
+  if($('#go'))$('#go').onclick=()=>{S.onboarded=true;save();startPlacement()};
+  if($('#later'))$('#later').onclick=()=>{S.onboarded=true;save();show('vandaag')};
+}
+
+/* ============ vandaag ============ */
+function weekDots(){const d=new Date(),dow=(d.getDay()+6)%7,mon=today()-dow*DAY,names=['ma','di','wo','do','vr','za','zo'];let done=0,html='';
+  for(let i=0;i<7;i++){const t=mon+i*DAY,isD=!!S.days[t];if(isD)done++;html+=`<div class="day ${isD?'done':''} ${t===today()?'today':''}"><i></i>${names[i]}</div>`}return{html,done}}
+function ring(p){const r=32,c=2*Math.PI*r,v=Math.min(1,p);return `<svg class="ring" viewBox="0 0 80 80" role="img" aria-label="Dagdoel ${Math.round(v*100)} procent"><circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--surface-2)" stroke-width="9"/><circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--apricot-fill)" stroke-width="9" stroke-linecap="round" stroke-dasharray="${(c*v).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 40 40)"/><text x="40" y="45" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="800" font-size="15" fill="var(--ink)">${Math.round(v*100)}%</text></svg>`}
+function vToday(){
+  if(!S.onboarded)return vOnboard();
+  const [h,ht]=hello(),g=GOALS[S.goal],w=weekDots(),due=[...NL,...EN,...REK].filter(x=>thirsty(x.id)).length,done=!!S.days[today()],enDay=isEnglishDay(),ans=S.answers.filter(a=>!a.seen).length;
+  paint(`
+  <header class="top"><div>${bi(`<h1>${h}, Tonaor</h1>`,ht)}</div>${thaiSwitch()}</header>
+  ${ans?`<button class="card row" id="answers" style="background:var(--lilac);border-color:var(--lilac-fill)"><span class="pill pill-lilac" style="background:var(--surface)">${ans}</span>${bi('Emiel heeft je vraag beantwoord','เอมิลตอบคำถามของคุณแล้ว')}</button>`:''}
+  ${S.unsent?`<button class="card row between" id="send" style="background:var(--lilac);border-color:var(--lilac-fill)"><span>${bi('<b>Je hebt een vraag voor Emiel</b>','คุณมีคำถามถึงเอมิล')}</span><span class="pill pill-lilac" style="background:var(--surface)">${bi('Stuur','ส่ง')}</span></button>`:''}
+  ${!S.placement?`<button class="card row between" id="place"><span>${bi('<b>Startmeting nog doen</b>','<b>ยังไม่ได้วัดระดับ</b>')}</span><span class="pill pill-apricot">8 min</span></button>`:''}
+  <section class="card hero" aria-labelledby="hl">
+    ${heroArt()}
+    <div class="eyebrow">Thema 1 · Werk en dagelijks leven</div>
+    <div id="hl" style="margin-top:6px;max-width:70%">${bi('<h2>Je les van vandaag</h2>','บทเรียนวันนี้ของคุณ')}</div>
+    <ol class="steps">
+      <li><span class="dot">1</span>${bi('Ophalen','ทบทวน')}<span class="min">5 min</span></li>
+      <li><span class="dot">2</span>${bi('Nieuwe woorden · werkwoord op plek 2','คำใหม่ · กริยาตำแหน่งที่ 2')}<span class="min">${enDay?5:8} min</span></li>
+      <li><span class="dot">3</span>${bi('Oefenen: zinnen en luisteren','ฝึก: ประโยคและการฟัง')}<span class="min">${enDay?5:8} min</span></li>
+      <li><span class="dot">4</span>${bi('Rekenen met geld en tijd','คณิตศาสตร์ เงินและเวลา')}<span class="min">5 min</span></li>
+      <li><span class="dot">5</span>${bi('Afsluiten','สรุป')}<span class="min">1 min</span></li>
+    </ol>
+    <button class="btn btn-main" id="start">${bi(done?'Nog een ronde':'Begin','เริ่ม')}</button>
+    <button class="linkish" id="short">${bi('Weinig tijd of moe? Korte les van 5 minuten','มีเวลาน้อยหรือเหนื่อย? บทเรียนสั้น 5 นาที')}</button>
+  </section>
+  ${enDay?`<button class="tile wide" id="en"><span class="ic" style="background:var(--sky);color:var(--sky-ink)">${icon.globe}</span><span>${bi('<h3>Vandaag ook Engels <span class="flag">EN</span></h3>','วันนี้มีภาษาอังกฤษด้วย')}<span class="small muted">${bi('Een aparte les van 10 minuten','บทเรียนแยก 10 นาที')}</span></span></button>`:''}
+  <section class="grid2 stack-sm">
+    <div class="card"><div class="row">${ring(pts()/g.pts)}<div>${bi('<h3>Dagdoel</h3>','เป้าหมายวันนี้')}<p class="small muted num">${pts()} / ${g.pts} punten</p></div></div>
+      <div class="goal-pick" role="group" aria-label="Dagdoel">${Object.entries(GOALS).map(([k,v])=>`<button data-goal="${k}" aria-pressed="${S.goal===k}">${v.l}</button>`).join('')}</div></div>
+    <div class="card">${bi('<h3>Deze week</h3>','สัปดาห์นี้')}<div class="week">${w.html}</div>
+      <p class="small muted" style="margin-top:8px">${bi(`${w.done} ${w.done===1?'dag':'dagen'} geoefend. Twee rustdagen per week horen erbij.`,`ฝึกแล้ว ${w.done} วัน วันพักสองวันต่อสัปดาห์เป็นเรื่องปกติ`)}</p></div>
+  </section>
+  ${due?`<button class="card row between" id="water" style="background:var(--sky);border-color:var(--sky-fill)"><span>${bi(`<b>${due} ${due===1?'plantje heeft':'plantjes hebben'} water nodig</b>`,`ต้นไม้ ${due} ต้นต้องการน้ำ`)}<span class="small muted">${bi('Herhalen is water geven','การทบทวนคือการรดน้ำ')}</span></span><span class="pill pill-sky" style="background:var(--surface)">${bi('Water geven','รดน้ำ')}</span></button>`:''}
+  <h3 style="margin-top:4px">${bi('Meer om te doen','กิจกรรมอื่นๆ')}</h3>
+  <div class="tiles2">
+    <button class="tile lilac" id="story"><span class="ic">${icon.book}</span>${bi('<h3>Het verhaal van Mali</h3>','เรื่องของมะลิ')}<span class="small muted">${bi('Aflevering 1','ตอนที่ 1')}</span></button>
+    <button class="tile apricot" id="speed"><span class="ic">${icon.bolt}</span>${bi('<h3>Snelronde de of het</h3>','รอบเร็ว de หรือ het')}<span class="small muted num">${bi(`Record: ${S.speedBest}`,`สถิติ: ${S.speedBest}`)}</span></button>
+    <button class="tile mint" id="talk"><span class="ic">${icon.chat}</span>${bi('<h3>Keukentafel&shy;gesprek</h3>','คุยกันที่โต๊ะอาหาร')}<span class="small muted">${bi('10 minuten samen','10 นาทีด้วยกัน')}</span></button>
+    ${enDay?`<button class="tile sky" id="video"><span class="ic">${icon.tv}</span>${bi('<h3>Kijken</h3>','ดูวิดีโอ')}<span class="small muted">${bi('Jeugdjournaal','ข่าวสำหรับเยาวชน')}</span></button>`:`<button class="tile sky" id="en"><span class="ic">${icon.globe}</span>${bi('<h3>Engels</h3>','ภาษาอังกฤษ')}<span class="small muted">${bi('Dinsdag en donderdag','วันอังคารและวันพฤหัส')}</span></button>`}
+    ${S.extras.boeddhisme?`<button class="tile lilac" id="buddha"><span class="ic">${icon.lotus}</span>${bi('<h3>Tussendoor: boeddhisme</h3>','พุทธศาสนา')}<span class="small muted">${bi('Om de twee weken','ทุกสองสัปดาห์')}</span></button>`:''}
+    <button class="tile mint" id="diary"><span class="ic">${icon.mic}</span>${bi('<h3>Spraakdagboek</h3>','บันทึกเสียง')}<span class="small muted">${bi('1 minuut','1 นาที')}</span></button>
+    ${!enDay?`<button class="tile sky" id="video"><span class="ic">${icon.tv}</span>${bi('<h3>Kijken</h3>','ดูวิดีโอ')}<span class="small muted">${bi('Jeugdjournaal','ข่าวสำหรับเยาวชน')}</span></button>`:''}
+  </div>`);
+  $('#start').onclick=()=>startLesson(false);
+  $('#short').onclick=()=>startLesson(true);
+  $('#en').onclick=startEnglish;
+  $('#story').onclick=startStory;
+  $('#speed').onclick=startSpeed;
+  $('#talk').onclick=()=>{route=vTalk;rerender();window.scrollTo(0,0)};
+  $('#diary').onclick=()=>{route=vDiary;rerender();window.scrollTo(0,0)};
+  $('#video').onclick=()=>{route=vVideo;rerender();window.scrollTo(0,0)};
+  if($('#buddha'))$('#buddha').onclick=()=>{route=vBuddha;rerender();window.scrollTo(0,0)};
+  if($('#water'))$('#water').onclick=()=>startLesson(true);
+  if($('#place'))$('#place').onclick=startPlacement;
+  if($('#answers'))$('#answers').onclick=()=>show('ik');
+  if($('#send'))$('#send').onclick=sendProgress;
+  app.querySelectorAll('[data-goal]').forEach(b=>b.onclick=()=>{S.goal=b.dataset.goal;save();rerender()});
+}
+
+/* ============ sessie-raamwerk ============ */
+let Q=[],qi=0,sp=0,grown=[],sessName='',sessStart=0,sessRight=0,sessTotal=0;
+function runSession(name,queue){Q=queue;qi=0;sp=0;grown=[];sessName=name;sessStart=now();sessRight=0;sessTotal=0;$('#nav').hidden=true;app.classList.add('sess');window.scrollTo(0,0);step()}
+function frame(inner,label,stepNo,ofN){
+  const p=Math.round(qi/Math.max(1,Q.length-1)*100);
+  paint(`<div class="sess-top"><button class="close" id="quit" aria-label="Stoppen">×</button><div class="bar" role="progressbar" aria-label="Voortgang" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><i style="width:${p}%"></i></div>${thaiSwitch()}</div>
+  <div class="stage-label"><span class="eyebrow">${stepNo?`Stap ${stepNo} van ${ofN||5} · `:''}${label}</span><span class="pill pill-apricot num">+${sp}</span></div>${inner}`);
+  $('#quit').onclick=()=>{finishTime();if(sp>0)toast('Opgeslagen. Je punten blijven staan.');show('vandaag')};
+}
+function finishTime(){const m=Math.max(1,Math.round((now()-sessStart)/6e4));S.mins[today()]=(S.mins[today()]||0)+m;save()}
+function next(){qi++;window.scrollTo(0,0);step()}
+function step(){const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
+function score(ok,n){sessTotal++;if(ok){sessRight++;sp+=n;addPts(n)}}
+function fbBox(ok,msg,msgTh){return `<div class="fb ${ok?'fb-ok':'fb-no'}" role="status"><strong>${ok?'Goed!':'Bijna.'} <span lang="th" style="font-family:var(--f-thai)">${ok?'ถูกต้อง':'เกือบแล้ว'}</span></strong>${msg?bi(msg,msgTh||''):''}</div>`}
+const helpBtn=ctx=>`<button class="help" data-help="${esc(ctx)}">${bi('Ik snap dit niet: vraag Emiel om hulp','ฉันไม่เข้าใจ: ขอให้เอมิลช่วย')}</button>`;
+function bindHelp(){app.querySelectorAll('[data-help]').forEach(b=>b.onclick=e=>{e.stopPropagation();S.help.unshift({t:now(),ctx:b.dataset.help,open:true});save();toast('Bewaard voor Emiel · บันทึกไว้ให้เอมิลแล้ว');S.unsent=true;save()})}
+const speakBtns=(a,b)=>`<div class="row" style="flex-wrap:wrap"><button class="speak" id="${a}">${icon.play}${bi('Luister','ฟัง')}</button>${b?`<button class="speak" id="${b}">${icon.slow}${bi('Langzaam','ช้า')}</button>`:''}</div>`;
+const nextBtn=cls=>`<button class="btn ${cls||'btn-leaf'}" id="nx">${bi('Verder','ต่อไป')}</button>`;
+function adaptiveNote(){return sessTotal>=4&&sessRight/sessTotal<.65?`<div class="note sky">${bi('Dit is pittig. Neem rustig de tijd; fouten horen bij leren.','ข้อนี้ยากหน่อย ค่อยๆ ทำ การผิดเป็นส่วนหนึ่งของการเรียน')}</div>`:''}
+
+/* ============ oefenvormen ============ */
+const H={};
+H.card=q=>{frame(`<div class="card stack" style="padding:22px">${q.html}</div>${nextBtn(q.btn)}`,q.label,q.step);if(q.bind)q.bind();$('#nx').onclick=next};
+H.learn=q=>{const w=q.w;
+  frame(`<div class="card wordcard"><span class="art art-${w.art}">${w.art}</span><span class="w">${esc(w.w)}</span><span class="th" lang="th" style="font-size:1.15rem">${w.th}</span><p class="muted">${esc(w.ex)}</p>${speakBtns('sp','sps')}</div>
+  <p class="small muted">${bi(`Dit is een <b>${w.art}</b>-woord. Leer het lidwoord altijd mee.`,`คำนี้ใช้ ${w.art} จำไปพร้อมกับคำเสมอ`)}</p>${nextBtn()}`,'Nieuw woord',q.step);
+  setTimeout(()=>say(`${w.art} ${w.w}`),250);$('#sp').onclick=()=>say(`${w.art} ${w.w}. ${w.ex}`);$('#sps').onclick=()=>say(`${w.art} ${w.w}`,true);
+  $('#nx').onclick=()=>{if(!S.introduced.includes(w.id))S.introduced.push(w.id);const it=S.items[w.id];it.reps=Math.max(1,it.reps);it.due=now();save();next()};
+};
+H.recog=q=>{const w=q.w;let first=true;const opts=shuffle([w,...shuffle(NL.filter(x=>x.id!==w.id)).slice(0,2)]);
+  frame(`<div class="card stack"><p class="eyebrow">Welk woord is dit?</p><p class="prompt thai" lang="th">${w.th}</p>
+  <div class="choices one">${opts.map(o=>`<button class="choice" data-id="${o.id}">${o.art} ${esc(o.w)}</button>`).join('')}</div><div id="fb"></div></div>`,'Herkennen',q.step);
+  app.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const ok=b.dataset.id===w.id;b.classList.add(ok?'right':'wrong');
+    if(ok){score(first,5);review(w.id,first,'herkennen');if(first)grown.push(w.id);say(`${w.art} ${w.w}`);$('#fb').innerHTML=fbBox(true,'','')+nextBtn();$('#nx').onclick=next}
+    else{first=false;$('#fb').innerHTML=fbBox(false,'Kijk nog eens. Je kunt het!','ลองดูอีกครั้ง คุณทำได้')}})};
+H.recall=q=>{const w=q.w;let tries=0,hint=0;const full=`${w.art} ${w.w}`;
+  frame(`<div class="card stack"><p class="eyebrow">Wat is dit in het Nederlands?</p><p class="prompt thai" lang="th">${w.th}</p>
+  <label for="ans" class="small muted">${bi('Typ het woord met de of het','พิมพ์คำพร้อม de หรือ het')}</label>
+  <input id="ans" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="de … / het …">
+  <div class="hint-row"><button class="hintbtn" id="hint">${bi('Hulpje','ตัวช่วย')}</button><span class="hintshow" id="hs" aria-live="polite"></span></div>
+  <div id="fb"></div><button class="btn btn-leaf" id="chk">${bi('Controleer','ตรวจคำตอบ')}</button>${helpBtn('Woord: '+full)}</div>${adaptiveNote()}`,'Ophalen',q.step);
+  bindHelp();const inp=$('#ans');setTimeout(()=>{try{inp.focus({preventScroll:true})}catch(e){}},80);
+  $('#hint').onclick=()=>{hint=Math.min(3,hint+1);$('#hs').textContent=hint===1?`Lidwoord: ${w.art}`:hint===2?`${w.art} ${w.w[0]}…`:full;if(hint===3)$('#hint').disabled=true};
+  const check=()=>{const a=norm(inp.value);if(!a)return;tries++;const ok=a===norm(full);let msg=null,th=null;
+    if(ok){msg=`<b>${full}</b>. ${esc(w.ex)}`;th='ใช่ '+full}
+    else if(a===norm(w.w)){msg=`Het woord klopt! Zet er <b>${w.art}</b> voor: <b>${full}</b>.`;th=`คำถูกแล้ว ใส่ ${w.art} ข้างหน้า`}
+    else if(a.endsWith(norm(w.w))){msg=`Dit is een <b>${w.art}</b>-woord: <b>${full}</b>.`;th=`คำนี้ใช้ ${w.art}`}
+    if(ok||tries>1||msg){const clean=ok&&tries===1&&hint<3;score(clean,hint===0?10:hint===1?7:4);review(w.id,clean,'typen');if(clean)grown.push(w.id);
+      $('#fb').innerHTML=fbBox(ok,msg||`Het is <b>${full}</b>. ${esc(w.ex)}`,th||`คำตอบคือ ${full}`);say(full);inp.disabled=true;$('#hint').disabled=true;
+      $('#chk').outerHTML=nextBtn(ok?'btn-leaf':'btn-main');$('#nx').onclick=next}
+    else $('#fb').innerHTML=fbBox(false,'Probeer het nog een keer, of neem een hulpje.','ลองอีกครั้ง หรือใช้ตัวช่วย')};
+  $('#chk').onclick=check;inp.onkeydown=e=>{if(e.key==='Enter')check()}};
+H.build=q=>{const s=q.s;let pool=shuffle(s.parts);if(pool.join()===s.parts.join())pool.reverse();let chosen=[],first=true;
+  const draw=fb=>{frame(`<div class="card stack">${bi('<h2>Bouw de zin</h2>','เรียงประโยค')}<p class="muted small">${bi('Tik de stukjes in de goede volgorde. Het oranje stukje is het werkwoord.','แตะชิ้นส่วนตามลำดับ ชิ้นสีส้มคือกริยา')}</p>
+    <p lang="th" style="font-family:var(--f-thai);font-size:1.12rem">${esc(s.th)}</p>
+    <div class="pieces" aria-label="Jouw zin">${chosen.map((p,i)=>`<button class="piece ${p===s.verb?'verb':''}" data-back="${i}">${esc(p)}</button>`).join('')}</div>
+    <div class="pieces pool" aria-label="Stukjes">${pool.map((p,i)=>`<button class="piece ${p===s.verb?'verb':''}" data-take="${i}">${esc(p)}</button>`).join('')}</div>
+    <div id="fb">${fb||''}</div><button class="btn btn-leaf" id="chk" ${pool.length?'disabled':''}>${bi('Controleer','ตรวจคำตอบ')}</button>${helpBtn('Zin bouwen: '+s.parts.join(' '))}</div>`,'Oefenen',q.step);
+    bindHelp();
+    app.querySelectorAll('[data-take]').forEach(b=>b.onclick=()=>{chosen.push(pool.splice(+b.dataset.take,1)[0]);draw()});
+    app.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>{pool.push(chosen.splice(+b.dataset.back,1)[0]);draw()});
+    $('#chk').onclick=()=>{if(pool.length)return;const right=s.parts.join(' ');
+      if(chosen.join(' ')===right){score(first,15);say(right);$('#fb').innerHTML=fbBox(true,`<b>${esc(right)}</b> Het werkwoord <b>${esc(s.verb)}</b> staat op plek 2.`,`กริยา ${esc(s.verb)} อยู่ตำแหน่งที่ 2`);$('#chk').outerHTML=nextBtn();$('#nx').onclick=next}
+      else{first=false;const vi=chosen.indexOf(s.verb);pool=shuffle(s.parts);chosen=[];draw(fbBox(false,vi!==1?'Zet het oranje werkwoord op <b>plek 2</b>. Nieuwe kans!':'Het werkwoord staat goed. Kijk nog eens naar de rest.',vi!==1?'วางกริยาสีส้มไว้ตำแหน่งที่ 2 ลองใหม่':'กริยาถูกที่แล้ว ดูส่วนอื่นอีกครั้ง'))}}};
+  draw()};
+H.gap=q=>{let first=true;
+  frame(`<div class="card stack">${bi('<h2>Welk woord past?</h2>','คำไหนเหมาะสม')}<p class="prompt">${q.s.replace('___','<span class="slot s2">___</span>')}</p><span class="th" lang="th">${q.th}</span>
+  <div class="choices">${q.o.map(o=>`<button class="choice" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="fb"></div>${helpBtn('Gatentekst: '+q.s)}</div>`,'Oefenen',q.step);
+  bindHelp();app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o===q.a;b.classList.add(ok?'right':'wrong');
+    if(ok){score(first,10);say(q.s.replace('___',q.a));$('#fb').innerHTML=fbBox(true,q.why,q.whyTh)+nextBtn();$('#nx').onclick=next}
+    else{first=false;$('#fb').innerHTML=fbBox(false,q.hint,q.hintTh)}})};
+H.listen=q=>{const p=q.p,L=q.lang||'nl';let first=true;
+  frame(`<div class="card stack">${bi('<h2>Wat hoor je?</h2>','คุณได้ยินคำไหน')}<p class="muted">${bi('Luister goed en kies het woord.','ฟังให้ดีแล้วเลือกคำ')}</p>${speakBtns('sp','sps')}
+  <div class="choices">${p.opts.map((o,i)=>`<button class="choice" data-o="${i}"${L==='en'?' lang="en"':''}>${esc(o)}<span class="th" lang="th">${p.th[i]}</span></button>`).join('')}</div><div id="fb"></div>${helpBtn('Luisteren: '+p.opts.join(' / '))}</div>`,L==='en'?'Engels · luisteren':'Luisteren',q.step);
+  bindHelp();setTimeout(()=>say(p.say,false,L),350);$('#sp').onclick=()=>say(p.say,false,L);$('#sps').onclick=()=>say(p.say,true,L);
+  app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=p.opts[+b.dataset.o]===p.say;b.classList.add(ok?'right':'wrong');
+    if(ok){score(first,10);$('#fb').innerHTML=fbBox(true,p.why,p.whyTh)+nextBtn(L==='en'?'btn-sky':'');$('#nx').onclick=next}
+    else{first=false;$('#fb').innerHTML=fbBox(false,'Luister nog een keer, langzaam. '+p.why,p.whyTh)}})};
+H.dictee=q=>{let done=false;
+  frame(`<div class="card stack">${bi('<h2>Schrijf op wat je hoort</h2>','เขียนสิ่งที่ได้ยิน')}${speakBtns('sp','sps')}
+  <label for="ans" class="small muted">${bi('De hele zin','ทั้งประโยค')}</label><input id="ans" class="input" autocomplete="off" autocorrect="off" spellcheck="false"><div id="fb"></div><button class="btn btn-leaf" id="chk">${bi('Controleer','ตรวจคำตอบ')}</button>${helpBtn('Dictee: '+DICTEE.t)}</div>`,'Luisteren',q.step);
+  bindHelp();setTimeout(()=>say(DICTEE.t),350);$('#sp').onclick=()=>say(DICTEE.t);$('#sps').onclick=()=>say(DICTEE.t,true);
+  const check=()=>{if(done)return;const a=norm($('#ans').value).split(' '),t=norm(DICTEE.t).split(' ');if(!a[0])return;done=true;
+    const marks=t.map(w=>a.includes(w)?`<span class="slot s3">${w}</span>`:`<span class="slot s2">${w}</span>`).join(' ');const good=t.filter(w=>a.includes(w)).length;const ok=good===t.length;
+    score(ok,ok?15:Math.round(good/t.length*10));if(!ok&&good>0){sp+=Math.round(good/t.length*10)}
+    $('#fb').innerHTML=fbBox(ok,`${good} van ${t.length} woorden goed.<br>${marks}`,DICTEE.th)+nextBtn();$('#nx').onclick=next};
+  $('#chk').onclick=check;$('#ans').onkeydown=e=>{if(e.key==='Enter')check()}};
+H.money=q=>{let first=true;
+  frame(`<div class="card stack">${bi('<h2>Hoeveel geld is dit?</h2>','นี่คือเงินเท่าไร')}
+  <div class="coins" role="img" aria-label="Een briefje van 5 euro, twee munten van 2 euro en een munt van 50 cent"><span class="bill">€ 5</span><span class="coin">€ 2</span><span class="coin">€ 2</span><span class="coin small">50 ct</span></div>
+  <div class="choices">${['€ 9,50','€ 9,05','€ 10,00','€ 8,50'].map(o=>`<button class="choice num" data-o="${o}">${o}</button>`).join('')}</div><div id="fb"></div></div>`,'Rekenen',q.step);
+  app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o==='€ 9,50';b.classList.add(ok?'right':'wrong');
+    if(ok){score(first,10);review('r-geld',first,'geld');review('r-komma',first,'geld');if(first)grown.push('r-geld');$('#fb').innerHTML=fbBox(true,'5 + 2 + 2 = 9 euro, en 50 cent erbij: <b>€ 9,50</b>. In Nederland staat er een <b>komma</b> tussen euro en cent.','5 + 2 + 2 = 9 ยูโร บวก 50 เซนต์ เป็น 9,50 ยูโร ในเนเธอร์แลนด์ใช้จุลภาคคั่นยูโรกับเซนต์')+nextBtn();$('#nx').onclick=next}
+    else{first=false;$('#fb').innerHTML=fbBox(false,"Tel eerst de euro's, dan de centen.",'นับยูโรก่อน แล้วค่อยนับเซนต์')}})};
+function clockSvg(h,m){const hand=(ang,len,w,c)=>{const r=(ang-90)*Math.PI/180;return `<line x1="75" y1="75" x2="${(75+Math.cos(r)*len).toFixed(1)}" y2="${(75+Math.sin(r)*len).toFixed(1)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`};
+  let t='';for(let i=0;i<12;i++){const r=(i*30-90)*Math.PI/180;t+=`<line x1="${(75+Math.cos(r)*57).toFixed(1)}" y1="${(75+Math.sin(r)*57).toFixed(1)}" x2="${(75+Math.cos(r)*64).toFixed(1)}" y2="${(75+Math.sin(r)*64).toFixed(1)}" stroke="var(--ink-2)" stroke-width="${i%3?2:3.5}" stroke-linecap="round"/>`}
+  return `<svg class="clock" viewBox="0 0 150 150" role="img" aria-label="Een klok"><circle cx="75" cy="75" r="70" fill="var(--surface)" stroke="var(--mint-fill)" stroke-width="6"/>${t}${hand(((h%12)+m/60)*30,36,6,'var(--ink)')}${hand(m*6,54,4,'var(--sky-ink)')}<circle cx="75" cy="75" r="5" fill="var(--apricot-fill)"/></svg>`}
+H.clock=q=>{let first=true;const c=q.c;
+  frame(`<div class="card stack">${bi(`<h2>${c.q}</h2>`,c.qth)}${clockSvg(c.h,c.m)}<div class="choices">${c.o.map(o=>`<button class="choice" data-o="${o}">${o}</button>`).join('')}</div><div id="fb"></div></div>`,'Rekenen',q.step);
+  app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o===c.a;b.classList.add(ok?'right':'wrong');
+    if(ok){score(first,10);review('r-klok',first,'klok');if(first)grown.push('r-klok');say(c.a);$('#fb').innerHTML=fbBox(true,c.why,c.whyTh)+nextBtn();$('#nx').onclick=next}
+    else{first=false;$('#fb').innerHTML=fbBox(false,'Kijk eerst naar de korte wijzer: die wijst het uur aan.','ดูเข็มสั้นก่อน เข็มสั้นบอกชั่วโมง')}})};
+H.discount=q=>{
+  if(q.k==='worked'){frame(`<div class="card stack">${bi('<h2>Korting op de kassabon</h2>','ส่วนลดในใบเสร็จ')}<p>${bi('Kijk mee, stap voor stap.','ดูไปพร้อมกัน ทีละขั้นตอน')}</p>
+    <div class="receipt" role="img" aria-label="Kassabon: jas 60 euro, korting 10 procent is 6 euro, totaal 54 euro"><div class="r"><span>Jas</span><span class="num">€ 60,00</span></div><div class="r"><span>Korting 10%</span><span class="num">− € 6,00</span></div><hr><div class="r"><b>Totaal</b><b class="num">€ 54,00</b></div></div>
+    <div class="worked"><div class="ln"><b>1</b>${bi('10% is 10 van de 100. Dat is <b>1/10</b>.','10% คือ 10 ใน 100 เท่ากับ 1/10')}</div><div class="ln"><b>2</b>${bi('1/10 van € 60 = 60 : 10 = <b>€ 6</b> korting.','1/10 ของ 60 = 60 ÷ 10 = ส่วนลด 6 ยูโร')}</div><div class="ln"><b>3</b>${bi('Je betaalt 60 − 6 = <b>€ 54,00</b>.','คุณจ่าย 60 − 6 = 54 ยูโร')}</div></div>
+    <div class="note">${bi('In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In Thailand schrijf je 54.00.','ในเนเธอร์แลนด์ใช้จุลภาค: € 54,00 ในไทยเขียน 54.00')}</div></div>${nextBtn()}`,'Rekenen',q.step);
+    $('#nx').onclick=()=>{review('r-10',true,'voorbeeld');next()};return}
+  const own=q.k==='own';let first=true,tries=0;
+  const it=own?{q:'Schoenen kosten <b>€ 80,00</b>. Je krijgt <b>20% korting</b>. Hoeveel <b>betaal</b> je?',qth:'รองเท้าราคา 80 ยูโร ได้ส่วนลด 20% คุณต้องจ่ายเท่าไร',a:64,tip:'20% is 2 × 10%.',tipth:'20% คือ 2 × 10%',lbl:'Je betaalt (euro)'}
+    :{q:'Een trui kost <b>€ 40,00</b>. Korting: <b>25%</b>. 25% is een kwart (1/4). Hoeveel euro <b>korting</b> krijg je?',qth:'เสื้อราคา 40 ยูโร ส่วนลด 25% คือ 1/4 ได้ส่วนลดกี่ยูโร',a:10,tip:'40 : 4 = ?',tipth:'40 ÷ 4 = ?',lbl:'Korting (euro)'};
+  frame(`<div class="card stack">${bi(own?'<h2>Nu helemaal zelf</h2>':'<h2>Jij doet de laatste stap</h2>',own?'ทำเองทั้งหมด':'คุณทำขั้นตอนสุดท้าย')}<p>${bi(it.q,it.qth)}</p>
+    <div class="hint-row"><button class="hintbtn" id="hint">${bi('Hulpje','ตัวช่วย')}</button><span class="hintshow" id="hs"></span></div>
+    <label for="ans" class="small muted">${it.lbl}</label><input id="ans" class="input num" inputmode="decimal" autocomplete="off" placeholder="€"><div id="fb"></div><button class="btn btn-leaf" id="chk">${bi('Controleer','ตรวจคำตอบ')}</button>${helpBtn('Rekenen: korting '+(own?'20% van 80':'25% van 40'))}</div>`,'Rekenen',q.step);
+  bindHelp();$('#hint').onclick=()=>{$('#hs').innerHTML=bi(it.tip,it.tipth)};
+  const check=()=>{const raw=$('#ans').value.replace('€','').trim();if(!raw)return;const dot=/\.\d{2}$/.test(raw);const v=parseFloat(raw.replace(/\.(?=\d{3})/g,'').replace(',','.'));const ok=Math.abs(v-it.a)<.001;
+    if(ok){score(first,own?20:15);review(own?'r-10':'r-25',first,'korting');if(first)grown.push(own?'r-10':'r-25');$('#fb').innerHTML=fbBox(true,(own?'10% van 80 is 8, dus 20% is 16. Je betaalt 80 − 16 = <b>€ 64,00</b>.':'40 : 4 = <b>10</b>. Je betaalt dan nog € 30,00.')+(dot?` Let op: in Nederland schrijf je <b>${it.a},00</b> met een komma.`:''),own?'20% ของ 80 คือ 16 จ่าย 64 ยูโร':'40 ÷ 4 = 10 แล้วจ่าย 30 ยูโร');$('#chk').outerHTML=nextBtn();$('#nx').onclick=next;$('#ans').disabled=true}
+    else{first=false;tries++;if(tries>=3){review(own?'r-10':'r-25',false,'korting');$('#fb').innerHTML=fbBox(false,own?'Samen dan: 10% van 80 is 8, dus 20% is 16. Je betaalt 80 − 16 = <b>€ 64,00</b>. Morgen komt deze terug.':'Samen dan: 25% is een kwart. 40 : 4 = <b>10</b> euro korting. Morgen komt deze terug.',own?'10% ของ 80 คือ 8 ดังนั้น 20% คือ 16 จ่าย 64 ยูโร พรุ่งนี้จะทบทวนอีกครั้ง':'25% คือหนึ่งในสี่ 40 ÷ 4 = ส่วนลด 10 ยูโร พรุ่งนี้จะทบทวนอีกครั้ง');$('#chk').outerHTML=nextBtn('btn-main');$('#nx').onclick=next;$('#ans').disabled=true;return}let m,t;if(own&&Math.abs(v-16)<.01){m='Dat is de korting. De vraag is wat je <b>betaalt</b>: 80 − 16 = ?';t='นั่นคือส่วนลด คำถามคือต้องจ่ายเท่าไร'}else if(!own&&Math.abs(v-30)<.01){m='Dat betaal je. De vraag is hoeveel <b>korting</b> je krijgt.';t='นั่นคือราคาที่จ่าย คำถามคือได้ส่วนลดเท่าไร'}else{m='Neem een hulpje en probeer het opnieuw.';t='ใช้ตัวช่วยแล้วลองใหม่'}$('#fb').innerHTML=fbBox(false,m,t)}};
+  $('#chk').onclick=check;$('#ans').onkeydown=e=>{if(e.key==='Enter')check()}};
+H.conf=q=>{frame(`<div class="card stack">${bi('<h2>Hoe voelde dit?</h2>','รู้สึกอย่างไรบ้าง')}<p class="muted">${bi('Er is geen fout antwoord. Zo weet de app wat je vaker wilt herhalen.','ไม่มีคำตอบที่ผิด แอปจะได้รู้ว่าควรทบทวนอะไรบ่อยขึ้น')}</p>
+  <div class="conf"><button class="btn btn-leaf" data-c="zeker">${bi('Zeker','มั่นใจ')}</button><button class="btn btn-ghost" data-c="twijfel">${bi('Ik twijfel','ไม่แน่ใจ')}</button></div></div>`,'Afsluiten',q.step);
+  app.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{S.conf.unshift({t:now(),c:b.dataset.c,acc:sessTotal?sessRight/sessTotal:1,name:sessName});S.sessions++;save();next()})};
+H.end=q=>{finishTime();const g=GOALS[S.goal],pct=Math.round(Math.min(1,pts()/g.pts)*100);
+  const all=[...NL.map(x=>({id:x.id,l:`${x.art} ${x.w}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
+  const bloom=[...new Set(grown)].map(id=>all.find(a=>a.id===id)).filter(Boolean).slice(0,6);
+  const last=S.conf[0],mis=last&&last.c==='zeker'&&last.acc<.7&&last.t>sessStart;
+  frame(`<div class="card celebrate"><div class="big num">+${sp}</div>${bi('<h2>Goed gedaan, Tonaor!</h2>','เก่งมาก!')}<p class="muted">${bi(`Je dagdoel staat op ${pct}%.`,`เป้าหมายวันนี้ได้ ${pct}%`)}</p>
+   ${mis?`<div class="note sky">${bi('Je voelde je zeker, maar een paar dingen gingen nog mis. Die komen morgen extra terug.','คุณรู้สึกมั่นใจ แต่ยังมีบางข้อผิด พรุ่งนี้จะทบทวนเพิ่ม')}</div>`:''}
+   ${bloom.length?`<p>${bi(`${bloom.length} ${bloom.length===1?'plantje is':'plantjes zijn'} gegroeid`,`ต้นไม้โตขึ้น ${bloom.length} ต้น`)}</p><div class="garden" style="width:100%">${bloom.map(b=>`<div class="plant">${plant(stage(b.id),false)}<span class="w">${esc(b.l)}</span></div>`).join('')}</div>`:''}</div>
+   <button class="btn btn-main" id="home">${bi('Klaar voor vandaag','เสร็จสำหรับวันนี้')}</button>`,'Klaar');
+  petals();$('#home').onclick=()=>show('vandaag')};
+
+/* ============ dagelijkse les ============ */
+function startLesson(short){
+  const pool=NL.filter(w=>S.introduced.includes(w.id));
+  const due=pool.filter(w=>thirsty(w.id)).sort((a,b)=>S.items[a.id].due-S.items[b.id].due);
+  const fresh=NL.filter(w=>!S.introduced.includes(w.id));
+  const capNew=due.length>25?1:(isEnglishDay()?3:4);
+  const newW=short?[]:fresh.slice(0,capNew);
+  const rec=(due.length?due:pool).slice(0,short?3:4);
+  const q=[];
+  q.push({type:'card',label:'Ophalen',step:1,btn:'btn-leaf',html:`${bi('<h2>Eerst even ophalen</h2>','ทบทวนก่อน')}<p>${bi('Je ziet een Thais woord. Typ het Nederlandse woord, met <b>de</b> of <b>het</b> ervoor. Zelf typen onthoud je beter dan aanklikken.','คุณจะเห็นคำภาษาไทย พิมพ์คำภาษาดัตช์พร้อม de หรือ het การพิมพ์เองช่วยให้จำได้ดีกว่า')}</p><p class="muted small">${bi('Vastgelopen? Tik op <b>Hulpje</b>: eerst het lidwoord, dan de eerste letter.','ติดอยู่? แตะตัวช่วย: บอก de/het ก่อน แล้วตัวอักษรแรก')}</p>`});
+  if(rec.length)rec.forEach(w=>q.push({type:'recall',step:1,w}));
+  else NL.slice(0,2).forEach(w=>{q.push({type:'learn',step:1,w});q.push({type:'recog',step:1,w})});
+  if(!short){
+    newW.forEach(w=>q.push({type:'learn',step:2,w}));
+    shuffle(newW).forEach(w=>q.push({type:'recog',step:2,w}));
+    q.push({type:'card',label:'Nieuw leren',step:2,html:`${bi('<h2>Het werkwoord staat op plek 2</h2>','กริยาอยู่ตำแหน่งที่ 2')}
+      <p>${bi('In een gewone Nederlandse zin staat het werkwoord altijd op <b>plek 2</b>. Begint de zin met iets anders dan <i>ik</i>, zoals een tijd, dan schuift <i>ik</i> naar achter het werkwoord.','ในประโยคหลักภาษาดัตช์ กริยาอยู่ตำแหน่งที่ 2 เสมอ ถ้าประโยคขึ้นต้นด้วยคำอื่น เช่น เวลา ประธานจะย้ายไปอยู่หลังกริยา')}</p>
+      <div class="example"><div><span class="slot s1">Ik</span> <span class="slot s2">werk</span> <span class="slot s3">morgen</span> in Zwaag.</div><span class="th" lang="th">ฉัน ทำงาน พรุ่งนี้ ที่ซวาก</span></div>
+      <div class="example"><div><span class="slot s3">Morgen</span> <span class="slot s2">werk</span> <span class="slot s1">ik</span> in Zwaag.</div><span class="th" lang="th">กริยายังอยู่ตำแหน่งที่ 2</span></div>
+      <div class="note">${bi('<b>Hier verschilt het Thai.</b> In het Thai blijft <i>ฉัน</i> vooraan. In het Nederlands draait het om: <b>Morgen werk ik</b>.','<b>ภาษาไทยต่างตรงนี้</b> ภาษาไทยประธานอยู่หน้าเสมอ ภาษาดัตช์สลับ: Morgen werk ik')}</div>
+      <button class="speak" id="lsp">${icon.play}${bi('Luister','ฟัง')}</button>`,bind:()=>{$('#lsp').onclick=()=>say('Ik werk morgen in Zwaag. Morgen werk ik in Zwaag.')}});
+    shuffle(SENT).slice(0,isEnglishDay()?2:3).forEach(s=>q.push({type:'build',step:3,s}));
+    q.push({type:'gap',step:3,s:'Zaterdag ___ ik vrij.',th:'วันเสาร์ฉันได้หยุด',o:['heb','hebben'],a:'heb',why:'Bij <i>ik</i> hoort <b>heb</b>. <i>Hebben</i> is voor wij, jullie en zij.',whyTh:'ik ใช้ heb ส่วน hebben ใช้กับ wij jullie zij',hint:'Wie is het onderwerp? <i>ik</i>.',hintTh:'ประธานคือใคร? ik'});
+    shuffle(PAIRS).slice(0,2).forEach(p=>q.push({type:'listen',step:3,p}));
+    q.push({type:'dictee',step:3});
+    q.push({type:'money',step:4});
+    q.push({type:'clock',step:4,c:{q:'Hoe laat begint de dienst?',qth:'กะเริ่มกี่โมง',h:6,m:0,o:['zes uur','half zes','twaalf uur','kwart over zes'],a:'zes uur',why:'De korte wijzer staat op de 6, de lange op de 12: <b>zes uur</b>.',whyTh:'เข็มสั้นชี้เลข 6 เข็มยาวชี้เลข 12: หกโมง'}});
+    q.push({type:'discount',step:4,k:'worked'});
+    q.push({type:'discount',step:4,k:'partial'});
+  }else{
+    q.push({type:'clock',step:4,c:{q:'Hoe laat is het?',qth:'กี่โมงแล้ว',h:3,m:30,o:['half vier','half drie','drie uur','vier uur'],a:'half vier',why:'In het Nederlands zeg je <b>half vier</b>: een half uur vóór vier uur. Dat is anders dan in het Thai en het Engels.',whyTh:'ภาษาดัตช์พูดว่า half vier คือครึ่งชั่วโมงก่อนสี่โมง ต่างจากภาษาไทยและอังกฤษ'}});
+  }
+  q.push({type:'conf',step:5});q.push({type:'end',step:5});
+  runSession(short?'Korte les':'Les thema 1',q);
+}
+
+/* ============ Engels ============ */
+function startEnglish(){
+  const due=EN.filter(w=>thirsty(w.id)),freshW=EN.filter(w=>S.items[w.id].reps===0);
+  const q=[{type:'card',label:'English',step:1,btn:'btn-sky',html:`<span class="flag">ENGLISH</span>${bi('<h2>Engels, met drie talen</h2>','ภาษาอังกฤษ ด้วยสามภาษา')}<p>${bi('Je kent al veel Nederlands. Veel Engelse woorden lijken daarop: <b>information</b> en <b>informatie</b>. Die brug gebruiken we.','คุณรู้ภาษาดัตช์มากแล้ว คำภาษาอังกฤษหลายคำคล้ายกัน เราจะใช้สะพานนี้')}</p><div class="note sky">${bi('Deze les is helemaal Engels. Het Nederlands staat er alleen als bruggetje bij.','บทเรียนนี้เป็นภาษาอังกฤษทั้งหมด ภาษาดัตช์มีไว้เป็นสะพานเท่านั้น')}</div><div class="note">${bi('<b>Let op, valse vriend:</b> <i lang="en">actually</i> betekent <i>eigenlijk</i>, niet <i>actueel</i>.','<b>ระวัง:</b> actually แปลว่า "จริงๆ แล้ว" ไม่ใช่ actueel')}</div>`}];
+  [...due,...freshW].slice(0,4).forEach(w=>q.push({type:'enrecall',step:1,w}));
+  q.push({type:'card',label:'English',step:2,btn:'btn-sky',html:`${bi('<h2>he, she, it: werkwoord + s</h2>','he, she, it: กริยา + s')}
+    <p>${bi('Bij <b>he</b>, <b>she</b> en <b>it</b> krijgt het werkwoord een <b>-s</b>. Dat ken je al: in het Nederlands krijgt <i>hij</i> een <b>-t</b>.','กับ he she it กริยาต้องเติม -s เหมือนภาษาดัตช์ที่ hij เติม -t')}</p>
+    <div class="trio"><div><span class="lg">Thai</span><span class="wd" lang="th" style="font-family:var(--f-thai)">เธอทำงาน</span></div><div><span class="lg">Nederlands</span><span class="wd">zij werk<u>t</u></span></div><div><span class="lg">English</span><span class="wd" lang="en">she work<u>s</u></span></div></div>
+    <div class="note sky">${bi('<b>Let op het verschil:</b> in het Engels gaat het werkwoord niet naar plek 2. <i lang="en">Tomorrow I work.</i>','<b>ระวังความต่าง:</b> ภาษาอังกฤษกริยาไม่ย้ายไปตำแหน่งที่ 2')}</div>
+    <button class="speak" id="esp">${icon.play}${bi('Listen','ฟัง')}</button>`,bind:()=>{$('#esp').onclick=()=>say('She works at night. They work in the morning.',false,'en')}});
+  [{s:'She ___ at night.',nl:"Zij werkt 's nachts.",th:'เธอทำงานตอนกลางคืน',o:['work','works'],a:'works',why:'<b>She</b> → werkwoord + <b>s</b>.',whyTh:'she ต้องเติม s',hint:'Is het he, she of it?',hintTh:'เป็น he she หรือ it ไหม'},
+   {s:'My colleagues ___ in the morning.',nl:"Mijn collega's werken 's ochtends.",th:'เพื่อนร่วมงานของฉันทำงานตอนเช้า',o:['work','works'],a:'work',why:'Meer personen: <b>geen -s</b>.',whyTh:'หลายคน ไม่เติม -s',hint:'Is het één persoon of meer?',hintTh:'คนเดียวหรือหลายคน'},
+   {s:'He ___ a break at ten.',nl:'Hij heeft om tien uur pauze.',th:'เขาพักตอนสิบโมง',o:['have','has'],a:'has',why:'<b>have</b> wordt bij he, she en it <b>has</b>.',whyTh:'have เปลี่ยนเป็น has กับ he she it',hint:'he → ?',hintTh:'he → ?'}].forEach(x=>q.push({type:'engap',step:3,x}));
+  q.push({type:'listen',step:3,lang:'en',p:{say:'west',opts:['vest','west'],th:['เสื้อกั๊ก','ทิศตะวันตก'],why:'Bij de <b>v</b> raken je boventanden je onderlip. Bij de <b>w</b> maak je je lippen rond.',whyTh:'เสียง v ฟันบนแตะริมฝีปากล่าง เสียง w ห่อริมฝีปาก'}});
+  q.push({type:'conf',step:5});q.push({type:'end',step:5});
+  runSession('Engels',q);
+}
+H.enrecall=q=>{const w=q.w;let done=false,hint=0;
+  frame(`<div class="card stack"><p class="eyebrow" lang="en">What is this in English?</p><p class="prompt thai" lang="th">${w.th}</p><p class="muted small">Nederlands: <b>${esc(w.nl)}</b></p>
+  <label for="ans" class="small muted">${bi('Typ het Engelse woord','พิมพ์คำภาษาอังกฤษ')}</label><input id="ans" class="input" lang="en" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <div class="hint-row"><button class="hintbtn" id="hint">${bi('Hulpje','ตัวช่วย')}</button><span class="hintshow" id="hs"></span></div>
+  <div id="fb"></div><button class="btn btn-sky" id="chk">${bi('Check','ตรวจคำตอบ')}</button>${helpBtn('Engels woord: '+w.w)}</div>`,'English',q.step);
+  bindHelp();$('#hint').onclick=()=>{hint=Math.min(2,hint+1);$('#hs').textContent=hint===1?`${w.w[0]}… (${w.w.length} letters)`:w.w};
+  const check=()=>{if(done)return;const a=norm($('#ans').value).replace(/^(a|an|the|to) /,'');if(!a)return;done=true;const ok=a===w.w,clean=ok&&hint<2;score(clean,hint?6:10);review(w.id,clean,'typen');if(clean)grown.push(w.id);
+    $('#fb').innerHTML=fbBox(ok,`<b lang="en">${esc(w.w)}</b>. <span lang="en">${esc(w.ex)}</span>`,ok?'ถูกต้อง':'คำตอบคือ '+w.w);say(`${w.w}. ${w.ex}`,false,'en');$('#chk').outerHTML=nextBtn('btn-sky');$('#nx').onclick=next;$('#ans').disabled=true};
+  $('#chk').onclick=check;$('#ans').onkeydown=e=>{if(e.key==='Enter')check()}};
+H.engap=q=>{const x=q.x;let first=true;
+  frame(`<div class="card stack">${bi('<h2 lang="en">Choose the right word</h2>','เลือกคำที่ถูกต้อง')}<p class="prompt" lang="en">${esc(x.s).replace('___','<span class="slot s1">___</span>')}</p><p class="muted small">${esc(x.nl)}</p><span class="th" lang="th">${x.th}</span>
+  <div class="choices">${x.o.map(o=>`<button class="choice" data-o="${o}" lang="en">${o}</button>`).join('')}</div><div id="fb"></div>${helpBtn('Engels: '+x.s)}</div>`,'English',q.step);
+  bindHelp();app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o===x.a;b.classList.add(ok?'right':'wrong');
+    if(ok){score(first,10);say(x.s.replace('___',x.a),false,'en');$('#fb').innerHTML=fbBox(true,x.why,x.whyTh)+nextBtn('btn-sky');$('#nx').onclick=next}
+    else{first=false;$('#fb').innerHTML=fbBox(false,x.hint,x.hintTh)}})};
+
+/* ============ verhaal ============ */
+function startStory(){
+  const q=[{type:'story',step:1}];STORY.q.forEach(x=>q.push({type:'storyq',step:2,x}));
+  q.push({type:'card',label:'Het verhaal',step:3,btn:'btn-main',html:`${bi('<h2>Wat denk jij?</h2>','คุณคิดอย่างไร')}<p>${bi('Wat zoekt Mali op haar telefoon, denk je? Vertel het vanavond aan Emiel of Sjaak, in het Nederlands.','คุณคิดว่ามะลิค้นหาอะไรในโทรศัพท์ เล่าให้เอมิลหรือชาคฟังคืนนี้เป็นภาษาดัตช์')}</p><div class="note">${bi('<b>Zinnen die helpen:</b> <i>Ik denk dat Mali … zoekt.</i> · <i>Misschien wil ze …</i>','<b>ประโยคที่ช่วยได้:</b> Ik denk dat Mali … zoekt. · Misschien wil ze …')}</div><p class="muted small">${bi('Volgende week: aflevering 2.','สัปดาห์หน้า: ตอนที่ 2')}</p>`});
+  q.push({type:'end',step:3});runSession('Verhaal',q);
+}
+H.story=q=>{frame(`<div class="card stack story">${bi(`<h2>${STORY.title}</h2>`,STORY.th)}<p class="muted small">${bi('Tik op een zin om hem te horen.','แตะประโยคเพื่อฟัง')}</p>
+  <div>${STORY.lines.map((l,i)=>`<span class="sent bi" data-i="${i}"><span class="nl">${esc(l[0])}</span><span class="th" lang="th">${l[1]}</span></span>`).join('')}</div>
+  <button class="speak" id="all">${icon.play}${bi('Luister naar het hele verhaal','ฟังทั้งเรื่อง')}</button></div>${nextBtn('btn-main')}`,'Het verhaal van Mali',q.step,3);
+  app.querySelectorAll('.sent').forEach(s=>s.addEventListener('click',()=>say(STORY.lines[+s.dataset.i][0])));
+  $('#all').onclick=()=>say(STORY.lines.map(l=>l[0]).join(' '));$('#nx').onclick=()=>{S.story=Math.max(S.story,1);save();next()}};
+H.storyq=q=>{const x=q.x;let first=true;
+  frame(`<div class="card stack">${bi(`<h2>${x.q}</h2>`,x.th)}<div class="choices one">${x.o.map((o,i)=>`<button class="choice" data-i="${i}">${esc(o)}</button>`).join('')}</div><div id="fb"></div></div>`,'Vragen',q.step,3);
+  app.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{const ok=+b.dataset.i===x.a;b.classList.add(ok?'right':'wrong');
+    if(ok){score(first,10);$('#fb').innerHTML=fbBox(true,'','')+nextBtn('btn-main');$('#nx').onclick=next}else{first=false;$('#fb').innerHTML=fbBox(false,'Denk nog eens aan het verhaal.','ลองนึกถึงเรื่องอีกครั้ง')}})};
+
+/* ============ snelronde ============ */
+function startSpeed(){
+  $('#nav').hidden=true;app.classList.add('sess');let good=0,left=60,cur=null,timer=null,started=false;
+  const pick=()=>NL[Math.floor(Math.random()*NL.length)];
+  const draw=()=>{paint(`<div class="sess-top"><button class="close" id="quit" aria-label="Stoppen">×</button><div class="timer" style="flex:1"><i style="width:${left/60*100}%"></i></div><span class="pill pill-apricot num" id="sec">${left}s</span></div>
+    <div class="card stack" style="text-align:center">${started?`<p class="eyebrow">de of het?</p><p class="speed">${esc(cur.w)}</p><span class="th" lang="th">${cur.th}</span>
+    <div class="choices"><button class="choice" data-a="de">de</button><button class="choice" data-a="het">het</button></div><p class="num muted">${bi(`Goed: ${good}`,`ถูก: ${good}`)}</p>`
+    :`${bi('<h2>Snelronde: de of het</h2>','รอบเร็ว: de หรือ het')}<p>${bi('60 seconden, zoveel mogelijk goed. Probeer je eigen record te verbeteren.','60 วินาที ตอบให้ถูกมากที่สุด ลองทำลายสถิติของตัวเอง')}</p><p class="num">${bi(`Je record: <b>${S.speedBest}</b>`,`สถิติของคุณ: ${S.speedBest}`)}</p><button class="btn btn-main" id="go">${bi('Start','เริ่ม')}</button>`}</div>`);
+    $('#quit').onclick=()=>{clearInterval(timer);show('vandaag')};
+    if($('#go'))$('#go').onclick=()=>{started=true;cur=pick();timer=setInterval(()=>{left--;if(left<=0){clearInterval(timer);end()}else{const t=document.querySelector('.timer i');if(t)t.style.width=(left/60*100)+'%';const p=$('#sec');if(p)p.textContent=left+'s'}},1000);draw()};
+    app.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{if(b.dataset.a===cur.art)good++;else toast(`${cur.art} ${cur.w}`);let n=pick();while(n===cur)n=pick();cur=n;draw()});
+  };
+  const end=()=>{const rec=good>S.speedBest;if(rec)S.speedBest=good;addPts(good*2);save();
+    paint(`<div class="card celebrate"><div class="big num">${good}</div>${bi(rec?'<h2>Nieuw record!</h2>':'<h2>Mooi gedaan!</h2>',rec?'สถิติใหม่!':'เก่งมาก!')}<p class="muted num">${bi(`Record: ${S.speedBest}`,`สถิติ: ${S.speedBest}`)}</p></div><button class="btn btn-main" id="home">${bi('Terug','กลับ')}</button>`);
+    if(rec&&good>0)petals();$('#home').onclick=()=>show('vandaag')};
+  draw();
+}
+
+/* ============ startmeting ============ */
+const PLACE=[
+ {sk:'woorden',q:'Wat betekent <b>de dienst</b>?',o:['กะทำงาน','ร้านค้า','วันหยุด'],a:0},
+ {sk:'woorden',q:'Wat betekent <b>het salaris</b>?',o:['ตารางงาน','เงินเดือน','นัดหมาย'],a:1},
+ {sk:'woorden',q:'Wat betekent <b>de leidinggevende</b>?',o:['เพื่อนร่วมงาน','ลูกค้า','หัวหน้างาน'],a:2},
+ {sk:'grammatica',q:'Welke zin is goed?',o:['Morgen ik werk in Zwaag.','Morgen werk ik in Zwaag.','Morgen werk in Zwaag ik.'],a:1},
+ {sk:'grammatica',q:'Kies het goede woord: <i>Hij ___ in Hoorn.</i>',o:['woon','woont','wonen'],a:1},
+ {sk:'grammatica',q:'Kies het goede woord: <i>Ik blijf thuis, omdat ik ziek ___.</i>',o:['ben','is','zijn'],a:0},
+ {sk:'luisteren',say:'Mijn afspraak bij de dokter is morgen om half tien.',q:'Wanneer is de afspraak?',o:['Morgen om 9.30 uur','Morgen om 10.30 uur','Vandaag om 9.30 uur'],a:0},
+ {sk:'luisteren',say:'De winkel is op zondag gesloten, maar op zaterdag open tot vijf uur.',q:'Wanneer is de winkel dicht?',o:['Op zaterdag','Op zondag','Elke dag na vijf uur'],a:1},
+ {sk:'lezen',text:'Beste medewerkers, vanaf maandag begint de vroege dienst een half uur later, om half zeven. De late dienst blijft hetzelfde. Vragen? Bel de planning.',q:'Hoe laat begint de vroege dienst vanaf maandag?',o:['Om zes uur','Om half zeven','Om zeven uur'],a:1},
+ {sk:'rekenen',q:'Je koopt brood van € 2,75 en melk van € 1,30. Hoeveel betaal je?',o:['€ 3,05','€ 4,05','€ 4,15'],a:1},
+ {sk:'rekenen',q:'Een tas kost € 30,00. Je krijgt 50% korting. Wat betaal je?',o:['€ 15,00','€ 20,00','€ 25,00'],a:0},
+ {sk:'rekenen',q:'Een recept is voor 4 personen en vraagt 200 gram rijst. Hoeveel rijst heb je nodig voor 6 personen?',o:['250 gram','300 gram','400 gram'],a:1},
+ {sk:'rekenen',q:'Welk getal is het grootst?',o:['0,75','0,8','0,125'],a:1},
+ {sk:'engels',q:'<span lang="en">What does <b>appointment</b> mean?</span>',o:['นัดหมาย','ตารางงาน','เพื่อนร่วมงาน'],a:0},
+ {sk:'engels',q:'<span lang="en">Choose: <i>She ___ in a factory.</i></span>',o:['work','works','working'],a:1}
+];
+let PL={};
+function startPlacement(){
+  PL={};const q=[{type:'card',label:'Startmeting',btn:'btn-main',html:`${bi('<h2>Startmeting</h2>','การวัดระดับ')}<p>${bi('15 korte vragen. Weet je iets niet? Kies dan <b>Weet ik niet</b>. Dat helpt de app net zo goed als een antwoord.','15 คำถามสั้นๆ ถ้าไม่รู้ ให้เลือก "ไม่รู้" ก็ช่วยแอปได้เหมือนการตอบ')}</p>`}];
+  PLACE.forEach(p=>q.push({type:'place',p}));q.push({type:'placeend'});runSession('Startmeting',q);
+}
+H.place=q=>{const p=q.p,thai=/[฀-๿]/;
+  frame(`<div class="card stack">${p.text?`<div class="example">${esc(p.text)}</div>`:''}${p.say?speakBtns('sp','sps'):''}<p class="prompt" style="font-size:1.25rem">${p.q}</p>
+  <div class="choices one">${p.o.map((o,i)=>`<button class="choice" data-i="${i}"${thai.test(o)?' lang="th" style="font-family:var(--f-thai)"':''}>${esc(o)}</button>`).join('')}<button class="choice" data-i="-1" style="font-size:1rem;color:var(--ink-2)">${bi('Weet ik niet','ไม่รู้')}</button></div></div>`,`Startmeting · ${qi} van ${PLACE.length}`);
+  if(p.say){setTimeout(()=>say(p.say),350);$('#sp').onclick=()=>say(p.say);$('#sps').onclick=()=>say(p.say,true)}
+  app.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{const r=PL[p.sk]||(PL[p.sk]={g:0,n:0});r.n++;if(+b.dataset.i===p.a)r.g++;next()})};
+H.placeend=q=>{const lv={};Object.keys(PL).forEach(k=>lv[k]=PL[k].g/PL[k].n);S.placement={t:now(),lv};
+  if(lv.woorden>=.67)NL.slice(0,3).forEach(w=>{if(!S.introduced.includes(w.id))S.introduced.push(w.id);const it=S.items[w.id];it.reps=Math.max(1,it.reps);it.due=now()});
+  addPts(20);finishTime();save();
+  const names={woorden:['Woorden','คำศัพท์'],grammatica:['Grammatica','ไวยากรณ์'],luisteren:['Luisteren','การฟัง'],lezen:['Lezen','การอ่าน'],rekenen:['Rekenen','คณิตศาสตร์'],engels:['Engels','ภาษาอังกฤษ']};
+  frame(`<div class="card stack">${bi('<h2>Dank je wel!</h2>','ขอบคุณ!')}<p>${bi('Zo ziet je start eruit. Elke balk gaat vanaf nu groeien.','นี่คือจุดเริ่มต้นของคุณ ทุกแถบจะเติบโตจากนี้ไป')}</p>
+   ${Object.keys(names).map(k=>`<div class="skill"><span>${bi(names[k][0],names[k][1])}</span><span class="track"><i style="width:${Math.max(6,(lv[k]||0)*100)}%;background:${k==='engels'?'var(--sky-fill)':k==='rekenen'?'var(--apricot-fill)':'var(--mint-fill)'}"></i></span><span class="num small muted">${Math.round((lv[k]||0)*100)}%</span></div>`).join('')}
+   <div class="note sky">${bi('Dit is een eerste indruk. De volledige startmeting volgt in de komende dagen, stukje voor stukje.','นี่เป็นภาพรวมแรก การวัดเต็มจะตามมาในวันข้างหน้า ทีละนิด')}</div></div>
+   <button class="btn btn-main" id="home">${bi('Naar mijn eerste les','ไปบทเรียนแรก')}</button>`,'Klaar');
+  petals();$('#home').onclick=()=>show('vandaag')};
+
+/* ============ losse schermen ============ */
+function sub(title,th,html){paint(`<header class="top"><div>${bi(`<h1>${title}</h1>`,th)}</div><button class="close" id="bk" aria-label="Terug">←</button></header>${html}`);$('#bk').onclick=()=>show(tab)}
+function vTalk(){sub('Keukentafelgesprek','คุยกันที่โต๊ะอาหาร',`
+  <section class="card stack"><div class="row between"><span class="eyebrow">Onderwerp</span><span class="pill pill-mint">10 min</span></div>
+  <p class="prompt" style="font-size:1.35rem">${bi('Mijn werkdag','วันทำงานของฉัน')}</p>
+  <ul style="margin:0;padding-left:20px;display:grid;gap:8px"><li>${bi('Hoe laat begon je dienst?','กะของคุณเริ่มกี่โมง')}</li><li>${bi('Wat deed je in de pauze?','ตอนพักคุณทำอะไร')}</li><li>${bi('Wat vond je vandaag leuk of moeilijk?','วันนี้อะไรสนุกหรือยาก')}</li></ul>
+  <div class="note">${bi('<b>Doelzin:</b> begin met de tijd, dan het werkwoord: <i>Om zes uur begon mijn dienst.</i>','<b>ประโยคเป้าหมาย:</b> เริ่มด้วยเวลา แล้วตามด้วยกริยา')}</div>
+  <div class="note lilac small">${bi('<b>Voor Emiel en Sjaak:</b> let alleen op het werkwoord op plek 2. Eén verbetering per gesprek is genoeg. Begin met wat goed ging.','<b>สำหรับเอมิลและชาค:</b> สังเกตเฉพาะกริยาตำแหน่งที่ 2 แก้แค่เรื่องเดียวต่อครั้งก็พอ')}</div></section>
+  <section class="card stack">${bi('<h3>Hoe ging het?</h3>','เป็นอย่างไรบ้าง')}<div class="chips" role="group">${[['goed','Ging goed','ดี'],['beetje','Een beetje lastig','ยากนิดหน่อย'],['moeilijk','Moeilijk','ยาก']].map(([k,a,b])=>`<button data-r="${k}">${a}<span class="th" lang="th">${b}</span></button>`).join('')}</div>
+  <p class="small muted">${bi('Opnemen en uitschrijven met AI-feedback komt in de iPhone-app, met toestemming van iedereen die meepraat.','การบันทึกและถอดข้อความพร้อมคำแนะนำจาก AI จะมีในแอป iPhone โดยได้รับความยินยอมจากทุกคน')}</p></section>`);
+  app.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{S.talks++;addPts(20);S.log.push({t:now(),talk:b.dataset.r});save();toast('Mooi! +20 punten');show('vandaag')});
+}
+function vDiary(){sub('Spraakdagboek','บันทึกเสียง',`
+  <section class="card stack"><p>${bi('Vertel elke dag één minuut over je dag, in het Nederlands. Wat deed je? Wat zag je? Hoe voelde je je?','เล่าเรื่องวันของคุณหนึ่งนาทีทุกวันเป็นภาษาดัตช์ ทำอะไร เห็นอะไร รู้สึกอย่างไร')}</p>
+  <div class="note sky">${bi('<b>Hulp om te beginnen:</b> <i>Vandaag heb ik …</i> · <i>Ik vond het leuk dat …</i> · <i>Morgen ga ik …</i>','<b>ช่วยเริ่มต้น:</b> Vandaag heb ik … · Ik vond het leuk dat … · Morgen ga ik …')}</div>
+  <p class="small muted">${bi('Opnemen werkt in de iPhone-app. Daar schrijft de AI je verhaal uit en zie je in een grafiek hoeveel woorden per minuut je vlot zegt.','การบันทึกใช้ได้ในแอป iPhone AI จะถอดข้อความ และคุณจะเห็นกราฟจำนวนคำต่อนาที')}</p>
+  <button class="btn btn-ghost" disabled>${icon.mic}${bi('Opnemen (in de iPhone-app)','บันทึก (ในแอป iPhone)')}</button></section>
+  <section class="card stack">${bi('<h3>Of schrijf het op</h3>','หรือเขียนลงไป')}<label for="dd" class="small muted">${bi('Drie zinnen over vandaag','สามประโยคเกี่ยวกับวันนี้')}</label><textarea id="dd" class="input"></textarea><button class="btn btn-leaf" id="ds">${bi('Bewaren','บันทึก')}</button></section>`);
+  $('#ds').onclick=()=>{const t=$('#dd').value.trim();if(!t)return;S.log.push({t:now(),diary:t});addPts(15);save();toast('Bewaard. +15 punten');show('vandaag')}}
+function vVideo(){sub('Kijken','ดูวิดีโอ',`
+  <section class="card stack"><span class="eyebrow">Kijkopdracht</span>
+  <p class="prompt" style="font-size:1.3rem">${bi('Kijk vandaag het Jeugdjournaal','วันนี้ดูข่าวสำหรับเยาวชน')}</p>
+  <p>${bi('Het Jeugdjournaal brengt het nieuws in eenvoudig Nederlands.','ข่าวสำหรับเยาวชนเล่าข่าวด้วยภาษาดัตช์ง่ายๆ')}</p>
+  <div class="note">${bi('<b>Let tijdens het kijken op:</b> welk nieuwsbericht vind jij het belangrijkst, en waarom?','<b>ระหว่างดูให้สังเกต:</b> ข่าวไหนสำคัญที่สุดสำหรับคุณ และทำไม')}</div>
+  <a class="btn btn-sky" href="https://nos.nl/jeugdjournaal" target="_blank" rel="noopener">${bi('Open het Jeugdjournaal','เปิดข่าวสำหรับเยาวชน')}</a>
+  <label for="vv" class="small muted">${bi('Schrijf daarna één zin: <i>Ik vind … belangrijk, omdat …</i>','แล้วเขียนหนึ่งประโยค: Ik vind … belangrijk, omdat …')}</label><textarea id="vv" class="input"></textarea>
+  <button class="btn btn-leaf" id="vs">${bi('Bewaren','บันทึก')}</button></section>`);
+  $('#vs').onclick=()=>{const t=$('#vv').value.trim();if(!t)return;S.log.push({t:now(),video:t});addPts(15);save();toast('Bewaard. Emiel kan je zin lezen.');show('vandaag')}}
+function vBuddha(){sub('Tussendoor: boeddhisme','พุทธศาสนา',`
+  <section class="card stack story"><span class="eyebrow">Les 1 · Verdienste maken</span>
+  <span class="sent bi"><span class="nl">In Thailand geven veel mensen 's ochtends eten aan monniken. Dat heet <b>verdienste maken</b>.</span><span class="th" lang="th">ในประเทศไทย หลายคนใส่บาตรพระตอนเช้า เรียกว่า ทำบุญ</span></span>
+  <span class="sent bi"><span class="nl">Verdienste maken kan op veel manieren: iets geven, iemand helpen of mediteren. Het gaat om een goed hart.</span><span class="th" lang="th">การทำบุญทำได้หลายวิธี เช่น การให้ การช่วยเหลือผู้อื่น หรือการนั่งสมาธิ สิ่งสำคัญคือจิตใจที่ดี</span></span>
+  <span class="sent bi"><span class="nl">Ook in Nederland zijn Thaise tempels. Daar komen mensen samen op feestdagen.</span><span class="th" lang="th">ในเนเธอร์แลนด์ก็มีวัดไทย ผู้คนมาพบกันที่นั่นในวันสำคัญ</span></span>
+  <div class="note lilac">${bi('<b>Nieuwe woorden:</b> de monnik · de tempel · geven · mediteren · de verdienste','<b>คำใหม่:</b> พระ · วัด · ให้ · นั่งสมาธิ · บุญ')}</div>
+  <div class="note">${bi('<b>Jouw opdracht:</b> leg Sjaak vanavond in drie zinnen uit wat <i>ทำบุญ</i> is.','<b>งานของคุณ:</b> อธิบายให้ชาคฟังคืนนี้ด้วยสามประโยคว่า ทำบุญ คืออะไร')}</div>
+  <button class="speak" id="bs">${icon.play}${bi('Luister','ฟัง')}</button></section>
+  <button class="btn btn-leaf" id="bd">${bi('Gelezen','อ่านแล้ว')}</button>`);
+  $('#bs').onclick=()=>say("In Thailand geven veel mensen 's ochtends eten aan monniken. Dat heet verdienste maken. Verdienste maken kan op veel manieren: iets geven, iemand helpen of mediteren. Het gaat om een goed hart. Ook in Nederland zijn Thaise tempels.");
+  $('#bd').onclick=()=>{addPts(10);toast('+10 punten');show('vandaag')}}
+
+/* ============ tuin ============ */
+function vGarden(){
+  const all=[...NL.map(x=>({id:x.id,bed:'nl',l:`${x.art} ${x.w}`,th:x.th,say:`${x.art} ${x.w}. ${x.ex}`,lang:'nl'})),...REK.map(x=>({id:x.id,bed:'rek',l:x.label,th:x.th})),...EN.map(x=>({id:x.id,bed:'en',l:x.w,th:x.th,say:`${x.w}. ${x.ex}`,lang:'en'}))];
+  const seen=all.filter(x=>S.items[x.id].reps>0),by=[0,0,0,0,0,0];seen.forEach(x=>by[stage(x.id)]++);const due=seen.filter(x=>thirsty(x.id));
+  const beds=[['nl','Nederlands','ภาษาดัตช์'],['rek','Rekenen','คณิตศาสตร์'],['en','Engels','ภาษาอังกฤษ']];
+  paint(`<header class="top"><div>${bi('<h1>Mijn tuin</h1>','สวนของฉัน')}</div>${thaiSwitch()}</header>
+  <p class="muted">${bi('Elk woord en elke vaardigheid is een plantje. Goed onthouden laat het groeien. Een druppel betekent: vandaag even herhalen.','ทุกคำและทุกทักษะคือต้นไม้ จำได้ดีต้นไม้จะโต หยดน้ำหมายถึงวันนี้ควรทบทวน')}</p>
+  <div class="legend">${STAGES.map((s,i)=>`<span class="pill ${i>=4?'pill-lilac':'pill-mint'} num">${by[i]} ${s[0]}</span>`).join('')}</div>
+  ${due.length?`<button class="btn btn-sky" id="water">${bi(`Geef ${due.length} ${due.length===1?'plantje':'plantjes'} water`,`รดน้ำ ${due.length} ต้น`)}</button>`:''}
+  ${beds.map(([k,n,t])=>{const list=all.filter(i=>i.bed===k),sn=list.filter(i=>S.items[i.id].reps>0);return `<section class="bed"><div class="row between">${bi(`<h2>${n}</h2>`,t)}<span class="pill pill-mint num">${sn.length} / ${list.length}</span></div>
+    ${sn.length?`<div class="garden">${sn.map(w=>{const tt=thirsty(w.id);return `<button class="plant ${tt?'thirsty':''}" data-w="${w.id}" aria-label="${esc(w.l)}, ${STAGES[stage(w.id)][0]}">${plant(stage(w.id),tt)}<span class="w"${w.lang==='en'?' lang="en"':''}>${esc(w.l)}</span><span class="th" lang="th">${w.th}</span></button>`}).join('')}</div>`:`<div class="card row small muted">${plant(0,false).replace('<svg','<svg style="width:44px;height:44px;flex-shrink:0"')}${bi('Hier groeit straks je eerste plantje.','ต้นไม้ต้นแรกจะเติบโตที่นี่')}</div>`}</section>`}).join('')}`);
+  if($('#water'))$('#water').onclick=()=>{due.some(x=>x.bed==='en')&&!due.some(x=>x.bed!=='en')?startEnglish():startLesson(true)};
+  app.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{const w=all.find(x=>x.id===b.dataset.w);if(w.say)say(w.say,false,w.lang);toast(`${w.l} · ${STAGES[stage(w.id)][0]}`)});
+}
+
+/* ============ route ============ */
+function vRoute(){
+  const placed=!!S.placement,t1=NL.filter(w=>stage(w.id)>=3).length/NL.length;
+  const st=[
+   {k:'S',nl:'Startmeting',th:'การวัดระดับ',d:placed?'Gedaan':'Waar sta je nu?',dth:placed?'เสร็จแล้ว':'ตอนนี้คุณอยู่ตรงไหน',s:placed?'done':'now'},
+   {k:'1',nl:'Thema 1 · Werk en dagelijks leven',th:'ธีม 1 · งานและชีวิตประจำวัน',d:`${Math.round(t1*100)}% van de woorden is knop of bloem`,dth:`${Math.round(t1*100)}% ของคำเป็นดอกตูมหรือดอกไม้`,s:placed?'now':''},
+   {k:'2',nl:'Thema 2 · Wonen en de buurt',th:'ธีม 2 · บ้านและละแวกบ้าน'},
+   {k:'3',nl:'Thema 3 · Geld en boodschappen',th:'ธีม 3 · เงินและการซื้อของ'},
+   {k:'4',nl:'Thema 4 · Gezondheid',th:'ธีม 4 · สุขภาพ'},
+   {k:'…',nl:'Thema 5 tot 9 · samenleving, natuur, cultuur, media',th:'ธีม 5 ถึง 9 · สังคม ธรรมชาติ วัฒนธรรม สื่อ',d:'Fase 1: van A2 naar B1',dth:'ระยะที่ 1: จาก A2 ไป B1'},
+   {k:'F2',nl:'Fase 2 · Toelatingsklaar',th:'ระยะที่ 2 · พร้อมสมัครเรียน',d:'Examentraining · Engels A2 · rekenen',dth:'ฝึกข้อสอบ · ภาษาอังกฤษ A2 · คณิตศาสตร์'},
+   {k:'P1',nl:'Poort 1 · Staatsexamen NT2 I en toelating',th:'ประตู 1 · สอบ NT2 I และสมัครเรียน',s:'gate'},
+   {k:'F3',nl:'Fase 3 · Tijdens de opleiding',th:'ระยะที่ 3 · ระหว่างเรียน',d:'Naar B2 · rekenen · Engels B1',dth:'ไปสู่ B2 · คณิตศาสตร์ · ภาษาอังกฤษ B1'},
+   {k:'P2',nl:'Poort 2 · Diploma',th:'ประตู 2 · ประกาศนียบัตร',s:'gate'}];
+  paint(`<header class="top"><div>${bi('<h1>Mijn route</h1>','เส้นทางของฉัน')}</div>${thaiSwitch()}</header>
+  <p class="muted">${bi('Van de startmeting naar je diploma. Elk station vieren we samen.','จากการวัดระดับไปจนถึงประกาศนียบัตร เราจะฉลองทุกสถานีด้วยกัน')}</p>
+  <section class="card"><div class="route">${st.map(x=>`<div class="stn ${x.s||''}"><div class="mk"><span>${x.k}</span></div><div class="tx">${bi(`<b>${x.nl}</b>`,x.th)}${x.d?`<span class="small muted">${bi(x.d,x.dth||'')}</span>`:''}</div></div>`).join('')}</div></section>
+  <section class="card stack" style="background:var(--apricot);border-color:var(--apricot-fill)">${bi('<h3>Volgende mijlpaal</h3>','เป้าหมายถัดไป')}<p>${bi(placed?'Thema 1 afronden. Kies samen met Emiel een beloning voor als het lukt.':'Doe de startmeting. Daarna begint je route echt.',placed?'ทำธีม 1 ให้เสร็จ เลือกรางวัลกับเอมิลไว้ก่อน':'ทำการวัดระดับ แล้วเส้นทางของคุณจะเริ่มจริงๆ')}</p></section>`);
+}
+
+/* ============ ik ============ */
+function vMe(){
+  const total=Object.values(S.points).reduce((a,b)=>a+b,0),mins=Object.values(S.mins).reduce((a,b)=>a+b,0);
+  const unseen=S.answers.some(a=>!a.seen);
+  paint(`<header class="top"><div>${bi('<h1>Ik</h1>','ฉัน')}</div>${thaiSwitch()}</header>
+  <section class="grid2"><div class="card">${bi('<span class="eyebrow">Punten</span>','คะแนน')}<p class="num" style="font-size:1.8rem;font-weight:800;font-family:var(--f-display)">${total}</p></div><div class="card">${bi('<span class="eyebrow">Minuten</span>','นาที')}<p class="num" style="font-size:1.8rem;font-weight:800;font-family:var(--f-display)">${mins}</p></div></section>
+  ${S.answers.length?`<section class="card stack" style="background:var(--lilac);border-color:var(--lilac-fill)">${bi('<h3>Antwoorden van Emiel</h3>','คำตอบจากเอมิล')}<ul class="list">${S.answers.slice(0,5).map(a=>`<li><b>${esc(a.ctx)}</b><span>${esc(a.text)}</span></li>`).join('')}</ul></section>`:''}
+  <section class="card stack">${bi('<h3>Thai in de app</h3>','ภาษาไทยในแอป')}
+    <div class="seg" role="group" aria-label="Thai">${[['altijd','Altijd','แสดงเสมอ'],['tik','Als ik tik','เมื่อแตะ'],['uit','Uit (examen)','ปิด (สอบ)']].map(([k,a,b])=>`<button data-th="${k}" aria-pressed="${S.thai===k}">${a}<span class="th" lang="th">${b}</span></button>`).join('')}</div></section>
+  <section class="card stack">${bi('<h3>Letters</h3>','ขนาดตัวอักษร')}<div class="seg" role="group" aria-label="Lettergrootte">${[['normaal','Normaal','ปกติ'],['groot','Groter','ใหญ่ขึ้น']].map(([k,a,b])=>`<button data-sz="${k}" aria-pressed="${S.size===k}">${a}<span class="th" lang="th">${b}</span></button>`).join('')}</div></section>
+  <section class="card stack">${bi("<h3>Extra's</h3>",'กิจกรรมเสริม')}<div class="seg" role="group" aria-label="Extra's">${[['boeddhisme','Boeddhisme','พุทธศาสนา'],['liedje','Liedje van de week','เพลงประจำสัปดาห์']].map(([k,a,b])=>`<button data-ex="${k}" aria-pressed="${!!S.extras[k]}">${a}<span class="th" lang="th">${b}</span></button>`).join('')}</div></section>
+  <section class="card stack">${bi('<h3>Mijn plan</h3>','แผนของฉัน')}<p>${bi(S.moment?`Als ik ${momentText[S.moment]}, dan doe ik mijn les.`:'Nog geen vast moment gekozen.','เวลาที่ฉันเลือกไว้สำหรับบทเรียน')}</p>
+    <div class="chips" role="group" aria-label="Moment">${[['ochtend','Na het ontbijt'],['pauze','In mijn pauze'],['middag','Na mijn werk'],['avond','Na het avondeten']].map(([k,a])=>`<button data-m="${k}" aria-pressed="${S.moment===k}">${a}</button>`).join('')}</div></section>
+  <section class="card stack">${bi('<h3>Voortgang delen</h3>','แชร์ความก้าวหน้า')}<p class="small muted">${bi('Stuur je voortgang en je vragen naar Emiel. Hij ziet ze dan op zijn scherm.','ส่งความก้าวหน้าและคำถามของคุณให้เอมิล เขาจะเห็นบนหน้าจอของเขา')}</p><button class="btn btn-leaf" id="sendp">${icon.chat}${bi('Stuur mijn voortgang naar Emiel','ส่งความก้าวหน้าให้เอมิล')}</button></section>
+  <section class="card stack"><h3>Meekijken</h3><p class="small muted">Voor Emiel en Sjaak: voortgang, hulpvragen en uitlegkaarten.</p><button class="btn btn-ghost" id="emiel">Open de meekijk-weergave</button></section>
+  <button class="linkish muted" id="reset">Alles op dit apparaat wissen en opnieuw beginnen</button>
+  <div id="rc" hidden class="card stack"><p>Alle voortgang op dit apparaat wissen?</p><div class="btn-row"><button class="btn btn-ghost" id="no">Nee</button><button class="btn btn-main" id="yes">Ja, wissen</button></div></div>`);
+  if(unseen){S.answers.forEach(a=>a.seen=true);save()}
+  app.querySelectorAll('[data-th]').forEach(b=>b.onclick=()=>{setThai(b.dataset.th);vMe()});
+  app.querySelectorAll('[data-sz]').forEach(b=>b.onclick=()=>{setSize(b.dataset.sz);vMe()});
+  app.querySelectorAll('[data-ex]').forEach(b=>b.onclick=()=>{S.extras[b.dataset.ex]=!S.extras[b.dataset.ex];save();vMe()});
+  app.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{S.moment=b.dataset.m;save();vMe()});
+  $('#emiel').onclick=()=>{tab='emiel';rerender();window.scrollTo(0,0)};
+  $('#sendp').onclick=sendProgress;
+  $('#reset').onclick=()=>{$('#rc').hidden=false};$('#no').onclick=()=>{$('#rc').hidden=true};
+  $('#yes').onclick=()=>{S=fresh();save();onb=0;setThai('altijd');setSize('normaal');tab='vandaag';vOnboard()};
+}
+
+/* ============ meekijken (Emiel) ============ */
+const CARDS={
+ plek2:{t:'Werkwoord op plek 2',uit:'In een gewone zin staat het werkwoord op plek 2. Begint de zin met een tijd of plaats, dan komt het onderwerp na het werkwoord.',fout:'"Morgen ik werk."',vb:'Leg drie briefjes neer (Morgen · werk · ik) en laat haar schuiven.',vraag:'"Zeg een zin die begint met Vanavond."'},
+ dehet:{t:'de of het',uit:'Het Thai heeft geen lidwoorden. Leer elk woord samen met de of het, als één geheel.',fout:'"de huis", "het fiets"',vb:'Plak stickers in twee kleuren op dingen in huis: blauw voor de, lila voor het.',vraag:'"Is het de of het: tafel? raam?"'},
+ procent:{t:'Procenten als breuk',uit:'10% is 1/10, 25% is 1/4, 50% is de helft. Eerst de breuk, dan delen.',fout:'25% van 40 uitrekenen als 40 − 25',vb:'Neem een kassabon en reken samen een korting uit.',vraag:'"Hoeveel is 10% van € 30?"'},
+ ens:{t:'Engels: -s bij he/she/it',uit:'Bij he, she en it krijgt het werkwoord een -s, net zoals hij in het Nederlands een -t krijgt.',fout:'"She work at night."',vb:'Zeg om de beurt een Engelse zin over iemand anders: "Sjaak reads the paper."',vraag:'"Wat doet Emiel elke ochtend? He …"'}
+};
+function cardHtml(k){const c=CARDS[k];return `<p><b>${c.t}</b></p><p><b>Uitleggen:</b> ${c.uit}</p><p><b>Typische fout:</b> ${c.fout}</p><p><b>Voorbeeld:</b> ${c.vb}</p><p><b>Controlevraag:</b> ${c.vraag}</p><div class="note small">Corrigeer per gesprek één ding. Begin met wat goed ging.</div>`}
+function vEmiel(){
+  const w=weekDots(),lv=S.placement?S.placement.lv:null;
+  const mastered=ids=>ids.filter(id=>stage(id)>=3).length/ids.length;
+  const nl=lv?Math.min(1,((lv.woorden+lv.grammatica+lv.luisteren+lv.lezen)/4)*.6+mastered(NL.map(x=>x.id))*.4):null;
+  const rk=lv?Math.min(1,lv.rekenen*.7+mastered(REK.map(x=>x.id))*.3):null;
+  const en=lv?Math.min(1,lv.engels*.7+mastered(EN.map(x=>x.id))*.3):null;
+  const bar=(n,v,c)=>`<div class="skill"><span>${n}</span><span class="track"><i style="width:${v==null?0:Math.max(4,v*100)}%;background:${c}"></i></span><span class="num small muted">${v==null?'–':Math.round(v*100)+'%'}</span></div>`;
+  const open=S.help.map((h,i)=>({...h,i})).filter(h=>h.open),lc=leeches(),tw=S.conf.filter(c=>c.c==='twijfel').length;
+  const allW=[...NL.map(x=>({id:x.id,l:`${x.art} ${x.w}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
+  const cardFor=ctx=>/Zin|plek|Grammatica|Gatentekst/i.test(ctx)?'plek2':/Rekenen|korting/i.test(ctx)?'procent':/Engels/i.test(ctx)?'ens':'dehet';
+  const mins7=Object.entries(S.mins).filter(([d])=>+d>today()-7*DAY).reduce((a,[,m])=>a+m,0);
+  const writing=S.log.filter(l=>l.video||l.diary).slice(-3).reverse();
+  paint(`<header class="top"><div><h1>Meekijken</h1><p class="muted small">Tonaor · fase 1 · thema 1</p></div><button class="close" id="back" aria-label="Terug">←</button></header>
+  <section class="card stack"><div class="row between" style="flex-wrap:wrap"><h3>Op weg naar Poort 1</h3>${lv?'':'<span class="pill pill-apricot">startmeting nog niet gedaan</span>'}</div>
+    ${bar('Nederlands',nl,'var(--mint-fill)')}${bar('Rekenen',rk,'var(--apricot-fill)')}${bar('Engels',en,'var(--sky-fill)')}
+    <p class="small muted">Een eerste inschatting op basis van de korte startmeting en hoeveel woorden en vaardigheden al als knop of bloem staan. Na de volledige startmeting wordt dit preciezer.</p></section>
+  <section class="grid2 stack-sm"><div class="card"><h3>Deze week</h3><div class="week">${w.html}</div><p class="small muted num" style="margin-top:8px">${mins7} minuten · ${S.talks} gesprekken</p></div>
+    <div class="card"><h3>Vandaag</h3><p class="num" style="font-size:1.6rem;font-weight:800;font-family:var(--f-display)">${pts()} punten</p><p class="small muted">${S.sessions} lessen in totaal · ${tw}× twijfel</p></div></section>
+  <section class="card stack"><div class="row between"><h3>Hulpvragen</h3><span class="pill pill-lilac num">${open.length} open</span></div>
+    ${open.length?`<ul class="list">${open.slice(0,6).map(h=>`<li><b>${esc(h.ctx)}</b><span class="small muted">${new Date(h.t).toLocaleString('nl-NL',{weekday:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}</span>
+      <div class="row" style="flex-wrap:wrap;gap:8px"><button class="pill pill-mint" data-card="${h.i}">Uitlegkaart sturen</button><button class="pill pill-sky" data-type="${h.i}">Antwoord typen</button><button class="pill pill-apricot" data-later="${h.i}">Bespreken we vanavond</button></div>
+      <div hidden data-box="${h.i}" class="stack"><label for="t${h.i}" class="small muted">Jouw antwoord</label><textarea class="input" id="t${h.i}"></textarea><button class="btn btn-leaf" data-send="${h.i}">Versturen</button></div></li>`).join('')}</ul>`:'<p class="small muted">Geen open hulpvragen. Als ze in een oefening op "vraag Emiel om hulp" tikt, verschijnt het hier.</p>'}</section>
+  ${writing.length?`<section class="card stack"><h3>Wat ze schreef</h3><ul class="list">${writing.map(l=>`<li><span class="small muted">${l.video?'Na het Jeugdjournaal':'Dagboek'} · ${new Date(l.t).toLocaleDateString('nl-NL',{weekday:'short',day:'numeric'})}</span><span>${esc(l.video||l.diary)}</span></li>`).join('')}</ul></section>`:''}
+  <section class="card stack"><h3>Waar ze nu op vastloopt</h3>
+    ${lc.length?`<p class="small">Deze onderdelen gingen vier keer of vaker mis. De app geeft ze een andere oefenvorm; een uitleg aan tafel helpt extra:</p><p>${lc.map(id=>`<span class="pill pill-apricot">${esc((allW.find(a=>a.id===id)||{l:id}).l)}</span>`).join(' ')}</p>`:'<p class="small muted">Nog geen hardnekkige punten. Typisch voor Thaise sprekers zijn het werkwoord op plek 2, de of het, en procenten als breuk zien.</p>'}</section>
+  <section class="card stack"><h3>Uitlegkaart van de week</h3>${cardHtml('plek2')}</section>
+  <section class="card stack" style="background:var(--apricot);border-color:var(--apricot-fill)"><h3>Tip voor vanavond</h3><p>Vraag naar haar werkdag en laat haar elk antwoord beginnen met een tijd: <i>Om zes uur…</i>, <i>In de pauze…</i>. Tien minuten is genoeg. Corrigeer alleen het werkwoord op plek 2.</p></section>
+  <section class="card stack"><h3>Voor jou</h3><ul class="list"><li><b>Lesstof van volgende week goedkeuren</b><span class="small muted">Beschikbaar zodra de server gekoppeld is.</span></li><li><b>AI-correcties nakijken</b><span class="small muted">Komt met de iPhone-app en de server.</span></li></ul></section>`);
+  $('#back').onclick=()=>show('ik');
+  const answer=(i,text)=>{const h=S.help[i];h.open=false;S.answers.unshift({t:now(),ctx:h.ctx,text,seen:false});save()};
+  app.querySelectorAll('[data-card]').forEach(b=>b.onclick=()=>{const i=+b.dataset.card,c=CARDS[cardFor(S.help[i].ctx)];answer(i,`${c.t}: ${c.uit} Voorbeeld: ${c.vb}`);toast('Uitlegkaart verstuurd');vEmiel()});
+  app.querySelectorAll('[data-type]').forEach(b=>b.onclick=()=>{app.querySelector(`[data-box="${b.dataset.type}"]`).hidden=false});
+  app.querySelectorAll('[data-send]').forEach(b=>b.onclick=()=>{const i=+b.dataset.send,t=$('#t'+i).value.trim();if(!t)return;answer(i,t);toast('Antwoord verstuurd');vEmiel()});
+  app.querySelectorAll('[data-later]').forEach(b=>b.onclick=()=>{answer(+b.dataset.later,'Dit bespreken we vanavond aan tafel.');toast('Genoteerd');vEmiel()});
+}
+
+/* ============ voortgang naar Emiel (EDGE leest dit als tonaor.json) ============ */
+function progressData(){
+  const lv=S.placement?S.placement.lv:null,mastered=ids=>ids.filter(id=>stage(id)>=3).length/ids.length;
+  const sk=lv?{nl:Math.min(1,((lv.woorden+lv.grammatica+lv.luisteren+lv.lezen)/4)*.6+mastered(NL.map(x=>x.id))*.4),rk:Math.min(1,lv.rekenen*.7+mastered(REK.map(x=>x.id))*.3),en:Math.min(1,lv.engels*.7+mastered(EN.map(x=>x.id))*.3)}:{nl:mastered(NL.map(x=>x.id)),rk:mastered(REK.map(x=>x.id)),en:mastered(EN.map(x=>x.id))};
+  const r=v=>Math.round(v*100)/100,mon=today()-((new Date().getDay()+6)%7)*DAY,days=[],seen=[...NL,...EN,...REK].map(x=>x.id).filter(id=>S.items[id].reps>0),garden=[0,0,0,0,0,0];
+  for(let i=0;i<7;i++)days.push(S.days[mon+i*DAY]?1:0);seen.forEach(id=>garden[stage(id)]++);
+  const allW=[...NL.map(x=>({id:x.id,l:`${x.art} ${x.w}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
+  return {app:'tonaor-leert',v:1,t:now(),fase:'Fase 1',thema:'Thema 1 · Werk en dagelijks leven',placed:!!S.placement,
+    skills:{nl:r(sk.nl),rk:r(sk.rk),en:r(sk.en)},week:{days,mins:Object.entries(S.mins).filter(([d])=>+d>=mon).reduce((a,[,m])=>a+m,0)},
+    talks:S.talks,sessions:S.sessions,points:pts(),garden,thirsty:seen.filter(id=>thirsty(id)).length,
+    leeches:leeches().map(id=>(allW.find(a=>a.id===id)||{l:id}).l),
+    help:S.help.slice(0,10).map(h=>({t:h.t,ctx:h.ctx,open:h.open})),
+    writing:S.log.filter(l=>l.video||l.diary).slice(-3).reverse().map(l=>({t:l.t,kind:l.video?'video':'dagboek',text:l.video||l.diary}))};
+}
+async function sendProgress(){
+  const txt=JSON.stringify(progressData()),d=new Date(),name=`tonaor-voortgang-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}-${String(d.getHours()).padStart(2,'0')}${String(d.getMinutes()).padStart(2,'0')}.json`;
+  const done=()=>{S.unsent=false;save();toast('Verstuurd naar Emiel · ส่งถึงเอมิลแล้ว');rerender()};
+  try{const f=new File([txt],name,{type:'application/json'});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:'Voortgang Tonaor'});return done()}}catch(e){if(e&&e.name==='AbortError')return}
+  try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'application/json'}));a.download=name;document.body.appendChild(a);a.click();a.remove();done()}catch(e){toast('Delen lukt hier niet. Probeer het in de iPhone-app.')}
+}
+
+/* ============ viering ============ */
+function petals(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const c=$('#petals'),x=c.getContext('2d'),dpr=window.devicePixelRatio||1;c.width=innerWidth*dpr;c.height=innerHeight*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+  const cs=getComputedStyle(document.documentElement),col=['--apricot-fill','--mint-fill','--lilac-fill','--sky-fill'].map(v=>cs.getPropertyValue(v).trim());
+  const P=Array.from({length:44},()=>({x:Math.random()*innerWidth,y:-20-Math.random()*innerHeight*.5,r:4+Math.random()*5,v:1.4+Math.random()*2.2,a:Math.random()*6,c:col[Math.floor(Math.random()*4)]}));
+  let f=0;(function tick(){x.clearRect(0,0,innerWidth,innerHeight);P.forEach(p=>{p.y+=p.v;p.x+=Math.sin(p.a+=.05)*1.1;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.beginPath();x.ellipse(0,0,p.r,p.r*.55,0,0,7);x.fill();x.restore()});if(++f<170)requestAnimationFrame(tick);else x.clearRect(0,0,innerWidth,innerHeight)})();
+  try{navigator.vibrate&&navigator.vibrate(25)}catch(e){}
+}
+
+setThai(S.thai||'altijd');setSize(S.size||'normaal');
+if(S.onboarded)show('vandaag');else vOnboard();
+})();
+</script>
+
+<script>if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}</script>
+</body>
+</html>
