@@ -263,24 +263,24 @@ const icon={
 
 /* ============ inhoud thema 1 (eigen materiaal) ============ */
 const NL=[
- {id:'werk',art:'het',w:'werk',th:'งาน',ex:'Ik ga naar mijn werk.'},
- {id:'dienst',art:'de',w:'dienst',th:'กะทำงาน',ex:'Mijn dienst begint om zes uur.'},
- {id:'collega',art:'de',w:'collega',th:'เพื่อนร่วมงาน',ex:'Mijn collega helpt me.'},
- {id:'rooster',art:'het',w:'rooster',th:'ตารางงาน',ex:'Het rooster hangt in de kantine.'},
- {id:'pauze',art:'de',w:'pauze',th:'เวลาพัก',ex:'In de pauze drink ik thee.'},
- {id:'fabriek',art:'de',w:'fabriek',th:'โรงงาน',ex:'De fabriek staat in Zwaag.'},
- {id:'machine',art:'de',w:'machine',th:'เครื่องจักร',ex:'De machine maakt veel lawaai.'},
- {id:'leidinggevende',art:'de',w:'leidinggevende',th:'หัวหน้างาน',ex:'Mijn leidinggevende maakt het rooster.'},
- {id:'salaris',art:'het',w:'salaris',th:'เงินเดือน',ex:'Het salaris komt aan het eind van de maand.'},
- {id:'vrijedag',art:'de',w:'vrije dag',th:'วันหยุด',ex:'Zaterdag is mijn vrije dag.'},
- {id:'afspraak',art:'de',w:'afspraak',th:'นัดหมาย',ex:'Ik heb een afspraak bij de dokter.'},
- {id:'fiets',art:'de',w:'fiets',th:'จักรยาน',ex:'Ik ga met de fiets naar mijn werk.'},
- {id:'huis',art:'het',w:'huis',th:'บ้าน',ex:'Ons huis staat in Hoorn.'},
- {id:'winkel',art:'de',w:'winkel',th:'ร้านค้า',ex:'De winkel is om negen uur open.'},
- {id:'korting',art:'de',w:'korting',th:'ส่วนลด',ex:'Ik krijg tien procent korting.'},
- {id:'geld',art:'het',w:'geld',th:'เงิน',ex:'Ik heb genoeg geld bij me.'},
- {id:'week',art:'de',w:'week',th:'สัปดาห์',ex:'Ik werk vijf dagen per week.'},
- {id:'opleiding',art:'de',w:'opleiding',th:'การเรียน / หลักสูตร',ex:'Ik wil een opleiding doen.'}
+ {id:'werk',art:'het',w:'werk',th:'งาน',ex:'Ik ga naar mijn werk.',gap:'Elke ochtend fiets ik naar ___.',bad:['korting','geld','salaris','week']},
+ {id:'dienst',art:'de',w:'dienst',th:'กะทำงาน',ex:'Mijn dienst begint om zes uur.',gap:'Vandaag begint ___ om zes uur.',bad:['fiets','geld','huis','korting','collega']},
+ {id:'collega',art:'de',w:'collega',th:'เพื่อนร่วมงาน',ex:'Mijn collega helpt me.',gap:'Naast mij werkt ___. Die helpt me vaak.',bad:['fiets','geld','korting','week','rooster','salaris']},
+ {id:'rooster',art:'het',w:'rooster',th:'ตารางงาน',ex:'Het rooster hangt in de kantine.',gap:'Op ___ zie ik welke dagen ik moet werken.',bad:['fiets','geld','korting','collega','machine','huis']},
+ {id:'pauze',art:'de',w:'pauze',th:'เวลาพัก',ex:'In de pauze drink ik thee.',gap:'In ___ drink ik thee in de kantine.',bad:['fiets','geld','korting','collega','salaris','afspraak']},
+ {id:'fabriek',art:'de',w:'fabriek',th:'โรงงาน',ex:'De fabriek staat in Zwaag.',gap:'In ___ maken we onderdelen voor auto’s.',bad:['fiets','geld','korting','collega','week','salaris']},
+ {id:'machine',art:'de',w:'machine',th:'เครื่องจักร',ex:'De machine maakt veel lawaai.',gap:'In de hal maakt ___ veel lawaai.',bad:['geld','korting','salaris','week','afspraak','rooster']},
+ {id:'leidinggevende',art:'de',w:'leidinggevende',th:'หัวหน้างาน',ex:'Mijn leidinggevende maakt het rooster.',gap:'Het rooster wordt gemaakt door ___.',bad:['fiets','geld','korting','week','huis','pauze']},
+ {id:'salaris',art:'het',w:'salaris',th:'เงินเดือน',ex:'Het salaris komt aan het eind van de maand.',gap:'Aan het eind van de maand komt ___ op mijn rekening.',bad:['fiets','collega','machine','rooster','huis','winkel']},
+ {id:'vrijedag',art:'de',w:'vrije dag',th:'วันหยุด',ex:'Zaterdag is mijn vrije dag.',gap:'Zaterdag hoef ik niet te werken. Ik geniet van ___.',bad:['machine','korting','rooster','afspraak','fabriek']},
+ {id:'afspraak',art:'de',w:'afspraak',th:'นัดหมาย',ex:'Ik heb een afspraak bij de dokter.',gap:'Ik bel de dokter en maak ___ voor dinsdag.',bad:['fiets','geld','salaris','huis','machine','collega']},
+ {id:'fiets',art:'de',w:'fiets',th:'จักรยาน',ex:'Ik ga met de fiets naar mijn werk.',gap:'Ik ga met ___ naar mijn werk. Ik trap hard.',bad:['geld','korting','salaris','rooster','week','pauze']},
+ {id:'huis',art:'het',w:'huis',th:'บ้าน',ex:'Ons huis staat in Hoorn.',gap:'In ___ heb ik een keuken en een slaapkamer.',bad:['fiets','geld','korting','collega','week','salaris']},
+ {id:'winkel',art:'de',w:'winkel',th:'ร้านค้า',ex:'De winkel is om negen uur open.',gap:'In ___ koop ik brood en melk.',bad:['fiets','korting','collega','week','salaris','machine']},
+ {id:'korting',art:'de',w:'korting',th:'ส่วนลด',ex:'Ik krijg tien procent korting.',gap:'Het kost minder, want ik krijg ___ bij de kassa.',bad:['fiets','huis','machine','fabriek','week']},
+ {id:'geld',art:'het',w:'geld',th:'เงิน',ex:'Ik heb genoeg geld bij me.',gap:'Ik betaal met ___ uit mijn portemonnee.',bad:['fiets','collega','rooster','huis','week','pauze']},
+ {id:'week',art:'de',w:'week',th:'สัปดาห์',ex:'Ik werk vijf dagen per week.',gap:'Maandag is de eerste dag van ___.',bad:['fiets','geld','korting','collega','machine','huis']},
+ {id:'opleiding',art:'de',w:'opleiding',th:'การเรียน / หลักสูตร',ex:'Ik wil een opleiding doen.',gap:'Ik wil een diploma halen, dus ik begin aan ___.',bad:['fiets','geld','korting','machine','salaris','huis']}
 ];
 const EN=[
  {id:'en-work',w:'work',nl:'werken',th:'ทำงาน',ex:'I work in a factory.'},
@@ -355,7 +355,7 @@ function stage(id){const s=S.items[id].s;return s<=0?0:s<1.5?1:s<4?2:s<10?3:s<25
 const STAGES=[['zaadje','เมล็ด'],['kiemplant','ต้นอ่อน'],['plantje','ต้นเล็ก'],['knop','ดอกตูม'],['bloem','ดอกไม้'],['in volle bloei','บานเต็มที่']];
 function thirsty(id){const it=S.items[id];return !!it&&it.reps>0&&it.due<=now()&&stage(id)<5}
 function review(id,ok,form){
-  const it=S.items[id];if(!it)return;
+  const it=S.items[id];if(!it||curReplay())return;
   if(form&&!it.forms.includes(form))it.forms.push(form);
   it.reps++;
   if(ok){it.s=it.s<=0?1:Math.min(120,it.s*2.4);if(it.forms.length<3&&it.s>=10)it.s=9}
@@ -373,7 +373,7 @@ function addPts(n){S.points[today()]=pts()+n;S.days[today()]=1;save();syncUp()}
 /* NL-stand (S.thai==='uit'): echt alleen Nederlands. Ook oefeningen met een Thaise vraag krijgen dan een Nederlandse vorm. */
 function nlOnly(){return typeof S!=='undefined'&&S&&S.thai==='uit'}
 /* voorbeeldzin met het woord (en een lidwoord ervoor) als gat; null als het woord er niet in staat */
-function gapEx(w){const re=new RegExp('(^|[^a-zà-ÿ])((?:de |het )?'+w.w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')(?![a-zà-ÿ])','i');if(!re.test(w.ex))return null;return esc(w.ex.replace(re,'$1\u0000')).replace('\u0000','<span class="slot s2">___</span>')}
+function gapEx(w){return w.gap&&w.gap.includes('___')?esc(w.gap).replace('___','<span class="slot s2">___</span>'):null}
 function setThai(m){S.thai=m;document.documentElement.dataset.thai=m;save()}
 function setSize(m){S.size=m;document.documentElement.dataset.size=m;save()}
 document.addEventListener('click',e=>{const b=e.target.closest('.bi');if(b&&S.thai==='tik'&&!e.target.closest('button'))b.classList.toggle('show')});
@@ -407,7 +407,7 @@ function voiceCard(){const vs=voicesFor('nl'),cur=voiceFor('nl');
 function toast(m){if(nlOnly())m=m.replace(/\s*·\s*[^·]*[฀-๿][^·]*$/,'');document.querySelectorAll('.toast').forEach(t=>t.remove());const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2600)}
 function hello(){const h=new Date().getHours();return h<12?['Goedemorgen','สวัสดีตอนเช้า']:h<18?['Goedemiddag','สวัสดีตอนบ่าย']:['Goedenavond','สวัสดีตอนเย็น']}
 const thaiSwitch=()=>`<div class="thai-switch" role="group" aria-label="Thai tonen">${[['altijd','ไทย'],['tik','tik'],['uit','NL']].map(([k,l])=>`<button data-thai="${k}" aria-pressed="${S.thai===k}">${l}</button>`).join('')}</div>`;
-function bindCommon(){app.querySelectorAll('[data-thai]').forEach(b=>b.onclick=()=>{setThai(b.dataset.thai);rerender()})}
+function bindCommon(){app.querySelectorAll('[data-thai]').forEach(b=>b.onclick=()=>{setThai(b.dataset.thai);const q=app.classList.contains('sess')&&Q[qi];if(q){if(q._hit)q._replay=true;step()}else rerender()})}
 const norm=s=>s.toLowerCase().replace(/[.!?,"]/g,'').replace(/\s+/g,' ').trim();
 const isEnglishDay=()=>[2,4].includes(new Date().getDay());
 const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
@@ -455,7 +455,7 @@ function vOnboard(){
      <p class="muted small">${bi('In het begin staat het Thai er altijd bij. Later tik je erop als je het nodig hebt. Je kunt dit altijd veranderen.','ช่วงแรกจะแสดงภาษาไทยเสมอ ต่อไปแตะเมื่อต้องการ เปลี่ยนได้ทุกเมื่อ')}</p>`,
    ()=>`${bi('<h1>Eerst even kijken waar je staat</h1>','มาดูก่อนว่าคุณอยู่ระดับไหน')}
      <p>${bi('Een korte meting van ongeveer 8 minuten: woorden, zinnen, luisteren, lezen, rekenen en Engels. Zo weet de app waar je begint.','การวัดสั้นๆ ประมาณ 8 นาที: คำศัพท์ ประโยค การฟัง การอ่าน คณิตศาสตร์ และภาษาอังกฤษ แอปจะได้รู้ว่าคุณเริ่มตรงไหน')}</p>
-     <div class="note">${bi('Dit is een eerste, korte versie. De volledige startmeting volgt in de komende dagen, stukje voor stukje.','นี่คือฉบับสั้นครั้งแรก การวัดเต็มจะตามมาในวันข้างหน้า ทีละนิด')}</div>`
+     <div class="note">${bi('Dit is een korte startmeting. Die geeft een eerste indruk; daarna past de app zich aan op wat je oefent.','นี่คือการวัดระดับแบบสั้น ให้ภาพรวมแรก แล้วแอปจะปรับตามสิ่งที่คุณฝึก')}</div>`
   ];
   paint(`<div class="card stack" style="padding:22px">${pages[onb]()}</div>
    <div class="dots" aria-hidden="true">${pages.map((_,i)=>`<i class="${i===onb?'on':''}"></i>`).join('')}</div>
@@ -541,7 +541,9 @@ function frame(inner,label,stepNo,ofN){
 function finishTime(){const m=Math.max(1,Math.round((now()-sessStart)/6e4));S.mins[today()]=(S.mins[today()]||0)+m;save();syncUp(true)}
 function next(){qi++;window.scrollTo(0,0);step()}
 function step(){const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
-function score(ok,n){sessTotal++;if(ok){sessRight++;sp+=n;addPts(n)}}
+function curQ(){return app.classList.contains('sess')?Q[qi]:null}
+function curReplay(){const q=curQ();if(q&&q._replay)return true;if(q)q._hit=1;return false}
+function score(ok,n,part){if(curReplay())return;sessTotal++;if(ok){sessRight++;sp+=n;addPts(n)}else if(part>0){sp+=part;addPts(part)}}
 function fbBox(ok,msg,msgTh){return `<div class="fb ${ok?'fb-ok':'fb-no'}" role="status"><strong>${ok?'Goed!':'Bijna.'}${nlOnly()?'':` <span lang="th" style="font-family:var(--f-thai)">${ok?'ถูกต้อง':'เกือบแล้ว'}</span>`}</strong>${msg?bi(msg,msgTh||''):''}</div>`}
 const helpBtn=ctx=>`<button class="help" data-help="${esc(ctx)}">${bi('Ik snap dit niet: vraag Emiel om hulp','ฉันไม่เข้าใจ: ขอให้เอมิลช่วย')}</button>`;
 function bindHelp(){app.querySelectorAll('[data-help]').forEach(b=>b.onclick=e=>{e.stopPropagation();S.help.unshift({t:now(),ctx:b.dataset.help,open:true});save();S.unsent=true;save();syncUp(true);toast('Verstuurd naar Emiel · ส่งถึงเอมิลแล้ว')})}
@@ -551,14 +553,14 @@ function adaptiveNote(){return sessTotal>=4&&sessRight/sessTotal<.65?`<div class
 
 /* ============ oefenvormen ============ */
 const H={};
-H.card=q=>{frame(`<div class="card stack" style="padding:22px">${q.html}</div>${nextBtn(q.btn)}`,q.label,q.step);if(q.bind)q.bind();$('#nx').onclick=next};
+H.card=q=>{frame(`<div class="card stack" style="padding:22px">${typeof q.html==='function'?q.html():q.html}</div>${nextBtn(q.btn)}`,q.label,q.step);if(q.bind)q.bind();$('#nx').onclick=next};
 H.learn=q=>{const w=q.w;
   frame(`<div class="card wordcard"><span class="art art-${w.art}">${w.art}</span><span class="w">${esc(w.w)}</span><span class="th" lang="th" style="font-size:1.15rem">${w.th}</span><p class="muted">${esc(w.ex)}</p>${speakBtns('sp','sps')}</div>
   <p class="small muted">${bi(`Dit is een <b>${w.art}</b>-woord. Leer het lidwoord altijd mee.`,`คำนี้ใช้ ${w.art} จำไปพร้อมกับคำเสมอ`)}</p>${nextBtn()}`,'Nieuw woord',q.step);
   setTimeout(()=>say(`${w.art} ${w.w}`),250);$('#sp').onclick=()=>say(`${w.art} ${w.w}. ${w.ex}`);$('#sps').onclick=()=>say(`${w.art} ${w.w}`,true);
   $('#nx').onclick=()=>{if(!S.introduced.includes(w.id))S.introduced.push(w.id);const it=S.items[w.id];it.reps=Math.max(1,it.reps);it.due=now();save();next()};
 };
-H.recog=q=>{const w=q.w;let first=true;const opts=shuffle([w,...shuffle(NL.filter(x=>x.id!==w.id)).slice(0,2)]),g=nlOnly()?gapEx(w):null;
+H.recog=q=>{const w=q.w;let first=true;const g=nlOnly()?gapEx(w):null,others=g&&w.bad?NL.filter(x=>w.bad.includes(x.id)):NL.filter(x=>x.id!==w.id),opts=shuffle([w,...shuffle(others).slice(0,2)]);
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Welk woord is dit?</p><p class="prompt thai" lang="th">${w.th}</p>`}
   <div class="choices one">${opts.map(o=>`<button class="choice" data-id="${o.id}">${o.art} ${esc(o.w)}</button>`).join('')}</div><div id="fb"></div></div>`,'Herkennen',q.step);
   if(nlOnly()&&!g){setTimeout(()=>say(`${w.art} ${w.w}`),250);$('#sp').onclick=()=>say(`${w.art} ${w.w}`);$('#sps').onclick=()=>say(`${w.art} ${w.w}`,true)}
@@ -609,13 +611,14 @@ H.listen=q=>{const p=q.p,L=q.lang||'nl';let first=true;
   app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=p.opts[+b.dataset.o]===p.say;b.classList.add(ok?'right':'wrong');
     if(ok){score(first,10);$('#fb').innerHTML=fbBox(true,p.why,p.whyTh)+nextBtn(L==='en'?'btn-sky':'');$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbBox(false,'Luister nog een keer, langzaam. '+p.why,p.whyTh)}})};
+function inOrder(t,a){const L=Array.from({length:t.length+1},()=>Array(a.length+1).fill(0));for(let i=t.length-1;i>=0;i--)for(let j=a.length-1;j>=0;j--)L[i][j]=t[i]===a[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);const hit=t.map(()=>false);let i=0,j=0;while(i<t.length&&j<a.length){if(t[i]===a[j]){hit[i]=true;i++;j++}else if(L[i+1][j]>=L[i][j+1])i++;else j++}return hit}
 H.dictee=q=>{let done=false;
   frame(`<div class="card stack">${bi('<h2>Schrijf op wat je hoort</h2>','เขียนสิ่งที่ได้ยิน')}${speakBtns('sp','sps')}
   <label for="ans" class="small muted">${bi('De hele zin','ทั้งประโยค')}</label><input id="ans" class="input" autocomplete="off" autocorrect="off" spellcheck="false"><div id="fb"></div><button class="btn btn-leaf" id="chk">${bi('Controleer','ตรวจคำตอบ')}</button>${helpBtn('Dictee: '+DICTEE.t)}</div>`,'Luisteren',q.step);
   bindHelp();setTimeout(()=>say(DICTEE.t),350);$('#sp').onclick=()=>say(DICTEE.t);$('#sps').onclick=()=>say(DICTEE.t,true);
   const check=()=>{if(done)return;const a=norm($('#ans').value).split(' '),t=norm(DICTEE.t).split(' ');if(!a[0])return;done=true;
-    const marks=t.map(w=>a.includes(w)?`<span class="slot s3">${w}</span>`:`<span class="slot s2">${w}</span>`).join(' ');const good=t.filter(w=>a.includes(w)).length;const ok=good===t.length;
-    score(ok,ok?15:Math.round(good/t.length*10));if(!ok&&good>0){sp+=Math.round(good/t.length*10)}
+    const hit=inOrder(t,a),good=hit.filter(Boolean).length;const marks=t.map((w,i)=>`<span class="slot ${hit[i]?'s3':'s2'}">${esc(w)}</span>`).join(' ');const ok=good===t.length&&a.length===t.length;
+    score(ok,15,ok?0:Math.round(good/t.length*10));
     $('#fb').innerHTML=fbBox(ok,`${good} van ${t.length} woorden goed.<br>${marks}`,DICTEE.th)+nextBtn();$('#nx').onclick=next};
   $('#chk').onclick=check;$('#ans').onkeydown=e=>{if(e.key==='Enter')check()}};
 H.money=q=>{let first=true;
@@ -646,7 +649,7 @@ H.discount=q=>{
     <div class="hint-row"><button class="hintbtn" id="hint">${bi('Hulpje','ตัวช่วย')}</button><span class="hintshow" id="hs"></span></div>
     <label for="ans" class="small muted">${it.lbl}</label><input id="ans" class="input num" inputmode="decimal" autocomplete="off" placeholder="€"><div id="fb"></div><button class="btn btn-leaf" id="chk">${bi('Controleer','ตรวจคำตอบ')}</button>${helpBtn('Rekenen: korting '+(own?'20% van 80':'25% van 40'))}</div>`,'Rekenen',q.step);
   bindHelp();$('#hint').onclick=()=>{$('#hs').innerHTML=bi(it.tip,it.tipth)};
-  const check=()=>{const raw=$('#ans').value.replace('€','').trim();if(!raw)return;const dot=/\.\d{2}$/.test(raw);const v=parseFloat(raw.replace(/\.(?=\d{3})/g,'').replace(',','.'));const ok=Math.abs(v-it.a)<.001;
+  const check=()=>{const raw=$('#ans').value.replace('€','').trim();if(!raw)return;const dot=/\.\d{2}$/.test(raw);const amt=raw,v=/^\d+(?:[.,]\d{1,2})?$/.test(amt)?Number(amt.replace(',','.')):/^\d{1,3}(?:\.\d{3})+(?:,\d{1,2})?$/.test(amt)?Number(amt.replace(/\./g,'').replace(',','.')):NaN;const ok=Math.abs(v-it.a)<.001;
     if(ok){score(first,own?20:15);review(own?'r-10':'r-25',first,'korting');if(first)grown.push(own?'r-10':'r-25');$('#fb').innerHTML=fbBox(true,(own?'10% van 80 is 8, dus 20% is 16. Je betaalt 80 − 16 = <b>€ 64,00</b>.':'40 : 4 = <b>10</b>. Je betaalt dan nog € 30,00.')+(dot?` Let op: in Nederland schrijf je <b>${it.a},00</b> met een komma.`:''),own?'20% ของ 80 คือ 16 จ่าย 64 ยูโร':'40 ÷ 4 = 10 แล้วจ่าย 30 ยูโร');$('#chk').outerHTML=nextBtn();$('#nx').onclick=next;$('#ans').disabled=true}
     else{first=false;tries++;if(tries>=3){review(own?'r-10':'r-25',false,'korting');$('#fb').innerHTML=fbBox(false,own?'Samen dan: 10% van 80 is 8, dus 20% is 16. Je betaalt 80 − 16 = <b>€ 64,00</b>. Morgen komt deze terug.':'Samen dan: 25% is een kwart. 40 : 4 = <b>10</b> euro korting. Morgen komt deze terug.',own?'10% ของ 80 คือ 8 ดังนั้น 20% คือ 16 จ่าย 64 ยูโร พรุ่งนี้จะทบทวนอีกครั้ง':'25% คือหนึ่งในสี่ 40 ÷ 4 = ส่วนลด 10 ยูโร พรุ่งนี้จะทบทวนอีกครั้ง');$('#chk').outerHTML=nextBtn('btn-main');$('#nx').onclick=next;$('#ans').disabled=true;return}let m,t;if(own&&Math.abs(v-16)<.01){m='Dat is de korting. De vraag is wat je <b>betaalt</b>: 80 − 16 = ?';t='นั่นคือส่วนลด คำถามคือต้องจ่ายเท่าไร'}else if(!own&&Math.abs(v-30)<.01){m='Dat betaal je. De vraag is hoeveel <b>korting</b> je krijgt.';t='นั่นคือราคาที่จ่าย คำถามคือได้ส่วนลดเท่าไร'}else{m='Neem een hulpje en probeer het opnieuw.';t='ใช้ตัวช่วยแล้วลองใหม่'}$('#fb').innerHTML=fbBox(false,m,t)}};
   $('#chk').onclick=check;$('#ans').onkeydown=e=>{if(e.key==='Enter')check()}};
@@ -672,7 +675,7 @@ function startLesson(short){
   const newW=short?[]:fresh.slice(0,capNew);
   const rec=(due.length?due:pool).slice(0,short?3:4);
   const q=[];
-  q.push({type:'card',label:'Ophalen',step:1,btn:'btn-leaf',html:`${bi('<h2>Eerst even ophalen</h2>','ทบทวนก่อน')}<p>${bi('Je ziet een Thais woord. Typ het Nederlandse woord, met <b>de</b> of <b>het</b> ervoor. Zelf typen onthoud je beter dan aanklikken.','คุณจะเห็นคำภาษาไทย พิมพ์คำภาษาดัตช์พร้อม de หรือ het การพิมพ์เองช่วยให้จำได้ดีกว่า')}</p><p class="muted small">${bi('Vastgelopen? Tik op <b>Hulpje</b>: eerst het lidwoord, dan de eerste letter.','ติดอยู่? แตะตัวช่วย: บอก de/het ก่อน แล้วตัวอักษรแรก')}</p>`});
+  q.push({type:'card',label:'Ophalen',step:1,btn:'btn-leaf',html:()=>`${bi('<h2>Eerst even ophalen</h2>','ทบทวนก่อน')}<p>${nlOnly()?'Je ziet een zin met een open plek, of je hoort een woord. Typ het woord dat past, met <b>de</b> of <b>het</b> ervoor. Zelf typen onthoud je beter dan aanklikken.':bi('Je ziet een Thais woord. Typ het Nederlandse woord, met <b>de</b> of <b>het</b> ervoor. Zelf typen onthoud je beter dan aanklikken.','คุณจะเห็นคำภาษาไทย พิมพ์คำภาษาดัตช์พร้อม de หรือ het การพิมพ์เองช่วยให้จำได้ดีกว่า')}</p><p class="muted small">${bi('Vastgelopen? Tik op <b>Hulpje</b>: eerst het lidwoord, dan de eerste letter.','ติดอยู่? แตะตัวช่วย: บอก de/het ก่อน แล้วตัวอักษรแรก')}</p>`});
   if(rec.length)rec.forEach(w=>q.push({type:'recall',step:1,w}));
   else NL.slice(0,2).forEach(w=>{q.push({type:'learn',step:1,w});q.push({type:'recog',step:1,w})});
   if(!short){
@@ -800,7 +803,7 @@ H.placeend=q=>{const lv={};Object.keys(PL).forEach(k=>lv[k]=PL[k].g/PL[k].n);S.p
   const names={woorden:['Woorden','คำศัพท์'],grammatica:['Grammatica','ไวยากรณ์'],luisteren:['Luisteren','การฟัง'],lezen:['Lezen','การอ่าน'],rekenen:['Rekenen','คณิตศาสตร์'],engels:['Engels','ภาษาอังกฤษ']};
   frame(`<div class="card stack">${bi('<h2>Dank je wel!</h2>','ขอบคุณ!')}<p>${bi('Zo ziet je start eruit. Elke balk gaat vanaf nu groeien.','นี่คือจุดเริ่มต้นของคุณ ทุกแถบจะเติบโตจากนี้ไป')}</p>
    ${Object.keys(names).map(k=>`<div class="skill"><span>${bi(names[k][0],names[k][1])}</span><span class="track"><i style="width:${Math.max(6,(lv[k]||0)*100)}%;background:${k==='engels'?'var(--sky-fill)':k==='rekenen'?'var(--apricot-fill)':'var(--mint-fill)'}"></i></span><span class="num small muted">${Math.round((lv[k]||0)*100)}%</span></div>`).join('')}
-   <div class="note sky">${bi('Dit is een eerste indruk. De volledige startmeting volgt in de komende dagen, stukje voor stukje.','นี่เป็นภาพรวมแรก การวัดเต็มจะตามมาในวันข้างหน้า ทีละนิด')}</div></div>
+   <div class="note sky">${bi('Dit is een eerste indruk. Door te oefenen wordt het beeld steeds preciezer.','นี่เป็นภาพรวมแรก ยิ่งฝึก ภาพก็ยิ่งชัดขึ้น')}</div></div>
    <button class="btn btn-main" id="home">${bi('Naar mijn eerste les','ไปบทเรียนแรก')}</button>`,'Klaar');
   petals();$('#home').onclick=()=>show('vandaag')};
 
@@ -944,7 +947,7 @@ function vEmiel(){
   paint(`<header class="top"><div><h1>Meekijken</h1><p class="muted small">Tonaor · fase 1 · thema 1</p></div><button class="close" id="back" aria-label="Terug">←</button></header>
   <section class="card stack"><div class="row between" style="flex-wrap:wrap"><h3>Op weg naar Poort 1</h3>${lv?'':'<span class="pill pill-apricot">startmeting nog niet gedaan</span>'}</div>
     ${bar('Nederlands',nl,'var(--mint-fill)')}${bar('Rekenen',rk,'var(--apricot-fill)')}${bar('Engels',en,'var(--sky-fill)')}
-    <p class="small muted">Een eerste inschatting op basis van de korte startmeting en hoeveel woorden en vaardigheden al als knop of bloem staan. Na de volledige startmeting wordt dit preciezer.</p></section>
+    <p class="small muted">Een eerste inschatting op basis van de korte startmeting en hoeveel woorden en vaardigheden al als knop of bloem staan. Door te blijven oefenen wordt dit steeds preciezer.</p></section>
   <section class="grid2 stack-sm"><div class="card"><h3>Deze week</h3><div class="week">${w.html}</div><p class="small muted num" style="margin-top:8px">${mins7} minuten · ${S.talks} gesprekken</p></div>
     <div class="card"><h3>Vandaag</h3><p class="num" style="font-size:1.6rem;font-weight:800;font-family:var(--f-display)">${pts()} punten</p><p class="small muted">${S.sessions} lessen in totaal · ${tw}× twijfel</p></div></section>
   <section class="card stack"><div class="row between"><h3>Hulpvragen</h3><span class="pill pill-lilac num">${open.length} open</span></div>
