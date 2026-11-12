@@ -8,9 +8,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Tonaor leert">
+<meta name="apple-mobile-web-app-title" content="Leren">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
-<title>Tonaor leert Nederlands</title>
+<title>Leren</title>
 <meta name="theme-color" content="#f4f6f1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -240,7 +240,7 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
 <script>
 (function(){
 "use strict";
-const KEY='tonaor-leert-v2', DAY=864e5;
+const KEY='tonaor-leert-v2', DAY=864e5; // vaste technische naam (opslagsleutel); niet wijzigen zonder migratie, anders is alle voortgang weg
 const now=()=>Date.now();
 const today=()=>{const d=new Date();d.setHours(0,0,0,0);return d.getTime()};
 const $=s=>document.querySelector(s);
@@ -336,11 +336,17 @@ function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
     points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
-    placement:null,extras:{boeddhisme:true,liedje:true},log:[]};
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''}};
 }
 let S=load();
 if(!S||S.v!==2)S=fresh();
 [...NL,...EN,...REK].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
+if(!S.profile||typeof S.profile!=='object')S.profile={name:''};
+/* naam van de leerder: alleen uit het profiel op dit toestel (nooit in de code). nm() = naam (veilig) of leeg, who() = naam of 'de leerder'. */
+function nm(){const n=(S.profile&&S.profile.name||'').trim();return n?esc(n):''}
+function who(){return nm()||'de leerder'}
+const nameField=()=>`<label class="small muted" for="pname">${bi('Hoe heet je? (mag leeg blijven)','คุณชื่ออะไร (เว้นว่างได้)')}</label><input id="pname" class="input" autocomplete="given-name" maxlength="40" value="${nm()}">`;
+function bindName(){const p=$('#pname');if(p)p.oninput=()=>{S.profile.name=p.value.trim().slice(0,40);save()}}
 /* koppelcodes: S.code = oude TL1-code, S.code2 = sterke TL2-code, S.v2seen = laatste hello van de EDGE op TL2.
    S.tl1off: zodra de EDGE ooit een hello op TL2 stuurde, gebruikt de app TL1 nooit meer (besluit 11 nov 2026), ook niet na Alles wissen
    of een nieuwe code. Tot die eerste hello stuurt de app via beide, zodat een EDGE met de oude code niets mist.
@@ -426,7 +432,7 @@ function voiceCard(){const vs=voicesFor('nl'),cur=voiceFor('nl');
 function toast(m){if(nlOnly())m=m.replace(/\s*·\s*[^·]*[฀-๿][^·]*$/,'');document.querySelectorAll('.toast').forEach(t=>t.remove());const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2600)}
 function hello(){const h=new Date().getHours();return h<12?['Goedemorgen','สวัสดีตอนเช้า']:h<18?['Goedemiddag','สวัสดีตอนบ่าย']:['Goedenavond','สวัสดีตอนเย็น']}
 const thaiSwitch=()=>`<div class="thai-switch" role="group" aria-label="Thai tonen">${[['altijd','ไทย'],['tik','tik'],['uit','NL']].map(([k,l])=>`<button data-thai="${k}" aria-pressed="${S.thai===k}">${l}</button>`).join('')}</div>`;
-function bindCommon(){app.querySelectorAll('[data-thai]').forEach(b=>b.onclick=()=>{setThai(b.dataset.thai);const q=app.classList.contains('sess')&&Q[qi];if(q){if(!q._t&&!/^(end|placeend)$/.test(q.type))step()}else rerender()})}
+function bindCommon(){bindName();app.querySelectorAll('[data-thai]').forEach(b=>b.onclick=()=>{setThai(b.dataset.thai);const q=app.classList.contains('sess')&&Q[qi];if(q){if(!q._t&&!/^(end|placeend)$/.test(q.type))step()}else rerender()})}
 const norm=s=>s.toLowerCase().replace(/[.!?,";:]/g,'').replace(/\s+/g,' ').trim();
 const isEnglishDay=()=>[2,4].includes(new Date().getDay());
 const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
@@ -462,9 +468,10 @@ function vOnboard(){
   $('#nav').hidden=true;app.classList.add('sess');
   const pages=[
    ()=>`<svg class="onb-art" viewBox="0 0 320 170" aria-hidden="true"><rect width="320" height="170" rx="24" fill="var(--mint)"/><circle cx="250" cy="50" r="26" fill="var(--apricot-fill)"/><path d="M0 140c80-30 200-30 320 0v30H0z" fill="var(--mint-fill)" opacity=".8"/>${[60,110,160,210].map((x,i)=>`<g transform="translate(${x} ${120-(i%2)*10})"><path d="M0 30V0" stroke="var(--mint-ink)" stroke-width="3" stroke-linecap="round"/><path d="M0 15c-8-2-12-6-12-12 8 0 12 5 12 12z" fill="var(--mint-ink)" opacity=".5"/><circle cx="0" cy="-5" r="7" fill="${['var(--lilac-fill)','var(--sky-fill)','var(--apricot-fill)','var(--lilac-fill)'][i]}"/></g>`).join('')}</svg>
-     ${bi('<h1>Welkom, Tonaor</h1>','ยินดีต้อนรับ')}
+     ${bi('<h1>Welkom</h1>','ยินดีต้อนรับ')}
      <p>${bi('Hier leer je elke dag een beetje Nederlands, rekenen en Engels. Alles is ook in het Thai te lezen.','ที่นี่คุณจะได้เรียนภาษาดัตช์ คณิตศาสตร์ และภาษาอังกฤษทีละนิดทุกวัน ทุกอย่างมีภาษาไทยให้อ่านด้วย')}</p>
-     <p class="muted">${bi('Elk woord dat je leert, wordt een plantje in je eigen tuin.','ทุกคำที่คุณเรียนจะกลายเป็นต้นไม้ในสวนของคุณเอง')}</p>`,
+     <p class="muted">${bi('Elk woord dat je leert, wordt een plantje in je eigen tuin.','ทุกคำที่คุณเรียนจะกลายเป็นต้นไม้ในสวนของคุณเอง')}</p>
+     <div class="stack-sm">${nameField()}</div>`,
    ()=>`${bi('<h1>Wanneer leer je?</h1>','คุณจะเรียนเมื่อไร')}
      <p>${bi('Kies een vast moment. Met een vast moment houd je het veel beter vol.','เลือกเวลาที่แน่นอน การมีเวลาแน่นอนช่วยให้ทำได้ต่อเนื่องกว่ามาก')}</p>
      <div class="chips" role="group" aria-label="Moment">${[['ochtend','Na het ontbijt','หลังอาหารเช้า'],['pauze','In mijn pauze','ตอนพัก'],['middag','Na mijn werk','หลังเลิกงาน'],['avond','Na het avondeten','หลังอาหารเย็น']].map(([k,a,b])=>`<button data-m="${k}" aria-pressed="${S.moment===k}">${a}<span class="th" lang="th">${b}</span></button>`).join('')}</div>
@@ -496,7 +503,7 @@ function vToday(){
   if(!S.onboarded)return vOnboard();
   const [h,ht]=hello(),g=GOALS[S.goal],w=weekDots(),due=[...NL,...EN,...REK].filter(x=>thirsty(x.id)).length,done=!!S.days[today()],enDay=isEnglishDay(),ans=S.answers.filter(a=>!a.seen).length;
   paint(`
-  <header class="top"><div>${bi(`<h1>${h}, Tonaor</h1>`,ht)}</div>${thaiSwitch()}</header>
+  <header class="top"><div>${bi(`<h1>${h}${nm()?', '+nm():''}</h1>`,ht)}</div>${thaiSwitch()}</header>
   ${ans?`<button class="card row" id="answers" style="background:var(--lilac);border-color:var(--lilac-fill)"><span class="pill pill-lilac" style="background:var(--surface)">${ans}</span>${bi('Emiel heeft je vraag beantwoord','เอมิลตอบคำถามของคุณแล้ว')}</button>`:''}
   ${S.unsent?`<button class="card row between" id="send" style="background:var(--lilac);border-color:var(--lilac-fill)"><span>${bi('<b>Je hebt een vraag voor Emiel</b>','คุณมีคำถามถึงเอมิล')}</span><span class="pill pill-lilac" style="background:var(--surface)">${bi('Stuur','ส่ง')}</span></button>`:''}
   ${!S.placement?`<button class="card row between" id="place"><span>${bi('<b>Startmeting nog doen</b>','<b>ยังไม่ได้วัดระดับ</b>')}</span><span class="pill pill-apricot">8 min</span></button>`:''}
@@ -695,7 +702,7 @@ H.end=q=>{finishTime();const g=GOALS[S.goal],pct=Math.round(Math.min(1,pts()/g.p
   const all=[...NL.map(x=>({id:x.id,l:`${x.art} ${x.w}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
   const bloom=[...new Set(grown)].map(id=>all.find(a=>a.id===id)).filter(Boolean).slice(0,6);
   const last=S.conf[0],mis=last&&last.c==='zeker'&&last.acc<.7&&last.t>sessStart;
-  frame(`<div class="card celebrate"><div class="big num">+${sp}</div>${bi('<h2>Goed gedaan, Tonaor!</h2>','เก่งมาก!')}<p class="muted">${bi(`Je dagdoel staat op ${pct}%.`,`เป้าหมายวันนี้ได้ ${pct}%`)}</p>
+  frame(`<div class="card celebrate"><div class="big num">+${sp}</div>${bi(`<h2>Goed gedaan${nm()?', '+nm():''}!</h2>`,'เก่งมาก!')}<p class="muted">${bi(`Je dagdoel staat op ${pct}%.`,`เป้าหมายวันนี้ได้ ${pct}%`)}</p>
    ${mis?`<div class="note sky">${bi('Je voelde je zeker, maar een paar dingen gingen nog mis. Die komen morgen extra terug.','คุณรู้สึกมั่นใจ แต่ยังมีบางข้อผิด พรุ่งนี้จะทบทวนเพิ่ม')}</div>`:''}
    ${bloom.length?`<p>${bi(`${bloom.length} ${bloom.length===1?'plantje is':'plantjes zijn'} gegroeid`,`ต้นไม้โตขึ้น ${bloom.length} ต้น`)}</p><div class="garden" style="width:100%">${bloom.map(b=>`<div class="plant">${plant(stage(b.id),false)}<span class="w">${esc(b.l)}</span></div>`).join('')}</div>`:''}</div>
    <button class="btn btn-main" id="home">${bi('Klaar voor vandaag','เสร็จสำหรับวันนี้')}</button>`,'Klaar');
@@ -922,6 +929,7 @@ function vMe(){
   const total=Object.values(S.points).reduce((a,b)=>a+b,0),mins=Object.values(S.mins).reduce((a,b)=>a+b,0);
   const unseen=S.answers.some(a=>!a.seen);
   paint(`<header class="top"><div>${bi('<h1>Ik</h1>','ฉัน')}</div>${thaiSwitch()}</header>
+  <section class="card stack">${bi('<h3>Over jou</h3>','เกี่ยวกับคุณ')}${nameField()}</section>
   <section class="grid2"><div class="card">${bi('<span class="eyebrow">Punten</span>','คะแนน')}<p class="num" style="font-size:1.8rem;font-weight:800;font-family:var(--f-display)">${total}</p></div><div class="card">${bi('<span class="eyebrow">Minuten</span>','นาที')}<p class="num" style="font-size:1.8rem;font-weight:800;font-family:var(--f-display)">${mins}</p></div></section>
   ${S.answers.length?`<section class="card stack" style="background:var(--lilac);border-color:var(--lilac-fill)">${bi('<h3>Antwoorden van Emiel</h3>','คำตอบจากเอมิล')}<ul class="list">${S.answers.slice(0,5).map(a=>`<li><b>${esc(a.ctx)}</b><span>${esc(a.text)}</span></li>`).join('')}</ul></section>`:''}
   <section class="card stack">${bi('<h3>Thai in de app</h3>','ภาษาไทยในแอป')}
@@ -932,7 +940,7 @@ function vMe(){
   <section class="card stack">${bi('<h3>Mijn plan</h3>','แผนของฉัน')}<p>${bi(S.moment?`Als ik ${momentText[S.moment]}, dan doe ik mijn les.`:'Nog geen vast moment gekozen.','เวลาที่ฉันเลือกไว้สำหรับบทเรียน')}</p>
     <div class="chips" role="group" aria-label="Moment">${[['ochtend','Na het ontbijt'],['pauze','In mijn pauze'],['middag','Na mijn werk'],['avond','Na het avondeten']].map(([k,a])=>`<button data-m="${k}" aria-pressed="${S.moment===k}">${a}</button>`).join('')}</div></section>
   <section class="card stack">${bi('<h3>Koppeling met Emiel</h3>','เชื่อมต่อกับเอมิล')}<p class="small muted">${bi('Je voortgang en je vragen gaan na elke les vanzelf naar Emiel. Zijn antwoorden komen hier terug.','ความก้าวหน้าและคำถามของคุณจะส่งถึงเอมิลโดยอัตโนมัติหลังทุกบทเรียน คำตอบของเขาจะกลับมาที่นี่')}</p>
-    <div class="example" style="text-align:center"><span class="eyebrow">Koppelcode</span><span style="font-family:var(--f-display);font-size:1.15rem;font-weight:800;overflow-wrap:anywhere;letter-spacing:.02em" id="kcode">${S.code2?esc(S.code2):'–'}</span><span class="small muted">${bi(v2live()?'De EDGE gebruikt deze code. De koppeling is extra goed beveiligd.':'Emiel vult deze code één keer in bij zijn EDGE. Stuur hem met Delen.',v2live()?'EDGE ใช้รหัสนี้แล้ว การเชื่อมต่อปลอดภัยมาก':'เอมิลกรอกรหัสนี้ครั้งเดียวที่ EDGE ส่งให้เขาด้วยปุ่มแชร์')}</span></div>
+    <div class="example" style="text-align:center"><span class="eyebrow">Koppelcode</span><span style="font-family:var(--f-display);font-size:1.15rem;font-weight:800;overflow-wrap:anywhere;letter-spacing:.02em" id="kcode">${S.code2?esc(S.code2):'–'}</span><span class="small muted">${bi(v2live()?'De EDGE gebruikt deze code. De koppeling is extra goed beveiligd.':'Emiel vult deze code één keer in bij de EDGE. Stuur hem met Delen.',v2live()?'EDGE ใช้รหัสนี้แล้ว การเชื่อมต่อปลอดภัยมาก':'เอมิลกรอกรหัสนี้ครั้งเดียวที่ EDGE ส่งให้เขาด้วยปุ่มแชร์')}</span></div>
     ${S.code2?`<div class="btn-row"><button class="btn btn-ghost" id="kcopy">${bi('Kopieer','คัดลอก')}</button><button class="btn btn-ghost" id="kshare">${bi('Delen','แชร์')}</button></div>`:''}
     ${!S.tl1off&&S.code?`<p class="small muted">${bi(`Oude code, werkt nog tot de EDGE de nieuwe code heeft: <b>${esc(S.code)}</b>`,'รหัสเก่ายังใช้ได้จนกว่า EDGE จะใช้รหัสใหม่')}</p>`:''}
     <p class="small muted" id="syncst">${syncText()}</p>
@@ -952,7 +960,7 @@ function vMe(){
   $('#emiel').onclick=()=>{tab='emiel';rerender();window.scrollTo(0,0)};
   $('#sendp').onclick=sendProgress;
   if($('#kcopy'))$('#kcopy').onclick=()=>{try{navigator.clipboard.writeText(S.code2).then(()=>toast('Gekopieerd · คัดลอกแล้ว'),()=>toast(S.code2))}catch(e){toast(S.code2)}};
-  if($('#kshare'))$('#kshare').onclick=async()=>{const t=`Koppelcode voor Tonaor leert (EDGE → iCUE-instellingen → Tonaor → Koppelcode):\n${S.code2}`;try{if(navigator.share){await navigator.share({text:t});return}}catch(e){if(e&&e.name==='AbortError')return}window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank','noopener')};
+  if($('#kshare'))$('#kshare').onclick=async()=>{const t=`Koppelcode voor de leerapp${nm()?' van '+nm():''} (EDGE → iCUE-instellingen → Koppelcode):\n${S.code2}`;try{if(navigator.share){await navigator.share({text:t});return}}catch(e){if(e&&e.name==='AbortError')return}window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank','noopener')};
   $('#kset').onclick=()=>{if(!TLS){toast('Automatisch versturen werkt niet op dit toestel. Gebruik Via WhatsApp.');return}const v=TLS.norm2($('#kin').value);if(!v){toast('Deze code klopt niet. Kijk of alle 28 tekens erin staan.');return}S.code2=v.match(/.{4}/g).join('-');S.v2seen=0;save();TLS.prepare(S.code2);toast('Code bewaard · บันทึกแล้ว');syncUp(true);vMe()};
   $('#syncnow').onclick=()=>{syncUp(true,ok=>{toast(ok?'Verstuurd naar Emiel · ส่งแล้ว':'Geen verbinding. Het gaat later vanzelf.');const e=$('#syncst');if(e)e.innerHTML=syncText()});syncDown()};
   $('#reset').onclick=()=>{$('#rc').hidden=false};$('#no').onclick=()=>{$('#rc').hidden=true};
@@ -961,7 +969,7 @@ function vMe(){
 
 /* ============ meekijken (Emiel) ============ */
 const CARDS={
- plek2:{t:'Werkwoord op plek 2',uit:'In een gewone zin staat het werkwoord op plek 2. Begint de zin met een tijd of plaats, dan komt het onderwerp na het werkwoord.',fout:'"Morgen ik werk."',vb:'Leg drie briefjes neer (Morgen · werk · ik) en laat haar schuiven.',vraag:'"Zeg een zin die begint met Vanavond."'},
+ plek2:{t:'Werkwoord op plek 2',uit:'In een gewone zin staat het werkwoord op plek 2. Begint de zin met een tijd of plaats, dan komt het onderwerp na het werkwoord.',fout:'"Morgen ik werk."',vb:'Leg drie briefjes neer (Morgen · werk · ik) en laat de leerder schuiven.',vraag:'"Zeg een zin die begint met Vanavond."'},
  dehet:{t:'de of het',uit:'Het Thai heeft geen lidwoorden. Leer elk woord samen met de of het, als één geheel.',fout:'"de huis", "het fiets"',vb:'Plak stickers in twee kleuren op dingen in huis: blauw voor de, lila voor het.',vraag:'"Is het de of het: tafel? raam?"'},
  procent:{t:'Procenten als breuk',uit:'10% is 1/10, 25% is 1/4, 50% is de helft. Eerst de breuk, dan delen.',fout:'25% van 40 uitrekenen als 40 − 25',vb:'Neem een kassabon en reken samen een korting uit.',vraag:'"Hoeveel is 10% van € 30?"'},
  ens:{t:'Engels: -s bij he/she/it',uit:'Bij he, she en it krijgt het werkwoord een -s, net zoals hij in het Nederlands een -t krijgt.',fout:'"She work at night."',vb:'Zeg om de beurt een Engelse zin over iemand anders: "Sjaak reads the paper."',vraag:'"Wat doet Emiel elke ochtend? He …"'}
@@ -979,7 +987,7 @@ function vEmiel(){
   const cardFor=ctx=>/Zin|plek|Grammatica|Gatentekst/i.test(ctx)?'plek2':/Rekenen|korting/i.test(ctx)?'procent':/Engels/i.test(ctx)?'ens':'dehet';
   const mins7=Object.entries(S.mins).filter(([d])=>+d>today()-7*DAY).reduce((a,[,m])=>a+m,0);
   const writing=S.log.filter(l=>l.video||l.diary).slice(-3).reverse();
-  paint(`<header class="top"><div><h1>Meekijken</h1><p class="muted small">Tonaor · fase 1 · thema 1</p></div><button class="close" id="back" aria-label="Terug">←</button></header>
+  paint(`<header class="top"><div><h1>Meekijken</h1><p class="muted small">${nm()||'De leerder'} · fase 1 · thema 1</p></div><button class="close" id="back" aria-label="Terug">←</button></header>
   <section class="card stack"><div class="row between" style="flex-wrap:wrap"><h3>Op weg naar Poort 1</h3>${lv?'':'<span class="pill pill-apricot">startmeting nog niet gedaan</span>'}</div>
     ${bar('Nederlands',nl,'var(--mint-fill)')}${bar('Rekenen',rk,'var(--apricot-fill)')}${bar('Engels',en,'var(--sky-fill)')}
     <p class="small muted">Een eerste inschatting op basis van de korte startmeting en hoeveel woorden en vaardigheden al als knop of bloem staan. Hoe meer er geoefend wordt, hoe preciezer dit wordt.</p></section>
@@ -988,12 +996,12 @@ function vEmiel(){
   <section class="card stack"><div class="row between"><h3>Hulpvragen</h3><span class="pill pill-lilac num">${open.length} open</span></div>
     ${open.length?`<ul class="list">${open.slice(0,6).map(h=>`<li><b>${esc(h.ctx)}</b><span class="small muted">${new Date(h.t).toLocaleString('nl-NL',{weekday:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}</span>
       <div class="row" style="flex-wrap:wrap;gap:8px"><button class="pill pill-mint" data-card="${h.i}">Uitlegkaart sturen</button><button class="pill pill-sky" data-type="${h.i}">Antwoord typen</button><button class="pill pill-apricot" data-later="${h.i}">Bespreken we vanavond</button></div>
-      <div hidden data-box="${h.i}" class="stack"><label for="t${h.i}" class="small muted">Jouw antwoord</label><textarea class="input" id="t${h.i}"></textarea><button class="btn btn-leaf" data-send="${h.i}">Versturen</button></div></li>`).join('')}</ul>`:'<p class="small muted">Geen open hulpvragen. Als ze in een oefening op "vraag Emiel om hulp" tikt, verschijnt het hier.</p>'}</section>
-  ${writing.length?`<section class="card stack"><h3>Wat ze schreef</h3><ul class="list">${writing.map(l=>`<li><span class="small muted">${l.video?'Na het Jeugdjournaal':'Dagboek'} · ${new Date(l.t).toLocaleDateString('nl-NL',{weekday:'short',day:'numeric'})}</span><span>${esc(l.video||l.diary)}</span></li>`).join('')}</ul></section>`:''}
-  <section class="card stack"><h3>Waar ze nu op vastloopt</h3>
+      <div hidden data-box="${h.i}" class="stack"><label for="t${h.i}" class="small muted">Jouw antwoord</label><textarea class="input" id="t${h.i}"></textarea><button class="btn btn-leaf" data-send="${h.i}">Versturen</button></div></li>`).join('')}</ul>`:'<p class="small muted">Geen open hulpvragen. Als '+who()+' in een oefening op "vraag Emiel om hulp" tikt, verschijnt het hier.</p>'}</section>
+  ${writing.length?`<section class="card stack"><h3>Wat ${who()} schreef</h3><ul class="list">${writing.map(l=>`<li><span class="small muted">${l.video?'Na het Jeugdjournaal':'Dagboek'} · ${new Date(l.t).toLocaleDateString('nl-NL',{weekday:'short',day:'numeric'})}</span><span>${esc(l.video||l.diary)}</span></li>`).join('')}</ul></section>`:''}
+  <section class="card stack"><h3>Waar ${who()} nu op vastloopt</h3>
     ${lc.length?`<p class="small">Deze onderdelen gingen vier keer of vaker mis. De app geeft ze een andere oefenvorm; een uitleg aan tafel helpt extra:</p><p>${lc.map(id=>`<span class="pill pill-apricot">${esc((allW.find(a=>a.id===id)||{l:id}).l)}</span>`).join(' ')}</p>`:'<p class="small muted">Nog geen hardnekkige punten. Typisch voor Thaise sprekers zijn het werkwoord op plek 2, de of het, en procenten als breuk zien.</p>'}</section>
   <section class="card stack"><h3>Uitlegkaart van de week</h3>${cardHtml('plek2')}</section>
-  <section class="card stack" style="background:var(--apricot);border-color:var(--apricot-fill)"><h3>Tip voor vanavond</h3><p>Vraag naar haar werkdag en laat haar elk antwoord beginnen met een tijd: <i>Om zes uur…</i>, <i>In de pauze…</i>. Tien minuten is genoeg. Corrigeer alleen het werkwoord op plek 2.</p></section>
+  <section class="card stack" style="background:var(--apricot);border-color:var(--apricot-fill)"><h3>Tip voor vanavond</h3><p>Vraag naar de werkdag en laat elk antwoord beginnen met een tijd: <i>Om zes uur…</i>, <i>In de pauze…</i>. Tien minuten is genoeg. Corrigeer alleen het werkwoord op plek 2.</p></section>
   <section class="card stack"><h3>Voor jou</h3><ul class="list"><li><b>Lesstof van volgende week goedkeuren</b><span class="small muted">Beschikbaar zodra de server gekoppeld is.</span></li><li><b>AI-correcties nakijken</b><span class="small muted">Komt met de iPhone-app en de server.</span></li></ul></section>`);
   $('#back').onclick=()=>show('ik');
   const answer=(i,text)=>{const h=S.help[i];h.open=false;S.answers.unshift({t:now(),ctx:h.ctx,text,seen:false});save()};
@@ -1003,7 +1011,8 @@ function vEmiel(){
   app.querySelectorAll('[data-later]').forEach(b=>b.onclick=()=>{answer(+b.dataset.later,'Dit bespreken we vanavond aan tafel.');toast('Genoteerd');vEmiel()});
 }
 
-/* ============ voortgang naar Emiel (EDGE leest dit als tonaor.json) ============ */
+/* ============ voortgang naar de meekijker (EDGE leest dit als tonaor.json) ============
+   app:'tonaor-leert' en de TLSync-domeinscheiding zijn vaste protocolnamen (besluit #6): niet wijzigen, anders breekt elke bestaande koppeling. */
 function progressData(){
   const lv=S.placement?S.placement.lv:null,mastered=ids=>ids.filter(id=>stage(id)>=3).length/ids.length;
   const sk=lv?{nl:Math.min(1,((lv.woorden+lv.grammatica+lv.luisteren+lv.lezen)/4)*.6+mastered(NL.map(x=>x.id))*.4),rk:Math.min(1,lv.rekenen*.7+mastered(REK.map(x=>x.id))*.3),en:Math.min(1,lv.engels*.7+mastered(EN.map(x=>x.id))*.3)}:{nl:mastered(NL.map(x=>x.id)),rk:mastered(REK.map(x=>x.id)),en:mastered(EN.map(x=>x.id))};
@@ -1019,9 +1028,9 @@ function progressData(){
     writing:S.log.filter(l=>l.video||l.diary).slice(-3).reverse().map(l=>({t:l.t,kind:l.video?'video':'dagboek',text:l.video||l.diary}))};
 }
 async function sendProgress(){
-  const txt=JSON.stringify(progressData()),d=new Date(),name=`tonaor-voortgang-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}-${String(d.getHours()).padStart(2,'0')}${String(d.getMinutes()).padStart(2,'0')}.json`;
+  const txt=JSON.stringify(progressData()),d=new Date(),name=`voortgang-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}-${String(d.getHours()).padStart(2,'0')}${String(d.getMinutes()).padStart(2,'0')}.json`;
   const done=()=>{S.unsent=false;save();toast('Verstuurd naar Emiel · ส่งถึงเอมิลแล้ว');rerender()};
-  try{const f=new File([txt],name,{type:'application/json'});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:'Voortgang Tonaor'});return done()}}catch(e){if(e&&e.name==='AbortError')return}
+  try{const f=new File([txt],name,{type:'application/json'});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:'Voortgang'+(nm()?' van '+nm():'')});return done()}}catch(e){if(e&&e.name==='AbortError')return}
   try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'application/json'}));a.download=name;document.body.appendChild(a);a.click();a.remove();done()}catch(e){toast('Delen lukt hier niet. Probeer het in de iPhone-app.')}
 }
 
