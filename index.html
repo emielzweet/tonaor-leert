@@ -383,8 +383,14 @@ document.addEventListener('click',e=>{const b=e.target.closest('.bi');if(b&&S.th
 /* ============ voorlezen ============
    Altijd een stem in de juiste taal: de gekozen stem (Ik → Voorlezen), anders de beste voor nl-NL (natuurlijk/verbeterd eerst, nl-BE pas daarna).
    Kent de browser wél stemmen maar geen enkele in deze taal, dan leest de app NIET voor met een anderstalige stem (dat leert een verkeerde
-   uitspraak aan) en legt Ik → Voorlezen uit hoe je er een installeert. Geeft de browser (nog) geen lijst, dan gaat het via lang zoals voorheen. */
+   uitspraak aan) en legt Ik → Voorlezen uit hoe je er een installeert.
+   Geeft de browser géén lijst (besluiten Emiel 12 nov 2026):
+   - iPhone/iPad: meteen voorlezen met alleen de taal (nl-NL). iOS geeft in de beginscherm-app soms geen lijst, maar kiest op taal wel
+     zijn eigen Nederlandse stem. Meteen, zodat het nog als reactie op een tik telt (anders blokkeert iOS het geluid).
+   - Elders: eventjes wachten tot de stemmen geladen zijn en dan alleen de laatste tekst voorlezen. Blijft de lijst leeg, dan niet
+     voorlezen: het systeem zou zelf een stem kiezen, vaak een Engelse (zo ging het mis in het voorbeeldvenster van de Claude-app). */
 const LANGS={nl:{tag:'nl-NL',re:/^nl/i,main:/^nl[-_]NL/i,adj:'Nederlandse'},en:{tag:'en-GB',re:/^en/i,main:/^en[-_]GB/i,adj:'Engelse'}};
+function isIOS(){try{return /iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)}catch(e){return false}}
 let allVoices=[];const voiceWarned={};
 function loadVoices(){try{allVoices=speechSynthesis.getVoices()||[]}catch(e){allVoices=[]}return allVoices}
 function voiceScore(v,L){let s=0;if(L.main.test(v.lang))s+=100;if(/natural|neural|premium|enhanced|verbeterd|online|google/i.test(v.name))s+=50;if(/compact|novelty|eloquence/i.test(v.name+' '+(v.voiceURI||'')))s-=40;if(v.localService)s+=5;return s}
@@ -393,21 +399,23 @@ function voiceFor(lang){const vs=voicesFor(lang),want=S.voice&&S.voice[lang];ret
 function noVoice(lang){return loadVoices().length>0&&!voicesFor(lang).length}
 try{speechSynthesis.onvoiceschanged=()=>{loadVoices();try{if(tab==='ik'&&!route&&!app.classList.contains('sess'))vMe()}catch(e){}};loadVoices()}catch(e){}
 let voiceWait=null,voicePend=null;
-function say(t,slow,lang,waited){lang=LANGS[lang]?lang:'nl';const L=LANGS[lang];try{
-  // Lege lijst: eerst even wachten tot de browser de stemmen geladen heeft (alleen de laatste tekst wordt dan voorgelezen); blijft hij
-  // leeg, dan niet voorlezen, want anders kiest het systeem zelf een stem, vaak een Engelse. Besluit 12 nov 2026: nooit een anderstalige stem.
+function speakNow(t,slow,lang,v){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=LANGS[lang].tag;if(v)u.voice=v;u.rate=slow?.68:.9;speechSynthesis.speak(u)}
+function say(t,slow,lang,waited){lang=LANGS[lang]?lang:'nl';const L=LANGS[lang];
+  if(typeof speechSynthesis==='undefined'||typeof SpeechSynthesisUtterance==='undefined'){if(!voiceWarned.api){voiceWarned.api=1;toast('Voorlezen werkt niet in deze browser.')}return}
+  try{
   if(!loadVoices().length){
-    if(!waited){const first=!voicePend;voicePend={t,slow,lang};
-      if(first){const go=()=>{clearTimeout(voiceWait);speechSynthesis.removeEventListener('voiceschanged',go);const p=voicePend;voicePend=null;if(p)say(p.t,p.slow,p.lang,true)};
-        speechSynthesis.addEventListener('voiceschanged',go);voiceWait=setTimeout(go,1500)}return}
-    if(!voiceWarned.none){voiceWarned.none=1;toast('Deze browser geeft geen stemmen door, dus voorlezen kan hier niet. Gebruik Safari, Chrome of Edge.')}return}
+    if(isIOS())return speakNow(t,slow,lang,null);
+    if(!waited&&!voiceWarned.none){const first=!voicePend;voicePend={t,slow,lang};
+      if(first){const go=ev=>{if(ev&&!loadVoices().length)return;clearTimeout(voiceWait);speechSynthesis.removeEventListener('voiceschanged',go);const p=voicePend;voicePend=null;if(p)say(p.t,p.slow,p.lang,true)};
+        speechSynthesis.addEventListener('voiceschanged',go);voiceWait=setTimeout(go,900)}return}
+    if(!voiceWarned.none){voiceWarned.none=1;toast('Voorlezen lukt hier niet: deze browser heeft geen stemmen. Probeer Chrome of Edge. · อ่านออกเสียงในเบราว์เซอร์นี้ไม่ได้ ลองใช้ Chrome หรือ Edge')}return}
   if(noVoice(lang)){if(!voiceWarned[lang]){voiceWarned[lang]=1;toast(`Geen ${L.adj} stem op dit toestel. Zie Ik → Voorlezen.`)}return}
-  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=L.tag;const v=voiceFor(lang);if(v)u.voice=v;u.rate=slow?.68:.9;speechSynthesis.speak(u)}catch(e){toast('Voorlezen werkt niet in deze browser')}}
+  speakNow(t,slow,lang,voiceFor(lang))}catch(e){toast('Voorlezen werkt niet in deze browser.')}}
 function voiceCard(){const vs=voicesFor('nl'),cur=voiceFor('nl');
   return `<section class="card stack">${bi('<h3>Voorlezen</h3>','เสียงอ่าน')}
   ${vs.length?`<label class="small muted" for="vsel">${bi('Nederlandse stem','เสียงภาษาดัตช์')}</label><select id="vsel" class="input">${vs.map(v=>`<option value="${esc(v.voiceURI||v.name)}"${v===cur?' selected':''}>${esc(v.name)} · ${esc(v.lang)}</option>`).join('')}</select>`
    :noVoice('nl')?`<div class="note">${bi('<b>Er staat geen Nederlandse stem op dit toestel.</b> Daarom leest de app niet voor: met een anderstalige stem leer je een verkeerde uitspraak. Installeer hieronder een Nederlandse stem.','ไม่มีเสียงภาษาดัตช์ในเครื่องนี้ แอปจึงไม่อ่านออกเสียง ติดตั้งเสียงภาษาดัตช์ตามวิธีด้านล่าง')}</div>`
-   :`<p class="small muted">${bi('Dit toestel kiest zelf de Nederlandse stem.','เครื่องนี้เลือกเสียงภาษาดัตช์เอง')}</p>`}
+   :isIOS()?`<p class="small muted">${bi('Dit toestel kiest zelf de Nederlandse stem.','เครื่องนี้เลือกเสียงภาษาดัตช์เอง')}</p>`:`<p class="small muted">${bi('Er zijn (nog) geen stemmen geladen. Tik op <b>Probeer de stem</b>. Hoor je niets, gebruik dan Chrome of Edge.','ยังไม่มีเสียงที่โหลด แตะ ลองฟังเสียง ถ้าไม่ได้ยิน ให้ใช้ Chrome หรือ Edge')}</p>`}
   <button class="btn btn-ghost" id="vtest">${bi('Probeer de stem','ลองฟังเสียง')}</button>
   <details${noVoice('nl')?' open':''}><summary class="small muted">${bi('Een (betere) Nederlandse stem installeren','ติดตั้งเสียงภาษาดัตช์')}</summary>
    <ul class="small" style="margin:8px 0 0;padding-left:18px;display:grid;gap:6px">
@@ -466,7 +474,7 @@ function vOnboard(){
      <p class="muted small">${bi('In het begin staat het Thai er altijd bij. Later tik je erop als je het nodig hebt. Je kunt dit altijd veranderen.','ช่วงแรกจะแสดงภาษาไทยเสมอ ต่อไปแตะเมื่อต้องการ เปลี่ยนได้ทุกเมื่อ')}</p>`,
    ()=>`${bi('<h1>Eerst even kijken waar je staat</h1>','มาดูก่อนว่าคุณอยู่ระดับไหน')}
      <p>${bi('Een korte meting van ongeveer 8 minuten: woorden, zinnen, luisteren, lezen, rekenen en Engels. Zo weet de app waar je begint.','การวัดสั้นๆ ประมาณ 8 นาที: คำศัพท์ ประโยค การฟัง การอ่าน คณิตศาสตร์ และภาษาอังกฤษ แอปจะได้รู้ว่าคุณเริ่มตรงไหน')}</p>
-     <div class="note">${bi('Dit is een korte startmeting. Die geeft een eerste indruk; daarna past de app zich aan op wat je oefent.','นี่คือการวัดระดับแบบสั้น ให้ภาพรวมแรก แล้วแอปจะปรับตามสิ่งที่คุณฝึก')}</div>`
+     <div class="note">${bi('Dit is een korte startmeting. Zo krijgt de app een eerste beeld. Daarna past de app de lessen aan jou aan.','นี่คือการวัดระดับแบบสั้น เพื่อดูภาพรวมเบื้องต้น จากนั้นแอปจะปรับบทเรียนให้เหมาะกับคุณ')}</div>`
   ];
   paint(`<div class="card stack" style="padding:22px">${pages[onb]()}</div>
    <div class="dots" aria-hidden="true">${pages.map((_,i)=>`<i class="${i===onb?'on':''}"></i>`).join('')}</div>
@@ -553,7 +561,7 @@ function frame(inner,label,stepNo,ofN){
 }
 function finishTime(){const m=Math.max(1,Math.round((now()-sessStart)/6e4));S.mins[today()]=(S.mins[today()]||0)+m;save();syncUp(true)}
 function next(){qi++;window.scrollTo(0,0);step()}
-function step(){const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
+function step(){voicePend=null;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
 function score(ok,n,part){sessTotal++;if(ok){sessRight++;sp+=n;addPts(n)}else if(part>0){sp+=part;addPts(part)}}
 function fbBox(ok,msg,msgTh){return `<div class="fb ${ok?'fb-ok':'fb-no'}" role="status"><strong>${ok?'Goed!':'Bijna.'}${nlOnly()?'':` <span lang="th" style="font-family:var(--f-thai)">${ok?'ถูกต้อง':'เกือบแล้ว'}</span>`}</strong>${msg?bi(msg,msgTh||''):''}</div>`}
 const helpBtn=ctx=>`<button class="help" data-help="${esc(ctx)}">${bi('Ik snap dit niet: vraag Emiel om hulp','ฉันไม่เข้าใจ: ขอให้เอมิลช่วย')}</button>`;
@@ -702,7 +710,7 @@ function startLesson(short){
   const newW=short?[]:fresh.slice(0,capNew);
   const rec=(due.length?due:pool).slice(0,short?3:4);
   const q=[];
-  q.push({type:'card',label:'Ophalen',step:1,btn:'btn-leaf',html:()=>`${bi('<h2>Eerst even ophalen</h2>','ทบทวนก่อน')}<p>${nlOnly()?'Je ziet een zin met een open plek. Typ het woord dat op die plek past. Staat er nog geen <b>de</b> of <b>het</b> in de zin, dan kies je daarna het lidwoord. Zelf typen onthoud je beter dan aanklikken.':bi('Je ziet een Thais woord. Typ het Nederlandse woord, met <b>de</b> of <b>het</b> ervoor. Zelf typen onthoud je beter dan aanklikken.','คุณจะเห็นคำภาษาไทย พิมพ์คำภาษาดัตช์พร้อม de หรือ het การพิมพ์เองช่วยให้จำได้ดีกว่า')}</p><p class="muted small">${nlOnly()?'Vastgelopen? Tik op <b>Hulpje</b>: eerst de eerste letter, dan een stukje meer.':bi('Vastgelopen? Tik op <b>Hulpje</b>: eerst het lidwoord, dan de eerste letter.','ติดอยู่? แตะตัวช่วย: บอก de/het ก่อน แล้วตัวอักษรแรก')}</p>`});
+  q.push({type:'card',label:'Ophalen',step:1,btn:'btn-leaf',html:()=>`${bi('<h2>Eerst even ophalen</h2>','ทบทวนก่อน')}<p>${nlOnly()?'Je ziet een zin met een open plek. Typ het woord dat op die plek past. Staat er nog geen <b>de</b> of <b>het</b> in de zin, dan kies je daarna het lidwoord. Zelf typen onthoud je beter dan aanklikken.':bi('Je ziet een Thais woord. Typ het Nederlandse woord, met <b>de</b> of <b>het</b> ervoor. Zelf typen onthoud je beter dan aanklikken.','คุณจะเห็นคำภาษาไทย พิมพ์คำภาษาดัตช์พร้อม de หรือ het การพิมพ์เองช่วยให้จำได้ดีกว่า')}</p><p class="muted small">${nlOnly()?'Vastgelopen? Tik op <b>Hulpje</b>: je krijgt eerst de beginletter, daarna een stukje meer.':bi('Vastgelopen? Tik op <b>Hulpje</b>: eerst het lidwoord, dan de eerste letter.','ติดอยู่? แตะตัวช่วย: บอก de/het ก่อน แล้วตัวอักษรแรก')}</p>`});
   if(rec.length)rec.forEach(w=>q.push({type:'recall',step:1,w}));
   else NL.slice(0,2).forEach(w=>{q.push({type:'learn',step:1,w});q.push({type:'recog',step:1,w})});
   if(!short){
@@ -830,7 +838,7 @@ H.placeend=q=>{const lv={};Object.keys(PL).forEach(k=>lv[k]=PL[k].g/PL[k].n);S.p
   const names={woorden:['Woorden','คำศัพท์'],grammatica:['Grammatica','ไวยากรณ์'],luisteren:['Luisteren','การฟัง'],lezen:['Lezen','การอ่าน'],rekenen:['Rekenen','คณิตศาสตร์'],engels:['Engels','ภาษาอังกฤษ']};
   frame(`<div class="card stack">${bi('<h2>Dank je wel!</h2>','ขอบคุณ!')}<p>${bi('Zo ziet je start eruit. Elke balk gaat vanaf nu groeien.','นี่คือจุดเริ่มต้นของคุณ ทุกแถบจะเติบโตจากนี้ไป')}</p>
    ${Object.keys(names).map(k=>`<div class="skill"><span>${bi(names[k][0],names[k][1])}</span><span class="track"><i style="width:${Math.max(6,(lv[k]||0)*100)}%;background:${k==='engels'?'var(--sky-fill)':k==='rekenen'?'var(--apricot-fill)':'var(--mint-fill)'}"></i></span><span class="num small muted">${Math.round((lv[k]||0)*100)}%</span></div>`).join('')}
-   <div class="note sky">${bi('Dit is een eerste indruk. Door te oefenen wordt het beeld steeds preciezer.','นี่เป็นภาพรวมแรก ยิ่งฝึก ภาพก็ยิ่งชัดขึ้น')}</div></div>
+   <div class="note sky">${bi('Dit is een eerste indruk. Hoe meer je oefent, hoe preciezer het beeld wordt.','นี่เป็นภาพรวมแรก ยิ่งฝึก ภาพก็ยิ่งชัดขึ้น')}</div></div>
    <button class="btn btn-main" id="home">${bi('Naar mijn eerste les','ไปบทเรียนแรก')}</button>`,'Klaar');
   petals();$('#home').onclick=()=>show('vandaag')};
 
@@ -974,7 +982,7 @@ function vEmiel(){
   paint(`<header class="top"><div><h1>Meekijken</h1><p class="muted small">Tonaor · fase 1 · thema 1</p></div><button class="close" id="back" aria-label="Terug">←</button></header>
   <section class="card stack"><div class="row between" style="flex-wrap:wrap"><h3>Op weg naar Poort 1</h3>${lv?'':'<span class="pill pill-apricot">startmeting nog niet gedaan</span>'}</div>
     ${bar('Nederlands',nl,'var(--mint-fill)')}${bar('Rekenen',rk,'var(--apricot-fill)')}${bar('Engels',en,'var(--sky-fill)')}
-    <p class="small muted">Een eerste inschatting op basis van de korte startmeting en hoeveel woorden en vaardigheden al als knop of bloem staan. Door te blijven oefenen wordt dit steeds preciezer.</p></section>
+    <p class="small muted">Een eerste inschatting op basis van de korte startmeting en hoeveel woorden en vaardigheden al als knop of bloem staan. Hoe meer er geoefend wordt, hoe preciezer dit wordt.</p></section>
   <section class="grid2 stack-sm"><div class="card"><h3>Deze week</h3><div class="week">${w.html}</div><p class="small muted num" style="margin-top:8px">${mins7} minuten · ${S.talks} gesprekken</p></div>
     <div class="card"><h3>Vandaag</h3><p class="num" style="font-size:1.6rem;font-weight:800;font-family:var(--f-display)">${pts()} punten</p><p class="small muted">${S.sessions} lessen in totaal · ${tw}× twijfel</p></div></section>
   <section class="card stack"><div class="row between"><h3>Hulpvragen</h3><span class="pill pill-lilac num">${open.length} open</span></div>
