@@ -392,7 +392,15 @@ function voicesFor(lang){const L=LANGS[lang]||LANGS.nl;return loadVoices().filte
 function voiceFor(lang){const vs=voicesFor(lang),want=S.voice&&S.voice[lang];return (want&&vs.find(v=>(v.voiceURI||v.name)===want))||vs[0]||null}
 function noVoice(lang){return loadVoices().length>0&&!voicesFor(lang).length}
 try{speechSynthesis.onvoiceschanged=()=>{loadVoices();try{if(tab==='ik'&&!route&&!app.classList.contains('sess'))vMe()}catch(e){}};loadVoices()}catch(e){}
-function say(t,slow,lang){lang=LANGS[lang]?lang:'nl';const L=LANGS[lang];try{
+let voiceWait=null,voicePend=null;
+function say(t,slow,lang,waited){lang=LANGS[lang]?lang:'nl';const L=LANGS[lang];try{
+  // Lege lijst: eerst even wachten tot de browser de stemmen geladen heeft (alleen de laatste tekst wordt dan voorgelezen); blijft hij
+  // leeg, dan niet voorlezen, want anders kiest het systeem zelf een stem, vaak een Engelse. Besluit 12 nov 2026: nooit een anderstalige stem.
+  if(!loadVoices().length){
+    if(!waited){const first=!voicePend;voicePend={t,slow,lang};
+      if(first){const go=()=>{clearTimeout(voiceWait);speechSynthesis.removeEventListener('voiceschanged',go);const p=voicePend;voicePend=null;if(p)say(p.t,p.slow,p.lang,true)};
+        speechSynthesis.addEventListener('voiceschanged',go);voiceWait=setTimeout(go,1500)}return}
+    if(!voiceWarned.none){voiceWarned.none=1;toast('Deze browser geeft geen stemmen door, dus voorlezen kan hier niet. Gebruik Safari, Chrome of Edge.')}return}
   if(noVoice(lang)){if(!voiceWarned[lang]){voiceWarned[lang]=1;toast(`Geen ${L.adj} stem op dit toestel. Zie Ik → Voorlezen.`)}return}
   speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=L.tag;const v=voiceFor(lang);if(v)u.voice=v;u.rate=slow?.68:.9;speechSynthesis.speak(u)}catch(e){toast('Voorlezen werkt niet in deze browser')}}
 function voiceCard(){const vs=voicesFor('nl'),cur=voiceFor('nl');
