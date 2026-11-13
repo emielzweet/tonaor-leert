@@ -45,7 +45,9 @@
     (v.jumps || []).forEach(function (j, i) {
       var x1 = px(j.a), x2 = px(j.b), mx = (x1 + x2) / 2;
       out += '<g class="u-in" style="' + d(i + 1, 0.6) + '"><path d="M' + x1.toFixed(1) + ' ' + (y - 6) + ' Q' + mx.toFixed(1) + ' ' + (y - 46) + ' ' + x2.toFixed(1) + ' ' + (y - 6) + '" fill="none" stroke="var(--' + tone(j.tone || 'apricot') + '-ink)" stroke-width="2.5" stroke-linecap="round"/>';
-      out += '<circle cx="' + x2.toFixed(1) + '" cy="' + (y - 6) + '" r="3.5" fill="var(--' + tone(j.tone || 'apricot') + '-ink)"/>';
+      // pijlpunt in de richting van de sprong, zodat te zien is of je vooruit of terug gaat
+      var dx = x2 - mx, dy = 40, len = Math.sqrt(dx * dx + dy * dy) || 1, ux = dx / len, uy = dy / len, ty = y - 6;
+      out += '<polygon points="' + x2.toFixed(1) + ',' + ty + ' ' + (x2 - ux * 10 - uy * 5).toFixed(1) + ',' + (ty - uy * 10 + ux * 5).toFixed(1) + ' ' + (x2 - ux * 10 + uy * 5).toFixed(1) + ',' + (ty - uy * 10 - ux * 5).toFixed(1) + '" fill="var(--' + tone(j.tone || 'apricot') + '-ink)"/>';
       if (j.label) out += '<text x="' + mx.toFixed(1) + '" y="' + (y - 34) + '" text-anchor="middle" class="u-t u-b">' + s(j.label) + '</text>';
       out += '</g>';
     });

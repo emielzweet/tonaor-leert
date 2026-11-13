@@ -230,8 +230,9 @@ body.u-open{overflow:hidden}
 .u-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;font-weight:700;font-size:1.15rem}
 .u-stage{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px;min-height:110px;display:flex;align-items:center;justify-content:center}
 .u-text{font-size:1.08rem;line-height:1.5}
-.u-ctrl{display:flex;gap:8px}.u-ctrl .btn{flex:1;padding-inline:8px}
-#uvoice{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);font-weight:700;border-radius:999px;padding:6px 12px}#uvoice[aria-pressed="true"]{background:var(--mint);border-color:var(--mint-fill);color:var(--ink)}#uvoice svg{width:16px;height:16px;flex-shrink:0}
+.u-ctrl{display:flex;gap:8px;align-items:stretch}.u-ctrl .u-ic{flex:0 0 52px;width:52px;padding:0;display:flex;align-items:center;justify-content:center}.u-ctrl .u-ic svg{width:24px;height:24px}.u-ctrl .u-go{flex:1;flex-direction:column;gap:0}
+.u-tools{display:flex;gap:8px;flex-shrink:0}
+#uvoice{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);padding:0}#uvoice svg{width:22px;height:22px}#uvoice[aria-pressed="true"]{background:var(--mint);border-color:var(--mint-fill);color:var(--ink)}#uvoice svg{width:16px;height:16px;flex-shrink:0}
 .u-dots{display:flex;gap:6px;justify-content:center}.u-dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}.u-dots i.on{background:var(--mint-ink)}
 .u-btn{border:1px solid var(--apricot-fill);background:var(--apricot);color:var(--apricot-ink);border-radius:999px;padding:4px 10px;font-size:.78rem;font-weight:700;margin-left:auto;margin-right:8px}
 .u-offer{display:block;margin-top:8px}
@@ -1306,6 +1307,9 @@ function M_(x,f){return x?(x[f+'@'+supL()]??x[f]??''):''}
 /* vaste HTML (tabbalk): [data-i18n] krijgt de steuntaal */
 function fillStatic(){document.querySelectorAll('[data-i18n]').forEach(e=>{const s=ts(e.dataset.i18n);e.textContent=s;e.lang=LANG[supL()].tag;e.hidden=!s})}
 const icon={
+  back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+  replay:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg>',
+  speaker:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>',
   bulb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg>',
   play:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
   slow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg>',
@@ -1490,16 +1494,15 @@ function openExplain(id){const e=EXPL[id];if(!e||!UV)return;closeExplain();
 function closeExplain(){if(!UX)return;try{speechSynthesis.cancel()}catch(e){}const L=document.getElementById('ulayer');if(L)L.remove();document.body.classList.remove('u-open');UX=null}
 function sayX(x){if(!UX||S.explainVoice===false)return;const t=plainX(x,UX.e.learn).replace(/<[^>]*>/g,'');if(t)say(t,false,UX.e.learn==='en'?'en':'nl')}
 function drawExplain(speak){const L=document.getElementById('ulayer');if(!L||!UX)return;const {e,i,c}=UX,x=e.x,n=x.steps.length,ch=x.check||[],lang=e.learn==='en'?'en':'nl';
-  const head=`<div class="u-head"><div>${TKx(x.title,e.learn)}</div><button class="close" id="uclose" aria-label="${esc(t('explain.close'))}">×</button></div>`;
-  const voice=`<button id="uvoice" aria-pressed="${S.explainVoice!==false}">${icon.play}${esc(t('explain.voice'))}</button>`;
+  const head=`<div class="u-head"><div>${TKx(x.title,e.learn)}</div><div class="u-tools"><button id="uvoice" aria-pressed="${S.explainVoice!==false}" aria-label="${esc(t('explain.voice'))}" title="${esc(t('explain.voice'))}">${icon.speaker}</button><button class="close" id="uclose" aria-label="${esc(t('explain.close'))}">×</button></div></div>`;
   let body;
   if(c<0){const st=x.steps[i];
     body=`<div class="u-stage" id="ustage">${UV.render(st.visual,SAFE,{lang})}</div><div class="u-text">${TKx(st.text,e.learn)}</div>
     <div class="u-dots" aria-label="${esc(t('explain.stepOf',{n:i+1,m:n}))}">${x.steps.map((_,k)=>`<i class="${k===i?'on':''}"></i>`).join('')}</div>
-    <div class="u-ctrl"><button class="btn btn-ghost" id="uprev"${i===0?' disabled':''}>${TB('btn.back')}</button><button class="btn btn-ghost" id="uagain">${TB('explain.replay')}</button><button class="btn btn-leaf" id="unext">${TB(i<n-1?'btn.next':ch.length?'explain.toCheck':'explain.done')}</button></div>${voice}`;
+    <div class="u-ctrl"><button class="btn btn-ghost u-ic" id="uprev"${i===0?' disabled':''} aria-label="${esc(t('btn.back'))}">${icon.back}</button><button class="btn btn-ghost u-ic" id="uagain" aria-label="${esc(t('explain.replay'))}">${icon.replay}</button><button class="btn btn-leaf u-go" id="unext">${TB(i<n-1?'btn.next':ch.length?'explain.toCheck':'explain.done')}</button></div>`;
   }else{const q=ch[c];
     body=`<p class="eyebrow">${esc(t('explain.checkOf',{n:c+1,m:ch.length}))}</p><div class="u-text">${TKx(q.q,e.learn)}</div>
-    <div class="choices one">${q.o.map((o,k)=>`<button class="choice" data-uo="${k}">${TKx(o,e.learn)}</button>`).join('')}</div><div id="ufb"></div>${voice}`}
+    <div class="choices one">${q.o.map((o,k)=>`<button class="choice" data-uo="${k}">${TKx(o,e.learn)}</button>`).join('')}</div><div id="ufb"></div>`}
   L.innerHTML=`<div class="u-panel">${head}${body}</div>`;
   $('#uclose').onclick=closeExplain;
   $('#uvoice').onclick=()=>{S.explainVoice=S.explainVoice===false;save();if(S.explainVoice===false){try{speechSynthesis.cancel()}catch(e){}}drawExplain(false)};

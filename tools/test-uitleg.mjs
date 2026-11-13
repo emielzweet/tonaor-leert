@@ -48,4 +48,5 @@ ok('speler is een eigen laag buiten het scherm van de oefening', html.includes("
 ok('sluiten stopt het voorlezen en haalt de laag weg', /function closeExplain\(\)\{if\(!UX\)return;try\{speechSynthesis\.cancel\(\)\}/.test(html));
 ok('ingangen: tegel, knop boven de oefening, aanbod na twee fouten', html.includes('id="uitleg"') && html.includes("data-uopen=\"${esc(x)}\">${TB('explain.open')}") && html.includes("q._wrong>=2&&explFor(q)"));
 ok('uitleg.js en de uitlegpakketten worden geladen en staan in SHELL', html.includes('<script src="uitleg.js"></script>') && readFileSync(new URL('sw.js', ROOT), 'utf8').includes("'./uitleg.js'"));
+ok('knoppen: Terug en Opnieuw als pictogram met aria-label, Voorlezen als schakelaar in de kop', /id="uprev"[^>]*aria-label=/.test(html) && /id="uagain" aria-label=/.test(html) && /<div class="u-tools"><button id="uvoice" aria-pressed=[^>]*aria-label=/.test(html));
 console.log(fails ? fails + ' FOUT' : 'alles OK');
