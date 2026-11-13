@@ -267,6 +267,7 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "rec.startOver.do":"Start again",
  "bk.err.newer":"This file comes from a newer version of the app. Please update the app first.",
  "bk.err.invalid":"This is not a progress file from this app.",
  "bk.err.read":"This file cannot be read.",
@@ -575,6 +576,7 @@ en:{
  "v2.diff@en":"Here English is different. In English, I stays before the verb: Tomorrow I work. In Dutch it turns around: Morgen werk ik."
 },
 nl:{
+ "rec.startOver.do":"Opnieuw beginnen",
  "bk.err.newer":"Dit bestand komt van een nieuwere versie van de app. Werk de app eerst bij.",
  "bk.err.invalid":"Dit is geen voortgangsbestand van deze app.",
  "bk.err.read":"Dit bestand kan niet worden gelezen.",
@@ -877,6 +879,7 @@ nl:{
  "v2.diff@en":"<b>Hier verschilt het Engels.</b> In het Engels blijft <i>I</i> vóór het werkwoord staan: <i lang=\"en\">Tomorrow I work.</i> In het Nederlands draait het om: <b>Morgen werk ik</b>."
 },
 th:{
+ "rec.startOver.do":"เริ่มใหม่",
  "bk.err.newer":"ไฟล์นี้มาจากแอปเวอร์ชันใหม่กว่า โปรดอัปเดตแอปก่อน",
  "bk.err.invalid":"นี่ไม่ใช่ไฟล์ความก้าวหน้าของแอปนี้",
  "bk.err.read":"อ่านไฟล์นี้ไม่ได้",
@@ -1301,7 +1304,9 @@ const MIGRATE={
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
   const n=schemaOf(o);if(!Number.isInteger(n)||n<1)return 'broken';return n>SCHEMA?'newer':'ok'}
-function migrate(o){let n=schemaOf(o);while(n<SCHEMA){o=MIGRATE[n](o)||o;n++;o.schema=n}return o}
+function migrate(o){let n=schemaOf(o);while(n<SCHEMA){if(typeof MIGRATE[n]!=='function')throw new Error('migratiestap '+n+' ontbreekt');o=MIGRATE[n](o)||o;n++;o.schema=n}return o}
+/* 3. ontbrekende velden op het bovenste niveau aanvullen uit fresh(); niets overschrijven of weggooien */
+function fillDefaults(o){const f=fresh();for(const k in f)if(!(k in o))o[k]=f[k];return o}
 function rawStore(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function putStore(k,v){try{localStorage.setItem(k,v);return true}catch(e){return false}}
 function backupNow(){const r=rawStore(KEY);if(r!=null)putStore(BAK,r)}
@@ -1311,7 +1316,8 @@ let STORE='ok',S;
   const o=parseState(raw),st=checkState(o);
   if(st==='broken'){STORE='broken';S=fresh();return}
   if(st==='newer'){STORE='newer';S=o;return}
-  if(schemaOf(o)<SCHEMA){putStore(BAK,raw);S=migrate(o);putStore(KEY,JSON.stringify(S))}else S=o})();
+  /* Lukt de reservekopie niet, dan is de opslag vol of onbereikbaar: dan lukt wegschrijven ook niet, dus de oude opslag blijft staan. */
+  if(schemaOf(o)<SCHEMA){const bakOk=putStore(BAK,raw);let m;try{m=migrate(o)}catch(e){STORE='broken';S=fresh();return}S=fillDefaults(m);if(bakOk)putStore(KEY,JSON.stringify(S))}else S=fillDefaults(o)})();
 [...NL,...EN,...REK].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
 if(!S.profile||typeof S.profile!=='object')S.profile={name:''};
 if(!LEARN.includes(S.learn))S.learn='nl';if(!SUPPORT.includes(S.sup))S.sup='th';
@@ -2041,7 +2047,7 @@ function stamp(){const d=new Date(),p=n=>String(n).padStart(2,'0');return d.getF
 async function shareFile(txt,name,title){
   try{const f=new File([txt],name,{type:'application/json'});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title});return true}}catch(e){if(e&&e.name==='AbortError')return false}
   try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'application/json'}));a.download=name;document.body.appendChild(a);a.click();a.remove();return true}catch(e){return false}}
-async function exportBackup(){const now0=now(),txt=JSON.stringify({app:'tonaor-leert',kind:'reservekopie',schema:SCHEMA,saved:new Date(now0).toISOString(),data:S});
+async function exportBackup(){const now0=now(),d=STORE==='ok'?S:(parseState(rawStore(KEY))||S),txt=JSON.stringify({app:'tonaor-leert',kind:'reservekopie',schema:schemaOf(d),saved:new Date(now0).toISOString(),data:d});
   const ok=await shareFile(txt,'leren-reservekopie-'+stamp()+'.json',t('bk.title').replace(/<[^>]*>/g,''));
   if(ok){S.lastBackup=now0;save();toast(tx('bk.saved'))}else toast(tx('bk.fail'));return ok}
 /* tekst van een gekozen bestand -> {data, saved} of {err:sleutel}. Een kale opslag (bijv. de bewaarde onleesbare gegevens) mag ook. */
@@ -2049,7 +2055,9 @@ function parseBackup(txt){const o=parseState(txt);if(o==null)return {err:'bk.err
   const d=o&&o.kind==='reservekopie'&&o.data?o.data:o,st=checkState(d);
   if(st==='broken')return {err:'bk.err.invalid'};if(st==='newer')return {err:'bk.err.newer'};
   const sv=o&&o.saved?Date.parse(o.saved):NaN;return {data:d,saved:Number.isNaN(sv)?null:sv}}
-function writeRestored(d,keepAs){const cur=rawStore(KEY);if(cur!=null)putStore(keepAs,cur);return putStore(KEY,JSON.stringify(migrate(d)))}
+function writeRestored(d,keepAs,keepLink){let m;try{m=fillDefaults(migrate(JSON.parse(JSON.stringify(d))))}catch(e){return false}
+  if(keepLink&&S){if(S.tl1off)m.tl1off=true;const v=Math.max(m.v2seen||0,S.v2seen||0);if(v)m.v2seen=v}
+  const cur=rawStore(KEY);if(cur!=null&&!putStore(keepAs,cur))return false;return putStore(KEY,JSON.stringify(m))}
 function pickFile(cb){const i=document.createElement('input');i.type='file';i.accept='.json,application/json';i.style.display='none';
   i.onchange=()=>{const f=i.files&&i.files[0];i.remove();if(!f)return;const r=new FileReader();r.onload=()=>cb(String(r.result||''));r.onerror=()=>cb('');r.readAsText(f)};document.body.appendChild(i);i.click()}
 const backupCard=()=>`<section class="card stack">${T('bk.title')}<p class="small">${T('bk.text')}</p><div class="note small">${T('bk.private')}</div>
@@ -2059,7 +2067,7 @@ function bindBackup(){if($('#bksave'))$('#bksave').onclick=()=>exportBackup().th
   if($('#bkload'))$('#bkload').onclick=()=>pickFile(txt=>{const r=parseBackup(txt),box=$('#bkmsg');if(!box)return;
     if(r.err){box.innerHTML=`<div class="note small" role="status">${T(r.err)}</div>`;return}
     box.innerHTML=`<div class="note stack-sm" role="status">${T('bk.confirm',{when:r.saved?fmtWhen(r.saved):l=>tr('bk.unknownDate',l)||''})}<div class="btn-row"><button class="btn btn-ghost" id="bkno">${T('bk.cancel')}</button><button class="btn btn-main" id="bkyes">${T('bk.do')}</button></div></div>`;
-    $('#bkno').onclick=()=>{box.innerHTML=''};$('#bkyes').onclick=()=>{if(writeRestored(r.data,BAK))location.reload();else toast(tx('bk.fail'))}})}
+    $('#bkno').onclick=()=>{box.innerHTML=''};$('#bkyes').onclick=()=>{if(writeRestored(r.data,BAK,true))location.reload();else toast(tx('bk.fail'))}})}
 /* herstelscherm: opslag onleesbaar of onbekend. Er is niets gewist; alles wat hier iets vervangt, bewaart eerst de onleesbare gegevens in BROKEN. */
 function vRecover(){$('#nav').hidden=true;const braw=rawStore(BAK),bak=braw!=null&&checkState(parseState(braw))==='ok'?parseState(braw):null;
   paint(`<section class="card stack">${T('rec.title')}<p>${T('rec.text')}</p>
@@ -2070,7 +2078,8 @@ function vRecover(){$('#nav').hidden=true;const braw=rawStore(BAK),bak=braw!=nul
   if($('#rbak'))$('#rbak').onclick=()=>{if(writeRestored(bak,BROKEN))location.reload();else toast(tx('bk.fail'))};
   $('#rfile').onclick=()=>pickFile(txt=>{const r=parseBackup(txt);if(r.err){$('#rmsg').innerHTML=`<div class="note small" role="status">${T(r.err)}</div>`;return}if(writeRestored(r.data,BROKEN))location.reload();else toast(tx('bk.fail'))});
   $('#rdown').onclick=()=>shareFile(rawStore(KEY)||'','leren-opslag-onleesbaar-'+stamp()+'.json','').then(ok=>{if(!ok)toast(tx('bk.fail'))});
-  $('#rnew').onclick=()=>{if(!confirm(tx('rec.startOver.confirm')))return;const cur=rawStore(KEY);if(cur!=null)putStore(BROKEN,cur);try{localStorage.removeItem(KEY)}catch(e){}location.reload()}}
+  $('#rnew').onclick=()=>{$('#rmsg').innerHTML=`<div class="note stack-sm" role="status">${T('rec.startOver.confirm')}<div class="btn-row"><button class="btn btn-ghost" id="rno">${T('bk.cancel')}</button><button class="btn btn-main" id="ryes">${T('rec.startOver.do')}</button></div></div>`;
+    $('#rno').onclick=()=>{$('#rmsg').innerHTML=''};$('#ryes').onclick=()=>{const cur=rawStore(KEY);if(cur!=null&&!putStore(BROKEN,cur)){toast(tx('bk.fail'));return}try{localStorage.removeItem(KEY)}catch(e){}location.reload()}}}
 /* nieuwere opslag: niets opslaan; bijwerken of alleen bekijken */
 function vNewer(){$('#nav').hidden=true;
   paint(`<section class="card stack">${T('newer.title')}<p>${T('newer.text')}</p><button class="btn btn-main" id="nreload">${T('newer.reload')}</button><button class="btn btn-ghost" id="nview">${T('newer.view')}</button></section>`);
