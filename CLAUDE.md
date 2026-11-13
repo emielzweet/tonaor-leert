@@ -63,6 +63,7 @@ Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteun
 - Inhoud en les (fase 2): de app laadt de pakketten bij de start (`loadPacks`), bouwt daaruit de lijsten die de oefenschermen kennen (`NL`, `EN`, `REK`, `SENT`, `PAIRS`, `DICTEE`, `STORY`, `PLACE`) en stelt de les samen uit het recept (`compose`). Een ontbrekend pakket wordt gemeld op Vandaag; de opslag blijft onaangeroerd.
   - Veilig tonen: elke waarde uit een pakket gaat door precies één van `SAFE` (pakketcheck.safeText, als het scherm hem rauw in de HTML zet) of `esc()` (als het scherm hem zelf escapet of voorleest). Nooit beide, nooit geen van beide. `say()` haalt tags en tekencodes zelf weg.
   - Zelfde les: `node tools/test-les.mjs` vergelijkt met `tools/les-verwacht.json` (de les van vóór fase 2, vaste opslag en zaadwaarde). Verandert de les bewust (fase 3), leg dan opnieuw vast met `tools/les-vastleggen.mjs` en zeg dat in de commit.
+- Weekdoel: `S.weekGoal` in minuten (standaard 420 = 7 uur; keuze 210/300/420/600 op Ik), het dagdeel is een zevende. `S.mins[dag]` vult een klok die alleen actieve leertijd telt (les, uitleg, activiteit; scherm zichtbaar; hooguit 2 minuten na de laatste tik), `finishTime()` telt niets meer. Na een les of activiteit volgt het doorgaan-scherm (`contHtml`/`vContinue`). Bericht naar de begeleider: `week.goal`. Test: `node tools/test-weekdoel.mjs`.
 - Kleurpalet: pastels, geen rood (bewuste keuze).
 - Doelapparaat is iPhone/Safari: test op 375px breed.
 

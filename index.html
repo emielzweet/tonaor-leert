@@ -296,6 +296,27 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "cont.home":"Back to Today",
+ "end.bonus3":"Third round today: +20 bonus points",
+ "end.bonus2":"Second round today: +10 bonus points",
+ "cont.story":"Story: listen and read",
+ "cont.speed":"Game: quick round de or het",
+ "cont.explain":"Explanations: step by step",
+ "cont.review":"Review round: words that are due",
+ "cont.week":"This week {u} h {m} min of {g} hours. Every extra minute counts.",
+ "cont.dayDone":"Today's part is done",
+ "cont.left":"{n} more minutes to today's part",
+ "cont.title":"Doing well!",
+ "me.weekGoal.tip":"How much time a week do you want to learn? All learning time counts: lessons, explanations, stories, games, conversations and the diary.",
+ "me.weekGoal":"Weekly goal",
+ "week.hours":"hours",
+ "week.reached":"Weekly goal reached! Brilliant.",
+ "week.almost":"Almost! {n} more minutes to your weekly goal.",
+ "week.streak":"{n} weeks in a row reached",
+ "week.points":"{n} points today",
+ "week.today":"Today {m} of {d} minutes",
+ "week.ring":"This week {u} h {m} min of {g} hours",
+ "week.title":"Weekly goal",
  "explain.again":"Viewed",
  "explain.finished":"+10 points. Well done!",
  "explain.checkOf":"Question {n} of {m}",
@@ -395,7 +416,6 @@ en:{
  "listen.again":"Listen again, slowly.",
  "story.again":"Think about the story again.",
  "end.grown":{"one":"{n} plant has grown","other":"{n} plants have grown"},
- "end.goal":"Your daily goal is at {pct}%.",
  "end.welldone":"Well done{name}!",
  "disc.hintAgain":"Take a hint and try again.",
  "disc.isPrice":"That is what you pay. The question is how much discount you get.",
@@ -432,7 +452,7 @@ en:{
  "sync.sent":"Sent to Emiel",
  "speed.record":"Record: {n}",
  "today.thirsty":{"one":"{n} plant needs water","other":"{n} plants need water"},
- "today.daysDone":{"one":"{n} day practised. Two rest days a week are part of the plan.","other":"{n} days practised. Two rest days a week are part of the plan."},
+ "today.daysDone":{"one":"{n} day practised this week. Skipping a day is fine: you can catch up later.","other":"{n} days practised this week. Skipping a day is fine: you can catch up later."},
  "today.again":"One more round",
  "today.begin":"Start",
  "show.offExam":"Off (exam)",
@@ -468,10 +488,10 @@ en:{
  "voice.install":"Install a (better) Dutch voice",
  "voice.reopen":"Then open the app again.",
  "onb.welcome":"Welcome",
- "onb.intro":"Here you learn a little Dutch, maths and English every day. Everything can also be read in {sup}.",
+ "onb.intro":"Here you learn Dutch, maths and English. The aim is 7 hours a week. Every minute counts, and you can make up a missed day later. Everything can also be read in {sup}.",
  "onb.garden":"Every word you learn becomes a plant in your own garden.",
  "onb.when":"When do you learn?",
- "onb.when.tip":"Choose a fixed moment. With a fixed moment it is much easier to keep going.",
+ "onb.when.tip":"Choose fixed moments. With fixed moments it is much easier to reach your weekly goal.",
  "onb.howMuch":"How much {sup} do you want to see?",
  "onb.howMuch.tip":"At first the {sup} is always shown. Later you tap it when you need it. You can always change this.",
  "onb.place":"First, let's see where you are",
@@ -491,10 +511,9 @@ en:{
  "lesson.step.practice":"Practice: sentences and listening",
  "lesson.step.maths":"Maths with money and time",
  "lesson.step.end":"Finish",
- "today.short":"Short on time or tired? A short 5-minute lesson",
+ "today.short":"Review only: a short round",
  "today.english":"Also English today",
  "today.english.sub":"A separate 10-minute lesson",
- "today.goal":"Daily goal",
  "today.week":"This week",
  "today.water.tip":"Reviewing is watering",
  "today.water":"Water the plants",
@@ -609,6 +628,27 @@ en:{
  "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "cont.home":"Terug naar Vandaag",
+ "end.bonus3":"Derde ronde vandaag: +20 bonuspunten",
+ "end.bonus2":"Tweede ronde vandaag: +10 bonuspunten",
+ "cont.story":"Verhaal: luister en lees",
+ "cont.speed":"Spel: snelronde de of het",
+ "cont.explain":"Uitleg: stap voor stap",
+ "cont.review":"Herhaalronde: woorden die aan de beurt zijn",
+ "cont.week":"Deze week {u} uur {m} min van de {g} uur. Elke extra minuut telt.",
+ "cont.dayDone":"<h3>Je dagdeel is binnen</h3>",
+ "cont.left":"<h3>Nog {n} minuten tot je dagdeel</h3>",
+ "cont.title":"<h1>Goed bezig!</h1>",
+ "me.weekGoal.tip":"Hoeveel tijd per week wil je leren? Alle leertijd telt: lessen, uitleg, verhalen, spelletjes, gesprekken en het dagboek.",
+ "me.weekGoal":"<h3>Weekdoel</h3>",
+ "week.hours":"uur",
+ "week.reached":"Weekdoel gehaald! Geweldig.",
+ "week.almost":"Bijna! Nog {n} minuten tot je weekdoel.",
+ "week.streak":"{n} weken op rij gehaald",
+ "week.points":"{n} punten vandaag",
+ "week.today":"Vandaag {m} van {d} minuten",
+ "week.ring":"Deze week {u} uur {m} min van de {g} uur",
+ "week.title":"<h3>Weekdoel</h3>",
  "explain.again":"Bekeken",
  "explain.finished":"+10 punten. Goed gedaan!",
  "explain.checkOf":"Vraag {n} van {m}",
@@ -705,7 +745,6 @@ nl:{
  "listen.again":"Luister nog een keer, langzaam.",
  "story.again":"Denk nog eens aan het verhaal.",
  "end.grown":{"one":"{n} plantje is gegroeid","other":"{n} plantjes zijn gegroeid"},
- "end.goal":"Je dagdoel staat op {pct}%.",
  "end.welldone":"<h2>Goed gedaan{name}!</h2>",
  "disc.hintAgain":"Neem een hulpje en probeer het opnieuw.",
  "disc.isPrice":"Dat betaal je. De vraag is hoeveel <b>korting</b> je krijgt.",
@@ -741,7 +780,7 @@ nl:{
  "sync.sent":"Verstuurd naar Emiel",
  "speed.record":"Record: {n}",
  "today.thirsty":{"one":"<b>{n} plantje heeft water nodig</b>","other":"<b>{n} plantjes hebben water nodig</b>"},
- "today.daysDone":{"one":"{n} dag geoefend. Twee rustdagen per week horen erbij.","other":"{n} dagen geoefend. Twee rustdagen per week horen erbij."},
+ "today.daysDone":{"one":"{n} dag geoefend deze week. Een dag overslaan mag: je haalt het later in.","other":"{n} dagen geoefend deze week. Een dag overslaan mag: je haalt het later in."},
  "today.again":"Nog een ronde",
  "today.begin":"Begin",
  "show.offExam":"Uit (examen)",
@@ -777,10 +816,10 @@ nl:{
  "voice.install":"Een (betere) Nederlandse stem installeren",
  "voice.reopen":"Open de app daarna opnieuw.",
  "onb.welcome":"<h1>Welkom</h1>",
- "onb.intro":"Hier leer je elke dag een beetje Nederlands, rekenen en Engels. Alles is ook in het {sup} te lezen.",
+ "onb.intro":"Hier leer je Nederlands, rekenen en Engels. Het streven is 7 uur per week. Elke minuut telt, en een gemiste dag haal je later in. Alles is ook in het {sup} te lezen.",
  "onb.garden":"Elk woord dat je leert, wordt een plantje in je eigen tuin.",
  "onb.when":"<h1>Wanneer leer je?</h1>",
- "onb.when.tip":"Kies een vast moment. Met een vast moment houd je het veel beter vol.",
+ "onb.when.tip":"Kies vaste momenten. Met vaste momenten haal je je weekdoel veel makkelijker.",
  "onb.howMuch":"<h1>Hoeveel {sup} wil je zien?</h1>",
  "onb.howMuch.tip":"In het begin staat het {sup} er altijd bij. Later tik je erop als je het nodig hebt. Je kunt dit altijd veranderen.",
  "onb.place":"<h1>Eerst even kijken waar je staat</h1>",
@@ -800,10 +839,9 @@ nl:{
  "lesson.step.practice":"Oefenen: zinnen en luisteren",
  "lesson.step.maths":"Rekenen met geld en tijd",
  "lesson.step.end":"Afsluiten",
- "today.short":"Weinig tijd of moe? Korte les van 5 minuten",
+ "today.short":"Alleen herhalen: een korte ronde",
  "today.english":"<h3>Vandaag ook Engels <span class=\"flag\">EN</span></h3>",
  "today.english.sub":"Een aparte les van 10 minuten",
- "today.goal":"<h3>Dagdoel</h3>",
  "today.week":"<h3>Deze week</h3>",
  "today.water.tip":"Herhalen is water geven",
  "today.water":"Water geven",
@@ -918,6 +956,27 @@ nl:{
  "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "cont.home":"กลับไปหน้าวันนี้",
+ "end.bonus3":"รอบที่สามของวันนี้: โบนัส +20 คะแนน",
+ "end.bonus2":"รอบที่สองของวันนี้: โบนัส +10 คะแนน",
+ "cont.story":"เรื่องเล่า: ฟังและอ่าน",
+ "cont.speed":"เกม: รอบเร็ว de หรือ het",
+ "cont.explain":"คำอธิบาย: ทีละขั้น",
+ "cont.review":"รอบทบทวน: คำที่ถึงเวลาทบทวน",
+ "cont.week":"สัปดาห์นี้ {u} ชั่วโมง {m} นาที จาก {g} ชั่วโมง ทุกนาทีที่เพิ่มขึ้นมีค่า",
+ "cont.dayDone":"ครบส่วนของวันนี้แล้ว",
+ "cont.left":"อีก {n} นาทีจะครบส่วนของวันนี้",
+ "cont.title":"ทำได้ดีมาก",
+ "me.weekGoal.tip":"อยากเรียนสัปดาห์ละกี่ชั่วโมง เวลาเรียนทั้งหมดนับรวม: บทเรียน คำอธิบาย เรื่องเล่า เกม การสนทนา และบันทึก",
+ "me.weekGoal":"เป้าหมายรายสัปดาห์",
+ "week.hours":"ชั่วโมง",
+ "week.reached":"ทำได้ตามเป้าหมายรายสัปดาห์แล้ว ยอดเยี่ยม",
+ "week.almost":"เกือบแล้ว อีก {n} นาทีจะถึงเป้าหมายรายสัปดาห์",
+ "week.streak":"ทำได้ตามเป้า {n} สัปดาห์ติดต่อกัน",
+ "week.points":"วันนี้ {n} คะแนน",
+ "week.today":"วันนี้ {m} จาก {d} นาที",
+ "week.ring":"สัปดาห์นี้ {u} ชั่วโมง {m} นาที จาก {g} ชั่วโมง",
+ "week.title":"เป้าหมายรายสัปดาห์",
  "explain.again":"ดูแล้ว",
  "explain.finished":"+10 คะแนน เก่งมาก",
  "explain.checkOf":"คำถาม {n} จาก {m}",
@@ -1016,7 +1075,6 @@ th:{
  "listen.again":"ฟังอีกครั้งแบบช้าๆ",
  "story.again":"ลองนึกถึงเรื่องอีกครั้ง",
  "end.grown":"ต้นไม้โตขึ้น {n} ต้น",
- "end.goal":"เป้าหมายวันนี้ได้ {pct}%",
  "end.welldone":"เก่งมาก!",
  "disc.hintAgain":"ใช้ตัวช่วยแล้วลองใหม่",
  "disc.isPrice":"นั่นคือราคาที่จ่าย คำถามคือได้ส่วนลดเท่าไร",
@@ -1053,7 +1111,7 @@ th:{
  "sync.sent":"ส่งแล้ว",
  "speed.record":"สถิติ: {n}",
  "today.thirsty":"ต้นไม้ {n} ต้นต้องการน้ำ",
- "today.daysDone":"ฝึกแล้ว {n} วัน วันพักสองวันต่อสัปดาห์เป็นเรื่องปกติ",
+ "today.daysDone":"ฝึกแล้ว {n} วันในสัปดาห์นี้ ข้ามวันได้ แล้วค่อยเรียนชดเชยทีหลัง",
  "today.again":"อีกรอบ",
  "today.begin":"เริ่ม",
  "show.offExam":"ปิด (สอบ)",
@@ -1084,10 +1142,10 @@ th:{
  "voice.install":"ติดตั้งเสียงภาษาดัตช์",
  "voice.reopen":"จากนั้นเปิดแอปใหม่",
  "onb.welcome":"ยินดีต้อนรับ",
- "onb.intro":"ที่นี่คุณจะได้เรียนภาษาดัตช์ คณิตศาสตร์ และภาษาอังกฤษทีละนิดทุกวัน ทุกอย่างมีภาษาไทยให้อ่านด้วย",
+ "onb.intro":"ที่นี่คุณจะได้เรียนภาษาดัตช์ คณิตศาสตร์ และภาษาอังกฤษ เป้าหมายคือ 7 ชั่วโมงต่อสัปดาห์ ทุกนาทีมีค่า วันไหนพลาดไปก็เรียนชดเชยทีหลังได้ ทุกอย่างมีภาษาไทยให้อ่านด้วย",
  "onb.garden":"ทุกคำที่คุณเรียนจะกลายเป็นต้นไม้ในสวนของคุณเอง",
  "onb.when":"คุณจะเรียนเมื่อไร",
- "onb.when.tip":"เลือกเวลาที่แน่นอน การมีเวลาแน่นอนช่วยให้ทำได้ต่อเนื่องกว่ามาก",
+ "onb.when.tip":"เลือกเวลาที่แน่นอน การมีเวลาแน่นอนช่วยให้ทำตามเป้าหมายรายสัปดาห์ได้ง่ายขึ้นมาก",
  "onb.howMuch":"อยากเห็นภาษาไทยมากแค่ไหน",
  "onb.howMuch.tip":"ช่วงแรกจะแสดงภาษาไทยเสมอ ต่อไปแตะเมื่อต้องการ เปลี่ยนได้ทุกเมื่อ",
  "onb.place":"มาดูก่อนว่าคุณอยู่ระดับไหน",
@@ -1107,10 +1165,9 @@ th:{
  "lesson.step.practice":"ฝึก: ประโยคและการฟัง",
  "lesson.step.maths":"คณิตศาสตร์ เงินและเวลา",
  "lesson.step.end":"สรุป",
- "today.short":"มีเวลาน้อยหรือเหนื่อย? บทเรียนสั้น 5 นาที",
+ "today.short":"ทบทวนอย่างเดียว: รอบสั้นๆ",
  "today.english":"วันนี้มีภาษาอังกฤษด้วย",
  "today.english.sub":"บทเรียนแยก 10 นาที",
- "today.goal":"เป้าหมายวันนี้",
  "today.week":"สัปดาห์นี้",
  "today.water.tip":"การทบทวนคือการรดน้ำ",
  "today.water":"รดน้ำ",
@@ -1374,6 +1431,37 @@ function compose(recipe,learn){const q=[],words=learn==='en'?EN:NL,R=id=>S.items
     else if(s.end){q.push({type:'conf',step:s.step});q.push({type:'end',step:s.step})}
   }
   return q}
+/* ============ leertijd en weekdoel ============
+   Het streven is S.weekGoal minuten per week (standaard 420 = 7 uur; op Ik 3,5, 5, 7 of 10 uur). Het dagdeel is een zevende daarvan.
+   Alle leertijd telt: les, uitleg, verhaal, snelronde, gesprek, dagboek, kijkopdracht. De klok loopt alleen bij actieve tijd:
+   in een les of activiteit, met het scherm zichtbaar, en hooguit 2 minuten na de laatste tik of toets. S.mins[dag] = minuten (met decimalen).
+   Niets wordt afgepakt: een gemiste dag haal je in binnen de week. */
+const WEEKGOALS=[210,300,420,600];
+function monday(t){const d=new Date(t==null?now():t);d.setHours(0,0,0,0);return d.getTime()-((d.getDay()+6)%7)*DAY}
+function weekMins(mon){mon=mon==null?monday():mon;let s=0;for(let i=0;i<7;i++)s+=S.mins[mon+i*DAY]||0;return s}
+function weekGoal(){return WEEKGOALS.includes(S.weekGoal)?S.weekGoal:420}
+function dayPart(){return weekGoal()/7}
+function todayMins(){return S.mins[today()]||0}
+function hm(m){m=Math.round(m);return {u:Math.floor(m/60),m:m%60,g:fmtH(weekGoal())}}
+function fmtH(m){return (Math.round(m/6)/10).toString().replace('.',',')}
+function weekStreak(){const g=weekGoal();let n=0,m=monday();if(weekMins(m)>=g)n=1;for(let k=1;k<520;k++){if(weekMins(m-k*7*DAY)>=g)n++;else break}return n}
+function learning(){return app.classList.contains('sess')||!!UX||(!!route&&route!==vExplain&&route!==vContinue)}
+let lastAct=now(),tickN=0;
+['pointerdown','keydown','input','touchstart','wheel'].forEach(ev=>document.addEventListener(ev,()=>{lastAct=now()},{passive:true,capture:true}));
+setInterval(()=>{if(STORE!=='ok'||document.visibilityState!=='visible'||now()-lastAct>12e4||!learning())return;
+  const before=weekMins();S.mins[today()]=(S.mins[today()]||0)+5/60;weekCheck(before);if(++tickN>=6){tickN=0;save()}},5000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState!=='visible')save()});
+/* bericht als het weekdoel bijna (80 procent) of helemaal gehaald is; één keer per week */
+function weekCheck(before){const g=weekGoal(),after=weekMins(),mon=monday(),seen=S.weekSeen[mon]||(S.weekSeen[mon]={});
+  if(!seen.almost&&before<.8*g&&after>=.8*g&&after<g){seen.almost=1;save();toast(tx('week.almost',{n:Math.ceil(g-after)}))}
+  if(!seen.done&&before<g&&after>=g){seen.done=1;save();toast(tx('week.reached'));try{petals()}catch(e){}}}
+/* na een les of activiteit: hoe ver je bent, en drie manieren om door te gaan */
+function contHtml(){const left=Math.ceil(dayPart()-todayMins());
+  return `<section class="card stack">${left>0?T('cont.left',{n:left}):T('cont.dayDone')}<p class="small muted">${T('cont.week',hm(weekMins()))}</p>
+   <div class="u-list"><button class="u-item" id="c-rev"><span>${T('cont.review')}</span></button><button class="u-item" id="c-expl"><span>${T('cont.explain')}</span></button><button class="u-item" id="c-play"><span>${T(S.story?'cont.speed':'cont.story')}</span></button></div></section>`}
+function bindCont(){if($('#c-rev'))$('#c-rev').onclick=()=>startLesson(true);if($('#c-expl'))$('#c-expl').onclick=()=>{show('vandaag');route=vExplain;rerender();window.scrollTo(0,0)};if($('#c-play'))$('#c-play').onclick=()=>S.story?startSpeed():startStory()}
+function vContinue(){$('#nav').hidden=false;paint(`${T('cont.title')}${contHtml()}<button class="btn btn-ghost" id="home">${T('cont.home')}</button>`);bindCont();$('#home').onclick=()=>show('vandaag')}
+
 /* ============ uitleg (docs/uitleg.md) ============
    Speler als laag boven het scherm: plaatje (UitlegVis.render), tekst van de stap, voorlezen in de leertaal van het pakket,
    daarna de controlevragen. De oefening eronder blijft onaangeroerd. Ingangen: tegel op Vandaag (overzicht), knop boven
@@ -1399,7 +1487,7 @@ function openExplain(id){const e=EXPL[id];if(!e||!UV)return;closeExplain();
   UX={e,i:0,c:-1,answered:false,start:now()};
   const L=document.createElement('div');L.id='ulayer';L.className='ulayer';L.setAttribute('role','dialog');L.setAttribute('aria-modal','true');L.setAttribute('aria-label',plainX(e.x.title,e.learn));
   L.addEventListener('click',ev=>{if(ev.target===L)closeExplain()});document.body.appendChild(L);document.body.classList.add('u-open');drawExplain(true)}
-function closeExplain(){if(!UX)return;try{speechSynthesis.cancel()}catch(e){}addLearnMs(now()-UX.start);const L=document.getElementById('ulayer');if(L)L.remove();document.body.classList.remove('u-open');UX=null}
+function closeExplain(){if(!UX)return;try{speechSynthesis.cancel()}catch(e){}const L=document.getElementById('ulayer');if(L)L.remove();document.body.classList.remove('u-open');UX=null}
 function sayX(x){if(!UX||S.explainVoice===false)return;const t=plainX(x,UX.e.learn).replace(/<[^>]*>/g,'');if(t)say(t,false,UX.e.learn==='en'?'en':'nl')}
 function drawExplain(speak){const L=document.getElementById('ulayer');if(!L||!UX)return;const {e,i,c}=UX,x=e.x,n=x.steps.length,ch=x.check||[],lang=e.learn==='en'?'en':'nl';
   const head=`<div class="u-head"><div>${TKx(x.title,e.learn)}</div><button class="close" id="uclose" aria-label="${esc(t('explain.close'))}">×</button></div>`;
@@ -1436,8 +1524,6 @@ document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest
 function vExplain(){const groups=[['nl','rekenen'],['nl','grammatica'],['nl','leestekens'],['en','grammatica'],['en','leestekens']];
   sub('page.explain',`<p class="muted">${T('explain.intro')}</p>${groups.map(([l,s])=>{const list=EXPL_LIST.filter(o=>o.learn===l&&o.x.subject===s);if(!list.length)return '';
     return `<section class="card stack">${T(l==='en'?'explain.subj.en.'+s:'explain.subj.'+s)}<div class="u-list">${list.map(o=>`<button class="u-item${S.explained[o.x.id]?' done':''}" data-uopen="${esc(o.x.id)}"><span>${TKx(o.x.title,o.learn)}</span>${S.explained[o.x.id]?`<span class="pill pill-mint" aria-label="${esc(t('explain.again'))}">✓</span>`:''}</button>`).join('')}</div></section>`}).join('')}`)}
-/* leertijd buiten een les (uitleg): telt mee in de minuten van vandaag */
-function addLearnMs(ms){const m=Math.round(ms/6e4);if(m>0){S.mins[today()]=(S.mins[today()]||0)+m;save()}}
 await loadPacks();
 
 /* ============ staat ============ */
@@ -1446,7 +1532,7 @@ function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
     points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
-    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,schema:SCHEMA};
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,weekGoal:420,rounds:{},weekSeen:{},schema:SCHEMA};
 }
 /* ============ opslag veilig laden (#30) ============
    S.v blijft 2. S.schema telt de vorm van de opslag (zonder veld = 1). Elke stap n -> n+1 staat in MIGRATE en mag vaker draaien.
@@ -1508,7 +1594,6 @@ function review(id,ok,form){
   save();
 }
 const leeches=()=>Object.entries(S.items).filter(([,v])=>v.lapses>=4).map(([k])=>k);
-const GOALS={licht:{pts:60,l:'Licht'},normaal:{pts:120,l:'Normaal'},extra:{pts:180,l:'Extra'}};
 const pts=()=>S.points[today()]||0;
 function addPts(n){S.points[today()]=pts()+n;S.days[today()]=1;save();syncUp()}
 
@@ -1640,10 +1725,10 @@ function vOnboard(){
 /* ============ vandaag ============ */
 function weekDots(){const d=new Date(),dow=(d.getDay()+6)%7,mon=today()-dow*DAY,names=['ma','di','wo','do','vr','za','zo'];let done=0,html='';
   for(let i=0;i<7;i++){const t=mon+i*DAY,isD=!!S.days[t];if(isD)done++;html+=`<div class="day ${isD?'done':''} ${t===today()?'today':''}"><i></i>${names[i]}</div>`}return{html,done}}
-function ring(p){const r=32,c=2*Math.PI*r,v=Math.min(1,p);return `<svg class="ring" viewBox="0 0 80 80" role="img" aria-label="Dagdoel ${Math.round(v*100)} procent"><circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--surface-2)" stroke-width="9"/><circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--apricot-fill)" stroke-width="9" stroke-linecap="round" stroke-dasharray="${(c*v).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 40 40)"/><text x="40" y="45" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="800" font-size="15" fill="var(--ink)">${Math.round(v*100)}%</text></svg>`}
+function ring(p,label){const r=32,c=2*Math.PI*r,v=Math.min(1,p);return `<svg class="ring" viewBox="0 0 80 80" role="img" aria-label="${esc(label||'')} ${Math.round(v*100)} procent"><circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--surface-2)" stroke-width="9"/><circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--apricot-fill)" stroke-width="9" stroke-linecap="round" stroke-dasharray="${(c*v).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 40 40)"/><text x="40" y="45" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="800" font-size="15" fill="var(--ink)">${Math.round(v*100)}%</text></svg>`}
 function vToday(){
   if(!S.onboarded)return vOnboard();
-  const [h,ht]=hello(),g=GOALS[S.goal],w=weekDots(),due=[...NL,...EN,...REK].filter(x=>thirsty(x.id)).length,done=!!S.days[today()],enDay=isEnglishDay(),ans=S.answers.filter(a=>!a.seen).length;
+  const [h,ht]=hello(),w=weekDots(),due=[...NL,...EN,...REK].filter(x=>thirsty(x.id)).length,done=!!S.days[today()],enDay=isEnglishDay(),ans=S.answers.filter(a=>!a.seen).length;
   paint(`
   <header class="top"><div>${bi(`<h1>${h}${nm()?', '+nm():''}</h1>`,ht)}</div>${thaiSwitch()}</header>
   ${PACK_MISSING.length?`<div class="note" role="status">${T('pack.missing',{list:esc(PACK_MISSING.join(', '))})}</div>`:''}
@@ -1666,8 +1751,8 @@ function vToday(){
   </section>
   ${enDay?`<button class="tile wide" id="en"><span class="ic" style="background:var(--sky);color:var(--sky-ink)">${icon.globe}</span><span>${T('today.english')}<span class="small muted">${T('today.english.sub')}</span></span></button>`:''}
   <section class="grid2 stack-sm">
-    <div class="card"><div class="row">${ring(pts()/g.pts)}<div>${T('today.goal')}<p class="small muted num">${pts()} / ${g.pts} punten</p></div></div>
-      <div class="goal-pick" role="group" aria-label="Dagdoel">${Object.entries(GOALS).map(([k,v])=>`<button data-goal="${k}" aria-pressed="${S.goal===k}">${v.l}</button>`).join('')}</div></div>
+    <div class="card"><div class="row">${ring(weekMins()/weekGoal(),t('week.title'))}<div>${T('week.title')}<p class="small muted num">${T('week.ring',hm(weekMins()))}</p><p class="small muted num">${T('week.today',{m:Math.round(todayMins()),d:Math.round(dayPart())})}</p></div></div>
+      ${weekMins()>=weekGoal()?`<p class="small">${T('week.reached')}</p>`:weekMins()>=.8*weekGoal()?`<p class="small">${T('week.almost',{n:Math.ceil(weekGoal()-weekMins())})}</p>`:''}${weekStreak()>1?`<p class="small muted">${T('week.streak',{n:weekStreak()})}</p>`:''}<p class="small muted num">${T('week.points',{n:pts()})}</p></div>
     <div class="card">${T('today.week')}<div class="week">${w.html}</div>
       <p class="small muted" style="margin-top:8px">${T('today.daysDone',{n:w.done})}</p></div>
   </section>
@@ -1697,7 +1782,6 @@ function vToday(){
   if($('#place'))$('#place').onclick=startPlacement;
   if($('#answers'))$('#answers').onclick=()=>show('ik');
   if($('#send'))$('#send').onclick=()=>syncUp(true,ok=>{toast(tx(ok?'sync.sent':'sync.offline'));rerender()});
-  app.querySelectorAll('[data-goal]').forEach(b=>b.onclick=()=>{S.goal=b.dataset.goal;save();rerender()});
 }
 
 /* ============ sessie-raamwerk ============ */
@@ -1711,7 +1795,7 @@ function frame(inner,label,stepNo,ofN){
   // #22: onthoud of er al iets met deze vraag gedaan is; dan tekent een taalwissel hem niet opnieuw (geen dubbele punten, geen reset van pogingen)
   const q=Q[qi],v=app.querySelector('.view');if(q&&v){const t=e=>{if(!e.target.closest('button[data-thai],#quit'))q._t=1};v.addEventListener('click',t,true);v.addEventListener('input',t,true)}
 }
-function finishTime(){const m=Math.max(1,Math.round((now()-sessStart)/6e4));S.mins[today()]=(S.mins[today()]||0)+m;save();syncUp(true)}
+function finishTime(){save();syncUp(true)}   // leertijd telt de klok (leertijd en weekdoel)
 function next(){qi++;window.scrollTo(0,0);step()}
 function step(){voicePend=null;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
 function score(ok,n,part){sessTotal++;if(ok){sessRight++;sp+=n;addPts(n)}else if(part>0){sp+=part;addPts(part)}}
@@ -1846,15 +1930,15 @@ H.discount=q=>{
 H.conf=q=>{frame(`<div class="card stack">${T('conf.title')}<p class="muted">${T('conf.tip')}</p>
   <div class="conf"><button class="btn btn-leaf" data-c="zeker">${T('conf.sure')}</button><button class="btn btn-ghost" data-c="twijfel">${T('conf.doubt')}</button></div></div>`,'Afsluiten',q.step);
   app.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{S.conf.unshift({t:now(),c:b.dataset.c,acc:sessTotal?sessRight/sessTotal:1,name:sessName});S.sessions++;save();next()})};
-H.end=q=>{finishTime();const g=GOALS[S.goal],pct=Math.round(Math.min(1,pts()/g.pts)*100);
+H.end=q=>{finishTime();const rn=S.rounds[today()]=(S.rounds[today()]||0)+1,bonus=rn===2?10:rn===3?20:0;if(bonus){addPts(bonus);sp+=bonus}save();
   const all=[...NL.map(x=>({id:x.id,l:`${x.art} ${x.w}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
   const bloom=[...new Set(grown)].map(id=>all.find(a=>a.id===id)).filter(Boolean).slice(0,6);
   const last=S.conf[0],mis=last&&last.c==='zeker'&&last.acc<.7&&last.t>sessStart;
-  frame(`<div class="card celebrate"><div class="big num">+${sp}</div>${T('end.welldone',{name:nm()?', '+nm():''})}<p class="muted">${T('end.goal',{pct})}</p>
+  frame(`<div class="card celebrate"><div class="big num">+${sp}</div>${T('end.welldone',{name:nm()?', '+nm():''})}${bonus?`<p class="pill pill-apricot">${T(rn===2?'end.bonus2':'end.bonus3')}</p>`:''}
    ${mis?`<div class="note sky">${T('end.sureButWrong')}</div>`:''}
    ${bloom.length?`<p>${T('end.grown',{n:bloom.length})}</p><div class="garden" style="width:100%">${bloom.map(b=>`<div class="plant">${plant(stage(b.id),false)}<span class="w">${esc(b.l)}</span></div>`).join('')}</div>`:''}</div>
-   <button class="btn btn-main" id="home">${T('end.done')}</button>`,'Klaar');
-  petals();$('#home').onclick=()=>show('vandaag')};
+   ${contHtml()}<button class="btn btn-ghost" id="home">${T('cont.home')}</button>`,'Klaar');
+  petals();bindCont();$('#home').onclick=()=>show('vandaag')};
 
 /* ============ dagelijkse les ============ */
 function startLesson(short){const p=PACKS.find(p=>p.learn==='nl'&&p.lesson);if(!p)return toast(tx('pack.none'));runSession(short?'Korte les':'Les thema 1',p?compose(short?p.lessonShort:p.lesson,'nl'):[])}
@@ -1907,8 +1991,8 @@ function startSpeed(){
     app.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{if(b.dataset.a===cur.art)good++;else toast(`${cur.art} ${cur.w}`);let n=pick();while(n===cur)n=pick();cur=n;draw()});
   };
   const end=()=>{const rec=good>S.speedBest;if(rec)S.speedBest=good;addPts(good*2);save();
-    paint(`<div class="card celebrate"><div class="big num">${good}</div>${T(rec?'speed.newRecord':'speed.nice')}<p class="muted num">${T('speed.record',{n:S.speedBest})}</p></div><button class="btn btn-main" id="home">${T('btn.back')}</button>`);
-    if(rec&&good>0)petals();$('#home').onclick=()=>show('vandaag')};
+    paint(`<div class="card celebrate"><div class="big num">${good}</div>${T(rec?'speed.newRecord':'speed.nice')}<p class="muted num">${T('speed.record',{n:S.speedBest})}</p></div>${contHtml()}<button class="btn btn-ghost" id="home">${T('cont.home')}</button>`);
+    if(rec&&good>0)petals();bindCont();$('#home').onclick=()=>show('vandaag')};
   draw();
 }
 
@@ -1943,7 +2027,7 @@ function vTalk(){sub('page.talk',`
   <div class="note lilac small">${T('talk.forCoaches')}</div></section>
   <section class="card stack">${T('talk.how')}<div class="chips" role="group">${['goed','beetje','moeilijk'].map(k=>`<button data-r="${k}">${TB('talk.rate.'+k)}</button>`).join('')}</div>
   <p class="small muted">${T('talk.future')}</p></section>`);
-  app.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{S.talks++;addPts(20);S.log.push({t:now(),talk:b.dataset.r});save();toast('Mooi! +20 punten');show('vandaag')});
+  app.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{S.talks++;addPts(20);S.log.push({t:now(),talk:b.dataset.r});save();toast('Mooi! +20 punten');vContinue()});
 }
 function vDiary(){sub('page.diary',`
   <section class="card stack"><p>${T('diary.tip')}</p>
@@ -1951,7 +2035,7 @@ function vDiary(){sub('page.diary',`
   <p class="small muted">${T('diary.future')}</p>
   <button class="btn btn-ghost" disabled>${icon.mic}${T('diary.record')}</button></section>
   <section class="card stack">${T('diary.write')}<label for="dd" class="small muted">${T('diary.three')}</label><textarea id="dd" class="input"></textarea><button class="btn btn-leaf" id="ds">${T('btn.save')}</button></section>`);
-  $('#ds').onclick=()=>{const t=$('#dd').value.trim();if(!t)return;S.log.push({t:now(),diary:t});addPts(15);save();toast('Bewaard. +15 punten');show('vandaag')}}
+  $('#ds').onclick=()=>{const t=$('#dd').value.trim();if(!t)return;S.log.push({t:now(),diary:t});addPts(15);save();toast('Bewaard. +15 punten');vContinue()}}
 function vVideo(){sub('page.watch',`
   <section class="card stack"><span class="eyebrow">Kijkopdracht</span>
   <p class="prompt" style="font-size:1.3rem">${T('watch.title')}</p>
@@ -1960,7 +2044,7 @@ function vVideo(){sub('page.watch',`
   <a class="btn btn-sky" href="https://nos.nl/jeugdjournaal" target="_blank" rel="noopener">${T('watch.open')}</a>
   <label for="vv" class="small muted">${T('watch.after')}</label><textarea id="vv" class="input"></textarea>
   <button class="btn btn-leaf" id="vs">${T('btn.save')}</button></section>`);
-  $('#vs').onclick=()=>{const t=$('#vv').value.trim();if(!t)return;S.log.push({t:now(),video:t});addPts(15);save();toast('Bewaard. Emiel kan je zin lezen.');show('vandaag')}}
+  $('#vs').onclick=()=>{const t=$('#vv').value.trim();if(!t)return;S.log.push({t:now(),video:t});addPts(15);save();toast('Bewaard. Emiel kan je zin lezen.');vContinue()}}
 function vBuddha(){sub('page.buddha',`
   <section class="card stack story"><span class="eyebrow">Les 1 · Verdienste maken</span>
   <span class="sent bi"><span class="nl">In Thailand geven veel mensen 's ochtends eten aan monniken. Dat heet <b>verdienste maken</b>.</span>${supSpan(ts('buddha.s1'))}</span>
@@ -1971,7 +2055,7 @@ function vBuddha(){sub('page.buddha',`
   <button class="speak" id="bs">${icon.play}${T('btn.listen')}</button></section>
   <button class="btn btn-leaf" id="bd">${T('btn.read')}</button>`);
   $('#bs').onclick=()=>say("In Thailand geven veel mensen 's ochtends eten aan monniken. Dat heet verdienste maken. Verdienste maken kan op veel manieren: iets geven, iemand helpen of mediteren. Het gaat om een goed hart. Ook in Nederland zijn Thaise tempels.");
-  $('#bd').onclick=()=>{addPts(10);toast('+10 punten');show('vandaag')}}
+  $('#bd').onclick=()=>{addPts(10);toast('+10 punten');vContinue()}}
 
 /* ============ tuin ============ */
 function vGarden(){
@@ -2010,7 +2094,7 @@ function vRoute(){
 
 /* ============ ik ============ */
 function vMe(){
-  const total=Object.values(S.points).reduce((a,b)=>a+b,0),mins=Object.values(S.mins).reduce((a,b)=>a+b,0);
+  const total=Object.values(S.points).reduce((a,b)=>a+b,0),mins=Math.round(Object.values(S.mins).reduce((a,b)=>a+b,0));
   const unseen=S.answers.some(a=>!a.seen);
   paint(`<header class="top"><div>${T('me.title')}</div>${thaiSwitch()}</header>
   <section class="card stack">${T('me.about')}${nameField()}</section>
@@ -2019,6 +2103,7 @@ function vMe(){
   <section class="card stack">${T('me.langs')}<p class="small">${T('me.learnLang',{lang:l=>'<b>'+LANG[learnL()].name[l]+'</b>'})}</p><span class="small muted">${T('me.supLang')}</span>${langPicker()}</section>
   <section class="card stack">${T('me.support')}
     <div class="seg" role="group" aria-label="${esc(t('sup.show'))}">${[['altijd','show.always'],['tik','show.tap'],['uit','show.offExam']].map(([k,l])=>`<button data-th="${k}" aria-pressed="${S.thai===k}">${TB(l)}</button>`).join('')}</div></section>
+  <section class="card stack">${T('me.weekGoal')}<p class="small muted">${T('me.weekGoal.tip')}</p><div class="seg" role="group" aria-label="${esc(t('week.title'))}">${WEEKGOALS.map(m=>`<button data-wg="${m}" aria-pressed="${weekGoal()===m}">${fmtH(m)} ${esc(t('week.hours'))}</button>`).join('')}</div></section>
   <section class="card stack">${T('me.letters')}<div class="seg" role="group" aria-label="Lettergrootte">${['normaal','groot'].map(k=>`<button data-sz="${k}" aria-pressed="${S.size===k}">${TB('size.'+k)}</button>`).join('')}</div></section>
   ${voiceCard()}
   <section class="card stack">${T('me.extras')}<div class="seg" role="group" aria-label="Extra's">${['boeddhisme','liedje'].map(k=>`<button data-ex="${k}" aria-pressed="${!!S.extras[k]}">${TB('extra.opt.'+k)}</button>`).join('')}</div></section>
@@ -2039,6 +2124,7 @@ function vMe(){
   if(unseen){S.answers.forEach(a=>a.seen=true);save()}
   app.querySelectorAll('[data-th]').forEach(b=>b.onclick=()=>{setThai(b.dataset.th);vMe()});
   app.querySelectorAll('[data-sz]').forEach(b=>b.onclick=()=>{setSize(b.dataset.sz);vMe()});
+  app.querySelectorAll('[data-wg]').forEach(b=>b.onclick=()=>{S.weekGoal=+b.dataset.wg;save();vMe()});
   if($('#vsel'))$('#vsel').onchange=e=>{S.voice=Object.assign({},S.voice,{nl:e.target.value});save();say('Zo klinkt deze stem. Goedemorgen, hoe gaat het met je?')};
   $('#vtest').onclick=()=>say('Zo klinkt deze stem. Goedemorgen, hoe gaat het met je?');
   app.querySelectorAll('[data-ex]').forEach(b=>b.onclick=()=>{S.extras[b.dataset.ex]=!S.extras[b.dataset.ex];save();vMe()});
@@ -2072,7 +2158,7 @@ function vEmiel(){
   const open=S.help.map((h,i)=>({...h,i})).filter(h=>h.open),lc=leeches(),tw=S.conf.filter(c=>c.c==='twijfel').length;
   const allW=[...NL.map(x=>({id:x.id,l:`${x.art} ${x.w}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
   const cardFor=ctx=>/Zin|plek|Grammatica|Gatentekst/i.test(ctx)?'plek2':/Rekenen|korting/i.test(ctx)?'procent':/Engels/i.test(ctx)?'ens':'dehet';
-  const mins7=Object.entries(S.mins).filter(([d])=>+d>today()-7*DAY).reduce((a,[,m])=>a+m,0);
+  const mins7=Math.round(Object.entries(S.mins).filter(([d])=>+d>today()-7*DAY).reduce((a,[,m])=>a+m,0));
   const writing=S.log.filter(l=>l.video||l.diary).slice(-3).reverse();
   paint(`<header class="top"><div><h1>Meekijken</h1><p class="muted small">${nm()||'De leerder'} · fase 1 · thema 1</p></div><button class="close" id="back" aria-label="Terug">←</button></header>
   <section class="card stack"><div class="row between" style="flex-wrap:wrap"><h3>Op weg naar Poort 1</h3>${lv?'':'<span class="pill pill-apricot">startmeting nog niet gedaan</span>'}</div>
@@ -2107,7 +2193,7 @@ function progressData(){
   for(let i=0;i<7;i++)days.push(S.days[mon+i*DAY]?1:0);seen.forEach(id=>garden[stage(id)]++);
   const allW=[...NL.map(x=>({id:x.id,l:`${x.art} ${x.w}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
   return {app:'tonaor-leert',v:1,t:now(),fase:'Fase 1',thema:'Thema 1 · Werk en dagelijks leven',placed:!!S.placement,
-    skills:{nl:r(sk.nl),rk:r(sk.rk),en:r(sk.en)},week:{days,mins:Object.entries(S.mins).filter(([d])=>+d>=mon).reduce((a,[,m])=>a+m,0)},
+    skills:{nl:r(sk.nl),rk:r(sk.rk),en:r(sk.en)},week:{days,mins:Math.round(Object.entries(S.mins).filter(([d])=>+d>=mon).reduce((a,[,m])=>a+m,0)),goal:weekGoal()},
     talks:S.talks,sessions:S.sessions,points:pts(),garden,thirsty:seen.filter(id=>thirsty(id)).length,
     leeches:leeches().map(id=>(allW.find(a=>a.id===id)||{l:id}).l),
     help:S.help.slice(0,10).map(h=>({t:h.t,ctx:h.ctx,open:h.open})),
