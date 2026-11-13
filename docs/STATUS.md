@@ -14,18 +14,16 @@ Bijgewerkt: 13 november 2026 (later).
 
 - Fase 1, voortgang beveiligen (#30): gesloten.
 - Fase 2, inhoud uit de code en lessamensteller (#26): gesloten.
-- Uitleg (speler, drie ingangen, 24 uitleggen) en het weekdoel van 7 uur: live sinds 13 november 2026, cache v2-18 (t/m commit e5cad5d).
+- Uitleg (speler, drie ingangen, 32 uitleggen) en het weekdoel (standaard 10 uur, merktekens op 3,5, 7 en 10 uur).
+- Fase 3, het herhaalmodel (docs/herhaalmodel.md), inclusief de verwerkte review: live sinds 13 november 2026, cache v2-29 (t/m commit ddece66).
 
 ## Klaar, lokaal gecommit, nog niet gepusht
 
-| Commit | Inhoud |
-|---|---|
-| a87f0bc | Weekdoel standaard 10 uur, migratie 2 → 3, merktekens op 3,5, 7 en 10 uur (cache v2-19) |
-| 3b08525 | Uitleg: catalogus groep 2, wat de huidige oefeningen raken (32 uitleggen, cache v2-20) |
+- Niets, behalve deze statusregel.
 
 ## Open besluiten voor de eigenaar
 
-- Release van de commits hierboven.
+- Test op de telefoon: een volle les, "luister en schrijf op" met echte stem, een tweede ronde op dezelfde dag, en de Engelse les op dinsdag of donderdag. Daarna #28 en #29 sluiten (alleen met akkoord).
 
 ## Volgorde
 
