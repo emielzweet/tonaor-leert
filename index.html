@@ -308,6 +308,8 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "probe.dunno":"I don't know",
+ "probe.tip":"New word. Do you already know it? Then type it. If not, you will learn it in a moment.",
  "cont.next":"Keep learning",
  "garden.lamp":"Tricky: tap for the explanation",
  "bed.regel":"Rules and sounds",
@@ -664,6 +666,8 @@ en:{
  "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "probe.dunno":"Weet ik niet",
+ "probe.tip":"Nieuw woord. Ken je het al? Typ het dan. Zo niet, dan leer je het zo meteen.",
  "cont.next":"Verder leren",
  "garden.lamp":"Lastig: tik voor de uitleg",
  "bed.regel":"<h2>Regels en klanken</h2>",
@@ -1016,6 +1020,8 @@ nl:{
  "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "probe.dunno":"ไม่รู้",
+ "probe.tip":"คำใหม่ ถ้ารู้จักแล้วให้พิมพ์เลย ถ้าไม่รู้จัก เดี๋ยวจะได้เรียน",
  "cont.next":"เรียนต่อ",
  "garden.lamp":"ยาก: แตะเพื่อดูคำอธิบาย",
  "bed.regel":"กฎและเสียง",
@@ -1542,22 +1548,34 @@ function chooseEx(id,learn,easy){const it=S.items[id]||{forms:[],exs:[],s:0,reps
   const rc=recentEx(),notRecent=c.filter(e=>!rc.has(e.id));if(notRecent.length)c=notRecent;
   return shuffle(c)[0]}
 /* dezelfde oefenvorm hooguit twee keer achter elkaar */
-function varyForms(list){const units=[];let pend=[];for(const q of list){if(q.type==='explain')pend.push(q);else{units.push([...pend,q]);pend=[]}}if(pend.length)units.push(pend);   // een uitleg hoort bij de oefening erna
-  const ty=u=>u[u.length-1].type,out=[],rest=units.slice();while(rest.length){const n=out.length,same=n>=2&&ty(out[n-1])===ty(out[n-2])?ty(out[n-1]):null;let i=same?rest.findIndex(u=>ty(u)!==same):0;if(i<0)i=0;out.push(rest.splice(i,1)[0])}return out.flat()}
+function varyForms(list,drop){const units=[];let pend=[];for(const q of list){if(q.type==='explain')pend.push(q);else{units.push([...pend,q]);pend=[]}}if(pend.length)units.push(pend);   // een uitleg hoort bij de oefening erna
+  const ty=u=>u[u.length-1].type,out=[],rest=units.slice();while(rest.length){const n=out.length,same=n>=2&&ty(out[n-1])===ty(out[n-2])?ty(out[n-1]):null;let i=same?rest.findIndex(u=>ty(u)!==same):0;if(i<0){if(drop)break;i=0}out.push(rest.splice(i,1)[0])}return out.flat()}   // drop: een derde gelijke vorm schuift door naar een volgende ronde (blijft aan de beurt)
 function practice(s,learn,used){const P=s.practice,n=isEnglishDay()&&P.n2!=null?P.n2:P.n,R=id=>S.items[id];
   const ids=PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>P.kinds.includes(x.kind)&&R(x.id)&&exsFor(x.id,learn).length&&!used.has(x.id)).map(x=>x.id);
-  const busy=Object.keys(S.items).filter(id=>thirsty(id)).length>25;
+  const busy=Object.keys(S.items).filter(id=>thirsty(id)).length>40;   // rem op nieuw (docs/toets-per-stap.md)
   const due=ids.filter(id=>thirsty(id)).sort((a,b)=>overdue(b)-overdue(a)),fresh=ids.filter(id=>R(id).reps===0).slice(0,busy?0:(P.newMax!=null?P.newMax:1)),LS=lastSeen(),td=today(),seen=ids.filter(id=>R(id).reps>0&&!thirsty(id)).sort((a,b)=>((LS[a]||0)>=td)-((LS[b]||0)>=td)||(LS[a]||0)-(LS[b]||0));   // wat het langst geleden is eerst; vandaag al geoefend achteraan
-  const pick=[...new Set([...due,...fresh,...seen])].slice(0,n),out=[];
+  const pick=[...new Set([...due,...fresh])].slice(0,n),out=[];   // geen opvulling met wat niet aan de beurt is (advies ontwerpsessie A2)
   for(const id of pick){used.add(id);const isNew=R(id).reps===0,hard=R(id).lapses>=4,xid=(isNew||hard)&&explForItem(id,learn);
     if(xid&&(hard||!(S.explained||{})[xid]))out.push({type:'explain',step:s.step,x:xid,lang:learn,...(isNew?{_new:1}:{})});   // hardnekkig: de uitleg opnieuw (sectie 8)
     const e=chooseEx(id,learn),q=e&&exQ(e,s.step,(PACKS.find(p=>(p.exercises||[]).includes(e))||{}).learn==='en'?'en':learn,id);if(q){if(isNew)q._new=1;out.push(q)}}
-  return varyForms(out)}
+  return varyForms(out,true)}
 /* wanneer een onderdeel voor het laatst zelf geoefend is (uit de log); 0 = nooit */
 function lastSeen(){const L={};for(const e of S.log||[])if(!e.p)L[e.id]=e.t;return L}
 /* oefeningen die de laatste 2 dagen al gedaan zijn (basis-id zonder zaadwaarde): liever iets anders */
 function recentEx(){const c=now()-2*DAY,R=new Set();for(const e of S.log||[])if(e.ex&&e.t>=c)R.add(String(e.ex).split('#')[0]);return R}
-function compose(recipe,learn){const used=new Set();const q=[],words=learn==='en'?EN:NL,R=id=>S.items[id];
+/* nieuwe woorden (docs/toets-per-stap.md, advies ontwerpsessie A1 en B):
+   - dagbudget S.newPerDay (8, 16 of 24); geen nieuw bij meer dan 40 onderdelen aan de beurt;
+   - elk nieuw woord eerst als vraag (_probe): bij de eerste poging goed zonder hulp is het al gekend (grote sprong, telt niet mee);
+   - anders de leerkaart (_ifUnknown), en de kiesvraag pas later in de ronde (in later), na minstens drie andere onderdelen. */
+let NEWPLAN=0;   // nieuwe woorden die al in deze les gepland zijn (telt mee in het budget)
+function dayBudget(){return [8,16,24].includes(S.newPerDay)?S.newPerDay:16}
+function newLeft(){return Math.max(0,dayBudget()-((S.newLog||{})[today()]||0))}
+function newWords(cap,step,words,q,later){const busy=Object.keys(S.items).filter(id=>thirsty(id)).length>40;if(busy)return;
+  const inQ=new Set(q.filter(x=>x.w).map(x=>x.w.id)),nw=words.filter(w=>!S.introduced.includes(w.id)&&!inQ.has(w.id)).slice(0,Math.max(0,Math.min(cap,newLeft()-NEWPLAN)));NEWPLAN+=nw.length;
+  nw.forEach(w=>q.push({type:'recall',step,w,_probe:1,_new:1}));
+  nw.forEach(w=>q.push({type:'learn',step,w,_ifUnknown:1,_new:1}));
+  shuffle(nw).forEach(w=>later.push({type:'recog',step,w,_ifUnknown:1,_new:1}))}
+function compose(recipe,learn){const used=new Set(),later=[];NEWPLAN=0;const q=[],words=learn==='en'?EN:NL,R=id=>S.items[id];
   const dueAll=words.filter(w=>thirsty(w.id));
   for(const s of recipe||[]){
     if(s.card){const c=CARDP[s.card];if(!c)continue;const [label,btn]=(CARD_LABEL[learn]||{})[s.step]||['',''];const o={type:'card',label,step:s.step,html:()=>packCardHtml(c,learn==='en'&&s.step===1?'ENGLISH':'')};if(btn)o.btn=btn;if(c.say)o.bind=()=>{if($('#csp'))$('#csp').onclick=()=>say(c.say,false,c.sayLang||'nl')};q.push(o)}
@@ -1565,25 +1583,19 @@ function compose(recipe,learn){const used=new Set();const q=[],words=learn==='en
       const type0=learn==='en'?'enrecall':s.forms[0];
       let due=dueAll.slice();if(s.sort!=='list')due=words.filter(w=>S.introduced.includes(w.id)&&thirsty(w.id)).sort((a,b)=>R(a.id).due-R(b.id).due);
       let rec=due;if(s.thenFresh)rec=[...due,...words.filter(w=>R(w.id).reps===0)];
-      else if(rec.length<s.max&&s.orIntroduced){const LS=lastSeen(),td=today(),inR=new Set(rec.map(w=>w.id));   // aanvullen met wat het langst geleden is, niet met wat vandaag al geoefend is
-        const old=words.filter(w=>S.introduced.includes(w.id)&&!inR.has(w.id)&&(LS[w.id]||0)<td).sort((a,b)=>(LS[a.id]||0)-(LS[b.id]||0));rec=[...rec,...old]}
-      rec=rec.slice(0,s.max);
-      if(!rec.length&&s.orIntroduced){const fr=words.filter(w=>!S.introduced.includes(w.id)).slice(0,2);if(fr.length){fr.forEach(w=>q.push({type:'learn',step:s.step,w,_new:1}));fr.forEach(w=>q.push({type:'recog',step:s.step,w,_new:1}));continue}}   // niets meer te herhalen vandaag: iets nieuws
+      rec=rec.slice(0,s.max);   // alleen wat aan de beurt is: geen opvulling met woorden die dat niet zijn (advies ontwerpsessie A2)
       if(rec.length)varyForms(rec.map(w=>({type:pickForm(w,learn,type0),step:s.step,w}))).forEach(x=>q.push(x));
-      else if(s.ifNone&&s.ifNone.words==='first')words.slice(0,s.ifNone.n).forEach(w=>s.ifNone.forms.forEach(f=>q.push({type:f,step:s.step,w})));
+      else if(s.orIntroduced&&learn!=='en')newWords(Math.min(2,s.max),s.step,words,q,later);   // niets aan de beurt: iets nieuws, eerst als vraag
     }
-    else if(s.words==='new'){
-      const busy=words.filter(w=>S.introduced.includes(w.id)&&thirsty(w.id)).length>25;
-      let cap=busy?s.maxBusy:(isEnglishDay()&&s.max2!=null?s.max2:s.max);if(learn!=='en'&&S.placement&&S.placement.lv&&S.placement.lv.woorden!=null&&S.placement.lv.woorden<.34)cap=Math.min(cap,3);   // lage woordscore in de startmeting
-      const inQ=new Set(q.filter(x=>x.w).map(x=>x.w.id)),nw=words.filter(w=>!S.introduced.includes(w.id)&&!inQ.has(w.id)).slice(0,cap);   // niet opnieuw wat al eerder in deze les staat
-      nw.forEach(w=>s.forms.forEach(f=>q.push({type:f,step:s.step,w,_new:1})));
-      (s.then||[]).forEach(f=>shuffle(nw).forEach(w=>q.push({type:f,step:s.step,w,_new:1})));
-    }
+    else if(s.words==='new'){let cap=isEnglishDay()&&s.max2!=null?s.max2:s.max;if(learn!=='en'&&S.placement&&S.placement.lv&&S.placement.lv.woorden!=null&&S.placement.lv.woorden<.34)cap=Math.min(cap,3);   // lage woordscore in de startmeting
+      newWords(cap,s.step,words,q,later)}
     else if(s.pool){const n=isEnglishDay()&&s.n2!=null?s.n2:s.n;shuffle(PACKS.flatMap(p=>p.exercises||[]).filter(e=>e.pool===s.pool)).slice(0,n).forEach(e=>{const x=exQ(e,s.step,learn);if(x)q.push(x)})}
     else if(s.ex){const e=EXS[s.ex];if(!e)continue;const x=exQ(e,s.step,(PACKS.find(p=>(p.exercises||[]).includes(e))||{}).learn==='en'?'en':learn);if(x)q.push(x)}
     else if(s.practice)practice(s,learn,used).forEach(x=>q.push(x));
     else if(s.end){q.push({type:'conf',step:s.step});q.push({type:'end',step:s.step})}
   }
+  if(later.length){const lastLearn=q.map(x=>x.type).lastIndexOf('learn'),conf=q.findIndex(x=>x.type==='conf'),at=conf<0?q.length:conf;   // kiesvragen voor nieuwe woorden: na minstens drie andere onderdelen
+    const pos=Math.max(Math.min(lastLearn+4,at),q.findIndex((x,i)=>i>lastLearn&&x.step>=4)<0?at:q.findIndex((x,i)=>i>lastLearn&&x.step>=4));q.splice(Math.min(pos,at),0,...later)}
   return q}
 /* ============ leertijd en weekdoel ============
    Het streven is S.weekGoal minuten per week (standaard 600 = 10 uur; op Ik 3,5, 5, 7 of 10 uur; S.weekGoalSet = zelf gekozen). Het dagdeel is een zevende daarvan.
@@ -1607,7 +1619,7 @@ setInterval(()=>{if(STORE!=='ok'||document.visibilityState!=='visible'||now()-la
   const before=weekMins();S.mins[today()]=(S.mins[today()]||0)+5/60;weekCheck(before);if(++tickN>=6){tickN=0;save()}},5000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState!=='visible')save()});
 /* bericht als het weekdoel bijna (80 procent) of helemaal gehaald is; één keer per week */
-function pruneWeeks(){const cut=monday()-8*7*DAY;for(const o of [S.rounds,S.weekSeen])for(const k of Object.keys(o||{}))if(+k<cut)delete o[k]}
+function pruneWeeks(){const cut=monday()-8*7*DAY;for(const o of [S.rounds,S.weekSeen,S.newLog])for(const k of Object.keys(o||{}))if(+k<cut)delete o[k]}
 function weekCheck(before){const g=weekGoal(),after=weekMins(),mon=monday(),seen=S.weekSeen[mon]||(S.weekSeen[mon]={});
   pruneWeeks();for(const m of MILES)if(m<g&&!seen['m'+m]&&before<m&&after>=m){seen['m'+m]=1;save();toast(tx('week.mile',{h:fmtH(m)}))}
   if(!seen.almost&&before<.8*g&&after>=.8*g&&after<g){seen.almost=1;save();toast(tx('week.almost',{n:Math.ceil(g-after)}))}
@@ -1689,7 +1701,7 @@ function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
     points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
-    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},schema:SCHEMA};
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},schema:SCHEMA};
 }
 /* ============ opslag veilig laden (#30) ============
    S.v blijft 2. S.schema telt de vorm van de opslag (zonder veld = 1). Elke stap n -> n+1 staat in MIGRATE en mag vaker draaien.
@@ -1974,7 +1986,7 @@ function vToday(){
 /* ============ sessie-raamwerk ============ */
 let SESS=[];   // goed of fout per antwoord in deze ronde (bijsturen)
 let Q=[],qi=0,sp=0,grown=[],sessName='',sessStart=0,sessRight=0,sessTotal=0;
-function runSession(name,queue){Q=queue;qi=0;SESS=[];sp=0;grown=[];sessName=name;sessStart=now();sessRight=0;sessTotal=0;$('#nav').hidden=true;app.classList.add('sess');window.scrollTo(0,0);step()}
+function runSession(name,queue){Q=queue;qi=0;SESS=[];KNOWN=new Set();RETRIED=new Set();sp=0;grown=[];sessName=name;sessStart=now();sessRight=0;sessTotal=0;$('#nav').hidden=true;app.classList.add('sess');window.scrollTo(0,0);step()}
 function frame(inner,label,stepNo,ofN){
   const p=Math.round(qi/Math.max(1,Q.length-1)*100);
   paint(`<div class="sess-top"><button class="close" id="quit" aria-label="Stoppen">×</button><div class="bar" role="progressbar" aria-label="Voortgang" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><i style="width:${p}%"></i></div>${thaiSwitch()}</div>
@@ -1996,8 +2008,14 @@ function easierEx(q){try{const base=q.exid.split('#')[0],P=PACKS.find(p=>(p.exer
   const hard=e=>(e.fade||0)*2+(e.form==='build'||(e.data&&e.data.mode==='type')?1:0),e=chooseEx(id,P.learn,true);if(!e||hard(e)>=hard(cur))return null;
   const n=exQ(e,q.step,P.learn==='en'?'en':'nl',id);if(n)n._easy=1;return n}catch(err){return null}}
 function next(){qi++;adapt();window.scrollTo(0,0);step()}
-function step(){voicePend=null;while(Q[qi]&&Q[qi]._skip)qi++;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
-function score(ok,n,part){sessTotal++;SESS.push(!!ok);if(ok){sessRight++;sp+=n;addPts(n)}else if(part>0){sp+=part;addPts(part)}}
+let KNOWN=new Set(),RETRIED=new Set();
+function step(){voicePend=null;while(Q[qi]&&(Q[qi]._skip||(Q[qi]._ifUnknown&&Q[qi].w&&KNOWN.has(Q[qi].w.id))))qi++;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
+/* na een fout: het onderdeel één keer terug in deze ronde, minstens vijf onderdelen later, in een andere vorm (advies ontwerpsessie B) */
+const OTHER={recall:'recog',recog:'recall',hear:'recog',enrecall:'enrecog',enrecog:'enrecall',enhear:'enrecog'};
+function retryLater(q){if(!q||q._probe||q._retry)return;const id=q.w?q.w.id:q.items&&q.items[0];if(!id||RETRIED.has(id))return;
+  let r=null;if(q.w&&OTHER[q.type])r={type:OTHER[q.type],step:q.step,w:q.w};else if(q.items&&q.exid)r=easierEx(q);if(!r)return;
+  RETRIED.add(id);r._retry=1;const conf=Q.findIndex((x,i)=>i>qi&&x.type==='conf'),at=conf<0?Q.length:conf;Q.splice(Math.min(qi+6,at),0,r)}
+function score(ok,n,part){sessTotal++;SESS.push(!!ok);if(!ok)retryLater(Q[qi]);if(ok){sessRight++;sp+=n;addPts(n)}else if(part>0){sp+=part;addPts(part)}}
 /* fbBox(ok, tekst in de leertaal, tekst in de steuntaal); fbK(ok, sleutel, variabelen) haalt beide uit I18N */
 function fbBox(ok,msg,msgSup){let offer='';if(!ok&&app.classList.contains('sess')&&Q[qi]){const q=Q[qi];q._wrong=(q._wrong||0)+1;const x=q._wrong>=2&&explFor(q);if(x)offer=`<button class="linkish u-offer" data-uopen="${esc(x)}">${TB('explain.offer')}</button>`}const k=ok?'fb.ok':'fb.no',s=ts(k);return `<div class="fb ${ok?'fb-ok':'fb-no'}" role="status"><strong>${t(k)}${nlOnly()||!s?'':` <span ${supAttr()}>${s}</span>`}</strong>${msg?bi(msg,msgSup||''):''}${offer}</div>`}
 function fbK(ok,k,vars){return fbBox(ok,t(k,vars),ts(k,vars))}
@@ -2041,16 +2059,22 @@ H.explain=q=>{const o=EXPL[q.x];if(!o){next();return}
   frame(`<div class="card stack">${T('lesson.newTopic')}<p class="prompt">${TKx(o.x.title,o.learn)}</p><p class="muted">${TKx(o.x.summary,o.learn)}</p>
   <button class="btn btn-main" data-uopen="${esc(q.x)}">${TB('explain.open')}</button></div>${nextBtn('btn-ghost')}`,q.lang==='en'?'English':'Nieuw',q.step);
   const tm=setTimeout(()=>openExplain(q.x),250);$('#nx').onclick=()=>{clearTimeout(tm);next()}};
+/* uitkomst van de eerste vraag bij een nieuw woord (_probe) */
+function probeDone(w,known){const it=S.items[w.id];if(!S.introduced.includes(w.id))S.introduced.push(w.id);
+  if(known){KNOWN.add(w.id);it.s=14;it.t=now();it.due=now()+14*DAY;it.reps=Math.max(1,it.reps);if(!it.forms.includes('typen'))it.forms.push('typen');S.log.push({t:now(),id:w.id,ok:true,known:1})}   // al gekend: bloem, één controle na twee weken
+  else{S.newLog=S.newLog||{};S.newLog[today()]=(S.newLog[today()]||0)+1}   // echt nieuw: telt mee in het dagbudget
+  save()}
 H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${w.art} ${w.w}`,full=esc(fullT),g=nlOnly()?gapEx(w):null;
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past in de zin?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Wat is dit in het Nederlands?</p><p class="prompt sp" ${supAttr()}>${L_(w)}</p>`}
   <label for="ans" class="small muted">${g?'Typ het woord dat op de open plek past':T('recall.typeArt')}</label>
   <input id="ans" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${g?'…':'de … / het …'}">
   <div class="hint-row"><button class="hintbtn" id="hint">${T('btn.hint')}</button><span class="hintshow" id="hs" aria-live="polite"></span></div>
-  <div id="fb"></div><button class="btn btn-leaf" id="chk">${T('btn.check')}</button>${helpBtn('Woord: '+fullT)}</div>${adaptiveNote()}`,'Ophalen',q.step);
+  <div id="fb"></div><button class="btn btn-leaf" id="chk">${T('btn.check')}</button>${q._probe?`<button class="linkish" id="dunno">${TB('probe.dunno')}</button>`:''}${helpBtn('Woord: '+fullT)}</div>${adaptiveNote()}`,q._probe?'Nieuw woord':'Ophalen',q.step);
+  if(q._probe){const pb=document.createElement('p');pb.className='small muted';pb.innerHTML=T('probe.tip');const c=app.querySelector('.card');if(c)c.insertBefore(pb,c.children[1]||null);$('#dunno').onclick=()=>{probeDone(w,false);next()}}
   bindHelp();const inp=$('#ans');setTimeout(()=>{try{inp.focus({preventScroll:true})}catch(e){}},80);
   if(nlOnly()&&!g){setTimeout(()=>say(fullT),250);$('#sp').onclick=()=>say(fullT);$('#sps').onclick=()=>say(fullT,true)}
   $('#hint').onclick=()=>{hint=Math.min(3,hint+1);$('#hs').textContent=g?(hint===1?`Begint met: ${w.w[0]}…`:hint===2?`${w.w.slice(0,Math.ceil(w.w.length/2))}…`:w.w):hint===1?`Lidwoord: ${w.art}`:hint===2?`${w.art} ${w.w[0]}…`:fullT;if(hint===3)$('#hint').disabled=true};
-  const done=(wordOk,artOk,msg)=>{const clean=wordOk&&artOk&&tries===1&&hint<3;score(clean,hint===0?10:hint===1?7:4);review(w.id,clean?true:wordOk&&artOk?'retry':false,'typen');if(clean)grown.push(w.id);
+  const done=(wordOk,artOk,msg)=>{const clean=wordOk&&artOk&&tries===1&&hint<3;if(q._probe){probeDone(w,clean&&hint===0);if(clean&&hint===0)score(true,10)}else{score(clean,hint===0?10:hint===1?7:4);review(w.id,clean?true:wordOk&&artOk?'retry':false,'typen')}if(clean)grown.push(w.id);
     $('#fb').innerHTML=fbBox(wordOk&&artOk,msg,'');say(gapFull(w));inp.disabled=true;$('#hint').disabled=true;
     const c=$('#chk');if(c)c.outerHTML=nextBtn(wordOk&&artOk?'btn-leaf':'btn-main');else $('#fb').insertAdjacentHTML('beforeend',nextBtn(wordOk&&artOk?'btn-leaf':'btn-main'));$('#nx').onclick=next};
   const checkGap=()=>{let a=norm(inp.value);if(!a)return;
@@ -2069,7 +2093,7 @@ H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${w.art} ${w.w}`,full=e
     if(ok){msg=`<b>${full}</b>. ${esc(w.ex)}`;th=ts('recall.yes',{full})}
     else if(a===norm(w.w)){msg=t('recall.addArt',{art:w.art,full});th=ts('recall.addArt',{art:w.art,full})}
     else if(a.endsWith(norm(w.w))){msg=t('recall.wrongArt',{art:w.art,full});th=ts('recall.wrongArt',{art:w.art,full})}
-    if(ok||tries>1||msg){const clean=ok&&tries===1&&hint<3;score(clean,hint===0?10:hint===1?7:4);review(w.id,clean?true:ok?'retry':false,'typen');if(clean)grown.push(w.id);
+    if(ok||tries>1||msg){const clean=ok&&tries===1&&hint<3;if(q._probe){probeDone(w,clean&&hint===0);if(clean&&hint===0)score(true,10)}else{score(clean,hint===0?10:hint===1?7:4);review(w.id,clean?true:ok?'retry':false,'typen')}if(clean)grown.push(w.id);
       $('#fb').innerHTML=fbBox(ok,msg||`${t('recall.answer',{full})} ${esc(w.ex)}`,th||ts('recall.answer',{full}));say(fullT);inp.disabled=true;$('#hint').disabled=true;
       $('#chk').outerHTML=nextBtn(ok?'btn-leaf':'btn-main');$('#nx').onclick=next}
     else $('#fb').innerHTML=fbK(false,'try.again')};

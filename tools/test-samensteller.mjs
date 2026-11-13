@@ -22,14 +22,17 @@ const answer = q => {
   }
 };
 const sig = r => r.q.map(x => x.type + ':' + (x.w ? x.w.id : (x.exid || '').replace(/#\d+$/, '#') || x.x || '')).join(' ');
-const sigs = [], tooMany = [];
+const sigs = [], tooMany = [], stofOver = [];
 for (let d = 0; d < 7; d++) {
   ctx.NOW = BASE + d * DAY; S.days[Math.floor(ctx.NOW / DAY) * DAY] = 1;
+  stofOver.push(ctx.api.get().NL.some(w => !S.introduced.includes(w.id)));
   const r = lesson(false); sigs.push(sig(r)); answer(r.q);
   for (const step of [3, 4]) { const t = r.q.filter(x => x.step === step && x.type !== 'explain').map(x => x.type); for (let i = 2; i < t.length; i++) if (t[i] === t[i - 1] && t[i] === t[i - 2]) tooMany.push('dag ' + d + ' stap ' + step + ': ' + t.join(',')); }
 }
 ok('de les is elke dag anders (7 dagen)', new Set(sigs).size === 7, sigs.join('\n     '));
-ok('elke les heeft oefenen (stap 3) en rekenen (stap 4)', sigs.every(s => / (build|gap|listen|dictee):/.test(s)) && sigs.every(s => /(money|clock|discount):/.test(s)));
+const size = x => new Set(x.split(' ').filter(t => !/^(card|conf|end|explain):/.test(t))).size;
+ok('elke les heeft minstens 8 verschillende onderdelen zolang er nieuwe lesstof is (docs/toets-per-stap.md, punt 8)', sigs.every((x, d) => !stofOver[d] || size(x) >= 8), sigs.map(size).join(','));
+if (stofOver.some(v => !v)) console.log('     LET OP: de nieuwe woorden van nl-t1 zijn op dag ' + stofOver.indexOf(false) + ' op; daarna worden de rondes korter (meer lesstof nodig, plan spoor A)');
 const nlKinds = ctx.api.get().PACKS.filter(p => p.learn === 'nl').flatMap(p => p.items || []).filter(x => ['rule', 'sound', 'skill'].includes(x.kind)).map(x => x.id);
 const notYet = nlKinds.filter(id => !(S.items[id] && S.items[id].reps > 0));
 ok('na 7 dagen zijn alle regels, klanken en rekenvaardigheden aan bod geweest', !notYet.length, notYet.join(', '));
@@ -96,5 +99,35 @@ ok('de leerklok kan niet struikelen over het laden', html.includes('function lea
   const types = [...r1, ...r2, ...r3].filter(x => x.w && x.step === 1).map(x => x.type);
   ok('woordvormen wisselen over de rondes (niet alleen typen)', new Set(types).size >= 2, types.join(','));
   ok('na de les: Verder leren start meteen een nieuwe ronde', html.includes("id=\"c-next\"") && html.includes("$('#c-next').onclick=()=>startLesson(false)"));
+}
+// punt 1 (14 november): nieuw woord eerst als vraag, dagbudget, spreiding binnen een ronde
+{ const S5 = { v: 2, introduced: [], items: {}, explained: {}, rounds: {}, log: [], days: {}, newPerDay: 16, newLog: {} };
+  const c5 = await boot({ S: S5, random: rnd }); c5.NOW = BASE;
+  let q = null; c5.runSession = (n, x) => { q = x; }; c5.api.startLesson(false);
+  const probes = q.filter(x => x._probe), learns = q.filter(x => x.type === 'learn'), recogs = q.filter(x => x.type === 'recog' && x._ifUnknown);
+  ok('nieuw woord: eerst als vraag (typen), dan de leerkaart, dan later de kiesvraag', probes.length > 0 && probes.every(x => x.type === 'recall') && learns.length === probes.length && recogs.length === probes.length);
+  const lastLearn = q.map(x => x.type).lastIndexOf('learn'), firstRecog = q.findIndex(x => x.type === 'recog' && x._ifUnknown);
+  ok('de kiesvraag komt na minstens drie andere onderdelen', firstRecog - lastLearn >= 4, 'afstand ' + (firstRecog - lastLearn));
+  const per = {}; q.filter(x => x.w).forEach(x => per[x.w.id] = (per[x.w.id] || 0) + 1);
+  ok('een woord hooguit drie keer per ronde (vraag, leerkaart, kiesvraag)', Object.values(per).every(n => n <= 3), JSON.stringify(per));
+  S5.newLog[Math.floor(c5.NOW / DAY) * DAY] = 16; c5.api.startLesson(false);
+  S5.newLog = {}; S5.rounds[Math.floor(c5.NOW / DAY) * DAY] = 2; c5.api.startLesson(false);
+  ok('ook een latere ronde op dezelfde dag krijgt nieuwe woorden (zolang het dagbudget het toelaat)', q.some(x => x._probe));
+  S5.rounds = {}; S5.newLog[Math.floor(c5.NOW / DAY) * DAY] = 16; c5.api.startLesson(false);
+  ok('dagbudget op: geen nieuwe woorden meer vandaag', !q.some(x => x._probe));
+  S5.newLog = {}; S5.newPerDay = 8; S5.newLog[Math.floor(c5.NOW / DAY) * DAY] = 6; c5.api.startLesson(false);
+  ok('dagbudget 8 met 6 al gebruikt: hooguit 2 nieuw', q.filter(x => x._probe).length === 2);
+  // de eerste vraag goed = al gekend: grote sprong, niet in het budget
+  vm.runInContext(fnBlock('probeDone') + '\nthis.pd=probeDone;let KNOWN=new Set();', c5);
+  const w = c5.api.get().NL[5]; S5.newLog = {}; c5.pd(w, true);
+  ok('eerste vraag goed: bloem (14 dagen), controle na twee weken, telt niet mee', S5.items[w.id].s === 14 && S5.items[w.id].due === c5.NOW + 14 * DAY && !(S5.newLog[Math.floor(c5.NOW / DAY) * DAY]));
+  const w2 = c5.api.get().NL[6]; c5.pd(w2, false);
+  ok('eerste vraag niet goed: gewoon nieuw, telt mee in het budget, geen fout', S5.items[w2.id].lapses === 0 && S5.newLog[Math.floor(c5.NOW / DAY) * DAY] === 1);
+  // na een fout: één keer terug, minstens vijf onderdelen later, in een andere vorm
+  vm.runInContext('let Q=[],qi=0,RETRIED=new Set();' + line('const OTHER=') + '\n' + fnBlock('easierEx') + '\n' + fnBlock('retryLater') + '\nthis.rt={retryLater,set:(x,i)=>{Q=x;qi=i},get:()=>Q};', c5);
+  const ww = c5.api.get().NL[0], Q0 = [{ type: 'recall', w: ww, step: 1 }, ...Array.from({ length: 8 }, (_, i) => ({ type: 'card', step: 2, i })), { type: 'conf', step: 5 }, { type: 'end', step: 5 }];
+  c5.rt.set(Q0, 0); c5.rt.retryLater(Q0[0]); c5.rt.retryLater(Q0[0]);
+  const Qn = c5.rt.get(), ri = Qn.findIndex(x => x._retry);
+  ok('na een fout: één keer terug, zes plekken later, in een andere vorm', ri === 6 && Qn[ri].type === 'recog' && Qn.filter(x => x._retry).length === 1);
 }
 console.log(fails ? fails + ' FOUT' : 'alles OK');

@@ -1,7 +1,7 @@
 {
  "format": 1,
  "id": "nl-t1",
- "version": 4,
+ "version": 5,
  "learn": "nl",
  "level": "A2-B1",
  "order": 10,
@@ -1471,6 +1471,18 @@
      "recog"
     ]
    }
+  },
+  {
+   "step": 2,
+   "words": "new",
+   "forms": [
+    "learn"
+   ],
+   "then": [
+    "recog"
+   ],
+   "max": 3,
+   "maxBusy": 1
   },
   {
    "step": 3,

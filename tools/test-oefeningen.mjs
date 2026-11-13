@@ -30,7 +30,7 @@ ok('bedrag 1.064,50 = 1064.5',amount('1.064,50')===1064.5);
 ok('bedrag "6 4" geweigerd',Number.isNaN(amount('6 4')));
 ok('onbegrijpelijk bedrag telt niet als poging',/if\(Number\.isNaN\(v\)\)\{[^}]*return\}/.test(h));
 // deelpunten
-const sc=vm.createContext({sp:0,sessTotal:0,sessRight:0,pts:0,SESS:[]});sc.addPts=n=>{sc.pts+=n};
+const sc=vm.createContext({sp:0,sessTotal:0,sessRight:0,pts:0,SESS:[],retryLater(){},Q:[],qi:0});sc.addPts=n=>{sc.pts+=n};
 vm.runInContext(grab('score'),sc);
 vm.runInContext('score(false,15,6)',sc);ok('deelpunten dictee worden opgeslagen (#25)',sc.pts===6&&sc.sp===6);
 // taalwissel

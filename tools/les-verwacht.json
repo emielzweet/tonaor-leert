@@ -8,6 +8,16 @@
     "label": "Ophalen"
    },
    {
+    "type": "recall",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
     "type": "learn",
     "step": 1,
     "w": "werk"
@@ -18,14 +28,24 @@
     "w": "dienst"
    },
    {
-    "type": "recog",
-    "step": 1,
-    "w": "werk"
+    "type": "recall",
+    "step": 2,
+    "w": "collega"
    },
    {
-    "type": "recog",
-    "step": 1,
-    "w": "dienst"
+    "type": "recall",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "pauze"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "fabriek"
    },
    {
     "type": "learn",
@@ -46,26 +66,6 @@
     "type": "learn",
     "step": 2,
     "w": "fabriek"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "fabriek"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "rooster"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "collega"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "pauze"
    },
    {
     "type": "card",
@@ -75,16 +75,46 @@
    {
     "type": "build",
     "step": 3,
-    "s": "Om zes uur begint mijn dienst."
+    "s": "In de pauze drink ik thee."
    },
    {
     "type": "gap",
     "step": 3,
-    "s": "Zaterdag ___ ik vrij."
+    "s": "Mijn collega ___ een fiets."
    },
    {
     "type": "dictee",
     "step": 3
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "fabriek"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "pauze"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "collega"
    },
    {
     "type": "explain",
@@ -101,7 +131,7 @@
    {
     "type": "clock",
     "step": 4,
-    "c": "kwart over tien"
+    "c": "half twee"
    },
    {
     "type": "conf",
@@ -122,6 +152,16 @@
     "label": "Ophalen"
    },
    {
+    "type": "recall",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
     "type": "learn",
     "step": 1,
     "w": "werk"
@@ -132,42 +172,32 @@
     "w": "dienst"
    },
    {
-    "type": "recog",
-    "step": 1,
-    "w": "werk"
-   },
-   {
-    "type": "recog",
-    "step": 1,
-    "w": "dienst"
-   },
-   {
-    "type": "learn",
+    "type": "recall",
     "step": 2,
     "w": "collega"
    },
    {
-    "type": "learn",
+    "type": "recall",
     "step": 2,
     "w": "rooster"
    },
    {
-    "type": "learn",
+    "type": "recall",
     "step": 2,
     "w": "pauze"
    },
    {
-    "type": "recog",
-    "step": 2,
-    "w": "rooster"
-   },
-   {
-    "type": "recog",
+    "type": "learn",
     "step": 2,
     "w": "collega"
    },
    {
-    "type": "recog",
+    "type": "learn",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "learn",
     "step": 2,
     "w": "pauze"
    },
@@ -191,6 +221,31 @@
     "step": 3
    },
    {
+    "type": "recog",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "pauze"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "collega"
+   },
+   {
     "type": "explain",
     "step": 4
    },
@@ -205,7 +260,7 @@
    {
     "type": "clock",
     "step": 4,
-    "c": "zes uur"
+    "c": "twee uur"
    },
    {
     "type": "conf",
@@ -246,6 +301,26 @@
     "w": "fabriek"
    },
    {
+    "type": "recall",
+    "step": 2,
+    "w": "salaris"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "vrijedag"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "afspraak"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "fiets"
+   },
+   {
     "type": "learn",
     "step": 2,
     "w": "salaris"
@@ -264,26 +339,6 @@
     "type": "learn",
     "step": 2,
     "w": "fiets"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "vrijedag"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "fiets"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "salaris"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "afspraak"
    },
    {
     "type": "card",
@@ -303,6 +358,26 @@
    {
     "type": "dictee",
     "step": 3
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "vrijedag"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "fiets"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "salaris"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "afspraak"
    },
    {
     "type": "explain",
@@ -351,41 +426,31 @@
    },
    {
     "type": "recall",
-    "step": 1,
-    "w": "werk"
-   },
-   {
-    "type": "recall",
-    "step": 1,
-    "w": "collega"
-   },
-   {
-    "type": "learn",
     "step": 2,
     "w": "machine"
    },
    {
-    "type": "learn",
+    "type": "recall",
     "step": 2,
     "w": "leidinggevende"
    },
    {
-    "type": "learn",
+    "type": "recall",
     "step": 2,
     "w": "salaris"
    },
    {
-    "type": "recog",
-    "step": 2,
-    "w": "leidinggevende"
-   },
-   {
-    "type": "recog",
+    "type": "learn",
     "step": 2,
     "w": "machine"
    },
    {
-    "type": "recog",
+    "type": "learn",
+    "step": 2,
+    "w": "leidinggevende"
+   },
+   {
+    "type": "learn",
     "step": 2,
     "w": "salaris"
    },
@@ -407,6 +472,21 @@
    {
     "type": "dictee",
     "step": 3
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "leidinggevende"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "machine"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "salaris"
    },
    {
     "type": "explain",
@@ -452,16 +532,6 @@
     "type": "recall",
     "step": 1,
     "w": "geld"
-   },
-   {
-    "type": "recall",
-    "step": 1,
-    "w": "werk"
-   },
-   {
-    "type": "recall",
-    "step": 1,
-    "w": "dienst"
    },
    {
     "type": "card",
@@ -518,6 +588,16 @@
     "label": "Ophalen"
    },
    {
+    "type": "recall",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
     "type": "learn",
     "step": 1,
     "w": "werk"
@@ -528,19 +608,39 @@
     "w": "dienst"
    },
    {
-    "type": "recog",
-    "step": 1,
-    "w": "werk"
+    "type": "recall",
+    "step": 2,
+    "w": "collega"
    },
    {
-    "type": "recog",
-    "step": 1,
-    "w": "dienst"
+    "type": "recall",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "pauze"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "collega"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "pauze"
    },
    {
     "type": "build",
     "step": 3,
-    "s": "Zaterdag heb ik vrij."
+    "s": "In de pauze drink ik thee."
    },
    {
     "type": "gap",
@@ -550,6 +650,31 @@
    {
     "type": "explain",
     "step": 4
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "pauze"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "collega"
    },
    {
     "type": "money",
@@ -585,27 +710,62 @@
    },
    {
     "type": "recall",
-    "step": 1,
-    "w": "dienst"
+    "step": 2,
+    "w": "afspraak"
    },
    {
     "type": "recall",
-    "step": 1,
-    "w": "collega"
+    "step": 2,
+    "w": "fiets"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "huis"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "afspraak"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "fiets"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "huis"
    },
    {
     "type": "build",
     "step": 3,
-    "s": "In de pauze drink ik thee."
+    "s": "Morgen werk ik in Zwaag."
    },
    {
     "type": "gap",
     "step": 3,
-    "s": "Zaterdag ___ ik vrij."
+    "s": "Wij ___ morgen een afspraak."
    },
    {
     "type": "explain",
     "step": 4
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "fiets"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "huis"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "afspraak"
    },
    {
     "type": "money",
