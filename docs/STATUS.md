@@ -26,7 +26,7 @@ Bijgewerkt: 13 november 2026 (later).
 ## Open besluiten voor de eigenaar
 
 - Release van de commits hierboven.
-- Akkoord op het ontwerp van fase 3 (herhaalmodel), zodra het in `docs/` staat.
+- Akkoord op het ontwerp van fase 3: `docs/herhaalmodel.md` (vier besluiten in sectie 14). Eenmalige review door de ontwerpsessie gevraagd.
 
 ## Volgorde
 
