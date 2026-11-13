@@ -104,9 +104,9 @@ ok('de leerklok kan niet struikelen over het laden', html.includes('function lea
 { const S5 = { v: 2, introduced: [], items: {}, explained: {}, rounds: {}, log: [], days: {}, newPerDay: 16, newLog: {} };
   const c5 = await boot({ S: S5, random: rnd }); c5.NOW = BASE;
   let q = null; c5.runSession = (n, x) => { q = x; }; c5.api.startLesson(false);
-  const probes = q.filter(x => x._probe), learns = q.filter(x => x.type === 'learn'), recogs = q.filter(x => x.type === 'recog' && x._ifUnknown);
+  const probes = q.filter(x => x._probe), learns = q.filter(x => x.type === 'learn'), recogs = q.filter(x => x._ifUnknown && x.type !== 'learn');
   ok('nieuw woord: eerst als vraag (typen), dan de leerkaart, dan later de kiesvraag', probes.length > 0 && probes.every(x => x.type === 'recall') && learns.length === probes.length && recogs.length === probes.length);
-  const lastLearn = q.map(x => x.type).lastIndexOf('learn'), firstRecog = q.findIndex(x => x.type === 'recog' && x._ifUnknown);
+  const lastLearn = q.map(x => x.type).lastIndexOf('learn'), firstRecog = q.findIndex(x => x._ifUnknown && x.type !== 'learn');
   ok('de kiesvraag komt na minstens drie andere onderdelen', firstRecog - lastLearn >= 4, 'afstand ' + (firstRecog - lastLearn));
   const per = {}; q.filter(x => x.w).forEach(x => per[x.w.id] = (per[x.w.id] || 0) + 1);
   ok('een woord hooguit drie keer per ronde (vraag, leerkaart, kiesvraag)', Object.values(per).every(n => n <= 3), JSON.stringify(per));

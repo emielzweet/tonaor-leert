@@ -1641,13 +1641,25 @@ function dayBudget(){return [8,16,24].includes(S.newPerDay)?S.newPerDay:16}
 function newLeft(){return Math.max(0,dayBudget()-((S.newLog||{})[today()]||0))}
 function newWords(cap,step,words,q,later){const busy=Object.keys(S.items).filter(id=>thirsty(id)).length>40;if(busy)return;
   const inQ=new Set(q.filter(x=>x.w).map(x=>x.w.id)),nw=words.filter(w=>!S.introduced.includes(w.id)&&!inQ.has(w.id)).slice(0,Math.max(0,Math.min(cap,newLeft()-NEWPLAN)));NEWPLAN+=nw.length;
-  nw.forEach(w=>q.push({type:'recall',step,w,_probe:1,_new:1}));
-  nw.forEach(w=>q.push({type:'learn',step,w,_ifUnknown:1,_new:1}));
-  shuffle(nw).forEach(w=>later.push({type:'recog',step,w,_ifUnknown:1,_new:1}))}
+  nw.forEach(w=>{q.push({type:'recall',step,w,_probe:1,_new:1});q.push({type:'learn',step,w,_ifUnknown:1,_new:1})});   // vraag en leerkaart om en om
+  let speak=false;try{speak=typeof window!=='undefined'&&!!window.speechSynthesis&&!QUIET}catch(e){}
+  shuffle(nw).forEach((w,i)=>later.push({type:i%2?(speak?'hear':'recall'):'recog',step,w,_ifUnknown:1,_new:1}))}   // tweede ontmoeting in wisselende vorm
 /* Bijsturen: lengte van een ronde (kort 0,6, normaal 1, lang 1,5 keer de aantallen uit het recept) en de inschatting na de vorige ronde:
    te makkelijk = één nieuw woord meer en kiezen wordt typen, te moeilijk = één minder en typen wordt kiezen (binnen de grenzen) */
 function lenF(){return {kort:.6,normaal:1,lang:1.5}[S.roundLen]||1}
 function feel(){const c=(S.conf||[])[0];return c&&['makkelijk','goed','moeilijk'].includes(c.c)?c.c:'goed'}
+/* te kleine ronde (minder dan 8 verschillende onderdelen): aanvullen met ander soort werk, niet met dezelfde woorden
+   (advies ontwerpsessie A2): eerst nieuwe woorden binnen het dagbudget, dan sommen met nieuwe getallen (rekenvaardigheden die er al zijn). */
+function topUp(q,learn,words,later,used){const ids=()=>new Set(q.concat(later).map(x=>x.w?x.w.id:x.items&&x.items[0]).filter(Boolean));
+  if(ids().size<8)newWords(8-ids().size,2,words,q,later);
+  if(ids().size<8){const LS=lastSeen(),sk=PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>x.kind==='skill'&&S.items[x.id]&&!used.has(x.id)).map(x=>x.id).sort((a,b)=>(LS[a]||0)-(LS[b]||0));
+    for(const id of sk){if(ids().size>=8)break;const e=shuffle(exsFor(id,learn).filter(x=>x.gen&&!(QUIET&&x.form==='listen')))[0];if(!e)continue;const x=exQ(e,4,learn,id);if(!x)continue;used.add(id);const xid=S.items[id].reps===0&&explForItem(id,learn);if(xid&&!(S.explained||{})[xid])q.push({type:'explain',step:4,x:xid,lang:learn});q.push(x)}}}
+/* drie gelijke vormen achter elkaar breken door een verplaatsbaar onderdeel ertussen te zetten (geen vraag, leerkaart of kiesvraag van een nieuw woord) */
+function breakTriples(q){const free=(x,n)=>!x._probe&&!x._ifUnknown&&x.type!=='learn'&&!['card','conf','end','explain'].includes(x.type)&&!(n>0&&q[n-1].type==='explain');
+  const real=i=>!['card','conf','end','explain','learn'].includes(q[i].type);
+  for(let k=0;k<3;k++)for(let i=2;i<q.length;i++){if(!real(i)||!real(i-1)||!real(i-2))continue;const t=q[i].type;if(q[i-1].type!==t||q[i-2].type!==t)continue;
+    const j=q.findIndex((x,n)=>n>i&&free(x,n)&&x.type!==t);if(j<0)continue;const [m]=q.splice(j,1);q.splice(i-1,0,m)}
+  return q}
 function compose(recipe,learn){const used=new Set(),later=[];NEWPLAN=0;recipe=(recipe||[]).map(s=>{const o={...s},f=lenF(),fe=feel();if(o.max!=null)o.max=Math.max(1,Math.round(o.max*f)+(o.words==='new'?(fe==='makkelijk'?1:fe==='moeilijk'?-1:0):0));if(o.practice)o.practice={...o.practice,n:Math.max(1,Math.round(o.practice.n*f))};return o});const q=[],words=learn==='en'?EN:NL,R=id=>S.items[id];
   const dueAll=words.filter(w=>thirsty(w.id));
   for(const s of recipe||[]){
@@ -1663,13 +1675,14 @@ function compose(recipe,learn){const used=new Set(),later=[];NEWPLAN=0;recipe=(r
     else if(s.words==='new'){let cap=isEnglishDay()&&s.max2!=null?s.max2:s.max;if(learn!=='en'&&S.placement&&S.placement.lv&&S.placement.lv.woorden!=null&&S.placement.lv.woorden<.34)cap=Math.min(cap,3);   // lage woordscore in de startmeting
       newWords(cap,s.step,words,q,later)}
     else if(s.pool){const n=isEnglishDay()&&s.n2!=null?s.n2:s.n;shuffle(PACKS.flatMap(p=>p.exercises||[]).filter(e=>e.pool===s.pool)).slice(0,n).forEach(e=>{const x=exQ(e,s.step,learn);if(x)q.push(x)})}
-    else if(s.ex){const e=EXS[s.ex];if(!e)continue;if(QUIET&&(e.form==='listen'||e.form==='dictee'))continue;/* stille stand */const x=exQ(e,s.step,(PACKS.find(p=>(p.exercises||[]).includes(e))||{}).learn==='en'?'en':learn);if(x)q.push(x)}
+    else if(s.ex){const e=EXS[s.ex];if(!e)continue;{const tid=(e.items||[])[0];if(tid&&q.filter(x=>(x.w&&x.w.id===tid)||(x.items&&x.items[0]===tid)).length>=2)continue}if(QUIET&&(e.form==='listen'||e.form==='dictee'))continue;/* stille stand */const x=exQ(e,s.step,(PACKS.find(p=>(p.exercises||[]).includes(e))||{}).learn==='en'?'en':learn);if(x)q.push(x)}
     else if(s.practice)practice(s,learn,used).forEach(x=>q.push(x));
-    else if(s.end){q.push({type:'conf',step:s.step});q.push({type:'end',step:s.step})}
+    else if(s.end){if(learn!=='en')topUp(q,learn,words,later,used);q.push({type:'conf',step:s.step});q.push({type:'end',step:s.step})}
   }
-  if(later.length){const lastLearn=q.map(x=>x.type).lastIndexOf('learn'),conf=q.findIndex(x=>x.type==='conf'),at=conf<0?q.length:conf;   // kiesvragen voor nieuwe woorden: na minstens drie andere onderdelen
-    const pos=Math.max(Math.min(lastLearn+4,at),q.findIndex((x,i)=>i>lastLearn&&x.step>=4)<0?at:q.findIndex((x,i)=>i>lastLearn&&x.step>=4));q.splice(Math.min(pos,at),0,...later)}
-  return q}
+  if(later.length){const real=x=>!['card','conf','end','explain'].includes(x.type);let i=q.map(x=>x.type).lastIndexOf('learn')+1,cnt=0,k=0;   // kiesvragen voor nieuwe woorden: na drie echte onderdelen, daarna telkens twee ertussen
+    while(k<later.length){const conf=q.findIndex(x=>x.type==='conf'),at=conf<0?q.length:conf;if(i>=at){q.splice(at,0,...later.slice(k));break}
+      if(real(q[i])&&q[i-1].type!=='explain')cnt++;if(cnt>=(k===0?3:2)&&(i+1>=q.length||q[i+1].type!=='explain'||true)){if(q[i].type==='explain'){i++;continue}q.splice(i+1,0,later[k]);k++;cnt=0;i+=2;continue}i++}}
+  return breakTriples(q)}
 /* ============ leertijd en weekdoel ============
    Het streven is S.weekGoal minuten per week (standaard 600 = 10 uur; op Ik 3,5, 5, 7 of 10 uur; S.weekGoalSet = zelf gekozen). Het dagdeel is een zevende daarvan.
    Alle leertijd telt: les, uitleg, verhaal, snelronde, gesprek, dagboek, kijkopdracht. De klok loopt alleen bij actieve tijd:

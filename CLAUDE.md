@@ -19,6 +19,7 @@ Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteun
 ## Werkwijze per fase: ontwerp, akkoord, bouw, review (afspraak met Emiel, 13 nov 2026)
 
 Eén sessie kan alles zelfstandig. Een aparte ontwerp- of reviewsessie is optioneel en blokkeert nooit.
+- **Toets per stap:** elke stap gaat langs `docs/toets-per-stap.md`: vóór het bouwen (welke regel, herkomst van elk getal, een doorgerekende week, genoeg lesstof, bijsturen, wat het wegneemt), vóór de release (zelf drie rondes spelen als de leerder op 375 px, de ervaringstest `node tools/test-ervaring.mjs`, met `--streng` ook de lesstof, en een review langs de lijst) en erna (de leerder vragen, na een week de cijfers ernaast leggen). Tests groen is niet genoeg.
 - **Kaders:** ontwerp en lesstof volgen `docs/bouwplan.md`, `docs/kwaliteitskader.md`, `docs/uitleg.md` en `docs/pakketformaat.md`.
 - **Eerst ontwerp, dan akkoord:** voor een nieuwe fase of grote functie eerst een kort ontwerp in `docs/`: wat het doet, wat er voor de leerder verandert, wat kan breken (voortgang in `localStorage`, EDGE-koppeling, de les van `test-les`) en welke keuzes Emiel moet maken. Pas bouwen na Emiels akkoord.
 - **Bouwen:** tests bij elke wijziging, alle `tools/test-*.mjs` groen, controle in de browser op 375 px, lokaal committen per afgerond stuk.

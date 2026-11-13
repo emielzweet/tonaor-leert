@@ -13,14 +13,14 @@
     "w": "werk"
    },
    {
-    "type": "recall",
-    "step": 1,
-    "w": "dienst"
-   },
-   {
     "type": "learn",
     "step": 1,
     "w": "werk"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "dienst"
    },
    {
     "type": "learn",
@@ -33,12 +33,27 @@
     "w": "collega"
    },
    {
+    "type": "learn",
+    "step": 2,
+    "w": "collega"
+   },
+   {
     "type": "recall",
     "step": 2,
     "w": "rooster"
    },
    {
+    "type": "learn",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
     "type": "recall",
+    "step": 2,
+    "w": "pauze"
+   },
+   {
+    "type": "learn",
     "step": 2,
     "w": "pauze"
    },
@@ -46,21 +61,6 @@
     "type": "recall",
     "step": 2,
     "w": "fabriek"
-   },
-   {
-    "type": "learn",
-    "step": 2,
-    "w": "collega"
-   },
-   {
-    "type": "learn",
-    "step": 2,
-    "w": "rooster"
-   },
-   {
-    "type": "learn",
-    "step": 2,
-    "w": "pauze"
    },
    {
     "type": "learn",
@@ -83,40 +83,6 @@
     "s": "Mijn collega ___ een fiets."
    },
    {
-    "type": "dictee",
-    "step": 3
-   },
-   {
-    "type": "recog",
-    "step": 1,
-    "w": "werk"
-   },
-   {
-    "type": "recog",
-    "step": 1,
-    "w": "dienst"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "fabriek"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "pauze"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "rooster"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "collega"
-   },
-   {
     "type": "explain",
     "step": 4
    },
@@ -132,6 +98,36 @@
     "type": "clock",
     "step": 4,
     "c": "half twee"
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "fabriek"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "pauze"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "collega"
    },
    {
     "type": "conf",
@@ -157,14 +153,14 @@
     "w": "werk"
    },
    {
-    "type": "recall",
-    "step": 1,
-    "w": "dienst"
-   },
-   {
     "type": "learn",
     "step": 1,
     "w": "werk"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "dienst"
    },
    {
     "type": "learn",
@@ -177,7 +173,17 @@
     "w": "collega"
    },
    {
+    "type": "learn",
+    "step": 2,
+    "w": "collega"
+   },
+   {
     "type": "recall",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "learn",
     "step": 2,
     "w": "rooster"
    },
@@ -185,16 +191,6 @@
     "type": "recall",
     "step": 2,
     "w": "pauze"
-   },
-   {
-    "type": "learn",
-    "step": 2,
-    "w": "collega"
-   },
-   {
-    "type": "learn",
-    "step": 2,
-    "w": "rooster"
    },
    {
     "type": "learn",
@@ -217,35 +213,6 @@
     "s": "Wij ___ morgen een afspraak."
    },
    {
-    "type": "dictee",
-    "step": 3
-   },
-   {
-    "type": "recog",
-    "step": 1,
-    "w": "werk"
-   },
-   {
-    "type": "recog",
-    "step": 1,
-    "w": "dienst"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "rooster"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "pauze"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "collega"
-   },
-   {
     "type": "explain",
     "step": 4
    },
@@ -261,6 +228,31 @@
     "type": "clock",
     "step": 4,
     "c": "twee uur"
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "pauze"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "collega"
    },
    {
     "type": "conf",
@@ -286,14 +278,28 @@
     "w": "werk"
    },
    {
+    "type": "build",
+    "step": 3,
+    "s": "Om zes uur begint mijn dienst."
+   },
+   {
     "type": "recall",
     "step": 1,
     "w": "pauze"
    },
    {
+    "type": "gap",
+    "step": 3,
+    "s": "Wij ___ morgen een afspraak."
+   },
+   {
     "type": "recall",
     "step": 1,
     "w": "collega"
+   },
+   {
+    "type": "dictee",
+    "step": 3
    },
    {
     "type": "recall",
@@ -306,12 +312,27 @@
     "w": "salaris"
    },
    {
+    "type": "learn",
+    "step": 2,
+    "w": "salaris"
+   },
+   {
     "type": "recall",
     "step": 2,
     "w": "vrijedag"
    },
    {
+    "type": "learn",
+    "step": 2,
+    "w": "vrijedag"
+   },
+   {
     "type": "recall",
+    "step": 2,
+    "w": "afspraak"
+   },
+   {
+    "type": "learn",
     "step": 2,
     "w": "afspraak"
    },
@@ -319,21 +340,6 @@
     "type": "recall",
     "step": 2,
     "w": "fiets"
-   },
-   {
-    "type": "learn",
-    "step": 2,
-    "w": "salaris"
-   },
-   {
-    "type": "learn",
-    "step": 2,
-    "w": "vrijedag"
-   },
-   {
-    "type": "learn",
-    "step": 2,
-    "w": "afspraak"
    },
    {
     "type": "learn",
@@ -346,38 +352,9 @@
     "label": "Nieuw leren"
    },
    {
-    "type": "build",
-    "step": 3,
-    "s": "Om zes uur begint mijn dienst."
-   },
-   {
-    "type": "gap",
-    "step": 3,
-    "s": "Wij ___ morgen een afspraak."
-   },
-   {
-    "type": "dictee",
-    "step": 3
-   },
-   {
     "type": "recog",
     "step": 2,
     "w": "vrijedag"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "fiets"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "salaris"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "afspraak"
    },
    {
     "type": "explain",
@@ -395,6 +372,21 @@
     "type": "clock",
     "step": 4,
     "c": "zes uur"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "fiets"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "salaris"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "afspraak"
    },
    {
     "type": "conf",
@@ -420,6 +412,11 @@
     "w": "dienst"
    },
    {
+    "type": "build",
+    "step": 3,
+    "s": "Om zes uur begint mijn dienst."
+   },
+   {
     "type": "recall",
     "step": 1,
     "w": "rooster"
@@ -430,7 +427,17 @@
     "w": "machine"
    },
    {
+    "type": "learn",
+    "step": 2,
+    "w": "machine"
+   },
+   {
     "type": "recall",
+    "step": 2,
+    "w": "leidinggevende"
+   },
+   {
+    "type": "learn",
     "step": 2,
     "w": "leidinggevende"
    },
@@ -438,16 +445,6 @@
     "type": "recall",
     "step": 2,
     "w": "salaris"
-   },
-   {
-    "type": "learn",
-    "step": 2,
-    "w": "machine"
-   },
-   {
-    "type": "learn",
-    "step": 2,
-    "w": "leidinggevende"
    },
    {
     "type": "learn",
@@ -458,11 +455,6 @@
     "type": "card",
     "step": 2,
     "label": "Nieuw leren"
-   },
-   {
-    "type": "build",
-    "step": 3,
-    "s": "Om zes uur begint mijn dienst."
    },
    {
     "type": "gap",
@@ -477,16 +469,6 @@
     "type": "recog",
     "step": 2,
     "w": "leidinggevende"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "machine"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "salaris"
    },
    {
     "type": "explain",
@@ -504,6 +486,16 @@
     "type": "clock",
     "step": 4,
     "c": "zes uur"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "machine"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "salaris"
    },
    {
     "type": "conf",
@@ -570,6 +562,15 @@
     "c": "half vier"
    },
    {
+    "type": "explain",
+    "step": 4
+   },
+   {
+    "type": "discount",
+    "step": 4,
+    "k": "partial"
+   },
+   {
     "type": "conf",
     "step": 5
    },
@@ -593,14 +594,14 @@
     "w": "werk"
    },
    {
-    "type": "recall",
-    "step": 1,
-    "w": "dienst"
-   },
-   {
     "type": "learn",
     "step": 1,
     "w": "werk"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "dienst"
    },
    {
     "type": "learn",
@@ -613,7 +614,17 @@
     "w": "collega"
    },
    {
+    "type": "learn",
+    "step": 2,
+    "w": "collega"
+   },
+   {
     "type": "recall",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "learn",
     "step": 2,
     "w": "rooster"
    },
@@ -621,16 +632,6 @@
     "type": "recall",
     "step": 2,
     "w": "pauze"
-   },
-   {
-    "type": "learn",
-    "step": 2,
-    "w": "collega"
-   },
-   {
-    "type": "learn",
-    "step": 2,
-    "w": "rooster"
    },
    {
     "type": "learn",
@@ -652,12 +653,16 @@
     "step": 4
    },
    {
+    "type": "money",
+    "step": 4
+   },
+   {
     "type": "recog",
     "step": 1,
     "w": "werk"
    },
    {
-    "type": "recog",
+    "type": "recall",
     "step": 1,
     "w": "dienst"
    },
@@ -667,7 +672,7 @@
     "w": "pauze"
    },
    {
-    "type": "recog",
+    "type": "recall",
     "step": 2,
     "w": "rooster"
    },
@@ -675,10 +680,6 @@
     "type": "recog",
     "step": 2,
     "w": "collega"
-   },
-   {
-    "type": "money",
-    "step": 4
    },
    {
     "type": "conf",
@@ -704,6 +705,11 @@
     "w": "werk"
    },
    {
+    "type": "build",
+    "step": 3,
+    "s": "Morgen werk ik in Zwaag."
+   },
+   {
     "type": "recall",
     "step": 1,
     "w": "pauze"
@@ -714,34 +720,29 @@
     "w": "afspraak"
    },
    {
-    "type": "recall",
-    "step": 2,
-    "w": "fiets"
-   },
-   {
-    "type": "recall",
-    "step": 2,
-    "w": "huis"
-   },
-   {
     "type": "learn",
     "step": 2,
     "w": "afspraak"
    },
    {
-    "type": "learn",
+    "type": "recall",
     "step": 2,
     "w": "fiets"
    },
    {
     "type": "learn",
     "step": 2,
+    "w": "fiets"
+   },
+   {
+    "type": "recall",
+    "step": 2,
     "w": "huis"
    },
    {
-    "type": "build",
-    "step": 3,
-    "s": "Morgen werk ik in Zwaag."
+    "type": "learn",
+    "step": 2,
+    "w": "huis"
    },
    {
     "type": "gap",
@@ -753,12 +754,16 @@
     "step": 4
    },
    {
+    "type": "money",
+    "step": 4
+   },
+   {
     "type": "recog",
     "step": 2,
     "w": "fiets"
    },
    {
-    "type": "recog",
+    "type": "recall",
     "step": 2,
     "w": "huis"
    },
@@ -766,10 +771,6 @@
     "type": "recog",
     "step": 2,
     "w": "afspraak"
-   },
-   {
-    "type": "money",
-    "step": 4
    },
    {
     "type": "conf",
