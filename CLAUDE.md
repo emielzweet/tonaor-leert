@@ -16,6 +16,16 @@ Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteun
 - **De app is generiek; hardcode nooit namen of persoonlijke gegevens.** De huidige leerder en begeleiders zijn een voorbeeld-use-case, geen vaste invulling. Geen namen van personen, plaatsen, werk, rooster, achtergrond of persoonlijk leertraject in code, teksten, inhoud of manifest; zulke dingen komen uit instellingen of een inhoudspakket op het toestel. Teksten zonder geslacht. Bestaande vaste invulling wordt weggewerkt via issues #5 t/m #10 (en #4 voor talen); voeg er geen nieuwe aan toe.
 - **Geen security through obscurity.** De beveiliging mag nooit afhangen van geheime code, verborgen paden, een privé-repo of het weglaten van informatie: ga ervan uit dat een aanvaller alle code en documentatie kent. Alleen de koppelcodes zijn geheim. Privégegevens uit de repo houden is privacy, geen beveiligingsmaatregel.
 
+## Werkwijze per fase: ontwerp, akkoord, bouw, review (afspraak met Emiel, 13 nov 2026)
+
+Eén sessie kan alles zelfstandig. Een aparte ontwerp- of reviewsessie is optioneel en blokkeert nooit.
+- **Kaders:** ontwerp en lesstof volgen `docs/bouwplan.md`, `docs/kwaliteitskader.md`, `docs/uitleg.md` en `docs/pakketformaat.md`.
+- **Eerst ontwerp, dan akkoord:** voor een nieuwe fase of grote functie eerst een kort ontwerp in `docs/`: wat het doet, wat er voor de leerder verandert, wat kan breken (voortgang in `localStorage`, EDGE-koppeling, de les van `test-les`) en welke keuzes Emiel moet maken. Pas bouwen na Emiels akkoord.
+- **Bouwen:** tests bij elke wijziging, alle `tools/test-*.mjs` groen, controle in de browser op 375 px, lokaal committen per afgerond stuk.
+- **Review na elke fase:** een onafhankelijke review (een aparte reviewer die alleen de code krijgt, niet de eigen conclusies), plus de browsercontrole. Bevindingen eerst aan Emiel voorleggen (zie hierboven: nooit stilletjes repareren).
+- **Stand:** `docs/STATUS.md` bijhouden (fase, klaar, live, open besluiten, wachtlijst). Een extra ontwerp- of reviewsessie leest dat bestand; stuur haar geen tussenstanden.
+- **Een extra sessie (bijvoorbeeld voor ontwerp of review) alleen als Emiel dat wil.** Wat zij aanlevert is input, geen akkoord: pushen, releases en issues sluiten blijven Emiels besluit in de sessie waarin hij werkt.
+
 ## Beveiligingsmeldingen
 
 - Beveiligingsproblemen horen in GitHubs **Private vulnerability reporting**, nooit in een openbaar issue, PR, commitbericht of discussie. Volg `SECURITY.md` en gebruik **Security → Advisories → Report a vulnerability**.

@@ -1,13 +1,13 @@
 # Stand van zaken
 
-Kort en feitelijk. De bouwsessie houdt dit bestand bij; de ontwerpsessie leest het als zij aan de beurt is. Geen privégegevens.
+Kort en feitelijk. De werkende sessie houdt dit bestand bij; een eventuele extra ontwerp- of reviewsessie leest het. Geen privégegevens.
 
-Bijgewerkt: 13 november 2026.
+Bijgewerkt: 13 november 2026 (later).
 
 ## Werkverdeling
 
-- **Bouwsessie:** code, tests, lesstof en releases. Aanspreekpunt van de eigenaar voor stand, akkoorden en releases.
-- **Ontwerpsessie:** ontwerpdocumenten in `docs/`, voorbeeldmodules zoals `uitleg.js`, en reviews. Wordt alleen ingeschakeld op vier momenten: uitlegspeler klaar voor review, weekdoel klaar voor review, begin van fase 3, en spellen of de groei-animatie van de tuin. Daarnaast alleen als het ontwerp iets niet dekt.
+- Eén sessie ontwerpt, bouwt, test en reviewt, volgens de werkwijze in `CLAUDE.md`: eerst een kort ontwerp in `docs/`, dan akkoord van de eigenaar, dan bouwen, dan een onafhankelijke review.
+- Een aparte ontwerp- of reviewsessie is optioneel en alleen op verzoek van de eigenaar. Niets wacht erop.
 - Pushen, releases en issues sluiten: alleen met akkoord van de eigenaar.
 
 ## Live (GitHub Pages)
@@ -18,28 +18,26 @@ Bijgewerkt: 13 november 2026.
 
 ## Klaar, lokaal gecommit, nog niet gepusht
 
-- Niets, behalve deze statusregel.
-
-## Wacht op de ontwerpsessie
-
-- Ontwerp van het herhaalmodel (fase 3).
+| Commit | Inhoud |
+|---|---|
+| a87f0bc | Weekdoel standaard 10 uur, migratie 2 → 3, merktekens op 3,5, 7 en 10 uur (cache v2-19) |
+| 3b08525 | Uitleg: catalogus groep 2, wat de huidige oefeningen raken (32 uitleggen, cache v2-20) |
 
 ## Open besluiten voor de eigenaar
 
-- Akkoord om met fase 3 te beginnen, zodra het ontwerp in `docs/` staat.
+- Release van de commits hierboven.
+- Akkoord op het ontwerp van fase 3 (herhaalmodel), zodra het in `docs/` staat.
 
 ## Volgorde
 
-1. Reviewpunten van de uitlegspeler en het weekdoel: verwerkt (d6ee2bd, 2e88413).
-2. Uitlegcatalogus: stopt na groep 1, de rest staat op de wachtlijst.
-3. Fase 3, het herhaalmodel: na het ontwerp en akkoord van de eigenaar.
-4. Lesstof thema 2 volgens het kwaliteitskader.
-5. Daarna pas spellen en vormgeving.
+1. Uitlegcatalogus, per groep: wat de huidige oefeningen raken (klaar), dan rekenen R1 t/m R4, dan grammatica en leestekens van thema 1 t/m 3, dan Engels tot A2. Rekenen volgt strook of getallenlijn, dan tabel, dan de kale som.
+2. Fase 3, het herhaalmodel: eerst het ontwerp in `docs/`, dan akkoord van de eigenaar. Ook hoe uitleg op het juiste moment in de les komt; oefeningen bij uitleg komen pas daarna, omdat ze de dagelijkse les veranderen.
+3. Lesstof thema 2 volgens het kwaliteitskader.
+4. Daarna pas spellen en vormgeving.
 
 ## Wachtlijst (niet nu bouwen)
 
 - Knop "vertaling klopt niet" bij elke steunregel, zodat de leerder een fout in de vertaling meldt aan de begeleider.
-- De rest van de uitlegcatalogus: rekenen R1–R3 (breuken, procent en kommagetal, per, toename, schatten, datum, temperatuur) en R4–R5, grammatica van thema 1 en 2, de overige leestekens en Engelse uitleg.
 - Spellen (fase 8).
 - Vormgeving en animaties (fase 7).
 - Nieuwe wensen van de eigenaar.
