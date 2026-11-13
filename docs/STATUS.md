@@ -15,7 +15,8 @@ Bijgewerkt: 13 november 2026 (later).
 - Fase 1, voortgang beveiligen (#30): gesloten.
 - Fase 2, inhoud uit de code en lessamensteller (#26): gesloten.
 - Uitleg (speler, drie ingangen, 32 uitleggen) en het weekdoel (standaard 10 uur, merktekens op 3,5, 7 en 10 uur).
-- Fase 3, het herhaalmodel (docs/herhaalmodel.md), inclusief de verwerkte review: live sinds 13 november 2026, cache v2-29 (t/m commit ddece66).
+- Fase 3, het herhaalmodel (docs/herhaalmodel.md), inclusief de verwerkte review: live sinds 13 november 2026.
+- Na gebruik: herhaling met tijd ertussen, dagbudget voor nieuwe woorden (eerst als vraag), Bijsturen op Ik, na de ronde te makkelijk/goed/te moeilijk en leuk/saai, vertaling melden, ervaringstest: live sinds 14 november 2026, cache v2-34 (t/m bad647d).
 
 ## Klaar, lokaal gecommit, nog niet gepusht
 
