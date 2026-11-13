@@ -1,7 +1,7 @@
 {
  "format": 1,
  "id": "uitleg-nl",
- "version": 2,
+ "version": 4,
  "learn": "nl",
  "level": "A2-B1",
  "order": 11,
@@ -1142,6 +1142,994 @@
       "nl": "Boom schrijf je met oo: dat is een lange klank.",
       "th": "boom เขียนด้วย oo เป็นเสียงยาว",
       "en": "Boom is written with oo: that is a long sound."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.nl.gk",
+   "subject": "leestekens",
+   "items": [
+    "nl.klank.geel"
+   ],
+   "title": {
+    "nl": "g en k: geel en keel",
+    "th": "g กับ k: geel และ keel",
+    "en": "g and k: geel and keel"
+   },
+   "summary": {
+    "nl": "De k is een harde klank. De g en de ch maak je achter in je keel, met lucht.",
+    "th": "k เป็นเสียงแข็ง ส่วน g และ ch ออกเสียงจากลำคอด้านหลัง โดยปล่อยลมออกมา",
+    "en": "The k is a hard sound. You make the g and the ch at the back of your throat, with air."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "De k is kort en hard. Je tong sluit de lucht even af: keel, kaas, koud.",
+      "th": "เสียง k สั้นและแข็ง ลิ้นปิดลมไว้ครู่หนึ่ง เหมือนเสียง ค ในภาษาไทย: keel, kaas, koud",
+      "en": "The k is short and hard. Your tongue blocks the air for a moment: keel, kaas, koud.",
+      "nl@th": "De k is kort en hard, net als de Thaise ค. Je tong sluit de lucht even af: keel, kaas, koud."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "k",
+          "hl": true
+         },
+         {
+          "t": "eel",
+          "glue": true
+         }
+        ]
+       },
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "k",
+          "hl": true
+         },
+         {
+          "t": "aas",
+          "glue": true
+         }
+        ]
+       },
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "k",
+          "hl": true
+         },
+         {
+          "t": "oud",
+          "glue": true
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "De g sluit de lucht niet af. De lucht schuurt achter in je keel, alsof je zachtjes gromt: geel, gaan, goed.",
+      "th": "g ไม่ปิดลม ลมจะเสียดสีที่ลำคอด้านหลัง คล้ายเสียงคำรามเบาๆ ภาษาไทยไม่มีเสียงนี้: geel, gaan, goed",
+      "en": "The g does not block the air. The air scrapes at the back of your throat, as if you growl softly: geel, gaan, goed.",
+      "nl@th": "De g sluit de lucht niet af. De lucht schuurt achter in je keel, alsof je zachtjes gromt. Die klank bestaat niet in het Thai: geel, gaan, goed."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "g",
+          "hl": true
+         },
+         {
+          "t": "eel",
+          "glue": true
+         }
+        ]
+       },
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "g",
+          "hl": true
+         },
+         {
+          "t": "aan",
+          "glue": true
+         }
+        ]
+       },
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "g",
+          "hl": true
+         },
+         {
+          "t": "oed",
+          "glue": true
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "De ch klinkt precies hetzelfde als de g: lachen, acht, licht.",
+      "th": "ch ออกเสียงเหมือน g ทุกอย่าง: lachen, acht, licht",
+      "en": "The ch sounds exactly the same as the g: lachen, acht, licht."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "g",
+       "ch"
+      ],
+      "rows": [
+       [
+        "geel",
+        "acht"
+       ],
+       [
+        "goed",
+        "lachen"
+       ],
+       [
+        "dag",
+        "licht"
+       ]
+      ],
+      "hl": [
+       [
+        0,
+        0
+       ],
+       [
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Let op het verschil: met k betekent het woord iets anders dan met g.",
+      "th": "สังเกตความต่าง: คำที่ใช้ k มีความหมายต่างจากคำที่ใช้ g",
+      "en": "Notice the difference: with k the word means something different than with g."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "g",
+       "k"
+      ],
+      "rows": [
+       [
+        "geel (kleur)",
+        "keel (hals)"
+       ],
+       [
+        "goud (metaal)",
+        "koud (niet warm)"
+       ],
+       [
+        "gas",
+        "kas"
+       ]
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Welk woord begint met de klank achter in je keel?",
+      "th": "คำใดขึ้นต้นด้วยเสียงจากลำคอด้านหลัง",
+      "en": "Which word starts with the sound at the back of your throat?"
+     },
+     "o": [
+      "goud",
+      "koud",
+      "kaas"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Goud begint met een g: de lucht schuurt in je keel. Koud en kaas beginnen met een harde k.",
+      "th": "goud ขึ้นต้นด้วย g ลมเสียดสีในลำคอ ส่วน koud และ kaas ขึ้นต้นด้วยเสียง k แข็ง",
+      "en": "Goud starts with a g: the air scrapes in your throat. Koud and kaas start with a hard k."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.nl.uioe",
+   "subject": "leestekens",
+   "items": [
+    "nl.klank.huis"
+   ],
+   "title": {
+    "nl": "ui en oe: huis en hoes",
+    "th": "ui กับ oe: huis และ hoes",
+    "en": "ui and oe: huis and hoes"
+   },
+   "summary": {
+    "nl": "De oe is een ronde, diepe klank. De ui begint open en eindigt bijna als ie.",
+    "th": "oe เป็นเสียงกลมและลึก ส่วน ui เริ่มแบบเปิดปากแล้วจบคล้าย ie",
+    "en": "The oe is a round, deep sound. The ui starts open and ends almost like ie."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "De oe maak je met kleine, ronde lippen: hoes, boek, goed.",
+      "th": "oe ออกเสียงโดยห่อปากเล็กและกลม เหมือนเสียง อู ในภาษาไทย: hoes, boek, goed",
+      "en": "You make the oe with small, round lips, like the oo in food: hoes, boek, goed.",
+      "nl@th": "De oe maak je met kleine, ronde lippen, net als de Thaise อู: hoes, boek, goed.",
+      "nl@en": "De oe maak je met kleine, ronde lippen, zoals de oo in het Engelse food: hoes, boek, goed."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "h"
+         },
+         {
+          "t": "oe",
+          "hl": true,
+          "glue": true
+         },
+         {
+          "t": "s",
+          "glue": true
+         }
+        ]
+       },
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "b"
+         },
+         {
+          "t": "oe",
+          "hl": true,
+          "glue": true
+         },
+         {
+          "t": "k",
+          "glue": true
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "De ui is twee klanken achter elkaar. Je begint met je mond half open en ronde lippen, en je eindigt bijna bij ie: huis, buik, tuin.",
+      "th": "ui เป็นสองเสียงต่อกัน เริ่มด้วยปากเปิดครึ่งหนึ่งและห่อปาก แล้วจบใกล้เสียง ie: huis, buik, tuin",
+      "en": "The ui is two sounds in a row. You start with your mouth half open and round lips, and end almost at ie: huis, buik, tuin."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "h"
+         },
+         {
+          "t": "ui",
+          "hl": true,
+          "glue": true
+         },
+         {
+          "t": "s",
+          "glue": true
+         }
+        ]
+       },
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "b"
+         },
+         {
+          "t": "ui",
+          "hl": true,
+          "glue": true
+         },
+         {
+          "t": "k",
+          "glue": true
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Zet de woorden naast elkaar. Eén klank verschilt, en dan betekent het iets anders.",
+      "th": "วางคำเทียบกัน ต่างกันแค่เสียงเดียว ความหมายก็เปลี่ยน",
+      "en": "Put the words side by side. One sound differs, and then it means something else."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "ui",
+       "oe"
+      ],
+      "rows": [
+       [
+        "huis (woning)",
+        "hoes (omhulsel)"
+       ],
+       [
+        "buik",
+        "boek"
+       ],
+       [
+        "tuin",
+        "toen"
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Zeg ze hardop na elkaar: huis, hoes, huis. Bij de ui gaan je lippen een beetje open, bij de oe blijven ze klein.",
+      "th": "พูดออกเสียงต่อกัน: huis, hoes, huis ตอน ui ริมฝีปากเปิดเล็กน้อย ตอน oe ริมฝีปากยังห่อเล็ก",
+      "en": "Say them out loud one after the other: huis, hoes, huis. With ui your lips open a little, with oe they stay small."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "label": "ui",
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "huis",
+          "hl": true
+         }
+        ]
+       },
+       {
+        "label": "oe",
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "hoes"
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "In welk woord hoor je de oe?",
+      "th": "คำใดมีเสียง oe",
+      "en": "In which word do you hear the oe?"
+     },
+     "o": [
+      "boek",
+      "buik",
+      "tuin"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Boek schrijf je met oe. Buik en tuin hebben een ui.",
+      "th": "boek เขียนด้วย oe ส่วน buik และ tuin มี ui",
+      "en": "Boek is written with oe. Buik and tuin have a ui."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.nl.eiij",
+   "subject": "leestekens",
+   "forms": [
+    "dictee"
+   ],
+   "title": {
+    "nl": "ei en ij: één klank, twee schrijfwijzen",
+    "th": "ei กับ ij: เสียงเดียว เขียนได้สองแบบ",
+    "en": "ei and ij: one sound, two spellings"
+   },
+   "summary": {
+    "nl": "Ei en ij klinken hetzelfde. Welke je schrijft, leer je per woord.",
+    "th": "ei และ ij ออกเสียงเหมือนกัน ต้องจำทีละคำว่าเขียนแบบไหน",
+    "en": "Ei and ij sound the same. Which one you write, you learn word by word."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "Mijn en klein hebben dezelfde klank. Je hoort geen verschil tussen ij en ei.",
+      "th": "mijn กับ klein มีเสียงเดียวกัน ฟังไม่ออกว่าต่างกันระหว่าง ij กับ ei",
+      "en": "Mijn and klein have the same sound. You hear no difference between ij and ei."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "m"
+         },
+         {
+          "t": "ij",
+          "hl": true,
+          "glue": true
+         },
+         {
+          "t": "n",
+          "glue": true
+         }
+        ]
+       },
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "kl"
+         },
+         {
+          "t": "ei",
+          "hl": true,
+          "glue": true
+         },
+         {
+          "t": "n",
+          "glue": true
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Daarom moet je per woord onthouden hoe je het schrijft. Hier staan woorden die je vaak ziet.",
+      "th": "จึงต้องจำทีละคำว่าเขียนอย่างไร นี่คือคำที่พบบ่อย",
+      "en": "So you have to remember for each word how to write it. Here are words you see often."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "ij",
+       "ei"
+      ],
+      "rows": [
+       [
+        "mijn",
+        "klein"
+       ],
+       [
+        "tijd",
+        "trein"
+       ],
+       [
+        "wij",
+        "eigen"
+       ],
+       [
+        "blij",
+        "ei"
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Een handige regel: woorden die eindigen op -lijk schrijf je altijd met ij: duidelijk, makkelijk, eerlijk.",
+      "th": "กฎที่ช่วยได้: คำที่ลงท้ายด้วย -lijk เขียนด้วย ij เสมอ: duidelijk, makkelijk, eerlijk",
+      "en": "A handy rule: words ending in -lijk are always written with ij: duidelijk, makkelijk, eerlijk."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "duide"
+         },
+         {
+          "t": "lijk",
+          "hl": true,
+          "glue": true
+         }
+        ]
+       },
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "makke"
+         },
+         {
+          "t": "lijk",
+          "hl": true,
+          "glue": true
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Twijfel je? Zoek het woord op of kijk hoe het in de les staat. Na een paar keer schrijven onthoud je het.",
+      "th": "ถ้าไม่แน่ใจ ให้เปิดหาคำนั้นหรือดูในบทเรียน เขียนไม่กี่ครั้งก็จำได้",
+      "en": "Not sure? Look the word up or see how it is written in the lesson. After writing it a few times you will remember."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "hoor je ei of ij?",
+        "r": "zelfde klank"
+       },
+       {
+        "l": "eindigt het op -lijk?",
+        "r": "ij"
+       },
+       {
+        "l": "anders",
+        "r": "onthoud het woord",
+        "hl": true
+       }
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Hoe schrijf je het woord voor van mij: m...n?",
+      "th": "คำว่า \"ของฉัน\" เขียนอย่างไร: m...n",
+      "en": "How do you write the word for my: m...n?"
+     },
+     "o": [
+      "mijn",
+      "mein"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Mijn schrijf je met ij. Het is een woord dat je moet onthouden.",
+      "th": "mijn เขียนด้วย ij เป็นคำที่ต้องจำ",
+      "en": "Mijn is written with ij. It is a word you have to remember."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.nl.zijnhebben",
+   "subject": "grammatica",
+   "title": {
+    "nl": "Zijn en hebben: anders dan de rest",
+    "th": "zijn และ hebben: ไม่เหมือนคำอื่น",
+    "en": "Zijn and hebben: different from the rest"
+   },
+   "summary": {
+    "nl": "De meeste werkwoorden volgen een vast patroon. Zijn en hebben niet: die leer je uit je hoofd.",
+    "th": "กริยาส่วนใหญ่มีรูปแบบตายตัว แต่ zijn และ hebben ไม่ใช่ ต้องท่องจำ",
+    "en": "Most verbs follow a fixed pattern. Zijn and hebben do not: you learn them by heart."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "De meeste werkwoorden gaan zo: ik werk, hij werkt, wij werken.",
+      "th": "กริยาส่วนใหญ่เป็นแบบนี้: ik werk, hij werkt, wij werken",
+      "en": "Most verbs go like this: ik werk, hij werkt, wij werken."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "wie",
+       "werken"
+      ],
+      "rows": [
+       [
+        "ik",
+        "werk"
+       ],
+       [
+        "jij / hij / zij",
+        "werkt"
+       ],
+       [
+        "wij / jullie / zij",
+        "werken"
+       ]
+      ],
+      "hl": [
+       [
+        1,
+        1
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Zijn is helemaal anders. Elke vorm is een nieuw woord.",
+      "th": "zijn ไม่เหมือนเลย แต่ละรูปเป็นคำใหม่",
+      "en": "Zijn is completely different. Every form is a new word."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "wie",
+       "zijn"
+      ],
+      "rows": [
+       [
+        "ik",
+        "ben"
+       ],
+       [
+        "jij",
+        "bent"
+       ],
+       [
+        "hij / zij",
+        "is"
+       ],
+       [
+        "wij / jullie / zij",
+        "zijn"
+       ]
+      ],
+      "hl": [
+       [
+        0,
+        1
+       ],
+       [
+        2,
+        1
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Hebben lijkt meer op de rest, maar bij hij en zij zeg je heeft.",
+      "th": "hebben คล้ายคำอื่นมากกว่า แต่กับ hij และ zij ใช้ heeft",
+      "en": "Hebben looks more like the rest, but with hij and zij you say heeft."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "wie",
+       "hebben"
+      ],
+      "rows": [
+       [
+        "ik",
+        "heb"
+       ],
+       [
+        "jij",
+        "hebt"
+       ],
+       [
+        "hij / zij",
+        "heeft"
+       ],
+       [
+        "wij / jullie / zij",
+        "hebben"
+       ]
+      ],
+      "hl": [
+       [
+        2,
+        1
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Je gebruikt ze heel vaak: ik ben moe, ik heb honger, zij is ziek, hij heeft vrij.",
+      "th": "ใช้บ่อยมาก: ik ben moe (ฉันเหนื่อย), ik heb honger (ฉันหิว), zij is ziek, hij heeft vrij",
+      "en": "You use them very often: ik ben moe, ik heb honger, zij is ziek, hij heeft vrij."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "ik"
+         },
+         {
+          "t": "ben",
+          "hl": true
+         },
+         {
+          "t": "moe"
+         }
+        ]
+       },
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "hij"
+         },
+         {
+          "t": "heeft",
+          "hl": true
+         },
+         {
+          "t": "vrij"
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Kies het goede woord: Ik blijf thuis, omdat ik ziek ___.",
+      "th": "เลือกคำที่ถูกต้อง: Ik blijf thuis, omdat ik ziek ___.",
+      "en": "Choose the right word: Ik blijf thuis, omdat ik ziek ___."
+     },
+     "o": [
+      "ben",
+      "is",
+      "zijn"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Bij ik hoort ben.",
+      "th": "กับ ik ใช้ ben",
+      "en": "With ik you use ben."
+     }
+    },
+    {
+     "q": {
+      "nl": "Kies het goede woord: Mijn collega ___ morgen vrij.",
+      "th": "เลือกคำที่ถูกต้อง: Mijn collega ___ morgen vrij.",
+      "en": "Choose the right word: Mijn collega ___ morgen vrij."
+     },
+     "o": [
+      "heeft",
+      "hebt",
+      "hebben"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Mijn collega is één persoon, net als hij of zij. Dan zeg je heeft.",
+      "th": "mijn collega คือคนเดียว เหมือน hij หรือ zij จึงใช้ heeft",
+      "en": "Mijn collega is one person, like hij or zij. Then you say heeft."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.nl.omdat",
+   "subject": "grammatica",
+   "title": {
+    "nl": "Omdat: het werkwoord gaat naar het eind",
+    "th": "omdat: กริยาย้ายไปท้ายประโยค",
+    "en": "Omdat: the verb goes to the end"
+   },
+   "summary": {
+    "nl": "Na omdat, dat en als staat het werkwoord achteraan. Na want niet.",
+    "th": "หลัง omdat, dat และ als กริยาอยู่ท้ายประโยค แต่หลัง want ไม่ใช่",
+    "en": "After omdat, dat and als the verb comes last. After want it does not."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "Een gewone zin: het werkwoord staat op plek twee. Ik ben ziek.",
+      "th": "ประโยคธรรมดา: กริยาอยู่ตำแหน่งที่สอง Ik ben ziek.",
+      "en": "A normal sentence: the verb is in place two. Ik ben ziek."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "Ik",
+          "slot": 1
+         },
+         {
+          "t": "ben",
+          "slot": 2,
+          "hl": true
+         },
+         {
+          "t": "ziek"
+         },
+         {
+          "t": ".",
+          "glue": true
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Geef je een reden met omdat? Dan schuift het werkwoord helemaal naar het eind.",
+      "th": "ถ้าให้เหตุผลด้วย omdat กริยาจะย้ายไปอยู่ท้ายสุด",
+      "en": "Do you give a reason with omdat? Then the verb moves all the way to the end."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "Ik"
+         },
+         {
+          "t": "blijf"
+         },
+         {
+          "t": "thuis"
+         },
+         {
+          "t": ",",
+          "glue": true
+         },
+         {
+          "t": "omdat"
+         },
+         {
+          "t": "ik"
+         },
+         {
+          "t": "ziek"
+         },
+         {
+          "t": "ben",
+          "hl": true
+         },
+         {
+          "t": ".",
+          "glue": true
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Met want zeg je hetzelfde, maar dan blijft de gewone volgorde.",
+      "th": "ใช้ want ก็ได้ความหมายเดียวกัน แต่ลำดับคำเหมือนประโยคธรรมดา",
+      "en": "With want you say the same thing, but the normal order stays."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "label": "omdat",
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "omdat"
+         },
+         {
+          "t": "ik"
+         },
+         {
+          "t": "ziek"
+         },
+         {
+          "t": "ben",
+          "hl": true
+         }
+        ]
+       },
+       {
+        "label": "want",
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "want"
+         },
+         {
+          "t": "ik"
+         },
+         {
+          "t": "ben",
+          "hl": true
+         },
+         {
+          "t": "ziek"
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Deze woorden sturen het werkwoord ook naar het eind.",
+      "th": "คำเหล่านี้ก็ส่งกริยาไปท้ายประโยคเช่นกัน",
+      "en": "These words also send the verb to the end."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "woord",
+       "voorbeeld"
+      ],
+      "rows": [
+       [
+        "omdat",
+        "… omdat ik moe ben."
+       ],
+       [
+        "dat",
+        "Ik denk dat het regent."
+       ],
+       [
+        "als",
+        "Als ik tijd heb, …"
+       ],
+       [
+        "wanneer",
+        "Wanneer de bus komt, …"
+       ]
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Welke zin is goed?",
+      "th": "ประโยคใดถูกต้อง",
+      "en": "Which sentence is correct?"
+     },
+     "o": [
+      "Ik eet, omdat ik honger heb.",
+      "Ik eet, omdat ik heb honger.",
+      "Ik eet, want ik honger heb."
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Na omdat staat het werkwoord achteraan: heb komt aan het eind.",
+      "th": "หลัง omdat กริยาอยู่ท้าย: heb อยู่ท้ายประโยค",
+      "en": "After omdat the verb comes last: heb goes at the end."
      }
     }
    ]
