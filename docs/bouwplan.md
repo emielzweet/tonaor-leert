@@ -40,7 +40,7 @@ Doel: een thema toevoegen vraagt geen codewijziging. De leerder merkt van deze f
 
 **Pakket** = één bestand `content/<id>.json` met:
 - `meta`: id, leertaal, niveau, titel per taal, versie.
-- `items`: alles wat herhaald wordt, met een `kind`: `word`, `rule`, `sentence`, `sound`, `skill`. Elk item heeft een id met het pakket als voorvoegsel (`t1.werk`). De huidige kale id's (`werk`, `en-work`, `r-geld`) blijven bestaan via een `alias`-tabel in het pakket, zodat opgeslagen voortgang blijft passen.
+- `items`: alles wat herhaald wordt, met een `kind`: `word`, `rule`, `sound`, `skill`. Een item hoort bij de taal, niet bij een thema: het heeft één id dat over alle pakketten heen uniek is, en latere pakketten mogen ernaar verwijzen. De huidige id's (`werk`, `en-work`, `r-geld`) houden hun naam, dus de opgeslagen voortgang past zonder migratie. De volledige specificatie staat in `docs/pakketformaat.md`.
 - `exercises`: oefeningen met een eigen id, een `form` (bestaande oefenvormen: `recog`, `recall`, `build`, `gap`, `listen`, `dictee`, `money`, `clock`, `discount`, …), de items die ze raken en de gegevens voor die vorm.
 - `cards`: uitlegkaarten (nu de v2-kaart en de Engelse -s-kaart).
 - `story`, `placement`, `route` (zie fase 5).
@@ -52,7 +52,9 @@ Doel: een thema toevoegen vraagt geen codewijziging. De leerder merkt van deze f
 
 **Offline:** pakketten staan in `SHELL` van `sw.js`. Laadt een pakket niet, dan meldt de app dat en start met wat er is.
 
-**Tests:** `tools/test-pakket.mjs` controleert het schema: unieke id's, bestaande verwijzingen, elke vertaling aanwezig, elke oefening een geldig antwoord. De bestaande tests lezen dan het pakket in plaats van stukken uit `index.html`. Extra test: de samengestelde les is gelijk aan de les van vóór de fase (vaste zaadwaarde voor het husselen).
+**Kwaliteitskader:** het formaat krijgt velden voor alle labels uit `docs/kwaliteitskader.md` (vaardigheid, receptief of productief, gesloten of open, trede, alinea bij een tekstvraag, soort en lengte van een tekst). Zo kan de test de kwaliteitseisen controleren.
+
+**Tests:** `tools/test-pakket.mjs` controleert het schema: unieke id's, bestaande verwijzingen, elke vertaling aanwezig, elke oefening een geldig antwoord. Daarnaast controleert hij elke eis uit het kwaliteitskader die met een A is gemerkt. Voor het bestaande thema 1 geeft hij in deze fase een lijst met wat ontbreekt, zonder de release te blokkeren; voor elk nieuw thema is slagen verplicht. De bestaande tests lezen dan het pakket in plaats van stukken uit `index.html`. Extra test: de samengestelde les is gelijk aan de les van vóór de fase (vaste zaadwaarde voor het husselen).
 
 Wie: de ontwerpsessie schrijft het schema met één uitgewerkt voorbeeld en de regels van de samensteller; de onderhoudssessie verhuist de inhoud en bouwt. Besluit nodig: volgorde (#26 vóór #7).
 
@@ -121,9 +123,77 @@ Alles respecteert "minder beweging" van het toestel (staat al in de CSS) en blij
 
 Wie: de ontwerpsessie bouwt punt 1 en 2 zelf en controleert ze in de browser, omdat het om smaak en timing gaat; de rest de onderhoudssessie. Besluit nodig: geen, behalve akkoord.
 
+## Fase 8 — Spel en beloning
+
+Doel: zin om terug te komen, zonder dat spelen het leren vervangt. Uitgangspunt uit het didactisch ontwerp: de app beloont regelmaat, niet uren, en straft een gemiste dag niet.
+
+**Spelregels voor alle spellen**
+- Elk spel oefent woorden of regels die de leerder al gehad heeft en werkt het herhaalmodel bij. Spelen telt als één oefenvorm; het kan productief oefenen niet vervangen.
+- Een spel duurt één tot drie minuten en komt na de les of als tussendoortje, niet in plaats van de les.
+- Elk spel heeft niveaus die meegroeien met de inhoud en houdt een eigen record bij.
+
+**Taalspellen**
+1. *De of het*: woorden sorteren op tempo (bestaat als snelronde; krijgt niveaus en vaste combinaties).
+2. *Plek twee*: een zin bouwen uit blokken tegen de klok; het werkwoord moet op de goede plek. Niveaus: gewone zin, zin die met een tijd begint, bijzin.
+3. *Klankduel*: een woord horen en het goede van twee kiezen, in een reeks die sneller wordt.
+4. *Koppelen*: woord bij omschrijving of woord bij beeld, als geheugenspel.
+5. *Fout zoeken*: tik het woord aan dat niet klopt in een zin of kort bericht.
+6. *Zin afmaken*: kies het voegwoord dat past (reden, gevolg, tijd, voorwaarde).
+7. *Letters op hun plek*: een gehusseld woord goed zetten, na het horen.
+
+**Rekenspellen**
+8. *Wisselgeld*: het juiste bedrag bij elkaar leggen met munten en biljetten.
+9. *Zet de klok*: de wijzers draaien naar een gesproken tijd.
+10. *Kortingsjacht*: snel de beste aanbieding kiezen.
+
+**Beloning en punten**
+- Punten blijven staan voor inspanning en kwaliteit (zelf typen levert meer op dan kiezen).
+- De tuin is het middelpunt: zichtbare groei (fase 7), eigen bloemen per thema, en verdiende onderdelen die de leerder zelf een plek geeft.
+- Mijlpalen met een klein feest: eerste bloem, vijftig woorden, thema af, eerste toets gehaald.
+- Een weekdoel naast het dagdoel, met rustdagen: een gemiste dag breekt niets.
+- Beloningen die leerder en begeleider samen afspreken ("bij thema af gaan we ...").
+- Af en toe een verrassing: een bijzonder zaadje na een goede les.
+- Zichtbaar hoe ver het nog is naar het volgende doel op de route.
+
+**Wat er bewust niet in komt:** punten of planten verliezen, meldingen die op schuldgevoel spelen, tijdsdruk als straf, aankopen.
+
+Wie: de ontwerpsessie ontwerpt de spellen en bouwt de eerste twee als voorbeeld; de onderhoudssessie bouwt de rest naar dat voorbeeld. Hangt af van fase 2 en 3.
+
+## Fase 9 — Toetsen die bijsturen
+
+Doel: een toets is geen eindpunt maar bepaalt wat de leerder daarna krijgt.
+
+1. **Instaptoets per thema.** Kort, vooraf. Wat de leerder al kan, wordt als bekend gemarkeerd en hoeft niet opnieuw geleerd, alleen herhaald.
+2. **Themaoefentoets.** Aan het eind van een thema, op alle vaardigheden. De uitslag komt per onderdeel. Wat onvoldoende is, gaat terug in de herhaling en krijgt extra oefeningen; het volgende thema gaat open als de toets gehaald is.
+3. **Voortgangstoets.** Elke vier weken, in examenvorm, over alles tot dan toe. De uitslag stelt de niveau-inschatting per vaardigheid bij.
+4. **Adaptief.** Een toets begint in het midden. Na een goed antwoord wordt de volgende vraag moeilijker, na een fout makkelijker, per vaardigheid. Zo is hij kort en toch precies.
+5. **Examenstand.** Oefenen in de vorm van het echte examen: met klok, zonder steuntaal, met taken die langer worden. De spreekopdrachten volgen de vaste tijden van het examen.
+6. **Foutenanalyse na elke toets.** Per fout: lag het aan een woord, aan de vraag, aan de tijd, of aan de regel? Het antwoord stuurt wat er extra geoefend wordt.
+7. **Zeker of twijfel per vraag.** Zeker en toch fout krijgt voorrang in de herhaling.
+
+De vragen in toetsen voldoen aan dezelfde eisen als oefeningen (`docs/kwaliteitskader.md`) en staan in het pakket, apart van de oefeningen, zodat een toetsvraag nooit eerst als oefening voorbijkomt.
+
+Wie: ontwerp door de ontwerpsessie, bouw door de onderhoudssessie. Hangt af van fase 2 en 3.
+
+## Eigen voorstellen van de ontwerpsessie
+
+Niet gevraagd, wel aangeraden. Elk voorstel kan los worden goedgekeurd of geschrapt.
+
+| Voorstel | Wat het doet | Hoort bij |
+|---|---|---|
+| Foutprofiel | De app onthoudt het soort fout (lidwoord, woordvolgorde, klinkerlengte, werkwoordsvorm) en oefent daar vaker op | fase 3 |
+| Sommen die niet opraken | Rekenopgaven uit een recept met wisselende getallen en situaties | fase 3 |
+| Bijna goed | Bij een typfout uitleggen wat er net misging in plaats van alleen fout | fase 3 |
+| Tikbare teksten | Een woord in een tekst aantikken voor de betekenis en het in de tuin zetten | fase 6 |
+| Vervolgverhaal met keuzes | De leerder kiest hoe het verder gaat; geleerde woorden komen terug | fase 4 |
+| Samen spelen aan tafel | Een spel voor twee op één toestel, leerder tegen begeleider | fase 8 |
+| Opdrachten buiten de app | Een zin gebruiken in het echt, dingen in huis benoemen; afvinken geeft een bijzondere plant | fase 8 |
+| Weekadvies voor de begeleider | Eén concreet advies en een gesprekskaart die past bij de fouten van de week | fase 5 |
+| Oefeningen die zichzelf melden | Oefeningen die bijna altijd goed of fout gaan komen op een lijst om te verbeteren | fase 3 |
+
 ## Daarna
 
-Thema 2 schrijven als voorbeeldthema (ontwerpsessie), volgende thema's naar dat voorbeeld (onderhoudssessie, met de pakkettest als vangnet). De vertalingen in de steuntaal blijven nakijkwerk voor een moedertaalspreker.
+Thema 2 schrijven als voorbeeldthema volgens het kwaliteitskader (ontwerpsessie), volgende thema's naar dat voorbeeld (onderhoudssessie, met de pakkettest als vangnet). De vertalingen in de steuntaal blijven nakijkwerk voor een moedertaalspreker.
 
 ## Volgorde en afhankelijkheden
 
@@ -136,6 +206,8 @@ Thema 2 schrijven als voorbeeldthema (ontwerpsessie), volgende thema's naar dat 
 | 5 Route en ritme | 2 | 4 |
 | 6 Spraak, luisteren, video | 2 voor de bestanden; punt 1 kan na fase 1 | 7 |
 | 7 Vormgeving en animaties | 3 voor de groei; punt 2 en 6 kunnen eerder | 6 |
+| 8 Spel en beloning | 2 en 3 | 7, 9 |
+| 9 Toetsen die bijsturen | 2 en 3 | 8 |
 
 Kleine losse issues (#27, #17, #16, #9, #10) kunnen tussendoor, zolang ze fase 2 niet doorkruisen: liever vóór fase 2 of erna, niet tijdens.
 
@@ -147,5 +219,7 @@ Kleine losse issues (#27, #17, #16, #9, #10) kunnen tussendoor, zolang ze fase 2
 4. De drie bevindingen staan als issues: #28 (bloei), #29 (vaste les), #30 (voortgang beveiligen).
 5. Geluidsbestanden: eerst zelf ingesproken; een spraakdienst kan later.
 6. Video: buiten de app openen, niet insluiten.
+
+7. Het kwaliteitskader (`docs/kwaliteitskader.md`), fase 8 (spel en beloning) en fase 9 (toetsen die bijsturen) zijn akkoord. De eigen voorstellen van de ontwerpsessie gaan mee, elk nog los te schrappen.
 
 Akkoord op het plan als geheel en op de start van fase 1. Pushen, issues sluiten en elke volgende fase blijven een apart akkoord.
