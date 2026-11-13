@@ -3,6 +3,38 @@
 Stand: 13 november 2026, na een ontwerpreview van de code (cache v2-12), de open issues en het didactisch ontwerp.
 Dit plan is een voorstel. Elke fase begint pas na een besluit van de eigenaar (zie "Besluit nodig" per fase en de werkwijze in `CLAUDE.md`).
 
+## Herziening na gebruik: fasen en sporen
+
+Bijgewerkt op 13 november 2026, nadat de eigenaar de app na fase 3 had gebruikt. Het herziene plan staat in `docs/plan-herzien.md` (sporen A tot F). Deze tabel zegt wat er met elke fase hieronder gebeurt. Waar de twee documenten verschillen, geldt deze tabel.
+
+| Fase | Stand | Wat ermee gebeurt |
+|---|---|---|
+| 1 Voortgang beveiligen | live | klaar |
+| 2 Inhoud uit de code | live | klaar |
+| 3 Herhaalmodel | live | klaar; de instellingen voor tempo komen in spoor F |
+| 4 Neutraal en persoonlijk pakket | niet begonnen | de neutrale lesstof gaat op in spoor A (thema 1 volledig); het inladen van een eigen pakket schuift naar de wachtlijst |
+| 5 Route, vakken en ritme | niet begonnen | vakken worden eigen lijnen (sporen B en C); de routekaart volgt `docs/leerroute.md` en komt mee met spoor B; de vaste "Engelse dag" vervalt zodra Engels een eigen lijn is |
+| 6 Spraak, luisteren en video | niet begonnen | kijkverwijzingen gaan op in spoor B (stap 4); luisterteksten met vragen horen bij elk thema in spoor A; opnemen en terugluisteren blijft, in het nieuwe spoor G |
+| 7 Vormgeving en animaties | niet begonnen | het bloei-moment en de groei gaan op in spoor E; lettertypen zelf hosten blijft een los issue (#15) |
+| 8 Spel en beloning | niet begonnen | is spoor E |
+| 9 Toetsen die bijsturen | niet begonnen | blijft, ná spoor A stap 2: een themaoefentoets heeft een volledig thema nodig. De startmeting wordt dan langer |
+
+**Wat in het herziene plan ontbrak en erbij komt:**
+
+- **Spoor G, spreken en schrijven.** *De sprong* heeft ruim honderd spreekopdrachten en dertien schrijfopdrachten; de app heeft er geen. Per thema: spreeksituaties ("wat zeg je"), een gesprekskaart voor aan tafel, opnemen en terugluisteren, en schrijven in drie treden met een schrijfkader.
+- **Taalfuncties met standaardzinnen** (telefoneren, klagen, mening geven, de weg vragen en meer; in het boek negen kaders met ongeveer 260 zinnen). Dit wordt een eigen soort kaart per thema, in spoor A.
+- **Naslag als oefenreeks:** onregelmatige werkwoorden en werkwoorden met een vast voorzetsel, in spoor A.
+- **De knop "vertaling klopt niet"** gaat van de wachtlijst naar de eerste stap: er komen honderden nieuwe vertalingen bij, en de leerder is de moedertaalspreker die ze kan beoordelen.
+- **Een dekkingstabel in `docs/STATUS.md`:** per thema van de leerroute hoeveel teksten, woorden, grammaticapunten, schrijf- en spreekopdrachten er zijn, afgezet tegen wat het kwaliteitskader vraagt. Zo is in één blik te zien hoe ver de lesstof is.
+
+**Volgorde (één stap tegelijk):**
+
+1. Klein en direct: tempo instelbaar en "ken ik al" (F), de kwaliteitsmeldingen wegwerken (A0), de knop "vertaling klopt niet", de eerste honderd frequentiewoorden (A1).
+2. Uitleg als stap in de les (D2): korte uitleg, afbouwend voorbeeld, dan oefenen. Dit is het patroon voor elk onderwerp, en rekenen bouwt erop.
+3. Rekenen als eigen lijn (B1 tot B3), met de kleine beloningen (E1) ertussendoor.
+4. Thema 1 volledig rond een tekst (A2), met luistertekst, taalfuncties, spreken en schrijven (G).
+5. Daarna: eerste mini-spel (E3), verwijzingen (B4), Engels (C), thema 2 en 3 (A3), toetsen (fase 9), verzamelen (E4).
+
 ## Waarom dit plan
 
 De review vond drie dingen die zwaarder wegen dan de losse issues:
