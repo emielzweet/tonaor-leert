@@ -199,6 +199,7 @@
       if (e.para != null && !(Number.isInteger(e.para) && e.para >= 0)) err(w + ': para moet een getal zijn');
       if (e.data && e.data.lang != null && e.data.lang !== 'en') err(w + ': data.lang kent alleen "en"');
       if (!e.data && !e.gen) err(w + ': data of gen ontbreekt');
+      if (e.fade != null && [1, 2, 3].indexOf(e.fade) < 0) err(w + ': fade moet 1 (voorbeeld), 2 (laatste stap zelf) of 3 (helemaal zelf) zijn');
       if (e.gen) { genCheck(e, w); return; }
       var opts = function (o, a, n) { if (!Array.isArray(o) || o.length < 2) { err(w + ': opties ontbreken'); return; } if (n && o.length !== n) err(w + ': precies ' + n + ' opties nodig'); };
       switch (e.form) {
@@ -300,7 +301,8 @@
         if (s.ex) { if (!find('exercises', s.ex)) err(w + ': oefening ' + s.ex + ' bestaat niet'); if (tested[s.ex]) err(w + ': toetsvraag ' + s.ex + ' staat in een recept'); }
         if (s.pool) { if (!pools[s.pool] && !reqPacks.some(function (o) { return (o.exercises || []).some(function (e) { return e.pool === s.pool; }); })) err(w + ': groep ' + s.pool + ' bestaat niet'); (pools[s.pool] || []).forEach(function (e) { if (tested[e]) err(w + ': toetsvraag ' + e + ' zit in groep ' + s.pool); }); }
         if (s.words && ['due', 'new', 'first'].indexOf(s.words) < 0) err(w + ': words moet due, new of first zijn');
-        if (!s.card && !s.ex && !s.pool && !s.words && !s.end) err(w + ': lege plek');
+        if (s.practice != null) { var P = s.practice; if (!P || typeof P !== 'object' || !(Number.isInteger(P.n) && P.n >= 1) || (P.n2 != null && !(Number.isInteger(P.n2) && P.n2 >= 0)) || (P.newMax != null && !(Number.isInteger(P.newMax) && P.newMax >= 0)) || !Array.isArray(P.kinds) || !P.kinds.length || !P.kinds.every(function (k) { return ['rule', 'sound', 'skill'].indexOf(k) >= 0; })) err(w + ': practice moet n (getal) en kinds (rule, sound, skill) hebben'); }
+        if (!s.card && !s.ex && !s.pool && !s.words && !s.end && !s.practice) err(w + ': lege plek');
       });
     });
     // kwaliteit per thema (alleen voor een Nederlands thema met woorden)

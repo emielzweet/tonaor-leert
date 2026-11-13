@@ -137,6 +137,8 @@ De uitslag per vaardigheid (`S.placement.lv`: woorden, grammatica, luisteren, le
 - `exs: []` erbij op elk item.
 - De vorm `voorbeeld` blijft in `forms` staan, maar telt niet mee voor de eis.
 
+**Bij de bouw van stap 5 (13 november 2026):** het recept kreeg de plek `practice` (`n`, `n2`, `newMax`, `kinds`). Per oefenstap komen er hooguit twee nieuwe regels of klanken (`newMax` 2) en twee nieuwe rekenvaardigheden in de eerste ronde. Wie al lessen deed, krijgt bij de migratie naar schema 4 eenmalig de regels en klanken uit de vaste les als geïntroduceerd (`f3pending`), zodat de les niet dunner wordt. Bij-items tellen niet als herhaald; de komma kreeg daarom een eigen geldopgave. Het afbouwende voorbeeld bestaat nu voor korting (`fade`); voor grammatica volgt het met de lesstof van thema 2.
+
 ## 11. Wat de leerder merkt
 
 - Elke ronde is anders: wat bijna vergeten is komt terug, ook grammatica, klanken en sommen.

@@ -18,5 +18,5 @@ for (const sc of SCENARIOS) {
 const ctx = await boot({ S: SCENARIOS[2].state(), random: seeded(3) }); ctx.NOW = SCENARIOS[2].now;
 let q = null; ctx.runSession = (n, x) => { q = x; }; ctx.api.startLesson(false);
 ok('kaarten hebben een weergave', q.filter(x => x.type === 'card').every(x => typeof x.html === 'function'));
-ok('gatzin, klok en geld hebben hun gegevens', q.find(x => x.type === 'gap').o.length === 2 && q.find(x => x.type === 'clock').c.qTh && q.find(x => x.type === 'money').d.coins.length >= 3 && q.find(x => x.type === 'money').d.o.length === 4 && q.find(x => x.type === 'money').d.o.includes(q.find(x => x.type === 'money').d.a));
+ok('oefeningen hebben wat hun scherm nodig heeft (gatzin, klok, geld, bouwen, luisteren)', q.filter(x => x.type === 'gap').every(x => x.o.length >= 2) && q.filter(x => x.type === 'clock').every(x => x.c.qTh && x.c.o.includes(x.c.a)) && q.filter(x => x.type === 'money').every(x => x.d.coins.length >= 3 && x.d.o.includes(x.d.a)) && q.filter(x => x.type === 'build').every(x => x.s && x.s.parts.includes(x.s.verb)) && q.filter(x => x.type === 'listen').every(x => x.p && x.p.opts.includes(x.p.say)) && q.some(x => ['gap', 'build', 'listen'].includes(x.type)));
 console.log(fails ? fails + ' FOUT' : 'alles OK');

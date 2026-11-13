@@ -307,6 +307,7 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "lesson.newTopic":"Something new. First the explanation, then you practise it yourself.",
  "disc.gen.isDiscount":"That is the discount. The question is what you pay: {p} − {d} = ?",
  "disc.gen.own.together":"Let's do it together: {pct}% of {p} is {d}. You pay {p} − {d} = € {pay},00.",
  "disc.gen.part.together":"Let's do it together: {pct}% of {p} is {d} euros discount.",
@@ -659,6 +660,7 @@ en:{
  "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "lesson.newTopic":"<h2>Iets nieuws</h2><p>Eerst de uitleg, dan oefen je het zelf.</p>",
  "disc.gen.isDiscount":"Dat is de korting. De vraag is wat je <b>betaalt</b>: {p} − {d} = ?",
  "disc.gen.own.together":"Samen dan: {pct}% van {p} is {d}. Je betaalt {p} − {d} = <b>€ {pay},00</b>.",
  "disc.gen.part.together":"Samen dan: {pct}% van {p} is <b>{d}</b> euro korting.",
@@ -1007,6 +1009,7 @@ nl:{
  "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "lesson.newTopic":"เรื่องใหม่ ดูคำอธิบายก่อน แล้วค่อยฝึกเอง",
  "disc.gen.isDiscount":"นั่นคือส่วนลด คำถามคือต้องจ่ายเท่าไร: {p} − {d} = ?",
  "disc.gen.own.together":"มาคิดด้วยกัน: {pct}% ของ {p} คือ {d} จ่าย {p} − {d} = € {pay},00",
  "disc.gen.part.together":"มาคิดด้วยกัน: {pct}% ของ {p} คือส่วนลด {d} ยูโร",
@@ -1407,6 +1410,8 @@ const SAFE=s=>PC?PC.safeText(s):esc(s);   // voor waarden die het scherm rauw in
 const RAW=s=>s==null?'':String(s);           // voor waarden die het scherm zelf met esc() toont, of die worden voorgelezen
 /* Regel (review fase 2): elke waarde uit een pakket gaat door precies één van SAFE (dan rauw in de HTML) of esc() (in het scherm), nooit beide. */
 let EXPL={},EXPL_LIST=[];
+/* KIND: soort per item (word, rule, sound, skill), gevuld na het laden van de pakketten */
+let KIND={};
 let PACKS=[],PACK_MISSING=[],NL=[],EN=[],REK=[],SENT=[],PAIRS=[],DICTEE=null,STORY=null,PLACE=[];
 const EXS={},CARDP={},PACKBY={};
 async function loadPacks(){
@@ -1481,11 +1486,11 @@ const GEN={
   clock(g,r){const h=g.h[0]+Math.floor(r()*(g.h[1]-g.h[0]+1)),m=g.m[Math.floor(r()*g.m.length)],n=h%12+1,p=(h+10)%12+1,a=tijdNL(h,m);
     const alts={0:[tijdNL(h,30),tijdNL(n,0),tijdNL(h,15)],15:[tijdNL(p,45),tijdNL(n,15),tijdNL(h,0)],30:[tijdNL(p,30),tijdNL(h,0),tijdNL(n,0)],45:[tijdNL(h,15),tijdNL(p,45),tijdNL(h,30)]}[m];
     return {data:{q:g.q,h,m,o:shuffle([a,...[...new Set(alts)].filter(x=>x!==a).slice(0,3)]),a},gk:'clock.gen.'+m}},
-  discount(g,r){const steps=Math.floor((g.price[1]-g.price[0])/g.price[2])+1,p=g.price[0]+g.price[2]*Math.floor(r()*steps),pct=g.pct[Math.floor(r()*g.pct.length)],d=p*pct/100;
+  discount(g,r,want){const steps=Math.floor((g.price[1]-g.price[0])/g.price[2])+1,p=g.price[0]+g.price[2]*Math.floor(r()*steps),fit=want==='r-10'?g.pct.filter(x=>x%10===0&&x!==50):want==='r-25'?g.pct.filter(x=>x===25||x===50):[],P=fit.length?fit:g.pct,pct=P[Math.floor(r()*P.length)],d=p*pct/100;
     return {data:{mode:g.mode},items:[pct%10===0&&pct!==50?'r-10':'r-25'],g:{p,pct,d,pay:p-d,p10:p/10}}}
 };
-function exQ(e,step,learn){
-  if(e.gen){const seed=1+Math.floor(Math.random()*9999),v=GEN[e.form]&&GEN[e.form](e.gen,mulberry32(seed));if(!v)return null;
+function exQ(e,step,learn,want){
+  if(e.gen){const seed=1+Math.floor(Math.random()*9999),v=GEN[e.form]&&GEN[e.form](e.gen,mulberry32(seed),want);if(!v)return null;
     const items=v.items||(e.items||[]).slice(),r=exQ0({...e,data:v.data,items},step,learn);if(!r)return null;
     r.items=items;r.exid=e.id+'#'+seed;if(v.g)r.g=v.g;if(v.gk&&r.c)r.c.gk=v.gk;return r}
   const r=exQ0(e,step,learn);if(r){r.items=(e.items||[]).slice();r.exid=e.id}return r}
@@ -1510,7 +1515,33 @@ function pickForm(w,learn,def){if(def!=='recall'&&def!=='enrecall')return def;co
   if(speak&&!f.includes('luisteren'))return learn==='en'?'enhear':'hear';
   if(learn==='en'&&!f.includes('herkennen'))return 'enrecog';
   return def}
-function compose(recipe,learn){const q=[],words=learn==='en'?EN:NL,R=id=>S.items[id];
+/* ---- oefenen per onderdeel (docs/herhaalmodel.md sectie 6) ---- */
+/* hoe ver over tijd, ten opzichte van de stabiliteit: het grootst = het meest bijna vergeten */
+function overdue(id){const it=S.items[id];return (now()-it.due)/(Math.max(.5,it.s)*DAY)}
+/* oefeningen met dit onderdeel als doel (eerste item); een kortingsrecept kan elk van zijn items als doel nemen */
+function exsFor(id,learn){return PACKS.filter(p=>p.learn===learn).flatMap(p=>p.exercises||[]).filter(e=>(e.items||[])[0]===id||(e.gen&&e.form==='discount'&&(e.items||[]).includes(id)))}
+/* de uitleg bij een onderdeel, als die er is */
+function explForItem(id,learn){const o=EXPL_LIST.find(o=>o.learn===learn&&(o.x.items||[]).includes(id));return o?o.x.id:null}
+/* welke oefening: afbouwend voorbeeld (fade 1 voorbeeld, 2 laatste stap zelf, 3 helemaal zelf), dan een vorm die voor bloei nog ontbreekt, dan een oefening die nog niet goed ging */
+function chooseEx(id,learn){const it=S.items[id]||{forms:[],exs:[],s:0,reps:0},f=it.forms||[],x=it.exs||[];let c=exsFor(id,learn);if(!c.length)return null;
+  if(c.some(e=>e.fade)){const lv=!f.includes('voorbeeld')&&c.some(e=>e.fade===1)?1:it.s<1.5?2:3;let best=c.filter(e=>e.fade===lv);for(let l=lv+1;!best.length&&l<=3;l++)best=c.filter(e=>e.fade===l);if(best.length)c=best}
+  const k=KIND[id];if(it.reps>0){const need=k==='rule'&&!f.includes('build')?e=>e.form==='build':k==='sound'&&!f.includes('luisteren')?e=>e.data&&e.data.mode==='type':null;if(need&&c.some(need))c=c.filter(need)}
+  else if(k==='rule'||k==='sound'){const easy=c.filter(e=>e.form!=='build'&&!(e.data&&e.data.mode==='type'));if(easy.length)c=easy}
+  const fresh=c.filter(e=>e.gen||!x.includes(e.id));if(fresh.length)c=fresh;
+  return shuffle(c)[0]}
+/* dezelfde oefenvorm hooguit twee keer achter elkaar */
+function varyForms(list){const units=[];let pend=[];for(const q of list){if(q.type==='explain')pend.push(q);else{units.push([...pend,q]);pend=[]}}if(pend.length)units.push(pend);   // een uitleg hoort bij de oefening erna
+  const ty=u=>u[u.length-1].type,out=[],rest=units.slice();while(rest.length){const n=out.length,same=n>=2&&ty(out[n-1])===ty(out[n-2])?ty(out[n-1]):null;let i=same?rest.findIndex(u=>ty(u)!==same):0;if(i<0)i=0;out.push(rest.splice(i,1)[0])}return out.flat()}
+function practice(s,learn,used){const P=s.practice,n=isEnglishDay()&&P.n2!=null?P.n2:P.n,R=id=>S.items[id];
+  const ids=PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>P.kinds.includes(x.kind)&&R(x.id)&&exsFor(x.id,learn).length&&!used.has(x.id)).map(x=>x.id);
+  const busy=Object.keys(S.items).filter(id=>thirsty(id)).length>25;
+  const due=ids.filter(id=>thirsty(id)).sort((a,b)=>overdue(b)-overdue(a)),fresh=ids.filter(id=>R(id).reps===0).slice(0,busy?0:(P.newMax!=null?P.newMax:1)),seen=ids.filter(id=>R(id).reps>0&&!thirsty(id)).sort((a,b)=>R(a).due-R(b).due);
+  const pick=[...new Set([...due,...fresh,...seen])].slice(0,n),out=[];
+  for(const id of pick){used.add(id);const isNew=R(id).reps===0,xid=isNew&&explForItem(id,learn);
+    if(xid&&!(S.explained||{})[xid])out.push({type:'explain',step:s.step,x:xid,lang:learn});
+    const e=chooseEx(id,learn),q=e&&exQ(e,s.step,(PACKS.find(p=>(p.exercises||[]).includes(e))||{}).learn==='en'?'en':learn,id);if(q)out.push(q)}
+  return varyForms(out)}
+function compose(recipe,learn){const used=new Set();const q=[],words=learn==='en'?EN:NL,R=id=>S.items[id];
   const dueAll=words.filter(w=>thirsty(w.id));
   for(const s of recipe||[]){
     if(s.card){const c=CARDP[s.card];if(!c)continue;const [label,btn]=(CARD_LABEL[learn]||{})[s.step]||['',''];const o={type:'card',label,step:s.step,html:()=>packCardHtml(c,learn==='en'&&s.step===1?'ENGLISH':'')};if(btn)o.btn=btn;if(c.say)o.bind=()=>{if($('#csp'))$('#csp').onclick=()=>say(c.say,false,c.sayLang||'nl')};q.push(o)}
@@ -1531,6 +1562,7 @@ function compose(recipe,learn){const q=[],words=learn==='en'?EN:NL,R=id=>S.items
     }
     else if(s.pool){const n=isEnglishDay()&&s.n2!=null?s.n2:s.n;shuffle(PACKS.flatMap(p=>p.exercises||[]).filter(e=>e.pool===s.pool)).slice(0,n).forEach(e=>{const x=exQ(e,s.step,learn);if(x)q.push(x)})}
     else if(s.ex){const e=EXS[s.ex];if(!e)continue;const x=exQ(e,s.step,(PACKS.find(p=>(p.exercises||[]).includes(e))||{}).learn==='en'?'en':learn);if(x)q.push(x)}
+    else if(s.practice)practice(s,learn,used).forEach(x=>q.push(x));
     else if(s.end){q.push({type:'conf',step:s.step});q.push({type:'end',step:s.step})}
   }
   return q}
@@ -1549,7 +1581,7 @@ function todayMins(){return S.mins[today()]||0}
 function hm(m){m=Math.round(m);return {u:Math.floor(m/60),m:m%60,g:fmtH(weekGoal())}}
 function fmtH(m){return (Math.round(m/6)/10).toString().replace('.',',')}
 function weekStreak(){const g=weekGoal();let n=0,m=monday();if(weekMins(m)>=g)n=1;for(let k=1;k<520;k++){if(weekMins(m-k*7*DAY)>=g)n++;else break}return n}
-function learning(){return app.classList.contains('sess')||!!UX||(!!route&&route!==vExplain&&route!==vContinue)}
+function learning(){try{return app.classList.contains('sess')||!!UX||(!!route&&route!==vExplain&&route!==vContinue)}catch(e){return false}}   // tijdens het laden bestaat route nog niet
 let lastAct=now(),tickN=0;
 ['pointerdown','keydown','input','touchstart','wheel'].forEach(ev=>document.addEventListener(ev,()=>{lastAct=now()},{passive:true,capture:true}));
 setInterval(()=>{if(STORE!=='ok'||document.visibilityState!=='visible'||now()-lastAct>12e4||!learning())return;
@@ -1649,7 +1681,7 @@ const MIGRATE={
  1:s=>{if(!s.profile||typeof s.profile!=='object')s.profile={name:''};if(!LEARN.includes(s.learn))s.learn='nl';if(!SUPPORT.includes(s.sup))s.sup='th';
    if(s.v2ok&&!s.v2seen)s.v2seen=Date.now();delete s.v2ok;if(s.v2seen)s.tl1off=true;return s},
  2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s},   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
- 3:s=>{for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];return s}   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
+ 3:s=>{for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];if(Object.keys(s.days||{}).length&&s.f3pending==null)s.f3pending=1;return s}   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
 };
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
@@ -1670,6 +1702,8 @@ let STORE='ok',S;
   if(schemaOf(o)<SCHEMA){const bakOk=putStore(BAK,raw);let m;try{m=migrate(o)}catch(e){STORE='broken';S=fresh();return}S=fillDefaults(m);if(bakOk)putStore(KEY,JSON.stringify(S))}else S=fillDefaults(o)})();
 [...NL,...EN,...REK,...PACKS.flatMap(p=>p.items||[]).filter(x=>x.kind==='rule'||x.kind==='sound')].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
 PACKS.forEach(p=>(p.items||[]).forEach(x=>{if(x&&x.id&&x.kind)KIND[x.id]=x.kind}));
+/* eenmalig bij de overstap op fase 3: wie al lessen deed, heeft de regels en klanken uit de vaste les al gehad. Die tellen als geïntroduceerd en zijn aan de beurt. */
+if(STORE==='ok'&&S.f3pending){Object.keys(KIND).filter(id=>(KIND[id]==='rule'||KIND[id]==='sound')&&S.items[id]&&S.items[id].reps===0).forEach(id=>{S.items[id].reps=1;S.items[id].due=now();if(!S.introduced.includes(id))S.introduced.push(id)});delete S.f3pending;setTimeout(()=>save(),0)}   // opslaan pas na het opstarten (save() gebruikt later gedeclareerde variabelen)
 if(!S.profile||typeof S.profile!=='object')S.profile={name:''};
 if(!LEARN.includes(S.learn))S.learn='nl';if(!SUPPORT.includes(S.sup))S.sup='th';
 /* naam van de leerder: alleen uit het profiel op dit toestel (nooit in de code). nm() = naam (veilig) of leeg, who() = naam of 'de leerder'. */
@@ -1699,7 +1733,7 @@ function review(id,res,form,exid,passive){
   const it=S.items[id];if(!it)return;if(!Array.isArray(it.exs))it.exs=[];
   if(passive&&res!==true)return;
   if(res===true||res==='retry'){if(form&&!it.forms.includes(form))it.forms.push(form);if(exid&&!it.exs.includes(exid)){it.exs.push(exid);if(it.exs.length>10)it.exs.shift()}}
-  it.reps++;
+  if(!passive)it.reps++;
   if(!passive){
     if(res===true){if(it.s<=0){it.s=1;it.due=now()+DAY}
       else{const f=Math.min(1,(now()-(it.due-it.s*DAY))/(it.s*DAY));if(f>=.5){it.s=Math.min(120,it.s*(1+1.4*f));if(it.s>=10&&!canBloom(id,it))it.s=9;it.due=now()+it.s*DAY}}}
@@ -1710,8 +1744,6 @@ function review(id,res,form,exid,passive){
 }
 /* vormen die niet meetellen voor bloei: bekijken en de controlevraag bij een uitleg */
 const NOGROW=['voorbeeld','check'];
-/* soort per item (word, rule, sound, skill), gevuld na het laden van de pakketten */
-let KIND={};
 /* eis voor doorgroeien boven 9 dagen (docs/herhaalmodel.md sectie 4, besluit 13 november 2026):
    woord: drie vormen; regel: drie verschillende oefeningen, minstens één keer zin bouwen;
    klank: drie verschillende oefeningen, minstens één keer luisteren en typen; rekenvaardigheid: drie verschillende varianten. */
@@ -1969,6 +2001,10 @@ H.hear=q=>{const w=q.w;let tries=0,hint=0,done=false;const fullT=`${w.art} ${w.w
     $('#fb').innerHTML=fbBox(ok||wordOnly,ok?`<b>${full}</b>. ${esc(w.ex)}`:wordOnly?t('recall.addArt',{art:w.art,full}):`${t('recall.answer',{full})} ${esc(w.ex)}`,ok?ts('recall.yes',{full}):wordOnly?ts('recall.addArt',{art:w.art,full}):ts('recall.answer',{full}));
     inp.disabled=true;$('#hint').disabled=true;$('#chk').outerHTML=nextBtn(ok?'btn-leaf':'btn-main');$('#nx').onclick=next};
   $('#chk').onclick=check;inp.onkeydown=e=>{if(e.key==='Enter')check()}};
+H.explain=q=>{const o=EXPL[q.x];if(!o){next();return}
+  frame(`<div class="card stack">${T('lesson.newTopic')}<p class="prompt">${TKx(o.x.title,o.learn)}</p><p class="muted">${TKx(o.x.summary,o.learn)}</p>
+  <button class="btn btn-main" data-uopen="${esc(q.x)}">${TB('explain.open')}</button></div>${nextBtn('btn-ghost')}`,q.lang==='en'?'English':'Nieuw',q.step);
+  const tm=setTimeout(()=>openExplain(q.x),250);$('#nx').onclick=()=>{clearTimeout(tm);next()}};
 H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${w.art} ${w.w}`,full=esc(fullT),g=nlOnly()?gapEx(w):null;
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past in de zin?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Wat is dit in het Nederlands?</p><p class="prompt sp" ${supAttr()}>${L_(w)}</p>`}
   <label for="ans" class="small muted">${g?'Typ het woord dat op de open plek past':T('recall.typeArt')}</label>
@@ -2096,7 +2132,8 @@ H.end=q=>{finishTime();const rn=S.rounds[today()]=(S.rounds[today()]||0)+1,bonus
   petals();bindCont();$('#home').onclick=()=>show('vandaag')};
 
 /* ============ dagelijkse les ============ */
-function startLesson(short){const p=PACKS.find(p=>p.learn==='nl'&&p.lesson);if(!p)return toast(tx('pack.none'));runSession(short?'Korte les':'Les thema 1',p?compose(short?p.lessonShort:p.lesson,'nl'):[])}
+function startLesson(short){const p=PACKS.find(p=>p.learn==='nl'&&p.lesson);if(!p)return toast(tx('pack.none'));const later=short||((S.rounds||{})[today()]||0)>=1;   // de eerste ronde van de dag is vol, latere rondes zijn kort (docs/herhaalmodel.md besluit 3)
+  runSession(later?'Korte les':'Les thema 1',compose(later?p.lessonShort:p.lesson,'nl'))}
 
 /* ============ Engels ============ */
 function startEnglish(){const p=PACKS.find(p=>p.learn==='en'&&p.lesson);if(!p)return toast(tx('pack.none'));runSession('Engels',p?compose(p.lesson,'en'):[])}

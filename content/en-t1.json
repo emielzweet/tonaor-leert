@@ -1,7 +1,7 @@
 {
  "format": 1,
  "id": "en-t1",
- "version": 2,
+ "version": 3,
  "learn": "en",
  "level": "A1-A2",
  "order": 20,
@@ -442,19 +442,14 @@
   },
   {
    "step": 3,
-   "ex": "en.gat.1"
-  },
-  {
-   "step": 3,
-   "ex": "en.gat.2"
-  },
-  {
-   "step": 3,
-   "ex": "en.gat.3"
-  },
-  {
-   "step": 3,
-   "ex": "en.luister.vw"
+   "practice": {
+    "n": 3,
+    "kinds": [
+     "rule",
+     "sound"
+    ],
+    "newMax": 2
+   }
   },
   {
    "step": 5,

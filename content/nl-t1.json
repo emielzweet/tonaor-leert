@@ -1,7 +1,7 @@
 {
  "format": 1,
  "id": "nl-t1",
- "version": 3,
+ "version": 4,
  "learn": "nl",
  "level": "A2-B1",
  "order": 10,
@@ -1421,18 +1421,15 @@
   },
   {
    "step": 3,
-   "pool": "zinnen",
-   "n": 3,
-   "n2": 2
-  },
-  {
-   "step": 3,
-   "ex": "nl.gat.heb"
-  },
-  {
-   "step": 3,
-   "pool": "klanken",
-   "n": 2
+   "practice": {
+    "n": 4,
+    "n2": 3,
+    "kinds": [
+     "rule",
+     "sound"
+    ],
+    "newMax": 2
+   }
   },
   {
    "step": 3,
@@ -1440,19 +1437,13 @@
   },
   {
    "step": 4,
-   "ex": "rk.geld.gen"
-  },
-  {
-   "step": 4,
-   "ex": "rk.klok.gen"
-  },
-  {
-   "step": 4,
-   "ex": "rk.korting.voorbeeld"
-  },
-  {
-   "step": 4,
-   "ex": "rk.korting.deel.gen"
+   "practice": {
+    "n": 3,
+    "kinds": [
+     "skill"
+    ],
+    "newMax": 2
+   }
   },
   {
    "step": 5,
@@ -1470,7 +1461,7 @@
    "forms": [
     "recall"
    ],
-   "max": 3,
+   "max": 4,
    "orIntroduced": true,
    "ifNone": {
     "words": "first",
@@ -1482,8 +1473,25 @@
    }
   },
   {
+   "step": 3,
+   "practice": {
+    "n": 3,
+    "kinds": [
+     "rule",
+     "sound"
+    ],
+    "newMax": 2
+   }
+  },
+  {
    "step": 4,
-   "ex": "rk.klok.gen"
+   "practice": {
+    "n": 1,
+    "kinds": [
+     "skill"
+    ],
+    "newMax": 1
+   }
   },
   {
    "step": 5,

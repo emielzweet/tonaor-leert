@@ -78,52 +78,30 @@
     "s": "Om zes uur begint mijn dienst."
    },
    {
-    "type": "build",
-    "step": 3,
-    "s": "Morgen werk ik in Zwaag."
-   },
-   {
-    "type": "build",
-    "step": 3,
-    "s": "In de pauze drink ik thee."
-   },
-   {
     "type": "gap",
     "step": 3,
     "s": "Zaterdag ___ ik vrij."
-   },
-   {
-    "type": "listen",
-    "step": 3,
-    "p": "man"
-   },
-   {
-    "type": "listen",
-    "step": 3,
-    "p": "huis"
    },
    {
     "type": "dictee",
     "step": 3
    },
    {
+    "type": "explain",
+    "step": 4
+   },
+   {
     "type": "money",
+    "step": 4
+   },
+   {
+    "type": "explain",
     "step": 4
    },
    {
     "type": "clock",
     "step": 4,
-    "c": "half twee"
-   },
-   {
-    "type": "discount",
-    "step": 4,
-    "k": "worked"
-   },
-   {
-    "type": "discount",
-    "step": 4,
-    "k": "partial"
+    "c": "kwart over tien"
    },
    {
     "type": "conf",
@@ -204,47 +182,30 @@
     "s": "Morgen werk ik in Zwaag."
    },
    {
-    "type": "build",
-    "step": 3,
-    "s": "In de pauze drink ik thee."
-   },
-   {
     "type": "gap",
     "step": 3,
-    "s": "Zaterdag ___ ik vrij."
-   },
-   {
-    "type": "listen",
-    "step": 3,
-    "p": "huis"
-   },
-   {
-    "type": "listen",
-    "step": 3,
-    "p": "man"
+    "s": "Wij ___ morgen een afspraak."
    },
    {
     "type": "dictee",
     "step": 3
    },
    {
+    "type": "explain",
+    "step": 4
+   },
+   {
     "type": "money",
+    "step": 4
+   },
+   {
+    "type": "explain",
     "step": 4
    },
    {
     "type": "clock",
     "step": 4,
-    "c": "twee uur"
-   },
-   {
-    "type": "discount",
-    "step": 4,
-    "k": "worked"
-   },
-   {
-    "type": "discount",
-    "step": 4,
-    "k": "partial"
+    "c": "zes uur"
    },
    {
     "type": "conf",
@@ -335,52 +296,30 @@
     "s": "Om zes uur begint mijn dienst."
    },
    {
-    "type": "build",
-    "step": 3,
-    "s": "Zaterdag heb ik vrij."
-   },
-   {
-    "type": "build",
-    "step": 3,
-    "s": "In de pauze drink ik thee."
-   },
-   {
     "type": "gap",
     "step": 3,
-    "s": "Zaterdag ___ ik vrij."
-   },
-   {
-    "type": "listen",
-    "step": 3,
-    "p": "huis"
-   },
-   {
-    "type": "listen",
-    "step": 3,
-    "p": "man"
+    "s": "Wij ___ morgen een afspraak."
    },
    {
     "type": "dictee",
     "step": 3
    },
    {
+    "type": "explain",
+    "step": 4
+   },
+   {
     "type": "money",
+    "step": 4
+   },
+   {
+    "type": "explain",
     "step": 4
    },
    {
     "type": "clock",
     "step": 4,
-    "c": "kwart voor acht"
-   },
-   {
-    "type": "discount",
-    "step": 4,
-    "k": "worked"
-   },
-   {
-    "type": "discount",
-    "step": 4,
-    "k": "partial"
+    "c": "zes uur"
    },
    {
     "type": "conf",
@@ -451,47 +390,30 @@
     "s": "Om zes uur begint mijn dienst."
    },
    {
-    "type": "build",
-    "step": 3,
-    "s": "In de pauze drink ik thee."
-   },
-   {
     "type": "gap",
     "step": 3,
-    "s": "Zaterdag ___ ik vrij."
-   },
-   {
-    "type": "listen",
-    "step": 3,
-    "p": "huis"
-   },
-   {
-    "type": "listen",
-    "step": 3,
-    "p": "man"
+    "s": "Wij ___ morgen een afspraak."
    },
    {
     "type": "dictee",
     "step": 3
    },
    {
+    "type": "explain",
+    "step": 4
+   },
+   {
     "type": "money",
+    "step": 4
+   },
+   {
+    "type": "explain",
     "step": 4
    },
    {
     "type": "clock",
     "step": 4,
-    "c": "twee uur"
-   },
-   {
-    "type": "discount",
-    "step": 4,
-    "k": "worked"
-   },
-   {
-    "type": "discount",
-    "step": 4,
-    "k": "partial"
+    "c": "zes uur"
    },
    {
     "type": "conf",
@@ -532,52 +454,30 @@
     "s": "Om zes uur begint mijn dienst."
    },
    {
-    "type": "build",
-    "step": 3,
-    "s": "Morgen werk ik in Zwaag."
-   },
-   {
-    "type": "build",
-    "step": 3,
-    "s": "Zaterdag heb ik vrij."
-   },
-   {
     "type": "gap",
     "step": 3,
-    "s": "Zaterdag ___ ik vrij."
-   },
-   {
-    "type": "listen",
-    "step": 3,
-    "p": "huis"
-   },
-   {
-    "type": "listen",
-    "step": 3,
-    "p": "man"
+    "s": "Wij ___ morgen een afspraak."
    },
    {
     "type": "dictee",
     "step": 3
    },
    {
+    "type": "explain",
+    "step": 4
+   },
+   {
     "type": "money",
+    "step": 4
+   },
+   {
+    "type": "explain",
     "step": 4
    },
    {
     "type": "clock",
     "step": 4,
-    "c": "tien uur"
-   },
-   {
-    "type": "discount",
-    "step": 4,
-    "k": "worked"
-   },
-   {
-    "type": "discount",
-    "step": 4,
-    "k": "partial"
+    "c": "half vier"
    },
    {
     "type": "conf",
@@ -618,9 +518,22 @@
     "w": "dienst"
    },
    {
-    "type": "clock",
-    "step": 4,
-    "c": "kwart voor vijf"
+    "type": "build",
+    "step": 3,
+    "s": "Zaterdag heb ik vrij."
+   },
+   {
+    "type": "gap",
+    "step": 3,
+    "s": "Wij ___ morgen een afspraak."
+   },
+   {
+    "type": "explain",
+    "step": 4
+   },
+   {
+    "type": "money",
+    "step": 4
    },
    {
     "type": "conf",
@@ -651,9 +564,22 @@
     "w": "pauze"
    },
    {
-    "type": "clock",
-    "step": 4,
-    "c": "kwart over één"
+    "type": "build",
+    "step": 3,
+    "s": "In de pauze drink ik thee."
+   },
+   {
+    "type": "gap",
+    "step": 3,
+    "s": "Zaterdag ___ ik vrij."
+   },
+   {
+    "type": "explain",
+    "step": 4
+   },
+   {
+    "type": "money",
+    "step": 4
    },
    {
     "type": "conf",
@@ -699,14 +625,8 @@
     "label": "English"
    },
    {
-    "type": "engap",
-    "step": 3,
-    "s": "She ___ at night."
-   },
-   {
-    "type": "engap",
-    "step": 3,
-    "s": "My colleagues ___ in the morning."
+    "type": "explain",
+    "step": 3
    },
    {
     "type": "engap",
@@ -714,9 +634,13 @@
     "s": "He ___ a break at ten."
    },
    {
+    "type": "explain",
+    "step": 3
+   },
+   {
     "type": "listen",
     "step": 3,
-    "p": "west"
+    "p": "vest"
    },
    {
     "type": "conf",
@@ -762,14 +686,8 @@
     "label": "English"
    },
    {
-    "type": "engap",
-    "step": 3,
-    "s": "She ___ at night."
-   },
-   {
-    "type": "engap",
-    "step": 3,
-    "s": "My colleagues ___ in the morning."
+    "type": "explain",
+    "step": 3
    },
    {
     "type": "engap",
@@ -777,9 +695,13 @@
     "s": "He ___ a break at ten."
    },
    {
+    "type": "explain",
+    "step": 3
+   },
+   {
     "type": "listen",
     "step": 3,
-    "p": "west"
+    "p": "vest"
    },
    {
     "type": "conf",

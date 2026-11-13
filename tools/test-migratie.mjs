@@ -90,6 +90,11 @@ r = run({ [KEY]: raw({ ...CUR, schema: 3, items: { werk: { s: 9, due: 5, reps: 7
 ok('schema 3 → 4: item houdt s, due, reps, lapses en forms, en krijgt exs', (w => w.s === 9 && w.due === 5 && w.reps === 7 && w.lapses === 2 && w.forms.length === 2 && Array.isArray(w.exs) && !w.exs.length)(r.S.items.werk) && r.S.schema === SCH);
 r = run({ [KEY]: raw({ ...CUR, schema: 3, items: { werk: { s: 2, exs: ['nl.zin.1'] } } }) });
 ok('schema 3 → 4 is herhaalbaar: bestaande exs blijft', r.S.items.werk.exs[0] === 'nl.zin.1');
+r = run({ [KEY]: raw({ ...CUR, schema: 3, days: { 1: 1 }, items: {} }) });
+ok('schema 3 → 4: wie al lessen deed, krijgt de overstap van fase 3 (f3pending)', r.S.f3pending === 1);
+r = run({ [KEY]: raw({ ...CUR, schema: 3, days: {}, items: {} }) });
+ok('schema 3 → 4: zonder lessen geen overstap', r.S.f3pending == null);
+ok('f3pending staat niet in fresh() (anders krijgt elke oude opslag het veld zonder migratie)', !(h.slice(h.indexOf('function fresh()'), h.indexOf('\n', h.indexOf('function fresh()')) + 400).includes('f3pending')));
 
 // 9. terugzetten vanaf Ik zet de oude koppeling (TL1) nooit opnieuw aan; in het herstelscherm is het bestand leidend
 const ZONDERHELLO = { v: 2, schema: SCH, items: { werk: { s: 1 } }, code: 'oud-1234', code2: 'NIEUW' };
