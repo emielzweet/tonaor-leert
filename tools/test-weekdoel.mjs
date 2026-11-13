@@ -1,9 +1,11 @@
 // Weekdoel (7 uur per week): opslag, telling, bericht naar de begeleider, geen dagdoel in punten meer.
 import { html } from './app-harness.mjs';
 let fails = 0; const ok = (n, v) => { if (!v) fails++; console.log((v ? 'OK  ' : 'FOUT') + ' ' + n); };
-ok('opslag: weekGoal 420, rounds en weekSeen in fresh()', /weekGoal:420,rounds:\{\},weekSeen:\{\}/.test(html));
+ok('opslag: weekGoal 600 (10 uur), weekGoalSet, rounds en weekSeen in fresh()', html.includes('weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{}'));
 ok('keuze op Ik: 3,5, 5, 7 of 10 uur', html.includes('const WEEKGOALS=[210,300,420,600]') && html.includes('data-wg='));
-ok('onbekend weekdoel valt terug op 7 uur', html.includes('WEEKGOALS.includes(S.weekGoal)?S.weekGoal:420'));
+ok('onbekend weekdoel valt terug op 10 uur', html.includes('WEEKGOALS.includes(S.weekGoal)?S.weekGoal:600'));
+ok('migratie 2→3: 7 uur zonder eigen keuze wordt 10 uur, een eigen keuze blijft', html.includes('2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s}') && html.includes('S.weekGoalSet=true'));
+ok('merktekens op 3,5, 7 en 10 uur met een melding per merkteken', html.includes('const MILES=[210,420,600]') && html.includes("tx('week.mile'"));
 ok('de klok telt alleen actieve tijd (2 minuten) bij een zichtbaar scherm', /now\(\)-lastAct>12e4/.test(html) && html.includes("document.visibilityState!=='visible'") && html.includes("STORE!=='ok'"));
 ok('geen dubbele telling: finishTime telt geen minuten meer', /function finishTime\(\)\{save\(\);syncUp\(true\)\}/.test(html) && !html.includes('addLearnMs'));
 ok('bericht naar de begeleider krijgt week.goal (alleen toegevoegd)', /week:\{days,mins:[^}]*goal:weekGoal\(\)\}/.test(html));

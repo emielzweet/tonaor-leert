@@ -117,7 +117,7 @@ button.card{width:100%;text-align:left}
 .day.done i{background:var(--mint-fill);border-color:var(--mint-fill)}
 .day.today i{border-color:var(--apricot-fill);border-width:3px}
 .ring{width:80px;height:80px;flex-shrink:0}
-.wring{position:relative;width:116px;height:116px;flex-shrink:0}.wring .ring{width:116px;height:116px}.wring .ring text{display:none}
+.wring{position:relative;width:116px;height:116px;flex-shrink:0}.wring .ring{width:116px;height:116px}.wring .ring text{display:none}.ring .tick{stroke:var(--ink-2)}.ring .tick.hit{stroke:var(--surface)}
 .wring .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.15}
 .wring .mid b{font-size:1.35rem}.wring .mid span{font-size:.68rem;color:var(--ink-2);max-width:74px}
 .wcard{display:flex;flex-direction:column;gap:12px}
@@ -307,6 +307,7 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "week.mile":"{h} hours of learning this week. Well done!",
  "week.done":"reached",
  "week.left":"hours to go",
  "cont.home":"Back to Today",
@@ -500,7 +501,7 @@ en:{
  "voice.install":"Install a (better) Dutch voice",
  "voice.reopen":"Then open the app again.",
  "onb.welcome":"Welcome",
- "onb.intro":"Here you learn Dutch, maths and English. The aim is 7 hours a week. Every minute counts, and you can make up a missed day later. Everything can also be read in {sup}.",
+ "onb.intro":"Here you learn Dutch, maths and English. The aim is 10 hours a week. Every minute counts, and you can make up a missed day later. Everything can also be read in {sup}.",
  "onb.garden":"Every word you learn becomes a plant in your own garden.",
  "onb.when":"When do you learn?",
  "onb.when.tip":"Choose fixed moments. With fixed moments it is much easier to reach your weekly goal.",
@@ -639,6 +640,7 @@ en:{
  "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "week.mile":"{h} uur geleerd deze week. Mooi gedaan!",
  "week.done":"gehaald",
  "week.left":"uur nog te gaan",
  "cont.home":"Terug naar Vandaag",
@@ -828,7 +830,7 @@ nl:{
  "voice.install":"Een (betere) Nederlandse stem installeren",
  "voice.reopen":"Open de app daarna opnieuw.",
  "onb.welcome":"<h1>Welkom</h1>",
- "onb.intro":"Hier leer je Nederlands, rekenen en Engels. Het streven is 7 uur per week. Elke minuut telt, en een gemiste dag haal je later in. Alles is ook in het {sup} te lezen.",
+ "onb.intro":"Hier leer je Nederlands, rekenen en Engels. Het streven is 10 uur per week. Elke minuut telt, en een gemiste dag haal je later in. Alles is ook in het {sup} te lezen.",
  "onb.garden":"Elk woord dat je leert, wordt een plantje in je eigen tuin.",
  "onb.when":"<h1>Wanneer leer je?</h1>",
  "onb.when.tip":"Kies vaste momenten. Met vaste momenten haal je je weekdoel veel makkelijker.",
@@ -967,6 +969,7 @@ nl:{
  "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "week.mile":"สัปดาห์นี้เรียนไปแล้ว {h} ชั่วโมง เยี่ยมมาก",
  "week.done":"สำเร็จ",
  "week.left":"ชั่วโมงที่เหลือ",
  "cont.home":"กลับไปหน้าวันนี้",
@@ -1154,7 +1157,7 @@ th:{
  "voice.install":"ติดตั้งเสียงภาษาดัตช์",
  "voice.reopen":"จากนั้นเปิดแอปใหม่",
  "onb.welcome":"ยินดีต้อนรับ",
- "onb.intro":"ที่นี่คุณจะได้เรียนภาษาดัตช์ คณิตศาสตร์ และภาษาอังกฤษ เป้าหมายคือ 7 ชั่วโมงต่อสัปดาห์ ทุกนาทีมีค่า วันไหนพลาดไปก็เรียนชดเชยทีหลังได้ ทุกอย่างมีภาษาไทยให้อ่านด้วย",
+ "onb.intro":"ที่นี่คุณจะได้เรียนภาษาดัตช์ คณิตศาสตร์ และภาษาอังกฤษ เป้าหมายคือ 10 ชั่วโมงต่อสัปดาห์ ทุกนาทีมีค่า วันไหนพลาดไปก็เรียนชดเชยทีหลังได้ ทุกอย่างมีภาษาไทยให้อ่านด้วย",
  "onb.garden":"ทุกคำที่คุณเรียนจะกลายเป็นต้นไม้ในสวนของคุณเอง",
  "onb.when":"คุณจะเรียนเมื่อไร",
  "onb.when.tip":"เลือกเวลาที่แน่นอน การมีเวลาแน่นอนช่วยให้ทำตามเป้าหมายรายสัปดาห์ได้ง่ายขึ้นมาก",
@@ -1446,14 +1449,15 @@ function compose(recipe,learn){const q=[],words=learn==='en'?EN:NL,R=id=>S.items
   }
   return q}
 /* ============ leertijd en weekdoel ============
-   Het streven is S.weekGoal minuten per week (standaard 420 = 7 uur; op Ik 3,5, 5, 7 of 10 uur). Het dagdeel is een zevende daarvan.
+   Het streven is S.weekGoal minuten per week (standaard 600 = 10 uur; op Ik 3,5, 5, 7 of 10 uur; S.weekGoalSet = zelf gekozen). Het dagdeel is een zevende daarvan.
    Alle leertijd telt: les, uitleg, verhaal, snelronde, gesprek, dagboek, kijkopdracht. De klok loopt alleen bij actieve tijd:
    in een les of activiteit, met het scherm zichtbaar, en hooguit 2 minuten na de laatste tik of toets. S.mins[dag] = minuten (met decimalen).
    Niets wordt afgepakt: een gemiste dag haal je in binnen de week. */
 const WEEKGOALS=[210,300,420,600];
 function monday(t){const d=new Date(t==null?now():t);d.setHours(0,0,0,0);return d.getTime()-((d.getDay()+6)%7)*DAY}
 function weekMins(mon){mon=mon==null?monday():mon;let s=0;for(let i=0;i<7;i++)s+=S.mins[mon+i*DAY]||0;return s}
-function weekGoal(){return WEEKGOALS.includes(S.weekGoal)?S.weekGoal:420}
+function weekGoal(){return WEEKGOALS.includes(S.weekGoal)?S.weekGoal:600}
+const MILES=[210,420,600];   // merktekens op de weekring: 3,5, 7 en 10 uur
 function dayPart(){return weekGoal()/7}
 function todayMins(){return S.mins[today()]||0}
 function hm(m){m=Math.round(m);return {u:Math.floor(m/60),m:m%60,g:fmtH(weekGoal())}}
@@ -1468,7 +1472,8 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState!==
 /* bericht als het weekdoel bijna (80 procent) of helemaal gehaald is; één keer per week */
 function pruneWeeks(){const cut=monday()-8*7*DAY;for(const o of [S.rounds,S.weekSeen])for(const k of Object.keys(o||{}))if(+k<cut)delete o[k]}
 function weekCheck(before){const g=weekGoal(),after=weekMins(),mon=monday(),seen=S.weekSeen[mon]||(S.weekSeen[mon]={});
-  pruneWeeks();if(!seen.almost&&before<.8*g&&after>=.8*g&&after<g){seen.almost=1;save();toast(tx('week.almost',{n:Math.ceil(g-after)}))}
+  pruneWeeks();for(const m of MILES)if(m<g&&!seen['m'+m]&&before<m&&after>=m){seen['m'+m]=1;save();toast(tx('week.mile',{h:fmtH(m)}))}
+  if(!seen.almost&&before<.8*g&&after>=.8*g&&after<g){seen.almost=1;save();toast(tx('week.almost',{n:Math.ceil(g-after)}))}
   if(!seen.done&&before<g&&after>=g){seen.done=1;save();toast(tx('week.reached'));try{petals()}catch(e){}}}
 /* na een les of activiteit: hoe ver je bent, en drie manieren om door te gaan */
 function contHtml(){const left=Math.ceil(dayPart()-todayMins());
@@ -1546,17 +1551,18 @@ function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
     points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
-    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,weekGoal:420,rounds:{},weekSeen:{},schema:SCHEMA};
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},schema:SCHEMA};
 }
 /* ============ opslag veilig laden (#30) ============
    S.v blijft 2. S.schema telt de vorm van de opslag (zonder veld = 1). Elke stap n -> n+1 staat in MIGRATE en mag vaker draaien.
    Vóór een migratie gaat de ruwe opslag ongewijzigd naar BAK (één generatie); ook vóór Alles wissen en vóór Terugzetten.
    STORE: 'ok' = normaal | 'broken' = onleesbaar of onbekend: herstelscherm, niets wegschrijven | 'newer' = van een nieuwere app: alleen lezen.
    Buiten 'ok' schrijft de app niets weg en verstuurt ze geen voortgang. Onleesbare opslag wordt pas vervangen na een kopie in BROKEN. */
-const SCHEMA=2,BAK=KEY+'.bak',BROKEN=KEY+'.kapot';
+const SCHEMA=3,BAK=KEY+'.bak',BROKEN=KEY+'.kapot';
 const MIGRATE={
  1:s=>{if(!s.profile||typeof s.profile!=='object')s.profile={name:''};if(!LEARN.includes(s.learn))s.learn='nl';if(!SUPPORT.includes(s.sup))s.sup='th';
-   if(s.v2ok&&!s.v2seen)s.v2seen=Date.now();delete s.v2ok;if(s.v2seen)s.tl1off=true;return s}
+   if(s.v2ok&&!s.v2seen)s.v2seen=Date.now();delete s.v2ok;if(s.v2seen)s.tl1off=true;return s},
+ 2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s}   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
 };
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
@@ -1739,12 +1745,12 @@ function vOnboard(){
 /* ============ vandaag ============ */
 function weekDots(){const d=new Date(),dow=(d.getDay()+6)%7,mon=today()-dow*DAY,names=['ma','di','wo','do','vr','za','zo'];let done=0,html='';
   for(let i=0;i<7;i++){const t=mon+i*DAY,isD=!!S.days[t];if(isD)done++;html+=`<div class="day ${isD?'done':''} ${t===today()?'today':''}"><i></i>${names[i]}</div>`}return{html,done}}
-function ring(p,label){const r=32,c=2*Math.PI*r,v=Math.min(1,p);return `<svg class="ring" viewBox="0 0 80 80" role="img" aria-label="${esc(label||'')} ${Math.round(v*100)} procent"><circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--surface-2)" stroke-width="9"/><circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--apricot-fill)" stroke-width="9" stroke-linecap="round" stroke-dasharray="${(c*v).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 40 40)"/><text x="40" y="45" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="800" font-size="15" fill="var(--ink)">${Math.round(v*100)}%</text></svg>`}
+function ring(p,label,marks){const r=32,c=2*Math.PI*r,v=Math.min(1,p),tick=f=>{const a=2*Math.PI*f-Math.PI/2,x1=40+(r-7)*Math.cos(a),y1=40+(r-7)*Math.sin(a),x2=40+(r+7)*Math.cos(a),y2=40+(r+7)*Math.sin(a);return `<line class="tick${f<=v?' hit':''}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke-width="2.5" stroke-linecap="round"/>`};return `<svg class="ring" viewBox="0 0 80 80" role="img" aria-label="${esc(label||'')} ${Math.round(v*100)} procent"><circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--surface-2)" stroke-width="9"/><circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--apricot-fill)" stroke-width="9" stroke-linecap="round" stroke-dasharray="${(c*v).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 40 40)"/>${(marks||[]).filter(f=>f>0&&f<1).map(tick).join('')}<text x="40" y="45" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="800" font-size="15" fill="var(--ink)">${Math.round(v*100)}%</text></svg>`}
 /* één weekkaart: ring met de tijd die nog te gaan is, staafjes per dag (vol bij het dagdeel), weken op rij */
 function weekCard(){const g=weekGoal(),wm=weekMins(),left=Math.max(0,Math.round(g-wm)),mon=monday(),names=['ma','di','wo','do','vr','za','zo'],st=weekStreak();
   let bars='';for(let i=0;i<7;i++){const d=mon+i*DAY,m=S.mins[d]||0,f=Math.min(1,m/dayPart());bars+=`<div class="wbar${d===today()?' today':''}${f>=1?' full':''}" title="${Math.round(m)} min"><b><i style="height:${Math.round(f*100)}%"></i></b>${names[i]}</div>`}
   const mid=left>0?`<b class="num">${Math.floor(left/60)}:${String(left%60).padStart(2,'0')}</b><span>${esc(t('week.left'))}</span>`:`<b>✓</b><span>${esc(t('week.done'))}</span>`;
-  return `<section class="card wcard" aria-label="${esc(t('week.title'))}"><div class="row"><div class="wring">${ring(wm/g,t('week.title'))}<div class="mid">${mid}</div></div>
+  return `<section class="card wcard" aria-label="${esc(t('week.title'))}"><div class="row"><div class="wring">${ring(wm/g,t('week.title'),MILES.map(m=>m/g))}<div class="mid">${mid}</div></div>
    <div>${T('week.title')}<p class="small muted num">${T('week.ring',hm(wm))}</p>${wm>=g?`<p class="small">${T('week.reached')}</p>`:wm>=.8*g?`<p class="small">${T('week.almost',{n:Math.ceil(g-wm)})}</p>`:''}</div></div>
    <div class="wbars" aria-hidden="true">${bars}</div>
    <p class="small muted">${st>0?T('week.streak',{n:st}):T('today.daysDone',{n:weekDots().done})}</p></section>`}
@@ -2141,7 +2147,7 @@ function vMe(){
   if(unseen){S.answers.forEach(a=>a.seen=true);save()}
   app.querySelectorAll('[data-th]').forEach(b=>b.onclick=()=>{setThai(b.dataset.th);vMe()});
   app.querySelectorAll('[data-sz]').forEach(b=>b.onclick=()=>{setSize(b.dataset.sz);vMe()});
-  app.querySelectorAll('[data-wg]').forEach(b=>b.onclick=()=>{S.weekGoal=+b.dataset.wg;save();vMe()});
+  app.querySelectorAll('[data-wg]').forEach(b=>b.onclick=()=>{S.weekGoal=+b.dataset.wg;S.weekGoalSet=true;save();vMe()});
   if($('#vsel'))$('#vsel').onchange=e=>{S.voice=Object.assign({},S.voice,{nl:e.target.value});save();say('Zo klinkt deze stem. Goedemorgen, hoe gaat het met je?')};
   $('#vtest').onclick=()=>say('Zo klinkt deze stem. Goedemorgen, hoe gaat het met je?');
   app.querySelectorAll('[data-ex]').forEach(b=>b.onclick=()=>{S.extras[b.dataset.ex]=!S.extras[b.dataset.ex];save();vMe()});

@@ -174,14 +174,14 @@ Er is geen officiële urennorm voor Nederlands of rekenen. Het beste houvast:
 | Engels naar A2 | 150–300 (afhankelijk van het startniveau) |
 | Engels A2 → B1 lezen en luisteren | 150–300 |
 
-**Wat dat betekent bij het gekozen ritme.** Het streven is 7 uur per week (op Ik instelbaar: 3,5, 5, 7 of 10 uur). Alle leertijd in de app telt mee: lessen, uitleg, verhalen, de snelronde, gesprekken, het dagboek en de kijkopdracht. Een gemiste dag haal je later in de week in. Dat is ongeveer 360 uur per jaar voor alle drie de vakken samen.
+**Wat dat betekent bij het gekozen ritme.** Het streven is 10 uur per week (op Ik instelbaar: 3,5, 5, 7 of 10 uur). De weekring heeft merktekens op 3,5, 7 en 10 uur, zodat ook een deel halen telt. Alle leertijd in de app telt mee: lessen, uitleg, verhalen, de snelronde, gesprekken, het dagboek en de kijkopdracht. Een gemiste dag haal je later in de week in. Dat is ongeveer 520 uur per jaar voor alle drie de vakken samen.
 
 | Ritme | Uren per jaar | Nederlands B1 en rekenniveau 3 (samen 450–800 uur) |
 |---|---|---|
 | 2,5 uur per week (30 minuten, vijf dagen) | ±130 | 4 tot 6 jaar |
 | 5 uur per week | ±260 | 2 tot 3 jaar |
-| **7 uur per week (gekozen ritme)** | **±360** | **1,5 tot 2,5 jaar** |
-| 10 uur per week | ±520 | 1 tot 1,5 jaar |
+| 7 uur per week | ±360 | 1,5 tot 2,5 jaar |
+| **10 uur per week (gekozen ritme)** | **±520** | **1 tot 1,5 jaar** |
 
 Daar komt de weg van B1 naar B2, rekenniveau 4 en Engels B1 nog bij: nog eens 500 tot 900 uur, deels tijdens de opleiding.
 
