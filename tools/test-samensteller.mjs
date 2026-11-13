@@ -75,4 +75,26 @@ ok('de leerklok kan niet struikelen over het laden', html.includes('function lea
   c3.ad.set([b], Array(8).fill(true)); c3.ad.adapt();
   ok('bij goed gaan blijft de oefening zoals ze is', c3.ad.get()[0] === b);
 }
+// feedback eigenaar (13 november): drie rondes op één dag, niet steeds dezelfde woorden en vormen
+{ const S4 = { v: 2, introduced: [], items: {}, explained: {}, rounds: {}, log: [], days: {} };
+  const c4 = await boot({ S: S4, random: rnd }); c4.NOW = BASE;
+  vm.runInContext(line('const NOGROW=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\nthis.sim={review,introduce,practiced};', c4);
+  const run = short => { let got = null; c4.runSession = (n, q) => { got = q; }; c4.api.startLesson(short); return got; };
+  const doAll = q => { for (const x of q) { if (x.type === 'explain') { S4.explained[x.x] = c4.NOW; continue; } if (x.type === 'learn') { if (!S4.introduced.includes(x.w.id)) S4.introduced.push(x.w.id); const it = S4.items[x.w.id]; it.reps = Math.max(1, it.reps); it.due = c4.NOW; continue; } if (x.w) { c4.sim.review(x.w.id, true, FORM[x.type]); continue; } if (x.type === 'discount' && x.k === 'worked') { c4.sim.introduce(x.items[0], 'voorbeeld'); continue; } if (x.items && x.items.length) c4.sim.practiced(x, true, x.type === 'listen' && x.p && x.p.mode === 'type' ? 'luisteren' : x.type === 'listen' ? 'listen' : FORM[x.type]); } };
+  // vier dagen gewoon leren, zodat er bekende woorden zijn
+  for (let d = 0; d < 4; d++) { c4.NOW = BASE + d * DAY; doAll(run(false)); }
+  c4.NOW = BASE + 4 * DAY + 3600e3; const today = Math.floor(c4.NOW / DAY) * DAY;
+  const r1 = run(false); doAll(r1); S4.rounds[today] = 1; c4.NOW += 1800e3;
+  const r2 = run(false); doAll(r2); S4.rounds[today] = 2; c4.NOW += 1800e3;
+  const r3 = run(false);
+  const words = r => r.filter(x => x.w && x.step === 1).map(x => x.w.id);
+  const w1 = new Set(words(r1)), w2 = words(r2), w3 = words(r3);
+  ok('ronde 2 en 3 op dezelfde dag: geen woorden uit ronde 1 die toen goed gingen', w2.every(id => !w1.has(id)) && w3.every(id => !w1.has(id) && !w2.includes(id)), [...w1].join(',') + ' | ' + w2.join(',') + ' | ' + w3.join(','));
+  ok('ronde 2 en 3 hebben wel iets te doen (herhalen of nieuw)', w2.length > 0 && w3.length > 0);
+  const ex = r => r.filter(x => x.exid).map(x => x.exid.split('#')[0]).filter(id => !/\.gen$/.test(id));
+  ok('zinnen en klanken: niet dezelfde oefening als in de ronde ervoor', ex(r2).filter(id => ex(r1).includes(id)).length <= 1, ex(r1).join(',') + ' | ' + ex(r2).join(','));
+  const types = [...r1, ...r2, ...r3].filter(x => x.w && x.step === 1).map(x => x.type);
+  ok('woordvormen wisselen over de rondes (niet alleen typen)', new Set(types).size >= 2, types.join(','));
+  ok('na de les: Verder leren start meteen een nieuwe ronde', html.includes("id=\"c-next\"") && html.includes("$('#c-next').onclick=()=>startLesson(false)"));
+}
 console.log(fails ? fails + ' FOUT' : 'alles OK');

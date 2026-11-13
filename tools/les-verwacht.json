@@ -13,11 +13,6 @@
     "w": "werk"
    },
    {
-    "type": "recog",
-    "step": 1,
-    "w": "werk"
-   },
-   {
     "type": "learn",
     "step": 1,
     "w": "dienst"
@@ -25,16 +20,11 @@
    {
     "type": "recog",
     "step": 1,
-    "w": "dienst"
-   },
-   {
-    "type": "learn",
-    "step": 2,
     "w": "werk"
    },
    {
-    "type": "learn",
-    "step": 2,
+    "type": "recog",
+    "step": 1,
     "w": "dienst"
    },
    {
@@ -48,6 +38,21 @@
     "w": "rooster"
    },
    {
+    "type": "learn",
+    "step": 2,
+    "w": "pauze"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "fabriek"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "fabriek"
+   },
+   {
     "type": "recog",
     "step": 2,
     "w": "rooster"
@@ -55,17 +60,12 @@
    {
     "type": "recog",
     "step": 2,
-    "w": "dienst"
-   },
-   {
-    "type": "recog",
-    "step": 2,
-    "w": "werk"
-   },
-   {
-    "type": "recog",
-    "step": 2,
     "w": "collega"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "pauze"
    },
    {
     "type": "card",
@@ -127,11 +127,6 @@
     "w": "werk"
    },
    {
-    "type": "recog",
-    "step": 1,
-    "w": "werk"
-   },
-   {
     "type": "learn",
     "step": 1,
     "w": "dienst"
@@ -139,16 +134,11 @@
    {
     "type": "recog",
     "step": 1,
-    "w": "dienst"
-   },
-   {
-    "type": "learn",
-    "step": 2,
     "w": "werk"
    },
    {
-    "type": "learn",
-    "step": 2,
+    "type": "recog",
+    "step": 1,
     "w": "dienst"
    },
    {
@@ -157,19 +147,29 @@
     "w": "collega"
    },
    {
-    "type": "recog",
+    "type": "learn",
     "step": 2,
-    "w": "dienst"
+    "w": "rooster"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "pauze"
    },
    {
     "type": "recog",
     "step": 2,
-    "w": "werk"
+    "w": "rooster"
    },
    {
     "type": "recog",
     "step": 2,
     "w": "collega"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "pauze"
    },
    {
     "type": "card",
@@ -350,6 +350,16 @@
     "w": "rooster"
    },
    {
+    "type": "recall",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "collega"
+   },
+   {
     "type": "learn",
     "step": 2,
     "w": "machine"
@@ -444,6 +454,16 @@
     "w": "geld"
    },
    {
+    "type": "recall",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
     "type": "card",
     "step": 2,
     "label": "Nieuw leren"
@@ -503,14 +523,14 @@
     "w": "werk"
    },
    {
-    "type": "recog",
-    "step": 1,
-    "w": "werk"
-   },
-   {
     "type": "learn",
     "step": 1,
     "w": "dienst"
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "werk"
    },
    {
     "type": "recog",
@@ -562,6 +582,16 @@
     "type": "recall",
     "step": 1,
     "w": "pauze"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "collega"
    },
    {
     "type": "build",
