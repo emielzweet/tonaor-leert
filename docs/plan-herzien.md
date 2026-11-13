@@ -17,12 +17,40 @@ Status: **voorstel, wacht op besluiten van de eigenaar en eenmalige afstemming m
 - **Uitleg:** 32 onderwerpen, vooral bij de huidige oefeningen. De catalogus voor rekenen R1 tot R4, grammatica van thema 1 tot 3 en Engels tot A2 is nog niet geschreven.
 - **Beloning:** alleen punten, de tuin en de weekring. Onderzoek naar wat werkt: `docs/onderzoek-beloning.md`.
 
+## Vergelijking met de methodiek van *De sprong*
+
+*De sprong* is het methodisch-didactische model (`docs/kwaliteitskader.md`). De app naast de tien principes:
+
+| Principe uit het kwaliteitskader | Nu in de app | Wat er moet gebeuren |
+|---|---|---|
+| Alles hangt aan een tekst | Woorden en zinnen staan los; er is één verhaal, naast de les | Elk thema heeft eigen teksten; de doelwoorden en grammatica komen uit die teksten |
+| Vaste cyclus: voorkennis, tekst, taal uit de tekst, zelf gebruiken (2 tot 3 keer per thema) | De les is ophalen, nieuw, oefenen, rekenen, afsluiten, zonder tekst | De les volgt de cyclus: de tekst is de ruggengraat, de herhaling loopt eromheen |
+| Woord als combinatie, met Nederlandse omschrijving en een nieuwe voorbeeldzin | Lidwoord en voorbeeldzin wel; bij 18 van 18 woorden ontbreekt de omschrijving in eenvoudig Nederlands | Omschrijving (def) bij elk woord; oefenvorm "welk woord past bij deze omschrijving" |
+| Minstens vier ontmoetingen in drie vormen, één productief | Herhaalmodel en bloei-eis regelen dit (fase 3) | Blijft; meer vormen per woord (omschrijving, zin maken) |
+| Grammatica in treden: voorbeelden en regel, gesloten, half open, eigen zin | Alleen gesloten (gatzin, zin bouwen); geen half open of eigen zin; 2 regels zonder uitgeschreven regel | Drie treden per grammaticapunt; half open (zin afmaken) en eigen zin met voorbeeld en checklist |
+| Schrijven in treden met schrijfkader | Alleen het spraakdagboek | Per thema zin afmaken, bericht aanvullen, korte eigen tekst met kader |
+| Vragen bij een tekst: eerst de vragen, in tekstvolgorde, in andere woorden | Bij het verhaal deels | Per tekst vragen volgens de eisen in het kwaliteitskader |
+| Opklimmen: van persoonlijk naar maatschappelijk, steun bouwt af | Niveauband per pakket, maar de steuntaal bouwt niet af | Steuntaal per thema minder (eerst na een tik, later alleen op verzoek) |
+| Strategie hardop | Ontbreekt | Strategiekaarten bij lezen en luisteren |
+| Afsluitende mix (70% van de doelwoorden) | Ontbreekt | Thema-afsluiting als mix, ook als "eindopdracht" uit spoor E |
+
+Daarnaast meldt de pakketcontrole nu 115 kwaliteitspunten in de huidige lesstof:
+- 22 keer feedback zonder reden bij fout;
+- 18 keer een ontbrekende omschrijving;
+- 10 keer geen hint in twee stappen;
+- 2 keer een regel en 2 keer "let op" die ontbreekt.
+
+Die kan de bouwsessie zelf wegwerken, zonder besluit: dat is de kwaliteitseis zelf.
+
 ## De sporen
 
 Elk spoor levert in kleine, losse stappen op. Elke stap: ontwerp kort vastleggen waar nodig, bouwen, tests, controle op 375 px, en pas na akkoord een release.
 
 ### Spoor A — Lesstof Nederlands (grootste gat)
 
+0. **Kwaliteit van wat er is:**
+   - de 115 meldingen van de pakketcontrole wegwerken: reden bij fout, omschrijving per woord, hints in twee stappen, regel en "let op";
+   - de les laten draaien om de tekst, volgens de cyclus van *De sprong*.
 1. **Frequentielijst, deel 1:** ongeveer 300 basiswoorden die het meest voorkomen, eigen werk (geen lijst uit een boek of database overnemen), met lidwoord, Thaise en Engelse vertaling, een Nederlandse omschrijving en een eigen voorbeeldzin. Een eigen pakket, naast de thema's.
 2. **Thema 1 volledig volgens het kwaliteitskader:** ongeveer 75 woorden, twee tot drie cycli rond een eigen tekst (voorkennis, tekst, taal uit de tekst, zelf gebruiken), grammatica in drie treden, en een afsluitende mix.
 3. **Thema 2 en 3** op dezelfde manier.
