@@ -70,4 +70,10 @@ console.log('     stadia na 30 dagen (zaadje … volle bloei):', st.join(' '), '
 ok('oefeningen uit pakketten werken het herhaalmodel bij (bouwen, gatzin, luisteren, dictee, geld, klok)', ["practiced(q,first,'build')", "practiced(q,first,'gap')", "practiced(q,first,'listen')", "practiced(q,ok,'dictee')", "'geld')", "'klok')"].every(s => html.includes(s)));
 ok('uitgewerkt voorbeeld telt niet als goed', html.includes("introduce('r-10','voorbeeld')") && !html.includes("review('r-10',true,'voorbeeld')"));
 ok('regels en klanken krijgen een herhaalitem', html.includes("filter(x=>x.kind==='rule'||x.kind==='sound')"));
+// 7. vorm kiezen die het woord nog mist (stap 2)
+const pick = (forms, learn, speak) => { const cx = { S: { items: { w: { forms } } }, window: speak ? { speechSynthesis: {} } : {} }; vm.createContext(cx); vm.runInContext(fnBlock('pickForm') + ';this.f=pickForm;', cx); return cx.f({ id: 'w' }, learn, learn === 'en' ? 'enrecall' : 'recall'); };
+ok('NL: eerst typen, dan luisteren en typen, daarna weer typen', pick([], 'nl', true) === 'recall' && pick(['herkennen', 'typen'], 'nl', true) === 'hear' && pick(['herkennen', 'typen', 'luisteren'], 'nl', true) === 'recall');
+ok('EN: eerst typen, dan luisteren, dan herkennen', pick([], 'en', true) === 'enrecall' && pick(['typen'], 'en', true) === 'enhear' && pick(['typen', 'luisteren'], 'en', true) === 'enrecog' && pick(['typen', 'luisteren', 'herkennen'], 'en', true) === 'enrecall');
+ok('zonder spraak op het toestel geen luisteroefening', pick(['herkennen', 'typen'], 'nl', false) === 'recall' && pick(['typen'], 'en', false) === 'enrecog');
+ok('schermen voor luisteren en typen en Engels herkennen bestaan, en tellen als eigen vorm', html.includes('H.hear=q=>') && html.includes('H.enhear=q=>') && html.includes('H.enrecog=q=>') && html.split("review(w.id,res,'luisteren')").length === 3);
 console.log(fails ? fails + ' FOUT' : 'alles OK');

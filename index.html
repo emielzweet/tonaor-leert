@@ -307,6 +307,8 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "hear.tip":"You hear a word. Type what you hear. You can play it as often as you like.",
+ "hear.title":"Listen and write it down",
  "week.mile":"{h} hours of learning this week. Well done!",
  "week.done":"reached",
  "week.left":"hours to go",
@@ -640,6 +642,8 @@ en:{
  "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "hear.tip":"Je hoort een woord. Typ wat je hoort. Je kunt het zo vaak afspelen als je wilt.",
+ "hear.title":"<h2>Luister en schrijf op</h2>",
  "week.mile":"{h} uur geleerd deze week. Mooi gedaan!",
  "week.done":"gehaald",
  "week.left":"uur nog te gaan",
@@ -969,6 +973,8 @@ nl:{
  "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "hear.tip":"คุณจะได้ยินคำหนึ่งคำ พิมพ์สิ่งที่ได้ยิน กดฟังซ้ำได้หลายครั้งตามต้องการ",
+ "hear.title":"ฟังแล้วเขียนลงไป",
  "week.mile":"สัปดาห์นี้เรียนไปแล้ว {h} ชั่วโมง เยี่ยมมาก",
  "week.done":"สำเร็จ",
  "week.left":"ชั่วโมงที่เหลือ",
@@ -1424,16 +1430,24 @@ function exQ0(e,step,learn){const d=e.data;
     case 'clock':return {type:'clock',step,c:flatT(flatT({h:d.h,m:d.m,o:d.o.map(RAW),a:RAW(d.a)},'q',d.q),'why',e.fb&&e.fb.ok)};
     case 'discount':return {type:'discount',step,k:d.mode==='part'?'partial':d.mode};
   }return null}
+/* welke oefenvorm een woord bij het ophalen krijgt: eerst typen, dan de vorm die het nog mist (luisteren, bij Engels ook herkennen).
+   Zonder spraak op het toestel blijft het typen. docs/herhaalmodel.md sectie 4 en 6. */
+function pickForm(w,learn,def){if(def!=='recall'&&def!=='enrecall')return def;const f=((S.items[w.id]||{}).forms)||[];
+  let speak=false;try{speak=typeof window!=='undefined'&&!!window.speechSynthesis}catch(e){}
+  if(!f.includes('typen'))return def;
+  if(speak&&!f.includes('luisteren'))return learn==='en'?'enhear':'hear';
+  if(learn==='en'&&!f.includes('herkennen'))return 'enrecog';
+  return def}
 function compose(recipe,learn){const q=[],words=learn==='en'?EN:NL,R=id=>S.items[id];
   const dueAll=words.filter(w=>thirsty(w.id));
   for(const s of recipe||[]){
     if(s.card){const c=CARDP[s.card];if(!c)continue;const [label,btn]=(CARD_LABEL[learn]||{})[s.step]||['',''];const o={type:'card',label,step:s.step,html:()=>packCardHtml(c,learn==='en'&&s.step===1?'ENGLISH':'')};if(btn)o.btn=btn;if(c.say)o.bind=()=>{if($('#csp'))$('#csp').onclick=()=>say(c.say,false,c.sayLang||'nl')};q.push(o)}
     else if(s.words==='due'){
-      const type=learn==='en'?'enrecall':s.forms[0];
+      const type0=learn==='en'?'enrecall':s.forms[0];
       let due=dueAll.slice();if(s.sort!=='list')due=words.filter(w=>S.introduced.includes(w.id)&&thirsty(w.id)).sort((a,b)=>R(a.id).due-R(b.id).due);
       let rec=due;if(s.thenFresh)rec=[...due,...words.filter(w=>R(w.id).reps===0)];else if(!rec.length&&s.orIntroduced)rec=words.filter(w=>S.introduced.includes(w.id));
       rec=rec.slice(0,s.max);
-      if(rec.length)rec.forEach(w=>q.push({type,step:s.step,w}));
+      if(rec.length)rec.forEach(w=>q.push({type:pickForm(w,learn,type0),step:s.step,w}));
       else if(s.ifNone&&s.ifNone.words==='first')words.slice(0,s.ifNone.n).forEach(w=>s.ifNone.forms.forEach(f=>q.push({type:f,step:s.step,w})));
     }
     else if(s.words==='new'){
@@ -1862,6 +1876,19 @@ H.recog=q=>{const w=q.w;let first=true;const g=nlOnly()?gapEx(w):null,others=NL.
   app.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const ok=b.dataset.id===w.id;b.classList.add(ok?'right':'wrong');
     if(ok){score(first,5);review(w.id,first,'herkennen');if(first)grown.push(w.id);say(g?gapFull(w):`${w.art} ${w.w}`);$('#fb').innerHTML=fbBox(true,g?`<b>${w.art} ${esc(w.w)}</b>. ${esc(gapFull(w))}`:'','')+nextBtn();$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbK(false,'recog.again')}})};
+H.hear=q=>{const w=q.w;let tries=0,hint=0,done=false;const fullT=`${w.art} ${w.w}`,full=esc(fullT);
+  frame(`<div class="card stack">${T('hear.title')}<p class="muted small">${T('hear.tip')}</p>${speakBtns('sp','sps')}
+  <label for="ans" class="small muted">${T('recall.typeArt')}</label><input id="ans" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="de … / het …">
+  <div class="hint-row"><button class="hintbtn" id="hint">${T('btn.hint')}</button><span class="hintshow" id="hs" aria-live="polite"></span></div>
+  <div id="fb"></div><button class="btn btn-leaf" id="chk">${T('btn.check')}</button>${helpBtn('Luisteren en typen: '+fullT)}</div>`,'Ophalen',q.step);
+  bindHelp();const inp=$('#ans');setTimeout(()=>say(fullT),350);$('#sp').onclick=()=>say(fullT);$('#sps').onclick=()=>say(fullT,true);
+  $('#hint').onclick=()=>{hint=Math.min(2,hint+1);$('#hs').textContent=hint===1?`${w.art} ${w.w[0]}… (${w.w.length})`:fullT;if(hint===2)$('#hint').disabled=true};
+  const check=()=>{if(done)return;const a=norm(inp.value);if(!a)return;tries++;const ok=a===norm(fullT),wordOnly=a===norm(w.w);
+    if(!ok&&!wordOnly&&tries<2){$('#fb').innerHTML=fbK(false,'try.again');return}
+    done=true;const res=ok&&tries===1&&hint===0?true:(ok||wordOnly)&&hint<2?'retry':false;score(res===true,10,res==='retry'?6:0);review(w.id,res,'luisteren');if(res===true)grown.push(w.id);
+    $('#fb').innerHTML=fbBox(ok||wordOnly,ok?`<b>${full}</b>. ${esc(w.ex)}`:wordOnly?t('recall.addArt',{art:w.art,full}):`${t('recall.answer',{full})} ${esc(w.ex)}`,ok?ts('recall.yes',{full}):wordOnly?ts('recall.addArt',{art:w.art,full}):ts('recall.answer',{full}));
+    inp.disabled=true;$('#hint').disabled=true;$('#chk').outerHTML=nextBtn(ok?'btn-leaf':'btn-main');$('#nx').onclick=next};
+  $('#chk').onclick=check;inp.onkeydown=e=>{if(e.key==='Enter')check()}};
 H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${w.art} ${w.w}`,full=esc(fullT),g=nlOnly()?gapEx(w):null;
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past in de zin?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Wat is dit in het Nederlands?</p><p class="prompt sp" ${supAttr()}>${L_(w)}</p>`}
   <label for="ans" class="small muted">${g?'Typ het woord dat op de open plek past':T('recall.typeArt')}</label>
@@ -1982,6 +2009,25 @@ function startLesson(short){const p=PACKS.find(p=>p.learn==='nl'&&p.lesson);if(!
 
 /* ============ Engels ============ */
 function startEnglish(){const p=PACKS.find(p=>p.learn==='en'&&p.lesson);if(!p)return toast(tx('pack.none'));runSession('Engels',p?compose(p.lesson,'en'):[])}
+H.enhear=q=>{const w=q.w;let tries=0,hint=0,done=false;
+  frame(`<div class="card stack">${T('hear.title')}<p class="muted small">${T('hear.tip')}</p>${speakBtns('sp','sps')}
+  <label for="ans" class="small muted">${T('en.typeWord')}</label><input id="ans" class="input" lang="en" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <div class="hint-row"><button class="hintbtn" id="hint">${T('btn.hint')}</button><span class="hintshow" id="hs"></span></div>
+  <div id="fb"></div><button class="btn btn-sky" id="chk">${T('en.check')}</button>${helpBtn('Engels luisteren en typen: '+w.w)}</div>`,'English',q.step);
+  bindHelp();const inp=$('#ans');setTimeout(()=>say(w.w,false,'en'),350);$('#sp').onclick=()=>say(w.w,false,'en');$('#sps').onclick=()=>say(w.w,true,'en');
+  $('#hint').onclick=()=>{hint=Math.min(2,hint+1);$('#hs').textContent=hint===1?`${w.w[0]}… (${w.w.length} letters)`:w.w;if(hint===2)$('#hint').disabled=true};
+  const check=()=>{if(done)return;const a=norm(inp.value).replace(/^(a|an|the|to) /,'');if(!a)return;tries++;const ok=a===w.w;
+    if(!ok&&tries<2){$('#fb').innerHTML=fbK(false,'try.again');return}
+    done=true;const res=ok&&tries===1&&hint===0?true:ok&&hint<2?'retry':false;score(res===true,10,res==='retry'?6:0);review(w.id,res,'luisteren');if(res===true)grown.push(w.id);
+    $('#fb').innerHTML=fbBox(ok,`<b lang="en">${esc(w.w)}</b>. <span lang="en">${esc(w.ex)}</span>`,supL()==='en'?'':ok?ts('fb.ok'):ts('recall.answer',{full:esc(w.w)}));say(`${w.w}. ${w.ex}`,false,'en');
+    inp.disabled=true;$('#hint').disabled=true;$('#chk').outerHTML=nextBtn('btn-sky');$('#nx').onclick=next};
+  $('#chk').onclick=check;inp.onkeydown=e=>{if(e.key==='Enter')check()}};
+H.enrecog=q=>{const w=q.w;let first=true;const opts=shuffle([w,...shuffle(EN.filter(x=>x.id!==w.id)).slice(0,3)]);
+  frame(`<div class="card stack">${T('en.choose')}${nlOnly()||supL()==='en'?`<p class="prompt">${esc(w.nl)}</p>`:`<p class="prompt sp" ${supAttr()}>${L_(w)}</p><p class="muted small">Nederlands: <b>${esc(w.nl)}</b></p>`}
+  <div class="choices one">${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}" lang="en">${esc(o.w)}</button>`).join('')}</div><div id="fb"></div>${helpBtn('Engels herkennen: '+w.w)}</div>`,'English',q.step);
+  bindHelp();app.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const ok=b.dataset.id===w.id;b.classList.add(ok?'right':'wrong');
+    if(ok){score(first,5);review(w.id,first,'herkennen');if(first)grown.push(w.id);say(w.w,false,'en');$('#fb').innerHTML=fbBox(true,`<b lang="en">${esc(w.w)}</b>. <span lang="en">${esc(w.ex)}</span>`,'')+nextBtn('btn-sky');$('#nx').onclick=next}
+    else{first=false;$('#fb').innerHTML=fbK(false,'recog.again')}})};
 H.enrecall=q=>{const w=q.w;let done=false,hint=0;
   frame(`<div class="card stack"><p class="eyebrow" lang="en">What is this in English?</p>${nlOnly()||supL()==='en'?`<p class="prompt">${esc(w.nl)}</p>`:`<p class="prompt sp" ${supAttr()}>${L_(w)}</p><p class="muted small">Nederlands: <b>${esc(w.nl)}</b></p>`}
   <label for="ans" class="small muted">${T('en.typeWord')}</label><input id="ans" class="input" lang="en" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
