@@ -36,7 +36,7 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 
 | # | Wens | Gevraagd | Stand | Waar | Wie | Volgende stap |
 |---|---|---|---|---|---|---|
-| 17 | Visueel aantrekkelijker, met animatie en interactieve onderdelen (gevraagd aan de ontwerpsessie) | 13 nov | deels | proefscherm | ontwerp | proefscherm beoordelen; daarna stijl en onderdelen in de app |
+| 17 | Visueel aantrekkelijker, met animatie en interactieve onderdelen (gevraagd aan de ontwerpsessie) | 13 nov | deels | proefscherm, versie 2 (14 nov): kaart als landschap, plekken per vak, rekenen (markt, wisselgeld) en Engels (station) speelbaar | ontwerp | de eigenaar beoordeelt versie 2; daarna stijl en onderdelen in de app |
 | 18 | Leuk, prikkelend, reden om door te gaan; het concept van de tuin vervangen | 13 nov | plan | nieuw concept: verhaal in scènes | ontwerp | proefhoofdstuk; een week gebruik; dan besluit |
 | 19 | Spelletjes met taal, grammatica en rekenen | 13 nov | plan | spoor E | ontwerp, dan bouw | eerste spel als onderdeel van een scène |
 | 20 | Beloningssysteem en punten | 13 nov | deels | weekring, bonus, doorgaan-scherm | bouw | kleine beloningen (E1) |
