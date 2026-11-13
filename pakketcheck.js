@@ -10,6 +10,15 @@
   var RESERVED = ['hear-type', 'complete', 'own', 'write', 'situation', 'match', 'spot'];
   var TOP = ['format', 'id', 'version', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'lesson', 'lessonShort', 'tests'];
   var TAGS = /<\/?(b|i|u)>/g;
+  // id's (pakket, item, tekst, kaart, oefening, groep): alleen letters, cijfers, punt, streepje, onderstreepje
+  var ID = /^[A-Za-z0-9._-]+$/;
+  // vaste lijsten voor velden die de app zonder escape gebruikt (klasse, taal, sleutel)
+  var TONES = ['sky', 'lilac'];
+  var SKILLS = ['woorden', 'grammatica', 'luisteren', 'lezen', 'rekenen', 'engels'];
+  var SORTS = ['bericht', 'portret', 'tips', 'voorlichting', 'procedure', 'brief', 'folder', 'tabel', 'dialoog', 'verhaal'];
+  var QTYPES = ['geheel', 'detail', 'waarom', 'toepassen', 'woord'];
+  var NOTESTYLES = ['muted'];
+  var SAYLANGS = ['nl', 'en'];
 
   function safeText(s) {
     if (s == null) return '';
@@ -26,7 +35,7 @@
     if (!p || typeof p !== 'object') return { errors: ['pakket is geen object'], quality: [] };
     var id = p.id || '?';
     if (p.format !== 1) err(id + ': format moet 1 zijn');
-    if (typeof p.id !== 'string' || !/^[a-z0-9-]+$/.test(p.id)) err('id ontbreekt of is ongeldig');
+    if (typeof p.id !== 'string' || !/^[a-z0-9-]+$/.test(p.id)) { err('id ontbreekt of is ongeldig'); id = '?'; }
     if (LEARN.indexOf(p.learn) < 0) err(id + ': learn moet ' + LEARN.join(' of ') + ' zijn');
     if (typeof p.order !== 'number') err(id + ': order ontbreekt');
     if (p.quality && ['strict', 'legacy'].indexOf(p.quality) < 0) err(id + ': quality moet strict of legacy zijn');
@@ -65,12 +74,13 @@
       if (p[k] != null && !Array.isArray(p[k])) err(id + ': ' + k + ' moet een lijst zijn');
       (p[k] || []).forEach(function (x, i) {
         if (!x || typeof x.id !== 'string' || !x.id) { err(id + '.' + k + '[' + i + ']: id ontbreekt'); return; }
+        if (!ID.test(x.id)) { err(id + '.' + k + '[' + i + ']: id mag alleen letters, cijfers, punt, streepje en onderstreepje bevatten'); return; }
         if (own[x.id]) err(id + ': dubbel id ' + x.id); else if (seen[x.id]) err(id + ': id ' + x.id + ' bestaat al in ' + seen[x.id]);
         own[x.id] = k;
       });
     });
     var reqPacks = others.filter(function (o) { return (p.requires || []).indexOf(o.id) >= 0; });
-    (p.requires || []).forEach(function (r) { if (!reqPacks.some(function (o) { return o.id === r; })) err(id + ': requires ' + r + ' is niet gevonden'); });
+    (p.requires || []).forEach(function (r) { if (typeof r !== 'string' || !ID.test(r)) err(id + ': ongeldig id in requires'); else if (!reqPacks.some(function (o) { return o.id === r; })) err(id + ': requires ' + r + ' is niet gevonden'); });
     var find = function (kind, rid) {
       var a = (p[kind] || []).filter(function (x) { return x.id === rid; })[0];
       if (a) return a;
@@ -116,6 +126,7 @@
     (p.texts || []).forEach(function (t) {
       var w = id + '.' + t.id;
       if (['lees', 'luister', 'verhaal'].indexOf(t.kind) < 0) err(w + ': kind moet lees, luister of verhaal zijn');
+      if (t.sort != null && SORTS.indexOf(t.sort) < 0) err(w + ': onbekende tekstsoort ' + t.sort);
       tekst(t.title, w + '.title', true);
       if (!Array.isArray(t.paras) || !t.paras.length) err(w + ': paras ontbreekt');
       else t.paras.forEach(function (para, i) { (para || []).forEach(function (s, j) { tekst(s, w + '.paras[' + i + '][' + j + ']'); }); });
@@ -136,7 +147,9 @@
         else e.parts.forEach(function (pt) { str(pt.t, w + '.examples[' + i + '].t'); if (pt.slot != null && [1, 2, 3].indexOf(pt.slot) < 0) err(w + ': slot moet 1, 2 of 3 zijn'); });
         if (e.tr) tr(e.tr, w + '.examples[' + i + ']');
       });
-      (c.notes || []).forEach(function (n, i) { tekst(n.text, w + '.notes[' + i + ']'); });
+      (c.notes || []).forEach(function (n, i) { tekst(n.text, w + '.notes[' + i + ']'); if (n.tone != null && TONES.indexOf(n.tone) < 0) err(w + '.notes[' + i + ']: tone moet ' + TONES.join(' of ') + ' zijn'); });
+      if (c.noteStyle != null && NOTESTYLES.indexOf(c.noteStyle) < 0) err(w + ': onbekende noteStyle');
+      if (c.sayLang != null && SAYLANGS.indexOf(c.sayLang) < 0) err(w + ': sayLang moet nl of en zijn');
       if (c.compare) { str(c.compare.nl, w + '.compare.nl'); str(c.compare.en, w + '.compare.en'); }
       if (c.say != null) str(c.say, w + '.say');
     });
@@ -150,6 +163,11 @@
       if (!Array.isArray(e.items)) err(w + ': items ontbreekt');
       else e.items.forEach(function (r) { if (!find('items', r)) err(w + ': item ' + r + ' bestaat niet'); else useCount[r] = (useCount[r] || 0) + 1; });
       if (e.text && !find('texts', e.text)) err(w + ': tekst ' + e.text + ' bestaat niet');
+      if (e.pool != null && (typeof e.pool !== 'string' || !ID.test(e.pool))) err(w + ': ongeldige groepsnaam');
+      if (e.skill != null && SKILLS.indexOf(e.skill) < 0) err(w + ': onbekende vaardigheid ' + e.skill);
+      if (e.qtype != null && QTYPES.indexOf(e.qtype) < 0) err(w + ': onbekend vraagtype ' + e.qtype);
+      if (e.para != null && !(Number.isInteger(e.para) && e.para >= 0)) err(w + ': para moet een getal zijn');
+      if (e.data && e.data.lang != null && e.data.lang !== 'en') err(w + ': data.lang kent alleen "en"');
       if (!e.data) err(w + ': data ontbreekt');
       var opts = function (o, a, n) { if (!Array.isArray(o) || o.length < 2) { err(w + ': opties ontbreken'); return; } if (n && o.length !== n) err(w + ': precies ' + n + ' opties nodig'); };
       switch (e.form) {

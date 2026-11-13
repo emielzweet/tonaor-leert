@@ -229,6 +229,10 @@ In fase 3 komen er plekken bij die kiezen op wat bijna vergeten is, voor alle so
 5. `BUILTIN` en `SHELL` noemen dezelfde bestanden.
 6. De bestaande vier tests blijven groen; `test-oefeningen.mjs` leest de woorden uit het pakket.
 
+## Open punten voor een volgende formaatversie
+
+- **Taalmarkering in een Tekst.** In fase 2 is `<i lang="en">` in drie teksten `<i>` geworden, omdat attributen niet mogen. Voor schermlezers en voorlezen moet een taalmarkering (bijvoorbeeld een eigen tag of een veld per stukje tekst) in een volgende versie terugkomen.
+
 ## Wat fase 2 niet doet
 
 - Geen nieuwe inhoud, geen andere teksten, geen neutrale plaatsnamen (fase 4).

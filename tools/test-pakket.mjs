@@ -69,7 +69,7 @@ let q = null; app.runSession = (n, x) => { q = x; }; app.api.startLesson(false);
 ok('zonder rekenpakket: Nederlands laadt nog, les zonder rekenoefeningen', g.NL.length === 18 && !q.some(x => ['money', 'clock', 'discount'].includes(x.type)) && q.some(x => x.type === 'build'));
 app = await boot({ missing: ['content/nl-t1.json', 'content/en-t1.json', 'content/rk-1.json'] }); g = app.api.get();
 q = null; app.runSession = (n, x) => { q = x; }; app.api.startLesson(false);
-ok('geen enkel pakket: app start met een lege les in plaats van te stoppen', g.PACK_MISSING.length === 3 && Array.isArray(q) && q.length === 0);
+ok('geen enkel pakket: app start, meldt het bij een tik op de les en start geen lege les', g.PACK_MISSING.length === 3 && q === null && app.toasts.includes('pack.none'));
 ok('melding op Vandaag als een pakket ontbreekt', /PACK_MISSING\.length\?`<div class="note" role="status">\$\{T\('pack\.missing'/.test(html));
 
 // geen naambotsing: een functie of variabele uit het pakketblok mag elders in de app niet nog eens gedefinieerd worden
@@ -77,6 +77,27 @@ const block = html.slice(html.indexOf('const BUILTIN='), html.indexOf('await loa
 const names = [...block.matchAll(/(?:^|\n)(?:function\s+([A-Za-z_$][\w$]*)\(|(?:const|let)\s+([A-Za-z_$][\w$]*)\s*=)/g)].map(m => m[1] || m[2]);
 const dup = names.filter(n => (html.match(new RegExp('(?:function\\s+' + n.replace('$', '\\$') + '\\(|(?:const|let)\\s+' + n.replace('$', '\\$') + '\\s*=)', 'g')) || []).length > 1);
 ok('geen naambotsing tussen het pakketblok en de rest van de app (' + names.length + ' namen)', names.length > 10 && !dup.length, dup.join(', '));
+
+// review fase 2: & en aanhalingstekens in een woord komen goed in beeld; id of tone met een aanhalingsteken wordt geweigerd
+{
+  const amp = clone(nl); amp.items[0].w = 'brood & "melk"'; amp.items[0].ex = 'Ik koop brood & "melk".';
+  ok('woord met & en aanhalingstekens is toegestaan', !PC.checkPack(amp, packs.filter(o => o.id !== 'nl-t1')).errors.length);
+  const a2 = await boot({ override: { 'content/nl-t1.json': amp } }); const w0 = a2.api.get().NL[0];
+  ok('woord met & en aanhalingstekens blijft platte tekst (het scherm escapet één keer)', w0.w === 'brood & "melk"' && w0.ex === 'Ik koop brood & "melk".');
+  ok('controle weigert een id met een aanhalingsteken', broken(p => { p.items[0].id = 'werk" onclick="x'; }, 'id mag alleen'));
+  ok('controle weigert een groepsnaam met een aanhalingsteken', broken(p => { p.exercises[0].pool = 'zinnen" x="'; }, 'groepsnaam'));
+  const en = packs.find(p => p.id === 'en-t1');
+  const badTone = clone(en); badTone.cards[0].notes[0].tone = 'sky" onclick="x';
+  ok('controle weigert een tone buiten de vaste lijst', PC.checkPack(badTone, packs.filter(o => o.id !== 'en-t1')).errors.some(e => e.includes('tone moet')));
+  ok('controle weigert onbekende vaardigheid, tekstsoort en vraagtype', broken(p => { p.exercises.find(e => e.skill).skill = 'x"'; }, 'vaardigheid') && broken(p => { p.texts[0].sort = 'x"'; }, 'tekstsoort') && broken(p => { p.exercises.find(e => e.qtype).qtype = 'x'; }, 'vraagtype'));
+  ok('app: id in een attribuut altijd met esc()', html.includes('data-id="${esc(o.id)}"') && html.includes('data-w="${esc(w.id)}"') && !/data-[a-z]+="\$\{[a-z]+\.id\}"/.test(html));
+  ok('app: tone alleen uit de vaste lijst', html.includes("NOTE_TONES.includes(n.tone)"));
+  ok('app: zonder pakketcheck.js geen pakketten', html.includes("if(!PC){BUILTIN.forEach(u=>PACK_MISSING.push(name(u)));return}"));
+  const noPC = await boot({ pc: null });
+  ok('app laadt zonder controle geen enkel pakket en meldt ze', noPC.api.get().PACKS.length === 0 && noPC.api.get().PACK_MISSING.length === 3);
+  const slow = await boot({ hang: ['content/en-t1.json'] });
+  ok('pakket dat blijft hangen: na de tijdslimiet gemeld, de rest laadt', slow.api.get().PACK_MISSING.includes('en-t1') && slow.api.get().NL.length === 18);
+}
 
 // bij het weghalen van de oude inhoudslijsten verdween ooit 'let PL={}' (stand van de startmeting); die moet blijven bestaan
 ok('startmeting heeft zijn tussenstand (PL) nog', /\nlet PL=\{\};\nfunction startPlacement\(/.test(html));

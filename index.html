@@ -268,6 +268,8 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "pack.none":"This lesson material could not be loaded. Try again later with internet.",
+ "pack.loading":"Loading lessons…",
  "pack.missing":"Part of the lesson material could not be loaded ({list}). Your progress is kept. Try again later with internet.",
  "rec.startOver.do":"Start again",
  "bk.err.newer":"This file comes from a newer version of the app. Please update the app first.",
@@ -559,6 +561,8 @@ en:{
  "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "pack.none":"Deze lesstof kon niet worden geladen. Probeer het later opnieuw met internet.",
+ "pack.loading":"Lesstof laden…",
  "pack.missing":"Een deel van de lesstof kon niet worden geladen ({list}). Je voortgang blijft bewaard. Probeer het later opnieuw met internet.",
  "rec.startOver.do":"Opnieuw beginnen",
  "bk.err.newer":"Dit bestand komt van een nieuwere versie van de app. Werk de app eerst bij.",
@@ -846,6 +850,8 @@ nl:{
  "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "pack.none":"โหลดบทเรียนนี้ไม่ได้ ลองใหม่ภายหลังเมื่อต่ออินเทอร์เน็ต",
+ "pack.loading":"กำลังโหลดบทเรียน…",
  "pack.missing":"โหลดบทเรียนบางส่วนไม่ได้ ({list}) ความก้าวหน้าของคุณยังอยู่ครบ ลองใหม่ภายหลังเมื่อต่ออินเทอร์เน็ต",
  "rec.startOver.do":"เริ่มใหม่",
  "bk.err.newer":"ไฟล์นี้มาจากแอปเวอร์ชันใหม่กว่า โปรดอัปเดตแอปก่อน",
@@ -1175,6 +1181,7 @@ const icon={
    - Daarna worden de bekende lijsten (NL, EN, REK, SENT, PAIRS, DICTEE, STORY, PLACE) opgebouwd in de vorm die de oefenschermen al kennen.
    - De les komt uit het recept van het pakket (compose); in fase 2 levert dat precies de les van daarvoor (tools/test-les.mjs). */
 const BUILTIN=['content/rk-1.json','content/nl-t1.json','content/en-t1.json'];
+const PACK_TIMEOUT=4000;   // ms per pakket; daarna de cache, anders ontbreekt het
 const PC=window.PakketCheck||null;
 const SAFE=s=>PC?PC.safeText(s):esc(s);   // voor waarden die het scherm rauw in de HTML zet
 const RAW=s=>s==null?'':String(s);           // voor waarden die het scherm zelf met esc() toont, of die worden voorgelezen
@@ -1182,12 +1189,19 @@ const RAW=s=>s==null?'':String(s);           // voor waarden die het scherm zelf
 let PACKS=[],PACK_MISSING=[],NL=[],EN=[],REK=[],SENT=[],PAIRS=[],DICTEE=null,STORY=null,PLACE=[];
 const EXS={},CARDP={},PACKBY={};
 async function loadPacks(){
-  const got=await Promise.all(BUILTIN.map(u=>fetch(u).then(r=>r.ok?r.json():null).catch(()=>null)));
+  const name=u=>u.replace(/^content\/|\.json$/g,'');
+  if(!PC){BUILTIN.forEach(u=>PACK_MISSING.push(name(u)));return}   // zonder controle laadt de app geen inhoud
+  try{const a=document.getElementById('app');if(a&&!a.innerHTML)a.innerHTML=`<div class="view"><p class="muted" role="status">${esc(t('pack.loading'))}</p></div>`}catch(e){}
+  const json=r=>r&&r.ok?r.json():null;
+  const fromCache=u=>(typeof caches!=='undefined'?caches.match(u).then(json):Promise.resolve(null)).catch(()=>null);
+  const withLimit=(p,ms)=>Promise.race([p,new Promise(res=>setTimeout(()=>res(null),ms))]);
+  const one=u=>withLimit(fetch(u).then(json).catch(()=>null),PACK_TIMEOUT).then(p=>p||fromCache(u)).catch(()=>null);
+  const got=await Promise.all(BUILTIN.map(one));
   const ok=got.filter(Boolean);
-  got.forEach((p,i)=>{if(!p)PACK_MISSING.push(BUILTIN[i].replace(/^content\/|\.json$/g,''))});
+  got.forEach((p,i)=>{if(!p)PACK_MISSING.push(name(BUILTIN[i]))});
   ok.forEach(p=>{const others=ok.filter(o=>o!==p),miss=(p.requires||[]).some(r=>!others.some(o=>o.id===r));
-    const res=PC?PC.checkPack(p,others,{lenient:miss}):{errors:[]};
-    if(res.errors.length){PACK_MISSING.push(p.id);try{console.warn('Pakket '+p.id+' ongeldig',res.errors)}catch(e){}}else PACKS.push(p)});
+    const res=PC.checkPack(p,others,{lenient:miss});
+    if(res.errors.length){PACK_MISSING.push(typeof p.id==='string'&&/^[A-Za-z0-9._-]+$/.test(p.id)?p.id:'?');try{console.warn('Pakket ongeldig',res.errors)}catch(e){}}else PACKS.push(p)});
   PACKS.sort((a,b)=>a.order-b.order);
   PACKS.forEach(p=>{PACKBY[p.id]=p;(p.exercises||[]).forEach(e=>EXS[e.id]=e);(p.cards||[]).forEach(c=>CARDP[c.id]=c)});
   buildLists();
@@ -1225,9 +1239,10 @@ function TKp(x,wrap){if(x==null)return '';const w=wrap||(s=>s);if(typeof x==='st
 function packCardHtml(c,flag){const ex=(c.examples||[]).map(e=>`<div class="example"><div>${e.parts.map(p=>p.slot?`<span class="slot s${p.slot}">${SAFE(p.t)}</span>`:SAFE(p.t)).join(' ')}</div>${supSpan(e.tr&&e.tr[supL()]!=null?SAFE(e.tr[supL()]):'')}</div>`).join('\n      ');
   const cmp=c.compare?`<div class="trio">${nlOnly()||!(c.compare.sup&&c.compare.sup[supL()])?'':`<div><span class="lg">${LANG[supL()].name.nl}</span><span class="wd" ${supAttr()}>${SAFE(c.compare.sup[supL()])}</span></div>`}<div><span class="lg">Nederlands</span><span class="wd">${SAFE(c.compare.nl)}</span></div><div><span class="lg">English</span><span class="wd" lang="en">${SAFE(c.compare.en)}</span></div></div>`:'';
   return (flag?`<span class="flag">${esc(flag)}</span>`:'')+TKp(c.title,s=>`<h2>${s}</h2>`)+(c.body?`<p>${TKp(c.body)}</p>`:'')+(c.note?(c.noteStyle==='muted'?`<p class="muted small">${TKp(c.note)}</p>`:`<div class="note">${TKp(c.note)}</div>`):'')
-    +ex+cmp+(c.notes||[]).map(n=>`<div class="note${n.tone?' '+n.tone:''}">${TKp(n.text)}</div>`).join('')
+    +ex+cmp+(c.notes||[]).map(n=>`<div class="note${NOTE_TONES.includes(n.tone)?' '+n.tone:''}">${TKp(n.text)}</div>`).join('')
     +(c.say?`<button class="speak" id="csp">${icon.play}${T(c.sayLang==='en'?'en.listen':'btn.listen')}</button>`:'')}
 /* lessamensteller: loopt het recept af en maakt de rij oefeningen (zelfde vorm als vóór fase 2) */
+const NOTE_TONES=['sky','lilac'];   // zelfde lijst als TONES in pakketcheck.js
 const CARD_LABEL={nl:{1:['Ophalen','btn-leaf'],2:['Nieuw leren','']},en:{1:['English','btn-sky'],2:['English','btn-sky']}};
 function exQ(e,step,learn){const d=e.data;
   switch(e.form){
@@ -1562,7 +1577,7 @@ H.learn=q=>{const w=q.w;
 };
 H.recog=q=>{const w=q.w;let first=true;const g=nlOnly()?gapEx(w):null,others=NL.filter(x=>x.id!==w.id&&!(g&&(w.also||[]).includes(x.id))),opts=shuffle([w,...shuffle(others).slice(0,2)]);
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Welk woord is dit?</p><p class="prompt sp" ${supAttr()}>${L_(w)}</p>`}
-  <div class="choices one">${opts.map(o=>`<button class="choice" data-id="${o.id}">${g?'':o.art+' '}${esc(o.w)}</button>`).join('')}</div><div id="fb"></div></div>`,'Herkennen',q.step);
+  <div class="choices one">${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}">${g?'':o.art+' '}${esc(o.w)}</button>`).join('')}</div><div id="fb"></div></div>`,'Herkennen',q.step);
   if(nlOnly()&&!g){setTimeout(()=>say(`${w.art} ${w.w}`),250);$('#sp').onclick=()=>say(`${w.art} ${w.w}`);$('#sps').onclick=()=>say(`${w.art} ${w.w}`,true)}
   app.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const ok=b.dataset.id===w.id;b.classList.add(ok?'right':'wrong');
     if(ok){score(first,5);review(w.id,first,'herkennen');if(first)grown.push(w.id);say(g?gapFull(w):`${w.art} ${w.w}`);$('#fb').innerHTML=fbBox(true,g?`<b>${w.art} ${esc(w.w)}</b>. ${esc(gapFull(w))}`:'','')+nextBtn();$('#nx').onclick=next}
@@ -1683,10 +1698,10 @@ H.end=q=>{finishTime();const g=GOALS[S.goal],pct=Math.round(Math.min(1,pts()/g.p
   petals();$('#home').onclick=()=>show('vandaag')};
 
 /* ============ dagelijkse les ============ */
-function startLesson(short){const p=PACKS.find(p=>p.learn==='nl'&&p.lesson);runSession(short?'Korte les':'Les thema 1',p?compose(short?p.lessonShort:p.lesson,'nl'):[])}
+function startLesson(short){const p=PACKS.find(p=>p.learn==='nl'&&p.lesson);if(!p)return toast(tx('pack.none'));runSession(short?'Korte les':'Les thema 1',p?compose(short?p.lessonShort:p.lesson,'nl'):[])}
 
 /* ============ Engels ============ */
-function startEnglish(){const p=PACKS.find(p=>p.learn==='en'&&p.lesson);runSession('Engels',p?compose(p.lesson,'en'):[])}
+function startEnglish(){const p=PACKS.find(p=>p.learn==='en'&&p.lesson);if(!p)return toast(tx('pack.none'));runSession('Engels',p?compose(p.lesson,'en'):[])}
 H.enrecall=q=>{const w=q.w;let done=false,hint=0;
   frame(`<div class="card stack"><p class="eyebrow" lang="en">What is this in English?</p>${nlOnly()||supL()==='en'?`<p class="prompt">${esc(w.nl)}</p>`:`<p class="prompt sp" ${supAttr()}>${L_(w)}</p><p class="muted small">Nederlands: <b>${esc(w.nl)}</b></p>`}
   <label for="ans" class="small muted">${T('en.typeWord')}</label><input id="ans" class="input" lang="en" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
@@ -1705,6 +1720,7 @@ H.engap=q=>{const x=q.x;let first=true;
 
 /* ============ verhaal ============ */
 function startStory(){
+  if(!STORY)return toast(tx('pack.none'));
   const q=[{type:'story',step:1}];STORY.q.forEach(x=>q.push({type:'storyq',step:2,x}));
   q.push({type:'card',label:'Het verhaal',step:3,btn:'btn-main',html:`${T('story.think')}<p>${T('story.think.q')}</p><div class="note">${T('story.think.help')}</div><p class="muted small">${T('story.next')}</p>`});
   q.push({type:'end',step:3});runSession('Verhaal',q);
@@ -1739,7 +1755,7 @@ function startSpeed(){
 
 /* ============ startmeting ============ */
 let PL={};
-function startPlacement(){
+function startPlacement(){if(!PLACE.length)return toast(tx('pack.none'));
   PL={};const q=[{type:'card',label:'Startmeting',btn:'btn-main',html:`${T('place.title')}<p>${T('place.tip')}</p>`}];
   PLACE.forEach(p=>q.push({type:'place',p}));q.push({type:'placeend'});runSession('Startmeting',q);
 }
@@ -1808,7 +1824,7 @@ function vGarden(){
   <div class="legend">${STAGES.map((s,i)=>`<span class="pill ${i>=4?'pill-lilac':'pill-mint'} num">${by[i]} ${s[0]}</span>`).join('')}</div>
   ${due.length?`<button class="btn btn-sky" id="water">${T('garden.water',{n:due.length})}</button>`:''}
   ${beds.map(k=>{const list=all.filter(i=>i.bed===k),sn=list.filter(i=>S.items[i.id].reps>0);return `<section class="bed"><div class="row between">${T('bed.'+k)}<span class="pill pill-mint num">${sn.length} / ${list.length}</span></div>
-    ${sn.length?`<div class="garden">${sn.map(w=>{const tt=thirsty(w.id);return `<button class="plant ${tt?'thirsty':''}" data-w="${w.id}" aria-label="${esc(w.l)}, ${STAGES[stage(w.id)][0]}">${plant(stage(w.id),tt)}<span class="w"${w.lang==='en'?' lang="en"':''}>${esc(w.l)}</span>${supSpan(w.sup)}</button>`}).join('')}</div>`:`<div class="card row small muted">${plant(0,false).replace('<svg','<svg style="width:44px;height:44px;flex-shrink:0"')}${T('garden.empty')}</div>`}</section>`}).join('')}`);
+    ${sn.length?`<div class="garden">${sn.map(w=>{const tt=thirsty(w.id);return `<button class="plant ${tt?'thirsty':''}" data-w="${esc(w.id)}" aria-label="${esc(w.l)}, ${STAGES[stage(w.id)][0]}">${plant(stage(w.id),tt)}<span class="w"${w.lang==='en'?' lang="en"':''}>${esc(w.l)}</span>${supSpan(w.sup)}</button>`}).join('')}</div>`:`<div class="card row small muted">${plant(0,false).replace('<svg','<svg style="width:44px;height:44px;flex-shrink:0"')}${T('garden.empty')}</div>`}</section>`}).join('')}`);
   if($('#water'))$('#water').onclick=()=>{due.some(x=>x.bed==='en')&&!due.some(x=>x.bed!=='en')?startEnglish():startLesson(true)};
   app.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{const w=all.find(x=>x.id===b.dataset.w);if(w.say)say(w.say,false,w.lang);toast(`${w.l} · ${STAGES[stage(w.id)][0]}`)});
 }
