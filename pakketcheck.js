@@ -8,7 +8,7 @@
   var LEARN = ['nl', 'en'];
   var FORMS = ['learn', 'recog', 'recall', 'build', 'gap', 'listen', 'dictee', 'mc', 'clock', 'money', 'discount'];
   var RESERVED = ['hear-type', 'complete', 'own', 'write', 'situation', 'match', 'spot'];
-  var TOP = ['format', 'id', 'type', 'version', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests'];
+  var TOP = ['format', 'id', 'type', 'version', 'scenes', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests'];
   var TAGS = /<\/?(b|i|u)>/g;
   // id's (pakket, item, tekst, kaart, oefening, groep): alleen letters, cijfers, punt, streepje, onderstreepje
   var ID = /^[A-Za-z0-9._-]+$/;
@@ -306,8 +306,54 @@
       });
     });
     // kwaliteit per thema (alleen voor een Nederlands thema met woorden; een woordenlijst is geen thema)
-    if (p.type != null && ['thema', 'woordenlijst'].indexOf(p.type) < 0) err(id + ': type kent alleen thema en woordenlijst');
-    if (p.learn === 'nl' && words.length && p.type !== 'woordenlijst') {
+    if (p.type != null && ['thema', 'woordenlijst', 'hoofdstuk'].indexOf(p.type) < 0) err(id + ': type kent alleen thema, woordenlijst en hoofdstuk');
+    // scènes (docs/scenes.md): vaste stappen, gesprekken met één goede keuze en een reden bij elke keuze, de tekening uit de catalogus
+    if (p.scenes != null) {
+      var SV = root.SceneVis || null; if (!SV && typeof require === 'function') { try { SV = require('./scene.js'); } catch (e) { SV = null; } }
+      var STEP = ['look', 'talk', 'read', 'listen', 'slot', 'explain', 'do', 'make', 'end'], DOFORM = ['setclock', 'change', 'point', 'money', 'clock', 'discount', 'gap', 'build', 'listen'];
+      var allItems = {}; [p].concat(others || []).forEach(function (o) { (o.items || []).forEach(function (x) { allItems[x.id] = 1; }); });
+      var itemsOk = function (a, w) { if (!Array.isArray(a) || !a.length) { err(w + ': items ontbreekt (het doel op de eerste plek)'); return; } a.forEach(function (x) { if (!allItems[x]) err(w + ': item ' + x + ' bestaat niet'); }); };
+      if (!Array.isArray(p.scenes)) err(id + '.scenes: moet een lijst zijn');
+      else p.scenes.forEach(function (sc, si) {
+        var w = id + '.scenes[' + si + ']'; if (!sc || typeof sc !== 'object') { err(w + ': geen scène'); return; }
+        if (typeof sc.id !== 'string' || !ID.test(sc.id)) err(w + ': ongeldige id'); else w = id + '.' + sc.id;
+        if (typeof sc.place !== 'string' || !ID.test(sc.place)) err(w + ': ongeldige plek');
+        if (['nl', 'rk', 'en', 'kn'].indexOf(sc.subject) < 0) err(w + ': subject moet nl, rk, en of kn zijn');
+        if (!(Number.isInteger(sc.n) && sc.n >= 1 && sc.n <= 5)) err(w + ': n moet 1 tot 5 zijn');
+        tekst(sc.title, w + '.title'); tekst(sc.intro, w + '.intro'); tekst(sc.can, w + '.can');
+        if (!Array.isArray(sc.targets) || !sc.targets.length) err(w + ': targets ontbreekt'); else sc.targets.forEach(function (x) { if (!allItems[x]) err(w + ': doel ' + x + ' bestaat niet'); });
+        if (SV) SV.check(sc.art).forEach(function (m) { err(w + '.art: ' + m); });
+        if (sc.art && Array.isArray(sc.art.things)) sc.art.things.forEach(function (t, ti) { if (t && t.item && !allItems[t.item]) err(w + '.art.things[' + ti + ']: item ' + t.item + ' bestaat niet'); if (t && t.label) tekst(t.label, w + '.art.things[' + ti + '].label'); });
+        if (!Array.isArray(sc.steps) || !sc.steps.length) { err(w + ': steps ontbreekt'); return; }
+        var doen = false;
+        sc.steps.forEach(function (st, k) {
+          var v = w + '.steps[' + k + ']'; if (!st || STEP.indexOf(st.type) < 0) { err(v + ': onbekende stap ' + (st && st.type)); return; }
+          if (st.type === 'talk') {
+            if (!Array.isArray(st.turns) || !st.turns.length) err(v + ': turns ontbreekt');
+            else st.turns.forEach(function (tu, ti) { var u = v + '.turns[' + ti + ']'; tekst(tu.them, u + '.them'); itemsOk(tu.items, u);
+              if (!Array.isArray(tu.opts) || tu.opts.length < 2) err(u + ': minstens twee keuzes');
+              else { if (tu.opts.filter(function (o) { return o && o.r === 'ok'; }).length !== 1) err(u + ': precies één keuze met r = ok');
+                tu.opts.forEach(function (o, oi) { if (!o || typeof o.t !== 'string' || !o.t) err(u + '.opts[' + oi + ']: t ontbreekt'); else str(o.t, u + '.opts[' + oi + '].t'); if (['ok', 'near', 'no'].indexOf(o && o.r) < 0) err(u + '.opts[' + oi + ']: r moet ok, near of no zijn'); if (!o || !o.why) err(u + '.opts[' + oi + ']: why ontbreekt (ook bij de goede keuze)'); else tekst(o.why, u + '.opts[' + oi + '].why'); }); } });
+          }
+          if (st.type === 'read' || st.type === 'listen') {
+            if (st.type === 'read') tekst(st.text, v + '.text'); else if (typeof st.say !== 'string') err(v + ': say ontbreekt');
+            if (!Array.isArray(st.q) || !st.q.length) err(v + ': vragen (q) ontbreken');
+            else st.q.forEach(function (qq, qi) { var u = v + '.q[' + qi + ']'; tekst(qq.q, u + '.q'); itemsOk(qq.items, u); if (!Array.isArray(qq.o) || qq.o.length < 2) err(u + ': minstens twee keuzes'); else qq.o.forEach(function (o, oi) { tekst(o, u + '.o[' + oi + ']'); }); if (!(Number.isInteger(qq.a) && qq.a >= 0 && qq.a < (qq.o || []).length)) err(u + ': goed antwoord (a) valt buiten de keuzes'); if (!qq.why) err(u + ': why ontbreekt'); else tekst(qq.why, u + '.why'); });
+          }
+          if (st.type === 'slot') { if (!(Number.isInteger(st.n) && st.n >= 1 && st.n <= 4)) err(v + ': n moet 1 tot 4 zijn'); if (!Array.isArray(st.kinds) || !st.kinds.length) err(v + ': kinds ontbreekt'); }
+          if (st.type === 'explain' && (typeof st.id !== 'string' || !ID.test(st.id))) err(v + ': id van de uitleg ontbreekt');
+          if (st.type === 'do') { doen = true; if (DOFORM.indexOf(st.form) < 0) err(v + ': onbekende vorm ' + st.form); itemsOk(st.items, v); if (st.ask) tekst(st.ask, v + '.ask'); if (st.why) tekst(st.why, v + '.why');
+            if (st.form === 'setclock' && !/^\d{1,2}:\d{2}$/.test(String(st.answer))) err(v + ': answer als u:mm');
+            if (st.form === 'point' && (!sc.art || !(sc.art.things || []).some(function (t) { return t && t.hot && t.item === st.answer; }))) err(v + ': answer moet het item van een aantikbaar ding zijn');
+            if (['money', 'clock', 'discount'].indexOf(st.form) >= 0 && !st.gen) err(v + ': een som in een scène heeft gen nodig'); }
+          if (st.type === 'make') { doen = true; tekst(st.frame, v + '.frame'); tekst(st.model, v + '.model'); itemsOk(st.items, v); if (!Array.isArray(st.checklist) || !st.checklist.length) err(v + ': checklist ontbreekt'); else st.checklist.forEach(function (c, ci) { tekst(c, v + '.checklist[' + ci + ']'); }); }
+          if (st.type === 'end') { if (st.next) tekst(st.next, v + '.next'); if (st.real) tekst(st.real, v + '.real'); }
+        });
+        if (!doen) err(w + ': minstens één stap waarin de leerder iets doet of maakt (do of make)');
+        if (sc.steps[sc.steps.length - 1].type !== 'end') err(w + ': de laatste stap is end');
+      });
+    }
+    if (p.learn === 'nl' && words.length && p.type !== 'woordenlijst' && p.type !== 'hoofdstuk') {
       var texts = p.texts || [];
       if (words.length < 40 || words.length > 60) q(id + ': ' + words.length + ' doelwoorden (eis: 40 tot 60)');
       if (texts.length < 3) q(id + ': ' + texts.length + ' tekst(en) (eis: minstens drie)');

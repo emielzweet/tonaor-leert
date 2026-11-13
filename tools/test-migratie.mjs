@@ -96,6 +96,12 @@ r = run({ [KEY]: raw({ ...CUR, schema: 3, days: {}, items: {} }) });
 ok('schema 3 → 4: zonder lessen geen overstap', r.S.f3pending == null);
 ok('f3pending staat niet in fresh() (anders krijgt elke oude opslag het veld zonder migratie)', !(h.slice(h.indexOf('function fresh()'), h.indexOf('\n', h.indexOf('function fresh()')) + 400).includes('f3pending')));
 
+// 8d. stap 4 → 5: S.world voor scènes, alleen toegevoegd
+r = run({ [KEY]: raw({ ...CUR, schema: 4, items: { werk: { s: 3, reps: 2 } } }) });
+ok('schema 4 → 5: S.world toegevoegd, de rest onaangeroerd', r.S.world && r.S.world.done && typeof r.S.world.done === 'object' && r.S.items.werk.s === 3 && r.S.schema === SCH);
+r = run({ [KEY]: raw({ ...CUR, schema: 4, world: { done: { 'dokter-1': 5 }, at: 'dokter-1' } }) });
+ok('schema 4 → 5 is herhaalbaar: een bestaande world blijft', r.S.world.done['dokter-1'] === 5 && r.S.world.at === 'dokter-1');
+
 // 9. terugzetten vanaf Ik zet de oude koppeling (TL1) nooit opnieuw aan; in het herstelscherm is het bestand leidend
 const ZONDERHELLO = { v: 2, schema: SCH, items: { werk: { s: 1 } }, code: 'oud-1234', code2: 'NIEUW' };
 r = run({ [KEY]: raw(CUR) });

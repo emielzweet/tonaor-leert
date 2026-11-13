@@ -210,6 +210,7 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
 .plant{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;min-width:0}
 .plant svg{width:64px;height:64px}
 .vflag{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:70;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px;display:flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(0,0,0,.15)}.vflag span{flex:1;font-size:.9rem}.vflag .btn{width:auto;min-height:40px;padding:6px 12px}
+.bubble{background:var(--surface-2);border-radius:16px;padding:10px 12px;position:relative}.bubble .who{display:block;font-size:.78rem;font-weight:700;color:var(--ink-2);text-transform:capitalize}
 .plant{position:relative}.plant .lamp{position:absolute;top:4px;right:4px;width:20px;height:20px;color:var(--apricot-ink)}.plant .lamp svg{width:20px;height:20px}
 .plant .w{font-weight:700;font-size:.88rem;line-height:1.2;overflow-wrap:anywhere}
 .plant .sup{font-size:.74rem}
@@ -284,6 +285,7 @@ body.u-open{overflow:hidden}
 </div></nav>
 
 <script src="tlsync.js"></script>
+<script src="scene.js"></script>
 <script src="pakketcheck.js"></script>
 <script src="uitleg.js"></script>
 <script>
@@ -315,6 +317,22 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "scene.next":"Next scene",
+ "scene.real":"Do it for real",
+ "scene.canTitle":"You can now do this",
+ "scene.makeAlmost":"Not quite yet",
+ "scene.makeOk":"My text has this",
+ "scene.check":"Check whether your text has this:",
+ "scene.model":"This is one way:",
+ "scene.makeTitle":"Now yourself",
+ "scene.hour":"hour",
+ "scene.lookStart":"Tap something to hear the word.",
+ "scene.lookTip":"Tap the things in the picture.",
+ "scene.can":"Can do",
+ "scene.do":"Do",
+ "scene.live":"Take part",
+ "scene.look":"Look",
+ "scene.tile":"Story: at the doctor",
  "recall.typeWord":"Type the word",
  "vflag.sent":"Thank you! The coach will look at it.",
  "vflag.btn":"Report it",
@@ -699,6 +717,22 @@ en:{
  "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "scene.next":"Volgende scène",
+ "scene.real":"<p class=\"small muted\"><b>Doe het echt</b></p>",
+ "scene.canTitle":"<h2>Dit kun je nu</h2>",
+ "scene.makeAlmost":"Nog niet helemaal",
+ "scene.makeOk":"Mijn tekst heeft dit",
+ "scene.check":"Kijk of jouw tekst dit heeft:",
+ "scene.model":"Zo kan het ook:",
+ "scene.makeTitle":"<h2>Nu zelf</h2>",
+ "scene.hour":"uur",
+ "scene.lookStart":"Tik op iets om het woord te horen.",
+ "scene.lookTip":"<p>Tik op de dingen in de tekening.</p>",
+ "scene.can":"Kunnen",
+ "scene.do":"Doen",
+ "scene.live":"Meemaken",
+ "scene.look":"Kijken",
+ "scene.tile":"Verhaal: bij de dokter",
  "recall.typeWord":"Typ het woord",
  "vflag.sent":"Dank je! De begeleider kijkt ernaar.",
  "vflag.btn":"Meld het",
@@ -1079,6 +1113,22 @@ nl:{
  "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "scene.next":"ฉากต่อไป",
+ "scene.real":"ลองทำจริง",
+ "scene.canTitle":"ตอนนี้คุณทำได้แล้ว",
+ "scene.makeAlmost":"ยังไม่ครบ",
+ "scene.makeOk":"ข้อความของฉันมีครบ",
+ "scene.check":"ดูว่าข้อความของคุณมีสิ่งเหล่านี้หรือไม่",
+ "scene.model":"ตัวอย่างคำตอบ",
+ "scene.makeTitle":"ลองทำเอง",
+ "scene.hour":"ชั่วโมง",
+ "scene.lookStart":"แตะเพื่อฟังคำ",
+ "scene.lookTip":"แตะสิ่งของในภาพ",
+ "scene.can":"ทำได้แล้ว",
+ "scene.do":"ลงมือทำ",
+ "scene.live":"ร่วมสถานการณ์",
+ "scene.look":"ดู",
+ "scene.tile":"เรื่องเล่า: ไปหาหมอ",
  "recall.typeWord":"พิมพ์คำนั้น",
  "vflag.sent":"ขอบคุณ ผู้ดูแลจะตรวจดู",
  "vflag.btn":"แจ้ง",
@@ -1504,7 +1554,7 @@ const icon={
    - Alle tekst uit een pakket gaat door PakketCheck.safeText (alles onschadelijk, alleen <b> <i> <u> terug), ook ingebouwd.
    - Daarna worden de bekende lijsten (NL, EN, REK, SENT, PAIRS, DICTEE, STORY, PLACE) opgebouwd in de vorm die de oefenschermen al kennen.
    - De les komt uit het recept van het pakket (compose); in fase 2 levert dat precies de les van daarvoor (tools/test-les.mjs). */
-const BUILTIN=['content/rk-1.json','content/nl-t1.json','content/nl-basis.json','content/en-t1.json','content/uitleg-rk.json','content/uitleg-nl.json','content/uitleg-en.json'];
+const BUILTIN=['content/rk-1.json','content/nl-t1.json','content/nl-basis.json','content/nl-dokter.json','content/en-t1.json','content/uitleg-rk.json','content/uitleg-nl.json','content/uitleg-en.json'];
 const PACK_TIMEOUT=4000;   // ms per pakket; daarna de cache, anders ontbreekt het
 const PC=window.PakketCheck||null;
 const SAFE=s=>PC?PC.safeText(s):esc(s);   // voor waarden die het scherm rauw in de HTML zet
@@ -1516,6 +1566,7 @@ let KIND={};
 const fw=w=>w&&w.art?w.art+' '+w.w:(w?w.w:'');   // woord met lidwoord als het er een heeft
 const EASIER={recall:'recog',hear:'recog',enrecall:'enrecog',enhear:'enrecog'},HARDER={recog:'recall',enrecog:'enrecall'};   // makkelijker en moeilijker vorm (bijsturen)
 let QUIET=false;   // stille stand: zonder voorlezen en luisteroefeningen, alleen voor deze sessie (Bijsturen op Ik)
+let SCENES=[];   // scènes uit de pakketten: {sc, learn}
 let PACKS=[],PACK_MISSING=[],NL=[],EN=[],REK=[],SENT=[],PAIRS=[],DICTEE=null,STORY=null,PLACE=[];
 const EXS={},CARDP={},PACKBY={};
 async function loadPacks(){
@@ -1544,6 +1595,7 @@ const safeArr=a=>(a||[]).map(SAFE);
 const exList=(learn,pred)=>PACKS.filter(p=>p.learn===learn).flatMap(p=>p.exercises||[]).filter(pred);
 const LEGACY={};   // oefening-id -> object in de vorm van vóór fase 2
 function buildLists(){
+  SCENES=PACKS.flatMap(p=>(p.scenes||[]).map(sc=>({sc,learn:p.learn})));
   const items=k=>PACKS.flatMap(p=>(p.items||[]).filter(x=>x.kind===k).map(x=>({x,p})));
   // woord, voorbeeldzin, gatzin en lidwoord toont het scherm met esc() of leest het voor: RAW. Vertalingen staan rauw in de HTML: SAFE.
   NL=items('word').filter(o=>o.p.learn==='nl').map(({x})=>{const o={id:x.id,art:x.art?RAW(x.art):'',w:RAW(x.w),th:SAFE(x.tr.th),en:SAFE(x.tr.en),ex:RAW(x.ex),gap:RAW(x.gap)};if(x.askArt)o.askArt=1;if(x.also)o.also=x.also.slice();if(x.def)o.def=RAW(x.def);return o});
@@ -1810,19 +1862,20 @@ function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
     points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
-    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},roundLen:'normaal',schema:SCHEMA};
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},roundLen:'normaal',world:{done:{},at:null},schema:SCHEMA};
 }
 /* ============ opslag veilig laden (#30) ============
    S.v blijft 2. S.schema telt de vorm van de opslag (zonder veld = 1). Elke stap n -> n+1 staat in MIGRATE en mag vaker draaien.
    Vóór een migratie gaat de ruwe opslag ongewijzigd naar BAK (één generatie); ook vóór Alles wissen en vóór Terugzetten.
    STORE: 'ok' = normaal | 'broken' = onleesbaar of onbekend: herstelscherm, niets wegschrijven | 'newer' = van een nieuwere app: alleen lezen.
    Buiten 'ok' schrijft de app niets weg en verstuurt ze geen voortgang. Onleesbare opslag wordt pas vervangen na een kopie in BROKEN. */
-const SCHEMA=4,BAK=KEY+'.bak',BROKEN=KEY+'.kapot';
+const SCHEMA=5,BAK=KEY+'.bak',BROKEN=KEY+'.kapot';
 const MIGRATE={
  1:s=>{if(!s.profile||typeof s.profile!=='object')s.profile={name:''};if(!LEARN.includes(s.learn))s.learn='nl';if(!SUPPORT.includes(s.sup))s.sup='th';
    if(s.v2ok&&!s.v2seen)s.v2seen=Date.now();delete s.v2ok;if(s.v2seen)s.tl1off=true;return s},
  2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s},   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
- 3:s=>{for(const it of Object.values(s.items||{})){if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];if(it&&typeof it==='object'&&it.t==null&&typeof it.s==='number'&&it.s>0&&typeof it.due==='number')it.t=it.due-it.s*864e5}if(Object.keys(s.days||{}).length&&s.f3pending==null)s.f3pending=1;return s}   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
+ 3:s=>{for(const it of Object.values(s.items||{})){if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];if(it&&typeof it==='object'&&it.t==null&&typeof it.s==='number'&&it.s>0&&typeof it.due==='number')it.t=it.due-it.s*864e5}if(Object.keys(s.days||{}).length&&s.f3pending==null)s.f3pending=1;return s},
+ 4:s=>{if(!s.world||typeof s.world!=='object'||Array.isArray(s.world))s.world={done:{},at:null};if(!s.world.done||typeof s.world.done!=='object')s.world.done={};return s}   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
 };
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
@@ -2067,6 +2120,7 @@ function vToday(){
   ${due?`<button class="card row between" id="water" style="background:var(--sky);border-color:var(--sky-fill)"><span>${T('today.thirsty',{n:due})}<span class="small muted">${T('today.water.tip')}</span></span><span class="pill pill-sky" style="background:var(--surface)">${T('today.water')}</span></button>`:''}
   <h3 style="margin-top:4px">${T('today.more')}</h3>
   <div class="tiles2">
+    ${SCENES.length?`<button class="tile mint" id="scene"><span class="ic">${icon.book}</span>${T('scene.tile')}<span class="small muted">${esc(scP((nextScene()||{}).title))} · ${Object.keys((S.world||{}).done||{}).length}/${SCENES.length}</span></button>`:''}
     ${EXPL_LIST.length?`<button class="tile apricot" id="uitleg"><span class="ic">${icon.bulb}</span>${T('explain.tile')}<span class="small muted">${T('explain.tile.sub',{done:EXPL_LIST.filter(o=>S.explained[o.x.id]).length,n:EXPL_LIST.length})}</span></button>`:''}
     <button class="tile lilac" id="story"><span class="ic">${icon.book}</span>${T('extra.story')}<span class="small muted">${T('extra.story.sub')}</span></button>
     <button class="tile apricot" id="speed"><span class="ic">${icon.bolt}</span>${T('extra.speed')}<span class="small muted num">${T('speed.record',{n:S.speedBest})}</span></button>
@@ -2080,6 +2134,7 @@ function vToday(){
   $('#short').onclick=()=>startLesson(true);
   $('#en').onclick=startEnglish;
   $('#story').onclick=startStory;
+  if($('#scene'))$('#scene').onclick=()=>startScene(nextScene());
   if($('#uitleg'))$('#uitleg').onclick=()=>{route=vExplain;rerender();window.scrollTo(0,0)};
   $('#speed').onclick=startSpeed;
   $('#talk').onclick=()=>{route=vTalk;rerender();window.scrollTo(0,0)};
@@ -2100,7 +2155,7 @@ function vakOf(q,stepNo){return q&&q.vak?q.vak:stepNo===4||(q&&['money','clock',
 function frame(inner,label,stepNo,ofN){app.dataset.vak=vakOf(Q[qi],stepNo);
   const p=Math.round(qi/Math.max(1,Q.length-1)*100);
   paint(`<div class="sess-top"><button class="close" id="quit" aria-label="Stoppen">×</button><div class="bar" role="progressbar" aria-label="Voortgang" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><i style="width:${p}%"></i></div>${thaiSwitch()}</div>
-  <div class="stage-label"><span class="eyebrow">${stepNo?`Stap ${stepNo} van ${ofN||5} · `:''}${label}</span>${(x=>x?`<button class="u-btn" data-uopen="${esc(x)}">${TB('explain.open')}</button>`:'')(explFor(Q[qi]))}<span class="pill pill-apricot num">+${sp}</span></div>${inner}`);
+  <div class="stage-label"><span class="eyebrow">${stepNo?`Stap ${stepNo} van ${ofN||(Q.some(x=>x.type==="sc_end")?4:5)} · `:''}${label}</span>${(x=>x?`<button class="u-btn" data-uopen="${esc(x)}">${TB('explain.open')}</button>`:'')(explFor(Q[qi]))}<span class="pill pill-apricot num">+${sp}</span></div>${inner}`);
   $('#quit').onclick=()=>{finishTime();if(sp>0)toast('Opgeslagen. Je punten blijven staan.');show('vandaag')};
   // #22: onthoud of er al iets met deze vraag gedaan is; dan tekent een taalwissel hem niet opnieuw (geen dubbele punten, geen reset van pogingen)
   const q=Q[qi],v=app.querySelector('.view');if(q&&v){const t=e=>{if(!e.target.closest('button[data-thai],#quit'))q._t=1};v.addEventListener('click',t,true);v.addEventListener('input',t,true)}
@@ -2181,6 +2236,76 @@ function probeDone(w,known){const it=S.items[w.id];if(!S.introduced.includes(w.i
   if(known){KNOWN.add(w.id);it.s=14;it.t=now();it.due=now()+14*DAY;it.reps=Math.max(1,it.reps);if(!it.forms.includes('typen'))it.forms.push('typen');S.log.push({t:now(),id:w.id,ok:true,known:1})}   // al gekend: bloem, één controle na twee weken
   else{S.newLog=S.newLog||{};S.newLog[today()]=(S.newLog[today()]||0)+1}   // echt nieuw: telt mee in het dagbudget
   save()}
+/* ============ scènes (concept stap 2, docs/scenes.md) ============
+   Een scène wordt een rij schermen voor de lesmotor (runSession): kijken, gesprek, open plek, uitleg, doen, maken, slot.
+   Elk antwoord gaat langs practiced() of review(); het doelonderdeel staat op de eerste plek van items. */
+const SV=(typeof window!=='undefined'&&window.SceneVis)||null;
+try{if(SV&&!document.getElementById('scenecss')){const st=document.createElement('style');st.id='scenecss';st.textContent=SV.CSS;document.head.appendChild(st)}}catch(e){}
+const scT=x=>TKx(x,'nl'),scP=x=>plainX(x,'nl');
+function scArt(sc,looks){return SV&&sc.art?SV.render(sc.art,SAFE,{text:scP,looks:looks||{}}):''}
+function nextScene(){const all=SCENES.map(o=>o.sc).sort((a,b)=>(a.place>b.place?1:a.place<b.place?-1:a.n-b.n)),done=(S.world&&S.world.done)||{};return all.find(s=>!done[s.id])||all[0]||null}
+function sceneQ(sc){const q=[],vak=sc.subject||'nl',ph={look:1,talk:2,read:2,listen:2,slot:3,explain:3,do:3,make:3,end:4};
+  q.push({type:'sc_intro',sc,step:1,vak});
+  sc.steps.forEach((st,k)=>{const step=ph[st.type]||3,base={sc,st,step,vak};
+    if(st.type==='look')q.push({...base,type:'sc_look'});
+    else if(st.type==='talk')st.turns.forEach((tu,ti)=>q.push({...base,type:'sc_talk',tu,ti,items:tu.items.slice(),exid:sc.id+'#t'+k+'.'+ti}));
+    else if(st.type==='read'||st.type==='listen')st.q.forEach((qq,qi)=>q.push({...base,type:'sc_read',qq,qi,items:qq.items.slice(),exid:sc.id+'#q'+k+'.'+qi}));
+    else if(st.type==='slot'){const due=NL.filter(w=>thirsty(w.id)&&!sc.targets.includes(w.id)).sort((a,b)=>overdue(b.id)-overdue(a.id)).slice(0,st.n);   // open plek: wat aan de beurt is
+      due.forEach(w=>q.push({type:pickForm(w,'nl','recall'),step,w,vak}))}
+    else if(st.type==='explain'){if(EXPL[st.id]&&(st.when!=='first'||!(S.explained||{})[st.id]))q.push({type:'explain',step,x:st.id,lang:'nl',vak})}
+    else if(st.type==='do'){if(st.form==='setclock')q.push({...base,type:'sc_clock',items:st.items.slice(),exid:sc.id+'#d'+k});
+      else if(st.form==='point')q.push({...base,type:'sc_point',items:st.items.slice(),exid:sc.id+'#d'+k});
+      else{const e={id:sc.id+'.d'+k,form:st.form,items:st.items.slice(),...(st.gen?{gen:st.gen}:{data:st.data})},x=exQ(e,step,'nl',st.items[0]);if(x){x.vak=vak;q.push(x)}}}
+    else if(st.type==='make')q.push({...base,type:'sc_make',items:st.items.slice(),exid:sc.id+'#m'+k});
+    else if(st.type==='end'){q.push({type:'conf',step:4,vak});q.push({...base,type:'sc_end'})}});
+  return q}
+function startScene(sc){if(!sc)return toast(tx('pack.none'));S.world=S.world||{done:{},at:null};S.world.at=sc.id;save();runSession(plainX(sc.title,'nl'),sceneQ(sc))}
+const PH=['','scene.look','scene.live','scene.do','scene.can'];
+function scFrame(q,inner){frame(inner,t(PH[q.step]||'scene.do'),q.step,4)}
+H.sc_intro=q=>{const sc=q.sc;scFrame(q,`<div class="card stack">${scArt(sc)}<h2>${scT(sc.title)}</h2><p>${scT(sc.intro)}</p></div>${nextBtn('btn-main')}`);$('#nx').onclick=next};
+H.sc_look=q=>{const sc=q.sc,seen=new Set(),min=q.st.min||1;
+  scFrame(q,`<div class="card stack">${T('scene.lookTip')}${scArt(sc)}<div id="lk" class="note sky" aria-live="polite">${T('scene.lookStart')}</div></div><button class="btn btn-leaf" id="nx" disabled>${T('btn.next')}</button>`);
+  app.querySelectorAll('.s-hot').forEach(g=>{const go=()=>{const th=sc.art.things[+g.dataset.i];if(!th)return;g.classList.add('on');seen.add(g.dataset.i);
+      $('#lk').innerHTML=scT(th.label);say(scP(th.label));if(th.item&&S.items[th.item])introduce(th.item);if(seen.size>=min)$('#nx').disabled=false};
+    g.onclick=go;g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});
+  $('#nx').onclick=next};
+H.sc_talk=q=>{const sc=q.sc,tu=q.tu;let first=true,done=false;const opts=shuffle(tu.opts.map((o,i)=>({...o,i})));
+  scFrame(q,`<div class="card stack">${scArt(sc,{[q.st.who]:'talk',...(q.st.looks||{})})}<div class="bubble"><span class="who">${esc(q.st.who||'')}</span>${scT(tu.them)}</div>
+   <div class="choices one">${opts.map(o=>`<button class="choice" data-o="${o.i}">${esc(o.t)}</button>`).join('')}</div><div id="fb"></div></div>`);
+  setTimeout(()=>say(scP(tu.them)),300);
+  app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{if(done)return;const o=tu.opts[+b.dataset.o];
+    if(o.r==='ok'){done=true;b.classList.add('right');score(first,10);practiced(q,first?true:'retry','talk');say(o.t);$('#fb').innerHTML=fbBox(true,scT(o.why),'')+nextBtn();$('#nx').onclick=next}
+    else{first=false;b.classList.add('wrong');b.disabled=true;$('#fb').innerHTML=fbBox(false,scT(o.why),'')}})};
+H.sc_read=q=>{const st=q.st,qq=q.qq;let first=true;
+  scFrame(q,`<div class="card stack">${st.type==='read'?`<div class="note">${scT(st.text)}</div>`:speakBtns('sp','sps')}<p class="prompt">${scT(qq.q)}</p>
+   <div class="choices one">${qq.o.map((o,i)=>`<button class="choice" data-o="${i}">${scT(o)}</button>`).join('')}</div><div id="fb"></div></div>`);
+  if(st.type==='listen'){setTimeout(()=>say(st.say),300);$('#sp').onclick=()=>say(st.say);$('#sps').onclick=()=>say(st.say,true)}
+  app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=+b.dataset.o===qq.a;b.classList.add(ok?'right':'wrong');
+    if(ok){score(first,10);practiced(q,first?true:'retry',st.type);$('#fb').innerHTML=fbBox(true,scT(qq.why),'')+nextBtn();$('#nx').onclick=next}
+    else{first=false;b.disabled=true;$('#fb').innerHTML=fbBox(false,scT(qq.why),'')}})};
+H.sc_clock=q=>{const st=q.st,[ah,am]=String(st.answer).split(':').map(Number);let h=12,m=0,first=true;
+  const draw=fb=>{scFrame(q,`<div class="card stack"><h2>${scT(st.ask)}</h2>${clockSvg(h,m)}
+    <div class="row" style="justify-content:center;gap:8px;flex-wrap:wrap"><button class="btn btn-ghost" style="width:auto" id="hm">− ${esc(t('scene.hour'))}</button><button class="btn btn-ghost" style="width:auto" id="hp">+ ${esc(t('scene.hour'))}</button><button class="btn btn-ghost" style="width:auto" id="mm">− 5 min</button><button class="btn btn-ghost" style="width:auto" id="mp">+ 5 min</button></div>
+    <div id="fb">${fb||''}</div><button class="btn btn-leaf" id="chk">${T('btn.check')}</button></div>`);
+    $('#hm').onclick=()=>{h=(h+10)%12+1;draw()};$('#hp').onclick=()=>{h=h%12+1;draw()};$('#mm').onclick=()=>{m=(m+55)%60;draw()};$('#mp').onclick=()=>{m=(m+5)%60;draw()};
+    $('#chk').onclick=()=>{const ok=h%12===ah%12&&m===am;if(ok){score(first,10);practiced(q,first?true:'retry','klok');$('#fb').innerHTML=fbBox(true,scT(st.why),'');$('#chk').outerHTML=nextBtn();$('#nx').onclick=next}else{first=false;$('#fb').innerHTML=fbK(false,'clock.tip')}}};
+  draw()};
+H.sc_point=q=>{const sc=q.sc,st=q.st;let first=true,done=false;
+  scFrame(q,`<div class="card stack"><h2>${scT(st.ask)}</h2>${scArt(sc)}<div id="fb"></div></div>`);
+  app.querySelectorAll('.s-hot').forEach(g=>g.onclick=()=>{if(done)return;const th=sc.art.things[+g.dataset.i];const ok=th&&th.item===st.answer;g.classList.add('on');
+    if(ok){done=true;score(first,10);practiced(q,first?true:'retry','point');say(scP(th.label));$('#fb').innerHTML=fbBox(true,st.why?scT(st.why):scT(th.label),'')+nextBtn();$('#nx').onclick=next}
+    else{first=false;$('#fb').innerHTML=fbBox(false,th?scT(th.label):'','')}})};
+H.sc_make=q=>{const st=q.st;
+  scFrame(q,`<div class="card stack">${T('scene.makeTitle')}<p>${scT(st.frame)}</p><textarea id="ans" class="input" rows="3" autocomplete="off" spellcheck="false"></textarea><div id="fb"></div><button class="btn btn-leaf" id="chk">${T('btn.check')}</button></div>`);
+  $('#chk').onclick=()=>{if(!$('#ans').value.trim())return;$('#ans').disabled=true;
+    $('#fb').innerHTML=`<div class="note sky"><p class="small muted">${T('scene.model')}</p><p>${scT(st.model)}</p><p class="small muted">${T('scene.check')}</p><ul>${st.checklist.map(c=>`<li>${scT(c)}</li>`).join('')}</ul></div>
+      <button class="btn btn-leaf" id="mk1">${TB('scene.makeOk')}</button><button class="btn btn-ghost" id="mk2">${TB('scene.makeAlmost')}</button>`;$('#chk').remove();
+    $('#mk1').onclick=()=>{score(true,15);practiced(q,true,'make');next()};$('#mk2').onclick=()=>{score(false,15,8);practiced(q,'retry','make');next()}}};
+H.sc_end=q=>{const sc=q.sc,st=q.st;finishTime();S.world=S.world||{done:{},at:null};S.world.done[sc.id]=now();const td=today();S.rounds[td]=(S.rounds[td]||0)+1;pruneWeeks();save();
+  const nx=nextScene(),more=nx&&nx.id!==sc.id&&!(S.world.done[nx.id]);
+  paint(`<div class="card celebrate stack">${T('scene.canTitle')}<p class="prompt">${scT(sc.can)}</p>${st.real?`<div class="note">${T('scene.real')}<p>${scT(st.real)}</p></div>`:''}${st.next?`<p class="muted">${scT(st.next)}</p>`:''}</div>
+   ${more?`<button class="btn btn-main" id="scNext">${TB('scene.next')}</button>`:''}${contHtml()}<button class="btn btn-ghost" id="home">${T('cont.home')}</button>`);
+  petals();bindCont();if($('#scNext'))$('#scNext').onclick=()=>startScene(nx);$('#home').onclick=()=>show('vandaag')};
 H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${fw(w)}`,full=esc(fullT),g=nlOnly()?gapEx(w):null;
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past in de zin?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Wat is dit in het Nederlands?</p><p class="prompt sp" ${supAttr()}>${L_(w)}</p>`}
   <label for="ans" class="small muted">${g?'Typ het woord dat op de open plek past':T(w.art?'recall.typeArt':'recall.typeWord')}</label>
