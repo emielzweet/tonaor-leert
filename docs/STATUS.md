@@ -13,19 +13,12 @@ Bijgewerkt: 13 november 2026.
 ## Live (GitHub Pages)
 
 - Fase 1, voortgang beveiligen (#30): gesloten.
-- Fase 2, inhoud uit de code en lessamensteller (#26): gesloten. Cache v2-14.
+- Fase 2, inhoud uit de code en lessamensteller (#26): gesloten.
+- Uitleg (speler, drie ingangen, 24 uitleggen) en het weekdoel van 7 uur: live sinds 13 november 2026, cache v2-18 (t/m commit e5cad5d).
 
 ## Klaar, lokaal gecommit, nog niet gepusht
 
-| Commit | Inhoud |
-|---|---|
-| c2bab6c | Uitleg: speler, drie ingangen, eerste uitleg (cache v2-15) |
-| 13630ad | Uitleg: catalogus groep 1 (24 uitleggen in totaal) |
-| b8b54f4 | Weekdoel van 7 uur per week (cache v2-16) |
-| d6ee2bd | Uitlegspeler: knoppen na review, pijlpunt bij sprongen (cache v2-17) |
-| 2e88413 | Weekdoel na review: één weekkaart bovenaan, opslag opgeruimd (cache v2-18) |
-
-Alle tests in `tools/test-*.mjs` zijn groen.
+- Niets, behalve deze statusregel.
 
 ## Wacht op de ontwerpsessie
 
@@ -33,7 +26,6 @@ Alle tests in `tools/test-*.mjs` zijn groen.
 
 ## Open besluiten voor de eigenaar
 
-- Release van de commits hierboven (uitleg en weekdoel samen) (pushen naar Pages).
 - Akkoord om met fase 3 te beginnen, zodra het ontwerp in `docs/` staat.
 
 ## Volgorde
