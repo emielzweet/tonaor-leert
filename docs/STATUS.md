@@ -23,6 +23,8 @@ Bijgewerkt: 13 november 2026 (later).
 
 ## Open besluiten voor de eigenaar
 
+- Herzien plan na gebruik: docs/plan-herzien.md (sporen A tot F, zes open besluiten). Onderzoek: docs/onderzoek-beloning.md.
+
 - Test op de telefoon: een volle les, "luister en schrijf op" met echte stem, een tweede ronde op dezelfde dag, en de Engelse les op dinsdag of donderdag. Daarna #28 en #29 sluiten (alleen met akkoord).
 
 ## Volgorde
