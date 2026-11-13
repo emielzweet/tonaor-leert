@@ -60,7 +60,10 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | 34 | De route realistisch tonen: blokken met de echte tijd erbij, ook als het drie jaar duurt; korter bij hard werken, langer bij weinig doen | 14 nov | plan | `docs/route-en-prognose.md` | eigenaar, dan bouw | vier besluiten in het ontwerp |
 | 35 | Prominent een verwachte datum voor het eerste Staatsexamen Nt2, die vervroegt en verlaat | 14 nov | plan | idem | idem | idem |
 | 36 | Het scherm van de begeleider (EDGE) meenemen in het nieuwe concept en de route | 14 nov | plan | `docs/aanvoer-en-begeleider.md`, deel 2 | eigenaar, dan bouw | besluit 2; eerst de widget, dan de app |
-| 37 | Lesmateriaal dat vanzelf wordt aangevuld en ontwikkeld, met een voorraad | 14 nov | plan | `docs/aanvoer-en-begeleider.md`, deel 1 | eigenaar, dan bouw | besluit 1 (vaste taak of op verzoek) |
+| 37 | Lesmateriaal dat vanzelf wordt aangevuld en ontwikkeld, met een voorraad | 14 nov | plan | `docs/aanvoer-en-begeleider.md`, deel 1 | ontwerp | de eigenaar wil het volledig automatisch, zie wens 38 |
+| 38 | Een automatisch systeem dat nieuwe en geplande lesstof maakt wanneer die nodig is, ook zonder akkoord van de eigenaar per keer | 14 nov | open | – | ontwerp | ontwerp "automatische redactie": lijn, poorten, wat zelf beslist wordt en wat doorgaat naar de eigenaar; eerst één hoofdstuk met de hand als proef |
+| 39 | Vragen aan de eigenaar worden eerst door AI beantwoord; alleen wat AI niet kan oplossen gaat door naar de eigenaar | 14 nov | open | – | ontwerp | navragen welke vragen bedoeld zijn (van de leerder, van het systeem, of beide); dan regels voor zelf beslissen en doorzetten |
+| 40 | Later, als de app naar tevredenheid werkt: een volledige backend en een volledige bibliotheek, met het oog op gebruik door anderen | 14 nov | open (bewust later) | roadmap punt 1 | – | nu alleen zorgen dat keuzes dit niet blokkeren: lesstof los van de code, niets persoonlijks, protocol beschreven |
 
 ## Eigen voorstellen van de ontwerpsessie (goedgekeurd op 13 november)
 
