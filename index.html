@@ -247,8 +247,8 @@ const today=()=>{const d=new Date();d.setHours(0,0,0,0);return d.getTime()};
 const $=s=>document.querySelector(s);
 const app=$('#app');
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function load(){try{const s=localStorage.getItem(KEY);return s?JSON.parse(s):null}catch(e){return null}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+/* save() schrijft alleen als de opslag veilig geladen is (STORE==='ok', zie 'opslag veilig laden') */
+function save(){if(STORE!=='ok')return;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 /* ============ talen en vertalingen (#4) ============
    Leertaal = de taal die je leert (nu alleen nl). Steuntaal = de taal van uitleg en vertaling (th of en), te kiezen op Ik (S.sup).
    S.thai ('altijd' | 'tik' | 'uit') regelt hoeveel steuntaal je ziet; de naam is historisch en blijft voor de opgeslagen voortgang.
@@ -267,6 +267,35 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "bk.err.newer":"This file comes from a newer version of the app. Please update the app first.",
+ "bk.err.invalid":"This is not a progress file from this app.",
+ "bk.err.read":"This file cannot be read.",
+ "bk.unknownDate":"an unknown date",
+ "bk.cancel":"Cancel",
+ "bk.do":"Restore",
+ "bk.confirm":"This file was saved on {when}. Your current progress will be replaced; a backup copy stays on this device.",
+ "bk.fail":"That does not work here.",
+ "bk.saved":"File created",
+ "bk.last":"Last backed up: {when}",
+ "bk.load":"Restore progress",
+ "bk.save":"Back up progress",
+ "bk.private":"Private: the file also contains your connection code. Anyone with the file can read your progress and messages and send messages as you. Only share it with someone you trust.",
+ "bk.text":"Save your progress as a file, for example with your files or in the cloud. With that file you can restore everything, even on a new device.",
+ "bk.title":"Back up progress",
+ "newer.banner":"View only: this version saves nothing. Please update the app.",
+ "newer.view":"View anyway (nothing will be saved)",
+ "newer.reload":"Reload",
+ "newer.text":"Your progress was saved by a newer version of this app. This version cannot update it safely. Close the app completely and open it again with internet; it will then fetch the new version.",
+ "newer.title":"Please update the app",
+ "rec.startOver.confirm":"Start again with empty progress?",
+ "rec.startOver":"Start again (the unreadable data stays on this device as a copy)",
+ "rec.download":"Save the unreadable data as a file",
+ "rec.file":"Choose a progress file",
+ "rec.noBak":"There is no usable backup copy on this device.",
+ "rec.bakInfo":"The app makes this copy itself, before every major change to the stored data.",
+ "rec.useBak":"Restore the backup copy",
+ "rec.text":"Nothing has been deleted. The saved data cannot be read or comes from an unknown version. Choose below how to continue.",
+ "rec.title":"Your progress cannot be read",
  "voice.noneHere":"Reading aloud does not work here: this browser has no voices. Try Chrome or Edge.",
  "v2.diff@th":"Here Thai is different. In Thai, ฉัน stays before the verb. In Dutch it turns around: Morgen werk ik.",
  "recall.intro@th":"You see a Thai word. Type the Dutch word, with de or het in front of it. What you type yourself, you remember better than what you tap.",
@@ -546,6 +575,35 @@ en:{
  "v2.diff@en":"Here English is different. In English, I stays before the verb: Tomorrow I work. In Dutch it turns around: Morgen werk ik."
 },
 nl:{
+ "bk.err.newer":"Dit bestand komt van een nieuwere versie van de app. Werk de app eerst bij.",
+ "bk.err.invalid":"Dit is geen voortgangsbestand van deze app.",
+ "bk.err.read":"Dit bestand kan niet worden gelezen.",
+ "bk.unknownDate":"een onbekende datum",
+ "bk.cancel":"Annuleren",
+ "bk.do":"Terugzetten",
+ "bk.confirm":"Dit bestand is bewaard op {when}. Je huidige voortgang wordt vervangen; er blijft een reservekopie van op dit toestel.",
+ "bk.fail":"Dat lukt hier niet.",
+ "bk.saved":"Bestand gemaakt",
+ "bk.last":"Laatst bewaard: {when}",
+ "bk.load":"Voortgang terugzetten",
+ "bk.save":"Voortgang bewaren",
+ "bk.private":"<b>Privé:</b> in het bestand staat ook je koppelcode. Wie het bestand heeft, kan je voortgang en berichten lezen en namens jou berichten sturen. Deel het alleen met iemand die je vertrouwt.",
+ "bk.text":"Bewaar je voortgang als bestand, bijvoorbeeld bij je bestanden of in de cloud. Met dat bestand zet je alles terug, ook op een nieuw toestel.",
+ "bk.title":"<h3>Voortgang bewaren</h3>",
+ "newer.banner":"Alleen bekijken: deze versie slaat niets op. Werk de app bij.",
+ "newer.view":"Toch bekijken (er wordt niets opgeslagen)",
+ "newer.reload":"Opnieuw laden",
+ "newer.text":"Je voortgang is opgeslagen door een nieuwere versie van deze app. Deze versie kan die niet veilig bijwerken. Sluit de app helemaal af en open hem opnieuw met internet; dan haalt hij de nieuwe versie op.",
+ "newer.title":"<h1>Werk de app bij</h1>",
+ "rec.startOver.confirm":"Opnieuw beginnen met een lege voortgang?",
+ "rec.startOver":"Opnieuw beginnen (de onleesbare gegevens blijven als kopie op dit toestel)",
+ "rec.download":"Onleesbare gegevens bewaren als bestand",
+ "rec.file":"Bestand met voortgang kiezen",
+ "rec.noBak":"Er is geen bruikbare reservekopie op dit toestel.",
+ "rec.bakInfo":"De app maakt deze kopie zelf, vóór elke grote wijziging van de opslag.",
+ "rec.useBak":"Reservekopie terugzetten",
+ "rec.text":"Er is niets gewist. De opgeslagen gegevens zijn onleesbaar of komen van een onbekende versie. Kies hieronder hoe je verder wilt.",
+ "rec.title":"<h1>Je voortgang kan niet worden gelezen</h1>",
  "voice.noneHere":"Voorlezen lukt hier niet: deze browser heeft geen stemmen. Probeer Chrome of Edge.",
  "v2.diff@th":"<b>Hier verschilt het Thai.</b> In het Thai blijft <i>ฉัน</i> vóór het werkwoord staan. In het Nederlands draait het om: <b>Morgen werk ik</b>.",
  "recall.intro@th":"Je ziet een Thais woord. Typ het Nederlandse woord, met <b>de</b> of <b>het</b> ervoor. Wat je zelf typt, onthoud je beter dan wat je aanklikt.",
@@ -819,6 +877,35 @@ nl:{
  "v2.diff@en":"<b>Hier verschilt het Engels.</b> In het Engels blijft <i>I</i> vóór het werkwoord staan: <i lang=\"en\">Tomorrow I work.</i> In het Nederlands draait het om: <b>Morgen werk ik</b>."
 },
 th:{
+ "bk.err.newer":"ไฟล์นี้มาจากแอปเวอร์ชันใหม่กว่า โปรดอัปเดตแอปก่อน",
+ "bk.err.invalid":"นี่ไม่ใช่ไฟล์ความก้าวหน้าของแอปนี้",
+ "bk.err.read":"อ่านไฟล์นี้ไม่ได้",
+ "bk.unknownDate":"วันที่ไม่ทราบ",
+ "bk.cancel":"ยกเลิก",
+ "bk.do":"กู้คืน",
+ "bk.confirm":"ไฟล์นี้บันทึกเมื่อ {when} ความก้าวหน้าปัจจุบันจะถูกแทนที่ แต่ยังมีสำเนาสำรองเก็บไว้ในเครื่องนี้",
+ "bk.fail":"ทำในเบราว์เซอร์นี้ไม่ได้",
+ "bk.saved":"สร้างไฟล์แล้ว",
+ "bk.last":"บันทึกล่าสุด: {when}",
+ "bk.load":"กู้คืนความก้าวหน้า",
+ "bk.save":"บันทึกความก้าวหน้า",
+ "bk.private":"ส่วนตัว: ในไฟล์มีรหัสเชื่อมต่อของคุณด้วย ใครที่มีไฟล์นี้จะอ่านความก้าวหน้าและข้อความของคุณได้ และส่งข้อความแทนคุณได้ แชร์เฉพาะกับคนที่คุณไว้ใจ",
+ "bk.text":"บันทึกความก้าวหน้าเป็นไฟล์ เช่น ในไฟล์ของคุณหรือบนคลาวด์ ใช้ไฟล์นั้นกู้คืนทุกอย่างได้ แม้ในเครื่องใหม่",
+ "bk.title":"สำรองความก้าวหน้า",
+ "newer.banner":"ดูอย่างเดียว: เวอร์ชันนี้ไม่บันทึกอะไร โปรดอัปเดตแอป",
+ "newer.view":"ดูต่อ (จะไม่มีการบันทึก)",
+ "newer.reload":"โหลดใหม่",
+ "newer.text":"ความก้าวหน้าของคุณถูกบันทึกโดยแอปเวอร์ชันใหม่กว่า เวอร์ชันนี้แก้ไขข้อมูลนั้นอย่างปลอดภัยไม่ได้ ปิดแอปให้สนิทแล้วเปิดใหม่ขณะต่ออินเทอร์เน็ต แอปจะโหลดเวอร์ชันใหม่",
+ "newer.title":"โปรดอัปเดตแอป",
+ "rec.startOver.confirm":"เริ่มใหม่โดยไม่มีความก้าวหน้าเดิมใช่ไหม",
+ "rec.startOver":"เริ่มใหม่ (ข้อมูลที่อ่านไม่ได้ยังเก็บเป็นสำเนาในเครื่องนี้)",
+ "rec.download":"บันทึกข้อมูลที่อ่านไม่ได้เป็นไฟล์",
+ "rec.file":"เลือกไฟล์ความก้าวหน้า",
+ "rec.noBak":"ไม่มีสำเนาสำรองที่ใช้ได้ในเครื่องนี้",
+ "rec.bakInfo":"แอปทำสำเนานี้เองก่อนการเปลี่ยนแปลงใหญ่ของข้อมูลทุกครั้ง",
+ "rec.useBak":"กู้คืนสำเนาสำรอง",
+ "rec.text":"ไม่มีอะไรถูกลบ ข้อมูลที่บันทึกไว้อ่านไม่ได้หรือมาจากเวอร์ชันที่ไม่รู้จัก เลือกด้านล่างว่าจะทำอย่างไรต่อ",
+ "rec.title":"อ่านความก้าวหน้าของคุณไม่ได้",
  "voice.noneHere":"อ่านออกเสียงในเบราว์เซอร์นี้ไม่ได้ ลองใช้ Chrome หรือ Edge",
  "me.supLang":"ภาษาสำหรับคำอธิบายและคำแปล",
  "me.learnLang":"คุณกำลังเรียน: {lang}",
@@ -1199,10 +1286,32 @@ function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
     points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
-    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th'};
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',schema:SCHEMA};
 }
-let S=load();
-if(!S||S.v!==2)S=fresh();
+/* ============ opslag veilig laden (#30) ============
+   S.v blijft 2. S.schema telt de vorm van de opslag (zonder veld = 1). Elke stap n -> n+1 staat in MIGRATE en mag vaker draaien.
+   Vóór een migratie gaat de ruwe opslag ongewijzigd naar BAK (één generatie); ook vóór Alles wissen en vóór Terugzetten.
+   STORE: 'ok' = normaal | 'broken' = onleesbaar of onbekend: herstelscherm, niets wegschrijven | 'newer' = van een nieuwere app: alleen lezen.
+   Buiten 'ok' schrijft de app niets weg en verstuurt ze geen voortgang. Onleesbare opslag wordt pas vervangen na een kopie in BROKEN. */
+const SCHEMA=2,BAK=KEY+'.bak',BROKEN=KEY+'.kapot';
+const MIGRATE={
+ 1:s=>{if(!s.profile||typeof s.profile!=='object')s.profile={name:''};if(!LEARN.includes(s.learn))s.learn='nl';if(!SUPPORT.includes(s.sup))s.sup='th';
+   if(s.v2ok&&!s.v2seen)s.v2seen=Date.now();delete s.v2ok;if(s.v2seen)s.tl1off=true;return s}
+};
+function schemaOf(o){return o.schema==null?1:o.schema}
+function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
+  const n=schemaOf(o);if(!Number.isInteger(n)||n<1)return 'broken';return n>SCHEMA?'newer':'ok'}
+function migrate(o){let n=schemaOf(o);while(n<SCHEMA){o=MIGRATE[n](o)||o;n++;o.schema=n}return o}
+function rawStore(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function putStore(k,v){try{localStorage.setItem(k,v);return true}catch(e){return false}}
+function backupNow(){const r=rawStore(KEY);if(r!=null)putStore(BAK,r)}
+function parseState(txt){let o=null;try{o=JSON.parse(txt)}catch(e){}return o}
+let STORE='ok',S;
+(()=>{const raw=rawStore(KEY);if(raw==null){S=fresh();return}
+  const o=parseState(raw),st=checkState(o);
+  if(st==='broken'){STORE='broken';S=fresh();return}
+  if(st==='newer'){STORE='newer';S=o;return}
+  if(schemaOf(o)<SCHEMA){putStore(BAK,raw);S=migrate(o);putStore(KEY,JSON.stringify(S))}else S=o})();
 [...NL,...EN,...REK].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
 if(!S.profile||typeof S.profile!=='object')S.profile={name:''};
 if(!LEARN.includes(S.learn))S.learn='nl';if(!SUPPORT.includes(S.sup))S.sup='th';
@@ -1218,8 +1327,8 @@ function bindName(){const p=$('#pname');if(p)p.oninput=()=>{S.profile.name=p.val
    Laadt tlsync.js niet (oude Safari, ontbrekend bestand), dan werkt de app gewoon zonder automatische koppeling (WhatsApp blijft). */
 const TLS=window.TLSync||null;
 function v2live(){return !!S.v2seen&&now()-S.v2seen<3*DAY}
-function ensureCodes(){if(S.v2ok&&!S.v2seen){S.v2seen=Date.now()}delete S.v2ok;if(S.v2seen)S.tl1off=true;if(!TLS)return;if(TLS.secure()){if(!S.code2){S.code2=TLS.newCode2()}}try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(S.code2)TLS.prepare(S.code2)}
-ensureCodes();
+function ensureCodes(){if(S.v2ok&&!S.v2seen){S.v2seen=Date.now()}delete S.v2ok;if(S.v2seen)S.tl1off=true;if(!TLS)return;if(TLS.secure()){if(!S.code2){S.code2=TLS.newCode2()}}save();if(S.code2)TLS.prepare(S.code2)}
+if(STORE==='ok')ensureCodes();
 
 /* herhaalmodel: stabiliteit (dagen) groeit bij goed, krimpt bij fout */
 function stage(id){const s=S.items[id].s;return s<=0?0:s<1.5?1:s<4?2:s<10?3:s<25?4:5}
@@ -1329,7 +1438,7 @@ let tab='vandaag',route=null;
 function show(t){tab=t;route=null;$('#nav').hidden=false;document.querySelectorAll('#nav [data-tab]').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===t?'page':'false'));app.classList.remove('sess');rerender();window.scrollTo(0,0)}
 document.querySelectorAll('#nav [data-tab]').forEach(b=>b.onclick=()=>show(b.dataset.tab));
 function rerender(){if(route)return route();({vandaag:vToday,tuin:vGarden,route:vRoute,ik:vMe,emiel:vEmiel}[tab])()}
-function paint(html){app.innerHTML=`<div class="view">${html}</div>`;bindCommon()}
+function paint(html){app.innerHTML=`<div class="view">${STORE==='newer'?`<div class="note sky small" role="status">${T('newer.banner')}</div>`:''}${html}</div>`;bindCommon()}
 
 /* ============ welkom ============ */
 let onb=0;
@@ -1822,6 +1931,7 @@ function vMe(){
     <details${S.code2?'':' open'}><summary class="small muted">${T('sync.enterCode')}</summary>
       <div class="stack" style="margin-top:8px"><input id="kin" class="input" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="xxxx-xxxx-xxxx-xxxx-xxxx-xxxx-xxxx" aria-label="Koppelcode"><button class="btn btn-ghost" id="kset">${T('sync.saveCode')}</button></div></details></section>
   <section class="card stack"><h3>Meekijken</h3><p class="small muted">Voor Emiel en Sjaak: voortgang, hulpvragen en uitlegkaarten.</p><button class="btn btn-ghost" id="emiel">Open de meekijk-weergave</button></section>
+  ${backupCard()}
   <button class="linkish muted" id="reset">Alles op dit apparaat wissen en opnieuw beginnen</button>
   <div id="rc" hidden class="card stack"><p>Alle voortgang op dit apparaat wissen?</p><div class="btn-row"><button class="btn btn-ghost" id="no">Nee</button><button class="btn btn-main" id="yes">Ja, wissen</button></div></div>`);
   if(unseen){S.answers.forEach(a=>a.seen=true);save()}
@@ -1837,8 +1947,9 @@ function vMe(){
   if($('#kshare'))$('#kshare').onclick=async()=>{const t=`Koppelcode voor de leerapp${nmText()?' van '+nmText():''} (EDGE → iCUE-instellingen → Koppelcode):\n${S.code2}`;try{if(navigator.share){await navigator.share({text:t});return}}catch(e){if(e&&e.name==='AbortError')return}window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank','noopener')};
   $('#kset').onclick=()=>{if(!TLS){toast('Automatisch versturen werkt niet op dit toestel. Gebruik Via WhatsApp.');return}const v=TLS.norm2($('#kin').value);if(!v){toast('Deze code klopt niet. Kijk of alle 28 tekens erin staan.');return}S.code2=v.match(/.{4}/g).join('-');S.v2seen=0;save();TLS.prepare(S.code2);toast(tx('link.saved'));syncUp(true);vMe()};
   $('#syncnow').onclick=()=>{syncUp(true,ok=>{toast(tx(ok?'sync.sent':'sync.offline'));const e=$('#syncst');if(e)e.innerHTML=syncText()});syncDown()};
+  bindBackup();
   $('#reset').onclick=()=>{$('#rc').hidden=false};$('#no').onclick=()=>{$('#rc').hidden=true};
-  $('#yes').onclick=()=>{const keep={code:S.code,code2:S.code2,v2seen:S.v2seen,tl1off:S.tl1off,sup:S.sup,learn:S.learn};S=Object.assign(fresh(),keep);save();onb=0;setThai('altijd');setSize('normaal');applyLang();tab='vandaag';vOnboard()};
+  $('#yes').onclick=()=>{backupNow();const keep={code:S.code,code2:S.code2,v2seen:S.v2seen,tl1off:S.tl1off,sup:S.sup,learn:S.learn};S=Object.assign(fresh(),keep);save();onb=0;setThai('altijd');setSize('normaal');applyLang();tab='vandaag';vOnboard()};
 }
 
 /* ============ meekijken (Emiel) ============ */
@@ -1913,7 +2024,7 @@ let upT=null,upBusy=false;
 /* koppelingen waarover we versturen: altijd de sterke TL2-code; de oude TL1-code alleen tot de EDGE TL2 bevestigt (hello) */
 function syncCodes(){const c=[];if(!TLS)return c;if(S.code2)c.push(S.code2);if(S.code&&!S.tl1off)c.push(S.code);return c}
 function syncText(){if(!TLS)return T('sync.noAuto');if(!syncCodes().length)return T('sync.noCode');return S.lastSync?T('sync.last',{when:l=>new Date(S.lastSync).toLocaleString(l==='th'?'th-TH':l==='en'?'en-GB':'nl-NL',{weekday:'short',hour:'2-digit',minute:'2-digit'})}):T('sync.nothing')}
-function syncUp(now_,cb){clearTimeout(upT);upT=setTimeout(()=>{if(upBusy){return syncUp(false,cb)}const cs=syncCodes();if(!cs.length)return cb&&cb(false);upBusy=true;const data=progressData();let left=cs.length,any=false,all=true;const done=ok=>{any=any||ok;all=all&&ok;if(--left)return;upBusy=false;if(any){S.lastSync=now();if(all)S.unsent=false;else S.unsent=true;save()}cb&&cb(any)};cs.forEach(c=>{try{TLS.send(c,'up',data,done)}catch(e){done(false)}})},now_?50:4000)}
+function syncUp(now_,cb){if(STORE!=='ok')return cb&&cb(false);clearTimeout(upT);upT=setTimeout(()=>{if(upBusy){return syncUp(false,cb)}const cs=syncCodes();if(!cs.length)return cb&&cb(false);upBusy=true;const data=progressData();let left=cs.length,any=false,all=true;const done=ok=>{any=any||ok;all=all&&ok;if(--left)return;upBusy=false;if(any){S.lastSync=now();if(all)S.unsent=false;else S.unsent=true;save()}cb&&cb(any)};cs.forEach(c=>{try{TLS.send(c,'up',data,done)}catch(e){done(false)}})},now_?50:4000)}
 function gotDown(list,isV2){if(!list)return;let added=0,hello=false;list.forEach(a=>{if(a&&a.type==='hello'&&isV2){hello=true;return}if(!a||!a.id||S.answers.some(x=>x.id===a.id))return;S.answers.unshift({id:a.id,t:a.t||now(),ctx:a.ctx||'',text:a.text||'',seen:false});const h=S.help.find(x=>x.t===a.helpT);if(h)h.open=false;added++});
   if(hello){const was=v2live();S.v2seen=now();S.tl1off=true;save();if(!was)if(tab==='ik'&&!route&&!app.classList.contains('sess'))rerender()}
   if(added){save();syncUp();if(!route&&(tab==='vandaag'||tab==='ik')&&!app.classList.contains('sess'))rerender()}}
@@ -1921,6 +2032,49 @@ function syncDown(){syncCodes().forEach(c=>{try{TLS.fetchAll(c,'down',list=>gotD
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')syncDown();else if(S.unsent||!S.lastSync||now()-S.lastSync>36e5)syncUp(true)});
 setInterval(()=>{if(document.visibilityState==='visible')syncDown()},90000);
 setTimeout(()=>{syncDown();if(!S.lastSync||now()-S.lastSync>6*36e5)syncUp(true)},1500);
+
+/* ============ voortgang bewaren en terugzetten (#30) ============
+   Bestand: {app,kind:'reservekopie',schema,saved,data:S}. Het bevat ook de koppelcodes: privé (zo staat het ook in de app).
+   Terugzetten: bestand valideren (checkState), huidige stand eerst naar BAK, dan migreren, wegschrijven en herladen. */
+const fmtWhen=ts=>l=>{try{return new Date(ts).toLocaleString(l==='th'?'th-TH':l==='en'?'en-GB':'nl-NL',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}catch(e){return ''}};
+function stamp(){const d=new Date(),p=n=>String(n).padStart(2,'0');return d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'-'+p(d.getHours())+p(d.getMinutes())}
+async function shareFile(txt,name,title){
+  try{const f=new File([txt],name,{type:'application/json'});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title});return true}}catch(e){if(e&&e.name==='AbortError')return false}
+  try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'application/json'}));a.download=name;document.body.appendChild(a);a.click();a.remove();return true}catch(e){return false}}
+async function exportBackup(){const now0=now(),txt=JSON.stringify({app:'tonaor-leert',kind:'reservekopie',schema:SCHEMA,saved:new Date(now0).toISOString(),data:S});
+  const ok=await shareFile(txt,'leren-reservekopie-'+stamp()+'.json',t('bk.title').replace(/<[^>]*>/g,''));
+  if(ok){S.lastBackup=now0;save();toast(tx('bk.saved'))}else toast(tx('bk.fail'));return ok}
+/* tekst van een gekozen bestand -> {data, saved} of {err:sleutel}. Een kale opslag (bijv. de bewaarde onleesbare gegevens) mag ook. */
+function parseBackup(txt){const o=parseState(txt);if(o==null)return {err:'bk.err.read'};
+  const d=o&&o.kind==='reservekopie'&&o.data?o.data:o,st=checkState(d);
+  if(st==='broken')return {err:'bk.err.invalid'};if(st==='newer')return {err:'bk.err.newer'};
+  const sv=o&&o.saved?Date.parse(o.saved):NaN;return {data:d,saved:Number.isNaN(sv)?null:sv}}
+function writeRestored(d,keepAs){const cur=rawStore(KEY);if(cur!=null)putStore(keepAs,cur);return putStore(KEY,JSON.stringify(migrate(d)))}
+function pickFile(cb){const i=document.createElement('input');i.type='file';i.accept='.json,application/json';i.style.display='none';
+  i.onchange=()=>{const f=i.files&&i.files[0];i.remove();if(!f)return;const r=new FileReader();r.onload=()=>cb(String(r.result||''));r.onerror=()=>cb('');r.readAsText(f)};document.body.appendChild(i);i.click()}
+const backupCard=()=>`<section class="card stack">${T('bk.title')}<p class="small">${T('bk.text')}</p><div class="note small">${T('bk.private')}</div>
+  ${S.lastBackup?`<p class="small muted">${T('bk.last',{when:fmtWhen(S.lastBackup)})}</p>`:''}
+  <div class="btn-row"><button class="btn btn-ghost" id="bksave">${T('bk.save')}</button>${STORE==='ok'?`<button class="btn btn-ghost" id="bkload">${T('bk.load')}</button>`:''}</div><div id="bkmsg"></div></section>`;
+function bindBackup(){if($('#bksave'))$('#bksave').onclick=()=>exportBackup().then(ok=>{if(ok&&tab==='ik'&&!route)vMe()});
+  if($('#bkload'))$('#bkload').onclick=()=>pickFile(txt=>{const r=parseBackup(txt),box=$('#bkmsg');if(!box)return;
+    if(r.err){box.innerHTML=`<div class="note small" role="status">${T(r.err)}</div>`;return}
+    box.innerHTML=`<div class="note stack-sm" role="status">${T('bk.confirm',{when:r.saved?fmtWhen(r.saved):l=>tr('bk.unknownDate',l)||''})}<div class="btn-row"><button class="btn btn-ghost" id="bkno">${T('bk.cancel')}</button><button class="btn btn-main" id="bkyes">${T('bk.do')}</button></div></div>`;
+    $('#bkno').onclick=()=>{box.innerHTML=''};$('#bkyes').onclick=()=>{if(writeRestored(r.data,BAK))location.reload();else toast(tx('bk.fail'))}})}
+/* herstelscherm: opslag onleesbaar of onbekend. Er is niets gewist; alles wat hier iets vervangt, bewaart eerst de onleesbare gegevens in BROKEN. */
+function vRecover(){$('#nav').hidden=true;const braw=rawStore(BAK),bak=braw!=null&&checkState(parseState(braw))==='ok'?parseState(braw):null;
+  paint(`<section class="card stack">${T('rec.title')}<p>${T('rec.text')}</p>
+   ${bak?`<button class="btn btn-main" id="rbak">${T('rec.useBak')}</button><p class="small muted">${T('rec.bakInfo')}</p>`:`<p class="small muted">${T('rec.noBak')}</p>`}
+   <button class="btn btn-ghost" id="rfile">${T('rec.file')}</button><div id="rmsg"></div>
+   <button class="btn btn-ghost" id="rdown">${T('rec.download')}</button>
+   <button class="linkish muted" id="rnew">${T('rec.startOver')}</button></section>`);
+  if($('#rbak'))$('#rbak').onclick=()=>{if(writeRestored(bak,BROKEN))location.reload();else toast(tx('bk.fail'))};
+  $('#rfile').onclick=()=>pickFile(txt=>{const r=parseBackup(txt);if(r.err){$('#rmsg').innerHTML=`<div class="note small" role="status">${T(r.err)}</div>`;return}if(writeRestored(r.data,BROKEN))location.reload();else toast(tx('bk.fail'))});
+  $('#rdown').onclick=()=>shareFile(rawStore(KEY)||'','leren-opslag-onleesbaar-'+stamp()+'.json','').then(ok=>{if(!ok)toast(tx('bk.fail'))});
+  $('#rnew').onclick=()=>{if(!confirm(tx('rec.startOver.confirm')))return;const cur=rawStore(KEY);if(cur!=null)putStore(BROKEN,cur);try{localStorage.removeItem(KEY)}catch(e){}location.reload()}}
+/* nieuwere opslag: niets opslaan; bijwerken of alleen bekijken */
+function vNewer(){$('#nav').hidden=true;
+  paint(`<section class="card stack">${T('newer.title')}<p>${T('newer.text')}</p><button class="btn btn-main" id="nreload">${T('newer.reload')}</button><button class="btn btn-ghost" id="nview">${T('newer.view')}</button></section>`);
+  $('#nreload').onclick=()=>location.reload();$('#nview').onclick=()=>{if(S.onboarded)show('vandaag');else vOnboard()}}
 
 /* ============ viering ============ */
 function petals(){
@@ -1933,7 +2087,7 @@ function petals(){
 }
 
 setThai(S.thai||'altijd');setSize(S.size||'normaal');applyLang();
-if(S.onboarded)show('vandaag');else vOnboard();
+if(STORE==='broken')vRecover();else if(STORE==='newer')vNewer();else if(S.onboarded)show('vandaag');else vOnboard();
 })();
 </script>
 

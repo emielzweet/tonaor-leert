@@ -40,6 +40,11 @@ Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteun
 ## Belangrijk bij wijzigen
 
 - Voortgang staat in `localStorage` onder sleutel `tonaor-leert-v2` (`S.v===2`). Nooit de sleutel of structuur breken zonder migratie: anders verliest de leerder de voortgang. Naam van de leerder: alleen in `S.profile.name` op het toestel (#6). Nieuwe items worden bij laden automatisch aangevuld.
+- Opslag veilig laden (#30, bouwplan fase 1): `S.v` blijft altijd 2; de vorm van de opslag staat in `S.schema` (ontbreekt = 1, huidige = `SCHEMA`).
+  - Structuur wijzigen = `SCHEMA` ophogen en een stap toevoegen in `MIGRATE` (n → n+1). Elke stap moet vaker kunnen draaien (idempotent) en mag niets weggooien.
+  - Vóór een migratie, vóór Alles wissen en vóór Terugzetten gaat de ruwe opslag naar `tonaor-leert-v2.bak`. Onleesbare opslag wordt pas vervangen na een kopie in `tonaor-leert-v2.kapot`.
+  - `STORE`: `ok` | `broken` (herstelscherm) | `newer` (alleen lezen). Schrijf nooit direct met `localStorage.setItem`: gebruik `save()` (alleen in `ok`) of `putStore()` met eerst een kopie. Buiten `ok` verstuurt de app geen voortgang.
+  - Ik → Voortgang bewaren/terugzetten: het bestand bevat de koppelcodes en is dus privé. Test: `node tools/test-migratie.mjs`.
 - TLSync 2 (issues #1 en #2, 11 nov 2026): versleutelde koppeling met het EDGE Masterplan via ntfy.sh, kanalen `<chan>-up` (app → EDGE) en `-down`. Het formaat volgt uit de code:
   - **TL2** (`S.code2`, 28 tekens Crockford-base32, 140 bits): scrypt (N=2^15, r=8, p=1) + HKDF-SHA256, AES-256-GCM-SIV met de richting als AAD. Nonce uit `crypto.getRandomValues`, zonder veilig toeval afgeleid via HMAC (nooit `Math.random`).
   - **TL1** (`S.code`, oud, 4 woorden + 4 cijfers; `isV1` zorgt dat zo'n code nooit als TL2 telt): alleen voor de overstap. De app stuurt via beide tot de EDGE een `{type:'hello',v:2}` op TL2-down stuurt (elke 6 uur, per code). Dan `S.v2seen` = tijdstip en `S.tl1off` = true: vanaf dat moment gebruikt de app TL1 nooit meer (ook niet na Alles wissen of een nieuwe code). Wijzig de TL1-afleiding niet.
@@ -51,7 +56,7 @@ Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteun
   - Interfaceteksten staan in `I18N` (`en` = referentie voor vertalers, `nl`, `th`) onder korte Engelse sleutels. Gebruik `T('sleutel',{var})` voor tekst met steuntaalregel, `t()`/`ts()` voor alleen leer-/steuntaal, `tx()` voor meldingen en `fbK(ok,'sleutel')` voor terugkoppeling. Nooit nieuwe tekst met losse Thai in de code.
   - `{sup}` = naam van de steuntaal; `sleutel@en` = variant als Engels de steuntaal is; meervoud `{one,other}` met `n`.
   - Inhoud: vertaling naast het veld (`th`/`en`, `whyTh`/`whyEn`, …), lezen met `L_(x,'why')`; Nederlandse tekst met een variant per steuntaal als `'why@en'`, lezen met `M_(x,'why')`. Taalbeschrijving in `LANG` (code, richting, naam per taal).
-  - Nieuwe steuntaal = `LANG` + `SUPPORT` + `I18N.xx` + `xx`-velden in de inhoud. Na elke wijziging de tests draaien: `node tools/test-vertalingen.mjs` (alle sleutels in nl/th/en, gelijke `{plekken}`, geen losse Thai), `node tools/test-oefeningen.mjs` en `node tools/test-voorlezen.mjs`.
+  - Nieuwe steuntaal = `LANG` + `SUPPORT` + `I18N.xx` + `xx`-velden in de inhoud. Na elke wijziging de tests draaien: `node tools/test-vertalingen.mjs` (alle sleutels in nl/th/en, gelijke `{plekken}`, geen losse Thai), `node tools/test-oefeningen.mjs`, `node tools/test-voorlezen.mjs` en `node tools/test-migratie.mjs`.
 - Kleurpalet: pastels, geen rood (bewuste keuze).
 - Doelapparaat is iPhone/Safari: test op 375px breed.
 
