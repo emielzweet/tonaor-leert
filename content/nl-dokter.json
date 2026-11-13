@@ -2,7 +2,7 @@
  "format": 1,
  "id": "nl-dokter",
  "type": "hoofdstuk",
- "version": 1,
+ "version": 5,
  "learn": "nl",
  "level": "A1-A2",
  "order": 30,
@@ -92,6 +92,299 @@
    "def": "Vaste zin: die tijd of dat plan past.",
    "ex": "Morgen om drie uur? Ja, dat kan.",
    "gap": "Kunt u morgen? Ja, ___."
+  },
+  {
+   "id": "dok.assistent",
+   "kind": "word",
+   "w": "assistent",
+   "art": "de",
+   "tr": {
+    "th": "ผู้ช่วยแพทย์",
+    "en": "assistant"
+   },
+   "def": "Iemand die bij de huisarts afspraken maakt en helpt.",
+   "ex": "De assistent neemt de telefoon op.",
+   "gap": "De ___ maakt een afspraak voor mij."
+  },
+  {
+   "id": "dok.balie",
+   "kind": "word",
+   "w": "balie",
+   "art": "de",
+   "tr": {
+    "th": "เคาน์เตอร์",
+    "en": "desk"
+   },
+   "def": "De tafel waar je je meldt als je binnenkomt.",
+   "ex": "Ik meld me bij de balie.",
+   "gap": "De ___ is bij de deur."
+  },
+  {
+   "id": "dok.geboortedatum",
+   "kind": "word",
+   "w": "geboortedatum",
+   "art": "de",
+   "tr": {
+    "th": "วันเกิด",
+    "en": "date of birth"
+   },
+   "def": "De dag, maand en het jaar waarop je geboren bent.",
+   "ex": "Wat is uw geboortedatum?",
+   "gap": "De ___ staat op mijn pas."
+  },
+  {
+   "id": "dok.spellen",
+   "kind": "word",
+   "w": "spellen",
+   "tr": {
+    "th": "สะกด",
+    "en": "to spell"
+   },
+   "def": "Een woord letter voor letter zeggen.",
+   "ex": "Kunt u uw naam spellen?",
+   "gap": "Kunt u uw naam ___?"
+  },
+  {
+   "id": "dok.wachtkamer",
+   "kind": "word",
+   "w": "wachtkamer",
+   "art": "de",
+   "tr": {
+    "th": "ห้องรอ",
+    "en": "waiting room"
+   },
+   "def": "De kamer waar je wacht tot je aan de beurt bent.",
+   "ex": "Ik ga in de wachtkamer zitten.",
+   "gap": "De ___ is vol."
+  },
+  {
+   "id": "dok.keel",
+   "kind": "word",
+   "w": "keel",
+   "art": "de",
+   "tr": {
+    "th": "คอ",
+    "en": "throat"
+   },
+   "def": "Het deel binnen in je hals, waar eten en lucht door gaan.",
+   "ex": "Mijn keel doet pijn.",
+   "gap": "De ___ is rood."
+  },
+  {
+   "id": "dok.borst",
+   "kind": "word",
+   "w": "borst",
+   "art": "de",
+   "tr": {
+    "th": "หน้าอก",
+    "en": "chest"
+   },
+   "def": "De voorkant van je lichaam, onder je hals.",
+   "ex": "Ik voel pijn in mijn borst.",
+   "gap": "De ___ doet pijn als ik hoest."
+  },
+  {
+   "id": "dok.schouder",
+   "kind": "word",
+   "w": "schouder",
+   "art": "de",
+   "tr": {
+    "th": "ไหล่",
+    "en": "shoulder"
+   },
+   "def": "Waar je arm aan je lichaam vastzit.",
+   "ex": "Ik heb pijn aan mijn schouder.",
+   "gap": "De ___ is stijf."
+  },
+  {
+   "id": "dok.koorts",
+   "kind": "word",
+   "w": "koorts",
+   "art": "de",
+   "tr": {
+    "th": "ไข้",
+    "en": "fever"
+   },
+   "def": "Als je lichaam te warm is omdat je ziek bent.",
+   "ex": "Mijn kind heeft koorts.",
+   "gap": "De ___ is gezakt."
+  },
+  {
+   "id": "dok.klacht",
+   "kind": "word",
+   "w": "klacht",
+   "art": "de",
+   "tr": {
+    "th": "อาการ",
+    "en": "complaint"
+   },
+   "def": "Wat er mis is met je lichaam, zoals pijn of koorts.",
+   "ex": "Wat zijn uw klachten?",
+   "gap": "De ___ is al drie dagen."
+  },
+  {
+   "id": "dok.verzetten",
+   "kind": "word",
+   "w": "verzetten",
+   "tr": {
+    "th": "เลื่อน (นัด)",
+    "en": "to reschedule"
+   },
+   "def": "Een afspraak naar een andere dag of tijd zetten.",
+   "ex": "Ik wil mijn afspraak verzetten.",
+   "gap": "Kan ik de afspraak ___?"
+  },
+  {
+   "id": "dok.bericht",
+   "kind": "word",
+   "w": "bericht",
+   "art": "het",
+   "tr": {
+    "th": "ข้อความ",
+    "en": "message"
+   },
+   "def": "Een korte tekst die je stuurt of krijgt.",
+   "ex": "Ik stuur een bericht naar de praktijk.",
+   "gap": "Het ___ is van de huisarts."
+  },
+  {
+   "id": "dok.helaas",
+   "kind": "word",
+   "w": "helaas",
+   "tr": {
+    "th": "น่าเสียดาย",
+    "en": "unfortunately"
+   },
+   "def": "Zeg je als iets jammer is of niet kan.",
+   "ex": "Ik kan helaas niet komen.",
+   "gap": "Ik moet morgen ___ werken."
+  },
+  {
+   "id": "dok.recept",
+   "kind": "word",
+   "w": "recept",
+   "art": "het",
+   "tr": {
+    "th": "ใบสั่งยา",
+    "en": "prescription"
+   },
+   "def": "Een briefje van de dokter waarmee je medicijnen haalt.",
+   "ex": "De dokter geeft mij een recept.",
+   "gap": "Het ___ breng ik naar de apotheek."
+  },
+  {
+   "id": "dok.controle",
+   "kind": "word",
+   "w": "controle",
+   "art": "de",
+   "tr": {
+    "th": "การตรวจติดตาม",
+    "en": "check-up"
+   },
+   "def": "Een bezoek om te kijken of het beter gaat.",
+   "ex": "Ik kom volgende week voor controle.",
+   "gap": "De ___ is over een week."
+  },
+  {
+   "id": "dok.beter",
+   "kind": "word",
+   "w": "beter",
+   "tr": {
+    "th": "ดีขึ้น",
+    "en": "better"
+   },
+   "def": "Minder ziek dan eerst; ook: meer goed.",
+   "ex": "Het gaat al beter met mij.",
+   "gap": "Het gaat nu ___ met mij."
+  },
+  {
+   "id": "dok.apotheek",
+   "kind": "word",
+   "w": "apotheek",
+   "art": "de",
+   "tr": {
+    "th": "ร้านขายยา",
+    "en": "pharmacy"
+   },
+   "def": "De winkel waar je medicijnen haalt.",
+   "ex": "Ik haal mijn medicijn bij de apotheek.",
+   "gap": "De ___ is om zes uur dicht."
+  },
+  {
+   "id": "dok.tablet",
+   "kind": "word",
+   "w": "tablet",
+   "art": "de",
+   "tr": {
+    "th": "ยาเม็ด",
+    "en": "tablet"
+   },
+   "def": "Een klein stukje medicijn dat je doorslikt.",
+   "ex": "Ik neem twee tabletten.",
+   "gap": "De ___ neem ik met water."
+  },
+  {
+   "id": "dok.verwijzing",
+   "kind": "word",
+   "w": "verwijzing",
+   "art": "de",
+   "tr": {
+    "th": "ใบส่งตัว",
+    "en": "referral"
+   },
+   "def": "Een brief van de huisarts om naar een specialist te gaan.",
+   "ex": "Ik krijg een verwijzing voor het ziekenhuis.",
+   "gap": "De ___ is van de huisarts."
+  },
+  {
+   "id": "dok.zorgverzekering",
+   "kind": "word",
+   "w": "zorgverzekering",
+   "art": "de",
+   "tr": {
+    "th": "ประกันสุขภาพ",
+    "en": "health insurance"
+   },
+   "def": "Een verzekering die de kosten van de dokter en medicijnen betaalt.",
+   "ex": "Iedereen moet een zorgverzekering hebben.",
+   "gap": "De ___ betaalt de dokter."
+  },
+  {
+   "id": "dok.ziekenhuis",
+   "kind": "word",
+   "w": "ziekenhuis",
+   "art": "het",
+   "tr": {
+    "th": "โรงพยาบาล",
+    "en": "hospital"
+   },
+   "def": "Een groot gebouw met dokters, voor onderzoek en behandeling.",
+   "ex": "Het ziekenhuis is in de stad.",
+   "gap": "Het ___ is groot."
+  },
+  {
+   "id": "dok.regel.modaal",
+   "kind": "rule",
+   "title": {
+    "nl": "willen, kunnen, moeten + werkwoord",
+    "th": "willen, kunnen, moeten + กริยา",
+    "en": "willen, kunnen, moeten + verb"
+   },
+   "rule": {
+    "nl": "Na willen, kunnen of moeten staat het tweede werkwoord helemaal achteraan, in de hele vorm.",
+    "th": "หลัง willen kunnen หรือ moeten กริยาตัวที่สองอยู่ท้ายประโยคในรูปเต็ม",
+    "en": "After willen, kunnen or moeten the second verb goes at the very end, in its full form."
+   },
+   "watch": {
+    "nl": "Niet: Ik wil de afspraak verzet. Wel: Ik wil de afspraak verzetten.",
+    "th": "ไม่ใช่ Ik wil de afspraak verzet. แต่เป็น Ik wil de afspraak verzetten.",
+    "en": "Not: Ik wil de afspraak verzet. But: Ik wil de afspraak verzetten."
+   },
+   "examples": [
+    "Ik wil graag een afspraak maken.",
+    "Kunt u morgen komen?",
+    "Ik moet morgen werken."
+   ]
   }
  ],
  "scenes": [
@@ -333,6 +626,1985 @@
       "th": "ลองพูดประโยคนี้ที่โต๊ะอาหารคืนนี้",
       "en": "Say the sentence at dinner tonight."
      }
+    }
+   ]
+  },
+  {
+   "id": "dokter-2",
+   "place": "dokter",
+   "subject": "nl",
+   "level": "A1",
+   "n": 2,
+   "title": {
+    "nl": "Aan de balie",
+    "th": "ที่เคาน์เตอร์",
+    "en": "At the desk"
+   },
+   "intro": {
+    "nl": "Je komt binnen bij de huisarts. Je meldt je bij de balie.",
+    "th": "คุณมาถึงคลินิกแพทย์ประจำครอบครัว แล้วแจ้งชื่อที่เคาน์เตอร์",
+    "en": "You arrive at the doctor's. You report at the desk."
+   },
+   "can": {
+    "nl": "Je melden aan de balie en je gegevens geven",
+    "th": "แจ้งตัวที่เคาน์เตอร์และให้ข้อมูลของตัวเองได้",
+    "en": "Report at the desk and give your details"
+   },
+   "targets": [
+    "afspraak",
+    "dok.balie",
+    "dok.geboortedatum",
+    "dok.wachtkamer",
+    "dok.spellen",
+    "dok.assistent"
+   ],
+   "art": {
+    "bg": "clinic",
+    "tone": "sky",
+    "alt": {
+     "nl": "Een balie met een assistent erachter, een bord voor de balie en een bord voor de wachtkamer, en stoelen."
+    },
+    "things": [
+     {
+      "kind": "sign",
+      "x": 70,
+      "y": 52,
+      "text": "Balie",
+      "hot": true,
+      "item": "dok.balie",
+      "label": {
+       "nl": "de balie",
+       "th": "เคาน์เตอร์",
+       "en": "the desk"
+      }
+     },
+     {
+      "kind": "sign",
+      "x": 262,
+      "y": 52,
+      "text": "Wachtkamer",
+      "hot": true,
+      "item": "dok.wachtkamer",
+      "label": {
+       "nl": "de wachtkamer",
+       "th": "ห้องรอ",
+       "en": "the waiting room"
+      }
+     },
+     {
+      "kind": "person",
+      "x": 165,
+      "y": 150,
+      "s": 1.6,
+      "who": "assistent",
+      "look": "happy",
+      "tone": "sky",
+      "hair": "bun",
+      "hairTone": "brown",
+      "skin": "b",
+      "hot": true,
+      "item": "dok.assistent",
+      "label": {
+       "nl": "de assistent",
+       "th": "ผู้ช่วยแพทย์",
+       "en": "the assistant"
+      }
+     },
+     {
+      "kind": "counter",
+      "x": 165,
+      "y": 172,
+      "s": 1.1,
+      "tone": "sky"
+     },
+     {
+      "kind": "card",
+      "x": 205,
+      "y": 128,
+      "hot": true,
+      "item": "dok.geboortedatum",
+      "label": {
+       "nl": "de pas met de geboortedatum",
+       "th": "บัตรที่มีวันเกิด",
+       "en": "the card with the date of birth"
+      }
+     },
+     {
+      "kind": "chair",
+      "x": 290,
+      "y": 196
+     },
+     {
+      "kind": "chair",
+      "x": 318,
+      "y": 196
+     },
+     {
+      "kind": "person",
+      "x": 55,
+      "y": 206,
+      "s": 1.5,
+      "who": "ik",
+      "look": "neutral",
+      "tone": "lilac",
+      "hair": "long"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "look",
+     "min": 2
+    },
+    {
+     "type": "talk",
+     "who": "assistent",
+     "looks": {
+      "ik": "talk"
+     },
+     "turns": [
+      {
+       "them": {
+        "nl": "Goedemiddag. Heeft u een afspraak?",
+        "th": "สวัสดีตอนบ่ายค่ะ มีนัดไว้หรือเปล่าคะ",
+        "en": "Good afternoon. Do you have an appointment?"
+       },
+       "items": [
+        "afspraak"
+       ],
+       "opts": [
+        {
+         "t": "Ja, om half drie bij de huisarts.",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Je zegt wanneer en bij wie je de afspraak hebt.",
+          "th": "ถูกต้อง คุณบอกเวลาและบอกว่านัดกับใคร",
+          "en": "Good. You say when and with whom."
+         }
+        },
+        {
+         "t": "Ja, ik heb half drie.",
+         "r": "near",
+         "why": {
+          "nl": "Bijna. Zeg: Ja, ik heb een afspraak om half drie.",
+          "th": "เกือบแล้ว ให้พูดว่า Ja, ik heb een afspraak om half drie.",
+          "en": "Almost. Say: Ja, ik heb een afspraak om half drie."
+         }
+        },
+        {
+         "t": "Nee, ik ben ziek.",
+         "r": "no",
+         "why": {
+          "nl": "Je hebt wel een afspraak. Zeg dat eerst: Ja, om half drie.",
+          "th": "คุณมีนัดอยู่แล้ว ให้บอกก่อนว่า Ja, om half drie.",
+          "en": "You do have an appointment. Say that first: Ja, om half drie."
+         }
+        }
+       ]
+      },
+      {
+       "them": {
+        "nl": "Wat is uw geboortedatum?",
+        "th": "วันเกิดของคุณคือวันที่เท่าไรคะ",
+        "en": "What is your date of birth?"
+       },
+       "items": [
+        "dok.geboortedatum"
+       ],
+       "opts": [
+        {
+         "t": "Mijn geboortedatum is 3 mei 1990.",
+         "r": "ok",
+         "why": {
+          "nl": "Goed: dag, maand en jaar.",
+          "th": "ถูกต้อง: วัน เดือน และปี",
+          "en": "Good: day, month and year."
+         }
+        },
+        {
+         "t": "Ik ben 3 mei.",
+         "r": "near",
+         "why": {
+          "nl": "Bijna. Zeg: Ik ben geboren op 3 mei 1990. Of: Mijn geboortedatum is …",
+          "th": "เกือบแล้ว ให้พูดว่า Ik ben geboren op 3 mei 1990",
+          "en": "Almost. Say: Ik ben geboren op 3 mei 1990."
+         }
+        },
+        {
+         "t": "Ik ben 35.",
+         "r": "no",
+         "why": {
+          "nl": "Dat is je leeftijd. De assistent vraagt de dag waarop je geboren bent.",
+          "th": "นั่นคืออายุ ผู้ช่วยถามวันเกิด",
+          "en": "That is your age. The assistant asks for the day you were born."
+         }
+        }
+       ]
+      },
+      {
+       "them": {
+        "nl": "Dank u. Wilt u in de wachtkamer gaan zitten?",
+        "th": "ขอบคุณค่ะ เชิญนั่งรอที่ห้องรอนะคะ",
+        "en": "Thank you. Would you take a seat in the waiting room?"
+       },
+       "items": [
+        "dok.wachtkamer"
+       ],
+       "opts": [
+        {
+         "t": "Ja, dank u wel.",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Kort en beleefd.",
+          "th": "ถูกต้อง สั้นและสุภาพ",
+          "en": "Good. Short and polite."
+         }
+        },
+        {
+         "t": "Ja, ik ga zitten wachtkamer.",
+         "r": "near",
+         "why": {
+          "nl": "Bijna. Zeg: Ja, ik ga in de wachtkamer zitten. Of kort: Ja, dank u wel.",
+          "th": "เกือบแล้ว ให้พูดว่า Ja, ik ga in de wachtkamer zitten.",
+          "en": "Almost. Say: Ja, ik ga in de wachtkamer zitten."
+         }
+        },
+        {
+         "t": "Nee, ik ga naar huis.",
+         "r": "no",
+         "why": {
+          "nl": "Dan zie je de huisarts niet. Ga in de wachtkamer zitten.",
+          "th": "แบบนั้นจะไม่ได้พบแพทย์ ให้นั่งรอที่ห้องรอ",
+          "en": "Then you will not see the doctor. Wait in the waiting room."
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "slot",
+     "n": 2,
+     "kinds": [
+      "word"
+     ]
+    },
+    {
+     "type": "do",
+     "form": "gap",
+     "items": [
+      "dok.spellen"
+     ],
+     "data": {
+      "s": "Kunt u uw naam ___?",
+      "o": [
+       "spellen",
+       "schrijven",
+       "lezen"
+      ],
+      "a": "spellen",
+      "tr": {
+       "th": "ช่วยสะกดชื่อของคุณได้ไหม",
+       "en": "Could you spell your name?"
+      }
+     }
+    },
+    {
+     "type": "do",
+     "form": "point",
+     "items": [
+      "dok.wachtkamer"
+     ],
+     "ask": {
+      "nl": "Tik op het bord van de wachtkamer",
+      "th": "แตะป้ายห้องรอ",
+      "en": "Tap the sign for the waiting room"
+     },
+     "answer": "dok.wachtkamer",
+     "why": {
+      "nl": "Op het bord staat: Wachtkamer.",
+      "th": "บนป้ายเขียนว่า Wachtkamer",
+      "en": "The sign says: Wachtkamer."
+     }
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "In de spreekkamer: wat zeg je tegen de dokter?",
+      "th": "ในห้องตรวจ: คุณจะบอกหมอว่าอะไร",
+      "en": "In the consulting room: what do you tell the doctor?"
+     },
+     "real": {
+      "nl": "Spel je naam hardop met de Nederlandse letters.",
+      "th": "สะกดชื่อของคุณออกเสียงด้วยตัวอักษรแบบดัตช์",
+      "en": "Spell your name aloud with Dutch letters."
+     }
+    }
+   ]
+  },
+  {
+   "id": "dokter-3",
+   "place": "dokter",
+   "subject": "nl",
+   "level": "A1-A2",
+   "n": 3,
+   "title": {
+    "nl": "In de spreekkamer",
+    "th": "ในห้องตรวจ",
+    "en": "In the consulting room"
+   },
+   "intro": {
+    "nl": "De huisarts vraagt wat er aan de hand is. Je vertelt waar je pijn hebt.",
+    "th": "แพทย์ถามว่าเป็นอะไร คุณบอกว่าเจ็บตรงไหน",
+    "en": "The doctor asks what is wrong. You say where it hurts."
+   },
+   "can": {
+    "nl": "Zeggen waar je pijn hebt",
+    "th": "บอกได้ว่าเจ็บตรงไหน",
+    "en": "Say where it hurts"
+   },
+   "targets": [
+    "dok.klacht",
+    "dok.koorts",
+    "dok.keel",
+    "dok.borst",
+    "dok.schouder",
+    "nlb.hoofd",
+    "dok.hoofdpijn"
+   ],
+   "art": {
+    "bg": "clinic",
+    "tone": "mint",
+    "alt": {
+     "nl": "Een spreekkamer met een bed, de huisarts en jij in het midden."
+    },
+    "things": [
+     {
+      "kind": "bed",
+      "x": 62,
+      "y": 190,
+      "tone": "mint"
+     },
+     {
+      "kind": "person",
+      "x": 292,
+      "y": 206,
+      "s": 1.5,
+      "who": "dokter",
+      "look": "neutral",
+      "tone": "sky",
+      "hair": "short",
+      "hairTone": "grey",
+      "skin": "a"
+     },
+     {
+      "kind": "person",
+      "x": 170,
+      "y": 206,
+      "s": 2.4,
+      "who": "ik",
+      "look": "worried",
+      "tone": "lilac",
+      "hair": "long",
+      "skin": "b"
+     },
+     {
+      "kind": "spot",
+      "x": 170,
+      "y": 122,
+      "r": 20,
+      "hot": true,
+      "item": "nlb.hoofd",
+      "label": {
+       "nl": "het hoofd",
+       "th": "หัว",
+       "en": "the head"
+      }
+     },
+     {
+      "kind": "spot",
+      "x": 170,
+      "y": 150,
+      "r": 10,
+      "hot": true,
+      "item": "dok.keel",
+      "label": {
+       "nl": "de keel",
+       "th": "คอ",
+       "en": "the throat"
+      }
+     },
+     {
+      "kind": "spot",
+      "x": 170,
+      "y": 190,
+      "r": 15,
+      "hot": true,
+      "item": "dok.borst",
+      "label": {
+       "nl": "de borst",
+       "th": "หน้าอก",
+       "en": "the chest"
+      }
+     },
+     {
+      "kind": "spot",
+      "x": 202,
+      "y": 178,
+      "r": 11,
+      "hot": true,
+      "item": "dok.schouder",
+      "label": {
+       "nl": "de schouder",
+       "th": "ไหล่",
+       "en": "the shoulder"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "look",
+     "min": 2
+    },
+    {
+     "type": "talk",
+     "who": "dokter",
+     "looks": {
+      "ik": "talk"
+     },
+     "turns": [
+      {
+       "them": {
+        "nl": "Goedemiddag. Wat zijn uw klachten?",
+        "th": "สวัสดีครับ มีอาการอะไรบ้างครับ",
+        "en": "Good afternoon. What are your complaints?"
+       },
+       "items": [
+        "dok.klacht",
+        "dok.hoofdpijn"
+       ],
+       "opts": [
+        {
+         "t": "Ik heb al drie dagen hoofdpijn.",
+         "r": "ok",
+         "why": {
+          "nl": "Goed: wat je hebt en hoe lang al.",
+          "th": "ถูกต้อง: บอกอาการและเป็นมานานเท่าไร",
+          "en": "Good: what you have and for how long."
+         }
+        },
+        {
+         "t": "Ik heb hoofd pijn drie dag.",
+         "r": "near",
+         "why": {
+          "nl": "Bijna. Hoofdpijn is één woord, en zeg: al drie dagen.",
+          "th": "เกือบแล้ว hoofdpijn เขียนเป็นคำเดียว และพูดว่า al drie dagen",
+          "en": "Almost. Hoofdpijn is one word, and say: al drie dagen."
+         }
+        },
+        {
+         "t": "Ik ben goed, dank u.",
+         "r": "no",
+         "why": {
+          "nl": "De dokter vraagt wat er mis is. Vertel je klacht.",
+          "th": "หมอถามว่าเป็นอะไร ให้บอกอาการ",
+          "en": "The doctor asks what is wrong. Tell your complaint."
+         }
+        }
+       ]
+      },
+      {
+       "them": {
+        "nl": "Heeft u ook koorts?",
+        "th": "มีไข้ด้วยไหมครับ",
+        "en": "Do you have a fever too?"
+       },
+       "items": [
+        "dok.koorts"
+       ],
+       "opts": [
+        {
+         "t": "Nee, ik heb geen koorts.",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Bij een woord als koorts zeg je geen, niet niet.",
+          "th": "ถูกต้อง กับคำนามอย่าง koorts ใช้ geen ไม่ใช่ niet",
+          "en": "Good. With a noun like koorts you say geen, not niet."
+         }
+        },
+        {
+         "t": "Nee, ik heb niet koorts.",
+         "r": "near",
+         "why": {
+          "nl": "Bijna. Zeg: Ik heb geen koorts.",
+          "th": "เกือบแล้ว ให้พูดว่า Ik heb geen koorts.",
+          "en": "Almost. Say: Ik heb geen koorts."
+         }
+        },
+        {
+         "t": "Ja, ik heb hoofd.",
+         "r": "no",
+         "why": {
+          "nl": "Iedereen heeft een hoofd. De dokter vraagt naar koorts.",
+          "th": "ทุกคนมีหัว หมอถามเรื่องไข้",
+          "en": "Everyone has a head. The doctor asks about fever."
+         }
+        }
+       ]
+      },
+      {
+       "them": {
+        "nl": "Waar doet het nog meer pijn?",
+        "th": "เจ็บตรงไหนอีกไหมครับ",
+        "en": "Where else does it hurt?"
+       },
+       "items": [
+        "dok.keel"
+       ],
+       "opts": [
+        {
+         "t": "Ik heb ook pijn aan mijn keel.",
+         "r": "ok",
+         "why": {
+          "nl": "Goed: pijn aan mijn … en het lichaamsdeel.",
+          "th": "ถูกต้อง: pijn aan mijn … แล้วตามด้วยส่วนของร่างกาย",
+          "en": "Good: pijn aan mijn … and the body part."
+         }
+        },
+        {
+         "t": "Mijn keel doet pijn aan.",
+         "r": "near",
+         "why": {
+          "nl": "Bijna. Zeg: Mijn keel doet pijn. Of: Ik heb pijn aan mijn keel.",
+          "th": "เกือบแล้ว ให้พูดว่า Mijn keel doet pijn.",
+          "en": "Almost. Say: Mijn keel doet pijn."
+         }
+        },
+        {
+         "t": "Ik heb pijn aan de dokter.",
+         "r": "no",
+         "why": {
+          "nl": "De dokter is geen lichaamsdeel. Noem waar het pijn doet.",
+          "th": "หมอไม่ใช่ส่วนของร่างกาย ให้บอกว่าเจ็บตรงไหน",
+          "en": "The doctor is not a body part. Say where it hurts."
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "form": "point",
+     "items": [
+      "dok.keel"
+     ],
+     "ask": {
+      "nl": "Tik op de keel",
+      "th": "แตะที่คอ",
+      "en": "Tap the throat"
+     },
+     "answer": "dok.keel",
+     "why": {
+      "nl": "De keel zit in je hals, tussen je hoofd en je borst.",
+      "th": "คออยู่ระหว่างหัวกับหน้าอก",
+      "en": "The throat is in your neck, between your head and your chest."
+     }
+    },
+    {
+     "type": "do",
+     "form": "point",
+     "items": [
+      "dok.schouder"
+     ],
+     "ask": {
+      "nl": "Tik op de schouder",
+      "th": "แตะที่ไหล่",
+      "en": "Tap the shoulder"
+     },
+     "answer": "dok.schouder",
+     "why": {
+      "nl": "De schouder zit waar je arm begint.",
+      "th": "ไหล่อยู่ตรงที่แขนเริ่มต้น",
+      "en": "The shoulder is where your arm begins."
+     }
+    },
+    {
+     "type": "make",
+     "items": [
+      "dok.klacht",
+      "dok.schouder"
+     ],
+     "frame": {
+      "nl": "Maak de zin af: Ik heb pijn aan mijn …",
+      "th": "เติมประโยคให้สมบูรณ์: Ik heb pijn aan mijn …",
+      "en": "Finish the sentence: Ik heb pijn aan mijn …"
+     },
+     "model": {
+      "nl": "Ik heb pijn aan mijn schouder.",
+      "th": "ฉันเจ็บที่ไหล่",
+      "en": "My shoulder hurts."
+     },
+     "checklist": [
+      {
+       "nl": "Je zin begint met: Ik heb pijn aan mijn",
+       "th": "ประโยคขึ้นต้นด้วย Ik heb pijn aan mijn",
+       "en": "Your sentence starts with: Ik heb pijn aan mijn"
+      },
+      {
+       "nl": "Je noemt een lichaamsdeel, zonder de of het",
+       "th": "บอกส่วนของร่างกายโดยไม่มี de หรือ het",
+       "en": "You name a body part, without de or het"
+      },
+      {
+       "nl": "Je zin eindigt met een punt",
+       "th": "ประโยคจบด้วยจุด",
+       "en": "Your sentence ends with a full stop"
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "De afspraak verzetten: je kunt een keer niet.",
+      "th": "เลื่อนนัด: คุณมาไม่ได้",
+      "en": "Rescheduling: you cannot make it once."
+     },
+     "real": {
+      "nl": "Wijs thuis drie lichaamsdelen aan en zeg: Ik heb pijn aan mijn …",
+      "th": "ลองชี้ส่วนของร่างกายสามจุดที่บ้านแล้วพูดว่า Ik heb pijn aan mijn …",
+      "en": "At home, point at three body parts and say: Ik heb pijn aan mijn …"
+     }
+    }
+   ]
+  },
+  {
+   "id": "dokter-4",
+   "place": "dokter",
+   "subject": "nl",
+   "level": "A2",
+   "n": 4,
+   "title": {
+    "nl": "De afspraak verzetten",
+    "th": "เลื่อนนัด",
+    "en": "Rescheduling the appointment"
+   },
+   "intro": {
+    "nl": "Je krijgt een bericht over je afspraak. Morgen moet je werken. Je wilt de afspraak verzetten.",
+    "th": "คุณได้รับข้อความเรื่องนัด พรุ่งนี้คุณต้องทำงาน คุณอยากเลื่อนนัด",
+    "en": "You get a message about your appointment. Tomorrow you have to work. You want to reschedule."
+   },
+   "can": {
+    "nl": "Een afspraak verzetten",
+    "th": "เลื่อนนัดได้",
+    "en": "Reschedule an appointment"
+   },
+   "targets": [
+    "dok.verzetten",
+    "dok.bericht",
+    "dok.helaas",
+    "dok.regel.modaal",
+    "nl.regel.plek2",
+    "afspraak",
+    "dok.agenda"
+   ],
+   "art": {
+    "bg": "room",
+    "tone": "apricot",
+    "alt": {
+     "nl": "Een kamer met een tafel, een telefoon, een agenda en een bericht. Jij kijkt bezorgd."
+    },
+    "things": [
+     {
+      "kind": "window",
+      "x": 70,
+      "y": 60
+     },
+     {
+      "kind": "clock",
+      "x": 175,
+      "y": 52,
+      "value": "9:15"
+     },
+     {
+      "kind": "table",
+      "x": 150,
+      "y": 192
+     },
+     {
+      "kind": "agenda",
+      "x": 112,
+      "y": 162,
+      "hot": true,
+      "item": "dok.agenda",
+      "label": {
+       "nl": "de agenda",
+       "th": "สมุดนัดหมาย",
+       "en": "the diary"
+      }
+     },
+     {
+      "kind": "letter",
+      "x": 160,
+      "y": 162,
+      "hot": true,
+      "item": "dok.bericht",
+      "label": {
+       "nl": "het bericht",
+       "th": "ข้อความ",
+       "en": "the message"
+      }
+     },
+     {
+      "kind": "phone",
+      "x": 200,
+      "y": 162,
+      "hot": true,
+      "item": "nlb.telefoon",
+      "label": {
+       "nl": "de telefoon",
+       "th": "โทรศัพท์",
+       "en": "the phone"
+      }
+     },
+     {
+      "kind": "person",
+      "x": 285,
+      "y": 206,
+      "s": 1.7,
+      "who": "ik",
+      "look": "worried",
+      "tone": "lilac",
+      "hair": "long",
+      "arm": "phone"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "look",
+     "min": 1
+    },
+    {
+     "type": "read",
+     "text": {
+      "nl": "Bericht van de huisartsenpraktijk: U heeft morgen om half drie een afspraak. Kunt u niet? Bel dan vóór tien uur om de afspraak te verzetten.",
+      "th": "ข้อความจากคลินิก: คุณมีนัดพรุ่งนี้บ่ายสองโมงครึ่ง ถ้ามาไม่ได้ ให้โทรก่อนสิบโมงเพื่อเลื่อนนัด",
+      "en": "Message from the surgery: You have an appointment tomorrow at half past two. Can't make it? Call before ten to reschedule."
+     },
+     "q": [
+      {
+       "q": {
+        "nl": "Wanneer is de afspraak?",
+        "th": "นัดคือเมื่อไร",
+        "en": "When is the appointment?"
+       },
+       "o": [
+        {
+         "nl": "morgen om half drie",
+         "th": "พรุ่งนี้บ่ายสองโมงครึ่ง",
+         "en": "tomorrow at half past two"
+        },
+        {
+         "nl": "vandaag om tien uur",
+         "th": "วันนี้สิบโมง",
+         "en": "today at ten"
+        },
+        {
+         "nl": "morgen om half twee",
+         "th": "พรุ่งนี้บ่ายโมงครึ่ง",
+         "en": "tomorrow at half past one"
+        }
+       ],
+       "a": 0,
+       "items": [
+        "afspraak"
+       ],
+       "why": {
+        "nl": "In het bericht staat: morgen om half drie.",
+        "th": "ในข้อความเขียนว่า พรุ่งนี้บ่ายสองโมงครึ่ง",
+        "en": "The message says: tomorrow at half past two."
+       }
+      },
+      {
+       "q": {
+        "nl": "Wat doe je als je niet kunt?",
+        "th": "ถ้ามาไม่ได้ต้องทำอะไร",
+        "en": "What do you do if you cannot come?"
+       },
+       "o": [
+        {
+         "nl": "vóór tien uur bellen",
+         "th": "โทรก่อนสิบโมง",
+         "en": "call before ten"
+        },
+        {
+         "nl": "niets doen",
+         "th": "ไม่ต้องทำอะไร",
+         "en": "do nothing"
+        },
+        {
+         "nl": "na tien uur langskomen",
+         "th": "ไปหลังสิบโมง",
+         "en": "come by after ten"
+        }
+       ],
+       "a": 0,
+       "items": [
+        "dok.verzetten"
+       ],
+       "why": {
+        "nl": "Je belt vóór tien uur om de afspraak te verzetten.",
+        "th": "คุณโทรก่อนสิบโมงเพื่อเลื่อนนัด",
+        "en": "You call before ten to reschedule."
+       }
+      }
+     ]
+    },
+    {
+     "type": "talk",
+     "who": "assistent",
+     "looks": {
+      "ik": "talk"
+     },
+     "turns": [
+      {
+       "them": {
+        "nl": "Huisartsenpraktijk, goedemorgen.",
+        "th": "คลินิกแพทย์ประจำครอบครัว สวัสดีตอนเช้าค่ะ",
+        "en": "Doctor's surgery, good morning."
+       },
+       "items": [
+        "dok.regel.modaal",
+        "dok.verzetten"
+       ],
+       "opts": [
+        {
+         "t": "Ik wil graag mijn afspraak verzetten.",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Na wil staat verzetten helemaal achteraan.",
+          "th": "ถูกต้อง หลัง wil คำว่า verzetten อยู่ท้ายสุด",
+          "en": "Good. After wil, verzetten goes at the very end."
+         }
+        },
+        {
+         "t": "Ik wil mijn afspraak verzet.",
+         "r": "near",
+         "why": {
+          "nl": "Bijna. Na wil komt het hele werkwoord: verzetten.",
+          "th": "เกือบแล้ว หลัง wil ใช้กริยารูปเต็ม verzetten",
+          "en": "Almost. After wil comes the full verb: verzetten."
+         }
+        },
+        {
+         "t": "Ik kom morgen niet.",
+         "r": "no",
+         "why": {
+          "nl": "Zeg ook wat je wilt: de afspraak verzetten.",
+          "th": "ให้บอกด้วยว่าอยากทำอะไร คือเลื่อนนัด",
+          "en": "Also say what you want: to reschedule."
+         }
+        }
+       ]
+      },
+      {
+       "them": {
+        "nl": "Waarom kunt u morgen niet?",
+        "th": "ทำไมพรุ่งนี้มาไม่ได้คะ",
+        "en": "Why can't you come tomorrow?"
+       },
+       "items": [
+        "nl.regel.plek2",
+        "dok.helaas"
+       ],
+       "opts": [
+        {
+         "t": "Morgen moet ik helaas werken.",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. De zin begint met morgen, dus het werkwoord moet staat op plek twee.",
+          "th": "ถูกต้อง ประโยคขึ้นต้นด้วย morgen กริยา moet จึงอยู่ตำแหน่งที่สอง",
+          "en": "Good. The sentence starts with morgen, so the verb moet is in place two."
+         }
+        },
+        {
+         "t": "Morgen ik moet werken.",
+         "r": "near",
+         "why": {
+          "nl": "Bijna. Begint de zin met een tijd, dan komt het werkwoord op plek twee: Morgen moet ik werken.",
+          "th": "เกือบแล้ว ถ้าประโยคขึ้นต้นด้วยเวลา กริยาอยู่ตำแหน่งที่สอง: Morgen moet ik werken.",
+          "en": "Almost. If the sentence starts with a time, the verb is in place two: Morgen moet ik werken."
+         }
+        },
+        {
+         "t": "Ik werken morgen.",
+         "r": "no",
+         "why": {
+          "nl": "Bij ik hoort werk, of: Ik moet morgen werken.",
+          "th": "กับ ik ใช้ werk หรือพูดว่า Ik moet morgen werken.",
+          "en": "With ik you use werk, or: Ik moet morgen werken."
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "make",
+     "items": [
+      "dok.bericht",
+      "dok.verzetten"
+     ],
+     "frame": {
+      "nl": "Schrijf een kort bericht: je kunt morgen niet en je vraagt om een andere tijd.",
+      "th": "เขียนข้อความสั้นๆ: พรุ่งนี้มาไม่ได้และขอเวลาอื่น",
+      "en": "Write a short message: you cannot come tomorrow and you ask for another time."
+     },
+     "model": {
+      "nl": "Goedemorgen. Ik kan morgen helaas niet komen. Kan ik de afspraak verzetten naar vrijdag? Met vriendelijke groet.",
+      "th": "สวัสดีตอนเช้า พรุ่งนี้ฉันมาไม่ได้ ขอเลื่อนนัดเป็นวันศุกร์ได้ไหม ด้วยความนับถือ",
+      "en": "Good morning. Unfortunately I cannot come tomorrow. Can I move the appointment to Friday? Kind regards."
+     },
+     "checklist": [
+      {
+       "nl": "Je begint met een groet",
+       "th": "ขึ้นต้นด้วยคำทักทาย",
+       "en": "You start with a greeting"
+      },
+      {
+       "nl": "Je schrijft dat je niet kunt, met helaas",
+       "th": "เขียนว่ามาไม่ได้ ใช้คำว่า helaas",
+       "en": "You write that you cannot come, with helaas"
+      },
+      {
+       "nl": "Je vraagt om een andere dag of tijd",
+       "th": "ขอวันหรือเวลาอื่น",
+       "en": "You ask for another day or time"
+      },
+      {
+       "nl": "Je sluit af met een groet",
+       "th": "ปิดท้ายด้วยคำลา",
+       "en": "You end with a greeting"
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Terug voor controle: luister naar de dokter.",
+      "th": "กลับไปตรวจติดตาม: ฟังหมอพูด",
+      "en": "Back for a check-up: listen to the doctor."
+     },
+     "real": {
+      "nl": "Schrijf het bericht echt in je telefoon, als oefening.",
+      "th": "ลองเขียนข้อความนี้ในโทรศัพท์จริงเพื่อฝึก",
+      "en": "Write the message in your phone for real, as practice."
+     }
+    }
+   ]
+  },
+  {
+   "id": "dokter-5",
+   "place": "dokter",
+   "subject": "nl",
+   "level": "A2",
+   "n": 5,
+   "title": {
+    "nl": "Terug voor controle",
+    "th": "กลับไปตรวจติดตาม",
+    "en": "Back for a check-up"
+   },
+   "intro": {
+    "nl": "Een week later ben je terug bij de huisarts. Luister eerst goed.",
+    "th": "หนึ่งสัปดาห์ต่อมาคุณกลับไปหาแพทย์ ฟังให้ดีก่อน",
+    "en": "A week later you are back at the doctor. Listen carefully first."
+   },
+   "can": {
+    "nl": "Het hele bezoek aan de dokter zelf doen",
+    "th": "ไปหาหมอได้ด้วยตัวเองทั้งหมด",
+    "en": "Do the whole doctor's visit yourself"
+   },
+   "targets": [
+    "dok.beter",
+    "dok.recept",
+    "dok.controle",
+    "dok.tablet",
+    "dok.hoofdpijn",
+    "dok.klacht",
+    "afspraak",
+    "dok.huisarts",
+    "dok.graag",
+    "dok.regel.modaal"
+   ],
+   "art": {
+    "bg": "clinic",
+    "tone": "lilac",
+    "alt": {
+     "nl": "De spreekkamer. De huisarts geeft je een recept."
+    },
+    "things": [
+     {
+      "kind": "person",
+      "x": 110,
+      "y": 206,
+      "s": 1.7,
+      "who": "dokter",
+      "look": "happy",
+      "tone": "sky",
+      "hair": "short",
+      "hairTone": "grey"
+     },
+     {
+      "kind": "person",
+      "x": 245,
+      "y": 206,
+      "s": 1.7,
+      "who": "ik",
+      "look": "happy",
+      "tone": "lilac",
+      "hair": "long",
+      "skin": "b"
+     },
+     {
+      "kind": "letter",
+      "x": 178,
+      "y": 186,
+      "hot": true,
+      "item": "dok.recept",
+      "label": {
+       "nl": "het recept",
+       "th": "ใบสั่งยา",
+       "en": "the prescription"
+      }
+     },
+     {
+      "kind": "medicine",
+      "x": 305,
+      "y": 206,
+      "hot": true,
+      "item": "dok.tablet",
+      "label": {
+       "nl": "de tabletten",
+       "th": "ยาเม็ด",
+       "en": "the tablets"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "listen",
+     "say": "Goedemiddag. Hoe gaat het nu met de hoofdpijn? Ik geef u een recept. Neem drie keer per dag een tablet. Komt u over een week terug voor controle?",
+     "q": [
+      {
+       "q": {
+        "nl": "Hoe vaak neem je een tablet?",
+        "th": "กินยาวันละกี่ครั้ง",
+        "en": "How often do you take a tablet?"
+       },
+       "o": [
+        {
+         "nl": "drie keer per dag",
+         "th": "วันละสามครั้ง",
+         "en": "three times a day"
+        },
+        {
+         "nl": "één keer per week",
+         "th": "สัปดาห์ละครั้ง",
+         "en": "once a week"
+        },
+        {
+         "nl": "twee keer per dag",
+         "th": "วันละสองครั้ง",
+         "en": "twice a day"
+        }
+       ],
+       "a": 0,
+       "items": [
+        "dok.tablet"
+       ],
+       "why": {
+        "nl": "De dokter zegt: drie keer per dag een tablet.",
+        "th": "หมอบอกว่า วันละสามครั้ง ครั้งละหนึ่งเม็ด",
+        "en": "The doctor says: one tablet three times a day."
+       }
+      },
+      {
+       "q": {
+        "nl": "Wanneer kom je terug?",
+        "th": "ต้องกลับมาเมื่อไร",
+        "en": "When do you come back?"
+       },
+       "o": [
+        {
+         "nl": "over een week",
+         "th": "อีกหนึ่งสัปดาห์",
+         "en": "in a week"
+        },
+        {
+         "nl": "morgen",
+         "th": "พรุ่งนี้",
+         "en": "tomorrow"
+        },
+        {
+         "nl": "over een maand",
+         "th": "อีกหนึ่งเดือน",
+         "en": "in a month"
+        }
+       ],
+       "a": 0,
+       "items": [
+        "dok.controle"
+       ],
+       "why": {
+        "nl": "De dokter vraagt: Komt u over een week terug voor controle?",
+        "th": "หมอถามว่า อีกหนึ่งสัปดาห์กลับมาตรวจได้ไหม",
+        "en": "The doctor asks: will you come back in a week?"
+       }
+      }
+     ]
+    },
+    {
+     "type": "talk",
+     "who": "dokter",
+     "looks": {
+      "ik": "talk"
+     },
+     "turns": [
+      {
+       "them": {
+        "nl": "Hoe gaat het met de hoofdpijn?",
+        "th": "อาการปวดหัวเป็นอย่างไรบ้างครับ",
+        "en": "How is the headache?"
+       },
+       "items": [
+        "dok.beter",
+        "dok.hoofdpijn"
+       ],
+       "opts": [
+        {
+         "t": "Het gaat beter, dank u.",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Beter betekent: minder ziek dan eerst.",
+          "th": "ถูกต้อง beter แปลว่า ดีขึ้นกว่าเดิม",
+          "en": "Good. Beter means: less ill than before."
+         }
+        },
+        {
+         "t": "Het is meer goed.",
+         "r": "near",
+         "why": {
+          "nl": "Bijna. Zeg: Het gaat beter.",
+          "th": "เกือบแล้ว ให้พูดว่า Het gaat beter.",
+          "en": "Almost. Say: Het gaat beter."
+         }
+        },
+        {
+         "t": "Ik heb een recept.",
+         "r": "no",
+         "why": {
+          "nl": "De dokter vraagt naar je hoofdpijn. Zeg hoe het gaat.",
+          "th": "หมอถามเรื่องปวดหัว ให้บอกว่าเป็นอย่างไร",
+          "en": "The doctor asks about your headache. Say how it is."
+         }
+        }
+       ]
+      },
+      {
+       "them": {
+        "nl": "Heeft u nog vragen?",
+        "th": "มีคำถามอะไรอีกไหมครับ",
+        "en": "Do you have any questions?"
+       },
+       "items": [
+        "dok.regel.modaal",
+        "dok.recept"
+       ],
+       "opts": [
+        {
+         "t": "Moet ik het recept naar de apotheek brengen?",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Na moet staat brengen achteraan.",
+          "th": "ถูกต้อง หลัง moet คำว่า brengen อยู่ท้าย",
+          "en": "Good. After moet, brengen goes at the end."
+         }
+        },
+        {
+         "t": "Ik moet recept apotheek?",
+         "r": "near",
+         "why": {
+          "nl": "Bijna. Maak een hele vraag: Moet ik het recept naar de apotheek brengen?",
+          "th": "เกือบแล้ว ให้ถามเป็นประโยคเต็ม",
+          "en": "Almost. Ask a full question."
+         }
+        },
+        {
+         "t": "Ja, de dokter.",
+         "r": "no",
+         "why": {
+          "nl": "Dit is geen vraag. Vraag bijvoorbeeld wat je met het recept moet doen.",
+          "th": "นี่ไม่ใช่คำถาม ลองถามว่าต้องทำอะไรกับใบสั่งยา",
+          "en": "This is not a question. Ask, for example, what to do with the prescription."
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "make",
+     "items": [
+      "dok.klacht",
+      "dok.recept"
+     ],
+     "frame": {
+      "nl": "Vertel in twee of drie zinnen hoe het bezoek ging: wat had je, en wat zei de dokter?",
+      "th": "เล่าสองสามประโยคว่าการไปหาหมอเป็นอย่างไร: เป็นอะไร และหมอพูดว่าอะไร",
+      "en": "Tell in two or three sentences how the visit went: what did you have, and what did the doctor say?"
+     },
+     "model": {
+      "nl": "Ik had hoofdpijn. De dokter gaf mij een recept. Ik neem drie keer per dag een tablet en ik kom over een week terug.",
+      "th": "ฉันปวดหัว หมอให้ใบสั่งยา ฉันกินยาวันละสามครั้ง และอีกหนึ่งสัปดาห์จะกลับไปตรวจ",
+      "en": "I had a headache. The doctor gave me a prescription. I take a tablet three times a day and I will come back in a week."
+     },
+     "checklist": [
+      {
+       "nl": "Je noemt je klacht",
+       "th": "บอกอาการ",
+       "en": "You name your complaint"
+      },
+      {
+       "nl": "Je noemt wat de dokter zei of gaf",
+       "th": "บอกสิ่งที่หมอพูดหรือให้",
+       "en": "You name what the doctor said or gave"
+      },
+      {
+       "nl": "Je gebruikt minstens twee woorden van dit hoofdstuk",
+       "th": "ใช้คำจากบทนี้อย่างน้อยสองคำ",
+       "en": "You use at least two words from this chapter"
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Bij de apotheek: je haalt je medicijn op.",
+      "th": "ที่ร้านขายยา: ไปรับยา",
+      "en": "At the pharmacy: you pick up your medicine."
+     },
+     "real": {
+      "nl": "Vertel aan tafel in het Nederlands hoe een bezoek aan de dokter gaat.",
+      "th": "เล่าที่โต๊ะอาหารเป็นภาษาดัตช์ว่าการไปหาหมอเป็นอย่างไร",
+      "en": "Tell at dinner in Dutch how a visit to the doctor goes."
+     }
+    }
+   ]
+  },
+  {
+   "id": "dokter-r",
+   "place": "dokter",
+   "subject": "rk",
+   "level": "A1-A2",
+   "n": 5,
+   "title": {
+    "nl": "Bij de apotheek",
+    "th": "ที่ร้านขายยา",
+    "en": "At the pharmacy"
+   },
+   "intro": {
+    "nl": "Je haalt je medicijn op. Je leest het etiket en je betaalt.",
+    "th": "คุณไปรับยา อ่านฉลาก แล้วจ่ายเงิน",
+    "en": "You pick up your medicine. You read the label and pay."
+   },
+   "can": {
+    "nl": "Een etiket en een bedrag begrijpen",
+    "th": "เข้าใจฉลากยาและจำนวนเงิน",
+    "en": "Understand a label and an amount"
+   },
+   "targets": [
+    "dok.apotheek",
+    "dok.tablet",
+    "nlb.betalen",
+    "r-geld"
+   ],
+   "art": {
+    "bg": "shop",
+    "tone": "mint",
+    "alt": {
+     "nl": "Een apotheek met een toonbank, de apotheker en een doosje medicijnen."
+    },
+    "things": [
+     {
+      "kind": "sign",
+      "x": 70,
+      "y": 50,
+      "text": "Apotheek",
+      "hot": true,
+      "item": "dok.apotheek",
+      "label": {
+       "nl": "de apotheek",
+       "th": "ร้านขายยา",
+       "en": "the pharmacy"
+      }
+     },
+     {
+      "kind": "shelf",
+      "x": 250,
+      "y": 70
+     },
+     {
+      "kind": "person",
+      "x": 170,
+      "y": 152,
+      "s": 1.6,
+      "who": "apotheker",
+      "look": "happy",
+      "tone": "mint",
+      "hair": "short",
+      "hairTone": "dark",
+      "skin": "c"
+     },
+     {
+      "kind": "counter",
+      "x": 170,
+      "y": 174,
+      "s": 1.1,
+      "tone": "mint"
+     },
+     {
+      "kind": "medicine",
+      "x": 212,
+      "y": 130,
+      "hot": true,
+      "item": "dok.tablet",
+      "label": {
+       "nl": "de tabletten: 3 keer per dag 2",
+       "th": "ยาเม็ด: วันละ 3 ครั้ง ครั้งละ 2 เม็ด",
+       "en": "the tablets: 2, three times a day"
+      }
+     },
+     {
+      "kind": "bag",
+      "x": 300,
+      "y": 200
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "look",
+     "min": 1
+    },
+    {
+     "type": "read",
+     "text": {
+      "nl": "Op het doosje staat: 3 keer per dag 2 tabletten, 7 dagen.",
+      "th": "บนกล่องเขียนว่า วันละ 3 ครั้ง ครั้งละ 2 เม็ด เป็นเวลา 7 วัน",
+      "en": "The box says: 2 tablets 3 times a day, for 7 days."
+     },
+     "q": [
+      {
+       "q": {
+        "nl": "Hoeveel tabletten neem je per dag?",
+        "th": "วันหนึ่งกินยากี่เม็ด",
+        "en": "How many tablets do you take per day?"
+       },
+       "o": [
+        "6",
+        "5",
+        "3"
+       ],
+       "a": 0,
+       "items": [
+        "dok.tablet"
+       ],
+       "why": {
+        "nl": "3 keer 2 tabletten: 3 × 2 = 6.",
+        "th": "3 ครั้ง ครั้งละ 2 เม็ด: 3 × 2 = 6",
+        "en": "3 times 2 tablets: 3 × 2 = 6."
+       }
+      },
+      {
+       "q": {
+        "nl": "Hoeveel tabletten heb je nodig voor een week?",
+        "th": "หนึ่งสัปดาห์ต้องใช้ยากี่เม็ด",
+        "en": "How many tablets do you need for a week?"
+       },
+       "o": [
+        "42",
+        "21",
+        "14"
+       ],
+       "a": 0,
+       "items": [
+        "dok.tablet"
+       ],
+       "why": {
+        "nl": "6 per dag en 7 dagen: 6 × 7 = 42.",
+        "th": "วันละ 6 เม็ด 7 วัน: 6 × 7 = 42",
+        "en": "6 a day for 7 days: 6 × 7 = 42."
+       }
+      }
+     ]
+    },
+    {
+     "type": "talk",
+     "who": "apotheker",
+     "looks": {
+      "ik": "talk"
+     },
+     "turns": [
+      {
+       "them": {
+        "nl": "Dat is dan € 7,50. Hoe wilt u betalen?",
+        "th": "ทั้งหมด € 7,50 ค่ะ จะจ่ายอย่างไรคะ",
+        "en": "That will be € 7,50. How would you like to pay?"
+       },
+       "items": [
+        "nlb.betalen"
+       ],
+       "opts": [
+        {
+         "t": "Ik betaal met mijn pinpas.",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Bij ik hoort betaal.",
+          "th": "ถูกต้อง กับ ik ใช้ betaal",
+          "en": "Good. With ik you use betaal."
+         }
+        },
+        {
+         "t": "Ik betalen pin.",
+         "r": "near",
+         "why": {
+          "nl": "Bijna. Zeg: Ik betaal met mijn pinpas.",
+          "th": "เกือบแล้ว ให้พูดว่า Ik betaal met mijn pinpas.",
+          "en": "Almost. Say: Ik betaal met mijn pinpas."
+         }
+        },
+        {
+         "t": "Ik wil geen medicijn.",
+         "r": "no",
+         "why": {
+          "nl": "Je hebt het medicijn nodig. De apotheker vraagt hoe je betaalt.",
+          "th": "คุณต้องใช้ยา เภสัชกรถามว่าจะจ่ายอย่างไร",
+          "en": "You need the medicine. The pharmacist asks how you pay."
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "form": "money",
+     "items": [
+      "r-geld",
+      "r-komma"
+     ],
+     "gen": {
+      "coins": [
+       1000,
+       500,
+       200,
+       100,
+       50,
+       20,
+       10
+      ],
+      "n": [
+       3,
+       5
+      ]
+     }
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Hoe werkt de zorg hier? Lees het in de kennisles.",
+      "th": "ระบบสุขภาพที่นี่ทำงานอย่างไร อ่านในบทความรู้",
+      "en": "How does healthcare work here? Read the knowledge lesson."
+     },
+     "real": {
+      "nl": "Lees thuis het etiket van een medicijn en reken uit hoeveel je per week neemt.",
+      "th": "อ่านฉลากยาที่บ้านแล้วคำนวณว่าต่อสัปดาห์ต้องกินเท่าไร",
+      "en": "At home, read a medicine label and work out how much you take per week."
+     }
+    }
+   ]
+  },
+  {
+   "id": "dokter-k",
+   "place": "dokter",
+   "subject": "kn",
+   "level": "A2",
+   "n": 5,
+   "title": {
+    "nl": "Hoe werkt de zorg hier?",
+    "th": "ระบบสุขภาพที่นี่ทำงานอย่างไร",
+    "en": "How does healthcare work here?"
+   },
+   "intro": {
+    "nl": "Een korte tekst over de huisarts, het ziekenhuis en de zorgverzekering.",
+    "th": "ข้อความสั้นๆ เกี่ยวกับแพทย์ประจำครอบครัว โรงพยาบาล และประกันสุขภาพ",
+    "en": "A short text about the family doctor, the hospital and health insurance."
+   },
+   "can": {
+    "nl": "Weten waar je heen gaat als je ziek bent",
+    "th": "รู้ว่าต้องไปที่ไหนเมื่อป่วย",
+    "en": "Know where to go when you are ill"
+   },
+   "targets": [
+    "dok.huisarts",
+    "dok.verwijzing",
+    "dok.zorgverzekering",
+    "dok.ziekenhuis"
+   ],
+   "art": {
+    "bg": "street",
+    "tone": "lilac",
+    "alt": {
+     "nl": "Een straat met een bord naar de huisarts en een bord naar het ziekenhuis."
+    },
+    "things": [
+     {
+      "kind": "sign",
+      "x": 90,
+      "y": 60,
+      "text": "Huisarts",
+      "hot": true,
+      "item": "dok.huisarts",
+      "label": {
+       "nl": "de huisarts",
+       "th": "แพทย์ประจำครอบครัว",
+       "en": "the family doctor"
+      }
+     },
+     {
+      "kind": "sign",
+      "x": 250,
+      "y": 60,
+      "text": "Ziekenhuis",
+      "hot": true,
+      "item": "dok.ziekenhuis",
+      "label": {
+       "nl": "het ziekenhuis",
+       "th": "โรงพยาบาล",
+       "en": "the hospital"
+      }
+     },
+     {
+      "kind": "bench",
+      "x": 170,
+      "y": 196
+     },
+     {
+      "kind": "card",
+      "x": 118,
+      "y": 168,
+      "hot": true,
+      "item": "dok.zorgverzekering",
+      "label": {
+       "nl": "de pas van de zorgverzekering",
+       "th": "บัตรประกันสุขภาพ",
+       "en": "the health insurance card"
+      }
+     },
+     {
+      "kind": "person",
+      "x": 220,
+      "y": 206,
+      "s": 1.6,
+      "who": "ik",
+      "look": "think",
+      "tone": "lilac",
+      "hair": "long",
+      "skin": "b"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "look",
+     "min": 1
+    },
+    {
+     "type": "read",
+     "text": {
+      "nl": "In Nederland ga je eerst naar de huisarts. De huisarts helpt bij gewone klachten. Is er meer hulp nodig, dan krijg je een verwijzing voor het ziekenhuis. Iedereen die hier woont, moet een zorgverzekering hebben. Bij spoed bel je 112.",
+      "th": "ในเนเธอร์แลนด์ คุณต้องไปหาแพทย์ประจำครอบครัวก่อน แพทย์ช่วยเรื่องอาการทั่วไป ถ้าต้องการความช่วยเหลือมากกว่านั้น จะได้ใบส่งตัวไปโรงพยาบาล ทุกคนที่อาศัยอยู่ที่นี่ต้องมีประกันสุขภาพ กรณีฉุกเฉินโทร 112",
+      "en": "In the Netherlands you go to the family doctor first. The family doctor helps with ordinary complaints. If more help is needed, you get a referral to the hospital. Everyone who lives here must have health insurance. In an emergency you call 112."
+     },
+     "q": [
+      {
+       "q": {
+        "nl": "Waar ga je eerst heen als je ziek bent?",
+        "th": "เมื่อป่วยต้องไปที่ไหนก่อน",
+        "en": "Where do you go first when you are ill?"
+       },
+       "o": [
+        {
+         "nl": "naar de huisarts",
+         "th": "แพทย์ประจำครอบครัว",
+         "en": "to the family doctor"
+        },
+        {
+         "nl": "naar het ziekenhuis",
+         "th": "โรงพยาบาล",
+         "en": "to the hospital"
+        },
+        {
+         "nl": "naar de apotheek",
+         "th": "ร้านขายยา",
+         "en": "to the pharmacy"
+        }
+       ],
+       "a": 0,
+       "items": [
+        "dok.huisarts"
+       ],
+       "why": {
+        "nl": "In de tekst staat: je gaat eerst naar de huisarts.",
+        "th": "ในข้อความเขียนว่า ไปหาแพทย์ประจำครอบครัวก่อน",
+        "en": "The text says: you go to the family doctor first."
+       }
+      },
+      {
+       "q": {
+        "nl": "Wat heb je nodig voor het ziekenhuis?",
+        "th": "ต้องมีอะไรถึงจะไปโรงพยาบาลได้",
+        "en": "What do you need for the hospital?"
+       },
+       "o": [
+        {
+         "nl": "een verwijzing",
+         "th": "ใบส่งตัว",
+         "en": "a referral"
+        },
+        {
+         "nl": "een recept",
+         "th": "ใบสั่งยา",
+         "en": "a prescription"
+        },
+        {
+         "nl": "een bericht",
+         "th": "ข้อความ",
+         "en": "a message"
+        }
+       ],
+       "a": 0,
+       "items": [
+        "dok.verwijzing"
+       ],
+       "why": {
+        "nl": "De huisarts geeft een verwijzing als er meer hulp nodig is.",
+        "th": "แพทย์ให้ใบส่งตัวเมื่อต้องการความช่วยเหลือมากขึ้น",
+        "en": "The family doctor gives a referral if more help is needed."
+       }
+      },
+      {
+       "q": {
+        "nl": "Wie moet een zorgverzekering hebben?",
+        "th": "ใครต้องมีประกันสุขภาพ",
+        "en": "Who must have health insurance?"
+       },
+       "o": [
+        {
+         "nl": "iedereen die hier woont",
+         "th": "ทุกคนที่อาศัยอยู่ที่นี่",
+         "en": "everyone who lives here"
+        },
+        {
+         "nl": "alleen kinderen",
+         "th": "เฉพาะเด็ก",
+         "en": "only children"
+        },
+        {
+         "nl": "alleen mensen met werk",
+         "th": "เฉพาะคนที่ทำงาน",
+         "en": "only people with a job"
+        }
+       ],
+       "a": 0,
+       "items": [
+        "dok.zorgverzekering"
+       ],
+       "why": {
+        "nl": "In de tekst staat: iedereen die hier woont.",
+        "th": "ในข้อความเขียนว่า ทุกคนที่อาศัยอยู่ที่นี่",
+        "en": "The text says: everyone who lives here."
+       }
+      }
+     ]
+    },
+    {
+     "type": "make",
+     "items": [
+      "dok.huisarts",
+      "dok.ziekenhuis"
+     ],
+     "frame": {
+      "nl": "Schrijf in één zin wat je doet als je ziek bent.",
+      "th": "เขียนหนึ่งประโยคว่าคุณทำอะไรเมื่อป่วย",
+      "en": "Write in one sentence what you do when you are ill."
+     },
+     "model": {
+      "nl": "Als ik ziek ben, bel ik eerst de huisarts.",
+      "th": "เมื่อฉันป่วย ฉันโทรหาแพทย์ประจำครอบครัวก่อน",
+      "en": "When I am ill, I call the family doctor first."
+     },
+     "checklist": [
+      {
+       "nl": "Je noemt de huisarts",
+       "th": "บอกถึงแพทย์ประจำครอบครัว",
+       "en": "You mention the family doctor"
+      },
+      {
+       "nl": "Je zin eindigt met een punt",
+       "th": "ประโยคจบด้วยจุด",
+       "en": "Your sentence ends with a full stop"
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Het hoofdstuk bij de dokter is af. Speel een scène nog eens, of ga verder met de les.",
+      "th": "บทไปหาหมอจบแล้ว เล่นฉากซ้ำได้ หรือเรียนบทเรียนต่อ",
+      "en": "The doctor chapter is done. Play a scene again, or continue with the lesson."
+     },
+     "real": {
+      "nl": "Zoek op je zorgpas het telefoonnummer van je verzekering.",
+      "th": "หาเบอร์โทรศัพท์ของบริษัทประกันบนบัตรของคุณ",
+      "en": "Find your insurer's phone number on your card."
+     }
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "dok.zin.1",
+   "form": "build",
+   "pool": "dok-zinnen",
+   "items": [
+    "dok.regel.modaal"
+   ],
+   "data": {
+    "parts": [
+     "Ik",
+     "wil",
+     "graag een afspraak",
+     "maken."
+    ],
+    "verb": "wil",
+    "tr": {
+     "th": "ฉันอยากนัดหมาย",
+     "en": "I would like to make an appointment."
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "Willen, kunnen of moeten op plek 2, het andere werkwoord achteraan.",
+     "th": "willen kunnen moeten อยู่ตำแหน่งที่ 2 กริยาอีกตัวอยู่ท้าย",
+     "en": "Willen, kunnen or moeten in place 2, the other verb at the end."
+    },
+    "no": {
+     "nl": "Kijk waar het werkwoord staat: willen, kunnen of moeten op plek 2, het andere werkwoord helemaal achteraan.",
+     "th": "ดูตำแหน่งกริยา: willen kunnen moeten อยู่ที่ 2 กริยาอีกตัวอยู่ท้ายสุด",
+     "en": "Look at the verbs: willen, kunnen or moeten in place 2, the other verb at the very end."
+    }
+   },
+   "hint": [
+    {
+     "nl": "Welk werkwoord staat op plek 2?",
+     "th": "กริยาตัวไหนอยู่ตำแหน่งที่ 2",
+     "en": "Which verb is in place 2?"
+    },
+    {
+     "nl": "Het tweede werkwoord staat helemaal achteraan.",
+     "th": "กริยาตัวที่สองอยู่ท้ายสุด",
+     "en": "The second verb goes at the very end."
+    }
+   ]
+  },
+  {
+   "id": "dok.zin.2",
+   "form": "build",
+   "pool": "dok-zinnen",
+   "items": [
+    "dok.regel.modaal"
+   ],
+   "data": {
+    "parts": [
+     "Morgen",
+     "moet",
+     "ik",
+     "werken."
+    ],
+    "verb": "moet",
+    "tr": {
+     "th": "พรุ่งนี้ฉันต้องทำงาน",
+     "en": "Tomorrow I have to work."
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "Willen, kunnen of moeten op plek 2, het andere werkwoord achteraan.",
+     "th": "willen kunnen moeten อยู่ตำแหน่งที่ 2 กริยาอีกตัวอยู่ท้าย",
+     "en": "Willen, kunnen or moeten in place 2, the other verb at the end."
+    },
+    "no": {
+     "nl": "Kijk waar het werkwoord staat: willen, kunnen of moeten op plek 2, het andere werkwoord helemaal achteraan.",
+     "th": "ดูตำแหน่งกริยา: willen kunnen moeten อยู่ที่ 2 กริยาอีกตัวอยู่ท้ายสุด",
+     "en": "Look at the verbs: willen, kunnen or moeten in place 2, the other verb at the very end."
+    }
+   },
+   "hint": [
+    {
+     "nl": "Welk werkwoord staat op plek 2?",
+     "th": "กริยาตัวไหนอยู่ตำแหน่งที่ 2",
+     "en": "Which verb is in place 2?"
+    },
+    {
+     "nl": "Het tweede werkwoord staat helemaal achteraan.",
+     "th": "กริยาตัวที่สองอยู่ท้ายสุด",
+     "en": "The second verb goes at the very end."
+    }
+   ]
+  },
+  {
+   "id": "dok.zin.3",
+   "form": "build",
+   "pool": "dok-zinnen",
+   "items": [
+    "dok.regel.modaal"
+   ],
+   "data": {
+    "parts": [
+     "Kunt",
+     "u",
+     "uw naam",
+     "spellen?"
+    ],
+    "verb": "Kunt",
+    "tr": {
+     "th": "ช่วยสะกดชื่อของคุณได้ไหม",
+     "en": "Could you spell your name?"
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "Willen, kunnen of moeten op plek 2, het andere werkwoord achteraan.",
+     "th": "willen kunnen moeten อยู่ตำแหน่งที่ 2 กริยาอีกตัวอยู่ท้าย",
+     "en": "Willen, kunnen or moeten in place 2, the other verb at the end."
+    },
+    "no": {
+     "nl": "Kijk waar het werkwoord staat: willen, kunnen of moeten op plek 2, het andere werkwoord helemaal achteraan.",
+     "th": "ดูตำแหน่งกริยา: willen kunnen moeten อยู่ที่ 2 กริยาอีกตัวอยู่ท้ายสุด",
+     "en": "Look at the verbs: willen, kunnen or moeten in place 2, the other verb at the very end."
+    }
+   },
+   "hint": [
+    {
+     "nl": "Welk werkwoord staat op plek 2?",
+     "th": "กริยาตัวไหนอยู่ตำแหน่งที่ 2",
+     "en": "Which verb is in place 2?"
+    },
+    {
+     "nl": "Het tweede werkwoord staat helemaal achteraan.",
+     "th": "กริยาตัวที่สองอยู่ท้ายสุด",
+     "en": "The second verb goes at the very end."
+    }
+   ]
+  },
+  {
+   "id": "dok.gat.1",
+   "form": "gap",
+   "items": [
+    "dok.regel.modaal"
+   ],
+   "data": {
+    "s": "Ik wil de afspraak ___.",
+    "o": [
+     "verzetten",
+     "verzet"
+    ],
+    "a": "verzetten",
+    "tr": {
+     "th": "ฉันอยากเลื่อนนัด",
+     "en": "I want to reschedule the appointment."
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "Na wil komt het hele werkwoord: <b>verzetten</b>.",
+     "th": "หลังกริยาช่วยใช้กริยารูปเต็ม verzetten",
+     "en": "After the helper verb comes the full verb: verzetten."
+    },
+    "no": {
+     "nl": "Achteraan staat het hele werkwoord, niet de vorm bij ik.",
+     "th": "ท้ายประโยคใช้กริยารูปเต็ม ไม่ใช่รูปที่ใช้กับ ik",
+     "en": "At the end goes the full verb, not the ik form."
+    }
+   },
+   "hint": [
+    {
+     "nl": "Er staat al een werkwoord op plek 2.",
+     "th": "มีกริยาอยู่ตำแหน่งที่ 2 แล้ว",
+     "en": "There is already a verb in place 2."
+    },
+    {
+     "nl": "Achteraan komt de hele vorm, zoals in het woordenboek.",
+     "th": "ท้ายประโยคใช้รูปเต็มเหมือนในพจนานุกรม",
+     "en": "At the end comes the full form, as in the dictionary."
+    }
+   ]
+  },
+  {
+   "id": "dok.gat.2",
+   "form": "gap",
+   "items": [
+    "dok.regel.modaal"
+   ],
+   "data": {
+    "s": "Ik moet het recept naar de apotheek ___.",
+    "o": [
+     "brengen",
+     "breng"
+    ],
+    "a": "brengen",
+    "tr": {
+     "th": "ฉันต้องเอาใบสั่งยาไปร้านขายยา",
+     "en": "I have to take the prescription to the pharmacy."
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "Na moet komt het hele werkwoord: <b>brengen</b>.",
+     "th": "หลังกริยาช่วยใช้กริยารูปเต็ม brengen",
+     "en": "After the helper verb comes the full verb: brengen."
+    },
+    "no": {
+     "nl": "Achteraan staat het hele werkwoord, niet de vorm bij ik.",
+     "th": "ท้ายประโยคใช้กริยารูปเต็ม ไม่ใช่รูปที่ใช้กับ ik",
+     "en": "At the end goes the full verb, not the ik form."
+    }
+   },
+   "hint": [
+    {
+     "nl": "Er staat al een werkwoord op plek 2.",
+     "th": "มีกริยาอยู่ตำแหน่งที่ 2 แล้ว",
+     "en": "There is already a verb in place 2."
+    },
+    {
+     "nl": "Achteraan komt de hele vorm, zoals in het woordenboek.",
+     "th": "ท้ายประโยคใช้รูปเต็มเหมือนในพจนานุกรม",
+     "en": "At the end comes the full form, as in the dictionary."
     }
    ]
   }
