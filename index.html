@@ -1669,6 +1669,7 @@ let STORE='ok',S;
   /* Lukt de reservekopie niet, dan is de opslag vol of onbereikbaar: dan lukt wegschrijven ook niet, dus de oude opslag blijft staan. */
   if(schemaOf(o)<SCHEMA){const bakOk=putStore(BAK,raw);let m;try{m=migrate(o)}catch(e){STORE='broken';S=fresh();return}S=fillDefaults(m);if(bakOk)putStore(KEY,JSON.stringify(S))}else S=fillDefaults(o)})();
 [...NL,...EN,...REK,...PACKS.flatMap(p=>p.items||[]).filter(x=>x.kind==='rule'||x.kind==='sound')].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
+PACKS.forEach(p=>(p.items||[]).forEach(x=>{if(x&&x.id&&x.kind)KIND[x.id]=x.kind}));
 if(!S.profile||typeof S.profile!=='object')S.profile={name:''};
 if(!LEARN.includes(S.learn))S.learn='nl';if(!SUPPORT.includes(S.sup))S.sup='th';
 /* naam van de leerder: alleen uit het profiel op dit toestel (nooit in de code). nm() = naam (veilig) of leeg, who() = naam of 'de leerder'. */
@@ -1701,7 +1702,7 @@ function review(id,res,form,exid,passive){
   it.reps++;
   if(!passive){
     if(res===true){if(it.s<=0){it.s=1;it.due=now()+DAY}
-      else{const f=Math.min(1,(now()-(it.due-it.s*DAY))/(it.s*DAY));if(f>=.5){it.s=Math.min(120,it.s*(1+1.4*f));if(it.forms.filter(x=>!NOGROW.includes(x)).length<3&&it.s>=10)it.s=9;it.due=now()+it.s*DAY}}}
+      else{const f=Math.min(1,(now()-(it.due-it.s*DAY))/(it.s*DAY));if(f>=.5){it.s=Math.min(120,it.s*(1+1.4*f));if(it.s>=10&&!canBloom(id,it))it.s=9;it.due=now()+it.s*DAY}}}
     else if(res==='retry'){it.due=now()+Math.max(0,it.s)*DAY}
     else{it.lapses++;it.s=Math.max(.5,it.s*.4);it.due=now()}}
   S.log.push({t:now(),id,ok:res===true,...(res==='retry'?{r:1}:{}),...(exid?{ex:exid}:{}),...(passive?{p:1}:{})});if(S.log.length>600)S.log.shift();
@@ -1709,6 +1710,13 @@ function review(id,res,form,exid,passive){
 }
 /* vormen die niet meetellen voor bloei: bekijken en de controlevraag bij een uitleg */
 const NOGROW=['voorbeeld','check'];
+/* soort per item (word, rule, sound, skill), gevuld na het laden van de pakketten */
+let KIND={};
+/* eis voor doorgroeien boven 9 dagen (docs/herhaalmodel.md sectie 4, besluit 13 november 2026):
+   woord: drie vormen; regel: drie verschillende oefeningen, minstens één keer zin bouwen;
+   klank: drie verschillende oefeningen, minstens één keer luisteren en typen; rekenvaardigheid: drie verschillende varianten. */
+function canBloom(id,it){const k=KIND[id]||'word',f=(it.forms||[]).filter(x=>!NOGROW.includes(x)),n=(it.exs||[]).length;
+  return k==='rule'?n>=3&&f.includes('build'):k==='sound'?n>=3&&f.includes('luisteren'):k==='skill'?n>=3:f.length>=3}
 /* een onderdeel is voor het eerst aangeboden (voorbeeld, uitleg, kaart): plannen, maar niet als gekend tellen */
 function introduce(id,form){const it=S.items[id];if(!it)return;if(!S.introduced.includes(id))S.introduced.push(id);if(form&&!it.forms.includes(form))it.forms.push(form);if(it.reps===0){it.reps=1;it.due=now()}save()}
 /* een oefening met items: het eerste item is het doel; alleen dat krijgt een fout */

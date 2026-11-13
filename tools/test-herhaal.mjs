@@ -9,7 +9,7 @@ const DAY = 864e5;
 function model() {
   const ctx = { S: { items: {}, introduced: [], log: [] }, T: 0, DAY, Math, Array, Object };
   vm.createContext(ctx);
-  vm.runInContext('const now=()=>T;const today=()=>Math.floor(T/DAY)*DAY;const save=()=>{};' + line('const NOGROW=') + '\n' + fnBlock('item') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\n' + fnBlock('stage') + '\n' + fnBlock('thirsty') + '\nthis.api={review,introduce,practiced,stage,thirsty,item};', ctx);
+  vm.runInContext('const now=()=>T;const today=()=>Math.floor(T/DAY)*DAY;const save=()=>{};' + line('const NOGROW=') + '\n' + line('let KIND=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('item') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\n' + fnBlock('stage') + '\n' + fnBlock('thirsty') + '\nthis.api={review,introduce,practiced,stage,thirsty,item,canBloom,setKind:(id,k)=>{KIND[id]=k}};', ctx);
   return ctx;
 }
 const at = (c, d) => { c.T = d * DAY; };
@@ -76,4 +76,26 @@ ok('NL: eerst typen, dan luisteren en typen, daarna weer typen', pick([], 'nl', 
 ok('EN: eerst typen, dan luisteren, dan herkennen', pick([], 'en', true) === 'enrecall' && pick(['typen'], 'en', true) === 'enhear' && pick(['typen', 'luisteren'], 'en', true) === 'enrecog' && pick(['typen', 'luisteren', 'herkennen'], 'en', true) === 'enrecall');
 ok('zonder spraak op het toestel geen luisteroefening', pick(['herkennen', 'typen'], 'nl', false) === 'recall' && pick(['typen'], 'en', false) === 'enrecog');
 ok('schermen voor luisteren en typen en Engels herkennen bestaan, en tellen als eigen vorm', html.includes('H.hear=q=>') && html.includes('H.enhear=q=>') && html.includes('H.enrecog=q=>') && html.split("review(w.id,res,'luisteren')").length === 3);
+// 8. eis voor bloei per soort (stap 4)
+const grow = (kind, forms, exs) => { const m = model(); m.api.setKind('x', kind); m.S.items.x = { ...m.api.item(), s: 5, due: 0, reps: 5, forms, exs }; at(m, 1); m.api.review('x', true, forms[0] || 'gap'); return m.S.items.x.s > 9; };
+ok('woord: drie vormen nodig', !grow('word', ['herkennen', 'typen'], []) && grow('word', ['herkennen', 'typen', 'luisteren'], []));
+ok('regel: drie verschillende oefeningen, waarvan één keer zin bouwen', !grow('rule', ['gap'], ['a', 'b', 'c']) && !grow('rule', ['build', 'gap'], ['a', 'b']) && grow('rule', ['build', 'gap'], ['a', 'b', 'c']));
+ok('klank: drie verschillende oefeningen, waarvan één keer luisteren en typen', !grow('sound', ['listen'], ['a', 'b', 'c']) && grow('sound', ['listen', 'luisteren'], ['a', 'b', 'c']));
+ok('rekenvaardigheid: drie verschillende varianten', !grow('skill', ['geld'], ['g#1', 'g#2']) && grow('skill', ['geld'], ['g#1', 'g#2', 'g#3']));
+ok('de app vult de soort per item uit de pakketten', html.includes("KIND[x.id]=x.kind"));
+
+// 9. haalbaar met de inhoud die er nu is? (meldt welk onderdeel meer oefeningen of een vorm nodig heeft)
+{ const { boot } = await import('./app-harness.mjs'); const app = await boot(); const P = app.api.get().PACKS;
+  const all = P.flatMap(p => (p.items || []).map(x => ({ ...x, learn: p.learn }))), exs = P.flatMap(p => p.exercises || []);
+  const gaps = [];
+  for (const x of all) {
+    const mine = exs.filter(e => (e.items || []).includes(x.id)), gen = mine.some(e => e.gen);
+    if (x.kind === 'word') continue; // woorden: herkennen, typen en luisteren bestaan voor NL en EN
+    if (x.kind === 'skill') { if (!gen && mine.length < 3) gaps.push(x.id + ': ' + mine.length + ' oefening(en), 3 nodig of een recept (gen)'); continue; }
+    if (x.kind === 'rule') { const why = []; if (mine.length < 3) why.push(mine.length + ' oefening(en), 3 nodig'); if (!mine.some(e => e.form === 'build')) why.push('geen zin bouwen'); if (why.length) gaps.push(x.id + ': ' + why.join(', ')); continue; }
+    if (x.kind === 'sound') gaps.push(x.id + ': ' + mine.length + ' oefening(en), 3 nodig; luisteren en typen voor klanken bestaat nog niet');
+  }
+  ok('rekenvaardigheden met een recept kunnen bloeien', !gaps.some(g => /^(r-geld|r-klok|r-10|r-25)/.test(g)), gaps.filter(g => /^r-/.test(g)).join('; '));
+  console.log('     LET OP, nog niet haalbaar met de huidige inhoud (' + gaps.length + '):\n       ' + gaps.join('\n       '));
+}
 console.log(fails ? fails + ' FOUT' : 'alles OK');
