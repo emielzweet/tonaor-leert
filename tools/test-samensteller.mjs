@@ -42,4 +42,22 @@ ok('tweede ronde op een dag: kort recept (ophalen en oefenen)', second.name === 
 // opstartvolgorde: variabelen die na het laden gebruikt worden, moeten eerder gedeclareerd zijn (anders blijft de app op 'Lesstof laden' hangen)
 ok('KIND is gedeclareerd vóór het eerste gebruik bij het opstarten', html.indexOf('let KIND={}') > 0 && html.indexOf('let KIND={}') < html.indexOf('KIND[x.id]=x.kind') && html.indexOf('let KIND={}') < html.indexOf('await loadPacks();'));
 ok('de leerklok kan niet struikelen over het laden', html.includes('function learning(){try{'));
+// startmeting gebruiken (stap 7, docs/herhaalmodel.md sectie 9)
+{ const S2 = { v: 2, introduced: [], items: {}, explained: {}, rounds: {}, log: [], days: {} };
+  const c2 = await boot({ S: S2, random: rnd }); c2.NOW = BASE;
+  vm.runInContext(line('const NOGROW=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('placeFromLevels') + '\nthis.pl={review,placeFromLevels};', c2);
+  S2.items.werk.reps = 3; S2.items.werk.s = 5;   // bestaande voortgang
+  c2.pl.placeFromLevels({ woorden: .8, grammatica: .9, luisteren: .2, rekenen: .7, engels: 0 });
+  const g = c2.api.get(), w6 = g.NL.slice(0, 6).map(x => x.id);
+  ok('hoge score: basisonderdelen als plantje (s 2, over 2 dagen), met placed', w6.filter(id => id !== 'werk').every(id => S2.items[id].s === 2 && S2.items[id].reps === 1 && S2.items[id].due === BASE + 2 * DAY && S2.items[id].placed) && S2.items['nl.regel.plek2'].placed && S2.items['r-geld'].placed);
+  ok('bestaande voortgang blijft staan', S2.items.werk.s === 5 && S2.items.werk.reps === 3 && !S2.items.werk.placed);
+  ok('lage of middelmatige score: niets aangenomen', !S2.items['nl.klank.man'].placed && !S2.items['en-work'].placed);
+  c2.NOW = BASE + 2 * DAY; c2.pl.review(w6[1], false, 'typen');
+  ok('uit de startmeting en toch fout: als nieuw, en geen fout geteld', S2.items[w6[1]].s === 0 && S2.items[w6[1]].reps === 0 && S2.items[w6[1]].lapses === 0 && !S2.introduced.includes(w6[1]) && !S2.items[w6[1]].placed);
+  c2.pl.review(w6[2], true, 'typen');
+  ok('uit de startmeting en goed: groeit gewoon verder', S2.items[w6[2]].s > 2 && !S2.items[w6[2]].placed);
+  S2.placement = { lv: { woorden: .2 } }; let got = null; c2.runSession = (n, q) => { got = q; }; c2.api.startLesson(false);
+  const nieuw = new Set(got.filter(x => x.step === 2 && x.type === 'learn').map(x => x.w.id));
+  ok('lage woordscore: hooguit 3 nieuwe woorden per les', nieuw.size <= 3 && nieuw.size > 0, [...nieuw].join(', '));
+}
 console.log(fails ? fails + ' FOUT' : 'alles OK');
