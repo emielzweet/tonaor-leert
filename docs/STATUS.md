@@ -23,22 +23,22 @@ Bijgewerkt: 13 november 2026.
 | 13630ad | Uitleg: catalogus groep 1 (24 uitleggen in totaal) |
 | b8b54f4 | Weekdoel van 7 uur per week (cache v2-16) |
 | d6ee2bd | Uitlegspeler: knoppen na review, pijlpunt bij sprongen (cache v2-17) |
+| 2e88413 | Weekdoel na review: één weekkaart bovenaan, opslag opgeruimd (cache v2-18) |
 
 Alle tests in `tools/test-*.mjs` zijn groen.
 
 ## Wacht op de ontwerpsessie
 
-- Review van het weekdoel (b8b54f4).
 - Ontwerp van het herhaalmodel (fase 3).
 
 ## Open besluiten voor de eigenaar
 
-- Release van de vier commits hierboven (pushen naar Pages).
+- Release van de commits hierboven (uitleg en weekdoel samen) (pushen naar Pages).
 - Akkoord om met fase 3 te beginnen, zodra het ontwerp in `docs/` staat.
 
 ## Volgorde
 
-1. Reviewpunten van de uitlegspeler en het weekdoel afmaken: gedaan.
+1. Reviewpunten van de uitlegspeler en het weekdoel: verwerkt (d6ee2bd, 2e88413).
 2. Uitlegcatalogus: stopt na groep 1, de rest staat op de wachtlijst.
 3. Fase 3, het herhaalmodel: na het ontwerp en akkoord van de eigenaar.
 4. Lesstof thema 2 volgens het kwaliteitskader.
