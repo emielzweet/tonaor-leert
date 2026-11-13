@@ -26,12 +26,11 @@ Bijgewerkt: 13 november 2026 (later).
 ## Open besluiten voor de eigenaar
 
 - Release van de commits hierboven.
-- Akkoord op het ontwerp van fase 3: `docs/herhaalmodel.md` (vier besluiten in sectie 14). Review door de ontwerpsessie verwerkt.
 
 ## Volgorde
 
 1. Uitlegcatalogus, per groep: wat de huidige oefeningen raken (klaar), dan rekenen R1 t/m R4, dan grammatica en leestekens van thema 1 t/m 3, dan Engels tot A2. Rekenen volgt strook of getallenlijn, dan tabel, dan de kale som.
-2. Fase 3, het herhaalmodel: eerst het ontwerp in `docs/`, dan akkoord van de eigenaar. Ook hoe uitleg op het juiste moment in de les komt; oefeningen bij uitleg komen pas daarna, omdat ze de dagelijkse les veranderen.
+2. Fase 3, het herhaalmodel (`docs/herhaalmodel.md`): akkoord 13 november 2026, bouw loopt (8 stappen). Ook hoe uitleg op het juiste moment in de les komt; oefeningen bij uitleg komen pas daarna, omdat ze de dagelijkse les veranderen.
 3. Lesstof thema 2 volgens het kwaliteitskader.
 4. Daarna pas spellen en vormgeving.
 

@@ -1,6 +1,6 @@
 # Ontwerp fase 3: het herhaalmodel laten kloppen
 
-Status: **ontwerp, wacht op akkoord van de eigenaar.** Hoort bij `docs/bouwplan.md` (fase 3) en lost issues #28 en #29 op.
+Status: **akkoord van de eigenaar op 13 november 2026** (alle vier besluiten volgens advies, zie sectie 14). Bouw gestart. Hoort bij `docs/bouwplan.md` (fase 3) en lost issues #28 en #29 op.
 
 Doel: de les volgt wat de leerder bijna vergeten is, elke ronde is anders, en elk onderdeel kan in volle bloei komen.
 
@@ -170,7 +170,7 @@ De uitslag per vaardigheid (`S.placement.lv`: woorden, grammatica, luisteren, le
 
 Geschatte omvang: drie tot vier werksessies. Na stap 5 is het grootste probleem (#29, de les is na een week op) opgelost.
 
-## 14. Besluiten voor de eigenaar
+## 14. Besluiten van de eigenaar (13 november 2026: akkoord op 1 voorstel, 2 voorstel, 3 B, 4 akkoord)
 
 1. **De eis voor bloei** buiten woorden: "drie verschillende oefeningen, met minstens één productieve" (dit voorstel), of strikt drie vormen (dan zijn er voor regels en klanken eerst nieuwe vormen nodig, zoals fout zoeken en luisteren en typen).
 2. **Startmeting:** hoog gescoorde onderdelen als plantje met snelle controle, en een fout bij de eerste controle telt niet als hardnekkig (dit voorstel). Of als bekend aannemen: sneller vooruit, maar gaten blijven onopgemerkt.
