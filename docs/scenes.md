@@ -68,18 +68,18 @@ De lengte past zich aan: wie de instap goed maakt, slaat delen van 2, 3 en 5 ove
 
 Vier lagen. De eerste bestaat en is uitgebracht; de andere drie zijn nieuw.
 
-1. **Per onderdeel: het herhaalmodel** (). Hoe stevig zit dit woord, deze regel, deze som; wanneer komt het terug; in welke vormen is het al gelukt.
-2. **Per fout: het soort fout.** Elke foute keuze en elk fout antwoord krijgt een soort uit een vaste lijst: , , , , , , , , , , ,  (de vraag niet goed gelezen). In het pakket staat dat bij de keuze als . De app telt per soort, met meer gewicht voor recente fouten: het foutprofiel.
-3. **Direct gevolg, in de scène.** Bij een fout: de reden. Bij een tweede fout van dezelfde soort in dezelfde scène: de korte uitleg die bij die soort hoort, en twee extra oefeningen op precies dat punt (stap , met  en een lijst oefeningen). Wie het daarna goed doet, gaat verder; de scène wordt dus langer voor wie het nodig heeft.
-4. **Gevolg daarna.** De samensteller vult een deel van de open plekken met oefeningen voor de soort fout die het vaakst voorkomt, niet alleen met wat aan de beurt is. Elk hoofdstuk eindigt met een toets zonder hints (de mix van scène 5): de uitkomst is *door*, *gericht extra* (een korte herstelscène op het zwakke punt) of *sneller* (de instap van het volgende hoofdstuk telt zwaarder). De uitkomst stelt ook de schatting van de route bij (), en de begeleider ziet het foutprofiel.
+1. **Per onderdeel: het herhaalmodel** (`docs/herhaalmodel.md`). Hoe stevig zit dit woord, deze regel, deze som; wanneer komt het terug; in welke vormen is het al gelukt.
+2. **Per fout: het soort fout.** Elke foute keuze en elk fout antwoord krijgt een soort uit een vaste lijst: `lidwoord`, `woordvolgorde`, `werkwoordsvorm`, `tijd`, `voorzetsel`, `spelling`, `klank`, `betekenis`, `beleefdheid`, `getal`, `rekenstap`, `lezen` (de vraag niet goed gelezen). In het pakket staat dat bij de keuze als `err`. De app telt per soort, met meer gewicht voor recente fouten: het foutprofiel.
+3. **Direct gevolg, in de scène.** Bij een fout: de reden. Bij een tweede fout van dezelfde soort in dezelfde scène: de korte uitleg die bij die soort hoort, en twee extra oefeningen op precies dat punt (stap `extra`, met `err` en een lijst oefeningen). Wie het daarna goed doet, gaat verder; de scène wordt dus langer voor wie het nodig heeft.
+4. **Gevolg daarna.** De samensteller vult een deel van de open plekken met oefeningen voor de soort fout die het vaakst voorkomt, niet alleen met wat aan de beurt is. Elk hoofdstuk eindigt met een toets zonder hints (de mix van scène 5): de uitkomst is *door*, *gericht extra* (een korte herstelscène op het zwakke punt) of *sneller* (de instap van het volgende hoofdstuk telt zwaarder). De uitkomst stelt ook de schatting van de route bij (`docs/route-en-prognose.md`), en de begeleider ziet het foutprofiel.
 
-Onderbouwing: eerst zelf ophalen, uitgewerkte voorbeelden die afbouwen, een slagingskans van 80 tot 90 procent, en toetsen die het vervolg bepalen (, ). De drempels (tweede fout van dezelfde soort, twee extra oefeningen, twee controlevragen) zijn aannames, te toetsen in de proefweek.
+Onderbouwing: eerst zelf ophalen, uitgewerkte voorbeelden die afbouwen, een slagingskans van 80 tot 90 procent, en toetsen die het vervolg bepalen (`docs/kwaliteitskader.md`, `docs/onderzoek-beloning.md`). De drempels (tweede fout van dezelfde soort, twee extra oefeningen, twee controlevragen) zijn aannames, te toetsen in de proefweek.
 
 ### Extra eisen voor de scènetest
 
 - Een scène Nederlands heeft minstens 18 momenten waarop de leerder antwoordt (zonder de open plekken).
-- Elke foute keuze heeft een  uit de lijst.
-- Bij elk grammaticapunt van het hoofdstuk hoort een stap  met minstens twee oefeningen.
+- Elke foute keuze heeft een `err` uit de lijst.
+- Bij elk grammaticapunt van het hoofdstuk hoort een stap `extra` met minstens twee oefeningen.
 - Een gesprek heeft minstens vier beurten.
 - De controle heeft twee vragen zonder hint en zonder steuntaal.
 
