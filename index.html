@@ -203,6 +203,7 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
 .garden{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:10px}
 .plant{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;min-width:0}
 .plant svg{width:64px;height:64px}
+.plant{position:relative}.plant .lamp{position:absolute;top:4px;right:4px;width:20px;height:20px;color:var(--apricot-ink)}.plant .lamp svg{width:20px;height:20px}
 .plant .w{font-weight:700;font-size:.88rem;line-height:1.2;overflow-wrap:anywhere}
 .plant .sup{font-size:.74rem}
 .plant.thirsty{border-color:var(--sky-fill);background:var(--sky)}
@@ -307,6 +308,8 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "garden.lamp":"Tricky: tap for the explanation",
+ "bed.regel":"Rules and sounds",
  "lesson.newTopic":"Something new. First the explanation, then you practise it yourself.",
  "disc.gen.isDiscount":"That is the discount. The question is what you pay: {p} − {d} = ?",
  "disc.gen.own.together":"Let's do it together: {pct}% of {p} is {d}. You pay {p} − {d} = € {pay},00.",
@@ -660,6 +663,8 @@ en:{
  "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "garden.lamp":"Lastig: tik voor de uitleg",
+ "bed.regel":"<h2>Regels en klanken</h2>",
  "lesson.newTopic":"<h2>Iets nieuws</h2><p>Eerst de uitleg, dan oefen je het zelf.</p>",
  "disc.gen.isDiscount":"Dat is de korting. De vraag is wat je <b>betaalt</b>: {p} − {d} = ?",
  "disc.gen.own.together":"Samen dan: {pct}% van {p} is {d}. Je betaalt {p} − {d} = <b>€ {pay},00</b>.",
@@ -1009,6 +1014,8 @@ nl:{
  "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "garden.lamp":"ยาก: แตะเพื่อดูคำอธิบาย",
+ "bed.regel":"กฎและเสียง",
  "lesson.newTopic":"เรื่องใหม่ ดูคำอธิบายก่อน แล้วค่อยฝึกเอง",
  "disc.gen.isDiscount":"นั่นคือส่วนลด คำถามคือต้องจ่ายเท่าไร: {p} − {d} = ?",
  "disc.gen.own.together":"มาคิดด้วยกัน: {pct}% ของ {p} คือ {d} จ่าย {p} − {d} = € {pay},00",
@@ -1510,6 +1517,7 @@ function exQ0(e,step,learn){const d=e.data;
 /* welke oefenvorm een woord bij het ophalen krijgt: eerst typen, dan de vorm die het nog mist (luisteren, bij Engels ook herkennen).
    Zonder spraak op het toestel blijft het typen. docs/herhaalmodel.md sectie 4 en 6. */
 function pickForm(w,learn,def){if(def!=='recall'&&def!=='enrecall')return def;const f=((S.items[w.id]||{}).forms)||[];
+  if(((S.items[w.id]||{}).lapses||0)>=4)return learn==='en'?'enrecog':'recog';   // hardnekkig: eerst weer herkennen (sectie 8)
   let speak=false;try{speak=typeof window!=='undefined'&&!!window.speechSynthesis}catch(e){}
   if(!f.includes('typen'))return def;
   if(speak&&!f.includes('luisteren'))return learn==='en'?'enhear':'hear';
@@ -1525,8 +1533,8 @@ function explForItem(id,learn){const o=EXPL_LIST.find(o=>o.learn===learn&&(o.x.i
 /* welke oefening: afbouwend voorbeeld (fade 1 voorbeeld, 2 laatste stap zelf, 3 helemaal zelf), dan een vorm die voor bloei nog ontbreekt, dan een oefening die nog niet goed ging */
 function chooseEx(id,learn){const it=S.items[id]||{forms:[],exs:[],s:0,reps:0},f=it.forms||[],x=it.exs||[];let c=exsFor(id,learn);if(!c.length)return null;
   if(c.some(e=>e.fade)){const lv=!f.includes('voorbeeld')&&c.some(e=>e.fade===1)?1:it.s<1.5?2:3;let best=c.filter(e=>e.fade===lv);for(let l=lv+1;!best.length&&l<=3;l++)best=c.filter(e=>e.fade===l);if(best.length)c=best}
-  const k=KIND[id];if(it.reps>0){const need=k==='rule'&&!f.includes('build')?e=>e.form==='build':k==='sound'&&!f.includes('luisteren')?e=>e.data&&e.data.mode==='type':null;if(need&&c.some(need))c=c.filter(need)}
-  else if(k==='rule'||k==='sound'){const easy=c.filter(e=>e.form!=='build'&&!(e.data&&e.data.mode==='type'));if(easy.length)c=easy}
+  const k=KIND[id];if(it.reps>0&&it.lapses<4){const need=k==='rule'&&!f.includes('build')?e=>e.form==='build':k==='sound'&&!f.includes('luisteren')?e=>e.data&&e.data.mode==='type':null;if(need&&c.some(need))c=c.filter(need)}
+  if(it.lapses>=4||it.reps===0)if(k==='rule'||k==='sound'){const easy=c.filter(e=>e.form!=='build'&&!(e.data&&e.data.mode==='type'));if(easy.length)c=easy}
   const fresh=c.filter(e=>e.gen||!x.includes(e.id));if(fresh.length)c=fresh;
   return shuffle(c)[0]}
 /* dezelfde oefenvorm hooguit twee keer achter elkaar */
@@ -1537,9 +1545,9 @@ function practice(s,learn,used){const P=s.practice,n=isEnglishDay()&&P.n2!=null?
   const busy=Object.keys(S.items).filter(id=>thirsty(id)).length>25;
   const due=ids.filter(id=>thirsty(id)).sort((a,b)=>overdue(b)-overdue(a)),fresh=ids.filter(id=>R(id).reps===0).slice(0,busy?0:(P.newMax!=null?P.newMax:1)),seen=ids.filter(id=>R(id).reps>0&&!thirsty(id)).sort((a,b)=>R(a).due-R(b).due);
   const pick=[...new Set([...due,...fresh,...seen])].slice(0,n),out=[];
-  for(const id of pick){used.add(id);const isNew=R(id).reps===0,xid=isNew&&explForItem(id,learn);
-    if(xid&&!(S.explained||{})[xid])out.push({type:'explain',step:s.step,x:xid,lang:learn});
-    const e=chooseEx(id,learn),q=e&&exQ(e,s.step,(PACKS.find(p=>(p.exercises||[]).includes(e))||{}).learn==='en'?'en':learn,id);if(q)out.push(q)}
+  for(const id of pick){used.add(id);const isNew=R(id).reps===0,hard=R(id).lapses>=4,xid=(isNew||hard)&&explForItem(id,learn);
+    if(xid&&(hard||!(S.explained||{})[xid]))out.push({type:'explain',step:s.step,x:xid,lang:learn,...(isNew?{_new:1}:{})});   // hardnekkig: de uitleg opnieuw (sectie 8)
+    const e=chooseEx(id,learn),q=e&&exQ(e,s.step,(PACKS.find(p=>(p.exercises||[]).includes(e))||{}).learn==='en'?'en':learn,id);if(q){if(isNew)q._new=1;out.push(q)}}
   return varyForms(out)}
 function compose(recipe,learn){const used=new Set();const q=[],words=learn==='en'?EN:NL,R=id=>S.items[id];
   const dueAll=words.filter(w=>thirsty(w.id));
@@ -1557,8 +1565,8 @@ function compose(recipe,learn){const used=new Set();const q=[],words=learn==='en
       const busy=words.filter(w=>S.introduced.includes(w.id)&&thirsty(w.id)).length>25;
       const cap=busy?s.maxBusy:(isEnglishDay()&&s.max2!=null?s.max2:s.max);
       const nw=words.filter(w=>!S.introduced.includes(w.id)).slice(0,cap);
-      nw.forEach(w=>s.forms.forEach(f=>q.push({type:f,step:s.step,w})));
-      (s.then||[]).forEach(f=>shuffle(nw).forEach(w=>q.push({type:f,step:s.step,w})));
+      nw.forEach(w=>s.forms.forEach(f=>q.push({type:f,step:s.step,w,_new:1})));
+      (s.then||[]).forEach(f=>shuffle(nw).forEach(w=>q.push({type:f,step:s.step,w,_new:1})));
     }
     else if(s.pool){const n=isEnglishDay()&&s.n2!=null?s.n2:s.n;shuffle(PACKS.flatMap(p=>p.exercises||[]).filter(e=>e.pool===s.pool)).slice(0,n).forEach(e=>{const x=exQ(e,s.step,learn);if(x)q.push(x)})}
     else if(s.ex){const e=EXS[s.ex];if(!e)continue;const x=exQ(e,s.step,(PACKS.find(p=>(p.exercises||[]).includes(e))||{}).learn==='en'?'en':learn);if(x)q.push(x)}
@@ -1740,6 +1748,7 @@ function review(id,res,form,exid,passive){
     else if(res==='retry'){it.due=now()+Math.max(0,it.s)*DAY}
     else{it.lapses++;it.s=Math.max(.5,it.s*.4);it.due=now()}}
   S.log.push({t:now(),id,ok:res===true,...(res==='retry'?{r:1}:{}),...(exid?{ex:exid}:{}),...(passive?{p:1}:{})});if(S.log.length>600)S.log.shift();
+  if(!passive&&res===true&&it.lapses>=4){const L=S.log.filter(e=>e.id===id&&!e.p).slice(-3);if(L.length===3&&L.every(e=>e.ok))it.lapses=2}   // hardnekkig: na 3 keer achter elkaar goed weer gewoon (sectie 8)
   save();
 }
 /* vormen die niet meetellen voor bloei: bekijken en de controlevraag bij een uitleg */
@@ -1948,8 +1957,9 @@ function vToday(){
 }
 
 /* ============ sessie-raamwerk ============ */
+let SESS=[];   // goed of fout per antwoord in deze ronde (bijsturen)
 let Q=[],qi=0,sp=0,grown=[],sessName='',sessStart=0,sessRight=0,sessTotal=0;
-function runSession(name,queue){Q=queue;qi=0;sp=0;grown=[];sessName=name;sessStart=now();sessRight=0;sessTotal=0;$('#nav').hidden=true;app.classList.add('sess');window.scrollTo(0,0);step()}
+function runSession(name,queue){Q=queue;qi=0;SESS=[];sp=0;grown=[];sessName=name;sessStart=now();sessRight=0;sessTotal=0;$('#nav').hidden=true;app.classList.add('sess');window.scrollTo(0,0);step()}
 function frame(inner,label,stepNo,ofN){
   const p=Math.round(qi/Math.max(1,Q.length-1)*100);
   paint(`<div class="sess-top"><button class="close" id="quit" aria-label="Stoppen">×</button><div class="bar" role="progressbar" aria-label="Voortgang" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><i style="width:${p}%"></i></div>${thaiSwitch()}</div>
@@ -1959,9 +1969,16 @@ function frame(inner,label,stepNo,ofN){
   const q=Q[qi],v=app.querySelector('.view');if(q&&v){const t=e=>{if(!e.target.closest('button[data-thai],#quit'))q._t=1};v.addEventListener('click',t,true);v.addEventListener('input',t,true)}
 }
 function finishTime(){save();syncUp(true)}   // leertijd telt de klok (leertijd en weekdoel)
-function next(){qi++;window.scrollTo(0,0);step()}
-function step(){voicePend=null;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
-function score(ok,n,part){sessTotal++;if(ok){sessRight++;sp+=n;addPts(n)}else if(part>0){sp+=part;addPts(part)}}
+/* bijsturen (docs/herhaalmodel.md sectie 7): over de laatste 8 antwoorden van deze ronde.
+   Onder 65% goed: typen wordt kiezen, geen nieuwe onderdelen meer. Boven 95% (8 antwoorden): kiezen wordt typen. Stil, zonder oordeel. */
+const EASIER={recall:'recog',hear:'recog',enrecall:'enrecog',enhear:'enrecog'},HARDER={recog:'recall',enrecog:'enrecall'};
+function adapt(){const last=SESS.slice(-8);if(last.length<4)return;const acc=last.filter(Boolean).length/last.length;
+  for(let i=qi;i<Q.length;i++){const q=Q[i];if(q._t)continue;
+    if(acc<.65){if(q._new)q._skip=true;else if(EASIER[q.type]&&q.w&&S.introduced.includes(q.w.id))q.type=EASIER[q.type]}
+    else if(acc>.95&&last.length>=8&&HARDER[q.type]&&q.w&&((S.items[q.w.id]||{}).forms||[]).includes('herkennen'))q.type=HARDER[q.type]}}
+function next(){qi++;adapt();window.scrollTo(0,0);step()}
+function step(){voicePend=null;while(Q[qi]&&Q[qi]._skip)qi++;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
+function score(ok,n,part){sessTotal++;SESS.push(!!ok);if(ok){sessRight++;sp+=n;addPts(n)}else if(part>0){sp+=part;addPts(part)}}
 /* fbBox(ok, tekst in de leertaal, tekst in de steuntaal); fbK(ok, sleutel, variabelen) haalt beide uit I18N */
 function fbBox(ok,msg,msgSup){let offer='';if(!ok&&app.classList.contains('sess')&&Q[qi]){const q=Q[qi];q._wrong=(q._wrong||0)+1;const x=q._wrong>=2&&explFor(q);if(x)offer=`<button class="linkish u-offer" data-uopen="${esc(x)}">${TB('explain.offer')}</button>`}const k=ok?'fb.ok':'fb.no',s=ts(k);return `<div class="fb ${ok?'fb-ok':'fb-no'}" role="status"><strong>${t(k)}${nlOnly()||!s?'':` <span ${supAttr()}>${s}</span>`}</strong>${msg?bi(msg,msgSup||''):''}${offer}</div>`}
 function fbK(ok,k,vars){return fbBox(ok,t(k,vars),ts(k,vars))}
@@ -2270,17 +2287,18 @@ function vBuddha(){sub('page.buddha',`
 
 /* ============ tuin ============ */
 function vGarden(){
-  const all=[...NL.map(x=>({id:x.id,bed:'nl',l:`${x.art} ${x.w}`,sup:L_(x),say:`${x.art} ${x.w}. ${x.ex}`,lang:'nl'})),...REK.map(x=>({id:x.id,bed:'rek',l:x.label,sup:L_(x)})),...EN.map(x=>({id:x.id,bed:'en',l:x.w,sup:L_(x),say:`${x.w}. ${x.ex}`,lang:'en'}))];
+  const all=[...NL.map(x=>({id:x.id,bed:'nl',l:`${x.art} ${x.w}`,sup:L_(x),say:`${x.art} ${x.w}. ${x.ex}`,lang:'nl'})),...REK.map(x=>({id:x.id,bed:'rek',l:x.label,sup:L_(x),xid:explForItem(x.id,'nl')})),
+    ...PACKS.flatMap(p=>(p.items||[]).filter(x=>(x.kind==='rule'||x.kind==='sound')&&S.items[x.id]).map(x=>({id:x.id,bed:'regel',l:esc((x.title||{})[p.learn==='en'?'en':'nl']||x.id),sup:L_(x.title||{}),lang:p.learn,xid:explForItem(x.id,p.learn)}))),...EN.map(x=>({id:x.id,bed:'en',l:x.w,sup:L_(x),say:`${x.w}. ${x.ex}`,lang:'en'}))];
   const seen=all.filter(x=>S.items[x.id].reps>0),by=[0,0,0,0,0,0];seen.forEach(x=>by[stage(x.id)]++);const due=seen.filter(x=>thirsty(x.id));
-  const beds=['nl','rek','en'];
+  const beds=['nl','regel','rek','en'];
   paint(`<header class="top"><div>${T('garden.title')}</div>${thaiSwitch()}</header>
   <p class="muted">${T('garden.tip')}</p>
   <div class="legend">${STAGES.map((s,i)=>`<span class="pill ${i>=4?'pill-lilac':'pill-mint'} num">${by[i]} ${s[0]}</span>`).join('')}</div>
   ${due.length?`<button class="btn btn-sky" id="water">${T('garden.water',{n:due.length})}</button>`:''}
   ${beds.map(k=>{const list=all.filter(i=>i.bed===k),sn=list.filter(i=>S.items[i.id].reps>0);return `<section class="bed"><div class="row between">${T('bed.'+k)}<span class="pill pill-mint num">${sn.length} / ${list.length}</span></div>
-    ${sn.length?`<div class="garden">${sn.map(w=>{const tt=thirsty(w.id);return `<button class="plant ${tt?'thirsty':''}" data-w="${esc(w.id)}" aria-label="${esc(w.l)}, ${STAGES[stage(w.id)][0]}">${plant(stage(w.id),tt)}<span class="w"${w.lang==='en'?' lang="en"':''}>${esc(w.l)}</span>${supSpan(w.sup)}</button>`}).join('')}</div>`:`<div class="card row small muted">${plant(0,false).replace('<svg','<svg style="width:44px;height:44px;flex-shrink:0"')}${T('garden.empty')}</div>`}</section>`}).join('')}`);
+    ${sn.length?`<div class="garden">${sn.map(w=>{const tt=thirsty(w.id);return `<button class="plant ${tt?'thirsty':''}" data-w="${esc(w.id)}" aria-label="${esc(w.l)}, ${STAGES[stage(w.id)][0]}">${plant(stage(w.id),tt)}<span class="w"${w.lang==='en'?' lang="en"':''}>${w.bed==='regel'?w.l:esc(w.l)}</span>${supSpan(w.sup)}${w.xid&&(S.items[w.id].lapses||0)>=4?`<span class="lamp" aria-label="${esc(t('garden.lamp'))}">${icon.bulb}</span>`:''}</button>`}).join('')}</div>`:`<div class="card row small muted">${plant(0,false).replace('<svg','<svg style="width:44px;height:44px;flex-shrink:0"')}${T('garden.empty')}</div>`}</section>`}).join('')}`);
   if($('#water'))$('#water').onclick=()=>{due.some(x=>x.bed==='en')&&!due.some(x=>x.bed!=='en')?startEnglish():startLesson(true)};
-  app.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{const w=all.find(x=>x.id===b.dataset.w);if(w.say)say(w.say,false,w.lang);toast(`${w.l} · ${STAGES[stage(w.id)][0]}`)});
+  app.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{const w=all.find(x=>x.id===b.dataset.w);if(w.xid)return openExplain(w.xid);if(w.say)say(w.say,false,w.lang);toast(`${w.l} · ${STAGES[stage(w.id)][0]}`)});
 }
 
 /* ============ route ============ */

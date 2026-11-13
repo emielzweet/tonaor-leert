@@ -99,4 +99,28 @@ ok('de app vult de soort per item uit de pakketten', html.includes("KIND[x.id]=x
   ok('elk onderdeel kan met de huidige inhoud in volle bloei komen', !gaps.length, gaps.join('; '));
   if (gaps.length) console.log('     LET OP, nog niet haalbaar met de huidige inhoud (' + gaps.length + '):\n       ' + gaps.join('\n       '));
 }
+// 10. bijsturen binnen een ronde (stap 6, sectie 7)
+{ const cx = { S: { introduced: ['a', 'b'], items: { a: { forms: ['herkennen'] }, b: { forms: [] } } }, Q: [], qi: 0, SESS: [] }; vm.createContext(cx);
+  vm.runInContext(line('const EASIER=') + '\n' + fnBlock('adapt') + '\nthis.adapt=adapt;', cx);
+  const mk = () => [{ type: 'recall', w: { id: 'a' } }, { type: 'learn', w: { id: 'n' }, _new: 1 }, { type: 'recog', w: { id: 'a' } }, { type: 'hear', w: { id: 'b' } }, { type: 'recall', w: { id: 'z' } }];
+  cx.Q = mk(); cx.qi = 0; cx.SESS = [false, false, true, false]; cx.adapt();
+  ok('onder 65% goed: typen wordt kiezen, nieuw wordt overgeslagen', cx.Q[0].type === 'recog' && cx.Q[1]._skip && cx.Q[3].type === 'recog' && cx.Q[4].type === 'recall');
+  cx.Q = mk(); cx.SESS = Array(8).fill(true); cx.adapt();
+  ok('boven 95% goed (8 antwoorden): kiezen wordt typen (alleen als het woord al herkend is)', cx.Q[2].type === 'recall' && !cx.Q[1]._skip);
+  cx.Q = mk(); cx.SESS = [true, false, true]; cx.adapt();
+  ok('minder dan 4 antwoorden: niets aanpassen', cx.Q[0].type === 'recall' && !cx.Q[1]._skip);
+  cx.Q = mk(); cx.Q[0]._t = 1; cx.SESS = [false, false, false, false]; cx.adapt();
+  ok('een oefening waar al iets mee gedaan is, blijft zoals ze is', cx.Q[0].type === 'recall');
+}
+// 11. hardnekkig (stap 6, sectie 8)
+{ const m = model(); m.S.items.h = { ...m.api.item(), s: 1, due: 0, reps: 9, lapses: 5, forms: ['herkennen', 'typen'] };
+  for (let d = 1; d <= 3; d++) { at(m, d * 3); m.api.review('h', true, 'typen'); }
+  ok('hardnekkig: na 3 keer achter elkaar goed weer gewoon (lapses 2)', m.S.items.h.lapses === 2);
+  const m2 = model(); m2.S.items.h = { ...m2.api.item(), s: 1, due: 0, reps: 9, lapses: 5 }; at(m2, 3); m2.api.review('h', true, 'typen'); at(m2, 6); m2.api.review('h', false, 'typen'); at(m2, 9); m2.api.review('h', true, 'typen');
+  ok('hardnekkig: een fout ertussen telt niet als 3 keer achter elkaar', m2.S.items.h.lapses === 6);
+  ok('hardnekkig woord krijgt eerst weer herkennen', pick(['herkennen', 'typen'], 'nl', true) === 'hear' && (() => { const cx = { S: { items: { w: { forms: ['typen'], lapses: 4 } } }, window: {} }; vm.createContext(cx); vm.runInContext(fnBlock('pickForm') + ';this.f=pickForm;', cx); return cx.f({ id: 'w' }, 'nl', 'recall') === 'recog' && cx.f({ id: 'w' }, 'en', 'enrecall') === 'enrecog'; })());
+  ok('hardnekkige regel of vaardigheid: de uitleg opnieuw in de les', html.includes('if(xid&&(hard||!(S.explained||{})[xid]))'));
+}
+// 12. tuin: regels en klanken, uitleg bij tikken, lampje bij hardnekkig
+ok('tuin: bed voor regels en klanken, tikken opent de uitleg, lampje bij hardnekkig', html.includes("const beds=['nl','regel','rek','en'];") && html.includes('if(w.xid)return openExplain(w.xid);') && html.includes("class=\"lamp\""));
 console.log(fails ? fails + ' FOUT' : 'alles OK');
