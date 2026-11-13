@@ -71,7 +71,7 @@ ok('oefeningen uit pakketten werken het herhaalmodel bij (bouwen, gatzin, luiste
 ok('uitgewerkt voorbeeld telt niet als goed', html.includes("introduce('r-10','voorbeeld')") && !html.includes("review('r-10',true,'voorbeeld')"));
 ok('regels en klanken krijgen een herhaalitem', html.includes("filter(x=>x.kind==='rule'||x.kind==='sound')"));
 // 7. vorm kiezen die het woord nog mist (stap 2)
-const pick = (forms, learn, speak) => { const cx = { S: { items: { w: { forms } } }, window: speak ? { speechSynthesis: {} } : {} }; vm.createContext(cx); vm.runInContext(fnBlock('pickForm') + ';this.f=pickForm;', cx); return cx.f({ id: 'w' }, learn, learn === 'en' ? 'enrecall' : 'recall'); };
+const pick = (forms, learn, speak) => { const cx = { QUIET: false, S: { items: { w: { forms } } }, window: speak ? { speechSynthesis: {} } : {} }; vm.createContext(cx); vm.runInContext(fnBlock('pickForm') + ';this.f=pickForm;', cx); return cx.f({ id: 'w' }, learn, learn === 'en' ? 'enrecall' : 'recall'); };
 ok('NL: eerst typen, dan luisteren en typen, daarna weer typen', pick([], 'nl', true) === 'recall' && pick(['herkennen', 'typen'], 'nl', true) === 'hear' && pick(['herkennen', 'typen', 'luisteren'], 'nl', true) === 'recall');
 ok('EN: eerst typen, dan luisteren, dan herkennen', pick([], 'en', true) === 'enrecall' && pick(['typen'], 'en', true) === 'enhear' && pick(['typen', 'luisteren'], 'en', true) === 'enrecog' && pick(['typen', 'luisteren', 'herkennen'], 'en', true) === 'enrecall');
 ok('zonder spraak op het toestel geen luisteroefening', pick(['herkennen', 'typen'], 'nl', false) === 'recall' && pick(['typen'], 'en', false) === 'enrecog');
@@ -118,7 +118,7 @@ ok('de app vult de soort per item uit de pakketten', html.includes("KIND[x.id]=x
   ok('hardnekkig: na 3 keer achter elkaar goed weer gewoon (lapses 2)', m.S.items.h.lapses === 2);
   const m2 = model(); m2.S.items.h = { ...m2.api.item(), s: 1, due: 0, reps: 9, lapses: 5 }; at(m2, 3); m2.api.review('h', true, 'typen'); at(m2, 6); m2.api.review('h', false, 'typen'); at(m2, 9); m2.api.review('h', true, 'typen');
   ok('hardnekkig: een fout ertussen telt niet als 3 keer achter elkaar', m2.S.items.h.lapses === 6);
-  ok('hardnekkig woord krijgt eerst weer herkennen', pick(['herkennen', 'typen'], 'nl', true) === 'hear' && (() => { const cx = { S: { items: { w: { forms: ['typen'], lapses: 4 } } }, window: {} }; vm.createContext(cx); vm.runInContext(fnBlock('pickForm') + ';this.f=pickForm;', cx); return cx.f({ id: 'w' }, 'nl', 'recall') === 'recog' && cx.f({ id: 'w' }, 'en', 'enrecall') === 'enrecog'; })());
+  ok('hardnekkig woord krijgt eerst weer herkennen', pick(['herkennen', 'typen'], 'nl', true) === 'hear' && (() => { const cx = { QUIET: false, S: { items: { w: { forms: ['typen'], lapses: 4 } } }, window: {} }; vm.createContext(cx); vm.runInContext(fnBlock('pickForm') + ';this.f=pickForm;', cx); return cx.f({ id: 'w' }, 'nl', 'recall') === 'recog' && cx.f({ id: 'w' }, 'en', 'enrecall') === 'enrecog'; })());
   ok('hardnekkige regel of vaardigheid: de uitleg opnieuw in de les', html.includes('if(xid&&(hard||!(S.explained||{})[xid]))'));
 }
 // 12. tuin: regels en klanken, uitleg bij tikken, lampje bij hardnekkig

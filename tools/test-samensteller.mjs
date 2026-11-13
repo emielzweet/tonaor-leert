@@ -66,7 +66,7 @@ ok('de leerklok kan niet struikelen over het laden', html.includes('function lea
 // review fase 3: bijsturen ook voor regels en sommen (een makkelijkere oefening)
 { const S3 = { v: 2, introduced: [], items: {}, explained: {}, rounds: {}, log: [], days: {} };
   const c3 = await boot({ S: S3, random: rnd }); c3.NOW = BASE;
-  vm.runInContext('let Q=[],qi=0,SESS=[];' + line('const EASIER=') + '\n' + fnBlock('adapt') + '\n' + fnBlock('easierEx') + '\nthis.ad={adapt,set:(q,s)=>{Q=q;qi=0;SESS=s},get:()=>Q};', c3);
+  vm.runInContext('let Q=[],qi=0,SESS=[];\n' + fnBlock('adapt') + '\n' + fnBlock('easierEx') + '\nthis.ad={adapt,set:(q,s)=>{Q=q;qi=0;SESS=s},get:()=>Q};', c3);
   const rk = c3.api.get().PACKS.find(p => p.id === 'rk-1'); S3.items['r-10'].reps = 5; S3.items['r-10'].s = 6; S3.items['r-10'].forms = ['voorbeeld', 'korting'];
   const own = c3.api.exQ(rk.exercises.find(e => e.id === 'rk.korting.zelf.gen'), 4, 'nl', 'r-10');
   c3.ad.set([own], [false, false, true, false]); c3.ad.adapt(); const q2 = c3.ad.get()[0];
@@ -129,5 +129,25 @@ ok('de leerklok kan niet struikelen over het laden', html.includes('function lea
   c5.rt.set(Q0, 0); c5.rt.retryLater(Q0[0]); c5.rt.retryLater(Q0[0]);
   const Qn = c5.rt.get(), ri = Qn.findIndex(x => x._retry);
   ok('na een fout: één keer terug, zes plekken later, in een andere vorm', ri === 6 && Qn[ri].type === 'recog' && Qn.filter(x => x._retry).length === 1);
+}
+// punt 2 (14 november): bijsturen op Ik en na de ronde
+{ const mk = () => { const S6 = { v: 2, introduced: [], items: {}, explained: {}, rounds: {}, log: [], days: {}, newPerDay: 16, newLog: {}, conf: [] }; return S6; };
+  // vier dagen leren zodat er van alles aan de beurt is, dan dezelfde opslag met verschillende instellingen
+  const S6 = mk(); const c6 = await boot({ S: S6, random: rnd }); c6.NOW = BASE;
+  vm.runInContext(line('const NOGROW=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\nthis.sim={review,introduce,practiced};', c6);
+  const run = () => { let got = null; c6.runSession = (n, x) => { got = x; }; c6.api.startLesson(false); return got; };
+  for (let d = 0; d < 4; d++) { c6.NOW = BASE + d * DAY; const r = run(); for (const x of r) { if (x.type === 'learn') { if (!S6.introduced.includes(x.w.id)) S6.introduced.push(x.w.id); const it = S6.items[x.w.id]; it.reps = Math.max(1, it.reps); it.due = c6.NOW; } else if (x.w && !x._probe) c6.sim.review(x.w.id, false, 'typen'); else if (x.items && x.items.length) c6.sim.practiced(x, false, 'gap'); } }
+  c6.NOW = BASE + 5 * DAY; const snap = JSON.stringify(S6);
+  const withS = (set) => { Object.assign(S6, JSON.parse(snap)); set(S6); return run(); };
+  const kort = withS(o => { o.roundLen = 'kort'; }), normaal = withS(o => { o.roundLen = 'normaal'; }), lang = withS(o => { o.roundLen = 'lang'; });
+  const n = r => r.filter(x => !['card', 'conf', 'end', 'explain'].includes(x.type)).length;
+  ok('lengte van een ronde: kort < normaal < lang', n(kort) < n(normaal) && n(normaal) < n(lang), n(kort) + ' / ' + n(normaal) + ' / ' + n(lang));
+  const moeilijk = withS(o => { o.conf = [{ c: 'moeilijk', fun: 'saai' }]; }), makkelijk = withS(o => { o.conf = [{ c: 'makkelijk', fun: 'leuk' }]; });
+  const recalls = r => r.filter(x => x.step === 1 && x.w && ['recall', 'hear'].includes(x.type)).length;
+  ok('na "te moeilijk": minder typen bij het ophalen dan na "te makkelijk"', recalls(moeilijk) < recalls(makkelijk), recalls(moeilijk) + ' tegen ' + recalls(makkelijk));
+  vm.runInContext('QUIET=true', c6); const stil = withS(o => { o.roundLen = 'lang'; }); vm.runInContext('QUIET=false', c6);
+  ok('stille stand: geen luisteroefeningen of horen en opschrijven', !stil.some(x => ['listen', 'hear', 'enhear', 'dictee'].includes(x.type)), stil.map(x => x.type).join(','));
+  ok('Bijsturen op Ik: nieuwe woorden per dag, lengte, stille stand, terug naar standaard; geen oefenvormen uitzetten', ['data-npd', 'data-len', 'data-quiet', 'steerReset'].every(k => html.includes(k)) && !html.includes('data-form-off'));
+  ok('na de ronde: te makkelijk, goed, te moeilijk en leuk of saai; gaat mee naar de begeleider', html.includes('data-c=\"makkelijk\"') && html.includes('data-f=\"saai\"') && html.includes('steer:{newPerDay:dayBudget()'));
 }
 console.log(fails ? fails + ' FOUT' : 'alles OK');

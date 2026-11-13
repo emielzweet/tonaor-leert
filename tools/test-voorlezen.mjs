@@ -5,7 +5,7 @@ let fails = 0; const ok = (n, v) => { if (!v) fails++; console.log((v ? 'OK  ' :
 function run(voices, S = {}, ua = 'Mozilla/5.0 (Windows NT 10.0)') {
   const spoken = [], toasts = [];
   const L = {};
-  const ctx = { S, toast: m => toasts.push(m), tab: 'vandaag', route: null, app: { classList: { contains: () => false } }, vMe() {}, setTimeout, clearTimeout, navigator: { userAgent: ua, platform: 'Win32', maxTouchPoints: 0 },
+  const ctx = { QUIET: false, S, toast: m => toasts.push(m), tab: 'vandaag', route: null, app: { classList: { contains: () => false } }, vMe() {}, setTimeout, clearTimeout, navigator: { userAgent: ua, platform: 'Win32', maxTouchPoints: 0 },
     SpeechSynthesisUtterance: function (t) { this.text = t; },
     speechSynthesis: { getVoices: () => voices, cancel() {}, speak: u => spoken.push(u),
       addEventListener: (n, f) => { (L[n] = L[n] || []).push(f) }, removeEventListener: (n, f) => { L[n] = (L[n] || []).filter(x => x !== f) },
