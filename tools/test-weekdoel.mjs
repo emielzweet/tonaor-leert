@@ -10,4 +10,7 @@ ok('bericht naar de begeleider krijgt week.goal (alleen toegevoegd)', /week:\{da
 ok('dagdoel in punten is weg', !html.includes('GOALS[') && !html.includes('data-goal'));
 ok('na een les en de activiteiten: doorgaan met drie keuzes', (html.match(/vContinue\(\)/g) || []).length >= 5 && html.includes('${contHtml()}') && html.includes("id=\"c-rev\"") && html.includes("id=\"c-expl\"") && html.includes("id=\"c-play\""));
 ok('bonus voor de tweede en derde ronde', html.includes('bonus=rn===2?10:rn===3?20:0'));
+ok('Vandaag: één weekkaart direct onder de begroeting, vóór de les', (()=>{const v=html.slice(html.indexOf('function vToday(){'));return v.indexOf('${weekCard()}')>0&&v.indexOf('${weekCard()}')<v.indexOf('class="card hero"')})() && !html.includes("T('week.points'"));
+ok('weekkaart: resterende tijd in de ring en staafjes per dag', html.includes("esc(t('week.left'))") && html.includes('class="wbar'));
+ok('opslag groeit niet: rounds en weekSeen tot acht weken', html.includes('function pruneWeeks(){const cut=monday()-8*7*DAY;'));
 console.log(fails ? fails + ' FOUT' : 'alles OK');

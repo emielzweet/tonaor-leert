@@ -117,6 +117,16 @@ button.card{width:100%;text-align:left}
 .day.done i{background:var(--mint-fill);border-color:var(--mint-fill)}
 .day.today i{border-color:var(--apricot-fill);border-width:3px}
 .ring{width:80px;height:80px;flex-shrink:0}
+.wring{position:relative;width:116px;height:116px;flex-shrink:0}.wring .ring{width:116px;height:116px}.wring .ring text{display:none}
+.wring .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.15}
+.wring .mid b{font-size:1.35rem}.wring .mid span{font-size:.68rem;color:var(--ink-2);max-width:74px}
+.wcard{display:flex;flex-direction:column;gap:12px}
+.wbars{display:flex;gap:6px;justify-content:space-between}
+.wbar{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.72rem;font-weight:700;color:var(--ink-2)}
+.wbar b{display:block;width:100%;max-width:30px;height:44px;border-radius:8px;background:var(--surface-2);position:relative;overflow:hidden}
+.wbar b i{position:absolute;left:0;right:0;bottom:0;background:var(--mint-fill)}
+.wbar.full b i{background:var(--mint-ink)}
+.wbar.today{color:var(--ink)}.wbar.today b{box-shadow:0 0 0 3px var(--apricot-fill)}
 .goal-pick{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
 .goal-pick button,.chips button{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:.84rem;font-weight:600}
 .goal-pick button[aria-pressed="true"],.chips button[aria-pressed="true"]{border-color:var(--apricot-fill);background:var(--apricot)}
@@ -297,6 +307,8 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "week.done":"reached",
+ "week.left":"hours to go",
  "cont.home":"Back to Today",
  "end.bonus3":"Third round today: +20 bonus points",
  "end.bonus2":"Second round today: +10 bonus points",
@@ -313,8 +325,7 @@ en:{
  "week.hours":"hours",
  "week.reached":"Weekly goal reached! Brilliant.",
  "week.almost":"Almost! {n} more minutes to your weekly goal.",
- "week.streak":"{n} weeks in a row reached",
- "week.points":"{n} points today",
+ "week.streak":{"one":"Weekly goal reached {n} week in a row","other":"Weekly goal reached {n} weeks in a row"},
  "week.today":"Today {m} of {d} minutes",
  "week.ring":"This week {u} h {m} min of {g} hours",
  "week.title":"Weekly goal",
@@ -515,7 +526,6 @@ en:{
  "today.short":"Review only: a short round",
  "today.english":"Also English today",
  "today.english.sub":"A separate 10-minute lesson",
- "today.week":"This week",
  "today.water.tip":"Reviewing is watering",
  "today.water":"Water the plants",
  "today.more":"More to do",
@@ -629,6 +639,8 @@ en:{
  "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "week.done":"gehaald",
+ "week.left":"uur nog te gaan",
  "cont.home":"Terug naar Vandaag",
  "end.bonus3":"Derde ronde vandaag: +20 bonuspunten",
  "end.bonus2":"Tweede ronde vandaag: +10 bonuspunten",
@@ -645,8 +657,7 @@ nl:{
  "week.hours":"uur",
  "week.reached":"Weekdoel gehaald! Geweldig.",
  "week.almost":"Bijna! Nog {n} minuten tot je weekdoel.",
- "week.streak":"{n} weken op rij gehaald",
- "week.points":"{n} punten vandaag",
+ "week.streak":{"one":"{n} week op rij je weekdoel gehaald","other":"{n} weken op rij je weekdoel gehaald"},
  "week.today":"Vandaag {m} van {d} minuten",
  "week.ring":"Deze week {u} uur {m} min van de {g} uur",
  "week.title":"<h3>Weekdoel</h3>",
@@ -843,7 +854,6 @@ nl:{
  "today.short":"Alleen herhalen: een korte ronde",
  "today.english":"<h3>Vandaag ook Engels <span class=\"flag\">EN</span></h3>",
  "today.english.sub":"Een aparte les van 10 minuten",
- "today.week":"<h3>Deze week</h3>",
  "today.water.tip":"Herhalen is water geven",
  "today.water":"Water geven",
  "today.more":"Meer om te doen",
@@ -957,6 +967,8 @@ nl:{
  "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "week.done":"สำเร็จ",
+ "week.left":"ชั่วโมงที่เหลือ",
  "cont.home":"กลับไปหน้าวันนี้",
  "end.bonus3":"รอบที่สามของวันนี้: โบนัส +20 คะแนน",
  "end.bonus2":"รอบที่สองของวันนี้: โบนัส +10 คะแนน",
@@ -973,8 +985,7 @@ th:{
  "week.hours":"ชั่วโมง",
  "week.reached":"ทำได้ตามเป้าหมายรายสัปดาห์แล้ว ยอดเยี่ยม",
  "week.almost":"เกือบแล้ว อีก {n} นาทีจะถึงเป้าหมายรายสัปดาห์",
- "week.streak":"ทำได้ตามเป้า {n} สัปดาห์ติดต่อกัน",
- "week.points":"วันนี้ {n} คะแนน",
+ "week.streak":"ทำได้ตามเป้าหมายรายสัปดาห์ {n} สัปดาห์ติดต่อกัน",
  "week.today":"วันนี้ {m} จาก {d} นาที",
  "week.ring":"สัปดาห์นี้ {u} ชั่วโมง {m} นาที จาก {g} ชั่วโมง",
  "week.title":"เป้าหมายรายสัปดาห์",
@@ -1169,7 +1180,6 @@ th:{
  "today.short":"ทบทวนอย่างเดียว: รอบสั้นๆ",
  "today.english":"วันนี้มีภาษาอังกฤษด้วย",
  "today.english.sub":"บทเรียนแยก 10 นาที",
- "today.week":"สัปดาห์นี้",
  "today.water.tip":"การทบทวนคือการรดน้ำ",
  "today.water":"รดน้ำ",
  "today.more":"กิจกรรมอื่นๆ",
@@ -1456,8 +1466,9 @@ setInterval(()=>{if(STORE!=='ok'||document.visibilityState!=='visible'||now()-la
   const before=weekMins();S.mins[today()]=(S.mins[today()]||0)+5/60;weekCheck(before);if(++tickN>=6){tickN=0;save()}},5000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState!=='visible')save()});
 /* bericht als het weekdoel bijna (80 procent) of helemaal gehaald is; één keer per week */
+function pruneWeeks(){const cut=monday()-8*7*DAY;for(const o of [S.rounds,S.weekSeen])for(const k of Object.keys(o||{}))if(+k<cut)delete o[k]}
 function weekCheck(before){const g=weekGoal(),after=weekMins(),mon=monday(),seen=S.weekSeen[mon]||(S.weekSeen[mon]={});
-  if(!seen.almost&&before<.8*g&&after>=.8*g&&after<g){seen.almost=1;save();toast(tx('week.almost',{n:Math.ceil(g-after)}))}
+  pruneWeeks();if(!seen.almost&&before<.8*g&&after>=.8*g&&after<g){seen.almost=1;save();toast(tx('week.almost',{n:Math.ceil(g-after)}))}
   if(!seen.done&&before<g&&after>=g){seen.done=1;save();toast(tx('week.reached'));try{petals()}catch(e){}}}
 /* na een les of activiteit: hoe ver je bent, en drie manieren om door te gaan */
 function contHtml(){const left=Math.ceil(dayPart()-todayMins());
@@ -1729,11 +1740,20 @@ function vOnboard(){
 function weekDots(){const d=new Date(),dow=(d.getDay()+6)%7,mon=today()-dow*DAY,names=['ma','di','wo','do','vr','za','zo'];let done=0,html='';
   for(let i=0;i<7;i++){const t=mon+i*DAY,isD=!!S.days[t];if(isD)done++;html+=`<div class="day ${isD?'done':''} ${t===today()?'today':''}"><i></i>${names[i]}</div>`}return{html,done}}
 function ring(p,label){const r=32,c=2*Math.PI*r,v=Math.min(1,p);return `<svg class="ring" viewBox="0 0 80 80" role="img" aria-label="${esc(label||'')} ${Math.round(v*100)} procent"><circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--surface-2)" stroke-width="9"/><circle cx="40" cy="40" r="${r}" fill="none" stroke="var(--apricot-fill)" stroke-width="9" stroke-linecap="round" stroke-dasharray="${(c*v).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 40 40)"/><text x="40" y="45" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="800" font-size="15" fill="var(--ink)">${Math.round(v*100)}%</text></svg>`}
+/* één weekkaart: ring met de tijd die nog te gaan is, staafjes per dag (vol bij het dagdeel), weken op rij */
+function weekCard(){const g=weekGoal(),wm=weekMins(),left=Math.max(0,Math.round(g-wm)),mon=monday(),names=['ma','di','wo','do','vr','za','zo'],st=weekStreak();
+  let bars='';for(let i=0;i<7;i++){const d=mon+i*DAY,m=S.mins[d]||0,f=Math.min(1,m/dayPart());bars+=`<div class="wbar${d===today()?' today':''}${f>=1?' full':''}" title="${Math.round(m)} min"><b><i style="height:${Math.round(f*100)}%"></i></b>${names[i]}</div>`}
+  const mid=left>0?`<b class="num">${Math.floor(left/60)}:${String(left%60).padStart(2,'0')}</b><span>${esc(t('week.left'))}</span>`:`<b>✓</b><span>${esc(t('week.done'))}</span>`;
+  return `<section class="card wcard" aria-label="${esc(t('week.title'))}"><div class="row"><div class="wring">${ring(wm/g,t('week.title'))}<div class="mid">${mid}</div></div>
+   <div>${T('week.title')}<p class="small muted num">${T('week.ring',hm(wm))}</p>${wm>=g?`<p class="small">${T('week.reached')}</p>`:wm>=.8*g?`<p class="small">${T('week.almost',{n:Math.ceil(g-wm)})}</p>`:''}</div></div>
+   <div class="wbars" aria-hidden="true">${bars}</div>
+   <p class="small muted">${st>0?T('week.streak',{n:st}):T('today.daysDone',{n:weekDots().done})}</p></section>`}
 function vToday(){
   if(!S.onboarded)return vOnboard();
-  const [h,ht]=hello(),w=weekDots(),due=[...NL,...EN,...REK].filter(x=>thirsty(x.id)).length,done=!!S.days[today()],enDay=isEnglishDay(),ans=S.answers.filter(a=>!a.seen).length;
+  const [h,ht]=hello(),due=[...NL,...EN,...REK].filter(x=>thirsty(x.id)).length,done=!!S.days[today()],enDay=isEnglishDay(),ans=S.answers.filter(a=>!a.seen).length;
   paint(`
   <header class="top"><div>${bi(`<h1>${h}${nm()?', '+nm():''}</h1>`,ht)}</div>${thaiSwitch()}</header>
+  ${weekCard()}
   ${PACK_MISSING.length?`<div class="note" role="status">${T('pack.missing',{list:esc(PACK_MISSING.join(', '))})}</div>`:''}
   ${ans?`<button class="card row" id="answers" style="background:var(--lilac);border-color:var(--lilac-fill)"><span class="pill pill-lilac" style="background:var(--surface)">${ans}</span>${T('today.answered')}</button>`:''}
   ${S.unsent?`<button class="card row between" id="send" style="background:var(--lilac);border-color:var(--lilac-fill)"><span>${T('today.unsent')}</span><span class="pill pill-lilac" style="background:var(--surface)">${T('btn.send')}</span></button>`:''}
@@ -1753,12 +1773,6 @@ function vToday(){
     <button class="linkish" id="short">${T('today.short')}</button>
   </section>
   ${enDay?`<button class="tile wide" id="en"><span class="ic" style="background:var(--sky);color:var(--sky-ink)">${icon.globe}</span><span>${T('today.english')}<span class="small muted">${T('today.english.sub')}</span></span></button>`:''}
-  <section class="grid2 stack-sm">
-    <div class="card"><div class="row">${ring(weekMins()/weekGoal(),t('week.title'))}<div>${T('week.title')}<p class="small muted num">${T('week.ring',hm(weekMins()))}</p><p class="small muted num">${T('week.today',{m:Math.round(todayMins()),d:Math.round(dayPart())})}</p></div></div>
-      ${weekMins()>=weekGoal()?`<p class="small">${T('week.reached')}</p>`:weekMins()>=.8*weekGoal()?`<p class="small">${T('week.almost',{n:Math.ceil(weekGoal()-weekMins())})}</p>`:''}${weekStreak()>1?`<p class="small muted">${T('week.streak',{n:weekStreak()})}</p>`:''}<p class="small muted num">${T('week.points',{n:pts()})}</p></div>
-    <div class="card">${T('today.week')}<div class="week">${w.html}</div>
-      <p class="small muted" style="margin-top:8px">${T('today.daysDone',{n:w.done})}</p></div>
-  </section>
   ${due?`<button class="card row between" id="water" style="background:var(--sky);border-color:var(--sky-fill)"><span>${T('today.thirsty',{n:due})}<span class="small muted">${T('today.water.tip')}</span></span><span class="pill pill-sky" style="background:var(--surface)">${T('today.water')}</span></button>`:''}
   <h3 style="margin-top:4px">${T('today.more')}</h3>
   <div class="tiles2">
@@ -1933,7 +1947,7 @@ H.discount=q=>{
 H.conf=q=>{frame(`<div class="card stack">${T('conf.title')}<p class="muted">${T('conf.tip')}</p>
   <div class="conf"><button class="btn btn-leaf" data-c="zeker">${T('conf.sure')}</button><button class="btn btn-ghost" data-c="twijfel">${T('conf.doubt')}</button></div></div>`,'Afsluiten',q.step);
   app.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{S.conf.unshift({t:now(),c:b.dataset.c,acc:sessTotal?sessRight/sessTotal:1,name:sessName});S.sessions++;save();next()})};
-H.end=q=>{finishTime();const rn=S.rounds[today()]=(S.rounds[today()]||0)+1,bonus=rn===2?10:rn===3?20:0;if(bonus){addPts(bonus);sp+=bonus}save();
+H.end=q=>{finishTime();const rn=S.rounds[today()]=(S.rounds[today()]||0)+1,bonus=rn===2?10:rn===3?20:0;if(bonus){addPts(bonus);sp+=bonus}pruneWeeks();save();
   const all=[...NL.map(x=>({id:x.id,l:`${x.art} ${x.w}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
   const bloom=[...new Set(grown)].map(id=>all.find(a=>a.id===id)).filter(Boolean).slice(0,6);
   const last=S.conf[0],mis=last&&last.c==='zeker'&&last.acc<.7&&last.t>sessStart;
