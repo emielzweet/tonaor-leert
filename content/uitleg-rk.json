@@ -1,7 +1,7 @@
 {
  "format": 1,
  "id": "uitleg-rk",
- "version": 1,
+ "version": 2,
  "learn": "nl",
  "level": "basis",
  "order": 6,
@@ -598,6 +598,1612 @@
       "nl": "Half acht: een half uur vóór acht uur.",
       "th": "half acht คือครึ่งชั่วโมงก่อนแปดโมง",
       "en": "Half acht: half an hour before eight o'clock."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.geld",
+   "subject": "rekenen",
+   "items": [
+    "r-geld"
+   ],
+   "forms": [
+    "money"
+   ],
+   "title": {
+    "nl": "Geld tellen",
+    "th": "การนับเงิน",
+    "en": "Counting money"
+   },
+   "summary": {
+    "nl": "Eerst de hele euro's, dan de centen.",
+    "th": "นับยูโรเต็มก่อน แล้วจึงนับเซนต์",
+    "en": "First the whole euros, then the cents."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "Tel eerst het briefje en de munten van hele euro's: 5 plus 2 plus 2 is 9 euro.",
+      "th": "นับธนบัตรและเหรียญยูโรเต็มก่อน: 5 บวก 2 บวก 2 ได้ 9 ยูโร",
+      "en": "First count the note and the whole-euro coins: 5 plus 2 plus 2 is 9 euros."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "briefje van € 5",
+        "r": "5"
+       },
+       {
+        "l": "munt van € 2",
+        "r": "+ 2"
+       },
+       {
+        "l": "munt van € 2",
+        "r": "+ 2"
+       },
+       {
+        "l": "hele euro's",
+        "r": "= 9",
+        "hl": true
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Tel daarna de centen. Een munt van 50 cent is een halve euro.",
+      "th": "จากนั้นนับเซนต์ เหรียญ 50 เซนต์คือครึ่งยูโร",
+      "en": "Then count the cents. A 50-cent coin is half a euro."
+     },
+     "visual": {
+      "type": "bar",
+      "total": 100,
+      "totalLabel": "1 euro",
+      "segs": [
+       {
+        "v": 50,
+        "label": "50 cent",
+        "tone": "apricot"
+       }
+      ],
+      "alt": "Een strook van 100 cent: de helft is 50 cent"
+     }
+    },
+    {
+     "text": {
+      "nl": "Samen is het 9 euro en 50 cent. Je schrijft: € 9,50.",
+      "th": "รวมเป็น 9 ยูโร 50 เซนต์ เขียนว่า € 9,50",
+      "en": "Together it is 9 euros and 50 cents. You write: € 9,50."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "euro's",
+        "r": "9"
+       },
+       {
+        "l": "centen",
+        "r": "50"
+       },
+       {
+        "l": "samen",
+        "r": "€ 9,50",
+        "hl": true
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Tip: leg het geld op volgorde, van groot naar klein. Dan tel je makkelijker.",
+      "th": "เคล็ดลับ: เรียงเงินจากมากไปน้อย จะนับได้ง่ายขึ้น",
+      "en": "Tip: put the money in order, from big to small. That makes counting easier."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "geld",
+       "waarde"
+      ],
+      "rows": [
+       [
+        "€ 5",
+        "5,00"
+       ],
+       [
+        "€ 2",
+        "2,00"
+       ],
+       [
+        "€ 2",
+        "2,00"
+       ],
+       [
+        "50 ct",
+        "0,50"
+       ]
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Je hebt een briefje van € 10, een munt van € 1 en drie munten van 20 cent. Hoeveel is dat?",
+      "th": "คุณมีธนบัตร € 10 เหรียญ € 1 และเหรียญ 20 เซนต์สามเหรียญ รวมเท่าไร",
+      "en": "You have a € 10 note, a € 1 coin and three 20-cent coins. How much is that?"
+     },
+     "o": [
+      "€ 11,60",
+      "€ 11,20",
+      "€ 10,60"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "10 plus 1 is 11 euro. 3 keer 20 cent is 60 cent. Samen € 11,60.",
+      "th": "10 บวก 1 ได้ 11 ยูโร 20 เซนต์สามเหรียญได้ 60 เซนต์ รวม € 11,60",
+      "en": "10 plus 1 is 11 euros. 3 times 20 cents is 60 cents. Together € 11,60."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.wisselgeld",
+   "subject": "rekenen",
+   "items": [
+    "r-geld"
+   ],
+   "title": {
+    "nl": "Wisselgeld: tel verder",
+    "th": "เงินทอน: นับต่อขึ้นไป",
+    "en": "Change: count on"
+   },
+   "summary": {
+    "nl": "Tel van de prijs verder tot het bedrag dat je betaalt.",
+    "th": "นับต่อจากราคาจนถึงจำนวนเงินที่จ่าย",
+    "en": "Count on from the price to the amount you pay."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "Iets kost € 13,50. Je betaalt met € 20. Hoeveel krijg je terug?",
+      "th": "ของราคา € 13,50 คุณจ่าย € 20 จะได้เงินทอนเท่าไร",
+      "en": "Something costs € 13,50. You pay with € 20. How much do you get back?"
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "je betaalt",
+        "r": "€ 20,00"
+       },
+       {
+        "l": "het kost",
+        "r": "€ 13,50"
+       },
+       {
+        "l": "terug",
+        "r": "?",
+        "hl": true
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Tel verder vanaf de prijs. Eerst naar een hele euro: van 13,50 naar 14 is 50 cent.",
+      "th": "นับต่อจากราคา ไปที่ยูโรเต็มก่อน: จาก 13,50 ถึง 14 คือ 50 เซนต์",
+      "en": "Count on from the price. First to a whole euro: from 13,50 to 14 is 50 cents."
+     },
+     "visual": {
+      "type": "line",
+      "from": 13,
+      "to": 20,
+      "step": 1,
+      "jumps": [
+       {
+        "a": 13.5,
+        "b": 14,
+        "label": "+ 0,50"
+       }
+      ],
+      "alt": "Getallenlijn van 13 tot 20 met een kleine sprong van 13,50 naar 14"
+     }
+    },
+    {
+     "text": {
+      "nl": "Dan naar 20: van 14 naar 20 is 6 euro.",
+      "th": "จากนั้นไปที่ 20: จาก 14 ถึง 20 คือ 6 ยูโร",
+      "en": "Then on to 20: from 14 to 20 is 6 euros."
+     },
+     "visual": {
+      "type": "line",
+      "from": 13,
+      "to": 20,
+      "step": 1,
+      "jumps": [
+       {
+        "a": 13.5,
+        "b": 14,
+        "label": "+ 0,50"
+       },
+       {
+        "a": 14,
+        "b": 20,
+        "label": "+ 6",
+        "tone": "sky"
+       }
+      ],
+      "alt": "Twee sprongen: van 13,50 naar 14 en van 14 naar 20"
+     }
+    },
+    {
+     "text": {
+      "nl": "Tel de sprongen op: 6 euro en 50 cent. Je krijgt € 6,50 terug.",
+      "th": "รวมช่วงที่กระโดด: 6 ยูโร 50 เซนต์ ได้เงินทอน € 6,50",
+      "en": "Add up the jumps: 6 euros and 50 cents. You get € 6,50 back."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "0,50 + 6",
+        "r": "= 6,50"
+       },
+       {
+        "l": "terug",
+        "r": "€ 6,50",
+        "hl": true
+       }
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Iets kost € 7,25. Je betaalt met € 10. Hoeveel krijg je terug?",
+      "th": "ของราคา € 7,25 คุณจ่าย € 10 จะได้เงินทอนเท่าไร",
+      "en": "Something costs € 7,25. You pay with € 10. How much do you get back?"
+     },
+     "o": [
+      "€ 2,75",
+      "€ 3,75",
+      "€ 2,25"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Van 7,25 naar 8 is 0,75. Van 8 naar 10 is 2. Samen € 2,75.",
+      "th": "จาก 7,25 ถึง 8 คือ 0,75 จาก 8 ถึง 10 คือ 2 รวม € 2,75",
+      "en": "From 7,25 to 8 is 0,75. From 8 to 10 is 2. Together € 2,75."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.komma",
+   "subject": "rekenen",
+   "items": [
+    "r-komma"
+   ],
+   "title": {
+    "nl": "De komma in een bedrag",
+    "th": "จุลภาคในจำนวนเงิน",
+    "en": "The comma in an amount"
+   },
+   "summary": {
+    "nl": "In Nederland staat er een komma tussen de euro's en de centen.",
+    "th": "ในเนเธอร์แลนด์ ใช้จุลภาคคั่นยูโรกับเซนต์",
+    "en": "In the Netherlands there is a comma between the euros and the cents."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "In Nederland staat er een komma tussen de euro's en de centen: € 9,50.",
+      "th": "ในเนเธอร์แลนด์ใช้จุลภาคคั่นระหว่างยูโรกับเซนต์: € 9,50 ส่วนในประเทศไทยใช้จุด: 9.50",
+      "en": "In the Netherlands there is a comma between the euros and the cents: € 9,50. In English you write a full stop: 9.50.",
+      "nl@th": "In Nederland staat er een komma tussen de euro's en de centen: € 9,50. In Thailand schrijf je een punt: 9.50.",
+      "nl@en": "In Nederland staat er een komma tussen de euro's en de centen: € 9,50. In het Engels schrijf je een punt: 9.50."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "label": "NL",
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "€ 9"
+         },
+         {
+          "t": ",",
+          "hl": true,
+          "glue": true
+         },
+         {
+          "t": "50",
+          "glue": true
+         }
+        ]
+       },
+       {
+        "label": "EN",
+        "lang": "en",
+        "parts": [
+         {
+          "t": "9"
+         },
+         {
+          "t": ".",
+          "hl": true,
+          "glue": true
+         },
+         {
+          "t": "50",
+          "glue": true
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Achter de komma staan altijd twee cijfers: de centen. € 0,50 is 50 cent, € 0,05 is 5 cent.",
+      "th": "หลังจุลภาคมีตัวเลขสองหลักเสมอ คือเซนต์ € 0,50 คือ 50 เซนต์ € 0,05 คือ 5 เซนต์",
+      "en": "After the comma there are always two digits: the cents. € 0,50 is 50 cents, € 0,05 is 5 cents."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "bedrag",
+       "betekent"
+      ],
+      "rows": [
+       [
+        "€ 0,50",
+        "50 cent"
+       ],
+       [
+        "€ 0,05",
+        "5 cent"
+       ],
+       [
+        "€ 9,50",
+        "9 euro en 50 cent"
+       ],
+       [
+        "€ 9,05",
+        "9 euro en 5 cent"
+       ]
+      ],
+      "hl": [
+       [
+        2,
+        0
+       ],
+       [
+        3,
+        0
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Een punt gebruik je in Nederland bij grote getallen: € 1.250,00 is duizend tweehonderdvijftig euro.",
+      "th": "ในเนเธอร์แลนด์ใช้จุดกับตัวเลขจำนวนมาก: € 1.250,00 คือหนึ่งพันสองร้อยห้าสิบยูโร",
+      "en": "In the Netherlands a full stop is used in big numbers: € 1.250,00 is one thousand two hundred and fifty euros."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "€ 1"
+         },
+         {
+          "t": ".",
+          "hl": true,
+          "glue": true
+         },
+         {
+          "t": "250",
+          "glue": true
+         },
+         {
+          "t": ",",
+          "hl": true,
+          "glue": true
+         },
+         {
+          "t": "00",
+          "glue": true
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Wat is € 4,05?",
+      "th": "€ 4,05 คือเท่าไร",
+      "en": "What is € 4,05?"
+     },
+     "o": [
+      "4 euro en 5 cent",
+      "4 euro en 50 cent",
+      "405 euro"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Achter de komma staan de centen: 05 is 5 cent.",
+      "th": "หลังจุลภาคคือเซนต์: 05 คือ 5 เซนต์",
+      "en": "After the comma come the cents: 05 is 5 cents."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.getallen",
+   "subject": "rekenen",
+   "title": {
+    "nl": "Getallen zeggen: eerst de eenheid",
+    "th": "การพูดตัวเลข: พูดหลักหน่วยก่อน",
+    "en": "Saying numbers: the unit first"
+   },
+   "summary": {
+    "nl": "Onder de honderd zeg je eerst de eenheid, dan het tiental.",
+    "th": "ตัวเลขต่ำกว่าร้อย พูดหลักหน่วยก่อน แล้วจึงหลักสิบ",
+    "en": "Under a hundred you say the unit first, then the ten."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "Bij getallen onder de honderd zeg je in het Nederlands eerst de eenheid, dan het tiental: 21 is eenentwintig.",
+      "th": "ตัวเลขต่ำกว่าร้อย ภาษาดัตช์พูดหลักหน่วยก่อน แล้วจึงหลักสิบ: 21 พูดว่า eenentwintig (หนึ่ง-และ-ยี่สิบ)",
+      "en": "For numbers under a hundred, Dutch says the unit first, then the ten: 21 is eenentwintig (one-and-twenty). English does it the other way round: twenty-one.",
+      "nl@en": "Bij getallen onder de honderd zeg je in het Nederlands eerst de eenheid, dan het tiental: 21 is eenentwintig. In het Engels is het andersom: twenty-one."
+     },
+     "visual": {
+      "type": "zin",
+      "rows": [
+       {
+        "label": "21",
+        "lang": "nl",
+        "parts": [
+         {
+          "t": "een",
+          "slot": 1
+         },
+         {
+          "t": "en",
+          "glue": true
+         },
+         {
+          "t": "twintig",
+          "slot": 3,
+          "glue": true
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Zo gaat het met alle getallen van 21 tot 99.",
+      "th": "ตัวเลขตั้งแต่ 21 ถึง 99 ใช้หลักเดียวกันทั้งหมด",
+      "en": "All numbers from 21 to 99 work like this."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "getal",
+       "zeg je"
+      ],
+      "rows": [
+       [
+        "21",
+        "eenentwintig"
+       ],
+       [
+        "35",
+        "vijfendertig"
+       ],
+       [
+        "48",
+        "achtenveertig"
+       ],
+       [
+        "99",
+        "negenennegentig"
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Boven de honderd zeg je eerst de honderdtallen, dan de rest zoals hierboven: 135 is honderdvijfendertig.",
+      "th": "ตัวเลขเกินร้อย พูดหลักร้อยก่อน แล้วพูดส่วนที่เหลือแบบข้างบน: 135 คือ honderdvijfendertig",
+      "en": "Above a hundred you say the hundreds first, then the rest as above: 135 is honderdvijfendertig."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "100",
+        "r": "honderd"
+       },
+       {
+        "l": "35",
+        "r": "vijfendertig"
+       },
+       {
+        "l": "135",
+        "r": "honderdvijfendertig",
+        "hl": true
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Pas op: dertien en dertig, veertien en veertig klinken bijna hetzelfde. Luister goed naar het eind van het woord.",
+      "th": "ระวัง: dertien กับ dertig และ veertien กับ veertig ฟังคล้ายกันมาก ให้ฟังท้ายคำให้ดี",
+      "en": "Watch out: dertien and dertig, veertien and veertig sound almost the same. Listen carefully to the end of the word."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "getal",
+       "zeg je"
+      ],
+      "rows": [
+       [
+        "13",
+        "dertien"
+       ],
+       [
+        "30",
+        "dertig"
+       ],
+       [
+        "14",
+        "veertien"
+       ],
+       [
+        "40",
+        "veertig"
+       ]
+      ],
+      "hl": [
+       [
+        0,
+        1
+       ],
+       [
+        1,
+        1
+       ]
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Hoe zeg je 64?",
+      "th": "64 พูดว่าอย่างไร",
+      "en": "How do you say 64?"
+     },
+     "o": [
+      "vierenzestig",
+      "zestigvier",
+      "zesenveertig"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Eerst de eenheid (vier), dan en, dan het tiental (zestig).",
+      "th": "พูดหลักหน่วยก่อน (vier) แล้ว en แล้วจึงหลักสิบ (zestig)",
+      "en": "First the unit (vier), then en, then the ten (zestig)."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.plaatswaarde",
+   "subject": "rekenen",
+   "title": {
+    "nl": "Elk cijfer heeft een plek",
+    "th": "ตัวเลขแต่ละตัวมีหลักของมัน",
+    "en": "Every digit has a place"
+   },
+   "summary": {
+    "nl": "De plek van een cijfer bepaalt wat het waard is.",
+    "th": "ตำแหน่งของตัวเลขบอกว่ามีค่าเท่าไร",
+    "en": "The place of a digit decides what it is worth."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "In 3.582 heeft elk cijfer een eigen plek: duizendtallen, honderdtallen, tientallen en eenheden.",
+      "th": "ใน 3.582 ตัวเลขแต่ละตัวมีหลักของตัวเอง: หลักพัน หลักร้อย หลักสิบ และหลักหน่วย",
+      "en": "In 3.582 every digit has its own place: thousands, hundreds, tens and units."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "duizend",
+       "honderd",
+       "tien",
+       "een"
+      ],
+      "rows": [
+       [
+        "3",
+        "5",
+        "8",
+        "2"
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "De 5 staat op de plek van de honderdtallen. Hij is dus 500 waard.",
+      "th": "เลข 5 อยู่หลักร้อย จึงมีค่า 500",
+      "en": "The 5 is in the hundreds place. So it is worth 500."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "duizend",
+       "honderd",
+       "tien",
+       "een"
+      ],
+      "rows": [
+       [
+        "3",
+        "5",
+        "8",
+        "2"
+       ],
+       [
+        "3000",
+        "500",
+        "80",
+        "2"
+       ]
+      ],
+      "hl": [
+       [
+        0,
+        1
+       ],
+       [
+        1,
+        1
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Rechts van de komma komen de tienden en de honderdsten. In 4,75 is de 7 zeven tienden en de 5 vijf honderdsten.",
+      "th": "ทางขวาของจุลภาคคือหลักส่วนสิบและส่วนร้อย ใน 4,75 เลข 7 คือเจ็ดส่วนสิบ และเลข 5 คือห้าส่วนร้อย",
+      "en": "To the right of the comma come the tenths and the hundredths. In 4,75 the 7 is seven tenths and the 5 is five hundredths."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "een",
+       ",",
+       "tiende",
+       "honderdste"
+      ],
+      "rows": [
+       [
+        "4",
+        ",",
+        "7",
+        "5"
+       ]
+      ],
+      "hl": [
+       [
+        0,
+        2
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Bij geld zijn de tienden stukjes van 10 cent en de honderdsten centen. € 4,75 is 4 euro en 75 cent.",
+      "th": "ในเรื่องเงิน หลักส่วนสิบคือ 10 เซนต์ และหลักส่วนร้อยคือเซนต์ € 4,75 คือ 4 ยูโร 75 เซนต์",
+      "en": "With money, tenths are pieces of 10 cents and hundredths are cents. € 4,75 is 4 euros and 75 cents."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "4",
+        "r": "4 euro"
+       },
+       {
+        "l": "0,7",
+        "r": "70 cent"
+       },
+       {
+        "l": "0,05",
+        "r": "5 cent"
+       },
+       {
+        "l": "samen",
+        "r": "€ 4,75",
+        "hl": true
+       }
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Wat is de 6 waard in 2.634?",
+      "th": "ใน 2.634 เลข 6 มีค่าเท่าไร",
+      "en": "What is the 6 worth in 2.634?"
+     },
+     "o": [
+      "600",
+      "60",
+      "6"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "De 6 staat op de plek van de honderdtallen.",
+      "th": "เลข 6 อยู่หลักร้อย",
+      "en": "The 6 is in the hundreds place."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.sprongen",
+   "subject": "rekenen",
+   "title": {
+    "nl": "Optellen en aftrekken in sprongen",
+    "th": "การบวกและลบแบบกระโดด",
+    "en": "Adding and subtracting in jumps"
+   },
+   "summary": {
+    "nl": "Eerst de tientallen, dan via een rond getal.",
+    "th": "กระโดดหลักสิบก่อน แล้วผ่านเลขกลมๆ",
+    "en": "First the tens, then via a round number."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "38 plus 25. Spring eerst met de tientallen: 38 plus 20 is 58.",
+      "th": "38 บวก 25 กระโดดหลักสิบก่อน: 38 บวก 20 ได้ 58",
+      "en": "38 plus 25. First jump the tens: 38 plus 20 is 58."
+     },
+     "visual": {
+      "type": "line",
+      "from": 30,
+      "to": 70,
+      "step": 10,
+      "jumps": [
+       {
+        "a": 38,
+        "b": 58,
+        "label": "+ 20"
+       }
+      ],
+      "alt": "Getallenlijn van 30 tot 70: een sprong van 38 naar 58"
+     }
+    },
+    {
+     "text": {
+      "nl": "Spring dan naar een rond getal: 58 plus 2 is 60.",
+      "th": "แล้วกระโดดไปเลขกลมๆ: 58 บวก 2 ได้ 60",
+      "en": "Then jump to a round number: 58 plus 2 is 60."
+     },
+     "visual": {
+      "type": "line",
+      "from": 30,
+      "to": 70,
+      "step": 10,
+      "jumps": [
+       {
+        "a": 38,
+        "b": 58,
+        "label": "+ 20"
+       },
+       {
+        "a": 58,
+        "b": 60,
+        "label": "+ 2",
+        "tone": "sky"
+       }
+      ],
+      "alt": "Sprongen van 38 naar 58 en van 58 naar 60"
+     }
+    },
+    {
+     "text": {
+      "nl": "Nu de rest: van de 5 heb je er nog 3 over. 60 plus 3 is 63.",
+      "th": "ต่อด้วยส่วนที่เหลือ: จาก 5 ยังเหลืออีก 3 60 บวก 3 ได้ 63",
+      "en": "Now the rest: of the 5 you still have 3 left. 60 plus 3 is 63."
+     },
+     "visual": {
+      "type": "line",
+      "from": 30,
+      "to": 70,
+      "step": 10,
+      "jumps": [
+       {
+        "a": 38,
+        "b": 58,
+        "label": "+ 20"
+       },
+       {
+        "a": 58,
+        "b": 60,
+        "label": "+ 2",
+        "tone": "sky"
+       },
+       {
+        "a": 60,
+        "b": 63,
+        "label": "+ 3",
+        "tone": "lilac"
+       }
+      ],
+      "marks": [
+       {
+        "at": 63,
+        "label": "63",
+        "tone": "mint"
+       }
+      ],
+      "alt": "Drie sprongen eindigen bij 63"
+     }
+    },
+    {
+     "text": {
+      "nl": "Aftrekken gaat net zo, maar dan terug. 63 min 25: 63 min 20 is 43, en 43 min 5 is 38.",
+      "th": "การลบก็ทำแบบเดียวกัน แต่กระโดดถอยหลัง 63 ลบ 25: 63 ลบ 20 ได้ 43 แล้ว 43 ลบ 5 ได้ 38",
+      "en": "Subtracting works the same way, but backwards. 63 minus 25: 63 minus 20 is 43, and 43 minus 5 is 38."
+     },
+     "visual": {
+      "type": "line",
+      "from": 30,
+      "to": 70,
+      "step": 10,
+      "jumps": [
+       {
+        "a": 63,
+        "b": 43,
+        "label": "− 20"
+       },
+       {
+        "a": 43,
+        "b": 38,
+        "label": "− 5",
+        "tone": "sky"
+       }
+      ],
+      "marks": [
+       {
+        "at": 38,
+        "label": "38",
+        "tone": "mint"
+       }
+      ],
+      "alt": "Twee sprongen terug: van 63 naar 43 en van 43 naar 38"
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Hoeveel is 47 plus 36?",
+      "th": "47 บวก 36 ได้เท่าไร",
+      "en": "What is 47 plus 36?"
+     },
+     "o": [
+      "83",
+      "73",
+      "713"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "47 plus 30 is 77. 77 plus 3 is 80. 80 plus 3 is 83.",
+      "th": "47 บวก 30 ได้ 77 บวก 3 ได้ 80 บวก 3 ได้ 83",
+      "en": "47 plus 30 is 77. 77 plus 3 is 80. 80 plus 3 is 83."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.tafels",
+   "subject": "rekenen",
+   "title": {
+    "nl": "Keersommen als sprongen",
+    "th": "การคูณคือการกระโดด",
+    "en": "Times tables as jumps"
+   },
+   "summary": {
+    "nl": "4 keer 6 is 4 sprongen van 6.",
+    "th": "4 คูณ 6 คือกระโดดครั้งละ 6 สี่ครั้ง",
+    "en": "4 times 6 is 4 jumps of 6."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "4 keer 6 betekent: 4 sprongen van 6.",
+      "th": "4 คูณ 6 หมายถึง กระโดดครั้งละ 6 สี่ครั้ง",
+      "en": "4 times 6 means: 4 jumps of 6."
+     },
+     "visual": {
+      "type": "line",
+      "from": 0,
+      "to": 24,
+      "step": 6,
+      "jumps": [
+       {
+        "a": 0,
+        "b": 6,
+        "label": "+ 6"
+       },
+       {
+        "a": 6,
+        "b": 12,
+        "label": "+ 6"
+       },
+       {
+        "a": 12,
+        "b": 18,
+        "label": "+ 6"
+       },
+       {
+        "a": 18,
+        "b": 24,
+        "label": "+ 6"
+       }
+      ],
+      "marks": [
+       {
+        "at": 24,
+        "label": "24",
+        "tone": "mint"
+       }
+      ],
+      "alt": "Vier sprongen van 6 op de getallenlijn: 6, 12, 18, 24"
+     }
+    },
+    {
+     "text": {
+      "nl": "4 keer 6 is 24. Andersom mag ook: 6 keer 4 is ook 24.",
+      "th": "4 คูณ 6 ได้ 24 สลับกันก็ได้: 6 คูณ 4 ก็ได้ 24",
+      "en": "4 times 6 is 24. The other way round works too: 6 times 4 is also 24."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "4 × 6",
+        "r": "= 24"
+       },
+       {
+        "l": "6 × 4",
+        "r": "= 24",
+        "hl": true
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Weet je een som niet? Gebruik een som die je wel weet. 6 keer 6 is 5 keer 6, plus nog één keer 6.",
+      "th": "ถ้าไม่รู้คำตอบ ให้ใช้ข้อที่รู้ 6 คูณ 6 คือ 5 คูณ 6 แล้วบวก 6 อีกหนึ่งครั้ง",
+      "en": "Don't know a sum? Use one you do know. 6 times 6 is 5 times 6, plus one more 6."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "5 × 6",
+        "r": "= 30"
+       },
+       {
+        "l": "+ 1 × 6",
+        "r": "+ 6"
+       },
+       {
+        "l": "6 × 6",
+        "r": "= 36",
+        "hl": true
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Keer 10 is makkelijk: er komt een nul achter. Keer 5 is de helft van keer 10.",
+      "th": "คูณ 10 ง่ายมาก แค่เติมศูนย์ข้างหลัง คูณ 5 คือครึ่งหนึ่งของคูณ 10",
+      "en": "Times 10 is easy: you add a zero. Times 5 is half of times 10."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "som",
+       "handig"
+      ],
+      "rows": [
+       [
+        "7 × 10",
+        "70"
+       ],
+       [
+        "7 × 5",
+        "70 : 2 = 35"
+       ]
+      ],
+      "hl": [
+       [
+        1,
+        1
+       ]
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Hoeveel is 9 keer 6?",
+      "th": "9 คูณ 6 ได้เท่าไร",
+      "en": "What is 9 times 6?"
+     },
+     "o": [
+      "54",
+      "56",
+      "45"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "10 keer 6 is 60. Eén keer 6 minder: 60 min 6 is 54.",
+      "th": "10 คูณ 6 ได้ 60 ลบออก 6 หนึ่งครั้ง: 60 ลบ 6 ได้ 54",
+      "en": "10 times 6 is 60. One 6 less: 60 minus 6 is 54."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.nullen",
+   "subject": "rekenen",
+   "title": {
+    "nl": "Rekenen met nullen",
+    "th": "การคำนวณกับเลขศูนย์",
+    "en": "Working with zeros"
+   },
+   "summary": {
+    "nl": "Reken eerst zonder nullen en zet ze er daarna weer bij.",
+    "th": "คิดโดยไม่มีศูนย์ก่อน แล้วค่อยเติมศูนย์กลับเข้าไป",
+    "en": "Calculate without the zeros first, then add them back."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "3 keer 40. Reken eerst zonder de nul: 3 keer 4 is 12.",
+      "th": "3 คูณ 40 คิดโดยไม่มีศูนย์ก่อน: 3 คูณ 4 ได้ 12",
+      "en": "3 times 40. First calculate without the zero: 3 times 4 is 12."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "3 × 4",
+        "r": "= 12"
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Zet de nul er daarna weer achter: 3 keer 40 is 120.",
+      "th": "แล้วเติมศูนย์กลับไปข้างหลัง: 3 คูณ 40 ได้ 120",
+      "en": "Then put the zero back: 3 times 40 is 120."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "3 × 4",
+        "r": "= 12"
+       },
+       {
+        "l": "3 × 40",
+        "r": "= 120",
+        "hl": true
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Tel bij keer alle nullen. 30 keer 40: 3 keer 4 is 12, en er komen twee nullen bij: 1200.",
+      "th": "การคูณให้นับศูนย์ทั้งหมด 30 คูณ 40: 3 คูณ 4 ได้ 12 แล้วเติมศูนย์สองตัว: 1200",
+      "en": "With times, count all the zeros. 30 times 40: 3 times 4 is 12, and two zeros are added: 1200."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "3 × 4",
+        "r": "= 12"
+       },
+       {
+        "l": "30 × 40",
+        "r": "= 1200",
+        "hl": true
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Bij delen mag je aan beide kanten evenveel nullen wegstrepen. 600 gedeeld door 20 is hetzelfde als 60 gedeeld door 2: 30.",
+      "th": "การหาร ตัดศูนย์ออกได้เท่ากันทั้งสองข้าง 600 หาร 20 เท่ากับ 60 หาร 2 ได้ 30",
+      "en": "When dividing, you may cross out the same number of zeros on both sides. 600 divided by 20 is the same as 60 divided by 2: 30."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "600 : 20"
+       },
+       {
+        "l": "60 : 2",
+        "r": "= 30",
+        "hl": true
+       }
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Hoeveel is 50 keer 20?",
+      "th": "50 คูณ 20 ได้เท่าไร",
+      "en": "What is 50 times 20?"
+     },
+     "o": [
+      "1000",
+      "100",
+      "10000"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "5 keer 2 is 10, en er komen twee nullen bij: 1000.",
+      "th": "5 คูณ 2 ได้ 10 แล้วเติมศูนย์สองตัว: 1000",
+      "en": "5 times 2 is 10, and two zeros are added: 1000."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.tijdsduur",
+   "subject": "rekenen",
+   "items": [
+    "r-klok"
+   ],
+   "title": {
+    "nl": "Hoe lang duurt het?",
+    "th": "ใช้เวลานานเท่าไร",
+    "en": "How long does it take?"
+   },
+   "summary": {
+    "nl": "Spring eerst naar een heel uur, dan de hele uren, dan de rest.",
+    "th": "กระโดดไปชั่วโมงเต็มก่อน แล้วนับชั่วโมงเต็ม แล้วจึงส่วนที่เหลือ",
+    "en": "First jump to a whole hour, then the whole hours, then the rest."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "Iets begint om 8.45 uur en eindigt om 11.30 uur. Hoe lang duurt het?",
+      "th": "เริ่ม 8.45 น. และจบ 11.30 น. ใช้เวลานานเท่าไร",
+      "en": "Something starts at 8.45 and ends at 11.30. How long does it take?"
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "begin",
+        "r": "8.45"
+       },
+       {
+        "l": "einde",
+        "r": "11.30"
+       },
+       {
+        "l": "duur",
+        "r": "?",
+        "hl": true
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Spring eerst naar een heel uur: van 8.45 tot 9.00 is 15 minuten.",
+      "th": "กระโดดไปชั่วโมงเต็มก่อน: จาก 8.45 ถึง 9.00 คือ 15 นาที",
+      "en": "First jump to a whole hour: from 8.45 to 9.00 is 15 minutes."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "8.45 → 9.00",
+        "r": "15 minuten"
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Dan de hele uren: van 9.00 tot 11.00 is 2 uur.",
+      "th": "แล้วนับชั่วโมงเต็ม: จาก 9.00 ถึง 11.00 คือ 2 ชั่วโมง",
+      "en": "Then the whole hours: from 9.00 to 11.00 is 2 hours."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "8.45 → 9.00",
+        "r": "15 minuten"
+       },
+       {
+        "l": "9.00 → 11.00",
+        "r": "2 uur"
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Dan de rest: van 11.00 tot 11.30 is 30 minuten. Samen is het 2 uur en 45 minuten.",
+      "th": "แล้วส่วนที่เหลือ: จาก 11.00 ถึง 11.30 คือ 30 นาที รวมเป็น 2 ชั่วโมง 45 นาที",
+      "en": "Then the rest: from 11.00 to 11.30 is 30 minutes. Together it is 2 hours and 45 minutes."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "8.45 → 9.00",
+        "r": "15 minuten"
+       },
+       {
+        "l": "9.00 → 11.00",
+        "r": "2 uur"
+       },
+       {
+        "l": "11.00 → 11.30",
+        "r": "30 minuten"
+       },
+       {
+        "l": "samen",
+        "r": "2 uur en 45 minuten",
+        "hl": true
+       }
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Van 7.40 uur tot 9.10 uur. Hoe lang is dat?",
+      "th": "จาก 7.40 น. ถึง 9.10 น. ใช้เวลานานเท่าไร",
+      "en": "From 7.40 to 9.10. How long is that?"
+     },
+     "o": [
+      "1 uur en 30 minuten",
+      "1 uur en 70 minuten",
+      "2 uur en 30 minuten"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "7.40 tot 8.00 is 20 minuten. 8.00 tot 9.00 is 1 uur. 9.00 tot 9.10 is 10 minuten. Samen 1 uur en 30 minuten.",
+      "th": "7.40 ถึง 8.00 คือ 20 นาที 8.00 ถึง 9.00 คือ 1 ชั่วโมง 9.00 ถึง 9.10 คือ 10 นาที รวม 1 ชั่วโมง 30 นาที",
+      "en": "7.40 to 8.00 is 20 minutes. 8.00 to 9.00 is 1 hour. 9.00 to 9.10 is 10 minutes. Together 1 hour and 30 minutes."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.meten",
+   "subject": "rekenen",
+   "title": {
+    "nl": "Meten: welke eenheid?",
+    "th": "การวัด: ใช้หน่วยอะไร",
+    "en": "Measuring: which unit?"
+   },
+   "summary": {
+    "nl": "Lengte, gewicht en inhoud hebben elk hun eigen eenheden.",
+    "th": "ความยาว น้ำหนัก และปริมาตร มีหน่วยของตัวเอง",
+    "en": "Length, weight and volume each have their own units."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "Lengte meet je in meters. Kleine dingen in centimeters, lange afstanden in kilometers.",
+      "th": "ความยาววัดเป็นเมตร ของเล็กวัดเป็นเซนติเมตร ระยะทางไกลวัดเป็นกิโลเมตร",
+      "en": "You measure length in metres. Small things in centimetres, long distances in kilometres."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "wat",
+       "eenheid"
+      ],
+      "rows": [
+       [
+        "een potlood",
+        "centimeter (cm)"
+       ],
+       [
+        "een kamer",
+        "meter (m)"
+       ],
+       [
+        "een fietstocht",
+        "kilometer (km)"
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Gewicht meet je in grammen en kilo's.",
+      "th": "น้ำหนักวัดเป็นกรัมและกิโลกรัม",
+      "en": "You measure weight in grams and kilos."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "wat",
+       "eenheid"
+      ],
+      "rows": [
+       [
+        "een appel",
+        "gram (g)"
+       ],
+       [
+        "een zak aardappelen",
+        "kilogram (kg)"
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Inhoud meet je in liters. Een klein beetje in milliliters.",
+      "th": "ปริมาตรวัดเป็นลิตร ปริมาณน้อยๆ วัดเป็นมิลลิลิตร",
+      "en": "You measure volume in litres. A small amount in millilitres."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "wat",
+       "eenheid"
+      ],
+      "rows": [
+       [
+        "een fles water",
+        "liter (l)"
+       ],
+       [
+        "een lepel medicijn",
+        "milliliter (ml)"
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Kilo betekent duizend. Milli betekent een duizendste.",
+      "th": "กิโล แปลว่าหนึ่งพัน มิลลิ แปลว่าหนึ่งในพัน",
+      "en": "Kilo means a thousand. Milli means a thousandth."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "1 km",
+        "r": "= 1000 m"
+       },
+       {
+        "l": "1 kg",
+        "r": "= 1000 g"
+       },
+       {
+        "l": "1 l",
+        "r": "= 1000 ml",
+        "hl": true
+       }
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Hoeveel gram is 1 kilo suiker?",
+      "th": "น้ำตาล 1 กิโลกรัมเท่ากับกี่กรัม",
+      "en": "How many grams is 1 kilo of sugar?"
+     },
+     "o": [
+      "1000 gram",
+      "100 gram",
+      "10 gram"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Kilo betekent duizend: 1 kg is 1000 g.",
+      "th": "กิโลแปลว่าหนึ่งพัน: 1 กก. เท่ากับ 1000 กรัม",
+      "en": "Kilo means a thousand: 1 kg is 1000 g."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.metriek",
+   "subject": "rekenen",
+   "title": {
+    "nl": "Omrekenen: de trap",
+    "th": "การแปลงหน่วย: บันได",
+    "en": "Converting: the staircase"
+   },
+   "summary": {
+    "nl": "Elke stap op de trap is keer 10 of gedeeld door 10.",
+    "th": "แต่ละขั้นบันไดคือคูณ 10 หรือหาร 10",
+    "en": "Every step on the staircase is times 10 or divided by 10."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "Bij lengte staan de eenheden op een trap. Elke stap is 10 keer zo klein: km, hm, dam, m, dm, cm, mm.",
+      "th": "หน่วยความยาวเรียงเป็นบันได แต่ละขั้นเล็กลง 10 เท่า: km, hm, dam, m, dm, cm, mm",
+      "en": "For length, the units stand on a staircase. Each step is 10 times smaller: km, hm, dam, m, dm, cm, mm."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "km",
+       "hm",
+       "dam",
+       "m",
+       "dm",
+       "cm",
+       "mm"
+      ],
+      "rows": [
+       [
+        "",
+        "",
+        "",
+        "1",
+        "10",
+        "100",
+        "1000"
+       ]
+      ],
+      "hl": [
+       [
+        0,
+        3
+       ]
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Naar een kleinere eenheid: keer 10 per stap. 1 meter is 100 centimeter: twee stappen, dus keer 100.",
+      "th": "ไปหน่วยที่เล็กกว่า: คูณ 10 ต่อหนึ่งขั้น 1 เมตรเท่ากับ 100 เซนติเมตร: สองขั้น จึงคูณ 100",
+      "en": "To a smaller unit: times 10 per step. 1 metre is 100 centimetres: two steps, so times 100."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "1 m × 10",
+        "r": "= 10 dm"
+       },
+       {
+        "l": "10 dm × 10",
+        "r": "= 100 cm",
+        "hl": true
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Naar een grotere eenheid: gedeeld door 10 per stap. 2500 meter is 2,5 kilometer: drie stappen, dus gedeeld door 1000.",
+      "th": "ไปหน่วยที่ใหญ่กว่า: หาร 10 ต่อหนึ่งขั้น 2500 เมตรเท่ากับ 2,5 กิโลเมตร: สามขั้น จึงหาร 1000",
+      "en": "To a bigger unit: divided by 10 per step. 2500 metres is 2,5 kilometres: three steps, so divided by 1000."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "2500 m : 1000",
+        "r": "= 2,5 km",
+        "hl": true
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Controleer altijd: een grotere eenheid geeft een kleiner getal.",
+      "th": "ตรวจทุกครั้ง: หน่วยที่ใหญ่กว่าจะได้ตัวเลขที่เล็กกว่า",
+      "en": "Always check: a bigger unit gives a smaller number."
+     },
+     "visual": {
+      "type": "table",
+      "head": [
+       "",
+       "eenheid",
+       "getal"
+      ],
+      "rows": [
+       [
+        "groot",
+        "km",
+        "2,5"
+       ],
+       [
+        "klein",
+        "m",
+        "2500"
+       ]
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Hoeveel centimeter is 3 meter?",
+      "th": "3 เมตรเท่ากับกี่เซนติเมตร",
+      "en": "How many centimetres is 3 metres?"
+     },
+     "o": [
+      "300 cm",
+      "30 cm",
+      "3000 cm"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Van meter naar centimeter zijn twee stappen: keer 100.",
+      "th": "จากเมตรไปเซนติเมตรมีสองขั้น: คูณ 100",
+      "en": "From metres to centimetres is two steps: times 100."
      }
     }
    ]
