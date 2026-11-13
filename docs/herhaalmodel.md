@@ -53,12 +53,13 @@ Daarvoor houdt het item naast `forms` ook `exs` bij: de id's van de oefeningen d
 
 ## 5. Wat telt als ophalen
 
-**Alleen groeien bij gespreid ophalen.** Nu geeft elk goed antwoord stabiliteit × 2,4, ook direct na elkaar. Drie goede antwoorden op één dag maken van een nieuw woord al een bloem (1 → 2,4 → 5,8 → 13,8 dagen). Dat is gestapeld oefenen, geen onthouden. Met meerdere rondes per dag gebeurt dat vaak. Regel: **de stabiliteit groeit alleen als het item aan de beurt was, of als minstens de helft van de wachttijd voorbij is.**
+**Alleen groeien bij gespreid ophalen.** Nu geeft elk goed antwoord stabiliteit × 2,4, ook direct na elkaar. Drie goede antwoorden op één dag maken van een nieuw woord al een bloem (1 → 2,4 → 5,8 → 13,8 dagen). Dat is gestapeld oefenen, geen onthouden. Met meerdere rondes per dag gebeurt dat vaak. Regel: **de stabiliteit groeit alleen als het item aan de beurt was, of als minstens de helft van de wachttijd voorbij is.** De groei gaat naar verhouding: op de helft van de wachttijd × 1,7, aan de beurt × 2,4 (`s × (1 + 1,4 × deel van de wachttijd)`). Zonder die verhouding liet de simulatie (drie rondes per dag) volle bloei al na 12 dagen toe; met de verhouding op zijn vroegst rond dag 21 tot 23. Toegevoegd bij de bouw van stap 1.
 
 | Gebeurtenis | Effect op het item |
 |---|---|
 | Eerste goede poging na de introductie | `s` = 1 (zoals nu) |
-| Goed bij de eerste poging, item aan de beurt of halve wachttijd voorbij | `s` × 2,4, `due` = nu + `s` |
+| Goed bij de eerste poging, item aan de beurt | `s` × 2,4, `due` = nu + `s` |
+| Goed bij de eerste poging, tussen de halve en de volle wachttijd | `s` × 1,7 tot 2,4, naar verhouding |
 | Goed, maar te vroeg (minder dan de halve wachttijd) | telt voor `forms` en `exs` en `reps`; `s` en `due` blijven gelijk |
 | Goed na een hint of tweede poging | `s` gelijk, opnieuw ingepland op dezelfde wachttijd (`due` = nu + `s`) |
 | Fout (alleen het doelitem) | `s` × 0,4, `lapses` + 1, vandaag nog een keer (zoals nu) |

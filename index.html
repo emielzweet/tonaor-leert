@@ -1410,7 +1410,7 @@ function packCardHtml(c,flag){const ex=(c.examples||[]).map(e=>`<div class="exam
 /* lessamensteller: loopt het recept af en maakt de rij oefeningen (zelfde vorm als vóór fase 2) */
 const NOTE_TONES=['sky','lilac'];   // zelfde lijst als TONES in pakketcheck.js
 const CARD_LABEL={nl:{1:['Ophalen','btn-leaf'],2:['Nieuw leren','']},en:{1:['English','btn-sky'],2:['English','btn-sky']}};
-function exQ(e,step,learn){const r=exQ0(e,step,learn);if(r)r.items=(e.items||[]).slice();return r}
+function exQ(e,step,learn){const r=exQ0(e,step,learn);if(r){r.items=(e.items||[]).slice();r.exid=e.id}return r}
 function exQ0(e,step,learn){const d=e.data;
   switch(e.form){
     case 'build':return {type:'build',step,s:LEGACY[e.id]};
@@ -1528,7 +1528,7 @@ function drawExplain(speak){const L=document.getElementById('ulayer');if(!L||!UX
     $('#unext').onclick=()=>{if(UX.i<n-1){UX.i++;drawExplain(true)}else if(ch.length){UX.c=0;UX.answered=false;drawExplain(true)}else finishExplain()};
     if(speak)sayX(st.text);
   }else{const q=ch[c];
-    L.querySelectorAll('[data-uo]').forEach(b=>b.onclick=()=>{if(UX.answered)return;UX.answered=true;const ok=+b.dataset.uo===q.a;b.classList.add(ok?'right':'wrong');
+    L.querySelectorAll('[data-uo]').forEach(b=>b.onclick=()=>{if(UX.answered)return;UX.answered=true;const ok=+b.dataset.uo===q.a;b.classList.add(ok?'right':'wrong');if(ok)(e.x.items||[]).forEach(id=>introduce(id,'check'));
       if(!ok)L.querySelector(`[data-uo="${q.a}"]`).classList.add('right');
       const why=q.why?TKx(q.why,e.learn):'';
       $('#ufb').innerHTML=`<div class="fb ${ok?'fb-ok':'fb-no'}" role="status"><strong>${esc(t(ok?'fb.ok':'fb.no'))}</strong>${why}</div><button class="btn btn-leaf" id="uon">${TB(c<ch.length-1?'btn.next':'explain.done')}</button>`;
@@ -1546,7 +1546,7 @@ function vExplain(){const groups=[['nl','rekenen'],['nl','grammatica'],['nl','le
 await loadPacks();
 
 /* ============ staat ============ */
-function item(){return {s:0,due:today(),reps:0,lapses:0,forms:[]}}
+function item(){return {s:0,due:today(),reps:0,lapses:0,forms:[],exs:[]}}
 function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
@@ -1558,11 +1558,12 @@ function fresh(){
    Vóór een migratie gaat de ruwe opslag ongewijzigd naar BAK (één generatie); ook vóór Alles wissen en vóór Terugzetten.
    STORE: 'ok' = normaal | 'broken' = onleesbaar of onbekend: herstelscherm, niets wegschrijven | 'newer' = van een nieuwere app: alleen lezen.
    Buiten 'ok' schrijft de app niets weg en verstuurt ze geen voortgang. Onleesbare opslag wordt pas vervangen na een kopie in BROKEN. */
-const SCHEMA=3,BAK=KEY+'.bak',BROKEN=KEY+'.kapot';
+const SCHEMA=4,BAK=KEY+'.bak',BROKEN=KEY+'.kapot';
 const MIGRATE={
  1:s=>{if(!s.profile||typeof s.profile!=='object')s.profile={name:''};if(!LEARN.includes(s.learn))s.learn='nl';if(!SUPPORT.includes(s.sup))s.sup='th';
    if(s.v2ok&&!s.v2seen)s.v2seen=Date.now();delete s.v2ok;if(s.v2seen)s.tl1off=true;return s},
- 2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s}   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
+ 2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s},   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
+ 3:s=>{for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];return s}   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
 };
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
@@ -1581,7 +1582,7 @@ let STORE='ok',S;
   if(st==='newer'){STORE='newer';S=o;return}
   /* Lukt de reservekopie niet, dan is de opslag vol of onbereikbaar: dan lukt wegschrijven ook niet, dus de oude opslag blijft staan. */
   if(schemaOf(o)<SCHEMA){const bakOk=putStore(BAK,raw);let m;try{m=migrate(o)}catch(e){STORE='broken';S=fresh();return}S=fillDefaults(m);if(bakOk)putStore(KEY,JSON.stringify(S))}else S=fillDefaults(o)})();
-[...NL,...EN,...REK].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
+[...NL,...EN,...REK,...PACKS.flatMap(p=>p.items||[]).filter(x=>x.kind==='rule'||x.kind==='sound')].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
 if(!S.profile||typeof S.profile!=='object')S.profile={name:''};
 if(!LEARN.includes(S.learn))S.learn='nl';if(!SUPPORT.includes(S.sup))S.sup='th';
 /* naam van de leerder: alleen uit het profiel op dit toestel (nooit in de code). nm() = naam (veilig) of leeg, who() = naam of 'de leerder'. */
@@ -1603,16 +1604,29 @@ if(STORE==='ok')ensureCodes();
 function stage(id){const s=S.items[id].s;return s<=0?0:s<1.5?1:s<4?2:s<10?3:s<25?4:5}
 const STAGES=[['zaadje','เมล็ด','seed'],['kiemplant','ต้นอ่อน','seedling'],['plantje','ต้นเล็ก','small plant'],['knop','ดอกตูม','bud'],['bloem','ดอกไม้','flower'],['in volle bloei','บานเต็มที่','in full bloom']];
 function thirsty(id){const it=S.items[id];return !!it&&it.reps>0&&it.due<=now()&&stage(id)<5}
-function review(id,ok,form){
-  const it=S.items[id];if(!it)return;
-  if(form&&!it.forms.includes(form))it.forms.push(form);
+function review(id,res,form,exid,passive){
+  /* res: true = goed bij de eerste poging, 'retry' = goed na een hint of tweede poging, false = fout.
+     passive: een bij-item van een oefening; telt alleen bij goed, voor vormen en oefeningen, zonder groei (docs/herhaalmodel.md sectie 3).
+     Groei alleen bij gespreid ophalen (sectie 5): pas vanaf de helft van de wachttijd, en naar verhouding:
+     op de helft × 1,7, aan de beurt × 2,4. Zo levert vaker oefenen op één dag geen snellere bloei op. */
+  const it=S.items[id];if(!it)return;if(!Array.isArray(it.exs))it.exs=[];
+  if(passive&&res!==true)return;
+  if(res===true||res==='retry'){if(form&&!it.forms.includes(form))it.forms.push(form);if(exid&&!it.exs.includes(exid)){it.exs.push(exid);if(it.exs.length>10)it.exs.shift()}}
   it.reps++;
-  if(ok){it.s=it.s<=0?1:Math.min(120,it.s*2.4);if(it.forms.length<3&&it.s>=10)it.s=9}
-  else{it.lapses++;it.s=Math.max(.5,it.s*.4)}
-  it.due=ok?now()+it.s*DAY:now();
-  S.log.push({t:now(),id,ok});if(S.log.length>600)S.log.shift();
+  if(!passive){
+    if(res===true){if(it.s<=0){it.s=1;it.due=now()+DAY}
+      else{const f=Math.min(1,(now()-(it.due-it.s*DAY))/(it.s*DAY));if(f>=.5){it.s=Math.min(120,it.s*(1+1.4*f));if(it.forms.filter(x=>!NOGROW.includes(x)).length<3&&it.s>=10)it.s=9;it.due=now()+it.s*DAY}}}
+    else if(res==='retry'){it.due=now()+Math.max(0,it.s)*DAY}
+    else{it.lapses++;it.s=Math.max(.5,it.s*.4);it.due=now()}}
+  S.log.push({t:now(),id,ok:res===true,...(res==='retry'?{r:1}:{}),...(exid?{ex:exid}:{}),...(passive?{p:1}:{})});if(S.log.length>600)S.log.shift();
   save();
 }
+/* vormen die niet meetellen voor bloei: bekijken en de controlevraag bij een uitleg */
+const NOGROW=['voorbeeld','check'];
+/* een onderdeel is voor het eerst aangeboden (voorbeeld, uitleg, kaart): plannen, maar niet als gekend tellen */
+function introduce(id,form){const it=S.items[id];if(!it)return;if(!S.introduced.includes(id))S.introduced.push(id);if(form&&!it.forms.includes(form))it.forms.push(form);if(it.reps===0){it.reps=1;it.due=now()}save()}
+/* een oefening met items: het eerste item is het doel; alleen dat krijgt een fout */
+function practiced(q,res,form){const ids=(q&&q.items)||[];ids.forEach((id,i)=>{if(!S.introduced.includes(id)&&S.items[id])S.introduced.push(id);review(id,res,form,q.exid,i>0)})}
 const leeches=()=>Object.entries(S.items).filter(([,v])=>v.lapses>=4).map(([k])=>k);
 const pts=()=>S.points[today()]||0;
 function addPts(n){S.points[today()]=pts()+n;S.days[today()]=1;save();syncUp()}
@@ -1857,7 +1871,7 @@ H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${w.art} ${w.w}`,full=e
   bindHelp();const inp=$('#ans');setTimeout(()=>{try{inp.focus({preventScroll:true})}catch(e){}},80);
   if(nlOnly()&&!g){setTimeout(()=>say(fullT),250);$('#sp').onclick=()=>say(fullT);$('#sps').onclick=()=>say(fullT,true)}
   $('#hint').onclick=()=>{hint=Math.min(3,hint+1);$('#hs').textContent=g?(hint===1?`Begint met: ${w.w[0]}…`:hint===2?`${w.w.slice(0,Math.ceil(w.w.length/2))}…`:w.w):hint===1?`Lidwoord: ${w.art}`:hint===2?`${w.art} ${w.w[0]}…`:fullT;if(hint===3)$('#hint').disabled=true};
-  const done=(wordOk,artOk,msg)=>{const clean=wordOk&&artOk&&tries===1&&hint<3;score(clean,hint===0?10:hint===1?7:4);review(w.id,clean,'typen');if(clean)grown.push(w.id);
+  const done=(wordOk,artOk,msg)=>{const clean=wordOk&&artOk&&tries===1&&hint<3;score(clean,hint===0?10:hint===1?7:4);review(w.id,clean?true:wordOk&&artOk?'retry':false,'typen');if(clean)grown.push(w.id);
     $('#fb').innerHTML=fbBox(wordOk&&artOk,msg,'');say(gapFull(w));inp.disabled=true;$('#hint').disabled=true;
     const c=$('#chk');if(c)c.outerHTML=nextBtn(wordOk&&artOk?'btn-leaf':'btn-main');else $('#fb').insertAdjacentHTML('beforeend',nextBtn(wordOk&&artOk?'btn-leaf':'btn-main'));$('#nx').onclick=next};
   const checkGap=()=>{let a=norm(inp.value);if(!a)return;
@@ -1876,7 +1890,7 @@ H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${w.art} ${w.w}`,full=e
     if(ok){msg=`<b>${full}</b>. ${esc(w.ex)}`;th=ts('recall.yes',{full})}
     else if(a===norm(w.w)){msg=t('recall.addArt',{art:w.art,full});th=ts('recall.addArt',{art:w.art,full})}
     else if(a.endsWith(norm(w.w))){msg=t('recall.wrongArt',{art:w.art,full});th=ts('recall.wrongArt',{art:w.art,full})}
-    if(ok||tries>1||msg){const clean=ok&&tries===1&&hint<3;score(clean,hint===0?10:hint===1?7:4);review(w.id,clean,'typen');if(clean)grown.push(w.id);
+    if(ok||tries>1||msg){const clean=ok&&tries===1&&hint<3;score(clean,hint===0?10:hint===1?7:4);review(w.id,clean?true:ok?'retry':false,'typen');if(clean)grown.push(w.id);
       $('#fb').innerHTML=fbBox(ok,msg||`${t('recall.answer',{full})} ${esc(w.ex)}`,th||ts('recall.answer',{full}));say(fullT);inp.disabled=true;$('#hint').disabled=true;
       $('#chk').outerHTML=nextBtn(ok?'btn-leaf':'btn-main');$('#nx').onclick=next}
     else $('#fb').innerHTML=fbK(false,'try.again')};
@@ -1891,21 +1905,21 @@ H.build=q=>{const s=q.s;let pool=shuffle(s.parts);if(pool.join()===s.parts.join(
     app.querySelectorAll('[data-take]').forEach(b=>b.onclick=()=>{chosen.push(pool.splice(+b.dataset.take,1)[0]);draw()});
     app.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>{pool.push(chosen.splice(+b.dataset.back,1)[0]);draw()});
     $('#chk').onclick=()=>{if(pool.length)return;const right=s.parts.join(' ');
-      if(chosen.join(' ')===right){score(first,15);say(right);$('#fb').innerHTML=fbBox(true,`<b>${esc(right)}</b> ${t('build.ok',{verb:esc(s.verb)})}`,ts('build.ok',{verb:esc(s.verb)}));$('#chk').outerHTML=nextBtn();$('#nx').onclick=next}
+      if(chosen.join(' ')===right){score(first,15);practiced(q,first,'build');say(right);$('#fb').innerHTML=fbBox(true,`<b>${esc(right)}</b> ${t('build.ok',{verb:esc(s.verb)})}`,ts('build.ok',{verb:esc(s.verb)}));$('#chk').outerHTML=nextBtn();$('#nx').onclick=next}
       else{first=false;const vi=chosen.indexOf(s.verb);pool=shuffle(s.parts);chosen=[];draw(fbK(false,vi!==1?'build.verbPos':'build.rest'))}}};
   draw()};
 H.gap=q=>{let first=true;
   frame(`<div class="card stack">${T('gap.title')}<p class="prompt">${q.s.replace('___','<span class="slot s2">___</span>')}</p>${supSpan(L_(q))}
   <div class="choices">${q.o.map(o=>`<button class="choice" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="fb"></div>${helpBtn('Gatentekst: '+q.s)}</div>`,'Oefenen',q.step);
   bindHelp();app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o===q.a;b.classList.add(ok?'right':'wrong');
-    if(ok){score(first,10);say(q.s.replace('___',q.a));$('#fb').innerHTML=fbBox(true,M_(q,'why'),L_(q,'why'))+nextBtn();$('#nx').onclick=next}
+    if(ok){score(first,10);practiced(q,first,'gap');say(q.s.replace('___',q.a));$('#fb').innerHTML=fbBox(true,M_(q,'why'),L_(q,'why'))+nextBtn();$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbBox(false,M_(q,'hint'),L_(q,'hint'))}})};
 H.listen=q=>{const p=q.p,L=q.lang||'nl';let first=true;
   frame(`<div class="card stack">${T('listen.title')}<p class="muted">${T('listen.tip')}</p>${speakBtns('sp','sps')}
   <div class="choices">${p.opts.map((o,i)=>`<button class="choice" data-o="${i}"${L==='en'?' lang="en"':''}>${esc(o)}${(x=>x&&x!==o?supSpan(x):'')((L_(p)||[])[i])}</button>`).join('')}</div><div id="fb"></div>${helpBtn('Luisteren: '+p.opts.join(' / '))}</div>`,L==='en'?'Engels · luisteren':'Luisteren',q.step);
   bindHelp();setTimeout(()=>say(p.say,false,L),350);$('#sp').onclick=()=>say(p.say,false,L);$('#sps').onclick=()=>say(p.say,true,L);
   app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=p.opts[+b.dataset.o]===p.say;b.classList.add(ok?'right':'wrong');
-    if(ok){score(first,10);$('#fb').innerHTML=fbBox(true,M_(p,'why'),L_(p,'why'))+nextBtn(L==='en'?'btn-sky':'');$('#nx').onclick=next}
+    if(ok){score(first,10);practiced(q,first,'listen');$('#fb').innerHTML=fbBox(true,M_(p,'why'),L_(p,'why'))+nextBtn(L==='en'?'btn-sky':'');$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbBox(false,t('listen.again')+' '+M_(p,'why'),(ts('listen.again')+' '+L_(p,'why')).trim())}})};
 function inOrder(t,a){const L=Array.from({length:t.length+1},()=>Array(a.length+1).fill(0));for(let i=t.length-1;i>=0;i--)for(let j=a.length-1;j>=0;j--)L[i][j]=t[i]===a[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);const hit=t.map(()=>false);let i=0,j=0;while(i<t.length&&j<a.length){if(t[i]===a[j]){hit[i]=true;i++;j++}else if(L[i+1][j]>=L[i][j+1])i++;else j++}return hit}
 H.dictee=q=>{let done=false;
@@ -1914,7 +1928,7 @@ H.dictee=q=>{let done=false;
   bindHelp();setTimeout(()=>say(DICTEE.t),350);$('#sp').onclick=()=>say(DICTEE.t);$('#sps').onclick=()=>say(DICTEE.t,true);
   const check=()=>{if(done)return;const a=norm($('#ans').value).split(' '),t=norm(DICTEE.t).split(' ');if(!a[0])return;done=true;
     const hit=inOrder(t,a),good=hit.filter(Boolean).length;const marks=t.map((w,i)=>`<span class="slot ${hit[i]?'s3':'s2'}">${esc(w)}</span>`).join(' ');const ok=good===t.length&&a.length===t.length;
-    score(ok,15,ok?0:Math.round(good/t.length*10));
+    score(ok,15,ok?0:Math.round(good/t.length*10));practiced(q,ok,'dictee');
     $('#fb').innerHTML=fbBox(ok,`${good} van ${t.length} woorden goed.<br>${marks}`,L_(DICTEE))+nextBtn();$('#nx').onclick=next};
   $('#chk').onclick=check;$('#ans').onkeydown=e=>{if(e.key==='Enter')check()}};
 H.money=q=>{let first=true;const d=q.d,coin=c=>c>=500?`<span class="bill">€ ${c/100}</span>`:c>=100?`<span class="coin">€ ${c/100}</span>`:`<span class="coin small">${c} ct</span>`;
@@ -1922,7 +1936,7 @@ H.money=q=>{let first=true;const d=q.d,coin=c=>c>=500?`<span class="bill">€ ${
   <div class="coins" role="img" aria-label="${esc(d.alt)}">${d.coins.map(coin).join('')}</div>
   <div class="choices">${d.o.map(o=>`<button class="choice num" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="fb"></div></div>`,'Rekenen',q.step);
   app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o===d.a;b.classList.add(ok?'right':'wrong');
-    if(ok){score(first,10);d.items.forEach(id=>review(id,first,'geld'));if(first)grown.push(d.items[0]);$('#fb').innerHTML=fbK(true,'money.ok')+nextBtn();$('#nx').onclick=next}
+    if(ok){score(first,10);practiced({items:d.items,exid:q.exid},first,'geld');if(first)grown.push(d.items[0]);$('#fb').innerHTML=fbK(true,'money.ok')+nextBtn();$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbK(false,'money.tip')}})};
 function clockSvg(h,m){const hand=(ang,len,w,c)=>{const r=(ang-90)*Math.PI/180;return `<line x1="75" y1="75" x2="${(75+Math.cos(r)*len).toFixed(1)}" y2="${(75+Math.sin(r)*len).toFixed(1)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`};
   let t='';for(let i=0;i<12;i++){const r=(i*30-90)*Math.PI/180;t+=`<line x1="${(75+Math.cos(r)*57).toFixed(1)}" y1="${(75+Math.sin(r)*57).toFixed(1)}" x2="${(75+Math.cos(r)*64).toFixed(1)}" y2="${(75+Math.sin(r)*64).toFixed(1)}" stroke="var(--ink-2)" stroke-width="${i%3?2:3.5}" stroke-linecap="round"/>`}
@@ -1930,14 +1944,14 @@ function clockSvg(h,m){const hand=(ang,len,w,c)=>{const r=(ang-90)*Math.PI/180;r
 H.clock=q=>{let first=true;const c=q.c;
   frame(`<div class="card stack">${bi(`<h2>${c.q}</h2>`,L_(c,'q'))}${clockSvg(c.h,c.m)}<div class="choices">${c.o.map(o=>`<button class="choice" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="fb"></div></div>`,'Rekenen',q.step);
   app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o===c.a;b.classList.add(ok?'right':'wrong');
-    if(ok){score(first,10);review('r-klok',first,'klok');if(first)grown.push('r-klok');say(c.a);$('#fb').innerHTML=fbBox(true,M_(c,'why'),L_(c,'why'))+nextBtn();$('#nx').onclick=next}
+    if(ok){score(first,10);practiced(q.items&&q.items.length?q:{items:['r-klok'],exid:q.exid},first,'klok');if(first)grown.push('r-klok');say(c.a);$('#fb').innerHTML=fbBox(true,M_(c,'why'),L_(c,'why'))+nextBtn();$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbK(false,'clock.tip')}})};
 H.discount=q=>{
   if(q.k==='worked'){frame(`<div class="card stack">${T('discount.title')}<p>${T('discount.watch')}</p>
     <div class="receipt" role="img" aria-label="Kassabon: jas 60 euro, korting 10 procent is 6 euro, totaal 54 euro"><div class="r"><span>Jas</span><span class="num">€ 60,00</span></div><div class="r"><span>Korting 10%</span><span class="num">− € 6,00</span></div><hr><div class="r"><b>Totaal</b><b class="num">€ 54,00</b></div></div>
     <div class="worked"><div class="ln"><b>1</b>${T('discount.step1')}</div><div class="ln"><b>2</b>${T('discount.step2')}</div><div class="ln"><b>3</b>${T('discount.step3')}</div></div>
     <div class="note">${T('discount.comma')}</div></div>${nextBtn()}`,'Rekenen',q.step);
-    $('#nx').onclick=()=>{review('r-10',true,'voorbeeld');next()};return}
+    $('#nx').onclick=()=>{introduce('r-10','voorbeeld');next()};return}
   const own=q.k==='own';let first=true,tries=0;
   const it=own?{k:'disc.own',a:64,lbl:'Je betaalt (euro)'}
     :{k:'disc.part',a:10,lbl:'Korting (euro)'};
@@ -1947,8 +1961,8 @@ H.discount=q=>{
   bindHelp();$('#hint').onclick=()=>{$('#hs').innerHTML=T(it.k+'.tip')};
   const check=()=>{const raw=$('#ans').value.replace('€','').trim();if(!raw)return;const dot=/\.\d{2}$/.test(raw);const amt=raw.replace(/\s*euro$/i,'').replace(/,[-–]$/,'').trim(),v=/^\d+(?:[.,]\d{1,2})?$/.test(amt)?Number(amt.replace(',','.')):/^\d{1,3}(?:\.\d{3})+(?:,\d{1,2})?$/.test(amt)?Number(amt.replace(/\./g,'').replace(',','.')):NaN;const ok=Math.abs(v-it.a)<.001;
     if(Number.isNaN(v)){$('#fb').innerHTML=fbK(false,'disc.amountOnly');return}
-    if(ok){score(first,own?20:15);review(own?'r-10':'r-25',first,'korting');if(first)grown.push(own?'r-10':'r-25');$('#fb').innerHTML=fbBox(true,t(it.k+'.ok')+(dot?' '+t('disc.comma',{a:it.a}):''),ts(it.k+'.ok')+(dot?' '+ts('disc.comma',{a:it.a}):''));$('#chk').outerHTML=nextBtn();$('#nx').onclick=next;$('#ans').disabled=true}
-    else{first=false;tries++;if(tries>=3){review(own?'r-10':'r-25',false,'korting');$('#fb').innerHTML=fbK(false,it.k+'.together');$('#chk').outerHTML=nextBtn('btn-main');$('#nx').onclick=next;$('#ans').disabled=true;return}const mk=own&&Math.abs(v-16)<.01?'disc.isDiscount':!own&&Math.abs(v-30)<.01?'disc.isPrice':'disc.hintAgain';$('#fb').innerHTML=fbK(false,mk)}};
+    if(ok){score(first,own?20:15);review(own?'r-10':'r-25',first,'korting',q.exid);if(first)grown.push(own?'r-10':'r-25');$('#fb').innerHTML=fbBox(true,t(it.k+'.ok')+(dot?' '+t('disc.comma',{a:it.a}):''),ts(it.k+'.ok')+(dot?' '+ts('disc.comma',{a:it.a}):''));$('#chk').outerHTML=nextBtn();$('#nx').onclick=next;$('#ans').disabled=true}
+    else{first=false;tries++;if(tries>=3){review(own?'r-10':'r-25',false,'korting',q.exid);$('#fb').innerHTML=fbK(false,it.k+'.together');$('#chk').outerHTML=nextBtn('btn-main');$('#nx').onclick=next;$('#ans').disabled=true;return}const mk=own&&Math.abs(v-16)<.01?'disc.isDiscount':!own&&Math.abs(v-30)<.01?'disc.isPrice':'disc.hintAgain';$('#fb').innerHTML=fbK(false,mk)}};
   $('#chk').onclick=check;$('#ans').onkeydown=e=>{if(e.key==='Enter')check()}};
 H.conf=q=>{frame(`<div class="card stack">${T('conf.title')}<p class="muted">${T('conf.tip')}</p>
   <div class="conf"><button class="btn btn-leaf" data-c="zeker">${T('conf.sure')}</button><button class="btn btn-ghost" data-c="twijfel">${T('conf.doubt')}</button></div></div>`,'Afsluiten',q.step);
@@ -1974,14 +1988,14 @@ H.enrecall=q=>{const w=q.w;let done=false,hint=0;
   <div class="hint-row"><button class="hintbtn" id="hint">${T('btn.hint')}</button><span class="hintshow" id="hs"></span></div>
   <div id="fb"></div><button class="btn btn-sky" id="chk">${T('en.check')}</button>${helpBtn('Engels woord: '+w.w)}</div>`,'English',q.step);
   bindHelp();$('#hint').onclick=()=>{hint=Math.min(2,hint+1);$('#hs').textContent=hint===1?`${w.w[0]}… (${w.w.length} letters)`:w.w};
-  const check=()=>{if(done)return;const a=norm($('#ans').value).replace(/^(a|an|the|to) /,'');if(!a)return;done=true;const ok=a===w.w,clean=ok&&hint<2;score(clean,hint?6:10);review(w.id,clean,'typen');if(clean)grown.push(w.id);
+  const check=()=>{if(done)return;const a=norm($('#ans').value).replace(/^(a|an|the|to) /,'');if(!a)return;done=true;const ok=a===w.w,clean=ok&&hint<2;score(clean,hint?6:10);review(w.id,clean?true:ok?'retry':false,'typen');if(clean)grown.push(w.id);
     $('#fb').innerHTML=fbBox(ok,`<b lang="en">${esc(w.w)}</b>. <span lang="en">${esc(w.ex)}</span>`,supL()==='en'?'':ok?ts('fb.ok'):ts('recall.answer',{full:esc(w.w)}));say(`${w.w}. ${w.ex}`,false,'en');$('#chk').outerHTML=nextBtn('btn-sky');$('#nx').onclick=next;$('#ans').disabled=true};
   $('#chk').onclick=check;$('#ans').onkeydown=e=>{if(e.key==='Enter')check()}};
 H.engap=q=>{const x=q.x;let first=true;
   frame(`<div class="card stack">${T('en.choose')}<p class="prompt" lang="en">${esc(x.s).replace('___','<span class="slot s1">___</span>')}</p><p class="muted small">${esc(x.nl)}</p>${supSpan(L_(x))}
   <div class="choices">${x.o.map(o=>`<button class="choice" data-o="${esc(o)}" lang="en">${esc(o)}</button>`).join('')}</div><div id="fb"></div>${helpBtn('Engels: '+x.s)}</div>`,'English',q.step);
   bindHelp();app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o===x.a;b.classList.add(ok?'right':'wrong');
-    if(ok){score(first,10);say(x.s.replace('___',x.a),false,'en');$('#fb').innerHTML=fbBox(true,M_(x,'why'),L_(x,'why'))+nextBtn('btn-sky');$('#nx').onclick=next}
+    if(ok){score(first,10);practiced(q,first,'gap');say(x.s.replace('___',x.a),false,'en');$('#fb').innerHTML=fbBox(true,M_(x,'why'),L_(x,'why'))+nextBtn('btn-sky');$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbBox(false,M_(x,'hint'),L_(x,'hint'))}})};
 
 /* ============ verhaal ============ */

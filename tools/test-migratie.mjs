@@ -6,13 +6,14 @@ let fails = 0; const ok = (n, v) => { if (!v) fails++; console.log((v ? 'OK  ' :
 const KEY = 'tonaor-leert-v2';
 const cut = (from, to) => { const a = h.indexOf(from); const b = h.indexOf(to, a); if (a < 0 || b < 0) throw new Error('niet gevonden: ' + from); return h.slice(a, b + to.length); };
 const boot = cut('const SCHEMA=', '})();');
+const SCH = +h.match(/const SCHEMA=([0-9]+)/)[1];
 const fnLine = name => { const a = h.indexOf('function ' + name + '('); return h.slice(a, h.indexOf('\n', a)); };
 const saveFn = fnLine('save');
 const restore = fnLine('parseBackup') + '\n' + h.slice(h.indexOf('function parseBackup('), h.indexOf('function pickFile(')).split('\n').slice(1).join('\n');
 
 // vaste voorbeeldopslag
 const OLD = { v: 2, onboarded: true, thai: 'altijd', items: { werk: { s: 3, due: 1, reps: 4, lapses: 1, forms: ['typen'] } }, points: { 1: 30 }, code2: 'ABCD-EFGH', v2ok: true, help: [], answers: [] };
-const CUR = { ...OLD, v2ok: undefined, v2seen: 5, tl1off: true, profile: { name: '' }, learn: 'nl', sup: 'en', schema: 3 };
+const CUR = { ...OLD, v2ok: undefined, v2seen: 5, tl1off: true, profile: { name: '' }, learn: 'nl', sup: 'en', schema: SCH };
 delete CUR.v2ok;
 const FUT = { ...CUR, schema: 99, nieuwVeld: [1, 2, 3] };
 
@@ -29,7 +30,7 @@ const raw = o => JSON.stringify(o);
 let r = run({ [KEY]: raw(OLD) });
 ok('zonder schema: geladen als ok', r.STORE === 'ok');
 ok('zonder schema: reservekopie is precies de oude opslag', r.ls._[KEY + '.bak'] === raw(OLD));
-ok('zonder schema: gemigreerd naar het huidige schema (3) en weggeschreven', r.S.schema === 3 && JSON.parse(r.ls._[KEY]).schema === 3);
+ok('zonder schema: gemigreerd naar het huidige schema en weggeschreven', r.S.schema === SCH && JSON.parse(r.ls._[KEY]).schema === SCH);
 ok('migratie: profiel, talen en TL1-vlag aangevuld', r.S.profile && r.S.learn === 'nl' && r.S.sup === 'th' && r.S.tl1off === true && !('v2ok' in r.S));
 ok('migratie: voortgang en koppelcode blijven', r.S.items.werk.reps === 4 && r.S.points[1] === 30 && r.S.code2 === 'ABCD-EFGH');
 ok('migratie is herhaalbaar (idempotent)', JSON.stringify(r.ctx.migrate(JSON.parse(JSON.stringify(r.S)))) === JSON.stringify(r.S));
@@ -61,7 +62,7 @@ let p = r.ctx.parseBackup(file);
 ok('bestand: geldig reservekopiebestand gelezen, met datum', p.data && p.data.items.werk && p.saved === Date.parse('2026-11-13T10:00:00Z'));
 ok('bestand: kale opslag mag ook', !!r.ctx.parseBackup(raw(CUR)).data);
 ok('bestand: onleesbaar, ongeldig en nieuwer worden geweigerd', r.ctx.parseBackup('xx').err === 'bk.err.read' && r.ctx.parseBackup(raw({ a: 1 })).err === 'bk.err.invalid' && r.ctx.parseBackup(raw({ kind: 'reservekopie', data: FUT })).err === 'bk.err.newer');
-ok('terugzetten: huidige stand eerst naar de reservekopie, daarna gemigreerd weggeschreven', r.ctx.writeRestored(p.data, KEY + '.bak') && r.ls._[KEY + '.bak'] === raw(CUR) && JSON.parse(r.ls._[KEY]).schema === 3 && JSON.parse(r.ls._[KEY]).items.werk.reps === 4);
+ok('terugzetten: huidige stand eerst naar de reservekopie, daarna gemigreerd weggeschreven', r.ctx.writeRestored(p.data, KEY + '.bak') && r.ls._[KEY + '.bak'] === raw(CUR) && JSON.parse(r.ls._[KEY]).schema === SCH && JSON.parse(r.ls._[KEY]).items.werk.reps === 4);
 
 // 7. migratiestappen compleet; een fout in een stap geeft het herstelscherm en schrijft niets weg
 r = run({ [KEY]: raw(CUR) });
@@ -72,20 +73,26 @@ r = run({ [KEY]: raw({ ...OLD, schema: 1 }) }, b => b.replace("const MIGRATE={",
 ok('ontbrekende migratiestap: herstelstand, opslag onaangeroerd', r.STORE === 'broken' && r.ls._[KEY] === raw({ ...OLD, schema: 1 }));
 
 // 8. ontbrekende velden worden aangevuld, niets overschreven
-const ZONDER = { v: 2, schema: 3, items: { werk: { s: 1, reps: 2 } }, points: { 1: 5 } };
+const ZONDER = { v: 2, schema: SCH, items: { werk: { s: 1, reps: 2 } }, points: { 1: 5 } };
 r = run({ [KEY]: raw(ZONDER) });
 ok('ontbrekend veld (log) aangevuld, bestaand veld (points) niet overschreven', Array.isArray(r.S.log) && r.S.points[1] === 5);
 
 // 8b. stap 2 → 3: standaard weekdoel 7 → 10 uur, een eigen keuze blijft
 r = run({ [KEY]: raw({ ...CUR, schema: 2, weekGoal: 420 }) });
-ok('schema 2 met 7 uur zonder eigen keuze: wordt 10 uur, met reservekopie', r.S.weekGoal === 600 && r.S.schema === 3 && JSON.parse(r.ls._[KEY + '.bak']).weekGoal === 420);
+ok('schema 2 met 7 uur zonder eigen keuze: wordt 10 uur, met reservekopie', r.S.weekGoal === 600 && r.S.schema === SCH && JSON.parse(r.ls._[KEY + '.bak']).weekGoal === 420);
 r = run({ [KEY]: raw({ ...CUR, schema: 2, weekGoal: 420, weekGoalSet: true }) });
-ok('schema 2 met zelf gekozen 7 uur: blijft 7 uur', r.S.weekGoal === 420 && r.S.schema === 3);
+ok('schema 2 met zelf gekozen 7 uur: blijft 7 uur', r.S.weekGoal === 420 && r.S.schema === SCH);
 r = run({ [KEY]: raw({ ...CUR, schema: 2, weekGoal: 300 }) });
 ok('schema 2 met 5 uur: blijft 5 uur', r.S.weekGoal === 300);
 
+// 8c. stap 3 → 4: elk item krijgt exs, verder blijft alles staan
+r = run({ [KEY]: raw({ ...CUR, schema: 3, items: { werk: { s: 9, due: 5, reps: 7, lapses: 2, forms: ['herkennen', 'typen'] } } }) });
+ok('schema 3 → 4: item houdt s, due, reps, lapses en forms, en krijgt exs', (w => w.s === 9 && w.due === 5 && w.reps === 7 && w.lapses === 2 && w.forms.length === 2 && Array.isArray(w.exs) && !w.exs.length)(r.S.items.werk) && r.S.schema === SCH);
+r = run({ [KEY]: raw({ ...CUR, schema: 3, items: { werk: { s: 2, exs: ['nl.zin.1'] } } }) });
+ok('schema 3 → 4 is herhaalbaar: bestaande exs blijft', r.S.items.werk.exs[0] === 'nl.zin.1');
+
 // 9. terugzetten vanaf Ik zet de oude koppeling (TL1) nooit opnieuw aan; in het herstelscherm is het bestand leidend
-const ZONDERHELLO = { v: 2, schema: 3, items: { werk: { s: 1 } }, code: 'oud-1234', code2: 'NIEUW' };
+const ZONDERHELLO = { v: 2, schema: SCH, items: { werk: { s: 1 } }, code: 'oud-1234', code2: 'NIEUW' };
 r = run({ [KEY]: raw(CUR) });
 ok('terugzetten vanaf Ik: tl1off blijft aan en v2seen blijft het laatste', r.ctx.writeRestored(ZONDERHELLO, KEY + '.bak', true) && JSON.parse(r.ls._[KEY]).tl1off === true && JSON.parse(r.ls._[KEY]).v2seen === 5);
 r = run({ [KEY]: raw(CUR) });
