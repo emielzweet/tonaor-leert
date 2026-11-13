@@ -19,6 +19,30 @@ const thai = (x, w) => { if (x && typeof x.th === 'string' && x.th && !THAI.test
 const OK_CAPS = new Set(['Nederland', 'Nederlands', 'Nederlandse', 'Engels', 'Engelse', 'Thais', 'Thaise', 'Ik', 'U', 'Uw']);
 const names = (s, w) => { if (typeof s !== 'string') return; const m = s.replace(/<[^>]+>/g, '').match(/(?<![.!?:]\s|^|[„“"'(]\s?)\b[A-ZÀ-Ý][a-zà-ÿ]{2,}\b/g); (m || []).filter(x => !OK_CAPS.has(x)).forEach(x => Wn(w, 'mogelijk een eigennaam: ' + x)); };
 
+const ERRS = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen'];
+// een keuze: t, r, why in drie talen, en bij een foute keuze het soort fout
+const opt = (q, w) => {
+  if (!['ok', 'near', 'no'].includes(q.r)) E(w, 'r ongeldig');
+  if (typeof q.t !== 'string' || !q.t.trim() || q.t.length > 70) E(w, 't ontbreekt of is langer dan 70 tekens');
+  txt(q.why, w + '.why'); thai(q.why, w); names(q.t, w);
+  if (q.r !== 'ok' && !ERRS.includes(q.err)) E(w, 'err (soort fout) ontbreekt of staat niet in de lijst');
+};
+// een vraag in quiz, rule of extra; geeft 1 terug als het een geldig antwoordmoment is
+let itemIdsRef = null, useRef = null;
+const question = (q, w, sid, nosup) => {
+  if (!q || typeof q !== 'object') { E(w, 'vraag ontbreekt'); return 0; }
+  if (!['choose', 'hear', 'type', 'number'].includes(q.form)) E(w, 'form moet choose, hear, type of number zijn');
+  if (!Array.isArray(q.items) || !q.items.length) E(w, 'items ontbreekt'); else for (const t of q.items) { if (!itemIdsRef.has(t)) E(w, 'item bestaat niet: ' + t); else useRef(t, sid); }
+  txt(q.ask, w + '.ask', nosup ? ['nl'] : LANGS);
+  if (q.form === 'choose' || q.form === 'hear') {
+    const o = q.opts || [];
+    if (o.length < 2 || o.length > 4) E(w, 'twee tot vier keuzes');
+    if (o.filter(x => x.r === 'ok').length !== 1) E(w, 'precies één keuze moet ok zijn');
+    o.forEach((x, k) => opt(x, w + '.opts[' + k + ']'));
+  } else { if (q.answer == null || String(q.answer).trim() === '') E(w, 'answer ontbreekt'); txt(q.why, w + '.why'); }
+  return 1;
+};
+
 if (p.format !== 1) E('pakket', 'format moet 1 zijn');
 if (!ID.test(p.id || '')) E('pakket', 'id ontbreekt of heeft verboden tekens');
 txt(p.title, 'pakket.title');
@@ -48,6 +72,7 @@ if (words.length < 20 || words.length > 32) E('items', 'verwacht 20 tot 32 woord
 // ---- scenes ----
 const scenes = Array.isArray(p.scenes) ? p.scenes : [], seen = new Map(), sceneIds = new Set();
 const use = (id, sc) => { if (!seen.has(id)) seen.set(id, new Set()); seen.get(id).add(sc); };
+itemIdsRef = itemIds; useRef = use;
 const nlScenes = scenes.filter(s => s && s.subject === 'nl');
 if (nlScenes.length !== 5) E('scenes', 'verwacht vijf scènes Nederlands, gevonden ' + nlScenes.length);
 if (!scenes.some(s => s && s.subject === 'rk')) E('scenes', 'rekenscène ontbreekt');
@@ -70,8 +95,31 @@ for (const s of scenes) {
   if (!st.some(x => ['do', 'make'].includes(x.type))) E(w, 'geen stap waarin de leerder iets doet of maakt');
   if (s.subject === 'nl' && s.n >= 3 && !st.some(x => x.type === 'make')) E(w, 'scène 3 tot 5 heeft een stap make nodig (afmaken of zelf maken)');
   if (s.subject === 'nl' && s.n >= 2 && !st.some(x => x.type === 'slot')) Wn(w, 'geen open plek (slot) voor herhaling');
+  let moments = 0, turns = 0; const roles = new Set();
   st.forEach((x, i) => {
     const ws = w + '.steps[' + i + '] ' + x.type;
+    if (x.type === 'talk') { moments += (x.turns || []).length; turns += (x.turns || []).length; }
+    if (['do', 'make'].includes(x.type)) moments++;
+    if (x.type === 'read' || x.type === 'listen') moments += (x.q || []).length;
+    if (x.type === 'quiz') {
+      if (!['instap', 'ophalen', 'controle'].includes(x.role)) E(ws, 'role moet instap, ophalen of controle zijn'); else roles.add(x.role);
+      if (!Array.isArray(x.q) || !x.q.length) E(ws, 'q ontbreekt');
+      (x.q || []).forEach((q, k) => { moments += question(q, ws + '.q[' + k + ']', s.id, x.role !== 'ophalen'); });
+      if (x.role === 'controle' && (x.q || []).length !== 2) E(ws, 'de controle heeft precies twee vragen');
+    }
+    if (x.type === 'rule') {
+      if (!Array.isArray(x.items) || !x.items.length) E(ws, 'items (de regel) ontbreekt'); else for (const t of x.items) { if (!itemIds.has(t)) E(ws, 'item bestaat niet: ' + t); else use(t, s.id); }
+      txt(x.example, ws + '.example'); thai(x.example, ws + '.example');
+      if (!Array.isArray(x.q) || x.q.length < 3) E(ws, 'minstens drie oefeningen');
+      (x.q || []).forEach((q, k) => { moments += question(q, ws + '.q[' + k + ']', s.id); });
+      const helps = (x.q || []).map(q => q.help); if (helps.some(h => ![0, 1, 2].includes(h))) E(ws, 'elke oefening heeft help 0, 1 of 2'); else if (helps[helps.length - 1] !== 0 || helps.some((h, k) => k && h > helps[k - 1])) E(ws, 'de hulp moet afbouwen en eindigen op 0');
+    }
+    if (x.type === 'extra') {
+      if (!ERRS.includes(x.err)) E(ws, 'err ontbreekt of staat niet in de lijst');
+      txt(x.explain, ws + '.explain'); thai(x.explain, ws + '.explain');
+      if (!Array.isArray(x.q) || x.q.length < 2) E(ws, 'minstens twee oefeningen');
+      (x.q || []).forEach((q, k) => question(q, ws + '.q[' + k + ']', s.id));
+    }
     const its = x.items || [];
     if (['do', 'make', 'read', 'listen'].includes(x.type)) { if (!its.length) E(ws, 'items ontbreekt (doel op de eerste plek)'); }
     for (const t of its) { if (!itemIds.has(t)) E(ws, 'item bestaat niet: ' + t); else use(t, s.id); }
@@ -85,7 +133,7 @@ for (const s of scenes) {
         if (o.length !== 3) E(wt, 'verwacht drie keuzes');
         if (o.filter(q => q.r === 'ok').length !== 1) E(wt, 'precies één keuze moet ok zijn');
         if (j === 0 && o[0] && o[0].r === 'ok') Wn(wt, 'het goede antwoord staat vooraan');
-        o.forEach((q, k) => { if (!['ok', 'near', 'no'].includes(q.r)) E(wt, 'keuze ' + k + ': r ongeldig'); if (typeof q.t !== 'string' || !q.t.trim() || q.t.length > 70) E(wt, 'keuze ' + k + ': t ontbreekt of is langer dan 70 tekens'); txt(q.why, wt + '.opts[' + k + '].why'); thai(q.why, wt + '.opts[' + k + ']'); names(q.t, wt + '.opts[' + k + ']'); });
+        o.forEach((q, k) => opt(q, wt + '.opts[' + k + ']'));
       });
     }
     if (x.type === 'do') { txt(x.ask, ws + '.ask'); txt(x.why, ws + '.why'); if (x.answer == null && !x.gen && !x.opts) E(ws, 'answer, opts of gen ontbreekt'); }
@@ -93,6 +141,17 @@ for (const s of scenes) {
     if (x.type === 'read') { if (!x.text || typeof x.text.nl !== 'string') E(ws, 'text.nl ontbreekt'); if (!Array.isArray(x.q) || x.q.length < 2) E(ws, 'minstens twee vragen'); if (s.subject === 'kn' && (!Array.isArray(x.sources) || !x.sources.length)) E(ws, 'een kennisles heeft bronnen nodig (sources)'); }
     if (x.type === 'end') { txt(x.next, ws + '.next'); txt(x.real, ws + '.real'); }
   });
+  // diepte (docs/scenes.md, Diepte en diagnose)
+  if (s.subject === 'nl') {
+    if (moments < 18) E(w, 'te dun: ' + moments + ' antwoordmomenten, minstens 18 nodig');
+    if (turns < 4) E(w, 'het gesprek heeft ' + turns + ' beurten, minstens vier nodig');
+    for (const r of ['instap', 'ophalen', 'controle']) if (!roles.has(r)) E(w, 'quiz met role ' + r + ' ontbreekt');
+    if (!st.some(x => x.type === 'rule')) E(w, 'stap rule (taal uit de tekst) ontbreekt');
+    if (!st.some(x => x.type === 'extra')) E(w, 'stap extra (bij een herhaalde fout) ontbreekt');
+  } else {
+    if (moments < 8) E(w, 'te dun: ' + moments + ' antwoordmomenten, minstens 8 nodig');
+    if (!roles.has('controle')) E(w, 'quiz met role controle ontbreekt');
+  }
 }
 
 // ---- dekking: elk woord in minstens twee scènes; elk woord minstens één keer ----

@@ -75,6 +75,27 @@ Vier lagen. De eerste bestaat en is uitgebracht; de andere drie zijn nieuw.
 
 Onderbouwing: eerst zelf ophalen, uitgewerkte voorbeelden die afbouwen, een slagingskans van 80 tot 90 procent, en toetsen die het vervolg bepalen (`docs/kwaliteitskader.md`, `docs/onderzoek-beloning.md`). De drempels (tweede fout van dezelfde soort, twee extra oefeningen, twee controlevragen) zijn aannames, te toetsen in de proefweek.
 
+### De stappen voor diepte en diagnose
+
+Drie soorten stappen naast die in de tabel hierboven. Een **vraag** heeft overal dezelfde vorm:
+
+```json
+{ "items": ["doel-id"], "form": "choose" | "hear" | "type" | "number",
+  "ask": Tekst,
+  "opts": [ { "t": "…", "r": "ok" | "near" | "no", "err": "soort fout", "why": Tekst } ],
+  "answer": "…", "why": Tekst, "help": 0 | 1 | 2 }
+```
+
+`choose` en `hear` (eerst horen, dan kiezen) hebben `opts` met precies één `ok`; `type` en `number` hebben `answer` en één `why`. `help` zegt hoeveel hulp de vraag geeft (2 = half ingevuld, 0 = geen), voor de afbouw.
+
+| `type` | Wat | Velden |
+|---|---|---|
+| `quiz` | een rij korte vragen | `role`: `instap` (weet je het al, zonder steun), `ophalen` (meteen na het kijken) of `controle` (twee vragen aan het eind, zonder hint en zonder steuntaal); `q[]` |
+| `rule` | taal uit de tekst: een uitgewerkt voorbeeld en oefeningen die afbouwen | `items` (de regel), `example` (Tekst: het voorbeeld met de regel in één zin), `q[]` met `help` 2, 1, 0 |
+| `extra` | alleen getoond na een tweede fout van dezelfde soort | `err`, `explain` (Tekst, kort), `q[]` (minstens twee) |
+
+Ook de keuzes in een gesprek (`talk`) krijgen bij `near` en `no` een `err`. Een scène kan `"nosup": true` hebben: de steuntaal verschijnt dan pas na de eerste poging (scène 5). Rekenen gebruikt `quiz` met `form: "number"` voor uitrekenen, en `do` voor het handelen (geld leggen, de klok zetten). Een rekenscène en een kennisles hebben geen `n`.
+
 ### Extra eisen voor de scènetest
 
 - Een scène Nederlands heeft minstens 18 momenten waarop de leerder antwoordt (zonder de open plekken).
@@ -101,7 +122,7 @@ Een tekening is 340 bij 214. Het pakket kiest een achtergrond en zet er dingen o
 | `hot`, `label`, `item` | aantikbaar: `label` is de Tekst die getoond en voorgelezen wordt, `item` het herhaalitem |
 | `text` | korte tekst in de tekening (bord, scherm, prijskaartje), hooguit 14 tekens |
 
-Dingen: `person`, `clock` (`value` als `u:mm`), `window`, `door`, `table`, `counter`, `chair`, `bench`, `bed`, `plant`, `phone` (`on` = gaat over), `agenda`, `letter`, `card`, `bag`, `medicine`, `sign`, `screen`, `shelf`, `stall`, `apples`, `bread`, `train`, `ticket`, en `spot` (onzichtbaar aantikbaar gebied met straal `r`, bijvoorbeeld een lichaamsdeel op een persoon).
+Dingen: `person`, `clock` (`value` als `u:mm`), `window`, `door`, `table`, `counter`, `chair`, `bench`, `bed`, `plant`, `phone` (`on` = gaat over), `agenda`, `letter`, `card`, `bag`, `medicine`, `sign`, `screen`, `shelf`, `stall`, `apples`, `bread`, `train`, `ticket`, `figure` (een heel lichaam van voren, om lichaamsdelen op aan te wijzen met `spot`), en `spot` (onzichtbaar aantikbaar gebied met straal `r`, bijvoorbeeld een lichaamsdeel op een persoon).
 
 Een persoon heeft `who` (de rol), `look` (`neutral`, `happy`, `worried`, `talk`, `think`), `hair` (`short`, `long`, `bun`, `none`), `hairTone` (`dark`, `brown`, `grey`, `fair`), `skin` (`a`, `b`, `c`) en `arm` (`wave`, `phone`). De speler kan de uitdrukking per rol wisselen zonder het pakket te wijzigen: `SceneVis.render(art, SAFE, { looks: { assistent: 'happy' }, text: L })`. Zo kijkt iemand blij na een goed antwoord en praat hij tijdens zijn beurt.
 

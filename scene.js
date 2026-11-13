@@ -142,11 +142,21 @@
     bread: function (t) { return '<path d="M-28-4c0-20 56-20 56 0v4h-56z" fill="' + WOOD + '"/><path d="M-14-12l6 6M0-15l6 8M14-12l6 6" stroke="' + soft('apricot') + '" stroke-width="2.500" stroke-linecap="round"/>' + price(t); },
     train: function (t) { var tn = tone(t.tone, 'apricot'); return '<rect x="-67" y="-78" width="134" height="68" rx="18" fill="' + fill(tn) + '" stroke="' + deep(tn) + '" stroke-width="3"/><rect x="-53" y="-66" width="30" height="24" rx="6" fill="' + soft('sky') + '"/><rect x="-15" y="-66" width="30" height="24" rx="6" fill="' + soft('sky') + '"/><rect x="23" y="-66" width="30" height="24" rx="6" fill="' + soft('sky') + '"/><path d="M-67-32h134" stroke="' + deep(tn) + '" stroke-width="3"/><circle cx="-37" cy="-6" r="9" fill="' + INK + '"/><circle cx="37" cy="-6" r="9" fill="' + INK + '"/>'; },
     ticket: function (t) { var tn = tone(t.tone, 'sky'); return '<rect x="-42" y="-86" width="84" height="86" rx="10" fill="' + SURF + '" stroke="' + deep(tn) + '" stroke-width="3"/><rect x="-32" y="-76" width="64" height="36" rx="6" fill="' + soft(tn) + '"/><rect x="-42" y="-34" width="84" height="10" fill="' + deep(tn) + '"/>'; },
+    // heel lichaam van voren, 0,0 = tussen de voeten; hoofd op y -104, keel -90, schouder ±18,-82, arm ±24,-62, hand ±27,-42, borst -72, buik -56, rug = borst, knie ±8,-22, voet ±8,-3
+    figure: function (t) {
+      var tn = tone(t.tone, 'lilac'), skin = SKIN[t.skin] || SKIN.a, hc = HAIRC[t.hairTone] || HAIRC.dark;
+      return '<ellipse cx="0" cy="0" rx="20" ry="4" fill="' + INK + '" opacity=".12"/>' +
+        '<path d="M-8-44v38M8-44v38" stroke="' + deep(tn) + '" stroke-width="10" stroke-linecap="round"/><ellipse cx="-9" cy="-3" rx="7" ry="3.500" fill="' + INK + '" opacity=".7"/><ellipse cx="9" cy="-3" rx="7" ry="3.500" fill="' + INK + '" opacity=".7"/>' +
+        '<path d="M-18-80L-26-46M18-80L26-46" stroke="' + skin + '" stroke-width="7" stroke-linecap="round"/>' +
+        '<path d="M-17-86h34c4 0 6 3 5 7l-5 37h-34l-5-37c-1-4 1-7 5-7z" fill="' + fill(tn) + '"/><path d="M-18-80l-4 16M18-80l4 16" stroke="' + fill(tn) + '" stroke-width="8" stroke-linecap="round"/>' +
+        '<rect x="-3.500" y="-94" width="7" height="9" fill="' + skin + '"/><circle cx="0" cy="-104" r="12" fill="' + skin + '"/><path d="M-12.400-104c0-18 24.800-18 24.800 0-6.500-7-18.300-7-24.800 0z" fill="' + hc + '"/>' +
+        '<circle cx="-4.200" cy="-103" r="1.400" fill="' + INK + '"/><circle cx="4.200" cy="-103" r="1.400" fill="' + INK + '"/><path d="M-3.500-97.500q3.500 2 7 0" fill="none" stroke="' + INK + '" stroke-width="1.500" stroke-linecap="round"/>';
+    },
     spot: function () { return ''; }
   };
   function price(t) { if (!t.text) return ''; var s = txt(t.text), w = Math.max(40, s.length * 6.6 + 12); return '<rect x="' + (-w / 2).toFixed(1) + '" y="4" width="' + w.toFixed(1) + '" height="16" rx="5" fill="' + SURF + '"/>' + T(0, 16, s, 10.5, INK); }
   // hoe groot de gloed achter een aantikbaar ding is: [breedte, hoogte, midden-y]
-  var HALO = { person: [44, 64, -28], clock: [64, 64, 0], window: [116, 94, 0], door: [60, 96, -42], table: [160, 44, -15], counter: [150, 62, -26], chair: [46, 56, -23], bench: [106, 50, -20], bed: [124, 52, -20], plant: [56, 78, -34], phone: [44, 52, -19], agenda: [62, 34, -11], letter: [48, 38, -13], card: [46, 34, -11], bag: [40, 46, -17], medicine: [44, 36, -12], sign: [80, 36, 0], screen: [72, 46, 0], shelf: [104, 44, -10], stall: [300, 150, -70], apples: [70, 48, -6], bread: [70, 44, -4], train: [146, 90, -42], ticket: [96, 98, -43] };
+  var HALO = { person: [44, 64, -28], clock: [64, 64, 0], window: [116, 94, 0], door: [60, 96, -42], table: [160, 44, -15], counter: [150, 62, -26], chair: [46, 56, -23], bench: [106, 50, -20], bed: [124, 52, -20], plant: [56, 78, -34], phone: [44, 52, -19], agenda: [62, 34, -11], letter: [48, 38, -13], card: [46, 34, -11], bag: [40, 46, -17], medicine: [44, 36, -12], sign: [80, 36, 0], screen: [72, 46, 0], shelf: [104, 44, -10], stall: [300, 150, -70], apples: [70, 48, -6], bread: [70, 44, -4], train: [146, 90, -42], ticket: [96, 98, -43], figure: [70, 124, -58] };
   var KINDS = Object.keys(THING);
 
   function label(x, c) { return typeof c.text === 'function' ? c.text(x) : (x && typeof x === 'object' ? (x.nl || '') : (x == null ? '' : String(x))); }
