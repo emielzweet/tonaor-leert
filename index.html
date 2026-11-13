@@ -203,6 +203,7 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
 .garden{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:10px}
 .plant{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;min-width:0}
 .plant svg{width:64px;height:64px}
+.vflag{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:70;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px;display:flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(0,0,0,.15)}.vflag span{flex:1;font-size:.9rem}.vflag .btn{width:auto;min-height:40px;padding:6px 12px}
 .plant{position:relative}.plant .lamp{position:absolute;top:4px;right:4px;width:20px;height:20px;color:var(--apricot-ink)}.plant .lamp svg{width:20px;height:20px}
 .plant .w{font-weight:700;font-size:.88rem;line-height:1.2;overflow-wrap:anywhere}
 .plant .sup{font-size:.74rem}
@@ -308,6 +309,9 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "vflag.sent":"Thank you! The coach will look at it.",
+ "vflag.btn":"Report it",
+ "vflag.ask":"Is this translation wrong?",
  "me.steer.reset":"Back to the default",
  "me.quiet.off":"Off",
  "me.quiet.on":"On",
@@ -688,6 +692,9 @@ en:{
  "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "vflag.sent":"Dank je! De begeleider kijkt ernaar.",
+ "vflag.btn":"Meld het",
+ "vflag.ask":"Klopt deze vertaling niet?",
  "me.steer.reset":"Terug naar de standaard",
  "me.quiet.off":"Uit",
  "me.quiet.on":"Aan",
@@ -1064,6 +1071,9 @@ nl:{
  "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "vflag.sent":"ขอบคุณ ผู้ดูแลจะตรวจดู",
+ "vflag.btn":"แจ้ง",
+ "vflag.ask":"คำแปลนี้ไม่ถูกต้องใช่ไหม",
  "me.steer.reset":"กลับเป็นค่าเริ่มต้น",
  "me.quiet.off":"ปิด",
  "me.quiet.on":"เปิด",
@@ -2106,6 +2116,14 @@ function fbBox(ok,msg,msgSup){let offer='';if(!ok&&app.classList.contains('sess'
 function fbK(ok,k,vars){return fbBox(ok,t(k,vars),ts(k,vars))}
 const supSpan=(s,st)=>s?`<span class="sup" ${supAttr()}${st?` style="${st}"`:''}>${s}</span>`:'';
 const helpBtn=ctx=>`<button class="help" data-help="${esc(ctx)}">${T('help.ask')}</button>`;
+/* vertaling klopt niet: tik op een steunregel (niet in een knop), bevestig, en de melding gaat als hulpvraag naar de begeleider */
+document.addEventListener('click',e=>{const s=e.target.closest&&e.target.closest('.sup');if(!s||s.closest('button,a,#nav,.ulayer'))return;
+  const nl=((s.closest('.bi')||{}).querySelector?.call(s.closest('.bi'),'.nl')||s.previousElementSibling||{}).textContent||'',sup=s.textContent||'';if(!sup.trim())return;
+  let p=document.getElementById('vflag');if(p)p.remove();p=document.createElement('div');p.id='vflag';p.className='vflag';p.setAttribute('role','dialog');
+  p.innerHTML=`<span>${TB('vflag.ask')}</span><button class="btn btn-ghost" id="vflagYes">${TB('vflag.btn')}</button><button class="close" id="vflagNo" aria-label="${esc(t('explain.close'))}">×</button>`;document.body.appendChild(p);
+  const tm=setTimeout(()=>p.remove(),8000);
+  p.querySelector('#vflagNo').onclick=()=>{clearTimeout(tm);p.remove()};
+  p.querySelector('#vflagYes').onclick=()=>{clearTimeout(tm);p.remove();S.help.unshift({t:now(),ctx:('Vertaling klopt niet: "'+nl.trim().slice(0,160)+'" → "'+sup.trim().slice(0,160)+'"'),open:true,kind:'vertaling'});S.unsent=true;save();syncUp(true);toast(tx('vflag.sent'))}});
 function bindHelp(){app.querySelectorAll('[data-help]').forEach(b=>b.onclick=e=>{e.stopPropagation();S.help.unshift({t:now(),ctx:b.dataset.help,open:true});save();S.unsent=true;save();syncUp(true);toast(tx('help.sent'))})}
 const speakBtns=(a,b)=>`<div class="row" style="flex-wrap:wrap"><button class="speak" id="${a}">${icon.play}${T('btn.listen')}</button>${b?`<button class="speak" id="${b}">${icon.slow}${T('btn.slow')}</button>`:''}</div>`;
 const nextBtn=cls=>`<button class="btn ${cls||'btn-leaf'}" id="nx">${T('btn.next')}</button>`;
