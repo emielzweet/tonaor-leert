@@ -27,7 +27,7 @@ for (let d = 0; d < 7; d++) for (let r = 0; r < RONDES; r++) {
   const teveel = Object.entries(per).filter(([id, n]) => n > (q.some(x => x.w && x.w.id === id && x._new) ? 3 : 2));
   if (teveel.length) probleem.herhaling.push('dag ' + d + ' ronde ' + r + ': ' + teveel.map(([id, n]) => id + ' ' + n + 'x').join(', '));
   const ty = q.filter(x => !['card', 'conf', 'end', 'explain'].includes(x.type)).map(x => x.type);
-  for (let i = 2; i < ty.length; i++) if (ty[i] === ty[i - 1] && ty[i] === ty[i - 2] && !['learn'].includes(ty[i])) { probleem.vorm.push('dag ' + d + ' ronde ' + r + ': ' + ty[i] + ' 3x'); break; }
+  for (let i = 2; i < ty.length; i++) if (ty[i] === ty[i - 1] && ty[i] === ty[i - 2] && !['learn'].includes(ty[i])) { probleem.vorm.push('dag ' + d + ' ronde ' + r + ': ' + ty[i] + ' 3x [' + q.map(x => x.type + (x._probe ? '?' : x._ifUnknown ? '*' : '')).join(' ') + ']'); break; }
   const verschillend = Object.keys(per).length;
   if (verschillend < 8 && woordenOver >= 4 && budget > 1) probleem.klein.push('dag ' + d + ' ronde ' + r + ': ' + verschillend + ' [' + q.map(x => x.type + (x.w ? ':' + x.w.id : x.exid ? ':' + x.exid.split('#')[0] : '')).join(' ') + '] budget ' + budget + ' woorden over ' + woordenOver);
   rondes.push({ d, r, n: ty.length, verschillend });

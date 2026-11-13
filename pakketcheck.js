@@ -8,7 +8,7 @@
   var LEARN = ['nl', 'en'];
   var FORMS = ['learn', 'recog', 'recall', 'build', 'gap', 'listen', 'dictee', 'mc', 'clock', 'money', 'discount'];
   var RESERVED = ['hear-type', 'complete', 'own', 'write', 'situation', 'match', 'spot'];
-  var TOP = ['format', 'id', 'version', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests'];
+  var TOP = ['format', 'id', 'type', 'version', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests'];
   var TAGS = /<\/?(b|i|u)>/g;
   // id's (pakket, item, tekst, kaart, oefening, groep): alleen letters, cijfers, punt, streepje, onderstreepje
   var ID = /^[A-Za-z0-9._-]+$/;
@@ -305,8 +305,9 @@
         if (!s.card && !s.ex && !s.pool && !s.words && !s.end && !s.practice) err(w + ': lege plek');
       });
     });
-    // kwaliteit per thema (alleen voor een Nederlands thema met woorden)
-    if (p.learn === 'nl' && words.length) {
+    // kwaliteit per thema (alleen voor een Nederlands thema met woorden; een woordenlijst is geen thema)
+    if (p.type != null && ['thema', 'woordenlijst'].indexOf(p.type) < 0) err(id + ': type kent alleen thema en woordenlijst');
+    if (p.learn === 'nl' && words.length && p.type !== 'woordenlijst') {
       var texts = p.texts || [];
       if (words.length < 40 || words.length > 60) q(id + ': ' + words.length + ' doelwoorden (eis: 40 tot 60)');
       if (texts.length < 3) q(id + ': ' + texts.length + ' tekst(en) (eis: minstens drie)');

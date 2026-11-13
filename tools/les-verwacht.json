@@ -278,28 +278,14 @@
     "w": "werk"
    },
    {
-    "type": "build",
-    "step": 3,
-    "s": "Om zes uur begint mijn dienst."
-   },
-   {
     "type": "recall",
     "step": 1,
     "w": "pauze"
    },
    {
-    "type": "gap",
-    "step": 3,
-    "s": "Wij ___ morgen een afspraak."
-   },
-   {
-    "type": "recall",
+    "type": "recog",
     "step": 1,
     "w": "collega"
-   },
-   {
-    "type": "dictee",
-    "step": 3
    },
    {
     "type": "recall",
@@ -350,6 +336,20 @@
     "type": "card",
     "step": 2,
     "label": "Nieuw leren"
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "Om zes uur begint mijn dienst."
+   },
+   {
+    "type": "gap",
+    "step": 3,
+    "s": "Wij ___ morgen een afspraak."
+   },
+   {
+    "type": "dictee",
+    "step": 3
    },
    {
     "type": "recog",
@@ -412,12 +412,7 @@
     "w": "dienst"
    },
    {
-    "type": "build",
-    "step": 3,
-    "s": "Om zes uur begint mijn dienst."
-   },
-   {
-    "type": "recall",
+    "type": "recog",
     "step": 1,
     "w": "rooster"
    },
@@ -455,6 +450,11 @@
     "type": "card",
     "step": 2,
     "label": "Nieuw leren"
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "Om zes uur begint mijn dienst."
    },
    {
     "type": "gap",
@@ -521,9 +521,49 @@
     "w": "week"
    },
    {
-    "type": "recall",
+    "type": "recog",
     "step": 1,
     "w": "geld"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "nlb.dag"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "nlb.dag"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "nlb.tijd"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "nlb.tijd"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "nlb.jaar"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "nlb.jaar"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "nlb.uur"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "nlb.uur"
    },
    {
     "type": "card",
@@ -533,16 +573,21 @@
    {
     "type": "build",
     "step": 3,
-    "s": "Om zes uur begint mijn dienst."
+    "s": "Zaterdag heb ik vrij."
    },
    {
     "type": "gap",
     "step": 3,
-    "s": "Wij ___ morgen een afspraak."
+    "s": "Mijn collega ___ een fiets."
    },
    {
     "type": "dictee",
     "step": 3
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "nlb.tijd"
    },
    {
     "type": "explain",
@@ -559,16 +604,22 @@
    {
     "type": "clock",
     "step": 4,
-    "c": "half vier"
+    "c": "zeven uur"
    },
    {
-    "type": "explain",
-    "step": 4
+    "type": "recall",
+    "step": 2,
+    "w": "nlb.dag"
    },
    {
-    "type": "discount",
-    "step": 4,
-    "k": "partial"
+    "type": "recog",
+    "step": 2,
+    "w": "nlb.uur"
+   },
+   {
+    "type": "recall",
+    "step": 2,
+    "w": "nlb.jaar"
    },
    {
     "type": "conf",
@@ -705,12 +756,7 @@
     "w": "werk"
    },
    {
-    "type": "build",
-    "step": 3,
-    "s": "Morgen werk ik in Zwaag."
-   },
-   {
-    "type": "recall",
+    "type": "recog",
     "step": 1,
     "w": "pauze"
    },
@@ -743,6 +789,11 @@
     "type": "learn",
     "step": 2,
     "w": "huis"
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "Morgen werk ik in Zwaag."
    },
    {
     "type": "gap",
@@ -801,7 +852,7 @@
     "w": "en-colleague"
    },
    {
-    "type": "enrecall",
+    "type": "enrecog",
     "step": 1,
     "w": "en-break"
    },
@@ -862,7 +913,7 @@
     "w": "en-colleague"
    },
    {
-    "type": "enrecall",
+    "type": "enrecog",
     "step": 1,
     "w": "en-break"
    },

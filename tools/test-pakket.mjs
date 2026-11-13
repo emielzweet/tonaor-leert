@@ -35,7 +35,7 @@ ok('safeText: alles onschadelijk, alleen <b> <i> <u> terug', !/<script|<b onclic
 const evilPack = clone(nl); evilPack.items[0].ex = '<img src=x onerror=alert(1)>';
 let app = await boot({ override: { 'content/nl-t1.json': evilPack } });
 let g = app.api.get();
-ok('app laadt een pakket met verboden opmaak niet en meldt het', g.PACK_MISSING.includes('nl-t1') && !g.NL.length);
+ok('app laadt een pakket met verboden opmaak niet en meldt het', g.PACK_MISSING.includes('nl-t1') && !g.NL.some(w => !w.id.startsWith('nlb.')));
 // tweede verdedigingslinie: ook als de controle iets zou doorlaten, maakt de app de tekst onschadelijk
 const noCheck = { ...PC, checkPack: () => ({ errors: [], quality: [] }) };
 // regel: elke waarde gaat door precies één van safeText (rauw in de HTML) of esc() (in het scherm)
@@ -46,7 +46,7 @@ ok('app: velden die platte tekst blijven, toont het scherm met esc()', g.NL[0].e
 ok('app: opties in klok, Engelse gatzin en geld met esc(), ook in het attribuut', ['c.o.map(o=>`<button class="choice" data-o="${esc(o)}">${esc(o)}', 'x.o.map(o=>`<button class="choice" data-o="${esc(o)}" lang="en">${esc(o)}', 'd.o.map(o=>`<button class="choice num" data-o="${esc(o)}">${esc(o)}'].every(s => html.includes(s)));
 ok('voorlezen spreekt geen tags of tekencodes uit', html.includes("t=String(t==null?'':t).replace(/<[^>]*>/g,'')"));
 app = await boot(); g = app.api.get();
-ok('app: ingebouwde pakketten geladen, niets gemeld', !g.PACK_MISSING.length && g.NL.length === 18 && g.EN.length === 8 && g.REK.length === 5 && g.SENT.length === g.PACKS.find(p => p.id === 'nl-t1').exercises.filter(e => e.form === 'build').length && g.PAIRS.length === g.PACKS.find(p => p.id === 'nl-t1').exercises.filter(e => e.form === 'listen').length && g.SENT.length >= 4 && g.PAIRS.length >= 3 && g.PLACE.length === 15 && g.STORY.lines.length === 10);
+ok('app: ingebouwde pakketten geladen, niets gemeld', !g.PACK_MISSING.length && g.NL.length === 18 + JSON.parse(readFileSync(new URL('content/nl-basis.json', ROOT), 'utf8')).items.length && g.EN.length === 8 && g.REK.length === 5 && g.SENT.length === g.PACKS.find(p => p.id === 'nl-t1').exercises.filter(e => e.form === 'build').length && g.PAIRS.length === g.PACKS.find(p => p.id === 'nl-t1').exercises.filter(e => e.form === 'listen').length && g.SENT.length >= 4 && g.PAIRS.length >= 3 && g.PLACE.length === 15 && g.STORY.lines.length === 10);
 ok('app: inhoud gelijk aan het pakket na safeText', g.NL[0].w === nl.items[0].w && g.STORY.lines[5][0] === PC.safeText(nl.texts[0].paras[0][5].nl));
 
 // 4. ontbrekend pakket: app start, meldt het, opslag ongewijzigd
@@ -66,7 +66,7 @@ for (const miss of ['content/en-t1.json', 'content/rk-1.json', 'content/nl-t1.js
 }
 app = await boot({ missing: ['content/rk-1.json'], S: clone(stored) }); g = app.api.get();
 let q = null; app.runSession = (n, x) => { q = x; }; app.api.startLesson(false);
-ok('zonder rekenpakket: Nederlands laadt nog, les zonder rekenoefeningen', g.NL.length === 18 && !q.some(x => ['money', 'clock', 'discount'].includes(x.type)) && q.some(x => x.type === 'build'));
+ok('zonder rekenpakket: Nederlands laadt nog, les zonder rekenoefeningen', g.NL.length === 18 + JSON.parse(readFileSync(new URL('content/nl-basis.json', ROOT), 'utf8')).items.length && !q.some(x => ['money', 'clock', 'discount'].includes(x.type)) && q.some(x => x.type === 'build'));
 app = await boot({ missing: ['content/nl-t1.json', 'content/en-t1.json', 'content/rk-1.json'] }); g = app.api.get();
 q = null; app.runSession = (n, x) => { q = x; }; app.api.startLesson(false);
 ok('geen enkel pakket: app start, meldt het bij een tik op de les en start geen lege les', g.PACK_MISSING.length === 3 && g.PACKS.length === builtin().length - 3 && q === null && app.toasts.includes('pack.none'));
@@ -96,7 +96,7 @@ ok('geen naambotsing tussen het pakketblok en de rest van de app (' + names.leng
   const noPC = await boot({ pc: null });
   ok('app laadt zonder controle geen enkel pakket en meldt ze', noPC.api.get().PACKS.length === 0 && noPC.api.get().PACK_MISSING.length === builtin().length);
   const slow = await boot({ hang: ['content/en-t1.json'] });
-  ok('pakket dat blijft hangen: na de tijdslimiet gemeld, de rest laadt', slow.api.get().PACK_MISSING.includes('en-t1') && slow.api.get().NL.length === 18);
+  ok('pakket dat blijft hangen: na de tijdslimiet gemeld, de rest laadt', slow.api.get().PACK_MISSING.includes('en-t1') && slow.api.get().NL.length === 18 + JSON.parse(readFileSync(new URL('content/nl-basis.json', ROOT), 'utf8')).items.length);
 }
 
 // bij het weghalen van de oude inhoudslijsten verdween ooit 'let PL={}' (stand van de startmeting); die moet blijven bestaan

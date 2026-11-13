@@ -41,7 +41,7 @@ ok('iets nieuws begint met de uitleg (als die er is)', sigs[0].includes('explain
 ok('korting bouwt af: eerst het voorbeeld, daarna zelf', (() => { const i = sigs.findIndex(s => s.includes('discount:rk.korting.voorbeeld')), j = sigs.findIndex(s => /discount:rk\.korting\.(deel|zelf)/.test(s)); return i >= 0 && (j < 0 || j > i); })(), sigs.filter(s => s.includes('discount')).join('\n     '));
 // een tweede ronde op dezelfde dag is kort
 S.rounds[Math.floor(ctx.NOW / DAY) * DAY] = 1; const second = lesson(false);
-ok('tweede ronde op een dag: kort recept (ophalen en oefenen)', second.name === 'Korte les' && second.q.length < 15, second.name + ' ' + second.q.length);
+{ const sv = JSON.stringify(S.rounds); S.rounds = {}; const full = lesson(false); S.rounds = JSON.parse(sv); ok('tweede ronde op een dag: kort recept, korter dan een volle ronde', second.name === 'Korte les' && full.name !== 'Korte les' && second.q.length < full.q.length, second.name + ' ' + second.q.length + ' tegen ' + full.q.length); }
 // opstartvolgorde: variabelen die na het laden gebruikt worden, moeten eerder gedeclareerd zijn (anders blijft de app op 'Lesstof laden' hangen)
 ok('KIND is gedeclareerd vóór het eerste gebruik bij het opstarten', html.indexOf('let KIND={}') > 0 && html.indexOf('let KIND={}') < html.indexOf('KIND[x.id]=x.kind') && html.indexOf('let KIND={}') < html.indexOf('await loadPacks();'));
 ok('de leerklok kan niet struikelen over het laden', html.includes('function learning(){try{'));

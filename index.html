@@ -309,6 +309,7 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "recall.typeWord":"Type the word",
  "vflag.sent":"Thank you! The coach will look at it.",
  "vflag.btn":"Report it",
  "vflag.ask":"Is this translation wrong?",
@@ -692,6 +693,7 @@ en:{
  "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "recall.typeWord":"Typ het woord",
  "vflag.sent":"Dank je! De begeleider kijkt ernaar.",
  "vflag.btn":"Meld het",
  "vflag.ask":"Klopt deze vertaling niet?",
@@ -1071,6 +1073,7 @@ nl:{
  "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "recall.typeWord":"พิมพ์คำนั้น",
  "vflag.sent":"ขอบคุณ ผู้ดูแลจะตรวจดู",
  "vflag.btn":"แจ้ง",
  "vflag.ask":"คำแปลนี้ไม่ถูกต้องใช่ไหม",
@@ -1495,7 +1498,7 @@ const icon={
    - Alle tekst uit een pakket gaat door PakketCheck.safeText (alles onschadelijk, alleen <b> <i> <u> terug), ook ingebouwd.
    - Daarna worden de bekende lijsten (NL, EN, REK, SENT, PAIRS, DICTEE, STORY, PLACE) opgebouwd in de vorm die de oefenschermen al kennen.
    - De les komt uit het recept van het pakket (compose); in fase 2 levert dat precies de les van daarvoor (tools/test-les.mjs). */
-const BUILTIN=['content/rk-1.json','content/nl-t1.json','content/en-t1.json','content/uitleg-rk.json','content/uitleg-nl.json','content/uitleg-en.json'];
+const BUILTIN=['content/rk-1.json','content/nl-t1.json','content/nl-basis.json','content/en-t1.json','content/uitleg-rk.json','content/uitleg-nl.json','content/uitleg-en.json'];
 const PACK_TIMEOUT=4000;   // ms per pakket; daarna de cache, anders ontbreekt het
 const PC=window.PakketCheck||null;
 const SAFE=s=>PC?PC.safeText(s):esc(s);   // voor waarden die het scherm rauw in de HTML zet
@@ -1504,6 +1507,7 @@ const RAW=s=>s==null?'':String(s);           // voor waarden die het scherm zelf
 let EXPL={},EXPL_LIST=[];
 /* KIND: soort per item (word, rule, sound, skill), gevuld na het laden van de pakketten */
 let KIND={};
+const fw=w=>w&&w.art?w.art+' '+w.w:(w?w.w:'');   // woord met lidwoord als het er een heeft
 const EASIER={recall:'recog',hear:'recog',enrecall:'enrecog',enhear:'enrecog'},HARDER={recog:'recall',enrecog:'enrecall'};   // makkelijker en moeilijker vorm (bijsturen)
 let QUIET=false;   // stille stand: zonder voorlezen en luisteroefeningen, alleen voor deze sessie (Bijsturen op Ik)
 let PACKS=[],PACK_MISSING=[],NL=[],EN=[],REK=[],SENT=[],PAIRS=[],DICTEE=null,STORY=null,PLACE=[];
@@ -1536,7 +1540,7 @@ const LEGACY={};   // oefening-id -> object in de vorm van vóór fase 2
 function buildLists(){
   const items=k=>PACKS.flatMap(p=>(p.items||[]).filter(x=>x.kind===k).map(x=>({x,p})));
   // woord, voorbeeldzin, gatzin en lidwoord toont het scherm met esc() of leest het voor: RAW. Vertalingen staan rauw in de HTML: SAFE.
-  NL=items('word').filter(o=>o.p.learn==='nl').map(({x})=>{const o={id:x.id,art:RAW(x.art),w:RAW(x.w),th:SAFE(x.tr.th),en:SAFE(x.tr.en),ex:RAW(x.ex),gap:RAW(x.gap)};if(x.askArt)o.askArt=1;if(x.also)o.also=x.also.slice();return o});
+  NL=items('word').filter(o=>o.p.learn==='nl').map(({x})=>{const o={id:x.id,art:x.art?RAW(x.art):'',w:RAW(x.w),th:SAFE(x.tr.th),en:SAFE(x.tr.en),ex:RAW(x.ex),gap:RAW(x.gap)};if(x.askArt)o.askArt=1;if(x.also)o.also=x.also.slice();if(x.def)o.def=RAW(x.def);return o});
   EN=items('word').filter(o=>o.p.learn==='en').map(({x})=>({id:x.id,w:RAW(x.w),nl:RAW(x.tr.nl),th:SAFE(x.tr.th),ex:RAW(x.ex)}));
   REK=items('skill').map(({x})=>({id:x.id,label:RAW(x.title.nl),th:SAFE(x.title.th),en:SAFE(x.title.en)}));
   // zin bouwen: stukjes en vertaling met esc() in het scherm
@@ -1609,7 +1613,7 @@ function pickForm(w,learn,def){if(def!=='recall'&&def!=='enrecall')return def;co
   if(!f.includes('typen'))return def;
   if(speak&&!f.includes('luisteren'))return learn==='en'?'enhear':'hear';
   if(learn==='en'&&!f.includes('herkennen'))return 'enrecog';
-  const it=S.items[w.id]||{},cyc=learn==='en'?['enrecall',speak?'enhear':'enrecall','enrecall','enrecog']:['recall',speak?'hear':'recall','recall','recog'];return cyc[(it.reps||0)%4]}   // vorm wisselt per keer (feedback: niet steeds dezelfde vorm)
+  const it=S.items[w.id]||{},cyc=learn==='en'?(speak?['enrecall','enhear','enrecall','enrecog']:['enrecall','enrecog']):(speak?['recall','hear','recall','recog']:['recall','recog']);/* zonder stem: typen en kiezen om en om */return cyc[(it.reps||0)%cyc.length]}   // vorm wisselt per keer (feedback: niet steeds dezelfde vorm)
 /* ---- oefenen per onderdeel (docs/herhaalmodel.md sectie 6) ---- */
 /* hoe ver over tijd, ten opzichte van de stabiliteit: het grootst = het meest bijna vergeten */
 function overdue(id){const it=S.items[id];return (now()-it.due)/(Math.max(.5,it.s)*DAY)}
@@ -1666,9 +1670,12 @@ function topUp(q,learn,words,later,used){const ids=()=>new Set(q.concat(later).m
     for(const id of sk){if(ids().size>=8)break;const e=shuffle(exsFor(id,learn).filter(x=>x.gen&&!(QUIET&&x.form==='listen')))[0];if(!e)continue;const x=exQ(e,4,learn,id);if(!x)continue;used.add(id);const xid=S.items[id].reps===0&&explForItem(id,learn);if(xid&&!(S.explained||{})[xid])q.push({type:'explain',step:4,x:xid,lang:learn});q.push(x)}}}
 /* drie gelijke vormen achter elkaar breken door een verplaatsbaar onderdeel ertussen te zetten (geen vraag, leerkaart of kiesvraag van een nieuw woord) */
 function breakTriples(q){const free=(x,n)=>!x._probe&&!x._ifUnknown&&x.type!=='learn'&&!['card','conf','end','explain'].includes(x.type)&&!(n>0&&q[n-1].type==='explain');
-  const real=i=>!['card','conf','end','explain','learn'].includes(q[i].type);
-  for(let k=0;k<3;k++)for(let i=2;i<q.length;i++){if(!real(i)||!real(i-1)||!real(i-2))continue;const t=q[i].type;if(q[i-1].type!==t||q[i-2].type!==t)continue;
-    const j=q.findIndex((x,n)=>n>i&&free(x,n)&&x.type!==t);if(j<0)continue;const [m]=q.splice(j,1);q.splice(i-1,0,m)}
+  const real=i=>!['card','conf','end','explain','learn'].includes(q[i].type),SWAP={recall:'recog',recog:'recall',hear:'recog',enrecall:'enrecog',enrecog:'enrecall',enhear:'enrecog'};
+  for(let k=0;k<4;k++)for(let i=2;i<q.length;i++){if(!real(i)||!real(i-1)||!real(i-2))continue;const t=q[i].type;if(q[i-1].type!==t||q[i-2].type!==t)continue;
+    const sw=[i,i-1,i-2].find(n=>q[n].w&&!q[n]._probe&&!q[n]._ifUnknown&&SWAP[q[n].type]);if(sw!=null){q[sw].type=SWAP[q[sw].type];continue}   /* een gewone woordvraag: andere vorm */
+    let j=q.findIndex((x,n)=>n>i&&free(x,n)&&x.type!==t);const fl=q.findIndex(x=>x.type==='learn'),lim=fl<0?i-2:Math.min(i-2,fl);
+    if(j<0){j=q.findIndex((x,n)=>n<lim&&free(x,n)&&x.type!==t&&(n===0||q[n-1].type!==t||n+1>=q.length||q[n+1].type!==t));if(j<0)continue;const [m]=q.splice(j,1);q.splice(i-2,0,m);continue}   // naar achteren alleen van vóór de eerste leerkaart
+    const [m]=q.splice(j,1);q.splice(i-1,0,m)}
   return q}
 function compose(recipe,learn){const used=new Set(),later=[];NEWPLAN=0;recipe=(recipe||[]).map(s=>{const o={...s},f=lenF(),fe=feel();if(o.max!=null)o.max=Math.max(1,Math.round(o.max*f)+(o.words==='new'?(fe==='makkelijk'?1:fe==='moeilijk'?-1:0):0));if(o.practice)o.practice={...o.practice,n:Math.max(1,Math.round(o.practice.n*f))};return o});const q=[],words=learn==='en'?EN:NL,R=id=>S.items[id];
   const dueAll=words.filter(w=>thirsty(w.id));
@@ -2133,25 +2140,25 @@ function adaptiveNote(){return sessTotal>=4&&sessRight/sessTotal<.65?`<div class
 const H={};
 H.card=q=>{frame(`<div class="card stack" style="padding:22px">${typeof q.html==='function'?q.html():q.html}</div>${nextBtn(q.btn)}`,q.label,q.step);if(q.bind)q.bind();$('#nx').onclick=next};
 H.learn=q=>{const w=q.w;
-  frame(`<div class="card wordcard"><span class="art art-${w.art}">${w.art}</span><span class="w">${esc(w.w)}</span>${supSpan(L_(w),'font-size:1.15rem')}<p class="muted">${esc(w.ex)}</p>${speakBtns('sp','sps')}</div>
-  <p class="small muted">${T('learn.artTip',{art:w.art})}</p>${nextBtn()}`,'Nieuw woord',q.step);
-  setTimeout(()=>say(`${w.art} ${w.w}`),250);$('#sp').onclick=()=>say(`${w.art} ${w.w}. ${w.ex}`);$('#sps').onclick=()=>say(`${w.art} ${w.w}`,true);
+  frame(`<div class="card wordcard">${w.art?`<span class="art art-${w.art}">${w.art}</span>`:''}<span class="w">${esc(w.w)}</span>${supSpan(L_(w),'font-size:1.15rem')}${w.def?`<p class="small">${esc(w.def)}</p>`:''}<p class="muted">${esc(w.ex)}</p>${speakBtns('sp','sps')}</div>
+  ${w.art?`<p class="small muted">${T('learn.artTip',{art:w.art})}</p>`:''}${nextBtn()}`,'Nieuw woord',q.step);
+  setTimeout(()=>say(`${fw(w)}`),250);$('#sp').onclick=()=>say(`${fw(w)}. ${w.ex}`);$('#sps').onclick=()=>say(`${fw(w)}`,true);
   $('#nx').onclick=()=>{if(!S.introduced.includes(w.id))S.introduced.push(w.id);const it=S.items[w.id];it.reps=Math.max(1,it.reps);it.due=now();save();next()};
 };
 H.recog=q=>{const w=q.w;let first=true;const g=nlOnly()?gapEx(w):null,others=NL.filter(x=>x.id!==w.id&&!(g&&(w.also||[]).includes(x.id))),opts=shuffle([w,...shuffle(others).slice(0,2)]);
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Welk woord is dit?</p><p class="prompt sp" ${supAttr()}>${L_(w)}</p>`}
-  <div class="choices one">${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}">${g?'':o.art+' '}${esc(o.w)}</button>`).join('')}</div><div id="fb"></div></div>`,'Herkennen',q.step);
-  if(nlOnly()&&!g){setTimeout(()=>say(`${w.art} ${w.w}`),250);$('#sp').onclick=()=>say(`${w.art} ${w.w}`);$('#sps').onclick=()=>say(`${w.art} ${w.w}`,true)}
+  <div class="choices one">${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}">${g||!o.art?'':o.art+' '}${esc(o.w)}</button>`).join('')}</div><div id="fb"></div></div>`,'Herkennen',q.step);
+  if(nlOnly()&&!g){setTimeout(()=>say(`${fw(w)}`),250);$('#sp').onclick=()=>say(`${fw(w)}`);$('#sps').onclick=()=>say(`${fw(w)}`,true)}
   app.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const ok=b.dataset.id===w.id;b.classList.add(ok?'right':'wrong');
-    if(ok){score(first,5);review(w.id,first,'herkennen');if(first)grown.push(w.id);say(g?gapFull(w):`${w.art} ${w.w}`);$('#fb').innerHTML=fbBox(true,g?`<b>${w.art} ${esc(w.w)}</b>. ${esc(gapFull(w))}`:'','')+nextBtn();$('#nx').onclick=next}
+    if(ok){score(first,5);review(w.id,first,'herkennen');if(first)grown.push(w.id);say(g?gapFull(w):`${fw(w)}`);$('#fb').innerHTML=fbBox(true,g?`<b>${w.art} ${esc(w.w)}</b>. ${esc(gapFull(w))}`:'','')+nextBtn();$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbK(false,'recog.again')}})};
-H.hear=q=>{const w=q.w;let tries=0,hint=0,done=false;const fullT=`${w.art} ${w.w}`,full=esc(fullT);
+H.hear=q=>{const w=q.w;let tries=0,hint=0,done=false;const fullT=`${fw(w)}`,full=esc(fullT);
   frame(`<div class="card stack">${T('hear.title')}<p class="muted small">${T('hear.tip')}</p>${speakBtns('sp','sps')}
-  <label for="ans" class="small muted">${T('recall.typeArt')}</label><input id="ans" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="de … / het …">
+  <label for="ans" class="small muted">${T(w.art?'recall.typeArt':'recall.typeWord')}</label><input id="ans" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${w.art?'de … / het …':'…'}">
   <div class="hint-row"><button class="hintbtn" id="hint">${T('btn.hint')}</button><span class="hintshow" id="hs" aria-live="polite"></span></div>
   <div id="fb"></div><button class="btn btn-leaf" id="chk">${T('btn.check')}</button>${helpBtn('Luisteren en typen: '+fullT)}</div>`,'Ophalen',q.step);
   bindHelp();const inp=$('#ans');setTimeout(()=>say(fullT),350);$('#sp').onclick=()=>say(fullT);$('#sps').onclick=()=>say(fullT,true);
-  $('#hint').onclick=()=>{hint=Math.min(2,hint+1);$('#hs').textContent=hint===1?`${w.art} ${w.w[0]}… (${w.w.length})`:fullT;if(hint===2)$('#hint').disabled=true};
+  $('#hint').onclick=()=>{hint=Math.min(2,hint+1);$('#hs').textContent=hint===1?`${w.art?w.art+' ':''}${w.w[0]}… (${w.w.length})`:fullT;if(hint===2)$('#hint').disabled=true};
   const check=()=>{if(done)return;const a=norm(inp.value);if(!a)return;tries++;const ok=a===norm(fullT),wordOnly=a===norm(w.w);
     if(!ok&&!wordOnly&&tries<2){$('#fb').innerHTML=fbK(false,'try.again');return}
     done=true;const res=ok&&tries===1&&hint===0?true:(ok||wordOnly)&&hint<2?'retry':false;score(res===true,10,res==='retry'?6:0);review(w.id,res,'luisteren');if(res===true)grown.push(w.id);
@@ -2167,16 +2174,16 @@ function probeDone(w,known){const it=S.items[w.id];if(!S.introduced.includes(w.i
   if(known){KNOWN.add(w.id);it.s=14;it.t=now();it.due=now()+14*DAY;it.reps=Math.max(1,it.reps);if(!it.forms.includes('typen'))it.forms.push('typen');S.log.push({t:now(),id:w.id,ok:true,known:1})}   // al gekend: bloem, één controle na twee weken
   else{S.newLog=S.newLog||{};S.newLog[today()]=(S.newLog[today()]||0)+1}   // echt nieuw: telt mee in het dagbudget
   save()}
-H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${w.art} ${w.w}`,full=esc(fullT),g=nlOnly()?gapEx(w):null;
+H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${fw(w)}`,full=esc(fullT),g=nlOnly()?gapEx(w):null;
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past in de zin?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Wat is dit in het Nederlands?</p><p class="prompt sp" ${supAttr()}>${L_(w)}</p>`}
-  <label for="ans" class="small muted">${g?'Typ het woord dat op de open plek past':T('recall.typeArt')}</label>
-  <input id="ans" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${g?'…':'de … / het …'}">
+  <label for="ans" class="small muted">${g?'Typ het woord dat op de open plek past':T(w.art?'recall.typeArt':'recall.typeWord')}</label>
+  <input id="ans" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${g||!w.art?'…':'de … / het …'}">
   <div class="hint-row"><button class="hintbtn" id="hint">${T('btn.hint')}</button><span class="hintshow" id="hs" aria-live="polite"></span></div>
   <div id="fb"></div><button class="btn btn-leaf" id="chk">${T('btn.check')}</button>${q._probe?`<button class="linkish" id="dunno">${TB('probe.dunno')}</button>`:''}${helpBtn('Woord: '+fullT)}</div>${adaptiveNote()}`,q._probe?'Nieuw woord':'Ophalen',q.step);
   if(q._probe){const pb=document.createElement('p');pb.className='small muted';pb.innerHTML=T('probe.tip');const c=app.querySelector('.card');if(c)c.insertBefore(pb,c.children[1]||null);$('#dunno').onclick=()=>{probeDone(w,false);next()}}
   bindHelp();const inp=$('#ans');setTimeout(()=>{try{inp.focus({preventScroll:true})}catch(e){}},80);
   if(nlOnly()&&!g){setTimeout(()=>say(fullT),250);$('#sp').onclick=()=>say(fullT);$('#sps').onclick=()=>say(fullT,true)}
-  $('#hint').onclick=()=>{hint=Math.min(3,hint+1);$('#hs').textContent=g?(hint===1?`Begint met: ${w.w[0]}…`:hint===2?`${w.w.slice(0,Math.ceil(w.w.length/2))}…`:w.w):hint===1?`Lidwoord: ${w.art}`:hint===2?`${w.art} ${w.w[0]}…`:fullT;if(hint===3)$('#hint').disabled=true};
+  $('#hint').onclick=()=>{hint=Math.min(3,hint+1);$('#hs').textContent=g?(hint===1?`Begint met: ${w.w[0]}…`:hint===2?`${w.w.slice(0,Math.ceil(w.w.length/2))}…`:w.w):hint===1?(w.art?`Lidwoord: ${w.art}`:`${w.w[0]}…`):hint===2?(w.art?`${w.art} ${w.w[0]}…`:`${w.w.slice(0,Math.ceil(w.w.length/2))}…`):fullT;if(hint===3)$('#hint').disabled=true};
   const done=(wordOk,artOk,msg)=>{const clean=wordOk&&artOk&&tries===1&&hint<3;if(q._probe){probeDone(w,clean&&hint===0);if(clean&&hint===0)score(true,10)}else{score(clean,hint===0?10:hint===1?7:4);review(w.id,clean?true:wordOk&&artOk?'retry':false,'typen')}if(clean)grown.push(w.id);
     $('#fb').innerHTML=fbBox(wordOk&&artOk,msg,'');say(gapFull(w));inp.disabled=true;$('#hint').disabled=true;
     const c=$('#chk');if(c)c.outerHTML=nextBtn(wordOk&&artOk?'btn-leaf':'btn-main');else $('#fb').insertAdjacentHTML('beforeend',nextBtn(wordOk&&artOk?'btn-leaf':'btn-main'));$('#nx').onclick=next};
@@ -2288,7 +2295,7 @@ H.conf=q=>{let c=null,fun=null;const done=()=>{if(!c||!fun)return;S.conf.unshift
   app.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{c=b.dataset.c;app.querySelectorAll('[data-c]').forEach(x=>x.setAttribute('aria-pressed',x===b));done()});
   app.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{fun=b.dataset.f;app.querySelectorAll('[data-f]').forEach(x=>x.setAttribute('aria-pressed',x===b));done()})};
 H.end=q=>{finishTime();const rn=S.rounds[today()]=(S.rounds[today()]||0)+1,bonus=rn===2?10:rn===3?20:0;if(bonus){addPts(bonus);sp+=bonus}pruneWeeks();save();
-  const all=[...NL.map(x=>({id:x.id,l:`${x.art} ${x.w}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
+  const all=[...NL.map(x=>({id:x.id,l:`${fw(x)}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
   const bloom=[...new Set(grown)].map(id=>all.find(a=>a.id===id)).filter(Boolean).slice(0,6);
   const last=S.conf[0],mis=last&&(last.c==='zeker'||last.c==='makkelijk')&&last.acc<.7&&last.t>sessStart;
   frame(`<div class="card celebrate"><div class="big num">+${sp}</div>${T('end.welldone',{name:nm()?', '+nm():''})}${bonus?`<p class="pill pill-apricot">${T(rn===2?'end.bonus2':'end.bonus3')}</p>`:''}
@@ -2358,7 +2365,7 @@ H.storyq=q=>{const x=q.x;let first=true;
 /* ============ snelronde ============ */
 function startSpeed(){
   $('#nav').hidden=true;app.classList.add('sess');let good=0,left=60,cur=null,timer=null,started=false;
-  const pick=()=>NL[Math.floor(Math.random()*NL.length)];
+  const DH=NL.filter(x=>x.art==='de'||x.art==='het'),pick=()=>DH[Math.floor(Math.random()*DH.length)];   // alleen woorden met de of het
   const draw=()=>{paint(`<div class="sess-top"><button class="close" id="quit" aria-label="Stoppen">×</button><div class="timer" style="flex:1"><i style="width:${left/60*100}%"></i></div><span class="pill pill-apricot num" id="sec">${left}s</span></div>
     <div class="card stack" style="text-align:center">${started?`<p class="eyebrow">de of het?</p><p class="speed">${esc(cur.w)}</p>${supSpan(L_(cur))}
     <div class="choices"><button class="choice" data-a="de">de</button><button class="choice" data-a="het">het</button></div><p class="num muted">${T('speed.good',{n:good})}</p>`
@@ -2445,7 +2452,7 @@ function vBuddha(){sub('page.buddha',`
 
 /* ============ tuin ============ */
 function vGarden(){
-  const all=[...NL.map(x=>({id:x.id,bed:'nl',l:`${x.art} ${x.w}`,sup:L_(x),say:`${x.art} ${x.w}. ${x.ex}`,lang:'nl'})),...REK.map(x=>({id:x.id,bed:'rek',l:x.label,sup:L_(x),xid:explForItem(x.id,'nl')})),
+  const all=[...NL.map(x=>({id:x.id,bed:'nl',l:`${fw(x)}`,sup:L_(x),say:`${fw(x)}. ${x.ex}`,lang:'nl'})),...REK.map(x=>({id:x.id,bed:'rek',l:x.label,sup:L_(x),xid:explForItem(x.id,'nl')})),
     ...PACKS.flatMap(p=>(p.items||[]).filter(x=>(x.kind==='rule'||x.kind==='sound')&&S.items[x.id]).map(x=>({id:x.id,bed:'regel',l:esc((x.title||{})[p.learn==='en'?'en':'nl']||x.id),sup:L_(x.title||{}),lang:p.learn,xid:explForItem(x.id,p.learn)}))),...EN.map(x=>({id:x.id,bed:'en',l:x.w,sup:L_(x),say:`${x.w}. ${x.ex}`,lang:'en'}))];
   const seen=all.filter(x=>S.items[x.id].reps>0),by=[0,0,0,0,0,0];seen.forEach(x=>by[stage(x.id)]++);const due=seen.filter(x=>thirsty(x.id));
   const beds=['nl','regel','rek','en'];
@@ -2552,7 +2559,7 @@ function vEmiel(){
   const en=lv?Math.min(1,lv.engels*.7+mastered(EN.map(x=>x.id))*.3):null;
   const bar=(n,v,c)=>`<div class="skill"><span>${n}</span><span class="track"><i style="width:${v==null?0:Math.max(4,v*100)}%;background:${c}"></i></span><span class="num small muted">${v==null?'–':Math.round(v*100)+'%'}</span></div>`;
   const open=S.help.map((h,i)=>({...h,i})).filter(h=>h.open),lc=leeches(),tw=S.conf.filter(c=>c.c==='twijfel'||c.c==='moeilijk').length;
-  const allW=[...NL.map(x=>({id:x.id,l:`${x.art} ${x.w}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
+  const allW=[...NL.map(x=>({id:x.id,l:`${fw(x)}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
   const cardFor=ctx=>/Zin|plek|Grammatica|Gatentekst/i.test(ctx)?'plek2':/Rekenen|korting/i.test(ctx)?'procent':/Engels/i.test(ctx)?'ens':'dehet';
   const mins7=Math.round(Object.entries(S.mins).filter(([d])=>+d>today()-7*DAY).reduce((a,[,m])=>a+m,0));
   const writing=S.log.filter(l=>l.video||l.diary).slice(-3).reverse();
@@ -2587,7 +2594,7 @@ function progressData(){
   const sk=lv?{nl:Math.min(1,((lv.woorden+lv.grammatica+lv.luisteren+lv.lezen)/4)*.6+mastered(NL.map(x=>x.id))*.4),rk:Math.min(1,lv.rekenen*.7+mastered(REK.map(x=>x.id))*.3),en:Math.min(1,lv.engels*.7+mastered(EN.map(x=>x.id))*.3)}:{nl:mastered(NL.map(x=>x.id)),rk:mastered(REK.map(x=>x.id)),en:mastered(EN.map(x=>x.id))};
   const r=v=>Math.round(v*100)/100,mon=today()-((new Date().getDay()+6)%7)*DAY,days=[],seen=[...NL,...EN,...REK].map(x=>x.id).filter(id=>S.items[id].reps>0),garden=[0,0,0,0,0,0];
   for(let i=0;i<7;i++)days.push(S.days[mon+i*DAY]?1:0);seen.forEach(id=>garden[stage(id)]++);
-  const allW=[...NL.map(x=>({id:x.id,l:`${x.art} ${x.w}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
+  const allW=[...NL.map(x=>({id:x.id,l:`${fw(x)}`})),...EN.map(x=>({id:x.id,l:x.w})),...REK.map(x=>({id:x.id,l:x.label}))];
   return {app:'tonaor-leert',v:1,t:now(),fase:'Fase 1',thema:'Thema 1 · Werk en dagelijks leven',placed:!!S.placement,
     skills:{nl:r(sk.nl),rk:r(sk.rk),en:r(sk.en)},week:{days,mins:Math.round(Object.entries(S.mins).filter(([d])=>+d>=mon).reduce((a,[,m])=>a+m,0)),goal:weekGoal()},
     talks:S.talks,sessions:S.sessions,points:pts(),garden,steer:{newPerDay:dayBudget(),roundLen:S.roundLen||'normaal',feel:feel(),fun:((S.conf||[])[0]||{}).fun||null},thirsty:seen.filter(id=>thirsty(id)).length,

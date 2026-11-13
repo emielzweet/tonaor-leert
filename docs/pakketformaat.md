@@ -238,3 +238,7 @@ In fase 3 komen er plekken bij die kiezen op wat bijna vergeten is, voor alle so
 - Geen nieuwe inhoud, geen andere teksten, geen neutrale plaatsnamen (fase 4).
 - Geen ander herhaalmodel en geen derde oefenvorm (fase 3).
 - De vertaaltabel van de interface (`I18N`) blijft in `index.html`. De kortingssommen houden hun teksten daar tot ze in fase 3 uit een recept met getallen komen.
+
+## Soort pakket (`type`)
+
+`type` is `thema` (standaard) of `woordenlijst`. Een woordenlijst (zoals `nl-basis`, de basiswoorden van de frequentielijst) heeft geen teksten of recepten; de thema-eisen uit het kwaliteitskader (40 tot 60 doelwoorden, teksten, luistertekst) gelden er niet voor, de woordeisen wel (vertaling, omschrijving `def`, eigen voorbeeldzin, zin met een open plek). Een woord zonder `art` (werkwoord, bijvoeglijk naamwoord, tijdwoord) wordt zonder lidwoord gevraagd en getoond. De woorden komen in de les via de woordstappen van het Nederlandse recept, na de themawoorden (volgorde `order`).

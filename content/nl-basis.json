@@ -1,0 +1,1267 @@
+{
+ "format": 1,
+ "id": "nl-basis",
+ "type": "woordenlijst",
+ "version": 1,
+ "learn": "nl",
+ "level": "A1-A2",
+ "order": 20,
+ "requires": [],
+ "title": {
+  "nl": "Basiswoorden 1",
+  "th": "คำพื้นฐาน 1",
+  "en": "Basic words 1"
+ },
+ "items": [
+  {
+   "id": "nlb.dag",
+   "kind": "word",
+   "w": "dag",
+   "art": "de",
+   "tr": {
+    "th": "วัน",
+    "en": "day"
+   },
+   "def": "Vierentwintig uur, van de ochtend tot de nacht.",
+   "ex": "Het was een mooie dag.",
+   "gap": "De ___ was lang en druk."
+  },
+  {
+   "id": "nlb.tijd",
+   "kind": "word",
+   "w": "tijd",
+   "art": "de",
+   "tr": {
+    "th": "เวลา",
+    "en": "time"
+   },
+   "def": "Hoe laat het is; ook: de uren die je hebt.",
+   "ex": "Ik heb vandaag weinig tijd.",
+   "gap": "Weet jij de ___? Mijn telefoon is leeg."
+  },
+  {
+   "id": "nlb.jaar",
+   "kind": "word",
+   "w": "jaar",
+   "art": "het",
+   "tr": {
+    "th": "ปี",
+    "en": "year"
+   },
+   "def": "Twaalf maanden.",
+   "ex": "Ik woon hier al tien jaar.",
+   "gap": "Het ___ heeft twaalf maanden."
+  },
+  {
+   "id": "nlb.uur",
+   "kind": "word",
+   "w": "uur",
+   "art": "het",
+   "tr": {
+    "th": "ชั่วโมง",
+    "en": "hour"
+   },
+   "def": "Zestig minuten.",
+   "ex": "De les duurt een uur.",
+   "gap": "Het ___ is bijna voorbij."
+  },
+  {
+   "id": "nlb.minuut",
+   "kind": "word",
+   "w": "minuut",
+   "art": "de",
+   "tr": {
+    "th": "นาที",
+    "en": "minute"
+   },
+   "def": "Zestig seconden.",
+   "ex": "Wacht een minuut, alsjeblieft.",
+   "gap": "De laatste ___ duurt altijd lang."
+  },
+  {
+   "id": "nlb.ochtend",
+   "kind": "word",
+   "w": "ochtend",
+   "art": "de",
+   "tr": {
+    "th": "ตอนเช้า",
+    "en": "morning"
+   },
+   "def": "Het begin van de dag, voor twaalf uur.",
+   "ex": "Ik drink koffie in de ochtend.",
+   "gap": "In de ___ ben ik nog moe."
+  },
+  {
+   "id": "nlb.avond",
+   "kind": "word",
+   "w": "avond",
+   "art": "de",
+   "tr": {
+    "th": "ตอนเย็น",
+    "en": "evening"
+   },
+   "def": "Het einde van de dag, na het avondeten.",
+   "ex": "Wij eten om zes uur in de avond.",
+   "gap": "In de ___ kijk ik televisie."
+  },
+  {
+   "id": "nlb.nacht",
+   "kind": "word",
+   "w": "nacht",
+   "art": "de",
+   "tr": {
+    "th": "กลางคืน",
+    "en": "night"
+   },
+   "def": "Als het donker is en mensen slapen.",
+   "ex": "Ik slaap acht uur per nacht.",
+   "gap": "In de ___ is het stil op straat."
+  },
+  {
+   "id": "nlb.maand",
+   "kind": "word",
+   "w": "maand",
+   "art": "de",
+   "tr": {
+    "th": "เดือน",
+    "en": "month"
+   },
+   "def": "Ongeveer dertig dagen.",
+   "ex": "Ik krijg elke maand salaris.",
+   "gap": "De ___ juni is vaak warm."
+  },
+  {
+   "id": "nlb.water",
+   "kind": "word",
+   "w": "water",
+   "art": "het",
+   "tr": {
+    "th": "น้ำ",
+    "en": "water"
+   },
+   "def": "Wat je drinkt als je dorst hebt; het is helder.",
+   "ex": "Ik drink veel water.",
+   "gap": "Het ___ is koud."
+  },
+  {
+   "id": "nlb.eten",
+   "kind": "word",
+   "w": "eten",
+   "art": "het",
+   "tr": {
+    "th": "อาหาร",
+    "en": "food"
+   },
+   "def": "Wat je eet, zoals brood, rijst of groente.",
+   "ex": "Het eten staat op tafel.",
+   "gap": "Het ___ is klaar."
+  },
+  {
+   "id": "nlb.brood",
+   "kind": "word",
+   "w": "brood",
+   "art": "het",
+   "tr": {
+    "th": "ขนมปัง",
+    "en": "bread"
+   },
+   "def": "Eten van meel dat je bij de bakker koopt.",
+   "ex": "Ik eet brood met kaas.",
+   "gap": "Het ___ is vers."
+  },
+  {
+   "id": "nlb.koffie",
+   "kind": "word",
+   "w": "koffie",
+   "art": "de",
+   "tr": {
+    "th": "กาแฟ",
+    "en": "coffee"
+   },
+   "def": "Een warme, bruine drank.",
+   "ex": "Wil je een kop koffie?",
+   "gap": "De ___ is te heet."
+  },
+  {
+   "id": "nlb.thee",
+   "kind": "word",
+   "w": "thee",
+   "art": "de",
+   "tr": {
+    "th": "ชา",
+    "en": "tea"
+   },
+   "def": "Een warme drank van gedroogde blaadjes.",
+   "ex": "Ik drink thee met honing.",
+   "gap": "De ___ is nog warm."
+  },
+  {
+   "id": "nlb.melk",
+   "kind": "word",
+   "w": "melk",
+   "art": "de",
+   "tr": {
+    "th": "นม",
+    "en": "milk"
+   },
+   "def": "Een witte drank van de koe.",
+   "ex": "Er is geen melk meer.",
+   "gap": "De ___ staat in de koelkast."
+  },
+  {
+   "id": "nlb.kind",
+   "kind": "word",
+   "w": "kind",
+   "art": "het",
+   "tr": {
+    "th": "เด็ก",
+    "en": "child"
+   },
+   "def": "Een jong mens.",
+   "ex": "Het kind speelt buiten.",
+   "gap": "Het ___ slaapt al."
+  },
+  {
+   "id": "nlb.vrouw",
+   "kind": "word",
+   "w": "vrouw",
+   "art": "de",
+   "tr": {
+    "th": "ผู้หญิง",
+    "en": "woman"
+   },
+   "def": "Een volwassen mens die geen man is.",
+   "ex": "De vrouw werkt in een winkel.",
+   "gap": "De ___ belt haar moeder."
+  },
+  {
+   "id": "nlb.mens",
+   "kind": "word",
+   "w": "mens",
+   "art": "de",
+   "tr": {
+    "th": "คน",
+    "en": "person"
+   },
+   "def": "Iemand: een man, een vrouw of een kind.",
+   "ex": "Er lopen veel mensen op straat.",
+   "gap": "De ___ heeft twee handen."
+  },
+  {
+   "id": "nlb.vriend",
+   "kind": "word",
+   "w": "vriend",
+   "art": "de",
+   "tr": {
+    "th": "เพื่อน",
+    "en": "friend"
+   },
+   "def": "Iemand die je graag mag en vertrouwt.",
+   "ex": "Mijn vriend helpt mij verhuizen.",
+   "gap": "De ___ komt vanavond eten."
+  },
+  {
+   "id": "nlb.familie",
+   "kind": "word",
+   "w": "familie",
+   "art": "de",
+   "tr": {
+    "th": "ครอบครัว",
+    "en": "family"
+   },
+   "def": "Je ouders, kinderen, broers, zussen en andere mensen die bij je horen.",
+   "ex": "Mijn familie woont ver weg.",
+   "gap": "De ___ komt zondag op bezoek."
+  },
+  {
+   "id": "nlb.moeder",
+   "kind": "word",
+   "w": "moeder",
+   "art": "de",
+   "tr": {
+    "th": "แม่",
+    "en": "mother"
+   },
+   "def": "Een vrouw die een kind heeft.",
+   "ex": "Mijn moeder kookt lekker.",
+   "gap": "De ___ brengt het kind naar school."
+  },
+  {
+   "id": "nlb.vader",
+   "kind": "word",
+   "w": "vader",
+   "art": "de",
+   "tr": {
+    "th": "พ่อ",
+    "en": "father"
+   },
+   "def": "Een man die een kind heeft.",
+   "ex": "Mijn vader repareert fietsen.",
+   "gap": "De ___ leest een verhaal voor."
+  },
+  {
+   "id": "nlb.school",
+   "kind": "word",
+   "w": "school",
+   "art": "de",
+   "tr": {
+    "th": "โรงเรียน",
+    "en": "school"
+   },
+   "def": "Een gebouw waar kinderen les krijgen.",
+   "ex": "De school begint om half negen.",
+   "gap": "De ___ is vandaag dicht."
+  },
+  {
+   "id": "nlb.straat",
+   "kind": "word",
+   "w": "straat",
+   "art": "de",
+   "tr": {
+    "th": "ถนน",
+    "en": "street"
+   },
+   "def": "Een weg in een stad of dorp, met huizen ernaast.",
+   "ex": "Ik woon in een rustige straat.",
+   "gap": "De ___ is nat van de regen."
+  },
+  {
+   "id": "nlb.stad",
+   "kind": "word",
+   "w": "stad",
+   "art": "de",
+   "tr": {
+    "th": "เมือง",
+    "en": "city"
+   },
+   "def": "Een grote plaats met veel huizen, winkels en mensen.",
+   "ex": "De stad is groot.",
+   "gap": "De ___ is druk op zaterdag."
+  },
+  {
+   "id": "nlb.auto",
+   "kind": "word",
+   "w": "auto",
+   "art": "de",
+   "tr": {
+    "th": "รถยนต์",
+    "en": "car"
+   },
+   "def": "Een voertuig met vier wielen en een motor.",
+   "ex": "Ik ga met de auto naar mijn werk.",
+   "gap": "De ___ staat voor het huis."
+  },
+  {
+   "id": "nlb.bus",
+   "kind": "word",
+   "w": "bus",
+   "art": "de",
+   "tr": {
+    "th": "รถบัส",
+    "en": "bus"
+   },
+   "def": "Een groot voertuig dat veel mensen vervoert.",
+   "ex": "De bus is te laat.",
+   "gap": "De ___ stopt hier."
+  },
+  {
+   "id": "nlb.trein",
+   "kind": "word",
+   "w": "trein",
+   "art": "de",
+   "tr": {
+    "th": "รถไฟ",
+    "en": "train"
+   },
+   "def": "Een lang voertuig dat over rails rijdt.",
+   "ex": "De trein vertrekt om acht uur.",
+   "gap": "De ___ is vol."
+  },
+  {
+   "id": "nlb.deur",
+   "kind": "word",
+   "w": "deur",
+   "art": "de",
+   "tr": {
+    "th": "ประตู",
+    "en": "door"
+   },
+   "def": "Hierdoor ga je een kamer of een huis in.",
+   "ex": "Doe de deur dicht, alsjeblieft.",
+   "gap": "De ___ is open."
+  },
+  {
+   "id": "nlb.raam",
+   "kind": "word",
+   "w": "raam",
+   "art": "het",
+   "tr": {
+    "th": "หน้าต่าง",
+    "en": "window"
+   },
+   "def": "Glas in de muur; je kijkt erdoor naar buiten.",
+   "ex": "Het raam staat open.",
+   "gap": "Het ___ is vies."
+  },
+  {
+   "id": "nlb.kamer",
+   "kind": "word",
+   "w": "kamer",
+   "art": "de",
+   "tr": {
+    "th": "ห้อง",
+    "en": "room"
+   },
+   "def": "Een ruimte in een huis of gebouw.",
+   "ex": "Mijn kamer is klein.",
+   "gap": "De ___ is netjes."
+  },
+  {
+   "id": "nlb.tafel",
+   "kind": "word",
+   "w": "tafel",
+   "art": "de",
+   "tr": {
+    "th": "โต๊ะ",
+    "en": "table"
+   },
+   "def": "Een meubel waaraan je eet of werkt.",
+   "ex": "Het eten staat op tafel.",
+   "gap": "De ___ is van hout."
+  },
+  {
+   "id": "nlb.stoel",
+   "kind": "word",
+   "w": "stoel",
+   "art": "de",
+   "tr": {
+    "th": "เก้าอี้",
+    "en": "chair"
+   },
+   "def": "Een meubel om op te zitten.",
+   "ex": "Pak een stoel en ga zitten.",
+   "gap": "De ___ is kapot."
+  },
+  {
+   "id": "nlb.bed",
+   "kind": "word",
+   "w": "bed",
+   "art": "het",
+   "tr": {
+    "th": "เตียง",
+    "en": "bed"
+   },
+   "def": "Een meubel om in te slapen.",
+   "ex": "Ik ga om tien uur naar bed.",
+   "gap": "Het ___ is groot."
+  },
+  {
+   "id": "nlb.keuken",
+   "kind": "word",
+   "w": "keuken",
+   "art": "de",
+   "tr": {
+    "th": "ห้องครัว",
+    "en": "kitchen"
+   },
+   "def": "De kamer waar je kookt.",
+   "ex": "De keuken is schoon.",
+   "gap": "De ___ ruikt lekker."
+  },
+  {
+   "id": "nlb.telefoon",
+   "kind": "word",
+   "w": "telefoon",
+   "art": "de",
+   "tr": {
+    "th": "โทรศัพท์",
+    "en": "phone"
+   },
+   "def": "Hiermee bel je en stuur je berichten.",
+   "ex": "Mijn telefoon is leeg.",
+   "gap": "De ___ gaat; wie belt er?"
+  },
+  {
+   "id": "nlb.boek",
+   "kind": "word",
+   "w": "boek",
+   "art": "het",
+   "tr": {
+    "th": "หนังสือ",
+    "en": "book"
+   },
+   "def": "Veel bladzijden met tekst om te lezen.",
+   "ex": "Ik lees een boek.",
+   "gap": "Het ___ ligt op tafel."
+  },
+  {
+   "id": "nlb.brief",
+   "kind": "word",
+   "w": "brief",
+   "art": "de",
+   "tr": {
+    "th": "จดหมาย",
+    "en": "letter"
+   },
+   "def": "Een bericht op papier, vaak met de post.",
+   "ex": "Ik krijg een brief van de gemeente.",
+   "gap": "De ___ ligt in de brievenbus."
+  },
+  {
+   "id": "nlb.dokter",
+   "kind": "word",
+   "w": "dokter",
+   "art": "de",
+   "tr": {
+    "th": "หมอ",
+    "en": "doctor"
+   },
+   "def": "Iemand die zieke mensen onderzoekt en helpt.",
+   "ex": "Ik ga morgen naar de dokter.",
+   "gap": "De ___ kijkt naar mijn arm."
+  },
+  {
+   "id": "nlb.hand",
+   "kind": "word",
+   "w": "hand",
+   "art": "de",
+   "tr": {
+    "th": "มือ",
+    "en": "hand"
+   },
+   "def": "Aan het eind van je arm, met vijf vingers.",
+   "ex": "Was je handen voor het eten.",
+   "gap": "De ___ doet pijn."
+  },
+  {
+   "id": "nlb.hoofd",
+   "kind": "word",
+   "w": "hoofd",
+   "art": "het",
+   "tr": {
+    "th": "หัว",
+    "en": "head"
+   },
+   "def": "Het bovenste deel van je lichaam, met je gezicht.",
+   "ex": "Ik heb pijn in mijn hoofd.",
+   "gap": "Het ___ is warm van de koorts."
+  },
+  {
+   "id": "nlb.weer",
+   "kind": "word",
+   "w": "weer",
+   "art": "het",
+   "tr": {
+    "th": "สภาพอากาศ",
+    "en": "weather"
+   },
+   "def": "Of er zon, regen of wind is.",
+   "ex": "Het weer is mooi vandaag.",
+   "gap": "Het ___ is slecht."
+  },
+  {
+   "id": "nlb.regen",
+   "kind": "word",
+   "w": "regen",
+   "art": "de",
+   "tr": {
+    "th": "ฝน",
+    "en": "rain"
+   },
+   "def": "Water dat uit de lucht valt.",
+   "ex": "Er komt vanmiddag regen.",
+   "gap": "De ___ stopt over een uur."
+  },
+  {
+   "id": "nlb.zon",
+   "kind": "word",
+   "w": "zon",
+   "art": "de",
+   "tr": {
+    "th": "ดวงอาทิตย์",
+    "en": "sun"
+   },
+   "def": "Geeft overdag licht en warmte.",
+   "ex": "De zon schijnt.",
+   "gap": "De ___ is fel."
+  },
+  {
+   "id": "nlb.kleur",
+   "kind": "word",
+   "w": "kleur",
+   "art": "de",
+   "tr": {
+    "th": "สี",
+    "en": "colour"
+   },
+   "def": "Rood, blauw en geel zijn voorbeelden.",
+   "ex": "Welke kleur vind je mooi?",
+   "gap": "De ___ van de auto is blauw."
+  },
+  {
+   "id": "nlb.vraag",
+   "kind": "word",
+   "w": "vraag",
+   "art": "de",
+   "tr": {
+    "th": "คำถาม",
+    "en": "question"
+   },
+   "def": "Wat je zegt als je iets wilt weten.",
+   "ex": "Ik heb een vraag over het rooster.",
+   "gap": "De ___ is moeilijk."
+  },
+  {
+   "id": "nlb.antwoord",
+   "kind": "word",
+   "w": "antwoord",
+   "art": "het",
+   "tr": {
+    "th": "คำตอบ",
+    "en": "answer"
+   },
+   "def": "Wat je zegt op een vraag.",
+   "ex": "Het antwoord is ja.",
+   "gap": "Het ___ is goed."
+  },
+  {
+   "id": "nlb.probleem",
+   "kind": "word",
+   "w": "probleem",
+   "art": "het",
+   "tr": {
+    "th": "ปัญหา",
+    "en": "problem"
+   },
+   "def": "Iets wat niet goed gaat en moeite kost.",
+   "ex": "Geen probleem, ik help je.",
+   "gap": "Het ___ is opgelost."
+  },
+  {
+   "id": "nlb.naam",
+   "kind": "word",
+   "w": "naam",
+   "art": "de",
+   "tr": {
+    "th": "ชื่อ",
+    "en": "name"
+   },
+   "def": "Hoe iemand of iets heet.",
+   "ex": "Wat is je naam?",
+   "gap": "De ___ staat op de deur."
+  },
+  {
+   "id": "nlb.adres",
+   "kind": "word",
+   "w": "adres",
+   "art": "het",
+   "tr": {
+    "th": "ที่อยู่",
+    "en": "address"
+   },
+   "def": "De straat, het huisnummer en de plaats waar je woont.",
+   "ex": "Wat is je nieuwe adres?",
+   "gap": "Het ___ staat op de brief."
+  },
+  {
+   "id": "nlb.zijn",
+   "kind": "word",
+   "w": "zijn",
+   "tr": {
+    "th": "เป็น, อยู่",
+    "en": "to be"
+   },
+   "def": "Bestaan of op een plek zijn: ik ben, jij bent, hij is.",
+   "ex": "Wij zijn vandaag thuis.",
+   "gap": "Ik wil op tijd ___."
+  },
+  {
+   "id": "nlb.hebben",
+   "kind": "word",
+   "w": "hebben",
+   "tr": {
+    "th": "มี",
+    "en": "to have"
+   },
+   "def": "Iets bezitten of krijgen: ik heb, hij heeft.",
+   "ex": "Ik heb twee broers.",
+   "gap": "Wij willen een tuin ___."
+  },
+  {
+   "id": "nlb.gaan",
+   "kind": "word",
+   "w": "gaan",
+   "tr": {
+    "th": "ไป",
+    "en": "to go"
+   },
+   "def": "Naar een andere plek bewegen.",
+   "ex": "Ik ga naar de markt.",
+   "gap": "Ik wil naar huis ___."
+  },
+  {
+   "id": "nlb.komen",
+   "kind": "word",
+   "w": "komen",
+   "tr": {
+    "th": "มา",
+    "en": "to come"
+   },
+   "def": "Naar hier bewegen.",
+   "ex": "Mijn zus komt morgen.",
+   "gap": "Kun je morgen ___?"
+  },
+  {
+   "id": "nlb.doen",
+   "kind": "word",
+   "w": "doen",
+   "tr": {
+    "th": "ทำ",
+    "en": "to do"
+   },
+   "def": "Bezig zijn met iets.",
+   "ex": "Wat doe je vanavond?",
+   "gap": "Wat ga je vandaag ___?"
+  },
+  {
+   "id": "nlb.maken",
+   "kind": "word",
+   "w": "maken",
+   "tr": {
+    "th": "ทำ, สร้าง",
+    "en": "to make"
+   },
+   "def": "Iets laten ontstaan, zoals eten of een tekening.",
+   "ex": "Ik maak soep.",
+   "gap": "Ik ga een salade ___."
+  },
+  {
+   "id": "nlb.zeggen",
+   "kind": "word",
+   "w": "zeggen",
+   "tr": {
+    "th": "พูด, บอก",
+    "en": "to say"
+   },
+   "def": "Woorden uitspreken tegen iemand.",
+   "ex": "Wat zeg je?",
+   "gap": "Wat wil je ___?"
+  },
+  {
+   "id": "nlb.zien",
+   "kind": "word",
+   "w": "zien",
+   "tr": {
+    "th": "เห็น",
+    "en": "to see"
+   },
+   "def": "Met je ogen waarnemen.",
+   "ex": "Ik zie de bus al.",
+   "gap": "Kun je de bus al ___?"
+  },
+  {
+   "id": "nlb.weten",
+   "kind": "word",
+   "w": "weten",
+   "tr": {
+    "th": "รู้",
+    "en": "to know"
+   },
+   "def": "Informatie in je hoofd hebben.",
+   "ex": "Ik weet het antwoord.",
+   "gap": "Ik wil het antwoord ___."
+  },
+  {
+   "id": "nlb.drinken",
+   "kind": "word",
+   "w": "drinken",
+   "tr": {
+    "th": "ดื่ม",
+    "en": "to drink"
+   },
+   "def": "Iets vloeibaars doorslikken.",
+   "ex": "Ik drink elke dag thee.",
+   "gap": "Ik wil een glas water ___."
+  },
+  {
+   "id": "nlb.slapen",
+   "kind": "word",
+   "w": "slapen",
+   "tr": {
+    "th": "นอนหลับ",
+    "en": "to sleep"
+   },
+   "def": "Rusten met je ogen dicht, meestal in bed.",
+   "ex": "Het kind slaapt.",
+   "gap": "Ik wil vroeg ___."
+  },
+  {
+   "id": "nlb.lopen",
+   "kind": "word",
+   "w": "lopen",
+   "tr": {
+    "th": "เดิน",
+    "en": "to walk"
+   },
+   "def": "Op je benen vooruitgaan.",
+   "ex": "Ik loop naar de bushalte.",
+   "gap": "We gaan naar de winkel ___."
+  },
+  {
+   "id": "nlb.werken",
+   "kind": "word",
+   "w": "werken",
+   "tr": {
+    "th": "ทำงาน",
+    "en": "to work"
+   },
+   "def": "Een baan hebben en daarvoor iets doen.",
+   "ex": "Ik werk vier dagen per week.",
+   "gap": "Ik moet morgen ___."
+  },
+  {
+   "id": "nlb.wonen",
+   "kind": "word",
+   "w": "wonen",
+   "tr": {
+    "th": "อาศัยอยู่",
+    "en": "to live (at a place)"
+   },
+   "def": "Ergens je huis hebben.",
+   "ex": "Wij wonen in een flat.",
+   "gap": "Ik wil in een rustige straat ___."
+  },
+  {
+   "id": "nlb.kopen",
+   "kind": "word",
+   "w": "kopen",
+   "tr": {
+    "th": "ซื้อ",
+    "en": "to buy"
+   },
+   "def": "Iets krijgen in ruil voor geld.",
+   "ex": "Ik koop een nieuwe jas.",
+   "gap": "Ik ga brood ___."
+  },
+  {
+   "id": "nlb.betalen",
+   "kind": "word",
+   "w": "betalen",
+   "tr": {
+    "th": "จ่ายเงิน",
+    "en": "to pay"
+   },
+   "def": "Geld geven voor iets.",
+   "ex": "Ik betaal met mijn pinpas.",
+   "gap": "Kan ik met mijn telefoon ___?"
+  },
+  {
+   "id": "nlb.helpen",
+   "kind": "word",
+   "w": "helpen",
+   "tr": {
+    "th": "ช่วย",
+    "en": "to help"
+   },
+   "def": "Iets doen zodat het voor een ander makkelijker is.",
+   "ex": "Mijn buurman helpt mij.",
+   "gap": "Kun je mij even ___?"
+  },
+  {
+   "id": "nlb.vragen",
+   "kind": "word",
+   "w": "vragen",
+   "tr": {
+    "th": "ถาม",
+    "en": "to ask"
+   },
+   "def": "Een vraag stellen.",
+   "ex": "Ik vraag de weg.",
+   "gap": "Mag ik iets ___?"
+  },
+  {
+   "id": "nlb.leren",
+   "kind": "word",
+   "w": "leren",
+   "tr": {
+    "th": "เรียน",
+    "en": "to learn"
+   },
+   "def": "Nieuwe kennis of vaardigheden krijgen.",
+   "ex": "Ik leer Nederlands.",
+   "gap": "Ik wil elke dag iets nieuws ___."
+  },
+  {
+   "id": "nlb.lezen",
+   "kind": "word",
+   "w": "lezen",
+   "tr": {
+    "th": "อ่าน",
+    "en": "to read"
+   },
+   "def": "Tekst bekijken en begrijpen.",
+   "ex": "Ik lees de krant.",
+   "gap": "Ik ga een boek ___."
+  },
+  {
+   "id": "nlb.schrijven",
+   "kind": "word",
+   "w": "schrijven",
+   "tr": {
+    "th": "เขียน",
+    "en": "to write"
+   },
+   "def": "Woorden op papier of op een scherm zetten.",
+   "ex": "Ik schrijf een bericht.",
+   "gap": "Ik moet een brief ___."
+  },
+  {
+   "id": "nlb.spreken",
+   "kind": "word",
+   "w": "spreken",
+   "tr": {
+    "th": "พูด",
+    "en": "to speak"
+   },
+   "def": "Een taal gebruiken met je stem.",
+   "ex": "Zij spreekt drie talen.",
+   "gap": "Ik wil beter Nederlands ___."
+  },
+  {
+   "id": "nlb.luisteren",
+   "kind": "word",
+   "w": "luisteren",
+   "tr": {
+    "th": "ฟัง",
+    "en": "to listen"
+   },
+   "def": "Goed horen wat iemand zegt.",
+   "ex": "Ik luister naar de radio.",
+   "gap": "Je moet goed ___."
+  },
+  {
+   "id": "nlb.bellen",
+   "kind": "word",
+   "w": "bellen",
+   "tr": {
+    "th": "โทรหา",
+    "en": "to call"
+   },
+   "def": "Met de telefoon iemand spreken.",
+   "ex": "Ik bel mijn moeder.",
+   "gap": "Ik ga de dokter ___."
+  },
+  {
+   "id": "nlb.wachten",
+   "kind": "word",
+   "w": "wachten",
+   "tr": {
+    "th": "รอ",
+    "en": "to wait"
+   },
+   "def": "Blijven tot iets gebeurt of iemand komt.",
+   "ex": "Ik wacht op de trein.",
+   "gap": "We moeten op de bus ___."
+  },
+  {
+   "id": "nlb.beginnen",
+   "kind": "word",
+   "w": "beginnen",
+   "tr": {
+    "th": "เริ่ม",
+    "en": "to begin"
+   },
+   "def": "Het eerste deel van iets doen.",
+   "ex": "De les begint om negen uur.",
+   "gap": "Wanneer gaan we ___?"
+  },
+  {
+   "id": "nlb.stoppen",
+   "kind": "word",
+   "w": "stoppen",
+   "tr": {
+    "th": "หยุด",
+    "en": "to stop"
+   },
+   "def": "Niet verder gaan.",
+   "ex": "De trein stopt in elk dorp.",
+   "gap": "De bus gaat hier ___."
+  },
+  {
+   "id": "nlb.koken",
+   "kind": "word",
+   "w": "koken",
+   "tr": {
+    "th": "ทำอาหาร",
+    "en": "to cook"
+   },
+   "def": "Eten klaarmaken met warmte.",
+   "ex": "Ik kook rijst.",
+   "gap": "Ik ga vanavond ___."
+  },
+  {
+   "id": "nlb.denken",
+   "kind": "word",
+   "w": "denken",
+   "tr": {
+    "th": "คิด",
+    "en": "to think"
+   },
+   "def": "Iets in je hoofd overwegen.",
+   "ex": "Ik denk aan mijn familie.",
+   "gap": "Ik moet daar even over ___."
+  },
+  {
+   "id": "nlb.zitten",
+   "kind": "word",
+   "w": "zitten",
+   "tr": {
+    "th": "นั่ง",
+    "en": "to sit"
+   },
+   "def": "Op een stoel of bank rusten.",
+   "ex": "Ik zit in de trein.",
+   "gap": "Je mag hier ___."
+  },
+  {
+   "id": "nlb.groot",
+   "kind": "word",
+   "w": "groot",
+   "tr": {
+    "th": "ใหญ่",
+    "en": "big"
+   },
+   "def": "Van flinke omvang; het tegenovergestelde van klein.",
+   "ex": "Wij hebben een grote tuin.",
+   "gap": "Het huis is ___."
+  },
+  {
+   "id": "nlb.klein",
+   "kind": "word",
+   "w": "klein",
+   "tr": {
+    "th": "เล็ก",
+    "en": "small"
+   },
+   "def": "Niet groot.",
+   "ex": "Mijn kamer is klein.",
+   "gap": "De kamer is ___."
+  },
+  {
+   "id": "nlb.goed",
+   "kind": "word",
+   "w": "goed",
+   "tr": {
+    "th": "ดี",
+    "en": "good"
+   },
+   "def": "Zoals het hoort; het tegenovergestelde van slecht.",
+   "ex": "Dat is een goed idee.",
+   "gap": "Het antwoord is ___."
+  },
+  {
+   "id": "nlb.slecht",
+   "kind": "word",
+   "w": "slecht",
+   "tr": {
+    "th": "แย่",
+    "en": "bad"
+   },
+   "def": "Niet goed.",
+   "ex": "Ik heb slecht geslapen.",
+   "gap": "Het weer is ___."
+  },
+  {
+   "id": "nlb.nieuw",
+   "kind": "word",
+   "w": "nieuw",
+   "tr": {
+    "th": "ใหม่",
+    "en": "new"
+   },
+   "def": "Net gemaakt of gekocht; niet oud.",
+   "ex": "Ik heb nieuwe schoenen.",
+   "gap": "Mijn telefoon is ___."
+  },
+  {
+   "id": "nlb.oud",
+   "kind": "word",
+   "w": "oud",
+   "tr": {
+    "th": "เก่า, แก่",
+    "en": "old"
+   },
+   "def": "Al lang gebruikt of al lang geleden geboren.",
+   "ex": "Mijn fiets is oud.",
+   "gap": "De auto is al ___."
+  },
+  {
+   "id": "nlb.mooi",
+   "kind": "word",
+   "w": "mooi",
+   "tr": {
+    "th": "สวย",
+    "en": "beautiful"
+   },
+   "def": "Prettig om naar te kijken of te luisteren.",
+   "ex": "Wat een mooie bloemen!",
+   "gap": "De stad is ___."
+  },
+  {
+   "id": "nlb.warm",
+   "kind": "word",
+   "w": "warm",
+   "tr": {
+    "th": "อุ่น",
+    "en": "warm"
+   },
+   "def": "Met een hoge temperatuur, maar niet heet.",
+   "ex": "Het is warm vandaag.",
+   "gap": "De thee is nog ___."
+  },
+  {
+   "id": "nlb.koud",
+   "kind": "word",
+   "w": "koud",
+   "tr": {
+    "th": "เย็น, หนาว",
+    "en": "cold"
+   },
+   "def": "Met een lage temperatuur.",
+   "ex": "Het is koud buiten.",
+   "gap": "Het water is ___."
+  },
+  {
+   "id": "nlb.moe",
+   "kind": "word",
+   "w": "moe",
+   "tr": {
+    "th": "เหนื่อย",
+    "en": "tired"
+   },
+   "def": "Als je rust of slaap nodig hebt.",
+   "ex": "Ik ben moe na de dienst.",
+   "gap": "Na het werk ben ik ___."
+  },
+  {
+   "id": "nlb.ziek",
+   "kind": "word",
+   "w": "ziek",
+   "tr": {
+    "th": "ป่วย",
+    "en": "ill"
+   },
+   "def": "Niet gezond.",
+   "ex": "Ik ben ziek en blijf thuis.",
+   "gap": "Mijn kind is ___."
+  },
+  {
+   "id": "nlb.blij",
+   "kind": "word",
+   "w": "blij",
+   "tr": {
+    "th": "ดีใจ",
+    "en": "happy"
+   },
+   "def": "Met een goed gevoel, omdat er iets fijns is.",
+   "ex": "Ik ben blij met het cadeau.",
+   "gap": "Ik ben ___ met het nieuws."
+  },
+  {
+   "id": "nlb.lekker",
+   "kind": "word",
+   "w": "lekker",
+   "tr": {
+    "th": "อร่อย",
+    "en": "tasty"
+   },
+   "def": "Met een goede smaak.",
+   "ex": "Deze soep is lekker.",
+   "gap": "De soep is ___."
+  },
+  {
+   "id": "nlb.duur",
+   "kind": "word",
+   "w": "duur",
+   "tr": {
+    "th": "แพง",
+    "en": "expensive"
+   },
+   "def": "Het kost veel geld.",
+   "ex": "Die jas is duur.",
+   "gap": "Deze jas is te ___."
+  },
+  {
+   "id": "nlb.goedkoop",
+   "kind": "word",
+   "w": "goedkoop",
+   "tr": {
+    "th": "ถูก",
+    "en": "cheap"
+   },
+   "def": "Het kost weinig geld.",
+   "ex": "De markt is goedkoop.",
+   "gap": "Het brood is ___."
+  },
+  {
+   "id": "nlb.snel",
+   "kind": "word",
+   "w": "snel",
+   "tr": {
+    "th": "เร็ว",
+    "en": "fast"
+   },
+   "def": "Met hoge snelheid; niet langzaam.",
+   "ex": "De trein rijdt snel.",
+   "gap": "De trein is ___."
+  },
+  {
+   "id": "nlb.vandaag",
+   "kind": "word",
+   "w": "vandaag",
+   "tr": {
+    "th": "วันนี้",
+    "en": "today"
+   },
+   "def": "Op deze dag.",
+   "ex": "Vandaag werk ik niet.",
+   "gap": "Ik werk ___ tot vijf uur."
+  },
+  {
+   "id": "nlb.morgen",
+   "kind": "word",
+   "w": "morgen",
+   "tr": {
+    "th": "พรุ่งนี้",
+    "en": "tomorrow"
+   },
+   "def": "De dag na vandaag.",
+   "ex": "Morgen ga ik naar de dokter.",
+   "gap": "Ik bel je ___ terug."
+  },
+  {
+   "id": "nlb.gisteren",
+   "kind": "word",
+   "w": "gisteren",
+   "tr": {
+    "th": "เมื่อวาน",
+    "en": "yesterday"
+   },
+   "def": "De dag voor vandaag.",
+   "ex": "Gisteren regende het.",
+   "gap": "Ik was ___ ziek."
+  },
+  {
+   "id": "nlb.altijd",
+   "kind": "word",
+   "w": "altijd",
+   "tr": {
+    "th": "เสมอ",
+    "en": "always"
+   },
+   "def": "Elke keer, zonder uitzondering.",
+   "ex": "Ik drink altijd thee bij het ontbijt.",
+   "gap": "Ik drink ___ koffie."
+  }
+ ]
+}
