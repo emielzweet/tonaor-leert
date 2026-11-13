@@ -29,6 +29,7 @@
   --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-thai:"IBM Plex Sans Thai Looped","Thonburi","Leelawadee UI","Noto Sans Thai",sans-serif;
   --r:22px; --r-s:14px;
+  --mint-deep:#79b597; --apricot-deep:#d9b46a; --sky-deep:#8db6d6; --lilac-deep:#b2a4da; --wood:#c9a377; --sun:#f6dc9a;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#1a1f1d; --surface:#242b28; --surface-2:#2d3531; --ink:#e8eee9; --ink-2:#a8b5ad; --line:#38423d;
@@ -91,9 +92,14 @@ button.card{width:100%;text-align:left}
 .btn .bi{display:flex;flex-direction:column;align-items:center}
 .btn .sup{font-size:.82em}
 .btn svg{width:20px;height:20px}
-.btn-main{background:var(--apricot-fill);color:var(--ink)}
-.btn-leaf{background:var(--mint-fill);color:var(--ink)}
-.btn-sky{background:var(--sky-fill);color:var(--ink)}
+.btn-main{background:var(--apricot-fill);color:var(--ink);box-shadow:0 4px 0 var(--apricot-deep,var(--apricot-ink))}
+.btn-leaf{background:var(--mint-fill);color:var(--ink);box-shadow:0 4px 0 var(--mint-deep,var(--mint-ink))}
+.btn-sky{background:var(--sky-fill);color:var(--ink);box-shadow:0 4px 0 var(--sky-deep,var(--sky-ink))}
+.btn-main:active,.btn-leaf:active,.btn-sky:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+.btn-main,.btn-leaf,.btn-sky{margin-bottom:4px}
+/* kleur per vak (concept stap 1): Nederlands groen, rekenen geel, Engels blauw, wereld en kennis lila */
+[data-vak="nl"] .sess-top .bar i{background:var(--mint-fill)}[data-vak="rk"] .sess-top .bar i{background:var(--apricot-fill)}[data-vak="en"] .sess-top .bar i{background:var(--sky-fill)}[data-vak="kn"] .sess-top .bar i{background:var(--lilac-fill)}
+[data-vak="nl"] .stage-label .eyebrow{color:var(--mint-ink)}[data-vak="rk"] .stage-label .eyebrow{color:var(--apricot-ink)}[data-vak="en"] .stage-label .eyebrow{color:var(--sky-ink)}[data-vak="kn"] .stage-label .eyebrow{color:var(--lilac-ink)}
 .btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
 .btn[disabled]{opacity:.45;cursor:default}
 .btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -1982,7 +1988,7 @@ const heroArt=()=>`<svg class="art" viewBox="0 0 140 120" aria-hidden="true"><ci
 
 /* ============ navigatie ============ */
 let tab='vandaag',route=null;
-function show(t){tab=t;route=null;$('#nav').hidden=false;document.querySelectorAll('#nav [data-tab]').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===t?'page':'false'));app.classList.remove('sess');rerender();window.scrollTo(0,0)}
+function show(t){tab=t;route=null;delete app.dataset.vak;$('#nav').hidden=false;document.querySelectorAll('#nav [data-tab]').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===t?'page':'false'));app.classList.remove('sess');rerender();window.scrollTo(0,0)}
 document.querySelectorAll('#nav [data-tab]').forEach(b=>b.onclick=()=>show(b.dataset.tab));
 function rerender(){if(route)return route();({vandaag:vToday,tuin:vGarden,route:vRoute,ik:vMe,emiel:vEmiel}[tab])()}
 function paint(html){app.innerHTML=`<div class="view">${STORE==='newer'?`<div class="note sky small" role="status">${T('newer.banner')}</div>`:''}${html}</div>`;bindCommon()}
@@ -2090,7 +2096,8 @@ function vToday(){
 let SESS=[];   // goed of fout per antwoord in deze ronde (bijsturen)
 let Q=[],qi=0,sp=0,grown=[],sessName='',sessStart=0,sessRight=0,sessTotal=0;
 function runSession(name,queue){Q=queue;qi=0;SESS=[];KNOWN=new Set();RETRIED=new Set();sp=0;grown=[];sessName=name;sessStart=now();sessRight=0;sessTotal=0;$('#nav').hidden=true;app.classList.add('sess');window.scrollTo(0,0);step()}
-function frame(inner,label,stepNo,ofN){
+function vakOf(q,stepNo){return q&&q.vak?q.vak:stepNo===4||(q&&['money','clock','discount'].includes(q.type))?'rk':(q&&(q.lang==='en'||/^en/.test(q.type)))||sessName==='Engels'?'en':'nl'}
+function frame(inner,label,stepNo,ofN){app.dataset.vak=vakOf(Q[qi],stepNo);
   const p=Math.round(qi/Math.max(1,Q.length-1)*100);
   paint(`<div class="sess-top"><button class="close" id="quit" aria-label="Stoppen">×</button><div class="bar" role="progressbar" aria-label="Voortgang" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><i style="width:${p}%"></i></div>${thaiSwitch()}</div>
   <div class="stage-label"><span class="eyebrow">${stepNo?`Stap ${stepNo} van ${ofN||5} · `:''}${label}</span>${(x=>x?`<button class="u-btn" data-uopen="${esc(x)}">${TB('explain.open')}</button>`:'')(explFor(Q[qi]))}<span class="pill pill-apricot num">+${sp}</span></div>${inner}`);
