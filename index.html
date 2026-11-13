@@ -238,8 +238,9 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
 </div></nav>
 
 <script src="tlsync.js"></script>
+<script src="pakketcheck.js"></script>
 <script>
-(function(){
+(async function(){
 "use strict";
 const KEY='tonaor-leert-v2', DAY=864e5; // vaste technische naam (opslagsleutel); niet wijzigen zonder migratie, anders is alle voortgang weg
 const now=()=>Date.now();
@@ -267,6 +268,7 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "pack.missing":"Part of the lesson material could not be loaded ({list}). Your progress is kept. Try again later with internet.",
  "rec.startOver.do":"Start again",
  "bk.err.newer":"This file comes from a newer version of the app. Please update the app first.",
  "bk.err.invalid":"This is not a progress file from this app.",
@@ -298,8 +300,6 @@ en:{
  "rec.text":"Nothing has been deleted. The saved data cannot be read or comes from an unknown version. Choose below how to continue.",
  "rec.title":"Your progress cannot be read",
  "voice.noneHere":"Reading aloud does not work here: this browser has no voices. Try Chrome or Edge.",
- "v2.diff@th":"Here Thai is different. In Thai, ฉัน stays before the verb. In Dutch it turns around: Morgen werk ik.",
- "recall.intro@th":"You see a Thai word. Type the Dutch word, with de or het in front of it. What you type yourself, you remember better than what you tap.",
  "discount.comma@th":"In the Netherlands you write a comma before the cents: € 54,00. In Thailand you write 54.00.",
  "me.supLang":"Explanations and translations in",
  "me.learnLang":"You are learning: {lang}",
@@ -344,8 +344,6 @@ en:{
  "skill.woorden":"Words",
  "listen.again":"Listen again, slowly.",
  "story.again":"Think about the story again.",
- "v2.ex2":"The verb stays in position 2.",
- "v2.ex1":"I work tomorrow in Zwaag.",
  "end.grown":{"one":"{n} plant has grown","other":"{n} plants have grown"},
  "end.goal":"Your daily goal is at {pct}%.",
  "end.welldone":"Well done{name}!",
@@ -491,19 +489,6 @@ en:{
  "conf.doubt":"I’m not sure",
  "end.sureButWrong":"You felt sure, but a few things still went wrong. You will see them more often tomorrow.",
  "end.done":"Done for today",
- "recall.intro.title":"First, a quick recall",
- "recall.intro":"You see a word in your own language. Type the Dutch word, with de or het in front of it. What you type yourself, you remember better than what you tap.",
- "recall.intro.hint":"Stuck? Tap Hint: first the article, then the first letter.",
- "v2.title":"The verb is in position 2",
- "v2.text":"In a normal Dutch sentence the verb is always in position 2. If the sentence starts with something other than ik, such as a time, then ik moves to after the verb.",
- "v2.diff":"Note: in many languages, I stays before the verb. In Dutch it turns around: Morgen werk ik.",
- "en.intro.title":"English, with three languages",
- "en.intro":"You already know a lot of Dutch. Many English words look like Dutch words: information and informatie. We use that bridge.",
- "en.intro.only":"This lesson is all English. The Dutch is only there as a small bridge.",
- "en.falseFriend":"Watch out, false friend: actually means eigenlijk, not actueel.",
- "en.s.title":"he, she, it: verb + s",
- "en.s.text":"With he, she and it the verb gets an -s. You already know this: in Dutch, hij gets a -t.",
- "en.s.diff":"Note the difference: in English the verb does not move to position 2. Tomorrow I work.",
  "en.listen":"Listen",
  "en.typeWord":"Type the English word",
  "en.check":"Check",
@@ -571,11 +556,10 @@ en:{
  "sync.noAuto":"Automatic sending does not work on this device. Use Via WhatsApp.",
  "sync.noCode":"No connection code yet. Enter Emiel's code below, or use Via WhatsApp.",
  "sync.nothing":"Nothing sent yet.",
- "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00.",
- "recall.intro@en":"You see an English word. Type the Dutch word, with de or het in front of it. What you type yourself, you remember better than what you tap.",
- "v2.diff@en":"Here English is different. In English, I stays before the verb: Tomorrow I work. In Dutch it turns around: Morgen werk ik."
+ "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "pack.missing":"Een deel van de lesstof kon niet worden geladen ({list}). Je voortgang blijft bewaard. Probeer het later opnieuw met internet.",
  "rec.startOver.do":"Opnieuw beginnen",
  "bk.err.newer":"Dit bestand komt van een nieuwere versie van de app. Werk de app eerst bij.",
  "bk.err.invalid":"Dit is geen voortgangsbestand van deze app.",
@@ -607,8 +591,6 @@ nl:{
  "rec.text":"Er is niets gewist. De opgeslagen gegevens zijn onleesbaar of komen van een onbekende versie. Kies hieronder hoe je verder wilt.",
  "rec.title":"<h1>Je voortgang kan niet worden gelezen</h1>",
  "voice.noneHere":"Voorlezen lukt hier niet: deze browser heeft geen stemmen. Probeer Chrome of Edge.",
- "v2.diff@th":"<b>Hier verschilt het Thai.</b> In het Thai blijft <i>ฉัน</i> vóór het werkwoord staan. In het Nederlands draait het om: <b>Morgen werk ik</b>.",
- "recall.intro@th":"Je ziet een Thais woord. Typ het Nederlandse woord, met <b>de</b> of <b>het</b> ervoor. Wat je zelf typt, onthoud je beter dan wat je aanklikt.",
  "discount.comma@th":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In Thailand schrijf je 54.00.",
  "me.supLang":"Uitleg en vertaling in",
  "me.learnLang":"Je leert: {lang}",
@@ -794,19 +776,6 @@ nl:{
  "conf.doubt":"Ik twijfel",
  "end.sureButWrong":"Je voelde je zeker, maar een paar dingen gingen nog mis. Die komen morgen extra terug.",
  "end.done":"Klaar voor vandaag",
- "recall.intro.title":"<h2>Eerst even ophalen</h2>",
- "recall.intro":"Je ziet een woord in je eigen taal. Typ het Nederlandse woord, met <b>de</b> of <b>het</b> ervoor. Wat je zelf typt, onthoud je beter dan wat je aanklikt.",
- "recall.intro.hint":"Vastgelopen? Tik op <b>Hulpje</b>: eerst het lidwoord, dan de eerste letter.",
- "v2.title":"<h2>Het werkwoord staat op plek 2</h2>",
- "v2.text":"In een gewone Nederlandse zin staat het werkwoord altijd op <b>plek 2</b>. Begint de zin met iets anders dan <i>ik</i>, zoals een tijd, dan schuift <i>ik</i> naar achter het werkwoord.",
- "v2.diff":"<b>Let op:</b> in veel talen blijft <i>ik</i> vóór het werkwoord staan. In het Nederlands draait het om: <b>Morgen werk ik</b>.",
- "en.intro.title":"<h2>Engels, met drie talen</h2>",
- "en.intro":"Je kent al veel Nederlands. Veel Engelse woorden lijken daarop: <b>information</b> en <b>informatie</b>. Die brug gebruiken we.",
- "en.intro.only":"Deze les is helemaal Engels. Het Nederlands staat er alleen als bruggetje bij.",
- "en.falseFriend":"<b>Let op, valse vriend:</b> <i lang=\"en\">actually</i> betekent <i>eigenlijk</i>, niet <i>actueel</i>.",
- "en.s.title":"<h2>he, she, it: werkwoord + s</h2>",
- "en.s.text":"Bij <b>he</b>, <b>she</b> en <b>it</b> krijgt het werkwoord een <b>-s</b>. Dat ken je al: in het Nederlands krijgt <i>hij</i> een <b>-t</b>.",
- "en.s.diff":"<b>Let op het verschil:</b> in het Engels gaat het werkwoord niet naar plek 2. <i lang=\"en\">Tomorrow I work.</i>",
  "en.listen":"Listen",
  "en.typeWord":"Typ het Engelse woord",
  "en.check":"Check",
@@ -874,11 +843,10 @@ nl:{
  "sync.noAuto":"Automatisch versturen werkt niet op dit toestel. Gebruik <b>Via WhatsApp</b>.",
  "sync.noCode":"Nog geen koppelcode. Vul hieronder de code van Emiel in, of gebruik <b>Via WhatsApp</b>.",
  "sync.nothing":"Nog niets verstuurd.",
- "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00.",
- "recall.intro@en":"Je ziet een Engels woord. Typ het Nederlandse woord, met <b>de</b> of <b>het</b> ervoor. Wat je zelf typt, onthoud je beter dan wat je aanklikt.",
- "v2.diff@en":"<b>Hier verschilt het Engels.</b> In het Engels blijft <i>I</i> vóór het werkwoord staan: <i lang=\"en\">Tomorrow I work.</i> In het Nederlands draait het om: <b>Morgen werk ik</b>."
+ "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "pack.missing":"โหลดบทเรียนบางส่วนไม่ได้ ({list}) ความก้าวหน้าของคุณยังอยู่ครบ ลองใหม่ภายหลังเมื่อต่ออินเทอร์เน็ต",
  "rec.startOver.do":"เริ่มใหม่",
  "bk.err.newer":"ไฟล์นี้มาจากแอปเวอร์ชันใหม่กว่า โปรดอัปเดตแอปก่อน",
  "bk.err.invalid":"นี่ไม่ใช่ไฟล์ความก้าวหน้าของแอปนี้",
@@ -953,9 +921,6 @@ th:{
  "skill.woorden":"คำศัพท์",
  "listen.again":"ฟังอีกครั้งแบบช้าๆ",
  "story.again":"ลองนึกถึงเรื่องอีกครั้ง",
- "en.trio":"เธอทำงาน",
- "v2.ex2":"กริยายังอยู่ตำแหน่งที่ 2",
- "v2.ex1":"ฉัน ทำงาน พรุ่งนี้ ที่ซวาก",
  "end.grown":"ต้นไม้โตขึ้น {n} ต้น",
  "end.goal":"เป้าหมายวันนี้ได้ {pct}%",
  "end.welldone":"เก่งมาก!",
@@ -1096,19 +1061,6 @@ th:{
  "conf.doubt":"ไม่แน่ใจ",
  "end.sureButWrong":"คุณรู้สึกมั่นใจ แต่ยังมีบางข้อผิด พรุ่งนี้จะทบทวนเพิ่ม",
  "end.done":"เสร็จสำหรับวันนี้",
- "recall.intro.title":"ทบทวนก่อน",
- "recall.intro":"คุณจะเห็นคำภาษาไทย พิมพ์คำภาษาดัตช์พร้อม de หรือ het การพิมพ์เองช่วยให้จำได้ดีกว่า",
- "recall.intro.hint":"ติดอยู่? แตะตัวช่วย: บอก de/het ก่อน แล้วตัวอักษรแรก",
- "v2.title":"กริยาอยู่ตำแหน่งที่ 2",
- "v2.text":"ในประโยคหลักภาษาดัตช์ กริยาอยู่ตำแหน่งที่ 2 เสมอ ถ้าประโยคขึ้นต้นด้วยคำอื่น เช่น เวลา ประธานจะย้ายไปอยู่หลังกริยา",
- "v2.diff":"<b>ภาษาไทยต่างออกไป</b> ในภาษาไทย ฉัน อยู่หน้ากริยาเสมอ แต่ภาษาดัตช์สลับกัน: <b>Morgen werk ik</b>",
- "en.intro.title":"ภาษาอังกฤษ ด้วยสามภาษา",
- "en.intro":"คุณรู้ภาษาดัตช์มากแล้ว คำภาษาอังกฤษหลายคำคล้ายกัน เราจะใช้สะพานนี้",
- "en.intro.only":"บทเรียนนี้เป็นภาษาอังกฤษทั้งหมด ภาษาดัตช์มีไว้เป็นสะพานเท่านั้น",
- "en.falseFriend":"<b>ระวัง:</b> actually แปลว่า \"จริงๆ แล้ว\" ไม่ใช่ actueel",
- "en.s.title":"he, she, it: กริยา + s",
- "en.s.text":"กับ he she it กริยาต้องเติม -s เหมือนภาษาดัตช์ที่ hij เติม -t",
- "en.s.diff":"<b>ระวังความต่าง:</b> ภาษาอังกฤษกริยาไม่ย้ายไปตำแหน่งที่ 2",
  "en.listen":"ฟัง",
  "en.typeWord":"พิมพ์คำภาษาอังกฤษ",
  "en.check":"ตรวจคำตอบ",
@@ -1215,73 +1167,106 @@ const icon={
 };
 
 /* ============ inhoud thema 1 (eigen materiaal) ============ */
-const NL=[
- {id:'werk',art:'het',w:'werk',th:'งาน',en:'work',ex:'Ik ga naar mijn werk.',gap:'Ik zoek geen baan meer, want ik heb nu ___ in een fabriek.',askArt:1},
- {id:'dienst',art:'de',w:'dienst',th:'กะทำงาน',en:'shift',ex:'Mijn dienst begint om zes uur.',gap:'Ik heb deze week de vroege ___: van zes tot twee uur.'},
- {id:'collega',art:'de',w:'collega',th:'เพื่อนร่วมงาน',en:'colleague',ex:'Mijn collega helpt me.',gap:'In de pauze eet ik samen met een ___ van mijn afdeling.',also:['leidinggevende'],askArt:1},
- {id:'rooster',art:'het',w:'rooster',th:'ตารางงาน',en:'schedule',ex:'Het rooster hangt in de kantine.',gap:'Het nieuwe ___ hangt in de kantine. Volgende week werk ik drie dagen.'},
- {id:'pauze',art:'de',w:'pauze',th:'เวลาพัก',en:'break',ex:'In de pauze drink ik thee.',gap:'Om tien uur hebben we een kwartier ___. Dan drink ik koffie.',askArt:1},
- {id:'fabriek',art:'de',w:'fabriek',th:'โรงงาน',en:'factory',ex:'De fabriek staat in Zwaag.',gap:'Ik maak onderdelen voor auto’s. Ik werk in een ___.',askArt:1},
- {id:'machine',art:'de',w:'machine',th:'เครื่องจักร',en:'machine',ex:'De machine maakt veel lawaai.',gap:'Doe je oordopjes in, want de ___ maakt veel lawaai. Zet hem uit als je klaar bent.'},
- {id:'leidinggevende',art:'de',w:'leidinggevende',th:'หัวหน้างาน',en:'supervisor',ex:'Mijn leidinggevende maakt het rooster.',gap:'Ben je ziek? Bel dan meteen je ___.',also:['collega','werk'],askArt:1},
- {id:'salaris',art:'het',w:'salaris',th:'เงินเดือน',en:'salary',ex:'Het salaris komt aan het eind van de maand.',gap:'Mijn ___ is tweeduizend euro per maand.',askArt:1},
- {id:'vrijedag',art:'de',w:'vrije dag',th:'วันหยุด',en:'day off',ex:'Zaterdag is mijn vrije dag.',gap:'Zaterdag hoef ik niet te werken. Dat is mijn ___.',askArt:1},
- {id:'afspraak',art:'de',w:'afspraak',th:'นัดหมาย',en:'appointment',ex:'Ik heb een afspraak bij de dokter.',gap:'Ik heb morgen om negen uur een ___ bij de dokter.',askArt:1},
- {id:'fiets',art:'de',w:'fiets',th:'จักรยาน',en:'bicycle',ex:'Ik ga met de fiets naar mijn werk.',gap:'Het regent, maar ik ga toch op de ___ naar mijn werk.'},
- {id:'huis',art:'het',w:'huis',th:'บ้าน',en:'house',ex:'Ons huis staat in Hoorn.',gap:'Mijn ___ heeft drie kamers en een kleine tuin.',askArt:1},
- {id:'winkel',art:'de',w:'winkel',th:'ร้านค้า',en:'shop',ex:'De winkel is om negen uur open.',gap:'Ik koop brood en melk in de ___ op de hoek.'},
- {id:'korting',art:'de',w:'korting',th:'ส่วนลด',en:'discount',ex:'Ik krijg tien procent korting.',gap:'De jas kost nu minder: je krijgt twintig procent ___.',askArt:1},
- {id:'geld',art:'het',w:'geld',th:'เงิน',en:'money',ex:'Ik heb genoeg geld bij me.',gap:'Ik wil iets kopen, maar ik heb niet genoeg ___ bij me.',askArt:1},
- {id:'week',art:'de',w:'week',th:'สัปดาห์',en:'week',ex:'Ik werk vijf dagen per week.',gap:'Ik werk vier dagen per ___ in de fabriek.',askArt:1},
- {id:'opleiding',art:'de',w:'opleiding',th:'การเรียน / หลักสูตร',en:'training course',ex:'Ik wil een opleiding doen.',gap:'Ik wil een diploma halen. Daarom volg ik een ___.',askArt:1}
-];
-const EN=[
- {id:'en-work',w:'work',nl:'werken',th:'ทำงาน',ex:'I work in a factory.'},
- {id:'en-colleague',w:'colleague',nl:'de collega',th:'เพื่อนร่วมงาน',ex:'My colleague is very kind.'},
- {id:'en-break',w:'break',nl:'de pauze',th:'เวลาพัก',ex:'We have a break at ten.'},
- {id:'en-schedule',w:'schedule',nl:'het rooster',th:'ตารางงาน',ex:'The schedule is on the wall.'},
- {id:'en-factory',w:'factory',nl:'de fabriek',th:'โรงงาน',ex:'The factory is near Hoorn.'},
- {id:'en-information',w:'information',nl:'de informatie',th:'ข้อมูล',ex:'I need more information.'},
- {id:'en-appointment',w:'appointment',nl:'de afspraak',th:'นัดหมาย',ex:'I have an appointment at three.'},
- {id:'en-money',w:'money',nl:'het geld',th:'เงิน',ex:'Do you have some money?'}
-];
-const REK=[
- {id:'r-geld',label:'Geld tellen',th:'นับเงิน',en:'Counting money'},
- {id:'r-klok',label:'Hoe laat is het?',th:'กี่โมงแล้ว',en:'What time is it?'},
- {id:'r-10',label:'10% = 1/10',th:'10% = หนึ่งในสิบ',en:'10% = one tenth'},
- {id:'r-25',label:'25% = 1/4',th:'25% = หนึ่งในสี่',en:'25% = one quarter'},
- {id:'r-komma',label:'€ 9,50 (komma)',th:'ใช้จุลภาคแทนจุดทศนิยม',en:'A comma instead of a decimal point'}
-];
-const SENT=[
- {parts:['Morgen','werk','ik','in Zwaag.'],verb:'werk',th:'พรุ่งนี้ฉันทำงานที่ซวาก',en:'Tomorrow I work in Zwaag.'},
- {parts:['Om zes uur','begint','mijn dienst.'],verb:'begint',th:'กะของฉันเริ่มตอนหกโมง',en:'My shift starts at six o’clock.'},
- {parts:['In de pauze','drink','ik','thee.'],verb:'drink',th:'ตอนพักฉันดื่มชา',en:'During the break I drink tea.'},
- {parts:['Zaterdag','heb','ik','vrij.'],verb:'heb',th:'วันเสาร์ฉันได้หยุดงาน',en:'On Saturday I have the day off.'}
-];
-const PAIRS=[
- {say:'man',opts:['man','maan'],th:['ผู้ชาย','ดวงจันทร์'],en:['man','moon'],why:'Kort: <b>man</b>. Lang: <b>maan</b>. Net als in het Thai verandert de lengte van de klinker de betekenis.',whyTh:'เสียงสั้น man เสียงยาว maan ความยาวของสระเปลี่ยนความหมายเหมือนในภาษาไทย','why@en':'Kort: <b>man</b>. Lang: <b>maan</b>. In het Nederlands verandert de lengte van de klinker de betekenis.',whyEn:'Short: man. Long: maan. In Dutch the length of the vowel changes the meaning.'},
- {say:'geel',opts:['geel','keel'],th:['สีเหลือง','คอ'],en:['yellow','throat'],why:'De <b>g</b> in geel komt zacht en schurend uit je keel. De <b>k</b> in keel is kort en hard.',whyTh:'g ใน geel เป็นเสียงลมเสียดในลำคอ ส่วน k ใน keel สั้นและแข็ง',whyEn:'The g in geel is a soft, scraping sound from your throat. The k in keel is short and hard.'},
- {say:'huis',opts:['huis','hoes'],th:['บ้าน','ปลอก'],en:['house','cover'],why:'<b>ui</b> kent het Thai niet: begin met een open mond en rond dan je lippen.',whyTh:'ui ไม่มีในภาษาไทย เริ่มด้วยปากเปิด แล้วห่อริมฝีปาก','why@en':'Het Engels heeft geen <b>ui</b>-klank: begin met een open mond en rond dan je lippen.',whyEn:'English does not have the ui sound: start with an open mouth and then round your lips.'}
-];
-const DICTEE={t:'Mijn dienst begint om zes uur.',th:'กะของฉันเริ่มตอนหกโมง',en:'My shift starts at six o’clock.'};
-const STORY={title:'Aflevering 1 · Een nieuwe vraag',th:'ตอนที่ 1 · คำถามใหม่',en:'Episode 1 · A new question',
- lines:[
-  ['Mali woont in Hoorn.','มะลิอาศัยอยู่ที่ฮอร์น','Mali lives in Hoorn.'],
-  ['Ze werkt in een fabriek in Zwaag.','เธอทำงานที่โรงงานแห่งหนึ่งในซวาก','She works in a factory in Zwaag.'],
-  ['Haar dienst begint om zes uur.','กะของเธอเริ่มตอนหกโมง','Her shift starts at six o’clock.'],
-  ["'s Ochtends fietst ze naar haar werk.",'ตอนเช้าเธอปั่นจักรยานไปทำงาน','In the morning she cycles to work.'],
-  ['In de pauze drinkt ze thee met haar collega Sanne.','ตอนพักเธอดื่มชากับซานเนอ เพื่อนร่วมงานของเธอ','During the break she drinks tea with her colleague Sanne.'],
-  ['Sanne vraagt: "Wil jij ook een opleiding doen?"','ซานเนอถามว่า "เธออยากเรียนต่อด้วยไหม"','Sanne asks: “Do you want to take a training course too?”'],
-  ['Mali denkt na. Ze wil graag iets nieuws leren, maar ze twijfelt.','มะลิคิดอยู่ครู่หนึ่ง เธออยากเรียนรู้สิ่งใหม่ แต่ยังลังเล','Mali thinks about it. She would like to learn something new, but she is not sure.'],
-  ['"Mijn Nederlands is nog niet goed genoeg," zegt ze.','"ภาษาดัตช์ของฉันยังไม่ดีพอ" เธอพูด','“My Dutch is not good enough yet,” she says.'],
-  ['Sanne lacht. "Dat kun je leren!"','ซานเนอหัวเราะ "เรื่องนี้เรียนได้นะ!"','Sanne laughs. “You can learn that!”'],
-  ["'s Avonds pakt Mali haar telefoon. Ze zoekt iets op...",'ตอนเย็นมะลิหยิบโทรศัพท์ขึ้นมา เธอค้นหาอะไรบางอย่าง...','In the evening Mali picks up her phone. She looks something up...']
- ],
- q:[
-  {q:'Waar werkt Mali?',th:'มะลิทำงานที่ไหน',en:'Where does Mali work?',o:['In een winkel','In een fabriek','In een school'],a:1},
-  {q:'Hoe gaat Mali naar haar werk?',th:'มะลิไปทำงานอย่างไร',en:'How does Mali get to work?',o:['Met de bus','Lopend','Met de fiets'],a:2},
-  {q:'Waarom twijfelt Mali?',th:'ทำไมมะลิลังเล',en:'Why is Mali not sure?',o:['Ze vindt haar Nederlands nog niet goed genoeg','Ze heeft geen tijd','Ze vindt Sanne niet aardig'],a:0}
- ]};
+/* ============ inhoud uit pakketten (bouwplan fase 2, docs/pakketformaat.md) ============
+   De inhoud staat in content/*.json. BUILTIN noemt de ingebouwde pakketten; dezelfde bestanden staan in SHELL van sw.js.
+   - Laden: alle pakketten tegelijk; een pakket dat niet laadt of ongeldig is (pakketcheck.js) valt weg en wordt gemeld op Vandaag.
+     Er wordt niets uit de opslag verwijderd: items van een ontbrekend pakket blijven in S.items staan.
+   - Alle tekst uit een pakket gaat door PakketCheck.safeText (alles onschadelijk, alleen <b> <i> <u> terug), ook ingebouwd.
+   - Daarna worden de bekende lijsten (NL, EN, REK, SENT, PAIRS, DICTEE, STORY, PLACE) opgebouwd in de vorm die de oefenschermen al kennen.
+   - De les komt uit het recept van het pakket (compose); in fase 2 levert dat precies de les van daarvoor (tools/test-les.mjs). */
+const BUILTIN=['content/rk-1.json','content/nl-t1.json','content/en-t1.json'];
+const PC=window.PakketCheck||null;
+const SAFE=s=>PC?PC.safeText(s):esc(s);   // voor waarden die het scherm rauw in de HTML zet
+const RAW=s=>s==null?'':String(s);           // voor waarden die het scherm zelf met esc() toont, of die worden voorgelezen
+/* Regel (review fase 2): elke waarde uit een pakket gaat door precies één van SAFE (dan rauw in de HTML) of esc() (in het scherm), nooit beide. */
+let PACKS=[],PACK_MISSING=[],NL=[],EN=[],REK=[],SENT=[],PAIRS=[],DICTEE=null,STORY=null,PLACE=[];
+const EXS={},CARDP={},PACKBY={};
+async function loadPacks(){
+  const got=await Promise.all(BUILTIN.map(u=>fetch(u).then(r=>r.ok?r.json():null).catch(()=>null)));
+  const ok=got.filter(Boolean);
+  got.forEach((p,i)=>{if(!p)PACK_MISSING.push(BUILTIN[i].replace(/^content\/|\.json$/g,''))});
+  ok.forEach(p=>{const others=ok.filter(o=>o!==p),miss=(p.requires||[]).some(r=>!others.some(o=>o.id===r));
+    const res=PC?PC.checkPack(p,others,{lenient:miss}):{errors:[]};
+    if(res.errors.length){PACK_MISSING.push(p.id);try{console.warn('Pakket '+p.id+' ongeldig',res.errors)}catch(e){}}else PACKS.push(p)});
+  PACKS.sort((a,b)=>a.order-b.order);
+  PACKS.forEach(p=>{PACKBY[p.id]=p;(p.exercises||[]).forEach(e=>EXS[e.id]=e);(p.cards||[]).forEach(c=>CARDP[c.id]=c)});
+  buildLists();
+}
+/* Tekst uit een pakket -> velden zoals de oefenschermen ze lezen: veld (nl), veld@en, veldTh, veldEn */
+function flatT(o,f,x){if(x==null)return o;if(typeof x==='string'){o[f]=SAFE(x);return o}
+  o[f]=SAFE(x.nl);if(x['nl@en']!=null)o[f+'@en']=SAFE(x['nl@en']);if(x['nl@th']!=null)o[f+'@th']=SAFE(x['nl@th']);
+  if(x.th!=null)o[f+'Th']=SAFE(x.th);if(x.en!=null)o[f+'En']=SAFE(x.en);return o}
+const safeArr=a=>(a||[]).map(SAFE);
+const exList=(learn,pred)=>PACKS.filter(p=>p.learn===learn).flatMap(p=>p.exercises||[]).filter(pred);
+const LEGACY={};   // oefening-id -> object in de vorm van vóór fase 2
+function buildLists(){
+  const items=k=>PACKS.flatMap(p=>(p.items||[]).filter(x=>x.kind===k).map(x=>({x,p})));
+  // woord, voorbeeldzin, gatzin en lidwoord toont het scherm met esc() of leest het voor: RAW. Vertalingen staan rauw in de HTML: SAFE.
+  NL=items('word').filter(o=>o.p.learn==='nl').map(({x})=>{const o={id:x.id,art:RAW(x.art),w:RAW(x.w),th:SAFE(x.tr.th),en:SAFE(x.tr.en),ex:RAW(x.ex),gap:RAW(x.gap)};if(x.askArt)o.askArt=1;if(x.also)o.also=x.also.slice();return o});
+  EN=items('word').filter(o=>o.p.learn==='en').map(({x})=>({id:x.id,w:RAW(x.w),nl:RAW(x.tr.nl),th:SAFE(x.tr.th),ex:RAW(x.ex)}));
+  REK=items('skill').map(({x})=>({id:x.id,label:RAW(x.title.nl),th:SAFE(x.title.th),en:SAFE(x.title.en)}));
+  // zin bouwen: stukjes en vertaling met esc() in het scherm
+  SENT=exList('nl',e=>e.form==='build').map(e=>LEGACY[e.id]={parts:e.data.parts.map(RAW),verb:RAW(e.data.verb),th:RAW(e.data.tr.th),en:RAW(e.data.tr.en)});
+  PAIRS=exList('nl',e=>e.form==='listen').map(e=>LEGACY[e.id]=flatT({say:RAW(e.data.say),opts:e.data.opts.map(RAW),th:safeArr(e.data.tr.th),en:safeArr(e.data.tr.en)},'why',e.fb&&e.fb.ok));
+  const d=exList('nl',e=>e.form==='dictee')[0];DICTEE=d?(LEGACY[d.id]={t:RAW(d.data.t),th:SAFE(d.data.tr.th),en:SAFE(d.data.tr.en)}):null;
+  const tx=PACKS.filter(p=>p.learn==='nl').flatMap(p=>p.texts||[]).find(t=>t.kind==='verhaal');
+  // verhaal: titel, vragen en vertalingen rauw (SAFE); Nederlandse zinnen en opties met esc() (RAW)
+  STORY=tx?{title:SAFE(tx.title.nl),th:SAFE(tx.title.th),en:SAFE(tx.title.en),lines:tx.paras.flat().map(s=>[RAW(s.nl),SAFE(s.th),SAFE(s.en)]),
+    q:exList('nl',e=>e.form==='mc'&&e.text===tx.id).map(e=>({q:SAFE(e.data.q.nl),th:SAFE(e.data.q.th),en:SAFE(e.data.q.en),o:e.data.o.map(RAW),a:e.data.a}))}:null;
+  // startmeting: vraag rauw (SAFE), opties en leestekst met esc() (RAW), say voorgelezen (RAW)
+  PLACE=PACKS.flatMap(p=>((p.tests&&p.tests.placement)||[]).map(id=>({e:EXS[id],p}))).filter(o=>o.e).map(({e,p})=>{const d=e.data,q=SAFE(typeof d.q==='string'?d.q:d.q.nl),o={sk:e.skill,q:d.lang==='en'?`<span lang="en">${q}</span>`:q,a:d.a};
+    if(d.show==='sup'){o.oNl=d.o.map(x=>RAW(x.nl));o.th=d.o.map(x=>RAW(x.th));o.en=d.o.map(x=>RAW(x.en))}else o.o=d.o.map(RAW);
+    if(d.say)o.say=RAW(d.say);if(e.text){const t=(p.texts||[]).find(t=>t.id===e.text);if(t)o.text=t.paras.flat().map(s=>typeof s==='string'?s:s.nl).join(' ')}return o});
+}
+/* Tekst uit een pakket als HTML: leertaal (met variant voor de NL-stand of de steuntaal) + steuntaalregel */
+function TKp(x,wrap){if(x==null)return '';const w=wrap||(s=>s);if(typeof x==='string')return w(SAFE(x));
+  const a=(nlOnly()&&x['nl@uit'])||x['nl@'+supL()]||x.nl;return bi(w(SAFE(a)),x[supL()]!=null?SAFE(x[supL()]):'')}
+/* uitlegkaart uit een pakket -> dezelfde HTML als vóór fase 2 */
+function packCardHtml(c,flag){const ex=(c.examples||[]).map(e=>`<div class="example"><div>${e.parts.map(p=>p.slot?`<span class="slot s${p.slot}">${SAFE(p.t)}</span>`:SAFE(p.t)).join(' ')}</div>${supSpan(e.tr&&e.tr[supL()]!=null?SAFE(e.tr[supL()]):'')}</div>`).join('\n      ');
+  const cmp=c.compare?`<div class="trio">${nlOnly()||!(c.compare.sup&&c.compare.sup[supL()])?'':`<div><span class="lg">${LANG[supL()].name.nl}</span><span class="wd" ${supAttr()}>${SAFE(c.compare.sup[supL()])}</span></div>`}<div><span class="lg">Nederlands</span><span class="wd">${SAFE(c.compare.nl)}</span></div><div><span class="lg">English</span><span class="wd" lang="en">${SAFE(c.compare.en)}</span></div></div>`:'';
+  return (flag?`<span class="flag">${esc(flag)}</span>`:'')+TKp(c.title,s=>`<h2>${s}</h2>`)+(c.body?`<p>${TKp(c.body)}</p>`:'')+(c.note?(c.noteStyle==='muted'?`<p class="muted small">${TKp(c.note)}</p>`:`<div class="note">${TKp(c.note)}</div>`):'')
+    +ex+cmp+(c.notes||[]).map(n=>`<div class="note${n.tone?' '+n.tone:''}">${TKp(n.text)}</div>`).join('')
+    +(c.say?`<button class="speak" id="csp">${icon.play}${T(c.sayLang==='en'?'en.listen':'btn.listen')}</button>`:'')}
+/* lessamensteller: loopt het recept af en maakt de rij oefeningen (zelfde vorm als vóór fase 2) */
+const CARD_LABEL={nl:{1:['Ophalen','btn-leaf'],2:['Nieuw leren','']},en:{1:['English','btn-sky'],2:['English','btn-sky']}};
+function exQ(e,step,learn){const d=e.data;
+  switch(e.form){
+    case 'build':return {type:'build',step,s:LEGACY[e.id]};
+    // gatzin: zin rauw (SAFE), opties met esc() (RAW); Engelse zin en Nederlandse regel met esc() (RAW)
+    case 'gap':{const x=flatT(flatT({o:d.o.map(RAW),a:RAW(d.a)},'why',e.fb&&e.fb.ok),'hint',e.hint&&e.hint[0]);
+      if(learn==='en'){x.s=RAW(d.s);x.nl=RAW(d.tr.nl);x.th=SAFE(d.tr.th);return {type:'engap',step,x}}x.s=SAFE(d.s);x.th=SAFE(d.tr.th);x.en=SAFE(d.tr.en);return {type:'gap',step,...x}}
+    case 'listen':return learn==='en'?{type:'listen',step,lang:'en',p:flatT({say:RAW(d.say),opts:d.opts.map(RAW),th:safeArr(d.tr.th),en:d.opts.map(RAW)},'why',e.fb&&e.fb.ok)}:{type:'listen',step,p:LEGACY[e.id]};
+    case 'dictee':return {type:'dictee',step};
+    case 'money':return {type:'money',step,d:{coins:d.coins.slice(),o:d.o.map(RAW),a:RAW(d.a),alt:RAW(d.alt),items:e.items.slice()}};
+    // klok: vraag en uitleg rauw (SAFE), opties met esc() (RAW)
+    case 'clock':return {type:'clock',step,c:flatT(flatT({h:d.h,m:d.m,o:d.o.map(RAW),a:RAW(d.a)},'q',d.q),'why',e.fb&&e.fb.ok)};
+    case 'discount':return {type:'discount',step,k:d.mode==='part'?'partial':d.mode};
+  }return null}
+function compose(recipe,learn){const q=[],words=learn==='en'?EN:NL,R=id=>S.items[id];
+  const dueAll=words.filter(w=>thirsty(w.id));
+  for(const s of recipe||[]){
+    if(s.card){const c=CARDP[s.card];if(!c)continue;const [label,btn]=(CARD_LABEL[learn]||{})[s.step]||['',''];const o={type:'card',label,step:s.step,html:()=>packCardHtml(c,learn==='en'&&s.step===1?'ENGLISH':'')};if(btn)o.btn=btn;if(c.say)o.bind=()=>{if($('#csp'))$('#csp').onclick=()=>say(c.say,false,c.sayLang||'nl')};q.push(o)}
+    else if(s.words==='due'){
+      const type=learn==='en'?'enrecall':s.forms[0];
+      let due=dueAll.slice();if(s.sort!=='list')due=words.filter(w=>S.introduced.includes(w.id)&&thirsty(w.id)).sort((a,b)=>R(a.id).due-R(b.id).due);
+      let rec=due;if(s.thenFresh)rec=[...due,...words.filter(w=>R(w.id).reps===0)];else if(!rec.length&&s.orIntroduced)rec=words.filter(w=>S.introduced.includes(w.id));
+      rec=rec.slice(0,s.max);
+      if(rec.length)rec.forEach(w=>q.push({type,step:s.step,w}));
+      else if(s.ifNone&&s.ifNone.words==='first')words.slice(0,s.ifNone.n).forEach(w=>s.ifNone.forms.forEach(f=>q.push({type:f,step:s.step,w})));
+    }
+    else if(s.words==='new'){
+      const busy=words.filter(w=>S.introduced.includes(w.id)&&thirsty(w.id)).length>25;
+      const cap=busy?s.maxBusy:(isEnglishDay()&&s.max2!=null?s.max2:s.max);
+      const nw=words.filter(w=>!S.introduced.includes(w.id)).slice(0,cap);
+      nw.forEach(w=>s.forms.forEach(f=>q.push({type:f,step:s.step,w})));
+      (s.then||[]).forEach(f=>shuffle(nw).forEach(w=>q.push({type:f,step:s.step,w})));
+    }
+    else if(s.pool){const n=isEnglishDay()&&s.n2!=null?s.n2:s.n;shuffle(PACKS.flatMap(p=>p.exercises||[]).filter(e=>e.pool===s.pool)).slice(0,n).forEach(e=>{const x=exQ(e,s.step,learn);if(x)q.push(x)})}
+    else if(s.ex){const e=EXS[s.ex];if(!e)continue;const x=exQ(e,s.step,(PACKS.find(p=>(p.exercises||[]).includes(e))||{}).learn==='en'?'en':learn);if(x)q.push(x)}
+    else if(s.end){q.push({type:'conf',step:s.step});q.push({type:'end',step:s.step})}
+  }
+  return q}
+await loadPacks();
 
 /* ============ staat ============ */
 function item(){return {s:0,due:today(),reps:0,lapses:0,forms:[]}}
@@ -1390,7 +1375,7 @@ function noVoice(lang){return loadVoices().length>0&&!voicesFor(lang).length}
 try{speechSynthesis.onvoiceschanged=()=>{loadVoices();try{if(tab==='ik'&&!route&&!app.classList.contains('sess'))vMe()}catch(e){}};loadVoices()}catch(e){}
 let voiceWait=null,voicePend=null;
 function speakNow(t,slow,lang,v){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=LANGS[lang].tag;if(v)u.voice=v;u.rate=slow?.68:.9;speechSynthesis.speak(u)}
-function say(t,slow,lang,waited){lang=LANGS[lang]?lang:'nl';const L=LANGS[lang];
+function say(t,slow,lang,waited){lang=LANGS[lang]?lang:'nl';const L=LANGS[lang];t=String(t==null?'':t).replace(/<[^>]*>/g,'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&');
   if(typeof speechSynthesis==='undefined'||typeof SpeechSynthesisUtterance==='undefined'){if(!voiceWarned.api){voiceWarned.api=1;toast('Voorlezen werkt niet in deze browser.')}return}
   try{
   if(!loadVoices().length){
@@ -1489,6 +1474,7 @@ function vToday(){
   const [h,ht]=hello(),g=GOALS[S.goal],w=weekDots(),due=[...NL,...EN,...REK].filter(x=>thirsty(x.id)).length,done=!!S.days[today()],enDay=isEnglishDay(),ans=S.answers.filter(a=>!a.seen).length;
   paint(`
   <header class="top"><div>${bi(`<h1>${h}${nm()?', '+nm():''}</h1>`,ht)}</div>${thaiSwitch()}</header>
+  ${PACK_MISSING.length?`<div class="note" role="status">${T('pack.missing',{list:esc(PACK_MISSING.join(', '))})}</div>`:''}
   ${ans?`<button class="card row" id="answers" style="background:var(--lilac);border-color:var(--lilac-fill)"><span class="pill pill-lilac" style="background:var(--surface)">${ans}</span>${T('today.answered')}</button>`:''}
   ${S.unsent?`<button class="card row between" id="send" style="background:var(--lilac);border-color:var(--lilac-fill)"><span>${T('today.unsent')}</span><span class="pill pill-lilac" style="background:var(--surface)">${T('btn.send')}</span></button>`:''}
   ${!S.placement?`<button class="card row between" id="place"><span>${T('today.placeTodo')}</span><span class="pill pill-apricot">8 min</span></button>`:''}
@@ -1581,15 +1567,15 @@ H.recog=q=>{const w=q.w;let first=true;const g=nlOnly()?gapEx(w):null,others=NL.
   app.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const ok=b.dataset.id===w.id;b.classList.add(ok?'right':'wrong');
     if(ok){score(first,5);review(w.id,first,'herkennen');if(first)grown.push(w.id);say(g?gapFull(w):`${w.art} ${w.w}`);$('#fb').innerHTML=fbBox(true,g?`<b>${w.art} ${esc(w.w)}</b>. ${esc(gapFull(w))}`:'','')+nextBtn();$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbK(false,'recog.again')}})};
-H.recall=q=>{const w=q.w;let tries=0,hint=0;const full=`${w.art} ${w.w}`,g=nlOnly()?gapEx(w):null;
+H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${w.art} ${w.w}`,full=esc(fullT),g=nlOnly()?gapEx(w):null;
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past in de zin?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Wat is dit in het Nederlands?</p><p class="prompt sp" ${supAttr()}>${L_(w)}</p>`}
   <label for="ans" class="small muted">${g?'Typ het woord dat op de open plek past':T('recall.typeArt')}</label>
   <input id="ans" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${g?'…':'de … / het …'}">
   <div class="hint-row"><button class="hintbtn" id="hint">${T('btn.hint')}</button><span class="hintshow" id="hs" aria-live="polite"></span></div>
-  <div id="fb"></div><button class="btn btn-leaf" id="chk">${T('btn.check')}</button>${helpBtn('Woord: '+full)}</div>${adaptiveNote()}`,'Ophalen',q.step);
+  <div id="fb"></div><button class="btn btn-leaf" id="chk">${T('btn.check')}</button>${helpBtn('Woord: '+fullT)}</div>${adaptiveNote()}`,'Ophalen',q.step);
   bindHelp();const inp=$('#ans');setTimeout(()=>{try{inp.focus({preventScroll:true})}catch(e){}},80);
-  if(nlOnly()&&!g){setTimeout(()=>say(full),250);$('#sp').onclick=()=>say(full);$('#sps').onclick=()=>say(full,true)}
-  $('#hint').onclick=()=>{hint=Math.min(3,hint+1);$('#hs').textContent=g?(hint===1?`Begint met: ${w.w[0]}…`:hint===2?`${w.w.slice(0,Math.ceil(w.w.length/2))}…`:w.w):hint===1?`Lidwoord: ${w.art}`:hint===2?`${w.art} ${w.w[0]}…`:full;if(hint===3)$('#hint').disabled=true};
+  if(nlOnly()&&!g){setTimeout(()=>say(fullT),250);$('#sp').onclick=()=>say(fullT);$('#sps').onclick=()=>say(fullT,true)}
+  $('#hint').onclick=()=>{hint=Math.min(3,hint+1);$('#hs').textContent=g?(hint===1?`Begint met: ${w.w[0]}…`:hint===2?`${w.w.slice(0,Math.ceil(w.w.length/2))}…`:w.w):hint===1?`Lidwoord: ${w.art}`:hint===2?`${w.art} ${w.w[0]}…`:fullT;if(hint===3)$('#hint').disabled=true};
   const done=(wordOk,artOk,msg)=>{const clean=wordOk&&artOk&&tries===1&&hint<3;score(clean,hint===0?10:hint===1?7:4);review(w.id,clean,'typen');if(clean)grown.push(w.id);
     $('#fb').innerHTML=fbBox(wordOk&&artOk,msg,'');say(gapFull(w));inp.disabled=true;$('#hint').disabled=true;
     const c=$('#chk');if(c)c.outerHTML=nextBtn(wordOk&&artOk?'btn-leaf':'btn-main');else $('#fb').insertAdjacentHTML('beforeend',nextBtn(wordOk&&artOk?'btn-leaf':'btn-main'));$('#nx').onclick=next};
@@ -1605,12 +1591,12 @@ H.recall=q=>{const w=q.w;let tries=0,hint=0;const full=`${w.art} ${w.w}`,g=nlOnl
     if((w.also||[]).some(id=>{const o=NL.find(x=>x.id===id);return o&&norm(o.w)===word})){$('#fb').innerHTML=`<div class="note sky">Dat past ook! Maar hier zoeken we een ander woord. Neem gerust een hulpje.</div>`;return}
     tries++;if(tries>1)return done(false,false,`Het is <b>${esc(w.w)}</b> (${full}). ${ctx}`);
     $('#fb').innerHTML=fbBox(false,'Probeer het nog een keer, of neem een hulpje.','')};
-  const check=()=>{if(g)return checkGap();const a=norm(inp.value);if(!a)return;tries++;const ok=a===norm(full);let msg=null,th=null;
+  const check=()=>{if(g)return checkGap();const a=norm(inp.value);if(!a)return;tries++;const ok=a===norm(fullT);let msg=null,th=null;
     if(ok){msg=`<b>${full}</b>. ${esc(w.ex)}`;th=ts('recall.yes',{full})}
     else if(a===norm(w.w)){msg=t('recall.addArt',{art:w.art,full});th=ts('recall.addArt',{art:w.art,full})}
     else if(a.endsWith(norm(w.w))){msg=t('recall.wrongArt',{art:w.art,full});th=ts('recall.wrongArt',{art:w.art,full})}
     if(ok||tries>1||msg){const clean=ok&&tries===1&&hint<3;score(clean,hint===0?10:hint===1?7:4);review(w.id,clean,'typen');if(clean)grown.push(w.id);
-      $('#fb').innerHTML=fbBox(ok,msg||`${t('recall.answer',{full})} ${esc(w.ex)}`,th||ts('recall.answer',{full}));say(full);inp.disabled=true;$('#hint').disabled=true;
+      $('#fb').innerHTML=fbBox(ok,msg||`${t('recall.answer',{full})} ${esc(w.ex)}`,th||ts('recall.answer',{full}));say(fullT);inp.disabled=true;$('#hint').disabled=true;
       $('#chk').outerHTML=nextBtn(ok?'btn-leaf':'btn-main');$('#nx').onclick=next}
     else $('#fb').innerHTML=fbK(false,'try.again')};
   $('#chk').onclick=check;inp.onkeydown=e=>{if(e.key==='Enter'&&!inp.disabled)check()}};
@@ -1650,18 +1636,18 @@ H.dictee=q=>{let done=false;
     score(ok,15,ok?0:Math.round(good/t.length*10));
     $('#fb').innerHTML=fbBox(ok,`${good} van ${t.length} woorden goed.<br>${marks}`,L_(DICTEE))+nextBtn();$('#nx').onclick=next};
   $('#chk').onclick=check;$('#ans').onkeydown=e=>{if(e.key==='Enter')check()}};
-H.money=q=>{let first=true;
+H.money=q=>{let first=true;const d=q.d,coin=c=>c>=500?`<span class="bill">€ ${c/100}</span>`:c>=100?`<span class="coin">€ ${c/100}</span>`:`<span class="coin small">${c} ct</span>`;
   frame(`<div class="card stack">${T('money.title')}
-  <div class="coins" role="img" aria-label="Een briefje van 5 euro, twee munten van 2 euro en een munt van 50 cent"><span class="bill">€ 5</span><span class="coin">€ 2</span><span class="coin">€ 2</span><span class="coin small">50 ct</span></div>
-  <div class="choices">${['€ 9,50','€ 9,05','€ 10,00','€ 8,50'].map(o=>`<button class="choice num" data-o="${o}">${o}</button>`).join('')}</div><div id="fb"></div></div>`,'Rekenen',q.step);
-  app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o==='€ 9,50';b.classList.add(ok?'right':'wrong');
-    if(ok){score(first,10);review('r-geld',first,'geld');review('r-komma',first,'geld');if(first)grown.push('r-geld');$('#fb').innerHTML=fbK(true,'money.ok')+nextBtn();$('#nx').onclick=next}
+  <div class="coins" role="img" aria-label="${esc(d.alt)}">${d.coins.map(coin).join('')}</div>
+  <div class="choices">${d.o.map(o=>`<button class="choice num" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="fb"></div></div>`,'Rekenen',q.step);
+  app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o===d.a;b.classList.add(ok?'right':'wrong');
+    if(ok){score(first,10);d.items.forEach(id=>review(id,first,'geld'));if(first)grown.push(d.items[0]);$('#fb').innerHTML=fbK(true,'money.ok')+nextBtn();$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbK(false,'money.tip')}})};
 function clockSvg(h,m){const hand=(ang,len,w,c)=>{const r=(ang-90)*Math.PI/180;return `<line x1="75" y1="75" x2="${(75+Math.cos(r)*len).toFixed(1)}" y2="${(75+Math.sin(r)*len).toFixed(1)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`};
   let t='';for(let i=0;i<12;i++){const r=(i*30-90)*Math.PI/180;t+=`<line x1="${(75+Math.cos(r)*57).toFixed(1)}" y1="${(75+Math.sin(r)*57).toFixed(1)}" x2="${(75+Math.cos(r)*64).toFixed(1)}" y2="${(75+Math.sin(r)*64).toFixed(1)}" stroke="var(--ink-2)" stroke-width="${i%3?2:3.5}" stroke-linecap="round"/>`}
   return `<svg class="clock" viewBox="0 0 150 150" role="img" aria-label="Een klok"><circle cx="75" cy="75" r="70" fill="var(--surface)" stroke="var(--mint-fill)" stroke-width="6"/>${t}${hand(((h%12)+m/60)*30,36,6,'var(--ink)')}${hand(m*6,54,4,'var(--sky-ink)')}<circle cx="75" cy="75" r="5" fill="var(--apricot-fill)"/></svg>`}
 H.clock=q=>{let first=true;const c=q.c;
-  frame(`<div class="card stack">${bi(`<h2>${c.q}</h2>`,L_(c,'q'))}${clockSvg(c.h,c.m)}<div class="choices">${c.o.map(o=>`<button class="choice" data-o="${o}">${o}</button>`).join('')}</div><div id="fb"></div></div>`,'Rekenen',q.step);
+  frame(`<div class="card stack">${bi(`<h2>${c.q}</h2>`,L_(c,'q'))}${clockSvg(c.h,c.m)}<div class="choices">${c.o.map(o=>`<button class="choice" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="fb"></div></div>`,'Rekenen',q.step);
   app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o===c.a;b.classList.add(ok?'right':'wrong');
     if(ok){score(first,10);review('r-klok',first,'klok');if(first)grown.push('r-klok');say(c.a);$('#fb').innerHTML=fbBox(true,M_(c,'why'),L_(c,'why'))+nextBtn();$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbK(false,'clock.tip')}})};
@@ -1697,58 +1683,10 @@ H.end=q=>{finishTime();const g=GOALS[S.goal],pct=Math.round(Math.min(1,pts()/g.p
   petals();$('#home').onclick=()=>show('vandaag')};
 
 /* ============ dagelijkse les ============ */
-function startLesson(short){
-  const pool=NL.filter(w=>S.introduced.includes(w.id));
-  const due=pool.filter(w=>thirsty(w.id)).sort((a,b)=>S.items[a.id].due-S.items[b.id].due);
-  const fresh=NL.filter(w=>!S.introduced.includes(w.id));
-  const capNew=due.length>25?1:(isEnglishDay()?3:4);
-  const newW=short?[]:fresh.slice(0,capNew);
-  const rec=(due.length?due:pool).slice(0,short?3:4);
-  const q=[];
-  q.push({type:'card',label:'Ophalen',step:1,btn:'btn-leaf',html:()=>`${T('recall.intro.title')}<p>${nlOnly()?'Je ziet een zin met een open plek. Typ het woord dat op die plek past. Staat er nog geen <b>de</b> of <b>het</b> in de zin, dan kies je daarna het lidwoord. Zelf typen onthoud je beter dan aanklikken.':T('recall.intro')}</p><p class="muted small">${nlOnly()?'Vastgelopen? Tik op <b>Hulpje</b>: je krijgt eerst de beginletter, daarna een stukje meer.':T('recall.intro.hint')}</p>`});
-  if(rec.length)rec.forEach(w=>q.push({type:'recall',step:1,w}));
-  else NL.slice(0,2).forEach(w=>{q.push({type:'learn',step:1,w});q.push({type:'recog',step:1,w})});
-  if(!short){
-    newW.forEach(w=>q.push({type:'learn',step:2,w}));
-    shuffle(newW).forEach(w=>q.push({type:'recog',step:2,w}));
-    q.push({type:'card',label:'Nieuw leren',step:2,html:`${T('v2.title')}
-      <p>${T('v2.text')}</p>
-      <div class="example"><div><span class="slot s1">Ik</span> <span class="slot s2">werk</span> <span class="slot s3">morgen</span> in Zwaag.</div>${supSpan(ts('v2.ex1'))}</div>
-      <div class="example"><div><span class="slot s3">Morgen</span> <span class="slot s2">werk</span> <span class="slot s1">ik</span> in Zwaag.</div>${supSpan(ts('v2.ex2'))}</div>
-      <div class="note">${nlOnly()?'<b>Let op.</b> Begint de zin met een tijd, dan draait het om: <b>Morgen werk ik</b>.':T('v2.diff')}</div>
-      <button class="speak" id="lsp">${icon.play}${T('btn.listen')}</button>`,bind:()=>{$('#lsp').onclick=()=>say('Ik werk morgen in Zwaag. Morgen werk ik in Zwaag.')}});
-    shuffle(SENT).slice(0,isEnglishDay()?2:3).forEach(s=>q.push({type:'build',step:3,s}));
-    q.push({type:'gap',step:3,s:'Zaterdag ___ ik vrij.',th:'วันเสาร์ฉันได้หยุด',en:'On Saturday I have the day off.',o:['heb','hebben'],a:'heb',why:'Bij <i>ik</i> hoort <b>heb</b>. <i>Hebben</i> is voor wij, jullie en zij.',whyTh:'ik ใช้ heb ส่วน hebben ใช้กับ wij jullie zij',whyEn:'With ik you use heb. Hebben is for wij, jullie and zij.',hint:'Wie is het onderwerp? <i>ik</i>.',hintTh:'ประธานคือใคร? ik',hintEn:'Who is the subject? ik.'});
-    shuffle(PAIRS).slice(0,2).forEach(p=>q.push({type:'listen',step:3,p}));
-    q.push({type:'dictee',step:3});
-    q.push({type:'money',step:4});
-    q.push({type:'clock',step:4,c:{q:'Hoe laat begint de dienst?',qTh:'กะเริ่มกี่โมง',qEn:'What time does the shift start?',h:6,m:0,o:['zes uur','half zes','twaalf uur','kwart over zes'],a:'zes uur',why:'De korte wijzer staat op de 6, de lange op de 12: <b>zes uur</b>.',whyTh:'เข็มสั้นชี้เลข 6 เข็มยาวชี้เลข 12: หกโมง',whyEn:'The short hand points to 6, the long hand to 12: six o’clock.'}});
-    q.push({type:'discount',step:4,k:'worked'});
-    q.push({type:'discount',step:4,k:'partial'});
-  }else{
-    q.push({type:'clock',step:4,c:{q:'Hoe laat is het?',qTh:'กี่โมงแล้ว',qEn:'What time is it?',h:3,m:30,o:['half vier','half drie','drie uur','vier uur'],a:'half vier',why:'In het Nederlands zeg je <b>half vier</b>: een half uur vóór vier uur. Dat is anders dan in het Thai en het Engels.',whyTh:'ภาษาดัตช์พูดว่า half vier คือครึ่งชั่วโมงก่อนสี่โมง ต่างจากภาษาไทยและอังกฤษ','why@en':'In het Nederlands zeg je <b>half vier</b>: een half uur vóór vier uur. Dat is anders dan in het Engels (half past three).',whyEn:'In Dutch you say half vier: half an hour before four o’clock. That is different from English (half past three).'}});
-  }
-  q.push({type:'conf',step:5});q.push({type:'end',step:5});
-  runSession(short?'Korte les':'Les thema 1',q);
-}
+function startLesson(short){const p=PACKS.find(p=>p.learn==='nl'&&p.lesson);runSession(short?'Korte les':'Les thema 1',p?compose(short?p.lessonShort:p.lesson,'nl'):[])}
 
 /* ============ Engels ============ */
-function startEnglish(){
-  const due=EN.filter(w=>thirsty(w.id)),freshW=EN.filter(w=>S.items[w.id].reps===0);
-  const q=[{type:'card',label:'English',step:1,btn:'btn-sky',html:`<span class="flag">ENGLISH</span>${T('en.intro.title')}<p>${T('en.intro')}</p><div class="note sky">${T('en.intro.only')}</div><div class="note">${T('en.falseFriend')}</div>`}];
-  [...due,...freshW].slice(0,4).forEach(w=>q.push({type:'enrecall',step:1,w}));
-  q.push({type:'card',label:'English',step:2,btn:'btn-sky',html:`${T('en.s.title')}
-    <p>${T('en.s.text')}</p>
-    <div class="trio">${nlOnly()||!ts('en.trio')?'':`<div><span class="lg">${LANG[supL()].name.nl}</span><span class="wd" ${supAttr()}>${ts('en.trio')}</span></div>`}<div><span class="lg">Nederlands</span><span class="wd">zij werk<u>t</u></span></div><div><span class="lg">English</span><span class="wd" lang="en">she work<u>s</u></span></div></div>
-    <div class="note sky">${T('en.s.diff')}</div>
-    <button class="speak" id="esp">${icon.play}${T('en.listen')}</button>`,bind:()=>{$('#esp').onclick=()=>say('She works at night. They work in the morning.',false,'en')}});
-  [{s:'She ___ at night.',nl:"Zij werkt 's nachts.",th:'เธอทำงานตอนกลางคืน',o:['work','works'],a:'works',why:'<b>She</b> → werkwoord + <b>s</b>.',whyTh:'she ต้องเติม s',whyEn:'She → verb + s.',hint:'Is het he, she of it?',hintTh:'เป็น he she หรือ it ไหม',hintEn:'Is it he, she or it?'},
-   {s:'My colleagues ___ in the morning.',nl:"Mijn collega's werken 's ochtends.",th:'เพื่อนร่วมงานของฉันทำงานตอนเช้า',o:['work','works'],a:'work',why:'Meer personen: <b>geen -s</b>.',whyTh:'หลายคน ไม่เติม -s',whyEn:'More than one person: no -s.',hint:'Is het één persoon of meer?',hintTh:'คนเดียวหรือหลายคน',hintEn:'Is it one person or more?'},
-   {s:'He ___ a break at ten.',nl:'Hij heeft om tien uur pauze.',th:'เขาพักตอนสิบโมง',o:['have','has'],a:'has',why:'<b>have</b> wordt bij he, she en it <b>has</b>.',whyTh:'have เปลี่ยนเป็น has กับ he she it',whyEn:'have becomes has with he, she and it.',hint:'he → ?',hintTh:'he → ?',hintEn:'he → ?'}].forEach(x=>q.push({type:'engap',step:3,x}));
-  q.push({type:'listen',step:3,lang:'en',p:{say:'west',opts:['vest','west'],th:['เสื้อกั๊ก','ทิศตะวันตก'],en:['vest','west'],why:'Bij de <b>v</b> raken je boventanden je onderlip. Bij de <b>w</b> maak je je lippen rond.',whyTh:'เสียง v ฟันบนแตะริมฝีปากล่าง เสียง w ห่อริมฝีปาก',whyEn:'For the v your upper teeth touch your lower lip. For the w you round your lips.'}});
-  q.push({type:'conf',step:5});q.push({type:'end',step:5});
-  runSession('Engels',q);
-}
+function startEnglish(){const p=PACKS.find(p=>p.learn==='en'&&p.lesson);runSession('Engels',p?compose(p.lesson,'en'):[])}
 H.enrecall=q=>{const w=q.w;let done=false,hint=0;
   frame(`<div class="card stack"><p class="eyebrow" lang="en">What is this in English?</p>${nlOnly()||supL()==='en'?`<p class="prompt">${esc(w.nl)}</p>`:`<p class="prompt sp" ${supAttr()}>${L_(w)}</p><p class="muted small">Nederlands: <b>${esc(w.nl)}</b></p>`}
   <label for="ans" class="small muted">${T('en.typeWord')}</label><input id="ans" class="input" lang="en" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
@@ -1756,11 +1694,11 @@ H.enrecall=q=>{const w=q.w;let done=false,hint=0;
   <div id="fb"></div><button class="btn btn-sky" id="chk">${T('en.check')}</button>${helpBtn('Engels woord: '+w.w)}</div>`,'English',q.step);
   bindHelp();$('#hint').onclick=()=>{hint=Math.min(2,hint+1);$('#hs').textContent=hint===1?`${w.w[0]}… (${w.w.length} letters)`:w.w};
   const check=()=>{if(done)return;const a=norm($('#ans').value).replace(/^(a|an|the|to) /,'');if(!a)return;done=true;const ok=a===w.w,clean=ok&&hint<2;score(clean,hint?6:10);review(w.id,clean,'typen');if(clean)grown.push(w.id);
-    $('#fb').innerHTML=fbBox(ok,`<b lang="en">${esc(w.w)}</b>. <span lang="en">${esc(w.ex)}</span>`,supL()==='en'?'':ok?ts('fb.ok'):ts('recall.answer',{full:w.w}));say(`${w.w}. ${w.ex}`,false,'en');$('#chk').outerHTML=nextBtn('btn-sky');$('#nx').onclick=next;$('#ans').disabled=true};
+    $('#fb').innerHTML=fbBox(ok,`<b lang="en">${esc(w.w)}</b>. <span lang="en">${esc(w.ex)}</span>`,supL()==='en'?'':ok?ts('fb.ok'):ts('recall.answer',{full:esc(w.w)}));say(`${w.w}. ${w.ex}`,false,'en');$('#chk').outerHTML=nextBtn('btn-sky');$('#nx').onclick=next;$('#ans').disabled=true};
   $('#chk').onclick=check;$('#ans').onkeydown=e=>{if(e.key==='Enter')check()}};
 H.engap=q=>{const x=q.x;let first=true;
   frame(`<div class="card stack">${T('en.choose')}<p class="prompt" lang="en">${esc(x.s).replace('___','<span class="slot s1">___</span>')}</p><p class="muted small">${esc(x.nl)}</p>${supSpan(L_(x))}
-  <div class="choices">${x.o.map(o=>`<button class="choice" data-o="${o}" lang="en">${o}</button>`).join('')}</div><div id="fb"></div>${helpBtn('Engels: '+x.s)}</div>`,'English',q.step);
+  <div class="choices">${x.o.map(o=>`<button class="choice" data-o="${esc(o)}" lang="en">${esc(o)}</button>`).join('')}</div><div id="fb"></div>${helpBtn('Engels: '+x.s)}</div>`,'English',q.step);
   bindHelp();app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o===x.a;b.classList.add(ok?'right':'wrong');
     if(ok){score(first,10);say(x.s.replace('___',x.a),false,'en');$('#fb').innerHTML=fbBox(true,M_(x,'why'),L_(x,'why'))+nextBtn('btn-sky');$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbBox(false,M_(x,'hint'),L_(x,'hint'))}})};
@@ -1800,23 +1738,6 @@ function startSpeed(){
 }
 
 /* ============ startmeting ============ */
-const PLACE=[
- {sk:'woorden',q:'Wat betekent <b>de dienst</b>?',th:['กะทำงาน','ร้านค้า','วันหยุด'],en:['shift','shop','day off'],oNl:['de tijd dat je werkt','een winkel','een vrije dag'],a:0},
- {sk:'woorden',q:'Wat betekent <b>het salaris</b>?',th:['ตารางงาน','เงินเดือน','นัดหมาย'],en:['schedule','salary','appointment'],oNl:['de lijst met werktijden','het geld dat je verdient','een afspraak'],a:1},
- {sk:'woorden',q:'Wat betekent <b>de leidinggevende</b>?',th:['เพื่อนร่วมงาน','ลูกค้า','หัวหน้างาน'],en:['colleague','customer','supervisor'],oNl:['iemand met wie je samenwerkt','een klant','je baas op het werk'],a:2},
- {sk:'grammatica',q:'Welke zin is goed?',o:['Morgen ik werk in Zwaag.','Morgen werk ik in Zwaag.','Morgen werk in Zwaag ik.'],a:1},
- {sk:'grammatica',q:'Kies het goede woord: <i>Hij ___ in Hoorn.</i>',o:['woon','woont','wonen'],a:1},
- {sk:'grammatica',q:'Kies het goede woord: <i>Ik blijf thuis, omdat ik ziek ___.</i>',o:['ben','is','zijn'],a:0},
- {sk:'luisteren',say:'Mijn afspraak bij de dokter is morgen om half tien.',q:'Wanneer is de afspraak?',o:['Morgen om 9.30 uur','Morgen om 10.30 uur','Vandaag om 9.30 uur'],a:0},
- {sk:'luisteren',say:'De winkel is op zondag gesloten, maar op zaterdag open tot vijf uur.',q:'Wanneer is de winkel dicht?',o:['Op zaterdag','Op zondag','Elke dag na vijf uur'],a:1},
- {sk:'lezen',text:'Beste medewerkers, vanaf maandag begint de vroege dienst een half uur later, om half zeven. De late dienst blijft hetzelfde. Vragen? Bel de planning.',q:'Hoe laat begint de vroege dienst vanaf maandag?',o:['Om zes uur','Om half zeven','Om zeven uur'],a:1},
- {sk:'rekenen',q:'Je koopt brood van € 2,75 en melk van € 1,30. Hoeveel betaal je?',o:['€ 3,05','€ 4,05','€ 4,15'],a:1},
- {sk:'rekenen',q:'Een tas kost € 30,00. Je krijgt 50% korting. Wat betaal je?',o:['€ 15,00','€ 20,00','€ 25,00'],a:0},
- {sk:'rekenen',q:'Een recept is voor 4 personen en vraagt 200 gram rijst. Hoeveel rijst heb je nodig voor 6 personen?',o:['250 gram','300 gram','400 gram'],a:1},
- {sk:'rekenen',q:'Welk getal is het grootst?',o:['0,75','0,8','0,125'],a:1},
- {sk:'engels',q:'<span lang="en">What does <b>appointment</b> mean?</span>',th:['นัดหมาย','ตารางงาน','เพื่อนร่วมงาน'],en:['een afspraak','een rooster','een collega'],oNl:['een afspraak','een rooster','een collega'],a:0},
- {sk:'engels',q:'<span lang="en">Choose: <i>She ___ in a factory.</i></span>',o:['work','works','working'],a:1}
-];
 let PL={};
 function startPlacement(){
   PL={};const q=[{type:'card',label:'Startmeting',btn:'btn-main',html:`${T('place.title')}<p>${T('place.tip')}</p>`}];

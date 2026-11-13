@@ -31,8 +31,10 @@ Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteun
 
 ## Bestanden
 
-- `index.html` — de app (CSS + JS inline, geen build), behalve de koppeling.
-- `tlsync.js` — **gebouwd bestand**, niet met de hand wijzigen. Bron `tools/tlsync.src.js`; bouwen met `node tools/build-tlsync.mjs` (plakt de vastgelegde noble-bundel `tools/noble-2.4.0.min.js` ervoor). Precies hetzelfde bestand staat in de EDGE-widget als `scripts/tlsync.js`: na een wijziging daar ook vervangen. Thema-1-inhoud staat bovenaan het script (`NL`, `EN`, `REK`, `SENT`, `PAIRS`, `STORY`).
+- `index.html` — de app (CSS + JS inline, geen build), behalve de koppeling en de leerinhoud.
+- `content/*.json` — de leerinhoud als pakketten (bouwplan fase 2, formaat in `docs/pakketformaat.md`): `nl-t1` (Nederlands thema 1, startmeting, verhaal), `en-t1` (Engels), `rk-1` (rekenen). Bestaande id's (`werk`, `en-work`, `r-geld`) houden hun naam: de opgeslagen voortgang past zonder migratie. Een pakket toevoegen = bestand in `content/`, in `BUILTIN` (index.html) én in `SHELL` (sw.js).
+- `pakketcheck.js` — controleert een pakket (`checkPack`) en maakt pakkettekst onschadelijk (`safeText`); dezelfde code in de app en in de test.
+- `tlsync.js` — **gebouwd bestand**, niet met de hand wijzigen. Bron `tools/tlsync.src.js`; bouwen met `node tools/build-tlsync.mjs` (plakt de vastgelegde noble-bundel `tools/noble-2.4.0.min.js` ervoor). Precies hetzelfde bestand staat in de EDGE-widget als `scripts/tlsync.js`: na een wijziging daar ook vervangen.
 - `sw.js` — offline-cache. **Verhoog `CACHE` (`tonaor-leert-v2-N`) bij elke release.**
 - `manifest.webmanifest`, `icons/` — beginscherm-icoon.
 - `LEESMIJ.md` — uitleg voor Emiel (publiceren via GitHub Pages, tips).
@@ -56,7 +58,10 @@ Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteun
   - Interfaceteksten staan in `I18N` (`en` = referentie voor vertalers, `nl`, `th`) onder korte Engelse sleutels. Gebruik `T('sleutel',{var})` voor tekst met steuntaalregel, `t()`/`ts()` voor alleen leer-/steuntaal, `tx()` voor meldingen en `fbK(ok,'sleutel')` voor terugkoppeling. Nooit nieuwe tekst met losse Thai in de code.
   - `{sup}` = naam van de steuntaal; `sleutel@en` = variant als Engels de steuntaal is; meervoud `{one,other}` met `n`.
   - Inhoud: vertaling naast het veld (`th`/`en`, `whyTh`/`whyEn`, …), lezen met `L_(x,'why')`; Nederlandse tekst met een variant per steuntaal als `'why@en'`, lezen met `M_(x,'why')`. Taalbeschrijving in `LANG` (code, richting, naam per taal).
-  - Nieuwe steuntaal = `LANG` + `SUPPORT` + `I18N.xx` + `xx`-velden in de inhoud. Na elke wijziging de tests draaien: `node tools/test-vertalingen.mjs` (alle sleutels in nl/th/en, gelijke `{plekken}`, geen losse Thai), `node tools/test-oefeningen.mjs`, `node tools/test-voorlezen.mjs` en `node tools/test-migratie.mjs`.
+  - Nieuwe steuntaal = `LANG` + `SUPPORT` + `I18N.xx` + `xx`-velden in de inhoud. Na elke wijziging de tests draaien (alle `tools/test-*.mjs`): `node tools/test-vertalingen.mjs` (alle sleutels in nl/th/en, gelijke `{plekken}`, geen losse Thai), `node tools/test-oefeningen.mjs`, `node tools/test-voorlezen.mjs` en `node tools/test-migratie.mjs`.
+- Inhoud en les (fase 2): de app laadt de pakketten bij de start (`loadPacks`), bouwt daaruit de lijsten die de oefenschermen kennen (`NL`, `EN`, `REK`, `SENT`, `PAIRS`, `DICTEE`, `STORY`, `PLACE`) en stelt de les samen uit het recept (`compose`). Een ontbrekend pakket wordt gemeld op Vandaag; de opslag blijft onaangeroerd.
+  - Veilig tonen: elke waarde uit een pakket gaat door precies één van `SAFE` (pakketcheck.safeText, als het scherm hem rauw in de HTML zet) of `esc()` (als het scherm hem zelf escapet of voorleest). Nooit beide, nooit geen van beide. `say()` haalt tags en tekencodes zelf weg.
+  - Zelfde les: `node tools/test-les.mjs` vergelijkt met `tools/les-verwacht.json` (de les van vóór fase 2, vaste opslag en zaadwaarde). Verandert de les bewust (fase 3), leg dan opnieuw vast met `tools/les-vastleggen.mjs` en zeg dat in de commit.
 - Kleurpalet: pastels, geen rood (bewuste keuze).
 - Doelapparaat is iPhone/Safari: test op 375px breed.
 

@@ -31,15 +31,8 @@ ok('meervoudsvormen compleet', !pl.length, pl.join(', '));
 const tags = Object.entries(I18N.en).filter(([k, v]) => /<[a-z]/i.test(typeof v === 'object' ? v.other : v)).map(([k]) => k);
 ok('Engelse referentieteksten zonder HTML', !tags.length, tags.join(', '));
 // inhoud: elk th-veld heeft een en-veld ernaast (woorden, zinnen, verhaal, route, ...)
-const dataLines = h.split('\n').filter(l => /(?:^|[{,\s])(th|whyTh|hintTh|qTh|dTh):/.test(l) && !l.includes('const LANG') && !/name:\{nl:/.test(l));
-const noEnLines = dataLines.filter(l => { for (const f of ['th', 'whyTh', 'hintTh', 'qTh', 'dTh']) { const enF = f === 'th' ? 'en' : f.replace(/Th$/, 'En'); if (new RegExp('(^|[{,\\s])' + f + ':').test(l) && !new RegExp('(^|[{,\\s\'])' + enF + ':').test(l)) return true; } return false; })
-  .filter(l => !/\{id:'en-/.test(l) && !/label:'/.test(l) === false || /\{id:'en-/.test(l) === false);
-const realMissing = noEnLines.filter(l => !/\{id:'en-/.test(l) && l.trim() !== 'th:{' && !/\{s:'[^']*___/.test(l));
-ok('inhoud: elk Thais veld heeft een Engelse tegenhanger', !realMissing.length, realMissing.map(l => l.trim().slice(0, 90)).join('\n     '));
-// verhaal: elke regel [nl, th, en]
-const st = h.slice(h.indexOf('const STORY='), h.indexOf(' ],', h.indexOf('const STORY=')));
-const lines = [...st.matchAll(/\n  \[(.*)\],?/g)].map(m => eval('[' + m[1] + ']'));
-ok('verhaal: elke regel heeft nl, th en en', lines.length === 10 && lines.every(l => l.length === 3 && l.every(Boolean)));
+// leerinhoud staat sinds fase 2 in content/*.json; de vertalingen daar controleert tools/test-pakket.mjs (pakketcheck.js)
+ok('geen leerinhoud meer in index.html', !/const (NL|SENT|PAIRS|STORY|PLACE)=\[/.test(h) && !/const (DICTEE|STORY)=\{/.test(h));
 // geen Thai buiten tabel/inhoud in de code (uitzondering: het woord ทำบุญ in de boeddhisme-opdracht)
 const code = h.slice(h.indexOf('const momentText'));
 const thaiCode = code.split('\n').filter(l => /[\u0E00-\u0E7F]/.test(l) && !/Th:|,en:/.test(l) && !l.includes("'<i>ทำบุญ</i>'"));

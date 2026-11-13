@@ -1,0 +1,794 @@
+{
+ "nieuw-gewoon": {
+  "name": "Les thema 1",
+  "q": [
+   {
+    "type": "card",
+    "step": 1,
+    "label": "Ophalen"
+   },
+   {
+    "type": "learn",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "learn",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "werk"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "dienst"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "collega"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "rooster"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "dienst"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "werk"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "collega"
+   },
+   {
+    "type": "card",
+    "step": 2,
+    "label": "Nieuw leren"
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "Om zes uur begint mijn dienst."
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "Morgen werk ik in Zwaag."
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "In de pauze drink ik thee."
+   },
+   {
+    "type": "gap",
+    "step": 3,
+    "s": "Zaterdag ___ ik vrij."
+   },
+   {
+    "type": "listen",
+    "step": 3,
+    "p": "man"
+   },
+   {
+    "type": "listen",
+    "step": 3,
+    "p": "huis"
+   },
+   {
+    "type": "dictee",
+    "step": 3
+   },
+   {
+    "type": "money",
+    "step": 4
+   },
+   {
+    "type": "clock",
+    "step": 4,
+    "c": "zes uur"
+   },
+   {
+    "type": "discount",
+    "step": 4,
+    "k": "worked"
+   },
+   {
+    "type": "discount",
+    "step": 4,
+    "k": "partial"
+   },
+   {
+    "type": "conf",
+    "step": 5
+   },
+   {
+    "type": "end",
+    "step": 5
+   }
+  ]
+ },
+ "nieuw-engelsedag": {
+  "name": "Les thema 1",
+  "q": [
+   {
+    "type": "card",
+    "step": 1,
+    "label": "Ophalen"
+   },
+   {
+    "type": "learn",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "learn",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "werk"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "dienst"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "collega"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "dienst"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "werk"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "collega"
+   },
+   {
+    "type": "card",
+    "step": 2,
+    "label": "Nieuw leren"
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "Morgen werk ik in Zwaag."
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "In de pauze drink ik thee."
+   },
+   {
+    "type": "gap",
+    "step": 3,
+    "s": "Zaterdag ___ ik vrij."
+   },
+   {
+    "type": "listen",
+    "step": 3,
+    "p": "huis"
+   },
+   {
+    "type": "listen",
+    "step": 3,
+    "p": "man"
+   },
+   {
+    "type": "dictee",
+    "step": 3
+   },
+   {
+    "type": "money",
+    "step": 4
+   },
+   {
+    "type": "clock",
+    "step": 4,
+    "c": "zes uur"
+   },
+   {
+    "type": "discount",
+    "step": 4,
+    "k": "worked"
+   },
+   {
+    "type": "discount",
+    "step": 4,
+    "k": "partial"
+   },
+   {
+    "type": "conf",
+    "step": 5
+   },
+   {
+    "type": "end",
+    "step": 5
+   }
+  ]
+ },
+ "herhalen-gewoon": {
+  "name": "Les thema 1",
+  "q": [
+   {
+    "type": "card",
+    "step": 1,
+    "label": "Ophalen"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "pauze"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "collega"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "fabriek"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "salaris"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "vrijedag"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "afspraak"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "fiets"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "vrijedag"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "fiets"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "salaris"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "afspraak"
+   },
+   {
+    "type": "card",
+    "step": 2,
+    "label": "Nieuw leren"
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "Om zes uur begint mijn dienst."
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "Zaterdag heb ik vrij."
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "In de pauze drink ik thee."
+   },
+   {
+    "type": "gap",
+    "step": 3,
+    "s": "Zaterdag ___ ik vrij."
+   },
+   {
+    "type": "listen",
+    "step": 3,
+    "p": "huis"
+   },
+   {
+    "type": "listen",
+    "step": 3,
+    "p": "man"
+   },
+   {
+    "type": "dictee",
+    "step": 3
+   },
+   {
+    "type": "money",
+    "step": 4
+   },
+   {
+    "type": "clock",
+    "step": 4,
+    "c": "zes uur"
+   },
+   {
+    "type": "discount",
+    "step": 4,
+    "k": "worked"
+   },
+   {
+    "type": "discount",
+    "step": 4,
+    "k": "partial"
+   },
+   {
+    "type": "conf",
+    "step": 5
+   },
+   {
+    "type": "end",
+    "step": 5
+   }
+  ]
+ },
+ "herhalen-engelsedag": {
+  "name": "Les thema 1",
+  "q": [
+   {
+    "type": "card",
+    "step": 1,
+    "label": "Ophalen"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "rooster"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "machine"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "leidinggevende"
+   },
+   {
+    "type": "learn",
+    "step": 2,
+    "w": "salaris"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "leidinggevende"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "machine"
+   },
+   {
+    "type": "recog",
+    "step": 2,
+    "w": "salaris"
+   },
+   {
+    "type": "card",
+    "step": 2,
+    "label": "Nieuw leren"
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "Om zes uur begint mijn dienst."
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "In de pauze drink ik thee."
+   },
+   {
+    "type": "gap",
+    "step": 3,
+    "s": "Zaterdag ___ ik vrij."
+   },
+   {
+    "type": "listen",
+    "step": 3,
+    "p": "huis"
+   },
+   {
+    "type": "listen",
+    "step": 3,
+    "p": "man"
+   },
+   {
+    "type": "dictee",
+    "step": 3
+   },
+   {
+    "type": "money",
+    "step": 4
+   },
+   {
+    "type": "clock",
+    "step": 4,
+    "c": "zes uur"
+   },
+   {
+    "type": "discount",
+    "step": 4,
+    "k": "worked"
+   },
+   {
+    "type": "discount",
+    "step": 4,
+    "k": "partial"
+   },
+   {
+    "type": "conf",
+    "step": 5
+   },
+   {
+    "type": "end",
+    "step": 5
+   }
+  ]
+ },
+ "alles-bekend": {
+  "name": "Les thema 1",
+  "q": [
+   {
+    "type": "card",
+    "step": 1,
+    "label": "Ophalen"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "week"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "geld"
+   },
+   {
+    "type": "card",
+    "step": 2,
+    "label": "Nieuw leren"
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "Om zes uur begint mijn dienst."
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "Morgen werk ik in Zwaag."
+   },
+   {
+    "type": "build",
+    "step": 3,
+    "s": "Zaterdag heb ik vrij."
+   },
+   {
+    "type": "gap",
+    "step": 3,
+    "s": "Zaterdag ___ ik vrij."
+   },
+   {
+    "type": "listen",
+    "step": 3,
+    "p": "huis"
+   },
+   {
+    "type": "listen",
+    "step": 3,
+    "p": "man"
+   },
+   {
+    "type": "dictee",
+    "step": 3
+   },
+   {
+    "type": "money",
+    "step": 4
+   },
+   {
+    "type": "clock",
+    "step": 4,
+    "c": "zes uur"
+   },
+   {
+    "type": "discount",
+    "step": 4,
+    "k": "worked"
+   },
+   {
+    "type": "discount",
+    "step": 4,
+    "k": "partial"
+   },
+   {
+    "type": "conf",
+    "step": 5
+   },
+   {
+    "type": "end",
+    "step": 5
+   }
+  ]
+ },
+ "kort-nieuw": {
+  "name": "Korte les",
+  "q": [
+   {
+    "type": "card",
+    "step": 1,
+    "label": "Ophalen"
+   },
+   {
+    "type": "learn",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "learn",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "recog",
+    "step": 1,
+    "w": "dienst"
+   },
+   {
+    "type": "clock",
+    "step": 4,
+    "c": "half vier"
+   },
+   {
+    "type": "conf",
+    "step": 5
+   },
+   {
+    "type": "end",
+    "step": 5
+   }
+  ]
+ },
+ "kort-herhalen": {
+  "name": "Korte les",
+  "q": [
+   {
+    "type": "card",
+    "step": 1,
+    "label": "Ophalen"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "werk"
+   },
+   {
+    "type": "recall",
+    "step": 1,
+    "w": "pauze"
+   },
+   {
+    "type": "clock",
+    "step": 4,
+    "c": "half vier"
+   },
+   {
+    "type": "conf",
+    "step": 5
+   },
+   {
+    "type": "end",
+    "step": 5
+   }
+  ]
+ },
+ "engels-nieuw": {
+  "name": "Engels",
+  "q": [
+   {
+    "type": "card",
+    "step": 1,
+    "label": "English"
+   },
+   {
+    "type": "enrecall",
+    "step": 1,
+    "w": "en-work"
+   },
+   {
+    "type": "enrecall",
+    "step": 1,
+    "w": "en-colleague"
+   },
+   {
+    "type": "enrecall",
+    "step": 1,
+    "w": "en-break"
+   },
+   {
+    "type": "enrecall",
+    "step": 1,
+    "w": "en-schedule"
+   },
+   {
+    "type": "card",
+    "step": 2,
+    "label": "English"
+   },
+   {
+    "type": "engap",
+    "step": 3,
+    "s": "She ___ at night."
+   },
+   {
+    "type": "engap",
+    "step": 3,
+    "s": "My colleagues ___ in the morning."
+   },
+   {
+    "type": "engap",
+    "step": 3,
+    "s": "He ___ a break at ten."
+   },
+   {
+    "type": "listen",
+    "step": 3,
+    "p": "west"
+   },
+   {
+    "type": "conf",
+    "step": 5
+   },
+   {
+    "type": "end",
+    "step": 5
+   }
+  ]
+ },
+ "engels-herhalen": {
+  "name": "Engels",
+  "q": [
+   {
+    "type": "card",
+    "step": 1,
+    "label": "English"
+   },
+   {
+    "type": "enrecall",
+    "step": 1,
+    "w": "en-work"
+   },
+   {
+    "type": "enrecall",
+    "step": 1,
+    "w": "en-colleague"
+   },
+   {
+    "type": "enrecall",
+    "step": 1,
+    "w": "en-break"
+   },
+   {
+    "type": "enrecall",
+    "step": 1,
+    "w": "en-information"
+   },
+   {
+    "type": "card",
+    "step": 2,
+    "label": "English"
+   },
+   {
+    "type": "engap",
+    "step": 3,
+    "s": "She ___ at night."
+   },
+   {
+    "type": "engap",
+    "step": 3,
+    "s": "My colleagues ___ in the morning."
+   },
+   {
+    "type": "engap",
+    "step": 3,
+    "s": "He ___ a break at ten."
+   },
+   {
+    "type": "listen",
+    "step": 3,
+    "p": "west"
+   },
+   {
+    "type": "conf",
+    "step": 5
+   },
+   {
+    "type": "end",
+    "step": 5
+   }
+  ]
+ }
+}

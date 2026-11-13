@@ -1,0 +1,1209 @@
+{
+ "format": 1,
+ "id": "nl-t1",
+ "version": 1,
+ "learn": "nl",
+ "level": "A2-B1",
+ "order": 10,
+ "quality": "legacy",
+ "requires": [
+  "rk-1"
+ ],
+ "title": {
+  "nl": "Thema 1 · Werk en dagelijks leven",
+  "th": "ธีม 1 · งานและชีวิตประจำวัน",
+  "en": "Theme 1 · Work and daily life"
+ },
+ "items": [
+  {
+   "id": "werk",
+   "kind": "word",
+   "w": "werk",
+   "art": "het",
+   "tr": {
+    "th": "งาน",
+    "en": "work"
+   },
+   "ex": "Ik ga naar mijn werk.",
+   "gap": "Ik zoek geen baan meer, want ik heb nu ___ in een fabriek.",
+   "askArt": true
+  },
+  {
+   "id": "dienst",
+   "kind": "word",
+   "w": "dienst",
+   "art": "de",
+   "tr": {
+    "th": "กะทำงาน",
+    "en": "shift"
+   },
+   "ex": "Mijn dienst begint om zes uur.",
+   "gap": "Ik heb deze week de vroege ___: van zes tot twee uur."
+  },
+  {
+   "id": "collega",
+   "kind": "word",
+   "w": "collega",
+   "art": "de",
+   "tr": {
+    "th": "เพื่อนร่วมงาน",
+    "en": "colleague"
+   },
+   "ex": "Mijn collega helpt me.",
+   "gap": "In de pauze eet ik samen met een ___ van mijn afdeling.",
+   "askArt": true,
+   "also": [
+    "leidinggevende"
+   ]
+  },
+  {
+   "id": "rooster",
+   "kind": "word",
+   "w": "rooster",
+   "art": "het",
+   "tr": {
+    "th": "ตารางงาน",
+    "en": "schedule"
+   },
+   "ex": "Het rooster hangt in de kantine.",
+   "gap": "Het nieuwe ___ hangt in de kantine. Volgende week werk ik drie dagen."
+  },
+  {
+   "id": "pauze",
+   "kind": "word",
+   "w": "pauze",
+   "art": "de",
+   "tr": {
+    "th": "เวลาพัก",
+    "en": "break"
+   },
+   "ex": "In de pauze drink ik thee.",
+   "gap": "Om tien uur hebben we een kwartier ___. Dan drink ik koffie.",
+   "askArt": true
+  },
+  {
+   "id": "fabriek",
+   "kind": "word",
+   "w": "fabriek",
+   "art": "de",
+   "tr": {
+    "th": "โรงงาน",
+    "en": "factory"
+   },
+   "ex": "De fabriek staat in Zwaag.",
+   "gap": "Ik maak onderdelen voor auto’s. Ik werk in een ___.",
+   "askArt": true
+  },
+  {
+   "id": "machine",
+   "kind": "word",
+   "w": "machine",
+   "art": "de",
+   "tr": {
+    "th": "เครื่องจักร",
+    "en": "machine"
+   },
+   "ex": "De machine maakt veel lawaai.",
+   "gap": "Doe je oordopjes in, want de ___ maakt veel lawaai. Zet hem uit als je klaar bent."
+  },
+  {
+   "id": "leidinggevende",
+   "kind": "word",
+   "w": "leidinggevende",
+   "art": "de",
+   "tr": {
+    "th": "หัวหน้างาน",
+    "en": "supervisor"
+   },
+   "ex": "Mijn leidinggevende maakt het rooster.",
+   "gap": "Ben je ziek? Bel dan meteen je ___.",
+   "askArt": true,
+   "also": [
+    "collega",
+    "werk"
+   ]
+  },
+  {
+   "id": "salaris",
+   "kind": "word",
+   "w": "salaris",
+   "art": "het",
+   "tr": {
+    "th": "เงินเดือน",
+    "en": "salary"
+   },
+   "ex": "Het salaris komt aan het eind van de maand.",
+   "gap": "Mijn ___ is tweeduizend euro per maand.",
+   "askArt": true
+  },
+  {
+   "id": "vrijedag",
+   "kind": "word",
+   "w": "vrije dag",
+   "art": "de",
+   "tr": {
+    "th": "วันหยุด",
+    "en": "day off"
+   },
+   "ex": "Zaterdag is mijn vrije dag.",
+   "gap": "Zaterdag hoef ik niet te werken. Dat is mijn ___.",
+   "askArt": true
+  },
+  {
+   "id": "afspraak",
+   "kind": "word",
+   "w": "afspraak",
+   "art": "de",
+   "tr": {
+    "th": "นัดหมาย",
+    "en": "appointment"
+   },
+   "ex": "Ik heb een afspraak bij de dokter.",
+   "gap": "Ik heb morgen om negen uur een ___ bij de dokter.",
+   "askArt": true
+  },
+  {
+   "id": "fiets",
+   "kind": "word",
+   "w": "fiets",
+   "art": "de",
+   "tr": {
+    "th": "จักรยาน",
+    "en": "bicycle"
+   },
+   "ex": "Ik ga met de fiets naar mijn werk.",
+   "gap": "Het regent, maar ik ga toch op de ___ naar mijn werk."
+  },
+  {
+   "id": "huis",
+   "kind": "word",
+   "w": "huis",
+   "art": "het",
+   "tr": {
+    "th": "บ้าน",
+    "en": "house"
+   },
+   "ex": "Ons huis staat in Hoorn.",
+   "gap": "Mijn ___ heeft drie kamers en een kleine tuin.",
+   "askArt": true
+  },
+  {
+   "id": "winkel",
+   "kind": "word",
+   "w": "winkel",
+   "art": "de",
+   "tr": {
+    "th": "ร้านค้า",
+    "en": "shop"
+   },
+   "ex": "De winkel is om negen uur open.",
+   "gap": "Ik koop brood en melk in de ___ op de hoek."
+  },
+  {
+   "id": "korting",
+   "kind": "word",
+   "w": "korting",
+   "art": "de",
+   "tr": {
+    "th": "ส่วนลด",
+    "en": "discount"
+   },
+   "ex": "Ik krijg tien procent korting.",
+   "gap": "De jas kost nu minder: je krijgt twintig procent ___.",
+   "askArt": true
+  },
+  {
+   "id": "geld",
+   "kind": "word",
+   "w": "geld",
+   "art": "het",
+   "tr": {
+    "th": "เงิน",
+    "en": "money"
+   },
+   "ex": "Ik heb genoeg geld bij me.",
+   "gap": "Ik wil iets kopen, maar ik heb niet genoeg ___ bij me.",
+   "askArt": true
+  },
+  {
+   "id": "week",
+   "kind": "word",
+   "w": "week",
+   "art": "de",
+   "tr": {
+    "th": "สัปดาห์",
+    "en": "week"
+   },
+   "ex": "Ik werk vijf dagen per week.",
+   "gap": "Ik werk vier dagen per ___ in de fabriek.",
+   "askArt": true
+  },
+  {
+   "id": "opleiding",
+   "kind": "word",
+   "w": "opleiding",
+   "art": "de",
+   "tr": {
+    "th": "การเรียน / หลักสูตร",
+    "en": "training course"
+   },
+   "ex": "Ik wil een opleiding doen.",
+   "gap": "Ik wil een diploma halen. Daarom volg ik een ___.",
+   "askArt": true
+  },
+  {
+   "id": "nl.regel.plek2",
+   "kind": "rule",
+   "title": {
+    "nl": "Het werkwoord staat op plek 2",
+    "th": "กริยาอยู่ตำแหน่งที่ 2",
+    "en": "The verb is in position 2"
+   }
+  },
+  {
+   "id": "nl.regel.heb",
+   "kind": "rule",
+   "title": {
+    "nl": "heb of hebben",
+    "th": "heb หรือ hebben",
+    "en": "heb or hebben"
+   }
+  },
+  {
+   "id": "nl.klank.man",
+   "kind": "sound",
+   "title": {
+    "nl": "man – maan",
+    "th": "man – maan",
+    "en": "man – maan"
+   },
+   "pair": [
+    "man",
+    "maan"
+   ]
+  },
+  {
+   "id": "nl.klank.geel",
+   "kind": "sound",
+   "title": {
+    "nl": "geel – keel",
+    "th": "geel – keel",
+    "en": "geel – keel"
+   },
+   "pair": [
+    "geel",
+    "keel"
+   ]
+  },
+  {
+   "id": "nl.klank.huis",
+   "kind": "sound",
+   "title": {
+    "nl": "huis – hoes",
+    "th": "huis – hoes",
+    "en": "huis – hoes"
+   },
+   "pair": [
+    "huis",
+    "hoes"
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "id": "nl.verhaal.1",
+   "kind": "verhaal",
+   "sort": "verhaal",
+   "title": {
+    "nl": "Aflevering 1 · Een nieuwe vraag",
+    "th": "ตอนที่ 1 · คำถามใหม่",
+    "en": "Episode 1 · A new question"
+   },
+   "paras": [
+    [
+     {
+      "nl": "Mali woont in Hoorn.",
+      "th": "มะลิอาศัยอยู่ที่ฮอร์น",
+      "en": "Mali lives in Hoorn."
+     },
+     {
+      "nl": "Ze werkt in een fabriek in Zwaag.",
+      "th": "เธอทำงานที่โรงงานแห่งหนึ่งในซวาก",
+      "en": "She works in a factory in Zwaag."
+     },
+     {
+      "nl": "Haar dienst begint om zes uur.",
+      "th": "กะของเธอเริ่มตอนหกโมง",
+      "en": "Her shift starts at six o’clock."
+     },
+     {
+      "nl": "'s Ochtends fietst ze naar haar werk.",
+      "th": "ตอนเช้าเธอปั่นจักรยานไปทำงาน",
+      "en": "In the morning she cycles to work."
+     },
+     {
+      "nl": "In de pauze drinkt ze thee met haar collega Sanne.",
+      "th": "ตอนพักเธอดื่มชากับซานเนอ เพื่อนร่วมงานของเธอ",
+      "en": "During the break she drinks tea with her colleague Sanne."
+     },
+     {
+      "nl": "Sanne vraagt: \"Wil jij ook een opleiding doen?\"",
+      "th": "ซานเนอถามว่า \"เธออยากเรียนต่อด้วยไหม\"",
+      "en": "Sanne asks: “Do you want to take a training course too?”"
+     },
+     {
+      "nl": "Mali denkt na. Ze wil graag iets nieuws leren, maar ze twijfelt.",
+      "th": "มะลิคิดอยู่ครู่หนึ่ง เธออยากเรียนรู้สิ่งใหม่ แต่ยังลังเล",
+      "en": "Mali thinks about it. She would like to learn something new, but she is not sure."
+     },
+     {
+      "nl": "\"Mijn Nederlands is nog niet goed genoeg,\" zegt ze.",
+      "th": "\"ภาษาดัตช์ของฉันยังไม่ดีพอ\" เธอพูด",
+      "en": "“My Dutch is not good enough yet,” she says."
+     },
+     {
+      "nl": "Sanne lacht. \"Dat kun je leren!\"",
+      "th": "ซานเนอหัวเราะ \"เรื่องนี้เรียนได้นะ!\"",
+      "en": "Sanne laughs. “You can learn that!”"
+     },
+     {
+      "nl": "'s Avonds pakt Mali haar telefoon. Ze zoekt iets op...",
+      "th": "ตอนเย็นมะลิหยิบโทรศัพท์ขึ้นมา เธอค้นหาอะไรบางอย่าง...",
+      "en": "In the evening Mali picks up her phone. She looks something up..."
+     }
+    ]
+   ],
+   "words": [
+    "fabriek",
+    "dienst",
+    "werk",
+    "pauze",
+    "collega",
+    "opleiding"
+   ]
+  },
+  {
+   "id": "nl.meting.lees",
+   "kind": "lees",
+   "sort": "bericht",
+   "paras": [
+    [
+     "Beste medewerkers, vanaf maandag begint de vroege dienst een half uur later, om half zeven. De late dienst blijft hetzelfde. Vragen? Bel de planning."
+    ]
+   ],
+   "words": [
+    "dienst"
+   ]
+  }
+ ],
+ "cards": [
+  {
+   "id": "nl.kaart.ophalen",
+   "items": [],
+   "title": {
+    "nl": "Eerst even ophalen",
+    "th": "ทบทวนก่อน",
+    "en": "First, a quick recall"
+   },
+   "body": {
+    "nl": "Je ziet een woord in je eigen taal. Typ het Nederlandse woord, met <b>de</b> of <b>het</b> ervoor. Wat je zelf typt, onthoud je beter dan wat je aanklikt.",
+    "th": "คุณจะเห็นคำภาษาไทย พิมพ์คำภาษาดัตช์พร้อม de หรือ het การพิมพ์เองช่วยให้จำได้ดีกว่า",
+    "en": "You see an English word. Type the Dutch word, with de or het in front of it. What you type yourself, you remember better than what you tap.",
+    "nl@th": "Je ziet een Thais woord. Typ het Nederlandse woord, met <b>de</b> of <b>het</b> ervoor. Wat je zelf typt, onthoud je beter dan wat je aanklikt.",
+    "nl@en": "Je ziet een Engels woord. Typ het Nederlandse woord, met <b>de</b> of <b>het</b> ervoor. Wat je zelf typt, onthoud je beter dan wat je aanklikt.",
+    "nl@uit": "Je ziet een zin met een open plek. Typ het woord dat op die plek past. Staat er nog geen <b>de</b> of <b>het</b> in de zin, dan kies je daarna het lidwoord. Zelf typen onthoud je beter dan aanklikken."
+   },
+   "note": {
+    "nl": "Vastgelopen? Tik op <b>Hulpje</b>: eerst het lidwoord, dan de eerste letter.",
+    "th": "ติดอยู่? แตะตัวช่วย: บอก de/het ก่อน แล้วตัวอักษรแรก",
+    "en": "Stuck? Tap Hint: first the article, then the first letter.",
+    "nl@uit": "Vastgelopen? Tik op <b>Hulpje</b>: je krijgt eerst de beginletter, daarna een stukje meer."
+   },
+   "noteStyle": "muted"
+  },
+  {
+   "id": "nl.kaart.plek2",
+   "items": [
+    "nl.regel.plek2"
+   ],
+   "title": {
+    "nl": "Het werkwoord staat op plek 2",
+    "th": "กริยาอยู่ตำแหน่งที่ 2",
+    "en": "The verb is in position 2"
+   },
+   "body": {
+    "nl": "In een gewone Nederlandse zin staat het werkwoord altijd op <b>plek 2</b>. Begint de zin met iets anders dan <i>ik</i>, zoals een tijd, dan schuift <i>ik</i> naar achter het werkwoord.",
+    "th": "ในประโยคหลักภาษาดัตช์ กริยาอยู่ตำแหน่งที่ 2 เสมอ ถ้าประโยคขึ้นต้นด้วยคำอื่น เช่น เวลา ประธานจะย้ายไปอยู่หลังกริยา",
+    "en": "In a normal Dutch sentence the verb is always in position 2. If the sentence starts with something other than ik, such as a time, then ik moves to after the verb."
+   },
+   "examples": [
+    {
+     "parts": [
+      {
+       "t": "Ik",
+       "slot": 1
+      },
+      {
+       "t": "werk",
+       "slot": 2
+      },
+      {
+       "t": "morgen",
+       "slot": 3
+      },
+      {
+       "t": "in Zwaag."
+      }
+     ],
+     "tr": {
+      "th": "ฉัน ทำงาน พรุ่งนี้ ที่ซวาก",
+      "en": "I work tomorrow in Zwaag."
+     }
+    },
+    {
+     "parts": [
+      {
+       "t": "Morgen",
+       "slot": 3
+      },
+      {
+       "t": "werk",
+       "slot": 2
+      },
+      {
+       "t": "ik",
+       "slot": 1
+      },
+      {
+       "t": "in Zwaag."
+      }
+     ],
+     "tr": {
+      "th": "กริยายังอยู่ตำแหน่งที่ 2",
+      "en": "The verb stays in position 2."
+     }
+    }
+   ],
+   "notes": [
+    {
+     "text": {
+      "nl": "<b>Let op:</b> in veel talen blijft <i>ik</i> vóór het werkwoord staan. In het Nederlands draait het om: <b>Morgen werk ik</b>.",
+      "th": "<b>ภาษาไทยต่างออกไป</b> ในภาษาไทย ฉัน อยู่หน้ากริยาเสมอ แต่ภาษาดัตช์สลับกัน: <b>Morgen werk ik</b>",
+      "en": "Here English is different. In English, I stays before the verb: Tomorrow I work. In Dutch it turns around: Morgen werk ik.",
+      "nl@th": "<b>Hier verschilt het Thai.</b> In het Thai blijft <i>ฉัน</i> vóór het werkwoord staan. In het Nederlands draait het om: <b>Morgen werk ik</b>.",
+      "nl@en": "<b>Hier verschilt het Engels.</b> In het Engels blijft <i>I</i> vóór het werkwoord staan: <i>Tomorrow I work.</i> In het Nederlands draait het om: <b>Morgen werk ik</b>.",
+      "nl@uit": "<b>Let op.</b> Begint de zin met een tijd, dan draait het om: <b>Morgen werk ik</b>."
+     }
+    }
+   ],
+   "say": "Ik werk morgen in Zwaag. Morgen werk ik in Zwaag."
+  }
+ ],
+ "exercises": [
+  {
+   "id": "nl.zin.1",
+   "form": "build",
+   "pool": "zinnen",
+   "items": [
+    "nl.regel.plek2"
+   ],
+   "data": {
+    "parts": [
+     "Morgen",
+     "werk",
+     "ik",
+     "in Zwaag."
+    ],
+    "verb": "werk",
+    "tr": {
+     "th": "พรุ่งนี้ฉันทำงานที่ซวาก",
+     "en": "Tomorrow I work in Zwaag."
+    }
+   }
+  },
+  {
+   "id": "nl.zin.2",
+   "form": "build",
+   "pool": "zinnen",
+   "items": [
+    "nl.regel.plek2"
+   ],
+   "data": {
+    "parts": [
+     "Om zes uur",
+     "begint",
+     "mijn dienst."
+    ],
+    "verb": "begint",
+    "tr": {
+     "th": "กะของฉันเริ่มตอนหกโมง",
+     "en": "My shift starts at six o’clock."
+    }
+   }
+  },
+  {
+   "id": "nl.zin.3",
+   "form": "build",
+   "pool": "zinnen",
+   "items": [
+    "nl.regel.plek2"
+   ],
+   "data": {
+    "parts": [
+     "In de pauze",
+     "drink",
+     "ik",
+     "thee."
+    ],
+    "verb": "drink",
+    "tr": {
+     "th": "ตอนพักฉันดื่มชา",
+     "en": "During the break I drink tea."
+    }
+   }
+  },
+  {
+   "id": "nl.zin.4",
+   "form": "build",
+   "pool": "zinnen",
+   "items": [
+    "nl.regel.plek2"
+   ],
+   "data": {
+    "parts": [
+     "Zaterdag",
+     "heb",
+     "ik",
+     "vrij."
+    ],
+    "verb": "heb",
+    "tr": {
+     "th": "วันเสาร์ฉันได้หยุดงาน",
+     "en": "On Saturday I have the day off."
+    }
+   }
+  },
+  {
+   "id": "nl.gat.heb",
+   "form": "gap",
+   "items": [
+    "nl.regel.heb"
+   ],
+   "data": {
+    "s": "Zaterdag ___ ik vrij.",
+    "o": [
+     "heb",
+     "hebben"
+    ],
+    "a": "heb",
+    "tr": {
+     "th": "วันเสาร์ฉันได้หยุด",
+     "en": "On Saturday I have the day off."
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "Bij <i>ik</i> hoort <b>heb</b>. <i>Hebben</i> is voor wij, jullie en zij.",
+     "th": "ik ใช้ heb ส่วน hebben ใช้กับ wij jullie zij",
+     "en": "With ik you use heb. Hebben is for wij, jullie and zij."
+    }
+   },
+   "hint": [
+    {
+     "nl": "Wie is het onderwerp? <i>ik</i>.",
+     "th": "ประธานคือใคร? ik",
+     "en": "Who is the subject? ik."
+    }
+   ]
+  },
+  {
+   "id": "nl.luister.man",
+   "form": "listen",
+   "pool": "klanken",
+   "items": [
+    "nl.klank.man"
+   ],
+   "data": {
+    "say": "man",
+    "opts": [
+     "man",
+     "maan"
+    ],
+    "tr": {
+     "th": [
+      "ผู้ชาย",
+      "ดวงจันทร์"
+     ],
+     "en": [
+      "man",
+      "moon"
+     ]
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "Kort: <b>man</b>. Lang: <b>maan</b>. Net als in het Thai verandert de lengte van de klinker de betekenis.",
+     "th": "เสียงสั้น man เสียงยาว maan ความยาวของสระเปลี่ยนความหมายเหมือนในภาษาไทย",
+     "en": "Short: man. Long: maan. In Dutch the length of the vowel changes the meaning.",
+     "nl@en": "Kort: <b>man</b>. Lang: <b>maan</b>. In het Nederlands verandert de lengte van de klinker de betekenis."
+    }
+   }
+  },
+  {
+   "id": "nl.luister.geel",
+   "form": "listen",
+   "pool": "klanken",
+   "items": [
+    "nl.klank.geel"
+   ],
+   "data": {
+    "say": "geel",
+    "opts": [
+     "geel",
+     "keel"
+    ],
+    "tr": {
+     "th": [
+      "สีเหลือง",
+      "คอ"
+     ],
+     "en": [
+      "yellow",
+      "throat"
+     ]
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "De <b>g</b> in geel komt zacht en schurend uit je keel. De <b>k</b> in keel is kort en hard.",
+     "th": "g ใน geel เป็นเสียงลมเสียดในลำคอ ส่วน k ใน keel สั้นและแข็ง",
+     "en": "The g in geel is a soft, scraping sound from your throat. The k in keel is short and hard."
+    }
+   }
+  },
+  {
+   "id": "nl.luister.huis",
+   "form": "listen",
+   "pool": "klanken",
+   "items": [
+    "nl.klank.huis"
+   ],
+   "data": {
+    "say": "huis",
+    "opts": [
+     "huis",
+     "hoes"
+    ],
+    "tr": {
+     "th": [
+      "บ้าน",
+      "ปลอก"
+     ],
+     "en": [
+      "house",
+      "cover"
+     ]
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "<b>ui</b> kent het Thai niet: begin met een open mond en rond dan je lippen.",
+     "th": "ui ไม่มีในภาษาไทย เริ่มด้วยปากเปิด แล้วห่อริมฝีปาก",
+     "en": "English does not have the ui sound: start with an open mouth and then round your lips.",
+     "nl@en": "Het Engels heeft geen <b>ui</b>-klank: begin met een open mond en rond dan je lippen."
+    }
+   }
+  },
+  {
+   "id": "nl.dictee.1",
+   "form": "dictee",
+   "items": [
+    "dienst"
+   ],
+   "data": {
+    "t": "Mijn dienst begint om zes uur.",
+    "tr": {
+     "th": "กะของฉันเริ่มตอนหกโมง",
+     "en": "My shift starts at six o’clock."
+    }
+   }
+  },
+  {
+   "id": "nl.verhaal.1.v1",
+   "form": "mc",
+   "pool": "verhaalvragen",
+   "items": [],
+   "text": "nl.verhaal.1",
+   "para": 0,
+   "qtype": "detail",
+   "data": {
+    "q": {
+     "nl": "Waar werkt Mali?",
+     "th": "มะลิทำงานที่ไหน",
+     "en": "Where does Mali work?"
+    },
+    "o": [
+     "In een winkel",
+     "In een fabriek",
+     "In een school"
+    ],
+    "a": 1
+   }
+  },
+  {
+   "id": "nl.verhaal.1.v2",
+   "form": "mc",
+   "pool": "verhaalvragen",
+   "items": [],
+   "text": "nl.verhaal.1",
+   "para": 0,
+   "qtype": "detail",
+   "data": {
+    "q": {
+     "nl": "Hoe gaat Mali naar haar werk?",
+     "th": "มะลิไปทำงานอย่างไร",
+     "en": "How does Mali get to work?"
+    },
+    "o": [
+     "Met de bus",
+     "Lopend",
+     "Met de fiets"
+    ],
+    "a": 2
+   }
+  },
+  {
+   "id": "nl.verhaal.1.v3",
+   "form": "mc",
+   "pool": "verhaalvragen",
+   "items": [],
+   "text": "nl.verhaal.1",
+   "para": 0,
+   "qtype": "detail",
+   "data": {
+    "q": {
+     "nl": "Waarom twijfelt Mali?",
+     "th": "ทำไมมะลิลังเล",
+     "en": "Why is Mali not sure?"
+    },
+    "o": [
+     "Ze vindt haar Nederlands nog niet goed genoeg",
+     "Ze heeft geen tijd",
+     "Ze vindt Sanne niet aardig"
+    ],
+    "a": 0
+   }
+  },
+  {
+   "id": "nl.meting.1",
+   "form": "mc",
+   "items": [],
+   "skill": "woorden",
+   "data": {
+    "q": "Wat betekent <b>de dienst</b>?",
+    "a": 0,
+    "o": [
+     {
+      "nl": "de tijd dat je werkt",
+      "th": "กะทำงาน",
+      "en": "shift"
+     },
+     {
+      "nl": "een winkel",
+      "th": "ร้านค้า",
+      "en": "shop"
+     },
+     {
+      "nl": "een vrije dag",
+      "th": "วันหยุด",
+      "en": "day off"
+     }
+    ],
+    "show": "sup"
+   }
+  },
+  {
+   "id": "nl.meting.2",
+   "form": "mc",
+   "items": [],
+   "skill": "woorden",
+   "data": {
+    "q": "Wat betekent <b>het salaris</b>?",
+    "a": 1,
+    "o": [
+     {
+      "nl": "de lijst met werktijden",
+      "th": "ตารางงาน",
+      "en": "schedule"
+     },
+     {
+      "nl": "het geld dat je verdient",
+      "th": "เงินเดือน",
+      "en": "salary"
+     },
+     {
+      "nl": "een afspraak",
+      "th": "นัดหมาย",
+      "en": "appointment"
+     }
+    ],
+    "show": "sup"
+   }
+  },
+  {
+   "id": "nl.meting.3",
+   "form": "mc",
+   "items": [],
+   "skill": "woorden",
+   "data": {
+    "q": "Wat betekent <b>de leidinggevende</b>?",
+    "a": 2,
+    "o": [
+     {
+      "nl": "iemand met wie je samenwerkt",
+      "th": "เพื่อนร่วมงาน",
+      "en": "colleague"
+     },
+     {
+      "nl": "een klant",
+      "th": "ลูกค้า",
+      "en": "customer"
+     },
+     {
+      "nl": "je baas op het werk",
+      "th": "หัวหน้างาน",
+      "en": "supervisor"
+     }
+    ],
+    "show": "sup"
+   }
+  },
+  {
+   "id": "nl.meting.4",
+   "form": "mc",
+   "items": [],
+   "skill": "grammatica",
+   "data": {
+    "q": "Welke zin is goed?",
+    "a": 1,
+    "o": [
+     "Morgen ik werk in Zwaag.",
+     "Morgen werk ik in Zwaag.",
+     "Morgen werk in Zwaag ik."
+    ]
+   }
+  },
+  {
+   "id": "nl.meting.5",
+   "form": "mc",
+   "items": [],
+   "skill": "grammatica",
+   "data": {
+    "q": "Kies het goede woord: <i>Hij ___ in Hoorn.</i>",
+    "a": 1,
+    "o": [
+     "woon",
+     "woont",
+     "wonen"
+    ]
+   }
+  },
+  {
+   "id": "nl.meting.6",
+   "form": "mc",
+   "items": [],
+   "skill": "grammatica",
+   "data": {
+    "q": "Kies het goede woord: <i>Ik blijf thuis, omdat ik ziek ___.</i>",
+    "a": 0,
+    "o": [
+     "ben",
+     "is",
+     "zijn"
+    ]
+   }
+  },
+  {
+   "id": "nl.meting.7",
+   "form": "mc",
+   "items": [],
+   "skill": "luisteren",
+   "data": {
+    "q": "Wanneer is de afspraak?",
+    "a": 0,
+    "o": [
+     "Morgen om 9.30 uur",
+     "Morgen om 10.30 uur",
+     "Vandaag om 9.30 uur"
+    ],
+    "say": "Mijn afspraak bij de dokter is morgen om half tien."
+   }
+  },
+  {
+   "id": "nl.meting.8",
+   "form": "mc",
+   "items": [],
+   "skill": "luisteren",
+   "data": {
+    "q": "Wanneer is de winkel dicht?",
+    "a": 1,
+    "o": [
+     "Op zaterdag",
+     "Op zondag",
+     "Elke dag na vijf uur"
+    ],
+    "say": "De winkel is op zondag gesloten, maar op zaterdag open tot vijf uur."
+   }
+  },
+  {
+   "id": "nl.meting.9",
+   "form": "mc",
+   "items": [],
+   "skill": "lezen",
+   "data": {
+    "q": "Hoe laat begint de vroege dienst vanaf maandag?",
+    "a": 1,
+    "o": [
+     "Om zes uur",
+     "Om half zeven",
+     "Om zeven uur"
+    ]
+   },
+   "text": "nl.meting.lees"
+  },
+  {
+   "id": "nl.meting.10",
+   "form": "mc",
+   "items": [],
+   "skill": "rekenen",
+   "data": {
+    "q": "Je koopt brood van € 2,75 en melk van € 1,30. Hoeveel betaal je?",
+    "a": 1,
+    "o": [
+     "€ 3,05",
+     "€ 4,05",
+     "€ 4,15"
+    ]
+   }
+  },
+  {
+   "id": "nl.meting.11",
+   "form": "mc",
+   "items": [],
+   "skill": "rekenen",
+   "data": {
+    "q": "Een tas kost € 30,00. Je krijgt 50% korting. Wat betaal je?",
+    "a": 0,
+    "o": [
+     "€ 15,00",
+     "€ 20,00",
+     "€ 25,00"
+    ]
+   }
+  },
+  {
+   "id": "nl.meting.12",
+   "form": "mc",
+   "items": [],
+   "skill": "rekenen",
+   "data": {
+    "q": "Een recept is voor 4 personen en vraagt 200 gram rijst. Hoeveel rijst heb je nodig voor 6 personen?",
+    "a": 1,
+    "o": [
+     "250 gram",
+     "300 gram",
+     "400 gram"
+    ]
+   }
+  },
+  {
+   "id": "nl.meting.13",
+   "form": "mc",
+   "items": [],
+   "skill": "rekenen",
+   "data": {
+    "q": "Welk getal is het grootst?",
+    "a": 1,
+    "o": [
+     "0,75",
+     "0,8",
+     "0,125"
+    ]
+   }
+  },
+  {
+   "id": "nl.meting.14",
+   "form": "mc",
+   "items": [],
+   "skill": "engels",
+   "data": {
+    "q": "What does <b>appointment</b> mean?",
+    "a": 0,
+    "lang": "en",
+    "o": [
+     {
+      "nl": "een afspraak",
+      "th": "นัดหมาย",
+      "en": "een afspraak"
+     },
+     {
+      "nl": "een rooster",
+      "th": "ตารางงาน",
+      "en": "een rooster"
+     },
+     {
+      "nl": "een collega",
+      "th": "เพื่อนร่วมงาน",
+      "en": "een collega"
+     }
+    ],
+    "show": "sup"
+   }
+  },
+  {
+   "id": "nl.meting.15",
+   "form": "mc",
+   "items": [],
+   "skill": "engels",
+   "data": {
+    "q": "Choose: <i>She ___ in a factory.</i>",
+    "a": 1,
+    "lang": "en",
+    "o": [
+     "work",
+     "works",
+     "working"
+    ]
+   }
+  }
+ ],
+ "lesson": [
+  {
+   "step": 1,
+   "card": "nl.kaart.ophalen"
+  },
+  {
+   "step": 1,
+   "words": "due",
+   "forms": [
+    "recall"
+   ],
+   "max": 4,
+   "orIntroduced": true,
+   "ifNone": {
+    "words": "first",
+    "n": 2,
+    "forms": [
+     "learn",
+     "recog"
+    ]
+   }
+  },
+  {
+   "step": 2,
+   "words": "new",
+   "forms": [
+    "learn"
+   ],
+   "then": [
+    "recog"
+   ],
+   "max": 4,
+   "max2": 3,
+   "maxBusy": 1
+  },
+  {
+   "step": 2,
+   "card": "nl.kaart.plek2"
+  },
+  {
+   "step": 3,
+   "pool": "zinnen",
+   "n": 3,
+   "n2": 2
+  },
+  {
+   "step": 3,
+   "ex": "nl.gat.heb"
+  },
+  {
+   "step": 3,
+   "pool": "klanken",
+   "n": 2
+  },
+  {
+   "step": 3,
+   "ex": "nl.dictee.1"
+  },
+  {
+   "step": 4,
+   "ex": "rk.geld.1"
+  },
+  {
+   "step": 4,
+   "ex": "rk.klok.dienst"
+  },
+  {
+   "step": 4,
+   "ex": "rk.korting.voorbeeld"
+  },
+  {
+   "step": 4,
+   "ex": "rk.korting.deel"
+  },
+  {
+   "step": 5,
+   "end": true
+  }
+ ],
+ "lessonShort": [
+  {
+   "step": 1,
+   "card": "nl.kaart.ophalen"
+  },
+  {
+   "step": 1,
+   "words": "due",
+   "forms": [
+    "recall"
+   ],
+   "max": 3,
+   "orIntroduced": true,
+   "ifNone": {
+    "words": "first",
+    "n": 2,
+    "forms": [
+     "learn",
+     "recog"
+    ]
+   }
+  },
+  {
+   "step": 4,
+   "ex": "rk.klok.halfvier"
+  },
+  {
+   "step": 5,
+   "end": true
+  }
+ ],
+ "tests": {
+  "placement": [
+   "nl.meting.1",
+   "nl.meting.2",
+   "nl.meting.3",
+   "nl.meting.4",
+   "nl.meting.5",
+   "nl.meting.6",
+   "nl.meting.7",
+   "nl.meting.8",
+   "nl.meting.9",
+   "nl.meting.10",
+   "nl.meting.11",
+   "nl.meting.12",
+   "nl.meting.13",
+   "nl.meting.14",
+   "nl.meting.15"
+  ]
+ }
+}

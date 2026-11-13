@@ -1,0 +1,361 @@
+{
+ "format": 1,
+ "id": "en-t1",
+ "version": 1,
+ "learn": "en",
+ "level": "A1-A2",
+ "order": 20,
+ "quality": "legacy",
+ "requires": [],
+ "title": {
+  "nl": "Engels · Thema 1",
+  "th": "ภาษาอังกฤษ · ธีม 1",
+  "en": "English · Theme 1"
+ },
+ "items": [
+  {
+   "id": "en-work",
+   "kind": "word",
+   "w": "work",
+   "tr": {
+    "nl": "werken",
+    "th": "ทำงาน"
+   },
+   "ex": "I work in a factory."
+  },
+  {
+   "id": "en-colleague",
+   "kind": "word",
+   "w": "colleague",
+   "tr": {
+    "nl": "de collega",
+    "th": "เพื่อนร่วมงาน"
+   },
+   "ex": "My colleague is very kind."
+  },
+  {
+   "id": "en-break",
+   "kind": "word",
+   "w": "break",
+   "tr": {
+    "nl": "de pauze",
+    "th": "เวลาพัก"
+   },
+   "ex": "We have a break at ten."
+  },
+  {
+   "id": "en-schedule",
+   "kind": "word",
+   "w": "schedule",
+   "tr": {
+    "nl": "het rooster",
+    "th": "ตารางงาน"
+   },
+   "ex": "The schedule is on the wall."
+  },
+  {
+   "id": "en-factory",
+   "kind": "word",
+   "w": "factory",
+   "tr": {
+    "nl": "de fabriek",
+    "th": "โรงงาน"
+   },
+   "ex": "The factory is near Hoorn."
+  },
+  {
+   "id": "en-information",
+   "kind": "word",
+   "w": "information",
+   "tr": {
+    "nl": "de informatie",
+    "th": "ข้อมูล"
+   },
+   "ex": "I need more information."
+  },
+  {
+   "id": "en-appointment",
+   "kind": "word",
+   "w": "appointment",
+   "tr": {
+    "nl": "de afspraak",
+    "th": "นัดหมาย"
+   },
+   "ex": "I have an appointment at three."
+  },
+  {
+   "id": "en-money",
+   "kind": "word",
+   "w": "money",
+   "tr": {
+    "nl": "het geld",
+    "th": "เงิน"
+   },
+   "ex": "Do you have some money?"
+  },
+  {
+   "id": "en.regel.s",
+   "kind": "rule",
+   "title": {
+    "nl": "he, she, it: werkwoord + s",
+    "th": "he, she, it: กริยา + s",
+    "en": "he, she, it: verb + s"
+   }
+  },
+  {
+   "id": "en.klank.vw",
+   "kind": "sound",
+   "title": {
+    "nl": "v – w",
+    "th": "v – w",
+    "en": "v – w"
+   },
+   "pair": [
+    "vest",
+    "west"
+   ]
+  }
+ ],
+ "texts": [],
+ "cards": [
+  {
+   "id": "en.kaart.intro",
+   "items": [],
+   "title": {
+    "nl": "Engels, met drie talen",
+    "th": "ภาษาอังกฤษ ด้วยสามภาษา",
+    "en": "English, with three languages"
+   },
+   "body": {
+    "nl": "Je kent al veel Nederlands. Veel Engelse woorden lijken daarop: <b>information</b> en <b>informatie</b>. Die brug gebruiken we.",
+    "th": "คุณรู้ภาษาดัตช์มากแล้ว คำภาษาอังกฤษหลายคำคล้ายกัน เราจะใช้สะพานนี้",
+    "en": "You already know a lot of Dutch. Many English words look like Dutch words: information and informatie. We use that bridge."
+   },
+   "notes": [
+    {
+     "text": {
+      "nl": "Deze les is helemaal Engels. Het Nederlands staat er alleen als bruggetje bij.",
+      "th": "บทเรียนนี้เป็นภาษาอังกฤษทั้งหมด ภาษาดัตช์มีไว้เป็นสะพานเท่านั้น",
+      "en": "This lesson is all English. The Dutch is only there as a small bridge."
+     },
+     "tone": "sky"
+    },
+    {
+     "text": {
+      "nl": "<b>Let op, valse vriend:</b> <i>actually</i> betekent <i>eigenlijk</i>, niet <i>actueel</i>.",
+      "th": "<b>ระวัง:</b> actually แปลว่า \"จริงๆ แล้ว\" ไม่ใช่ actueel",
+      "en": "Watch out, false friend: actually means eigenlijk, not actueel."
+     }
+    }
+   ]
+  },
+  {
+   "id": "en.kaart.s",
+   "items": [
+    "en.regel.s"
+   ],
+   "title": {
+    "nl": "he, she, it: werkwoord + s",
+    "th": "he, she, it: กริยา + s",
+    "en": "he, she, it: verb + s"
+   },
+   "body": {
+    "nl": "Bij <b>he</b>, <b>she</b> en <b>it</b> krijgt het werkwoord een <b>-s</b>. Dat ken je al: in het Nederlands krijgt <i>hij</i> een <b>-t</b>.",
+    "th": "กับ he she it กริยาต้องเติม -s เหมือนภาษาดัตช์ที่ hij เติม -t",
+    "en": "With he, she and it the verb gets an -s. You already know this: in Dutch, hij gets a -t."
+   },
+   "compare": {
+    "sup": {
+     "th": "เธอทำงาน"
+    },
+    "nl": "zij werk<u>t</u>",
+    "en": "she work<u>s</u>"
+   },
+   "notes": [
+    {
+     "text": {
+      "nl": "<b>Let op het verschil:</b> in het Engels gaat het werkwoord niet naar plek 2. <i>Tomorrow I work.</i>",
+      "th": "<b>ระวังความต่าง:</b> ภาษาอังกฤษกริยาไม่ย้ายไปตำแหน่งที่ 2",
+      "en": "Note the difference: in English the verb does not move to position 2. Tomorrow I work."
+     },
+     "tone": "sky"
+    }
+   ],
+   "say": "She works at night. They work in the morning.",
+   "sayLang": "en"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "en.gat.1",
+   "form": "gap",
+   "items": [
+    "en.regel.s"
+   ],
+   "data": {
+    "s": "She ___ at night.",
+    "o": [
+     "work",
+     "works"
+    ],
+    "a": "works",
+    "tr": {
+     "nl": "Zij werkt 's nachts.",
+     "th": "เธอทำงานตอนกลางคืน"
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "<b>She</b> → werkwoord + <b>s</b>.",
+     "th": "she ต้องเติม s",
+     "en": "She → verb + s."
+    }
+   },
+   "hint": [
+    {
+     "nl": "Is het he, she of it?",
+     "th": "เป็น he she หรือ it ไหม",
+     "en": "Is it he, she or it?"
+    }
+   ]
+  },
+  {
+   "id": "en.gat.2",
+   "form": "gap",
+   "items": [
+    "en.regel.s"
+   ],
+   "data": {
+    "s": "My colleagues ___ in the morning.",
+    "o": [
+     "work",
+     "works"
+    ],
+    "a": "work",
+    "tr": {
+     "nl": "Mijn collega's werken 's ochtends.",
+     "th": "เพื่อนร่วมงานของฉันทำงานตอนเช้า"
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "Meer personen: <b>geen -s</b>.",
+     "th": "หลายคน ไม่เติม -s",
+     "en": "More than one person: no -s."
+    }
+   },
+   "hint": [
+    {
+     "nl": "Is het één persoon of meer?",
+     "th": "คนเดียวหรือหลายคน",
+     "en": "Is it one person or more?"
+    }
+   ]
+  },
+  {
+   "id": "en.gat.3",
+   "form": "gap",
+   "items": [
+    "en.regel.s"
+   ],
+   "data": {
+    "s": "He ___ a break at ten.",
+    "o": [
+     "have",
+     "has"
+    ],
+    "a": "has",
+    "tr": {
+     "nl": "Hij heeft om tien uur pauze.",
+     "th": "เขาพักตอนสิบโมง"
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "<b>have</b> wordt bij he, she en it <b>has</b>.",
+     "th": "have เปลี่ยนเป็น has กับ he she it",
+     "en": "have becomes has with he, she and it."
+    }
+   },
+   "hint": [
+    {
+     "nl": "he → ?",
+     "th": "he → ?",
+     "en": "he → ?"
+    }
+   ]
+  },
+  {
+   "id": "en.luister.vw",
+   "form": "listen",
+   "items": [
+    "en.klank.vw"
+   ],
+   "data": {
+    "say": "west",
+    "opts": [
+     "vest",
+     "west"
+    ],
+    "tr": {
+     "nl": [
+      "het vest",
+      "het westen"
+     ],
+     "th": [
+      "เสื้อกั๊ก",
+      "ทิศตะวันตก"
+     ]
+    },
+    "lang": "en"
+   },
+   "fb": {
+    "ok": {
+     "nl": "Bij de <b>v</b> raken je boventanden je onderlip. Bij de <b>w</b> maak je je lippen rond.",
+     "th": "เสียง v ฟันบนแตะริมฝีปากล่าง เสียง w ห่อริมฝีปาก",
+     "en": "For the v your upper teeth touch your lower lip. For the w you round your lips."
+    }
+   }
+  }
+ ],
+ "lesson": [
+  {
+   "step": 1,
+   "card": "en.kaart.intro"
+  },
+  {
+   "step": 1,
+   "words": "due",
+   "forms": [
+    "recall"
+   ],
+   "max": 4,
+   "sort": "list",
+   "thenFresh": true
+  },
+  {
+   "step": 2,
+   "card": "en.kaart.s"
+  },
+  {
+   "step": 3,
+   "ex": "en.gat.1"
+  },
+  {
+   "step": 3,
+   "ex": "en.gat.2"
+  },
+  {
+   "step": 3,
+   "ex": "en.gat.3"
+  },
+  {
+   "step": 3,
+   "ex": "en.luister.vw"
+  },
+  {
+   "step": 5,
+   "end": true
+  }
+ ]
+}

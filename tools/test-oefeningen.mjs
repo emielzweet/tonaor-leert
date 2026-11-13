@@ -1,7 +1,8 @@
 import vm from 'node:vm'; import { readFileSync } from 'node:fs';
 const h=readFileSync(new URL('../index.html', import.meta.url),'utf8');
 let fails=0;const ok=(n,v)=>{if(!v)fails++;console.log((v?'OK  ':'FOUT')+' '+n)};
-const src=h.slice(h.indexOf('const NL=['),h.indexOf('const EN=['));const NL=eval(src.slice(src.indexOf('['),src.lastIndexOf(']')+1));
+// woorden uit het pakket (fase 2); velden zoals de app ze opbouwt
+const NL=JSON.parse(readFileSync(new URL('../content/nl-t1.json', import.meta.url),'utf8')).items.filter(x=>x.kind==='word').map(x=>({...x,th:x.tr.th,en:x.tr.en}));
 const ids=new Set(NL.map(w=>w.id));
 ok('elk woord heeft een oefenzin met precies één gat',NL.every(w=>w.gap&&w.gap.split('___').length===2));
 ok('also bevat alleen bestaande andere woorden',NL.every(w=>(w.also||[]).every(b=>ids.has(b)&&b!==w.id)));

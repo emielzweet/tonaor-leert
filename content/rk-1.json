@@ -1,0 +1,190 @@
+{
+ "format": 1,
+ "id": "rk-1",
+ "version": 1,
+ "learn": "nl",
+ "level": "A2-B1",
+ "order": 5,
+ "quality": "legacy",
+ "requires": [],
+ "title": {
+  "nl": "Rekenen",
+  "th": "คณิตศาสตร์",
+  "en": "Maths"
+ },
+ "items": [
+  {
+   "id": "r-geld",
+   "kind": "skill",
+   "title": {
+    "nl": "Geld tellen",
+    "th": "นับเงิน",
+    "en": "Counting money"
+   }
+  },
+  {
+   "id": "r-klok",
+   "kind": "skill",
+   "title": {
+    "nl": "Hoe laat is het?",
+    "th": "กี่โมงแล้ว",
+    "en": "What time is it?"
+   }
+  },
+  {
+   "id": "r-10",
+   "kind": "skill",
+   "title": {
+    "nl": "10% = 1/10",
+    "th": "10% = หนึ่งในสิบ",
+    "en": "10% = one tenth"
+   }
+  },
+  {
+   "id": "r-25",
+   "kind": "skill",
+   "title": {
+    "nl": "25% = 1/4",
+    "th": "25% = หนึ่งในสี่",
+    "en": "25% = one quarter"
+   }
+  },
+  {
+   "id": "r-komma",
+   "kind": "skill",
+   "title": {
+    "nl": "€ 9,50 (komma)",
+    "th": "ใช้จุลภาคแทนจุดทศนิยม",
+    "en": "A comma instead of a decimal point"
+   }
+  }
+ ],
+ "texts": [],
+ "cards": [],
+ "exercises": [
+  {
+   "id": "rk.geld.1",
+   "form": "money",
+   "items": [
+    "r-geld",
+    "r-komma"
+   ],
+   "data": {
+    "coins": [
+     500,
+     200,
+     200,
+     50
+    ],
+    "o": [
+     "€ 9,50",
+     "€ 9,05",
+     "€ 10,00",
+     "€ 8,50"
+    ],
+    "a": "€ 9,50",
+    "alt": "Een briefje van 5 euro, twee munten van 2 euro en een munt van 50 cent"
+   }
+  },
+  {
+   "id": "rk.klok.dienst",
+   "form": "clock",
+   "items": [
+    "r-klok"
+   ],
+   "data": {
+    "q": {
+     "nl": "Hoe laat begint de dienst?",
+     "th": "กะเริ่มกี่โมง",
+     "en": "What time does the shift start?"
+    },
+    "h": 6,
+    "m": 0,
+    "o": [
+     "zes uur",
+     "half zes",
+     "twaalf uur",
+     "kwart over zes"
+    ],
+    "a": "zes uur"
+   },
+   "fb": {
+    "ok": {
+     "nl": "De korte wijzer staat op de 6, de lange op de 12: <b>zes uur</b>.",
+     "th": "เข็มสั้นชี้เลข 6 เข็มยาวชี้เลข 12: หกโมง",
+     "en": "The short hand points to 6, the long hand to 12: six o’clock."
+    }
+   }
+  },
+  {
+   "id": "rk.klok.halfvier",
+   "form": "clock",
+   "items": [
+    "r-klok"
+   ],
+   "data": {
+    "q": {
+     "nl": "Hoe laat is het?",
+     "th": "กี่โมงแล้ว",
+     "en": "What time is it?"
+    },
+    "h": 3,
+    "m": 30,
+    "o": [
+     "half vier",
+     "half drie",
+     "drie uur",
+     "vier uur"
+    ],
+    "a": "half vier"
+   },
+   "fb": {
+    "ok": {
+     "nl": "In het Nederlands zeg je <b>half vier</b>: een half uur vóór vier uur. Dat is anders dan in het Thai en het Engels.",
+     "nl@en": "In het Nederlands zeg je <b>half vier</b>: een half uur vóór vier uur. Dat is anders dan in het Engels (half past three).",
+     "th": "ภาษาดัตช์พูดว่า half vier คือครึ่งชั่วโมงก่อนสี่โมง ต่างจากภาษาไทยและอังกฤษ",
+     "en": "In Dutch you say half vier: half an hour before four o’clock. That is different from English (half past three)."
+    }
+   }
+  },
+  {
+   "id": "rk.korting.voorbeeld",
+   "form": "discount",
+   "items": [
+    "r-10"
+   ],
+   "data": {
+    "mode": "worked",
+    "thing": "jas",
+    "price": 60,
+    "pct": 10
+   }
+  },
+  {
+   "id": "rk.korting.deel",
+   "form": "discount",
+   "items": [
+    "r-25"
+   ],
+   "data": {
+    "mode": "part",
+    "thing": "trui",
+    "price": 40,
+    "pct": 25
+   }
+  },
+  {
+   "id": "rk.korting.zelf",
+   "form": "discount",
+   "items": [
+    "r-10"
+   ],
+   "data": {
+    "mode": "own",
+    "thing": "schoenen",
+    "price": 80,
+    "pct": 20
+   }
+  }
+ ]
+}
