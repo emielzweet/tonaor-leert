@@ -37,7 +37,7 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | # | Wens | Gevraagd | Stand | Waar | Wie | Volgende stap |
 |---|---|---|---|---|---|---|
 | 17 | Visueel aantrekkelijker, met animatie en interactieve onderdelen (gevraagd aan de ontwerpsessie) | 13 nov | deels | proefscherm, versie 2 (14 nov): kaart als landschap, plekken per vak, rekenen (markt, wisselgeld) en Engels (station) speelbaar | ontwerp | de eigenaar beoordeelt versie 2; daarna stijl en onderdelen in de app |
-| 18 | Leuk, prikkelend, reden om door te gaan; het concept van de tuin vervangen | 13 nov | plan | nieuw concept: verhaal in scènes | ontwerp | proefhoofdstuk; een week gebruik; dan besluit |
+| 18 | Leuk, prikkelend, reden om door te gaan; het concept van de tuin vervangen | 13 nov | plan | `docs/concept-leerwereld.md`; richting goedgekeurd op 14 nov | eigenaar, dan bouw | vier besluiten in het ontwerp; dan stijl, scènespeler en proefhoofdstuk; proefweek |
 | 19 | Spelletjes met taal, grammatica en rekenen | 13 nov | plan | spoor E | ontwerp, dan bouw | eerste spel als onderdeel van een scène |
 | 20 | Beloningssysteem en punten | 13 nov | deels | weekring, bonus, doorgaan-scherm | bouw | kleine beloningen (E1) |
 | 21 | Weekdoel 10 uur, stimuleren om door te gaan | 13 nov | live | weekring | – | de begeleider ziet het doel nog niet op zijn scherm |
@@ -51,7 +51,7 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | 24 | Levensbeschouwing breed: boeddhisme, islam, christendom, jodendom, hindoeïsme, vrijmetselarij, rastafari, sjamanisme en meer | 14 nov | open | bibliotheek Wereld en kennis | ontwerp, dan bouw | stramien per les vastleggen; één proefles in het proefscherm |
 | 25 | Politiek en staatsinrichting | 14 nov | open | idem | idem | idem |
 | 26 | Geschiedenis als eigen onderdeel, veel onderwerpen | 14 nov | open | idem | idem | idem |
-| 27 | Kennislessen verweven in de gewone lessen | 14 nov | open | scènes en teksten | ontwerp | hoort bij het nieuwe concept |
+| 27 | Kennislessen verweven in de gewone lessen | 14 nov | plan | `docs/concept-leerwereld.md`: een kennisles bij elke plek | ontwerp | eerste voorbeeld in het proefhoofdstuk (hoe werkt de zorg) |
 
 ## Eigen voorstellen van de ontwerpsessie (goedgekeurd op 13 november)
 

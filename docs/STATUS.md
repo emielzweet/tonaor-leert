@@ -48,6 +48,8 @@ De ervaringstest (`node tools/test-ervaring.mjs`) laat zien dat de nieuwe woorde
 
 ## Open besluiten voor de eigenaar
 
+- Nieuw concept (kaart, scènes, album): docs/concept-leerwereld.md. Richting goedgekeurd op 14 november 2026; vier besluiten staan onderaan dat ontwerp. Bouwen van stap 1 en 2 pas na akkoord daarop.
+
 - Herzien plan na gebruik: docs/plan-herzien.md (sporen A tot F, zes open besluiten). Onderzoek: docs/onderzoek-beloning.md.
 
 - Test op de telefoon: een volle les, "luister en schrijf op" met echte stem, een tweede ronde op dezelfde dag, en de Engelse les op dinsdag of donderdag. Daarna #28 en #29 sluiten (alleen met akkoord).
