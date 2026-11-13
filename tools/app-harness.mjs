@@ -6,6 +6,7 @@ const require = createRequire(import.meta.url);
 export const ROOT = new URL('../', import.meta.url);
 export const html = readFileSync(new URL('index.html', ROOT), 'utf8');
 export const PC = require('../pakketcheck.js');
+export const UV = require('../uitleg.js');
 const fnBlock = name => { const i = html.indexOf('function ' + name + '('); if (i < 0) throw new Error(name); let d = 0, j = html.indexOf('{', i); for (; j < html.length; j++) { if (html[j] === '{') d++; else if (html[j] === '}') { d--; if (!d) break; } } return html.slice(i, j + 1); };
 const between = (a, b) => { const i = html.indexOf(a), j = html.indexOf(b, i); if (i < 0 || j < 0) throw new Error(a); return html.slice(i, j); };
 // het pakketblok tot en met de samensteller, zonder de await aan het eind
@@ -15,12 +16,12 @@ const shuffleCode = html.slice(html.indexOf('const shuffle='), html.indexOf('\n'
 export async function boot({ S = { v: 2, introduced: [], items: {} }, englishDay = false, random = Math.random, missing = [], override = {}, pc = PC, hang = [] } = {}) {
   const fetch = u => hang.includes(u) ? new Promise(() => {}) : missing.includes(u) ? Promise.reject(new Error('offline')) : Promise.resolve({ ok: true, json: () => Promise.resolve(override[u] ? JSON.parse(JSON.stringify(override[u])) : JSON.parse(readFileSync(new URL(u, ROOT), 'utf8'))) });
   const m = Object.create(Math); m.random = random;
-  const ctx = { window: pc === null ? {} : { PakketCheck: pc }, fetch, Math: m, Date, JSON, Object, Array, String, Number, Promise, console: { warn() {} }, S, esc: s => String(s).replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';'),
-    toasts: [], toast(m) { ctx.toasts.push(m); }, tx: k => k, t: k => k, setTimeout, Promise, caches: undefined, document: { getElementById: () => null },
+  const ctx = { window: pc === null ? { UitlegVis: UV } : { PakketCheck: pc, UitlegVis: UV }, fetch, Math: m, Date, JSON, Object, Array, String, Number, Promise, console: { warn() {} }, S, esc: s => String(s).replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';'),
+    toasts: [], toast(m) { ctx.toasts.push(m); }, tx: k => k, t: k => k, setTimeout, Promise, caches: undefined, document: { getElementById: () => null, addEventListener() {}, createElement: () => ({ setAttribute() {}, addEventListener() {}, remove() {} }), body: { classList: { add() {}, remove() {} }, appendChild() {} } },
     nlOnly: () => false, supL: () => 'th', supAttr: () => 'lang="th"', supSpan: s => s, bi: (a, b) => a + '|' + b, T: k => k, LANG: {}, icon: { play: '' }, say() {}, $: () => null, now: () => ctx.NOW, isEnglishDay: () => englishDay, NOW: Date.now() };
   vm.createContext(ctx);
   vm.runInContext(packCode + '\n' + fnBlock('stage') + '\n' + fnBlock('thirsty') + '\n' + shuffleCode + '\n' + fnBlock('startLesson') + '\n' + fnBlock('startEnglish')
-    + '\nthis.api={loadPacks,compose,startLesson,startEnglish,get:()=>({PACKS,PACK_MISSING,NL,EN,REK,SENT,PAIRS,DICTEE,STORY,PLACE})};', ctx);
+    + '\nthis.api={loadPacks,compose,startLesson,startEnglish,explFor,get:()=>({PACKS,PACK_MISSING,NL,EN,REK,SENT,PAIRS,DICTEE,STORY,PLACE,EXPL,EXPL_LIST})};', ctx);
   await ctx.api.loadPacks();
   return ctx;
 }

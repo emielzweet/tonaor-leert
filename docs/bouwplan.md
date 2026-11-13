@@ -85,6 +85,7 @@ Wie: de ontwerpsessie schrijft de neutrale inhoud (didactisch werk); de onderhou
 
 ## Fase 5 — Route, vakken en ritme instelbaar (#8)
 
+- De inhoud van de route staat in `docs/leerroute.md`: de volledige stof voor Nederlands (drie fasen, 25 thema's en blokken), rekenen (zes modules) en Engels (vier modules), met de omvang en een schatting van de tijd. De routekaart in de app toont die fasen, modules en poorten.
 - `route` in het pakket: fasen, poorten, thema's. De huidige route wordt een voorbeeldroute zonder persoonlijke details; bij migratie krijgt de bestaande gebruiker precies de huidige route en het huidige ritme als instelling.
 - Vakken aan of uit, en op welke dagen de tweede taal (nu vast dinsdag en donderdag in `isEnglishDay()`).
 - Het bericht naar de begeleider haalt `fase` en `thema` uit de route. De ontvanger toont ze zoals ze binnenkomen.

@@ -33,6 +33,7 @@ Leer-app (PWA) voor Tonaor: Nederlands, rekenen en Engels, met Thaise ondersteun
 
 - `index.html` — de app (CSS + JS inline, geen build), behalve de koppeling en de leerinhoud.
 - `content/*.json` — de leerinhoud als pakketten (bouwplan fase 2, formaat in `docs/pakketformaat.md`): `nl-t1` (Nederlands thema 1, startmeting, verhaal), `en-t1` (Engels), `rk-1` (rekenen). Bestaande id's (`werk`, `en-work`, `r-geld`) houden hun naam: de opgeslagen voortgang past zonder migratie. Een pakket toevoegen = bestand in `content/`, in `BUILTIN` (index.html) én in `SHELL` (sw.js).
+- `uitleg.js` — tekent de plaatjes bij een uitleg (`UitlegVis.render`). Uitleg staat in de pakketten `content/uitleg-*.json` (veld `explain`, formaat en catalogus in `docs/uitleg.md`). De speler, de tegel, de knop boven een oefening en het aanbod na twee fouten staan in `index.html` (`openExplain`, `explFor`, `vExplain`); `S.explained` en `S.explainVoice` in de opslag. Test: `node tools/test-uitleg.mjs`.
 - `pakketcheck.js` — controleert een pakket (`checkPack`) en maakt pakkettekst onschadelijk (`safeText`); dezelfde code in de app en in de test.
 - `tlsync.js` — **gebouwd bestand**, niet met de hand wijzigen. Bron `tools/tlsync.src.js`; bouwen met `node tools/build-tlsync.mjs` (plakt de vastgelegde noble-bundel `tools/noble-2.4.0.min.js` ervoor). Precies hetzelfde bestand staat in de EDGE-widget als `scripts/tlsync.js`: na een wijziging daar ook vervangen.
 - `sw.js` — offline-cache. **Verhoog `CACHE` (`tonaor-leert-v2-N`) bij elke release.**

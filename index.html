@@ -223,6 +223,33 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
 .dots{display:flex;gap:6px;justify-content:center}
 .dots i{width:8px;height:8px;border-radius:6px;background:var(--line)}
 .dots i.on{background:var(--mint-fill);width:22px}
+/* uitleg (docs/uitleg.md) */
+body.u-open{overflow:hidden}
+.ulayer{position:fixed;inset:0;z-index:60;background:rgba(20,28,24,.45);display:flex;align-items:flex-end;justify-content:center}
+.u-panel{background:var(--bg);width:100%;max-width:560px;max-height:100%;overflow:auto;border-radius:22px 22px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+.u-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;font-weight:700;font-size:1.15rem}
+.u-stage{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px;min-height:110px;display:flex;align-items:center;justify-content:center}
+.u-text{font-size:1.08rem;line-height:1.5}
+.u-ctrl{display:flex;gap:8px}.u-ctrl .btn{flex:1;padding-inline:8px}
+#uvoice{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);font-weight:700;border-radius:999px;padding:6px 12px}#uvoice[aria-pressed="true"]{background:var(--mint);border-color:var(--mint-fill);color:var(--ink)}#uvoice svg{width:16px;height:16px;flex-shrink:0}
+.u-dots{display:flex;gap:6px;justify-content:center}.u-dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}.u-dots i.on{background:var(--mint-ink)}
+.u-btn{border:1px solid var(--apricot-fill);background:var(--apricot);color:var(--apricot-ink);border-radius:999px;padding:4px 10px;font-size:.78rem;font-weight:700;margin-left:auto;margin-right:8px}
+.u-offer{display:block;margin-top:8px}
+.u-list{display:grid;gap:8px}.u-item{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:10px 12px;width:100%;color:inherit;font:inherit}.u-item.done{border-color:var(--mint-fill)}
+.u-vis{width:100%}.u-svg{width:100%;height:auto;display:block;overflow:visible}
+.u-t{font-size:13px;fill:var(--ink)}.u-b{font-weight:700}.u-m{fill:var(--ink-2);font-size:11px}
+.u-in{animation:uin .5s ease both}svg .u-in{transform-box:fill-box}
+@keyframes uin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.u-ratio{display:flex;align-items:stretch;justify-content:center;gap:6px;flex-wrap:wrap}
+.u-rc{display:flex;flex-direction:column;gap:4px;text-align:center}.u-rc span{padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);min-width:44px}.u-rc span:first-child{display:none}
+.u-rh span{background:transparent;border-color:transparent;color:var(--ink-2);font-size:.85em;text-align:right;padding-inline:2px}
+.u-rc.u-hl span{background:var(--mint);border-color:var(--mint-fill);font-weight:700}
+.u-op{align-self:center;color:var(--apricot-ink);font-weight:700;font-size:.9em}
+.u-steps{list-style:none;margin:0;padding:0;display:grid;gap:6px;width:100%}.u-steps li{display:flex;justify-content:space-between;gap:12px;padding:8px 12px;border-radius:10px;background:var(--surface-2)}.u-steps li.u-hl{background:var(--mint);font-weight:700}
+.u-zin{display:grid;gap:10px;width:100%}.u-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.u-lab{font-size:.8em;color:var(--ink-2);min-width:36px}
+.u-parts{display:flex;flex-wrap:wrap;gap:6px}.u-p{padding:6px 10px;border-radius:10px;background:var(--surface-2)}.u-p.u-glue{margin-left:-6px;padding-inline:3px;background:transparent}
+.u-mark{outline:2px solid var(--apricot-ink);outline-offset:1px}
+.u-table{border-collapse:collapse;width:100%;font-size:.95em}.u-table th,.u-table td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left}.u-table th{color:var(--ink-2);font-weight:600}.u-table td.u-hl{background:var(--mint);font-weight:700}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
 
@@ -239,6 +266,7 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
 
 <script src="tlsync.js"></script>
 <script src="pakketcheck.js"></script>
+<script src="uitleg.js"></script>
 <script>
 (async function(){
 "use strict";
@@ -268,6 +296,26 @@ const LEARN=['nl'],SUPPORT=['th','en'];
 const I18N={
 /* en = referentie voor vertalers */
 en:{
+ "explain.again":"Viewed",
+ "explain.finished":"+10 points. Well done!",
+ "explain.checkOf":"Question {n} of {m}",
+ "explain.stepOf":"Step {n} of {m}",
+ "explain.close":"Close",
+ "explain.voice":"Read aloud",
+ "explain.done":"Done",
+ "explain.toCheck":"Try it yourself",
+ "explain.replay":"Again",
+ "explain.offer":"Difficult? Watch the explanation.",
+ "explain.open":"Explain",
+ "explain.subj.en.leestekens":"English: punctuation and writing",
+ "explain.subj.en.grammatica":"English: grammar",
+ "explain.subj.leestekens":"Punctuation and writing",
+ "explain.subj.grammatica":"Grammar",
+ "explain.subj.rekenen":"Maths",
+ "explain.intro":"Explained step by step, with pictures and reading aloud. Choose what you want to understand.",
+ "page.explain":"Explanations",
+ "explain.tile.sub":"{done} of {n} viewed",
+ "explain.tile":"Explanations",
  "pack.none":"This lesson material could not be loaded. Try again later with internet.",
  "pack.loading":"Loading lessons…",
  "pack.missing":"Part of the lesson material could not be loaded ({list}). Your progress is kept. Try again later with internet.",
@@ -561,6 +609,26 @@ en:{
  "discount.comma@en":"In the Netherlands you write a comma before the cents: € 54,00. In English you write 54.00."
 },
 nl:{
+ "explain.again":"Bekeken",
+ "explain.finished":"+10 punten. Goed gedaan!",
+ "explain.checkOf":"Vraag {n} van {m}",
+ "explain.stepOf":"Stap {n} van {m}",
+ "explain.close":"Sluiten",
+ "explain.voice":"Voorlezen",
+ "explain.done":"Klaar",
+ "explain.toCheck":"Probeer zelf",
+ "explain.replay":"Opnieuw",
+ "explain.offer":"Lastig? Bekijk de uitleg.",
+ "explain.open":"Uitleg",
+ "explain.subj.en.leestekens":"<h3>Engels: leestekens en schrijven</h3>",
+ "explain.subj.en.grammatica":"<h3>Engels: grammatica</h3>",
+ "explain.subj.leestekens":"<h3>Leestekens en schrijven</h3>",
+ "explain.subj.grammatica":"<h3>Grammatica</h3>",
+ "explain.subj.rekenen":"<h3>Rekenen</h3>",
+ "explain.intro":"Stap voor stap uitgelegd, met plaatjes en voorlezen. Kies wat je wilt begrijpen.",
+ "page.explain":"Uitleg",
+ "explain.tile.sub":"{done} van {n} bekeken",
+ "explain.tile":"<h3>Uitleg</h3>",
  "pack.none":"Deze lesstof kon niet worden geladen. Probeer het later opnieuw met internet.",
  "pack.loading":"Lesstof laden…",
  "pack.missing":"Een deel van de lesstof kon niet worden geladen ({list}). Je voortgang blijft bewaard. Probeer het later opnieuw met internet.",
@@ -850,6 +918,26 @@ nl:{
  "discount.comma@en":"In Nederland schrijf je een <b>komma</b> voor de centen: <b>€ 54,00</b>. In het Engels schrijf je 54.00."
 },
 th:{
+ "explain.again":"ดูแล้ว",
+ "explain.finished":"+10 คะแนน เก่งมาก",
+ "explain.checkOf":"คำถาม {n} จาก {m}",
+ "explain.stepOf":"ขั้นที่ {n} จาก {m}",
+ "explain.close":"ปิด",
+ "explain.voice":"อ่านออกเสียง",
+ "explain.done":"เสร็จแล้ว",
+ "explain.toCheck":"ลองทำเอง",
+ "explain.replay":"อีกครั้ง",
+ "explain.offer":"ยากไหม ลองดูคำอธิบาย",
+ "explain.open":"คำอธิบาย",
+ "explain.subj.en.leestekens":"ภาษาอังกฤษ: เครื่องหมายวรรคตอนและการเขียน",
+ "explain.subj.en.grammatica":"ภาษาอังกฤษ: ไวยากรณ์",
+ "explain.subj.leestekens":"เครื่องหมายวรรคตอนและการเขียน",
+ "explain.subj.grammatica":"ไวยากรณ์",
+ "explain.subj.rekenen":"คณิตศาสตร์",
+ "explain.intro":"อธิบายทีละขั้น มีภาพและเสียงอ่าน เลือกเรื่องที่อยากเข้าใจ",
+ "page.explain":"คำอธิบาย",
+ "explain.tile.sub":"ดูแล้ว {done} จาก {n}",
+ "explain.tile":"คำอธิบาย",
  "pack.none":"โหลดบทเรียนนี้ไม่ได้ ลองใหม่ภายหลังเมื่อต่ออินเทอร์เน็ต",
  "pack.loading":"กำลังโหลดบทเรียน…",
  "pack.missing":"โหลดบทเรียนบางส่วนไม่ได้ ({list}) ความก้าวหน้าของคุณยังอยู่ครบ ลองใหม่ภายหลังเมื่อต่ออินเทอร์เน็ต",
@@ -1161,6 +1249,7 @@ function M_(x,f){return x?(x[f+'@'+supL()]??x[f]??''):''}
 /* vaste HTML (tabbalk): [data-i18n] krijgt de steuntaal */
 function fillStatic(){document.querySelectorAll('[data-i18n]').forEach(e=>{const s=ts(e.dataset.i18n);e.textContent=s;e.lang=LANG[supL()].tag;e.hidden=!s})}
 const icon={
+  bulb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg>',
   play:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
   slow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg>',
   book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg>',
@@ -1180,12 +1269,13 @@ const icon={
    - Alle tekst uit een pakket gaat door PakketCheck.safeText (alles onschadelijk, alleen <b> <i> <u> terug), ook ingebouwd.
    - Daarna worden de bekende lijsten (NL, EN, REK, SENT, PAIRS, DICTEE, STORY, PLACE) opgebouwd in de vorm die de oefenschermen al kennen.
    - De les komt uit het recept van het pakket (compose); in fase 2 levert dat precies de les van daarvoor (tools/test-les.mjs). */
-const BUILTIN=['content/rk-1.json','content/nl-t1.json','content/en-t1.json'];
+const BUILTIN=['content/rk-1.json','content/nl-t1.json','content/en-t1.json','content/uitleg-rk.json','content/uitleg-nl.json','content/uitleg-en.json'];
 const PACK_TIMEOUT=4000;   // ms per pakket; daarna de cache, anders ontbreekt het
 const PC=window.PakketCheck||null;
 const SAFE=s=>PC?PC.safeText(s):esc(s);   // voor waarden die het scherm rauw in de HTML zet
 const RAW=s=>s==null?'':String(s);           // voor waarden die het scherm zelf met esc() toont, of die worden voorgelezen
 /* Regel (review fase 2): elke waarde uit een pakket gaat door precies één van SAFE (dan rauw in de HTML) of esc() (in het scherm), nooit beide. */
+let EXPL={},EXPL_LIST=[];
 let PACKS=[],PACK_MISSING=[],NL=[],EN=[],REK=[],SENT=[],PAIRS=[],DICTEE=null,STORY=null,PLACE=[];
 const EXS={},CARDP={},PACKBY={};
 async function loadPacks(){
@@ -1231,6 +1321,8 @@ function buildLists(){
   PLACE=PACKS.flatMap(p=>((p.tests&&p.tests.placement)||[]).map(id=>({e:EXS[id],p}))).filter(o=>o.e).map(({e,p})=>{const d=e.data,q=SAFE(typeof d.q==='string'?d.q:d.q.nl),o={sk:e.skill,q:d.lang==='en'?`<span lang="en">${q}</span>`:q,a:d.a};
     if(d.show==='sup'){o.oNl=d.o.map(x=>RAW(x.nl));o.th=d.o.map(x=>RAW(x.th));o.en=d.o.map(x=>RAW(x.en))}else o.o=d.o.map(RAW);
     if(d.say)o.say=RAW(d.say);if(e.text){const t=(p.texts||[]).find(t=>t.id===e.text);if(t)o.text=t.paras.flat().map(s=>typeof s==='string'?s:s.nl).join(' ')}return o});
+
+  EXPL={};EXPL_LIST=[];PACKS.forEach(p=>(p.explain||[]).forEach(x=>{const o={x,learn:p.learn};EXPL[x.id]=o;EXPL_LIST.push(o)}));
 }
 /* Tekst uit een pakket als HTML: leertaal (met variant voor de NL-stand of de steuntaal) + steuntaalregel */
 function TKp(x,wrap){if(x==null)return '';const w=wrap||(s=>s);if(typeof x==='string')return w(SAFE(x));
@@ -1244,7 +1336,8 @@ function packCardHtml(c,flag){const ex=(c.examples||[]).map(e=>`<div class="exam
 /* lessamensteller: loopt het recept af en maakt de rij oefeningen (zelfde vorm als vóór fase 2) */
 const NOTE_TONES=['sky','lilac'];   // zelfde lijst als TONES in pakketcheck.js
 const CARD_LABEL={nl:{1:['Ophalen','btn-leaf'],2:['Nieuw leren','']},en:{1:['English','btn-sky'],2:['English','btn-sky']}};
-function exQ(e,step,learn){const d=e.data;
+function exQ(e,step,learn){const r=exQ0(e,step,learn);if(r)r.items=(e.items||[]).slice();return r}
+function exQ0(e,step,learn){const d=e.data;
   switch(e.form){
     case 'build':return {type:'build',step,s:LEGACY[e.id]};
     // gatzin: zin rauw (SAFE), opties met esc() (RAW); Engelse zin en Nederlandse regel met esc() (RAW)
@@ -1281,6 +1374,70 @@ function compose(recipe,learn){const q=[],words=learn==='en'?EN:NL,R=id=>S.items
     else if(s.end){q.push({type:'conf',step:s.step});q.push({type:'end',step:s.step})}
   }
   return q}
+/* ============ uitleg (docs/uitleg.md) ============
+   Speler als laag boven het scherm: plaatje (UitlegVis.render), tekst van de stap, voorlezen in de leertaal van het pakket,
+   daarna de controlevragen. De oefening eronder blijft onaangeroerd. Ingangen: tegel op Vandaag (overzicht), knop boven
+   een oefening waar een uitleg bij hoort, en een aanbod in de terugkoppeling na twee fouten in dezelfde oefening.
+   Engelse uitleg (pakket met learn:"en"): Engels als hoofdtekst; steunregel in de steuntaal, of Nederlands als die al Engels is. */
+const UV=window.UitlegVis||null;
+let UX=null;
+/* Tekst van een uitleg als HTML (zelfde regels als TKp, maar met de leertaal van het pakket) */
+function TKx(x,learn){if(x==null)return '';if(typeof x==='string')return `<span lang="${learn==='en'?'en':'nl'}">${SAFE(x)}</span>`;
+  if(learn!=='en')return TKp(x);
+  const sl=supL()==='en'?'nl':supL(),b=x[sl];
+  return `<span class="bi"><span class="nl" lang="en">${SAFE(x.en)}</span>${b&&!nlOnly()?`<span class="sup" lang="${LANG[sl].tag}">${SAFE(b)}</span>`:''}</span>`}
+/* platte tekst om voor te lezen, in de leertaal van het pakket */
+function plainX(x,learn){if(x==null)return '';if(typeof x==='string')return x;if(learn==='en')return x.en||'';return (nlOnly()&&x['nl@uit'])||x['nl@'+supL()]||x.nl||''}
+/* uitleg bij een oefening: eerst op onderdeel (items), dan op oefenvorm (forms), in de taal van de oefening */
+function explFor(q){if(!q)return null;
+  const form={learn:'learn',recog:'recog',recall:'recall',build:'build',gap:'gap',listen:'listen',dictee:'dictee',money:'money',clock:'clock',discount:'discount',enrecall:'recall',engap:'gap'}[q.type];if(!form)return null;
+  const lang=q.type==='enrecall'||q.type==='engap'||q.lang==='en'?'en':'nl';
+  const ids=[q.w&&q.w.id,...(q.items||[])].filter(Boolean);
+  const hit=EXPL_LIST.find(o=>o.learn===lang&&(o.x.items||[]).some(i=>ids.includes(i)))||EXPL_LIST.find(o=>o.learn===lang&&(o.x.forms||[]).includes(form));
+  return hit?hit.x.id:null}
+function openExplain(id){const e=EXPL[id];if(!e||!UV)return;closeExplain();
+  UX={e,i:0,c:-1,answered:false,start:now()};
+  const L=document.createElement('div');L.id='ulayer';L.className='ulayer';L.setAttribute('role','dialog');L.setAttribute('aria-modal','true');L.setAttribute('aria-label',plainX(e.x.title,e.learn));
+  L.addEventListener('click',ev=>{if(ev.target===L)closeExplain()});document.body.appendChild(L);document.body.classList.add('u-open');drawExplain(true)}
+function closeExplain(){if(!UX)return;try{speechSynthesis.cancel()}catch(e){}addLearnMs(now()-UX.start);const L=document.getElementById('ulayer');if(L)L.remove();document.body.classList.remove('u-open');UX=null}
+function sayX(x){if(!UX||S.explainVoice===false)return;const t=plainX(x,UX.e.learn).replace(/<[^>]*>/g,'');if(t)say(t,false,UX.e.learn==='en'?'en':'nl')}
+function drawExplain(speak){const L=document.getElementById('ulayer');if(!L||!UX)return;const {e,i,c}=UX,x=e.x,n=x.steps.length,ch=x.check||[],lang=e.learn==='en'?'en':'nl';
+  const head=`<div class="u-head"><div>${TKx(x.title,e.learn)}</div><button class="close" id="uclose" aria-label="${esc(t('explain.close'))}">×</button></div>`;
+  const voice=`<button id="uvoice" aria-pressed="${S.explainVoice!==false}">${icon.play}${esc(t('explain.voice'))}</button>`;
+  let body;
+  if(c<0){const st=x.steps[i];
+    body=`<div class="u-stage" id="ustage">${UV.render(st.visual,SAFE,{lang})}</div><div class="u-text">${TKx(st.text,e.learn)}</div>
+    <div class="u-dots" aria-label="${esc(t('explain.stepOf',{n:i+1,m:n}))}">${x.steps.map((_,k)=>`<i class="${k===i?'on':''}"></i>`).join('')}</div>
+    <div class="u-ctrl"><button class="btn btn-ghost" id="uprev"${i===0?' disabled':''}>${TB('btn.back')}</button><button class="btn btn-ghost" id="uagain">${TB('explain.replay')}</button><button class="btn btn-leaf" id="unext">${TB(i<n-1?'btn.next':ch.length?'explain.toCheck':'explain.done')}</button></div>${voice}`;
+  }else{const q=ch[c];
+    body=`<p class="eyebrow">${esc(t('explain.checkOf',{n:c+1,m:ch.length}))}</p><div class="u-text">${TKx(q.q,e.learn)}</div>
+    <div class="choices one">${q.o.map((o,k)=>`<button class="choice" data-uo="${k}">${TKx(o,e.learn)}</button>`).join('')}</div><div id="ufb"></div>${voice}`}
+  L.innerHTML=`<div class="u-panel">${head}${body}</div>`;
+  $('#uclose').onclick=closeExplain;
+  $('#uvoice').onclick=()=>{S.explainVoice=S.explainVoice===false;save();if(S.explainVoice===false){try{speechSynthesis.cancel()}catch(e){}}drawExplain(false)};
+  if(c<0){const st=x.steps[i];
+    $('#uprev').onclick=()=>{if(UX.i>0){UX.i--;drawExplain(true)}};
+    $('#uagain').onclick=()=>{$('#ustage').innerHTML=UV.render(st.visual,SAFE,{lang});sayX(st.text)};
+    $('#unext').onclick=()=>{if(UX.i<n-1){UX.i++;drawExplain(true)}else if(ch.length){UX.c=0;UX.answered=false;drawExplain(true)}else finishExplain()};
+    if(speak)sayX(st.text);
+  }else{const q=ch[c];
+    L.querySelectorAll('[data-uo]').forEach(b=>b.onclick=()=>{if(UX.answered)return;UX.answered=true;const ok=+b.dataset.uo===q.a;b.classList.add(ok?'right':'wrong');
+      if(!ok)L.querySelector(`[data-uo="${q.a}"]`).classList.add('right');
+      const why=q.why?TKx(q.why,e.learn):'';
+      $('#ufb').innerHTML=`<div class="fb ${ok?'fb-ok':'fb-no'}" role="status"><strong>${esc(t(ok?'fb.ok':'fb.no'))}</strong>${why}</div><button class="btn btn-leaf" id="uon">${TB(c<ch.length-1?'btn.next':'explain.done')}</button>`;
+      if(q.why)sayX(q.why);
+      $('#uon').onclick=()=>{if(UX.c<ch.length-1){UX.c++;UX.answered=false;drawExplain(true)}else finishExplain()}});
+    if(speak)sayX(q.q)}
+  const f=$('#uclose');try{f.focus({preventScroll:true})}catch(e){}}
+function finishExplain(){if(!UX)return;const id=UX.e.x.id,first=!S.explained[id];S.explained[id]=now();if(first)addPts(10);save();closeExplain();toast(tx(first?'explain.finished':'explain.again'));if(route===vExplain)rerender()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&UX)closeExplain()});
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-uopen]');if(b){e.preventDefault();openExplain(b.dataset.uopen)}});
+/* overzicht van alle uitleg, per taal en onderwerp, met een vinkje bij wat bekeken is */
+function vExplain(){const groups=[['nl','rekenen'],['nl','grammatica'],['nl','leestekens'],['en','grammatica'],['en','leestekens']];
+  sub('page.explain',`<p class="muted">${T('explain.intro')}</p>${groups.map(([l,s])=>{const list=EXPL_LIST.filter(o=>o.learn===l&&o.x.subject===s);if(!list.length)return '';
+    return `<section class="card stack">${T(l==='en'?'explain.subj.en.'+s:'explain.subj.'+s)}<div class="u-list">${list.map(o=>`<button class="u-item${S.explained[o.x.id]?' done':''}" data-uopen="${esc(o.x.id)}"><span>${TKx(o.x.title,o.learn)}</span>${S.explained[o.x.id]?`<span class="pill pill-mint" aria-label="${esc(t('explain.again'))}">✓</span>`:''}</button>`).join('')}</div></section>`}).join('')}`)}
+/* leertijd buiten een les (uitleg): telt mee in de minuten van vandaag */
+function addLearnMs(ms){const m=Math.round(ms/6e4);if(m>0){S.mins[today()]=(S.mins[today()]||0)+m;save()}}
 await loadPacks();
 
 /* ============ staat ============ */
@@ -1289,7 +1446,7 @@ function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
     points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
-    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',schema:SCHEMA};
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,schema:SCHEMA};
 }
 /* ============ opslag veilig laden (#30) ============
    S.v blijft 2. S.schema telt de vorm van de opslag (zonder veld = 1). Elke stap n -> n+1 staat in MIGRATE en mag vaker draaien.
@@ -1517,6 +1674,7 @@ function vToday(){
   ${due?`<button class="card row between" id="water" style="background:var(--sky);border-color:var(--sky-fill)"><span>${T('today.thirsty',{n:due})}<span class="small muted">${T('today.water.tip')}</span></span><span class="pill pill-sky" style="background:var(--surface)">${T('today.water')}</span></button>`:''}
   <h3 style="margin-top:4px">${T('today.more')}</h3>
   <div class="tiles2">
+    ${EXPL_LIST.length?`<button class="tile apricot" id="uitleg"><span class="ic">${icon.bulb}</span>${T('explain.tile')}<span class="small muted">${T('explain.tile.sub',{done:EXPL_LIST.filter(o=>S.explained[o.x.id]).length,n:EXPL_LIST.length})}</span></button>`:''}
     <button class="tile lilac" id="story"><span class="ic">${icon.book}</span>${T('extra.story')}<span class="small muted">${T('extra.story.sub')}</span></button>
     <button class="tile apricot" id="speed"><span class="ic">${icon.bolt}</span>${T('extra.speed')}<span class="small muted num">${T('speed.record',{n:S.speedBest})}</span></button>
     <button class="tile mint" id="talk"><span class="ic">${icon.chat}</span>${T('extra.talk')}<span class="small muted">${T('extra.talk.sub')}</span></button>
@@ -1529,6 +1687,7 @@ function vToday(){
   $('#short').onclick=()=>startLesson(true);
   $('#en').onclick=startEnglish;
   $('#story').onclick=startStory;
+  if($('#uitleg'))$('#uitleg').onclick=()=>{route=vExplain;rerender();window.scrollTo(0,0)};
   $('#speed').onclick=startSpeed;
   $('#talk').onclick=()=>{route=vTalk;rerender();window.scrollTo(0,0)};
   $('#diary').onclick=()=>{route=vDiary;rerender();window.scrollTo(0,0)};
@@ -1547,7 +1706,7 @@ function runSession(name,queue){Q=queue;qi=0;sp=0;grown=[];sessName=name;sessSta
 function frame(inner,label,stepNo,ofN){
   const p=Math.round(qi/Math.max(1,Q.length-1)*100);
   paint(`<div class="sess-top"><button class="close" id="quit" aria-label="Stoppen">×</button><div class="bar" role="progressbar" aria-label="Voortgang" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><i style="width:${p}%"></i></div>${thaiSwitch()}</div>
-  <div class="stage-label"><span class="eyebrow">${stepNo?`Stap ${stepNo} van ${ofN||5} · `:''}${label}</span><span class="pill pill-apricot num">+${sp}</span></div>${inner}`);
+  <div class="stage-label"><span class="eyebrow">${stepNo?`Stap ${stepNo} van ${ofN||5} · `:''}${label}</span>${(x=>x?`<button class="u-btn" data-uopen="${esc(x)}">${TB('explain.open')}</button>`:'')(explFor(Q[qi]))}<span class="pill pill-apricot num">+${sp}</span></div>${inner}`);
   $('#quit').onclick=()=>{finishTime();if(sp>0)toast('Opgeslagen. Je punten blijven staan.');show('vandaag')};
   // #22: onthoud of er al iets met deze vraag gedaan is; dan tekent een taalwissel hem niet opnieuw (geen dubbele punten, geen reset van pogingen)
   const q=Q[qi],v=app.querySelector('.view');if(q&&v){const t=e=>{if(!e.target.closest('button[data-thai],#quit'))q._t=1};v.addEventListener('click',t,true);v.addEventListener('input',t,true)}
@@ -1557,7 +1716,7 @@ function next(){qi++;window.scrollTo(0,0);step()}
 function step(){voicePend=null;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
 function score(ok,n,part){sessTotal++;if(ok){sessRight++;sp+=n;addPts(n)}else if(part>0){sp+=part;addPts(part)}}
 /* fbBox(ok, tekst in de leertaal, tekst in de steuntaal); fbK(ok, sleutel, variabelen) haalt beide uit I18N */
-function fbBox(ok,msg,msgSup){const k=ok?'fb.ok':'fb.no',s=ts(k);return `<div class="fb ${ok?'fb-ok':'fb-no'}" role="status"><strong>${t(k)}${nlOnly()||!s?'':` <span ${supAttr()}>${s}</span>`}</strong>${msg?bi(msg,msgSup||''):''}</div>`}
+function fbBox(ok,msg,msgSup){let offer='';if(!ok&&app.classList.contains('sess')&&Q[qi]){const q=Q[qi];q._wrong=(q._wrong||0)+1;const x=q._wrong>=2&&explFor(q);if(x)offer=`<button class="linkish u-offer" data-uopen="${esc(x)}">${TB('explain.offer')}</button>`}const k=ok?'fb.ok':'fb.no',s=ts(k);return `<div class="fb ${ok?'fb-ok':'fb-no'}" role="status"><strong>${t(k)}${nlOnly()||!s?'':` <span ${supAttr()}>${s}</span>`}</strong>${msg?bi(msg,msgSup||''):''}${offer}</div>`}
 function fbK(ok,k,vars){return fbBox(ok,t(k,vars),ts(k,vars))}
 const supSpan=(s,st)=>s?`<span class="sup" ${supAttr()}${st?` style="${st}"`:''}>${s}</span>`:'';
 const helpBtn=ctx=>`<button class="help" data-help="${esc(ctx)}">${T('help.ask')}</button>`;

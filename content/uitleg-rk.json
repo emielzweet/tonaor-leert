@@ -1,0 +1,606 @@
+{
+ "format": 1,
+ "id": "uitleg-rk",
+ "version": 1,
+ "learn": "nl",
+ "level": "basis",
+ "order": 6,
+ "requires": [],
+ "title": {
+  "nl": "Uitleg rekenen",
+  "th": "คำอธิบายคณิตศาสตร์",
+  "en": "Maths explained"
+ },
+ "explain": [
+  {
+   "id": "u.rk.procent",
+   "subject": "rekenen",
+   "items": [
+    "r-10",
+    "r-25"
+   ],
+   "forms": [
+    "discount"
+   ],
+   "title": {
+    "nl": "Wat is een procent?",
+    "th": "เปอร์เซ็นต์คืออะไร",
+    "en": "What is a per cent?"
+   },
+   "summary": {
+    "nl": "Het geheel is 100 procent. De helft, een kwart en een tiende.",
+    "th": "ทั้งหมดคือ 100 เปอร์เซ็นต์ ครึ่งหนึ่ง หนึ่งในสี่ และหนึ่งในสิบ",
+    "en": "The whole is 100 per cent. A half, a quarter and a tenth."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "Procent betekent: per honderd. Het geheel is altijd 100 procent.",
+      "th": "เปอร์เซ็นต์หมายถึง ต่อหนึ่งร้อย ทั้งหมดคือ 100 เปอร์เซ็นต์เสมอ",
+      "en": "Per cent means: per hundred. The whole is always 100 per cent."
+     },
+     "visual": {
+      "type": "bar",
+      "total": 60,
+      "unit": "€",
+      "totalLabel": "100%",
+      "segs": [
+       {
+        "v": 60,
+        "label": "100%",
+        "tone": "mint"
+       }
+      ],
+      "alt": "Een strook van 60 euro, helemaal gevuld: 100 procent"
+     }
+    },
+    {
+     "text": {
+      "nl": "De helft is 50 procent. Je deelt door 2.",
+      "th": "ครึ่งหนึ่งคือ 50 เปอร์เซ็นต์ ให้หารด้วย 2",
+      "en": "A half is 50 per cent. You divide by 2."
+     },
+     "visual": {
+      "type": "bar",
+      "total": 60,
+      "unit": "€",
+      "totalLabel": "100%",
+      "segs": [
+       {
+        "v": 30,
+        "label": "50%",
+        "tone": "apricot"
+       }
+      ],
+      "alt": "De helft van de strook: 30 euro is 50 procent"
+     }
+    },
+    {
+     "text": {
+      "nl": "Een kwart is 25 procent. Je deelt door 4.",
+      "th": "หนึ่งในสี่คือ 25 เปอร์เซ็นต์ ให้หารด้วย 4",
+      "en": "A quarter is 25 per cent. You divide by 4."
+     },
+     "visual": {
+      "type": "bar",
+      "total": 60,
+      "unit": "€",
+      "totalLabel": "100%",
+      "segs": [
+       {
+        "v": 15,
+        "label": "25%",
+        "tone": "apricot"
+       }
+      ],
+      "alt": "Een kwart van de strook: 15 euro is 25 procent"
+     }
+    },
+    {
+     "text": {
+      "nl": "Een tiende is 10 procent. Je deelt door 10.",
+      "th": "หนึ่งในสิบคือ 10 เปอร์เซ็นต์ ให้หารด้วย 10",
+      "en": "A tenth is 10 per cent. You divide by 10."
+     },
+     "visual": {
+      "type": "bar",
+      "total": 60,
+      "unit": "€",
+      "totalLabel": "100%",
+      "segs": [
+       {
+        "v": 6,
+        "label": "10%",
+        "tone": "apricot"
+       }
+      ],
+      "alt": "Een tiende van de strook: 6 euro is 10 procent"
+     }
+    },
+    {
+     "text": {
+      "nl": "Andere procenten maak je met deze stukken. 20 procent is twee keer 10 procent.",
+      "th": "เปอร์เซ็นต์อื่นๆ คิดจากส่วนเหล่านี้ได้ 20 เปอร์เซ็นต์คือ 10 เปอร์เซ็นต์สองครั้ง",
+      "en": "You build other percentages from these pieces. 20 per cent is twice 10 per cent."
+     },
+     "visual": {
+      "type": "bar",
+      "total": 60,
+      "unit": "€",
+      "totalLabel": "100%",
+      "segs": [
+       {
+        "v": 6,
+        "label": "10%",
+        "tone": "apricot"
+       },
+       {
+        "v": 6,
+        "label": "10%",
+        "tone": "sky"
+       }
+      ],
+      "alt": "Twee stukken van 6 euro: samen 12 euro is 20 procent"
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Hoeveel is 10% van € 80?",
+      "th": "10% ของ € 80 คือเท่าไร",
+      "en": "How much is 10% of € 80?"
+     },
+     "o": [
+      "€ 8",
+      "€ 10",
+      "€ 18"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "10% is delen door 10. 80 : 10 = 8.",
+      "th": "10% คือหารด้วย 10 ดังนั้น 80 : 10 = 8",
+      "en": "10% is dividing by 10. 80 : 10 = 8."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.korting",
+   "subject": "rekenen",
+   "items": [
+    "r-10",
+    "r-25"
+   ],
+   "forms": [
+    "discount"
+   ],
+   "title": {
+    "nl": "Korting uitrekenen",
+    "th": "การคิดส่วนลด",
+    "en": "Working out a discount"
+   },
+   "summary": {
+    "nl": "Eerst de korting, dan de nieuwe prijs.",
+    "th": "คิดส่วนลดก่อน แล้วจึงหาราคาใหม่",
+    "en": "First the discount, then the new price."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "Een jas kost 60 euro. Je krijgt 10 procent korting. Wat betaal je?",
+      "th": "เสื้อแจ็กเก็ตราคา 60 ยูโร คุณได้ส่วนลด 10 เปอร์เซ็นต์ คุณต้องจ่ายเท่าไร",
+      "en": "A coat costs 60 euros. You get a 10 per cent discount. What do you pay?"
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "Prijs",
+        "r": "€ 60,00"
+       },
+       {
+        "l": "Korting",
+        "r": "10%"
+       },
+       {
+        "l": "Je betaalt",
+        "r": "?",
+        "hl": true
+       }
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Stap 1: reken de korting uit. 10 procent is delen door 10.",
+      "th": "ขั้นที่ 1: คิดส่วนลดก่อน 10 เปอร์เซ็นต์คือหารด้วย 10",
+      "en": "Step 1: work out the discount. 10 per cent is dividing by 10."
+     },
+     "visual": {
+      "type": "bar",
+      "total": 60,
+      "unit": "€",
+      "totalLabel": "100%",
+      "segs": [
+       {
+        "v": 6,
+        "label": "korting 10%",
+        "tone": "apricot"
+       }
+      ],
+      "alt": "Van de strook van 60 euro is 6 euro korting"
+     }
+    },
+    {
+     "text": {
+      "nl": "Stap 2: haal de korting van de prijs af. 60 min 6 is 54.",
+      "th": "ขั้นที่ 2: เอาส่วนลดไปลบออกจากราคา 60 ลบ 6 ได้ 54",
+      "en": "Step 2: take the discount off the price. 60 minus 6 is 54."
+     },
+     "visual": {
+      "type": "line",
+      "from": 50,
+      "to": 60,
+      "step": 2,
+      "jumps": [
+       {
+        "a": 60,
+        "b": 54,
+        "label": "− 6",
+        "tone": "apricot"
+       }
+      ],
+      "marks": [
+       {
+        "at": 54,
+        "label": "€ 54",
+        "tone": "mint"
+       }
+      ],
+      "alt": "Getallenlijn van 50 tot 60 met een sprong van 60 terug naar 54"
+     }
+    },
+    {
+     "text": {
+      "nl": "Je betaalt 54 euro. Controleer altijd: de nieuwe prijs is lager dan de oude prijs.",
+      "th": "คุณจ่าย 54 ยูโร ตรวจทุกครั้งว่าราคาใหม่ต่ำกว่าราคาเดิม",
+      "en": "You pay 54 euros. Always check: the new price is lower than the old price."
+     },
+     "visual": {
+      "type": "steps",
+      "lines": [
+       {
+        "l": "60 : 10",
+        "r": "= 6"
+       },
+       {
+        "l": "60 − 6",
+        "r": "= 54"
+       },
+       {
+        "l": "Je betaalt",
+        "r": "€ 54,00",
+        "hl": true
+       }
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Een tas kost € 40. Je krijgt 25% korting. Wat betaal je?",
+      "th": "กระเป๋าราคา € 40 คุณได้ส่วนลด 25% คุณจ่ายเท่าไร",
+      "en": "A bag costs € 40. You get a 25% discount. What do you pay?"
+     },
+     "o": [
+      "€ 30",
+      "€ 10",
+      "€ 15"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "25% is een kwart: 40 : 4 = 10 korting. 40 − 10 = 30.",
+      "th": "25% คือหนึ่งในสี่ 40 : 4 = 10 เป็นส่วนลด แล้ว 40 − 10 = 30",
+      "en": "25% is a quarter: 40 : 4 = 10 discount. 40 − 10 = 30."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.verhouding",
+   "subject": "rekenen",
+   "title": {
+    "nl": "De verhoudingstabel",
+    "th": "ตารางอัตราส่วน",
+    "en": "The ratio table"
+   },
+   "summary": {
+    "nl": "Wat je boven doet, doe je onder ook.",
+    "th": "ทำกับแถวบนอย่างไร ก็ทำกับแถวล่างอย่างนั้น",
+    "en": "What you do on top, you also do below."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "Voor 4 personen heb je 200 gram rijst nodig. Hoeveel rijst is er nodig voor 6 personen?",
+      "th": "สำหรับ 4 คนต้องใช้ข้าว 200 กรัม ถ้า 6 คนต้องใช้ข้าวเท่าไร",
+      "en": "For 4 people you need 200 grams of rice. How much rice do you need for 6 people?"
+     },
+     "visual": {
+      "type": "bar",
+      "total": 200,
+      "segs": [
+       {
+        "v": 200,
+        "label": "4 personen",
+        "tone": "mint"
+       }
+      ],
+      "alt": "Een strook: 200 gram rijst voor 4 personen"
+     }
+    },
+    {
+     "text": {
+      "nl": "Verdeel de strook in 4 gelijke stukken. Eén persoon krijgt 200 gedeeld door 4: 50 gram.",
+      "th": "แบ่งแถบออกเป็น 4 ส่วนเท่าๆ กัน หนึ่งคนได้ 200 หาร 4 คือ 50 กรัม",
+      "en": "Divide the strip into 4 equal pieces. One person gets 200 divided by 4: 50 grams."
+     },
+     "visual": {
+      "type": "bar",
+      "total": 200,
+      "segs": [
+       {
+        "v": 50,
+        "label": "1 p.",
+        "tone": "mint"
+       },
+       {
+        "v": 50,
+        "label": "1 p.",
+        "tone": "sky"
+       },
+       {
+        "v": 50,
+        "label": "1 p.",
+        "tone": "mint"
+       },
+       {
+        "v": 50,
+        "label": "1 p.",
+        "tone": "sky"
+       }
+      ],
+      "alt": "De strook in 4 stukken van 50 gram, één stuk per persoon"
+     }
+    },
+    {
+     "text": {
+      "nl": "Voor 6 personen leg je er 2 stukken bij. Zes stukken van 50 gram is 300 gram.",
+      "th": "สำหรับ 6 คน ให้เพิ่มอีก 2 ส่วน หกส่วน ส่วนละ 50 กรัม รวมเป็น 300 กรัม",
+      "en": "For 6 people you add 2 more pieces. Six pieces of 50 grams is 300 grams."
+     },
+     "visual": {
+      "type": "bar",
+      "total": 300,
+      "segs": [
+       {
+        "v": 50,
+        "label": "1 p.",
+        "tone": "mint"
+       },
+       {
+        "v": 50,
+        "label": "1 p.",
+        "tone": "sky"
+       },
+       {
+        "v": 50,
+        "label": "1 p.",
+        "tone": "mint"
+       },
+       {
+        "v": 50,
+        "label": "1 p.",
+        "tone": "sky"
+       },
+       {
+        "v": 50,
+        "label": "1 p.",
+        "tone": "apricot"
+       },
+       {
+        "v": 50,
+        "label": "1 p.",
+        "tone": "apricot"
+       }
+      ],
+      "alt": "Zes stukken van 50 gram: samen 300 gram voor 6 personen"
+     }
+    },
+    {
+     "text": {
+      "nl": "In een verhoudingstabel schrijf je hetzelfde korter op. Boven staan de personen, onder de grammen.",
+      "th": "ในตารางอัตราส่วน คุณเขียนเรื่องเดียวกันให้สั้นลง แถวบนคือจำนวนคน แถวล่างคือกรัม",
+      "en": "In a ratio table you write the same thing down more briefly. The people go on top, the grams below."
+     },
+     "visual": {
+      "type": "ratio",
+      "rows": [
+       "personen",
+       "gram rijst"
+      ],
+      "cols": [
+       [
+        4,
+        200
+       ],
+       [
+        1,
+        50
+       ],
+       [
+        6,
+        300,
+        true
+       ]
+      ],
+      "ops": [
+       ": 4",
+       "× 6"
+      ]
+     }
+    },
+    {
+     "text": {
+      "nl": "Wat je boven doet, doe je onder ook. Zo blijft de verhouding gelijk. Het antwoord is 300 gram.",
+      "th": "ทำกับแถวบนอย่างไร ก็ทำกับแถวล่างอย่างนั้น อัตราส่วนจึงเท่าเดิม คำตอบคือ 300 กรัม",
+      "en": "What you do on top, you also do below. That keeps the ratio the same. The answer is 300 grams."
+     },
+     "visual": {
+      "type": "ratio",
+      "rows": [
+       "personen",
+       "gram rijst"
+      ],
+      "cols": [
+       [
+        4,
+        200
+       ],
+       [
+        1,
+        50
+       ],
+       [
+        6,
+        300,
+        true
+       ]
+      ],
+      "ops": [
+       ": 4",
+       "× 6"
+      ]
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "3 broden kosten € 6. Wat kosten 5 broden?",
+      "th": "ขนมปัง 3 ก้อนราคา € 6 ขนมปัง 5 ก้อนราคาเท่าไร",
+      "en": "3 loaves cost € 6. What do 5 loaves cost?"
+     },
+     "o": [
+      "€ 10",
+      "€ 8",
+      "€ 30"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Eén brood kost € 2, want 6 : 3 = 2. Vijf broden: 5 × 2 = 10.",
+      "th": "ขนมปังหนึ่งก้อนราคา € 2 เพราะ 6 : 3 = 2 ห้าก้อนคือ 5 × 2 = 10",
+      "en": "One loaf costs € 2, because 6 : 3 = 2. Five loaves: 5 × 2 = 10."
+     }
+    }
+   ]
+  },
+  {
+   "id": "u.rk.klok",
+   "subject": "rekenen",
+   "items": [
+    "r-klok"
+   ],
+   "forms": [
+    "clock"
+   ],
+   "title": {
+    "nl": "Hoe laat is het? Half en kwart",
+    "th": "กี่โมงแล้ว ครึ่งชั่วโมงและสิบห้านาที",
+    "en": "What time is it? Half and quarter"
+   },
+   "summary": {
+    "nl": "De korte wijzer, de lange wijzer, half, kwart over en kwart voor.",
+    "th": "เข็มสั้น เข็มยาว ครึ่ง สิบห้านาทีหลัง และสิบห้านาทีก่อน",
+    "en": "The short hand, the long hand, half, quarter past and quarter to."
+   },
+   "steps": [
+    {
+     "text": {
+      "nl": "De korte wijzer wijst het uur aan. De lange wijzer wijst de minuten aan. Dit is drie uur.",
+      "th": "เข็มสั้นบอกชั่วโมง เข็มยาวบอกนาที นี่คือสามนาฬิกา",
+      "en": "The short hand shows the hour. The long hand shows the minutes. This is three o'clock."
+     },
+     "visual": {
+      "type": "clock",
+      "h": 3,
+      "m": 0,
+      "alt": "Een klok op drie uur"
+     }
+    },
+    {
+     "text": {
+      "nl": "Staat de lange wijzer op de 6? Dan is het half. Je noemt het uur dat nog komt. Dit is half vier.",
+      "nl@en": "Staat de lange wijzer op de 6? Dan is het half. Je noemt het uur dat nog komt. Dit is half vier. In het Engels zeg je half past three.",
+      "th": "ถ้าเข็มยาวชี้เลข 6 แปลว่าครึ่งชั่วโมง ให้พูดชั่วโมงที่กำลังจะถึง นี่คือ half vier คือสามโมงครึ่ง",
+      "en": "Is the long hand on the 6? Then it is half. You name the hour that is coming. This is half vier: half past three."
+     },
+     "visual": {
+      "type": "clock",
+      "h": 3,
+      "m": 30,
+      "alt": "Een klok op half vier"
+     }
+    },
+    {
+     "text": {
+      "nl": "Staat de lange wijzer op de 3? Dan is het kwart over. Dit is kwart over drie.",
+      "th": "ถ้าเข็มยาวชี้เลข 3 แปลว่าผ่านมาสิบห้านาที นี่คือสามโมงสิบห้านาที",
+      "en": "Is the long hand on the 3? Then it is quarter past. This is quarter past three."
+     },
+     "visual": {
+      "type": "clock",
+      "h": 3,
+      "m": 15,
+      "alt": "Een klok op kwart over drie"
+     }
+    },
+    {
+     "text": {
+      "nl": "Staat de lange wijzer op de 9? Dan is het kwart voor. Dit is kwart voor vier.",
+      "th": "ถ้าเข็มยาวชี้เลข 9 แปลว่าอีกสิบห้านาทีจะถึง นี่คืออีกสิบห้านาทีสี่โมง",
+      "en": "Is the long hand on the 9? Then it is quarter to. This is quarter to four."
+     },
+     "visual": {
+      "type": "clock",
+      "h": 3,
+      "m": 45,
+      "alt": "Een klok op kwart voor vier"
+     }
+    }
+   ],
+   "check": [
+    {
+     "q": {
+      "nl": "Het is 7.30 uur. Wat zeg je?",
+      "th": "ตอนนี้ 7.30 น. คุณพูดว่าอย่างไร",
+      "en": "It is 7.30. What do you say?"
+     },
+     "o": [
+      "half acht",
+      "half zeven",
+      "kwart over zeven"
+     ],
+     "a": 0,
+     "why": {
+      "nl": "Half acht: een half uur vóór acht uur.",
+      "th": "half acht คือครึ่งชั่วโมงก่อนแปดโมง",
+      "en": "Half acht: half an hour before eight o'clock."
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,99 @@
+{
+  "format": 1,
+  "id": "uitleg-nl",
+  "version": 1,
+  "learn": "nl",
+  "level": "A2-B1",
+  "order": 11,
+  "requires": [],
+  "title": {"nl": "Uitleg Nederlands", "th": "คำอธิบายภาษาดัตช์", "en": "Dutch explained"},
+  "explain": [
+    {
+      "id": "u.nl.plek2",
+      "subject": "grammatica",
+      "forms": ["build"],
+      "title": {"nl": "Het werkwoord op plek twee", "th": "คำกริยาอยู่ตำแหน่งที่สอง", "en": "The verb in second place"},
+      "summary": {"nl": "Ook als de zin met een ander woord begint.", "th": "แม้ประโยคจะขึ้นต้นด้วยคำอื่น", "en": "Even when the sentence starts with another word."},
+      "steps": [
+        {"text": {"nl": "In een Nederlandse zin staat het werkwoord op de tweede plek.", "th": "ในประโยคภาษาดัตช์ คำกริยาอยู่ตำแหน่งที่สอง", "en": "In a Dutch sentence the verb is in second place."},
+         "visual": {"type": "zin", "rows": [{"parts": [{"t": "Ik", "slot": 1}, {"t": "werk", "slot": 2}, {"t": "morgen", "slot": 3}, {"t": "thuis."}]}]}},
+        {"text": {"nl": "Begin je met een ander woord, bijvoorbeeld een tijd? Het werkwoord blijft op plek twee.", "th": "ถ้าขึ้นต้นด้วยคำอื่น เช่น คำบอกเวลา คำกริยาก็ยังอยู่ตำแหน่งที่สอง", "en": "Do you start with another word, for example a time? The verb stays in second place."},
+         "visual": {"type": "zin", "rows": [{"parts": [{"t": "Ik", "slot": 1}, {"t": "werk", "slot": 2}, {"t": "morgen", "slot": 3}, {"t": "thuis."}]}, {"parts": [{"t": "Morgen", "slot": 3}, {"t": "werk", "slot": 2}, {"t": "ik", "slot": 1}, {"t": "thuis."}]}]}},
+        {"text": {"nl": "De persoon komt dan na het werkwoord. Kijk: ik en werk wisselen van plek.", "nl@th": "De persoon komt dan na het werkwoord. Kijk: ik en werk wisselen van plek. In het Thai gebeurt dat niet.", "th": "ประธานจะมาอยู่หลังคำกริยา ดูสิ ik กับ werk สลับที่กัน ในภาษาไทยไม่มีการสลับแบบนี้", "en": "The person then comes after the verb. Look: ik and werk change places."},
+         "visual": {"type": "zin", "rows": [{"parts": [{"t": "Morgen", "slot": 3}, {"t": "werk", "slot": 2, "hl": true}, {"t": "ik", "slot": 1, "hl": true}, {"t": "thuis."}]}]}},
+        {"text": {"nl": "Dit is fout: het werkwoord staat op plek drie. Zet het werkwoord altijd op plek twee.", "th": "แบบนี้ผิด เพราะคำกริยาอยู่ตำแหน่งที่สาม ให้วางคำกริยาไว้ตำแหน่งที่สองเสมอ", "en": "This is wrong: the verb is in third place. Always put the verb in second place."},
+         "visual": {"type": "zin", "rows": [{"label": "fout", "parts": [{"t": "Morgen", "slot": 3}, {"t": "ik", "slot": 1}, {"t": "werk", "slot": 2, "hl": true}, {"t": "thuis."}]}, {"label": "goed", "parts": [{"t": "Morgen", "slot": 3}, {"t": "werk", "slot": 2}, {"t": "ik", "slot": 1}, {"t": "thuis."}]}]}}
+      ],
+      "check": [
+        {"q": {"nl": "Welke zin is goed?", "th": "ประโยคใดถูกต้อง", "en": "Which sentence is correct?"},
+         "o": ["Vandaag ga ik naar de markt.", "Vandaag ik ga naar de markt.", "Vandaag naar de markt ik ga."], "a": 0,
+         "why": {"nl": "Het werkwoord ga staat op plek twee, de persoon ik komt erna.", "th": "คำกริยา ga อยู่ตำแหน่งที่สอง และประธาน ik อยู่ถัดไป", "en": "The verb ga is in second place, the person ik comes after it."}}
+      ]
+    },
+    {
+      "id": "u.nl.persoonsvorm",
+      "subject": "grammatica",
+      "forms": ["gap"],
+      "title": {"nl": "Ik werk, hij werkt, wij werken", "th": "ik werk, hij werkt, wij werken", "en": "Ik werk, hij werkt, wij werken"},
+      "summary": {"nl": "Het werkwoord past bij de persoon.", "th": "คำกริยาเปลี่ยนตามประธาน", "en": "The verb matches the person."},
+      "steps": [
+        {"text": {"nl": "Het werkwoord verandert met de persoon. Bij ik gebruik je de korte vorm: werk.", "nl@th": "Het werkwoord verandert met de persoon. In het Thai verandert het werkwoord niet. Bij ik gebruik je de korte vorm: werk.", "th": "คำกริยาเปลี่ยนไปตามประธาน ในภาษาไทยคำกริยาไม่เปลี่ยน กับ ik ใช้รูปสั้น คือ werk", "en": "The verb changes with the person. With ik you use the short form: werk."},
+         "visual": {"type": "table", "head": ["persoon", "werken"], "rows": [["ik", "werk"]], "hl": [[0, 1]]}},
+        {"text": {"nl": "Bij jij, u, hij en zij komt er een t achter: werkt.", "th": "กับ jij, u, hij และ zij ให้เติม t ท้ายคำ เป็น werkt", "en": "With jij, u, hij and zij you add a t: werkt."},
+         "visual": {"type": "table", "head": ["persoon", "werken"], "rows": [["ik", "werk"], ["jij / u", "werkt"], ["hij / zij", "werkt"]], "hl": [[1, 1], [2, 1]]}},
+        {"text": {"nl": "Bij meer personen gebruik je het hele werkwoord: werken.", "th": "ถ้าประธานมีหลายคน ใช้คำกริยารูปเต็ม คือ werken", "en": "With more than one person you use the whole verb: werken."},
+         "visual": {"type": "table", "head": ["persoon", "werken"], "rows": [["ik", "werk"], ["jij / u", "werkt"], ["hij / zij", "werkt"], ["wij / jullie / zij", "werken"]], "hl": [[3, 1]]}},
+        {"text": {"nl": "Hebben is anders. Leer deze vormen uit je hoofd: ik heb, jij hebt, hij heeft, wij hebben.", "th": "hebben ไม่เหมือนคำอื่น ให้ท่องจำรูปเหล่านี้ ik heb, jij hebt, hij heeft, wij hebben", "en": "Hebben is different. Learn these forms by heart: ik heb, jij hebt, hij heeft, wij hebben."},
+         "visual": {"type": "table", "head": ["persoon", "hebben"], "rows": [["ik", "heb"], ["jij", "hebt"], ["hij / zij / u", "heeft"], ["wij / jullie / zij", "hebben"]], "hl": [[2, 1]]}}
+      ],
+      "check": [
+        {"q": {"nl": "Kies het goede woord: Wij ___ om tien uur pauze.", "th": "เลือกคำที่ถูกต้อง: Wij ___ om tien uur pauze.", "en": "Choose the right word: Wij ___ om tien uur pauze."},
+         "o": ["hebben", "heb", "heeft"], "a": 0,
+         "why": {"nl": "Wij is meer dan één persoon. Dan gebruik je het hele werkwoord: hebben.", "th": "wij คือหลายคน จึงใช้คำกริยารูปเต็ม คือ hebben", "en": "Wij is more than one person. Then you use the whole verb: hebben."}}
+      ]
+    },
+    {
+      "id": "u.nl.zin",
+      "subject": "leestekens",
+      "forms": ["dictee"],
+      "title": {"nl": "Hoofdletter, punt en vraagteken", "th": "ตัวพิมพ์ใหญ่ จุด และเครื่องหมายคำถาม", "en": "Capital letter, full stop and question mark"},
+      "summary": {"nl": "Hoe een zin begint en eindigt.", "th": "ประโยคขึ้นต้นและลงท้ายอย่างไร", "en": "How a sentence begins and ends."},
+      "steps": [
+        {"text": {"nl": "Een zin begint met een hoofdletter en eindigt met een punt.", "nl@th": "Een zin begint met een hoofdletter en eindigt met een punt. Het Thai heeft geen hoofdletters en meestal geen punt. In het Nederlands zijn ze verplicht.", "th": "ประโยคขึ้นต้นด้วยตัวพิมพ์ใหญ่และจบด้วยจุด ภาษาไทยไม่มีตัวพิมพ์ใหญ่และมักไม่ใช้จุด แต่ในภาษาดัตช์ต้องใช้เสมอ", "en": "A sentence begins with a capital letter and ends with a full stop."},
+         "visual": {"type": "zin", "rows": [{"parts": [{"t": "Ik", "hl": true}, {"t": "werk in een winkel"}, {"t": ".", "hl": true, "glue": true}]}]}},
+        {"text": {"nl": "Een vraag eindigt met een vraagteken.", "th": "ประโยคคำถามจบด้วยเครื่องหมายคำถาม", "en": "A question ends with a question mark."},
+         "visual": {"type": "zin", "rows": [{"parts": [{"t": "Werk", "hl": true}, {"t": "je morgen"}, {"t": "?", "hl": true, "glue": true}]}]}},
+        {"text": {"nl": "Roep je iets, of geef je een opdracht? Dan gebruik je een uitroepteken.", "th": "ถ้าตะโกนหรือออกคำสั่ง ให้ใช้เครื่องหมายอัศเจรีย์", "en": "Are you calling out, or giving an order? Then you use an exclamation mark."},
+         "visual": {"type": "zin", "rows": [{"parts": [{"t": "Stop", "hl": true}, {"t": "!", "hl": true, "glue": true}]}, {"parts": [{"t": "Wat", "hl": true}, {"t": "mooi"}, {"t": "!", "hl": true, "glue": true}]}]}},
+        {"text": {"nl": "Namen van mensen en landen krijgen ook een hoofdletter. Dagen en maanden krijgen een kleine letter.", "th": "ชื่อคนและชื่อประเทศขึ้นต้นด้วยตัวพิมพ์ใหญ่ ส่วนชื่อวันและชื่อเดือนใช้ตัวพิมพ์เล็ก", "en": "Names of people and countries also get a capital letter. Days and months get a small letter."},
+         "visual": {"type": "zin", "rows": [{"parts": [{"t": "Ik woon in"}, {"t": "Nederland", "hl": true}, {"t": ".", "glue": true}]}, {"parts": [{"t": "Op"}, {"t": "maandag", "hl": true}, {"t": "werk ik."}]}]}}
+      ],
+      "check": [
+        {"q": {"nl": "Welke zin is goed geschreven?", "th": "ประโยคใดเขียนถูกต้อง", "en": "Which sentence is written correctly?"},
+         "o": ["Op zaterdag ga ik naar Frankrijk.", "op zaterdag ga ik naar frankrijk.", "Op Zaterdag ga ik naar Frankrijk"], "a": 0,
+         "why": {"nl": "Hoofdletter aan het begin en bij het land, een kleine letter bij de dag, en een punt aan het eind.", "th": "ใช้ตัวพิมพ์ใหญ่ที่ต้นประโยคและชื่อประเทศ ชื่อวันใช้ตัวพิมพ์เล็ก และมีจุดท้ายประโยค", "en": "A capital at the start and for the country, a small letter for the day, and a full stop at the end."}}
+      ]
+    },
+    {
+      "id": "u.nl.komma",
+      "subject": "leestekens",
+      "title": {"nl": "De komma", "th": "เครื่องหมายจุลภาค", "en": "The comma"},
+      "summary": {"nl": "In een rijtje, tussen twee werkwoorden en voor maar.", "th": "ในรายการ ระหว่างคำกริยาสองคำ และหน้าคำว่า maar", "en": "In a list, between two verbs and before maar."},
+      "steps": [
+        {"text": {"nl": "Een komma is een korte pauze in de zin. Je gebruikt hem op drie plekken.", "th": "เครื่องหมายจุลภาคคือการหยุดสั้นๆ ในประโยค ใช้ในสามกรณี", "en": "A comma is a short pause in the sentence. You use it in three places."},
+         "visual": {"type": "steps", "lines": [{"l": "1", "r": "in een rijtje"}, {"l": "2", "r": "tussen twee werkwoorden"}, {"l": "3", "r": "voor maar"}]}},
+        {"text": {"nl": "In een rijtje zet je een komma tussen de woorden. Voor het laatste woord staat en, zonder komma.", "th": "ในรายการ ให้ใส่จุลภาคระหว่างคำ ก่อนคำสุดท้ายใช้ en โดยไม่ใส่จุลภาค", "en": "In a list you put a comma between the words. Before the last word comes en, without a comma."},
+         "visual": {"type": "zin", "rows": [{"parts": [{"t": "Ik koop brood"}, {"t": ",", "hl": true, "glue": true}, {"t": "melk"}, {"t": "en", "slot": 3}, {"t": "kaas."}]}]}},
+        {"text": {"nl": "Staan er twee werkwoorden naast elkaar? Zet er een komma tussen.", "th": "ถ้ามีคำกริยาสองคำอยู่ติดกัน ให้ใส่จุลภาคคั่น", "en": "Are two verbs next to each other? Put a comma between them."},
+         "visual": {"type": "zin", "rows": [{"parts": [{"t": "Als ik klaar"}, {"t": "ben", "slot": 2}, {"t": ",", "hl": true, "glue": true}, {"t": "ga", "slot": 2}, {"t": "ik naar huis."}]}]}},
+        {"text": {"nl": "Voor het woord maar zet je een komma.", "th": "หน้าคำว่า maar ให้ใส่จุลภาค", "en": "Before the word maar you put a comma."},
+         "visual": {"type": "zin", "rows": [{"parts": [{"t": "Ik wil komen"}, {"t": ",", "hl": true, "glue": true}, {"t": "maar", "slot": 3}, {"t": "ik moet werken."}]}]}}
+      ],
+      "check": [
+        {"q": {"nl": "In welke zin staat de komma goed?", "th": "ประโยคใดใส่จุลภาคถูกต้อง", "en": "In which sentence is the comma in the right place?"},
+         "o": ["Ik ben moe, maar ik ga door.", "Ik ben, moe maar ik ga door.", "Ik ben moe maar, ik ga door."], "a": 0,
+         "why": {"nl": "De komma staat voor het woord maar.", "th": "จุลภาคอยู่หน้าคำว่า maar", "en": "The comma comes before the word maar."}}
+      ]
+    }
+  ]
+}

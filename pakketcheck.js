@@ -8,7 +8,7 @@
   var LEARN = ['nl', 'en'];
   var FORMS = ['learn', 'recog', 'recall', 'build', 'gap', 'listen', 'dictee', 'mc', 'clock', 'money', 'discount'];
   var RESERVED = ['hear-type', 'complete', 'own', 'write', 'situation', 'match', 'spot'];
-  var TOP = ['format', 'id', 'version', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'lesson', 'lessonShort', 'tests'];
+  var TOP = ['format', 'id', 'version', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests'];
   var TAGS = /<\/?(b|i|u)>/g;
   // id's (pakket, item, tekst, kaart, oefening, groep): alleen letters, cijfers, punt, streepje, onderstreepje
   var ID = /^[A-Za-z0-9._-]+$/;
@@ -19,6 +19,10 @@
   var QTYPES = ['geheel', 'detail', 'waarom', 'toepassen', 'woord'];
   var NOTESTYLES = ['muted'];
   var SAYLANGS = ['nl', 'en'];
+  // uitleg (docs/uitleg.md): onderwerpen, soorten plaatjes en kleuren; dezelfde lijsten als in uitleg.js
+  var SUBJECTS = ['rekenen', 'grammatica', 'leestekens'];
+  var VIS = ['bar', 'line', 'ratio', 'steps', 'zin', 'table', 'clock', 'fraction'];
+  var VTONES = ['mint', 'apricot', 'sky', 'lilac'];
 
   function safeText(s) {
     if (s == null) return '';
@@ -68,9 +72,9 @@
 
     // id's uniek, ook over andere pakketten
     var seen = {};
-    others.forEach(function (o) { ['items', 'texts', 'cards', 'exercises'].forEach(function (k) { (o[k] || []).forEach(function (x) { seen[x.id] = o.id; }); }); });
+    others.forEach(function (o) { ['items', 'texts', 'cards', 'exercises', 'explain'].forEach(function (k) { (o[k] || []).forEach(function (x) { seen[x.id] = o.id; }); }); });
     var own = {};
-    ['items', 'texts', 'cards', 'exercises'].forEach(function (k) {
+    ['items', 'texts', 'cards', 'exercises', 'explain'].forEach(function (k) {
       if (p[k] != null && !Array.isArray(p[k])) err(id + ': ' + k + ' moet een lijst zijn');
       (p[k] || []).forEach(function (x, i) {
         if (!x || typeof x.id !== 'string' || !x.id) { err(id + '.' + k + '[' + i + ']: id ontbreekt'); return; }
@@ -209,6 +213,53 @@
       }
     });
     // recepten
+    // uitleg: stappen met tekst en een plaatje, daarna controlevragen. Een plaatje bevat alleen getallen, ja/nee en tekst zonder opmaakcode.
+    function visual(v, where) {
+      if (!v || typeof v !== 'object' || Array.isArray(v)) { err(where + ': plaatje moet een object zijn'); return; }
+      if (VIS.indexOf(v.type) < 0) { err(where + ': onbekend soort plaatje ' + v.type); return; }
+      var count = 0;
+      (function walk(x, at, depth) {
+        if (++count > 400 || depth > 6) { if (count === 401 || depth === 7) err(where + ': plaatje is te groot of te diep'); return; }
+        if (x == null || typeof x === 'boolean') return;
+        if (typeof x === 'number') { if (!isFinite(x)) err(at + ': ongeldig getal'); return; }
+        if (typeof x === 'string') { if (x.length > 200 || badMarkup(x)) err(at + ': niet toegestane tekst'); return; }
+        if (Array.isArray(x)) { x.forEach(function (y, i) { walk(y, at + '[' + i + ']', depth + 1); }); return; }
+        if (typeof x !== 'object') { err(at + ': ongeldige waarde'); return; }
+        Object.keys(x).forEach(function (k) {
+          if (!/^[a-z][A-Za-z]{0,15}$/.test(k)) { err(at + ': ongeldige naam ' + k); return; }
+          if (k === 'tone' && VTONES.indexOf(x[k]) < 0) err(at + ': onbekende kleur');
+          else if (k === 'lang' && SAYLANGS.indexOf(x[k]) < 0) err(at + ': lang moet nl of en zijn');
+          else if (k === 'slot' && [1, 2, 3].indexOf(x[k]) < 0) err(at + ': slot moet 1, 2 of 3 zijn');
+          else walk(x[k], at + '.' + k, depth + 1);
+        });
+      })(v, where, 0);
+    }
+    (p.explain || []).forEach(function (x) {
+      if (!x || typeof x.id !== 'string') return;
+      var w = id + '.' + x.id;
+      if (SUBJECTS.indexOf(x.subject) < 0) err(w + ': onderwerp moet ' + SUBJECTS.join(', ') + ' zijn');
+      tekst(x.title, w + '.title'); tekst(x.summary, w + '.summary', true);
+      if (x.items != null && (!Array.isArray(x.items) || !x.items.every(function (r) { return typeof r === 'string' && ID.test(r); }))) err(w + ': ongeldige verwijzing in items');
+      if (x.forms != null && (!Array.isArray(x.forms) || !x.forms.every(function (f) { return FORMS.indexOf(f) >= 0; }))) err(w + ': onbekende oefenvorm in forms');
+      if (!Array.isArray(x.steps) || !x.steps.length || x.steps.length > 12) { err(w + ': een uitleg heeft 1 tot 12 stappen'); return; }
+      x.steps.forEach(function (st, i) {
+        if (!st || typeof st !== 'object') { err(w + '.steps[' + i + ']: ongeldige stap'); return; }
+        tekst(st.text, w + '.steps[' + i + '].text');
+        if (st.visual != null) visual(st.visual, w + '.steps[' + i + '].visual');
+      });
+      if (x.check != null && !Array.isArray(x.check)) err(w + ': check moet een lijst zijn');
+      (Array.isArray(x.check) ? x.check : []).forEach(function (c, i) {
+        var cw = w + '.check[' + i + ']';
+        if (!c || typeof c !== 'object') { err(cw + ': ongeldige vraag'); return; }
+        tekst(c.q, cw + '.q');
+        if (!Array.isArray(c.o) || c.o.length < 2 || c.o.length > 4) err(cw + ': twee tot vier keuzes');
+        else c.o.forEach(function (o, j) { tekst(o, cw + '.o[' + j + ']'); });
+        if (!(Number.isInteger(c.a) && Array.isArray(c.o) && c.a >= 0 && c.a < c.o.length)) err(cw + ': het goede antwoord staat niet tussen de keuzes');
+        tekst(c.why, cw + '.why', true);
+      });
+      if (!x.check || !x.check.length) q(w + ': een uitleg heeft minstens één controlevraag');
+    });
+
     var pools = {};
     (p.exercises || []).forEach(function (e) { if (e.pool) (pools[e.pool] = pools[e.pool] || []).push(e.id); });
     ['lesson', 'lessonShort'].forEach(function (k) {
@@ -243,6 +294,6 @@
     var strict = p.quality === 'strict';
     return { errors: strict ? errors.concat(quality) : errors, quality: quality };
   }
-  var api = { safeText: safeText, checkPack: checkPack, FORMS: FORMS };
+  var api = { safeText: safeText, checkPack: checkPack, FORMS: FORMS, SUBJECTS: SUBJECTS };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.PakketCheck = api;
 })(this);

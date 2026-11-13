@@ -1,0 +1,83 @@
+{
+  "format": 1,
+  "id": "uitleg-en",
+  "version": 1,
+  "learn": "en",
+  "level": "A1-A2",
+  "order": 21,
+  "requires": [],
+  "title": {"nl": "Uitleg Engels", "th": "คำอธิบายภาษาอังกฤษ", "en": "English explained"},
+  "explain": [
+    {
+      "id": "u.en.s",
+      "subject": "grammatica",
+      "items": ["en.regel.s"],
+      "forms": ["gap"],
+      "title": {"nl": "He, she, it: werkwoord met -s", "th": "he, she, it: กริยาเติม -s", "en": "He, she, it: verb + s"},
+      "summary": {"nl": "Bij één persoon of ding komt er een -s achter het werkwoord.", "th": "เมื่อประธานเป็นคนหรือสิ่งของหนึ่งอย่าง ให้เติม -s ท้ายกริยา", "en": "With one person or thing, the verb gets an -s."},
+      "steps": [
+        {"text": {"nl": "Bij I, you, we en they blijft het werkwoord kort: work.", "th": "กับ I, you, we และ they ใช้กริยารูปสั้น: work", "en": "With I, you, we and they the verb stays short: work."},
+         "visual": {"type": "table", "head": ["person", "work"], "rows": [["I", "work"], ["you", "work"], ["we / they", "work"]], "hl": [[0, 1]]}},
+        {"text": {"nl": "Bij he, she en it komt er een -s achter: works.", "th": "กับ he, she และ it ให้เติม -s: works", "en": "With he, she and it you add an -s: works."},
+         "visual": {"type": "table", "head": ["person", "work"], "rows": [["I", "work"], ["you", "work"], ["we / they", "work"], ["he / she / it", "works"]], "hl": [[3, 1]]}},
+        {"text": {"nl": "Dat ken je al. In het Nederlands krijgt hij een t: hij werkt. In het Engels krijgt he een s: he works.", "th": "เรื่องนี้คุณรู้อยู่แล้ว ภาษาดัตช์เติม t: hij werkt ภาษาอังกฤษเติม s: he works", "en": "You already know this. In Dutch, hij gets a t: hij werkt. In English, he gets an s: he works."},
+         "visual": {"type": "zin", "rows": [{"label": "NL", "lang": "nl", "parts": [{"t": "hij", "slot": 1}, {"t": "werkt", "slot": 2, "hl": true}]}, {"label": "EN", "lang": "en", "parts": [{"t": "he", "slot": 1}, {"t": "works", "slot": 2, "hl": true}]}]}},
+        {"text": {"nl": "Have is anders. Bij he, she en it zeg je has.", "th": "have ไม่เหมือนคำอื่น กับ he, she และ it ใช้ has", "en": "Have is different. With he, she and it you say has."},
+         "visual": {"type": "table", "head": ["person", "have"], "rows": [["I / you / we / they", "have"], ["he / she / it", "has"]], "hl": [[1, 1]]}}
+      ],
+      "check": [
+        {"q": {"nl": "Kies het goede woord: My colleague ___ at six.", "th": "เลือกคำที่ถูกต้อง: My colleague ___ at six.", "en": "Choose the right word: My colleague ___ at six."},
+         "o": ["starts", "start", "starting"], "a": 0,
+         "why": {"nl": "My colleague is één persoon, net als he of she. Dus: starts.", "th": "My colleague คือคนคนเดียว เหมือน he หรือ she จึงใช้ starts", "en": "My colleague is one person, like he or she. So: starts."}},
+        {"q": {"nl": "Kies het goede woord: She ___ two children.", "th": "เลือกคำที่ถูกต้อง: She ___ two children.", "en": "Choose the right word: She ___ two children."},
+         "o": ["has", "have", "haves"], "a": 0,
+         "why": {"nl": "Have wordt has bij he, she en it.", "th": "have เปลี่ยนเป็น has เมื่อใช้กับ he, she และ it", "en": "Have becomes has with he, she and it."}}
+      ]
+    },
+    {
+      "id": "u.en.hoofdletters",
+      "subject": "leestekens",
+      "title": {"nl": "Hoofdletters: dagen, maanden en I", "th": "ตัวพิมพ์ใหญ่: วัน เดือน และ I", "en": "Capital letters: days, months and I"},
+      "summary": {"nl": "In het Engels krijgen meer woorden een hoofdletter dan in het Nederlands.", "th": "ในภาษาอังกฤษ มีคำที่ขึ้นต้นด้วยตัวพิมพ์ใหญ่มากกว่าภาษาดัตช์", "en": "In English, more words get a capital letter than in Dutch."},
+      "steps": [
+        {"text": {"nl": "De dagen van de week krijgen in het Engels een hoofdletter: Monday. In het Nederlands schrijf je maandag met een kleine letter.", "th": "ในภาษาอังกฤษ ชื่อวันขึ้นต้นด้วยตัวพิมพ์ใหญ่: Monday ส่วนภาษาดัตช์เขียน maandag ด้วยตัวพิมพ์เล็ก", "en": "The days of the week get a capital letter in English: Monday. In Dutch you write maandag with a small letter."},
+         "visual": {"type": "zin", "rows": [{"label": "EN", "lang": "en", "parts": [{"t": "on"}, {"t": "Monday", "hl": true}]}, {"label": "NL", "lang": "nl", "parts": [{"t": "op"}, {"t": "maandag", "hl": true}]}]}},
+        {"text": {"nl": "Bij de maanden is het net zo: June met een hoofdletter, juni met een kleine letter.", "th": "ชื่อเดือนก็เช่นกัน: June ขึ้นต้นด้วยตัวพิมพ์ใหญ่ ส่วน juni ใช้ตัวพิมพ์เล็ก", "en": "Months work the same way: June with a capital letter, juni with a small letter."},
+         "visual": {"type": "zin", "rows": [{"label": "EN", "lang": "en", "parts": [{"t": "in"}, {"t": "June", "hl": true}]}, {"label": "NL", "lang": "nl", "parts": [{"t": "in"}, {"t": "juni", "hl": true}]}]}},
+        {"text": {"nl": "Het woord I is altijd een hoofdletter, ook midden in de zin. Het Nederlandse ik niet.", "th": "คำว่า I เป็นตัวพิมพ์ใหญ่เสมอ แม้อยู่กลางประโยค แต่ ik ในภาษาดัตช์ไม่ใช่", "en": "The word I is always a capital letter, even in the middle of a sentence. The Dutch ik is not."},
+         "visual": {"type": "zin", "rows": [{"label": "EN", "lang": "en", "parts": [{"t": "Tomorrow"}, {"t": "I", "hl": true}, {"t": "work"}, {"t": ".", "glue": true}]}, {"label": "NL", "lang": "nl", "parts": [{"t": "Morgen"}, {"t": "werk"}, {"t": "ik", "hl": true}, {"t": ".", "glue": true}]}]}},
+        {"text": {"nl": "Talen krijgen in allebei de talen een hoofdletter: English en Engels. Daar is geen verschil.", "th": "ชื่อภาษาขึ้นต้นด้วยตัวพิมพ์ใหญ่ทั้งสองภาษา: English และ Engels ตรงนี้ไม่ต่างกัน", "en": "Languages get a capital letter in both languages: English and Engels. There is no difference there."},
+         "visual": {"type": "table", "head": ["", "EN", "NL"], "rows": [["dag", "Monday", "maandag"], ["maand", "June", "juni"], ["ik", "I", "ik"], ["taal", "English", "Engels"]], "hl": [[0, 1], [1, 1], [2, 1], [3, 1], [3, 2]]}}
+      ],
+      "check": [
+        {"q": {"nl": "Welke zin is goed?", "th": "ประโยคใดถูกต้อง", "en": "Which sentence is correct?"},
+         "o": ["I start on Monday.", "i start on monday.", "I start on monday."], "a": 0,
+         "why": {"nl": "I en Monday krijgen allebei een hoofdletter.", "th": "I และ Monday ขึ้นต้นด้วยตัวพิมพ์ใหญ่ทั้งคู่", "en": "I and Monday both get a capital letter."}}
+      ]
+    },
+    {
+      "id": "u.en.apostrof",
+      "subject": "leestekens",
+      "title": {"nl": "De apostrof: bezit en korte vormen", "th": "อะพอสทรอฟี: ความเป็นเจ้าของและรูปย่อ", "en": "The apostrophe: possession and short forms"},
+      "summary": {"nl": "Van wie iets is, en woorden die samengetrokken worden.", "th": "บอกว่าเป็นของใคร และคำที่ย่อรวมกัน", "en": "Who something belongs to, and words that are joined together."},
+      "steps": [
+        {"text": {"nl": "Met 's laat je zien van wie iets is. My colleague's bike is de fiets van mijn collega.", "th": "ใช้ 's เพื่อบอกว่าเป็นของใคร My colleague's bike คือจักรยานของเพื่อนร่วมงานของฉัน", "en": "With 's you show who something belongs to. My colleague's bike is the bike of my colleague."},
+         "visual": {"type": "zin", "rows": [{"lang": "en", "parts": [{"t": "my"}, {"t": "colleague"}, {"t": "'s", "hl": true, "glue": true}, {"t": "bike"}]}]}},
+        {"text": {"nl": "In gesproken taal worden woorden korter: I am wordt I'm. De apostrof staat op de plek van de letter die wegvalt.", "th": "ในภาษาพูด คำจะสั้นลง: I am กลายเป็น I'm อะพอสทรอฟีอยู่ตรงตำแหน่งของตัวอักษรที่หายไป", "en": "In spoken language words get shorter: I am becomes I'm. The apostrophe stands where a letter drops out."},
+         "visual": {"type": "zin", "rows": [{"label": "lang", "lang": "en", "parts": [{"t": "I"}, {"t": "am"}]}, {"label": "kort", "lang": "en", "parts": [{"t": "I"}, {"t": "'m", "hl": true, "glue": true}]}]}},
+        {"text": {"nl": "Zo werkt het ook bij andere korte vormen.", "th": "รูปย่ออื่นๆ ก็ใช้หลักเดียวกัน", "en": "Other short forms work the same way."},
+         "visual": {"type": "table", "head": ["kort", "lang"], "rows": [["I'm", "I am"], ["it's", "it is"], ["don't", "do not"], ["can't", "cannot"]]}},
+        {"text": {"nl": "Een meervoud krijgt in het Engels nooit een apostrof: two bikes. In het Nederlands schrijf je wel auto's, in het Engels niet.", "th": "ในภาษาอังกฤษ คำพหูพจน์ไม่มีอะพอสทรอฟีเลย: two bikes ภาษาดัตช์เขียน auto's ได้ แต่ภาษาอังกฤษเขียนไม่ได้", "en": "A plural never gets an apostrophe in English: two bikes. In Dutch you do write auto's, in English you don't."},
+         "visual": {"type": "zin", "rows": [{"label": "fout", "lang": "en", "parts": [{"t": "two"}, {"t": "bike's", "hl": true}]}, {"label": "goed", "lang": "en", "parts": [{"t": "two"}, {"t": "bikes"}]}]}}
+      ],
+      "check": [
+        {"q": {"nl": "Wat is goed?", "th": "แบบใดถูกต้อง", "en": "Which is correct?"},
+         "o": ["two cars", "two car's", "two cars'"], "a": 0,
+         "why": {"nl": "Een meervoud is alleen -s, zonder apostrof.", "th": "พหูพจน์เติมแค่ -s ไม่ต้องมีอะพอสทรอฟี", "en": "A plural is just -s, without an apostrophe."}},
+        {"q": {"nl": "Wat betekent it's?", "th": "it's หมายถึงอะไร", "en": "What does it's mean?"},
+         "o": ["it is", "it was", "of it"], "a": 0,
+         "why": {"nl": "De apostrof staat op de plek van de i van is: it's is it is.", "th": "อะพอสทรอฟีอยู่ตรงตำแหน่งของ i ใน is ดังนั้น it's คือ it is", "en": "The apostrophe stands where the i of is was: it's is it is."}}
+      ]
+    }
+  ]
+}

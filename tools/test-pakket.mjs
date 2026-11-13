@@ -69,7 +69,7 @@ let q = null; app.runSession = (n, x) => { q = x; }; app.api.startLesson(false);
 ok('zonder rekenpakket: Nederlands laadt nog, les zonder rekenoefeningen', g.NL.length === 18 && !q.some(x => ['money', 'clock', 'discount'].includes(x.type)) && q.some(x => x.type === 'build'));
 app = await boot({ missing: ['content/nl-t1.json', 'content/en-t1.json', 'content/rk-1.json'] }); g = app.api.get();
 q = null; app.runSession = (n, x) => { q = x; }; app.api.startLesson(false);
-ok('geen enkel pakket: app start, meldt het bij een tik op de les en start geen lege les', g.PACK_MISSING.length === 3 && q === null && app.toasts.includes('pack.none'));
+ok('geen enkel pakket: app start, meldt het bij een tik op de les en start geen lege les', g.PACK_MISSING.length === 3 && g.PACKS.length === builtin().length - 3 && q === null && app.toasts.includes('pack.none'));
 ok('melding op Vandaag als een pakket ontbreekt', /PACK_MISSING\.length\?`<div class="note" role="status">\$\{T\('pack\.missing'/.test(html));
 
 // geen naambotsing: een functie of variabele uit het pakketblok mag elders in de app niet nog eens gedefinieerd worden
@@ -94,7 +94,7 @@ ok('geen naambotsing tussen het pakketblok en de rest van de app (' + names.leng
   ok('app: tone alleen uit de vaste lijst', html.includes("NOTE_TONES.includes(n.tone)"));
   ok('app: zonder pakketcheck.js geen pakketten', html.includes("if(!PC){BUILTIN.forEach(u=>PACK_MISSING.push(name(u)));return}"));
   const noPC = await boot({ pc: null });
-  ok('app laadt zonder controle geen enkel pakket en meldt ze', noPC.api.get().PACKS.length === 0 && noPC.api.get().PACK_MISSING.length === 3);
+  ok('app laadt zonder controle geen enkel pakket en meldt ze', noPC.api.get().PACKS.length === 0 && noPC.api.get().PACK_MISSING.length === builtin().length);
   const slow = await boot({ hang: ['content/en-t1.json'] });
   ok('pakket dat blijft hangen: na de tijdslimiet gemeld, de rest laadt', slow.api.get().PACK_MISSING.includes('en-t1') && slow.api.get().NL.length === 18);
 }
