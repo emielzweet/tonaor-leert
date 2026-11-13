@@ -93,9 +93,10 @@ ok('de app vult de soort per item uit de pakketten', html.includes("KIND[x.id]=x
     if (x.kind === 'word') continue; // woorden: herkennen, typen en luisteren bestaan voor NL en EN
     if (x.kind === 'skill') { if (!gen && mine.length < 3) gaps.push(x.id + ': ' + mine.length + ' oefening(en), 3 nodig of een recept (gen)'); continue; }
     if (x.kind === 'rule') { const why = []; if (mine.length < 3) why.push(mine.length + ' oefening(en), 3 nodig'); if (!mine.some(e => e.form === 'build')) why.push('geen zin bouwen'); if (why.length) gaps.push(x.id + ': ' + why.join(', ')); continue; }
-    if (x.kind === 'sound') gaps.push(x.id + ': ' + mine.length + ' oefening(en), 3 nodig; luisteren en typen voor klanken bestaat nog niet');
+    if (x.kind === 'sound') { const why = []; if (mine.length < 3) why.push(mine.length + ' oefening(en), 3 nodig'); if (!mine.some(e => e.data && e.data.mode === 'type')) why.push('geen horen en opschrijven'); if (why.length) gaps.push(x.id + ': ' + why.join(', ')); }
   }
   ok('rekenvaardigheden met een recept kunnen bloeien', !gaps.some(g => /^(r-geld|r-klok|r-10|r-25)/.test(g)), gaps.filter(g => /^r-/.test(g)).join('; '));
-  console.log('     LET OP, nog niet haalbaar met de huidige inhoud (' + gaps.length + '):\n       ' + gaps.join('\n       '));
+  ok('elk onderdeel kan met de huidige inhoud in volle bloei komen', !gaps.length, gaps.join('; '));
+  if (gaps.length) console.log('     LET OP, nog niet haalbaar met de huidige inhoud (' + gaps.length + '):\n       ' + gaps.join('\n       '));
 }
 console.log(fails ? fails + ' FOUT' : 'alles OK');

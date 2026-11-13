@@ -1,7 +1,7 @@
 {
  "format": 1,
  "id": "nl-t1",
- "version": 2,
+ "version": 3,
  "learn": "nl",
  "level": "A2-B1",
  "order": 10,
@@ -1074,6 +1074,309 @@
      "works",
      "working"
     ]
+   }
+  },
+  {
+   "id": "nl.gat.heb2",
+   "form": "gap",
+   "items": [
+    "nl.regel.heb"
+   ],
+   "data": {
+    "s": "Mijn collega ___ een fiets.",
+    "o": [
+     "heeft",
+     "hebt",
+     "hebben"
+    ],
+    "a": "heeft",
+    "tr": {
+     "th": "เพื่อนร่วมงานของฉันมีจักรยาน",
+     "en": "My colleague has a bicycle."
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "<i>Mijn collega</i> is één persoon, net als <i>hij</i> of <i>zij</i>. Dan zeg je <b>heeft</b>.",
+     "th": "mijn collega คือคนเดียว เหมือน hij หรือ zij จึงใช้ heeft",
+     "en": "My colleague is one person, like hij or zij. Then you say heeft."
+    }
+   },
+   "hint": [
+    {
+     "nl": "Hoeveel personen zijn het? Eén: <i>mijn collega</i>.",
+     "th": "มีกี่คน หนึ่งคน: mijn collega",
+     "en": "How many people? One: mijn collega."
+    }
+   ]
+  },
+  {
+   "id": "nl.gat.heb3",
+   "form": "gap",
+   "items": [
+    "nl.regel.heb"
+   ],
+   "data": {
+    "s": "Wij ___ morgen een afspraak.",
+    "o": [
+     "hebben",
+     "heb",
+     "heeft"
+    ],
+    "a": "hebben",
+    "tr": {
+     "th": "พรุ่งนี้เรามีนัด",
+     "en": "We have an appointment tomorrow."
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "Bij <i>wij</i> hoort <b>hebben</b>.",
+     "th": "wij ใช้ hebben",
+     "en": "With wij you use hebben."
+    }
+   },
+   "hint": [
+    {
+     "nl": "Wie is het onderwerp? <i>wij</i>.",
+     "th": "ประธานคือใคร? wij",
+     "en": "Who is the subject? wij."
+    }
+   ]
+  },
+  {
+   "id": "nl.zin.heb",
+   "form": "build",
+   "items": [
+    "nl.regel.heb",
+    "nl.regel.plek2"
+   ],
+   "data": {
+    "parts": [
+     "Vandaag",
+     "heb",
+     "ik",
+     "een afspraak."
+    ],
+    "verb": "heb",
+    "tr": {
+     "th": "วันนี้ฉันมีนัด",
+     "en": "Today I have an appointment."
+    }
+   }
+  },
+  {
+   "id": "nl.zin.heb2",
+   "form": "build",
+   "items": [
+    "nl.regel.heb",
+    "nl.regel.plek2"
+   ],
+   "data": {
+    "parts": [
+     "Zaterdag",
+     "heeft",
+     "mijn collega",
+     "vrij."
+    ],
+    "verb": "heeft",
+    "tr": {
+     "th": "วันเสาร์เพื่อนร่วมงานของฉันได้หยุด",
+     "en": "On Saturday my colleague has the day off."
+    }
+   }
+  },
+  {
+   "id": "nl.luister.maan",
+   "form": "listen",
+   "items": [
+    "nl.klank.man"
+   ],
+   "data": {
+    "say": "maan",
+    "opts": [
+     "man",
+     "maan"
+    ],
+    "tr": {
+     "th": [
+      "ผู้ชาย",
+      "ดวงจันทร์"
+     ],
+     "en": [
+      "man",
+      "moon"
+     ]
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "Kort: <b>man</b>. Lang: <b>maan</b>. Net als in het Thai verandert de lengte van de klinker de betekenis.",
+     "th": "เสียงสั้น man เสียงยาว maan ความยาวของสระเปลี่ยนความหมายเหมือนในภาษาไทย",
+     "en": "Short: man. Long: maan. In Dutch the length of the vowel changes the meaning.",
+     "nl@en": "Kort: <b>man</b>. Lang: <b>maan</b>. In het Nederlands verandert de lengte van de klinker de betekenis."
+    }
+   }
+  },
+  {
+   "id": "nl.typ.man",
+   "form": "listen",
+   "items": [
+    "nl.klank.man"
+   ],
+   "data": {
+    "say": "man",
+    "opts": [
+     "man",
+     "maan"
+    ],
+    "tr": {
+     "th": [
+      "ผู้ชาย",
+      "ดวงจันทร์"
+     ],
+     "en": [
+      "man",
+      "moon"
+     ]
+    },
+    "mode": "type"
+   },
+   "fb": {
+    "ok": {
+     "nl": "Kort: <b>man</b>. Lang: <b>maan</b>. Net als in het Thai verandert de lengte van de klinker de betekenis.",
+     "th": "เสียงสั้น man เสียงยาว maan ความยาวของสระเปลี่ยนความหมายเหมือนในภาษาไทย",
+     "en": "Short: man. Long: maan. In Dutch the length of the vowel changes the meaning.",
+     "nl@en": "Kort: <b>man</b>. Lang: <b>maan</b>. In het Nederlands verandert de lengte van de klinker de betekenis."
+    }
+   }
+  },
+  {
+   "id": "nl.luister.keel",
+   "form": "listen",
+   "items": [
+    "nl.klank.geel"
+   ],
+   "data": {
+    "say": "keel",
+    "opts": [
+     "geel",
+     "keel"
+    ],
+    "tr": {
+     "th": [
+      "สีเหลือง",
+      "คอ"
+     ],
+     "en": [
+      "yellow",
+      "throat"
+     ]
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "De <b>g</b> in geel komt zacht en schurend uit je keel. De <b>k</b> in keel is kort en hard.",
+     "th": "g ใน geel เป็นเสียงลมเสียดในลำคอ ส่วน k ใน keel สั้นและแข็ง",
+     "en": "The g in geel is a soft, scraping sound from your throat. The k in keel is short and hard."
+    }
+   }
+  },
+  {
+   "id": "nl.typ.geel",
+   "form": "listen",
+   "items": [
+    "nl.klank.geel"
+   ],
+   "data": {
+    "say": "geel",
+    "opts": [
+     "geel",
+     "keel"
+    ],
+    "tr": {
+     "th": [
+      "สีเหลือง",
+      "คอ"
+     ],
+     "en": [
+      "yellow",
+      "throat"
+     ]
+    },
+    "mode": "type"
+   },
+   "fb": {
+    "ok": {
+     "nl": "De <b>g</b> in geel komt zacht en schurend uit je keel. De <b>k</b> in keel is kort en hard.",
+     "th": "g ใน geel เป็นเสียงลมเสียดในลำคอ ส่วน k ใน keel สั้นและแข็ง",
+     "en": "The g in geel is a soft, scraping sound from your throat. The k in keel is short and hard."
+    }
+   }
+  },
+  {
+   "id": "nl.luister.hoes",
+   "form": "listen",
+   "items": [
+    "nl.klank.huis"
+   ],
+   "data": {
+    "say": "hoes",
+    "opts": [
+     "huis",
+     "hoes"
+    ],
+    "tr": {
+     "th": [
+      "บ้าน",
+      "ปลอก"
+     ],
+     "en": [
+      "house",
+      "cover"
+     ]
+    }
+   },
+   "fb": {
+    "ok": {
+     "nl": "<b>ui</b> kent het Thai niet: begin met een open mond en rond dan je lippen.",
+     "th": "ui ไม่มีในภาษาไทย เริ่มด้วยปากเปิด แล้วห่อริมฝีปาก",
+     "en": "English does not have the ui sound: start with an open mouth and then round your lips.",
+     "nl@en": "Het Engels heeft geen <b>ui</b>-klank: begin met een open mond en rond dan je lippen."
+    }
+   }
+  },
+  {
+   "id": "nl.typ.huis",
+   "form": "listen",
+   "items": [
+    "nl.klank.huis"
+   ],
+   "data": {
+    "say": "huis",
+    "opts": [
+     "huis",
+     "hoes"
+    ],
+    "tr": {
+     "th": [
+      "บ้าน",
+      "ปลอก"
+     ],
+     "en": [
+      "house",
+      "cover"
+     ]
+    },
+    "mode": "type"
+   },
+   "fb": {
+    "ok": {
+     "nl": "<b>ui</b> kent het Thai niet: begin met een open mond en rond dan je lippen.",
+     "th": "ui ไม่มีในภาษาไทย เริ่มด้วยปากเปิด แล้วห่อริมฝีปาก",
+     "en": "English does not have the ui sound: start with an open mouth and then round your lips.",
+     "nl@en": "Het Engels heeft geen <b>ui</b>-klank: begin met een open mond en rond dan je lippen."
+    }
    }
   }
  ],

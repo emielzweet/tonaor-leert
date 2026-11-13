@@ -46,7 +46,7 @@ ok('app: velden die platte tekst blijven, toont het scherm met esc()', g.NL[0].e
 ok('app: opties in klok, Engelse gatzin en geld met esc(), ook in het attribuut', ['c.o.map(o=>`<button class="choice" data-o="${esc(o)}">${esc(o)}', 'x.o.map(o=>`<button class="choice" data-o="${esc(o)}" lang="en">${esc(o)}', 'd.o.map(o=>`<button class="choice num" data-o="${esc(o)}">${esc(o)}'].every(s => html.includes(s)));
 ok('voorlezen spreekt geen tags of tekencodes uit', html.includes("t=String(t==null?'':t).replace(/<[^>]*>/g,'')"));
 app = await boot(); g = app.api.get();
-ok('app: ingebouwde pakketten geladen, niets gemeld', !g.PACK_MISSING.length && g.NL.length === 18 && g.EN.length === 8 && g.REK.length === 5 && g.SENT.length === 4 && g.PAIRS.length === 3 && g.PLACE.length === 15 && g.STORY.lines.length === 10);
+ok('app: ingebouwde pakketten geladen, niets gemeld', !g.PACK_MISSING.length && g.NL.length === 18 && g.EN.length === 8 && g.REK.length === 5 && g.SENT.length === g.PACKS.find(p => p.id === 'nl-t1').exercises.filter(e => e.form === 'build').length && g.PAIRS.length === g.PACKS.find(p => p.id === 'nl-t1').exercises.filter(e => e.form === 'listen').length && g.SENT.length >= 4 && g.PAIRS.length >= 3 && g.PLACE.length === 15 && g.STORY.lines.length === 10);
 ok('app: inhoud gelijk aan het pakket na safeText', g.NL[0].w === nl.items[0].w && g.STORY.lines[5][0] === PC.safeText(nl.texts[0].paras[0][5].nl));
 
 // 4. ontbrekend pakket: app start, meldt het, opslag ongewijzigd

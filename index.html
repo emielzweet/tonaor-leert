@@ -1442,7 +1442,7 @@ function buildLists(){
   REK=items('skill').map(({x})=>({id:x.id,label:RAW(x.title.nl),th:SAFE(x.title.th),en:SAFE(x.title.en)}));
   // zin bouwen: stukjes en vertaling met esc() in het scherm
   SENT=exList('nl',e=>e.form==='build').map(e=>LEGACY[e.id]={parts:e.data.parts.map(RAW),verb:RAW(e.data.verb),th:RAW(e.data.tr.th),en:RAW(e.data.tr.en)});
-  PAIRS=exList('nl',e=>e.form==='listen').map(e=>LEGACY[e.id]=flatT({say:RAW(e.data.say),opts:e.data.opts.map(RAW),th:safeArr(e.data.tr.th),en:safeArr(e.data.tr.en)},'why',e.fb&&e.fb.ok));
+  PAIRS=exList('nl',e=>e.form==='listen').map(e=>LEGACY[e.id]=flatT({say:RAW(e.data.say),opts:e.data.opts.map(RAW),th:safeArr(e.data.tr.th),en:safeArr(e.data.tr.en),mode:e.data.mode==='type'?'type':'choose'},'why',e.fb&&e.fb.ok));
   const d=exList('nl',e=>e.form==='dictee')[0];DICTEE=d?(LEGACY[d.id]={t:RAW(d.data.t),th:SAFE(d.data.tr.th),en:SAFE(d.data.tr.en)}):null;
   const tx=PACKS.filter(p=>p.learn==='nl').flatMap(p=>p.texts||[]).find(t=>t.kind==='verhaal');
   // verhaal: titel, vragen en vertalingen rauw (SAFE); Nederlandse zinnen en opties met esc() (RAW)
@@ -1491,11 +1491,11 @@ function exQ(e,step,learn){
   const r=exQ0(e,step,learn);if(r){r.items=(e.items||[]).slice();r.exid=e.id}return r}
 function exQ0(e,step,learn){const d=e.data;
   switch(e.form){
-    case 'build':return {type:'build',step,s:LEGACY[e.id]};
+    case 'build':return learn==='en'?{type:'build',step,lang:'en',s:{parts:d.parts.map(RAW),verb:RAW(d.verb),th:RAW(d.tr.th),en:RAW(d.tr.nl)}}:{type:'build',step,s:LEGACY[e.id]};
     // gatzin: zin rauw (SAFE), opties met esc() (RAW); Engelse zin en Nederlandse regel met esc() (RAW)
     case 'gap':{const x=flatT(flatT({o:d.o.map(RAW),a:RAW(d.a)},'why',e.fb&&e.fb.ok),'hint',e.hint&&e.hint[0]);
       if(learn==='en'){x.s=RAW(d.s);x.nl=RAW(d.tr.nl);x.th=SAFE(d.tr.th);return {type:'engap',step,x}}x.s=SAFE(d.s);x.th=SAFE(d.tr.th);x.en=SAFE(d.tr.en);return {type:'gap',step,...x}}
-    case 'listen':return learn==='en'?{type:'listen',step,lang:'en',p:flatT({say:RAW(d.say),opts:d.opts.map(RAW),th:safeArr(d.tr.th),en:d.opts.map(RAW)},'why',e.fb&&e.fb.ok)}:{type:'listen',step,p:LEGACY[e.id]};
+    case 'listen':return learn==='en'?{type:'listen',step,lang:'en',p:flatT({say:RAW(d.say),opts:d.opts.map(RAW),th:safeArr(d.tr.th),en:d.opts.map(RAW),mode:d.mode==='type'?'type':'choose'},'why',e.fb&&e.fb.ok)}:{type:'listen',step,p:LEGACY[e.id]};
     case 'dictee':return {type:'dictee',step};
     case 'money':return {type:'money',step,d:{coins:d.coins.slice(),o:d.o.map(RAW),a:RAW(d.a),alt:RAW(d.alt),items:e.items.slice()}};
     // klok: vraag en uitleg rauw (SAFE), opties met esc() (RAW)
@@ -2007,12 +2007,12 @@ H.build=q=>{const s=q.s;let pool=shuffle(s.parts);if(pool.join()===s.parts.join(
     ${nlOnly()||!L_(s)?'':`<p ${supAttr()} style="font-size:1.12rem">${esc(L_(s))}</p>`}
     <div class="pieces" aria-label="Jouw zin">${chosen.map((p,i)=>`<button class="piece ${p===s.verb?'verb':''}" data-back="${i}">${esc(p)}</button>`).join('')}</div>
     <div class="pieces pool" aria-label="Stukjes">${pool.map((p,i)=>`<button class="piece ${p===s.verb?'verb':''}" data-take="${i}">${esc(p)}</button>`).join('')}</div>
-    <div id="fb">${fb||''}</div><button class="btn btn-leaf" id="chk" ${pool.length?'disabled':''}>${T('btn.check')}</button>${helpBtn('Zin bouwen: '+s.parts.join(' '))}</div>`,'Oefenen',q.step);
+    <div id="fb">${fb||''}</div><button class="btn btn-leaf" id="chk" ${pool.length?'disabled':''}>${T('btn.check')}</button>${helpBtn('Zin bouwen: '+s.parts.join(' '))}</div>`,q.lang==='en'?'English':'Oefenen',q.step);
     bindHelp();
     app.querySelectorAll('[data-take]').forEach(b=>b.onclick=()=>{chosen.push(pool.splice(+b.dataset.take,1)[0]);draw()});
     app.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>{pool.push(chosen.splice(+b.dataset.back,1)[0]);draw()});
     $('#chk').onclick=()=>{if(pool.length)return;const right=s.parts.join(' ');
-      if(chosen.join(' ')===right){score(first,15);practiced(q,first,'build');say(right);$('#fb').innerHTML=fbBox(true,`<b>${esc(right)}</b> ${t('build.ok',{verb:esc(s.verb)})}`,ts('build.ok',{verb:esc(s.verb)}));$('#chk').outerHTML=nextBtn();$('#nx').onclick=next}
+      if(chosen.join(' ')===right){score(first,15);practiced(q,first,'build');say(right,false,q.lang||'nl');$('#fb').innerHTML=fbBox(true,`<b>${esc(right)}</b> ${t('build.ok',{verb:esc(s.verb)})}`,ts('build.ok',{verb:esc(s.verb)}));$('#chk').outerHTML=nextBtn();$('#nx').onclick=next}
       else{first=false;const vi=chosen.indexOf(s.verb);pool=shuffle(s.parts);chosen=[];draw(fbK(false,vi!==1?'build.verbPos':'build.rest'))}}};
   draw()};
 H.gap=q=>{let first=true;
@@ -2021,7 +2021,18 @@ H.gap=q=>{let first=true;
   bindHelp();app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=b.dataset.o===q.a;b.classList.add(ok?'right':'wrong');
     if(ok){score(first,10);practiced(q,first,'gap');say(q.s.replace('___',q.a));$('#fb').innerHTML=fbBox(true,M_(q,'why'),L_(q,'why'))+nextBtn();$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbBox(false,M_(q,'hint'),L_(q,'hint'))}})};
-H.listen=q=>{const p=q.p,L=q.lang||'nl';let first=true;
+/* klank horen en opschrijven (listen met mode 'type'): telt als vorm 'luisteren' voor de klank */
+function listenType(q){const p=q.p,L=q.lang||'nl';let tries=0,done=false;
+  frame(`<div class="card stack">${T('hear.title')}<p class="muted small">${T('hear.tip')}</p>${speakBtns('sp','sps')}
+  <input id="ans" class="input"${L==='en'?' lang="en"':''} autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="${esc(String(t('hear.title')).replace(/<[^>]*>/g,''))}">
+  <div id="fb"></div><button class="btn btn-leaf" id="chk">${T('btn.check')}</button>${helpBtn('Klank opschrijven: '+p.opts.join(' / '))}</div>`,L==='en'?'English':'Oefenen',q.step);
+  bindHelp();const inp=$('#ans');setTimeout(()=>say(p.say,false,L),350);$('#sp').onclick=()=>say(p.say,false,L);$('#sps').onclick=()=>say(p.say,true,L);
+  const check=()=>{if(done)return;const a=norm(inp.value);if(!a)return;tries++;const ok=a===norm(p.say);
+    if(!ok&&tries<2){$('#fb').innerHTML=fbBox(false,t('listen.again')+' '+M_(p,'why'),(ts('listen.again')+' '+L_(p,'why')).trim());return}
+    done=true;score(ok&&tries===1,10,ok?6:0);practiced(q,ok?(tries===1?true:'retry'):false,'luisteren');
+    $('#fb').innerHTML=fbBox(ok,`<b>${esc(p.say)}</b>. ${M_(p,'why')}`,L_(p,'why'))+nextBtn(L==='en'?'btn-sky':'');$('#nx').onclick=next;inp.disabled=true;$('#chk').remove()};
+  $('#chk').onclick=check;inp.onkeydown=e=>{if(e.key==='Enter')check()}}
+H.listen=q=>{const p=q.p,L=q.lang||'nl';if(p.mode==='type')return listenType(q);let first=true;
   frame(`<div class="card stack">${T('listen.title')}<p class="muted">${T('listen.tip')}</p>${speakBtns('sp','sps')}
   <div class="choices">${p.opts.map((o,i)=>`<button class="choice" data-o="${i}"${L==='en'?' lang="en"':''}>${esc(o)}${(x=>x&&x!==o?supSpan(x):'')((L_(p)||[])[i])}</button>`).join('')}</div><div id="fb"></div>${helpBtn('Luisteren: '+p.opts.join(' / '))}</div>`,L==='en'?'Engels · luisteren':'Luisteren',q.step);
   bindHelp();setTimeout(()=>say(p.say,false,L),350);$('#sp').onclick=()=>say(p.say,false,L);$('#sps').onclick=()=>say(p.say,true,L);

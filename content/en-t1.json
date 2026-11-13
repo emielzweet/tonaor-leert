@@ -1,7 +1,7 @@
 {
  "format": 1,
  "id": "en-t1",
- "version": 1,
+ "version": 2,
  "learn": "en",
  "level": "A1-A2",
  "order": 20,
@@ -308,6 +308,109 @@
      ]
     },
     "lang": "en"
+   },
+   "fb": {
+    "ok": {
+     "nl": "Bij de <b>v</b> raken je boventanden je onderlip. Bij de <b>w</b> maak je je lippen rond.",
+     "th": "เสียง v ฟันบนแตะริมฝีปากล่าง เสียง w ห่อริมฝีปาก",
+     "en": "For the v your upper teeth touch your lower lip. For the w you round your lips."
+    }
+   }
+  },
+  {
+   "id": "en.zin.s1",
+   "form": "build",
+   "items": [
+    "en.regel.s"
+   ],
+   "data": {
+    "parts": [
+     "She",
+     "works",
+     "at night."
+    ],
+    "verb": "works",
+    "tr": {
+     "nl": "Zij werkt 's nachts.",
+     "th": "เธอทำงานตอนกลางคืน"
+    }
+   }
+  },
+  {
+   "id": "en.zin.s2",
+   "form": "build",
+   "items": [
+    "en.regel.s"
+   ],
+   "data": {
+    "parts": [
+     "My colleague",
+     "has",
+     "a break."
+    ],
+    "verb": "has",
+    "tr": {
+     "nl": "Mijn collega heeft pauze.",
+     "th": "เพื่อนร่วมงานของฉันมีเวลาพัก"
+    }
+   }
+  },
+  {
+   "id": "en.luister.vest",
+   "form": "listen",
+   "items": [
+    "en.klank.vw"
+   ],
+   "data": {
+    "say": "vest",
+    "opts": [
+     "vest",
+     "west"
+    ],
+    "tr": {
+     "nl": [
+      "het vest",
+      "het westen"
+     ],
+     "th": [
+      "เสื้อกั๊ก",
+      "ทิศตะวันตก"
+     ]
+    },
+    "lang": "en"
+   },
+   "fb": {
+    "ok": {
+     "nl": "Bij de <b>v</b> raken je boventanden je onderlip. Bij de <b>w</b> maak je je lippen rond.",
+     "th": "เสียง v ฟันบนแตะริมฝีปากล่าง เสียง w ห่อริมฝีปาก",
+     "en": "For the v your upper teeth touch your lower lip. For the w you round your lips."
+    }
+   }
+  },
+  {
+   "id": "en.typ.vw",
+   "form": "listen",
+   "items": [
+    "en.klank.vw"
+   ],
+   "data": {
+    "say": "vest",
+    "opts": [
+     "vest",
+     "west"
+    ],
+    "tr": {
+     "nl": [
+      "het vest",
+      "het westen"
+     ],
+     "th": [
+      "เสื้อกั๊ก",
+      "ทิศตะวันตก"
+     ]
+    },
+    "lang": "en",
+    "mode": "type"
    },
    "fb": {
     "ok": {

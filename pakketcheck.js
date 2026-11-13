@@ -211,6 +211,7 @@
           if (p.learn === 'en') { if (!d.tr || typeof d.tr.nl !== 'string') err(w + ': tr.nl ontbreekt'); } else tr(d.tr, w);
           break;
         case 'listen':
+          if (d.mode != null && ['choose', 'type'].indexOf(d.mode) < 0) err(w + ': mode kent alleen choose en type');
           opts(d.opts); if (Array.isArray(d.opts) && d.opts.indexOf(d.say) < 0) err(w + ': say staat niet tussen de keuzes');
           tr(d.tr, w, true, (d.opts || []).length); break;
         case 'dictee': str(d.t, w + '.t'); tr(d.tr, w); break;
