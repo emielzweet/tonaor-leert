@@ -41,7 +41,7 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | 19 | Spelletjes met taal, grammatica en rekenen | 13 nov | plan | spoor E | ontwerp, dan bouw | eerste spel als onderdeel van een scène |
 | 20 | Beloningssysteem en punten | 13 nov | deels | weekring, bonus, doorgaan-scherm | bouw | kleine beloningen (E1) |
 | 21 | Weekdoel 10 uur, stimuleren om door te gaan | 13 nov | live | weekring | – | de begeleider ziet het doel nog niet op zijn scherm |
-| 22 | Toetsen die bijsturen | 13 nov | plan | fase 9 | bouw | na een volledig thema |
+| 22 | Toetsen die bijsturen | 13 nov | plan | `docs/scenes.md`, Diepte en diagnose: instap, controle per scène, toets per hoofdstuk | bouw | met de scènespeler |
 | 23 | Betere spraak- en luisterfuncties, opnemen | 13 nov | deels | "horen en opschrijven" is live | bouw | opnemen en terugluisteren; luisterteksten |
 
 ## Kennis en cultuur
@@ -66,13 +66,14 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | 40 | Later, als de app naar tevredenheid werkt: een volledige backend en een volledige bibliotheek, met het oog op gebruik door anderen | 14 nov | open (bewust later) | roadmap punt 1 | – | nu alleen zorgen dat keuzes dit niet blokkeren: lesstof los van de code, niets persoonlijks, protocol beschreven |
 | 41 | Altijd een fout kunnen melden (de leerder of iemand anders), met punten; meldingen worden volledig automatisch opgepakt, geduid en in een update verwerkt | 14 nov | plan (hoeft niet direct) | `docs/automatische-redactie.md`, Fouten melden | bouw | na de redactielijn; ontvangen via een eigen meekijker (#5) |
 | 42 | Rekening houden met wat het sterkste model moet doen en wat een ander model kan | 14 nov | deels | `docs/automatische-redactie.md`, Wie doet wat | ontwerp | toegepast in de proef: schrijven en reviewen door andere modellen |
+| 43 | Diepte per onderwerp: veel meer vragen en opdrachten per scène, met een diagnostisch didactisch model erachter | 14 nov | plan | `docs/scenes.md`, Diepte en diagnose | ontwerp, dan bouw | proefhoofdstuk verdiepen volgens de nieuwe opbouw; herhaalmodel bestaat, de drie andere lagen zijn nieuw |
 
 ## Eigen voorstellen van de ontwerpsessie (goedgekeurd op 13 november)
 
 | # | Voorstel | Stand |
 |---|---|---|
 | 28 | Sommen die niet opraken | live |
-| 29 | Foutprofiel; bijna goed; oefeningen die zichzelf melden | plan (gegevens worden bewaard, nog niets gebouwd) |
+| 29 | Foutprofiel; bijna goed; oefeningen die zichzelf melden | plan: soort fout per keuze, extra stappen bij herhaalde fout, samensteller kiest op het profiel (`docs/scenes.md`) |
 | 30 | Tikbare teksten; vervolgverhaal met keuzes | plan (onderdeel van het nieuwe concept) |
 | 31 | Samen spelen aan tafel; opdrachten buiten de app; weekadvies voor de begeleider | open |
 | 32 | Knop "vertaling klopt niet" | plan (eerste stap van de herziene volgorde) |

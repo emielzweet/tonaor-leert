@@ -50,6 +50,8 @@ Geen ranglijst, niets afpakken, geen schuldgevoel, geen tijdsdruk, geen geld.
 - **Spel is de stof:** de markt, de klok, later memory en een gesprek op tijd zonder straf.
 - **Wereld en kennis:** korte leesteksten op niveau bij een plek, met tikbare woorden.
 
+> **Bijgesteld op 14 november 2026:** een scène is dieper dan in het proefscherm: 20 tot 30 antwoorden, zes tot negen minuten, met een instap, een controle en extra stappen bij fouten (`docs/scenes.md`, Diepte en diagnose). In de rekensom hieronder worden dat twee nieuwe scènes Nederlands per dag in plaats van drie, met zes tot acht nieuwe woorden per scène; het dagbudget van 16 woorden blijft gelijk en er zijn ongeveer drie hoofdstukken per week nodig in plaats van vier.
+
 ## Een week doorgerekend
 
 Uitgangspunt: het weekdoel van 10 uur, dus ongeveer 86 minuten per dag, en 16 nieuwe woorden per dag (`docs/toets-per-stap.md`).

@@ -43,6 +43,46 @@ Eisen (voor de scènetest):
 - Scène 1 en 2 van een plek: kiezen. Scène 3 en 4: afmaken (`make` met een kader). Scène 5: mix zonder steuntaal bij de eerste poging, en samen raken de vijf scènes minstens 70 procent van de doelwoorden van de plek opnieuw.
 - Namen van personen, plaatsen en bedrijven komen niet in een scène: rollen heten naar wat ze doen (de assistent, de verkoper).
 
+## Diepte en diagnose
+
+Besluit na het proefscherm (14 november 2026): een scène met twee gespreksbeurten en één opdracht is te dun. Het proefscherm liet alleen de vorm zien. Een echte scène vraagt 20 tot 30 keer iets van de leerder, duurt zes tot negen minuten, en stuurt op wat er fout gaat.
+
+### Vaste opbouw van een scène Nederlands
+
+| # | Deel | Wat | Omvang |
+|---|---|---|---|
+| 1 | Instap | weet je het al? Korte vragen over de doelwoorden, zonder steun. Wat goed gaat, maakt de grote sprong en wordt verderop overgeslagen | 3 tot 5 vragen |
+| 2 | Kijken | de tekening verkennen: woord, klank, steunregel | 4 tot 6 dingen |
+| 3 | Meteen ophalen | de woorden van zojuist, in een andere vorm (horen en kiezen, betekenis kiezen, typen) | 4 tot 6 vragen |
+| 4 | Meemaken | gesprek, leestekst of luistertekst | 4 tot 6 beurten of vragen |
+| 5 | Taal uit de tekst | het grammaticapunt: een uitgewerkt voorbeeld, daarna oefeningen waarin de hulp afbouwt | 1 voorbeeld, 3 tot 4 oefeningen |
+| 6 | Herhalen | open plekken, gevuld door de samensteller | 3 tot 5 onderdelen |
+| 7 | Doen | de opdracht van de situatie | 1 tot 2 |
+| 8 | Maken | zin afmaken of bericht schrijven (vanaf scène 3) | 1 |
+| 9 | Controle | twee vragen zonder hint over de kern van de scène; bepalen of de scène als beheerst telt | 2 |
+| 10 | Slot | wat je nu kunt, drie wegen verder | – |
+
+De lengte past zich aan: wie de instap goed maakt, slaat delen van 2, 3 en 5 over; wie fouten maakt, krijgt extra stappen (zie hieronder). Een rekenscène en een kennisles hebben dezelfde gedachte (eerst proberen, dan uitleg, dan afbouwend oefenen, dan controle), met eigen vormen.
+
+### Het diagnostische model
+
+Vier lagen. De eerste bestaat en is uitgebracht; de andere drie zijn nieuw.
+
+1. **Per onderdeel: het herhaalmodel** (). Hoe stevig zit dit woord, deze regel, deze som; wanneer komt het terug; in welke vormen is het al gelukt.
+2. **Per fout: het soort fout.** Elke foute keuze en elk fout antwoord krijgt een soort uit een vaste lijst: , , , , , , , , , , ,  (de vraag niet goed gelezen). In het pakket staat dat bij de keuze als . De app telt per soort, met meer gewicht voor recente fouten: het foutprofiel.
+3. **Direct gevolg, in de scène.** Bij een fout: de reden. Bij een tweede fout van dezelfde soort in dezelfde scène: de korte uitleg die bij die soort hoort, en twee extra oefeningen op precies dat punt (stap , met  en een lijst oefeningen). Wie het daarna goed doet, gaat verder; de scène wordt dus langer voor wie het nodig heeft.
+4. **Gevolg daarna.** De samensteller vult een deel van de open plekken met oefeningen voor de soort fout die het vaakst voorkomt, niet alleen met wat aan de beurt is. Elk hoofdstuk eindigt met een toets zonder hints (de mix van scène 5): de uitkomst is *door*, *gericht extra* (een korte herstelscène op het zwakke punt) of *sneller* (de instap van het volgende hoofdstuk telt zwaarder). De uitkomst stelt ook de schatting van de route bij (), en de begeleider ziet het foutprofiel.
+
+Onderbouwing: eerst zelf ophalen, uitgewerkte voorbeelden die afbouwen, een slagingskans van 80 tot 90 procent, en toetsen die het vervolg bepalen (, ). De drempels (tweede fout van dezelfde soort, twee extra oefeningen, twee controlevragen) zijn aannames, te toetsen in de proefweek.
+
+### Extra eisen voor de scènetest
+
+- Een scène Nederlands heeft minstens 18 momenten waarop de leerder antwoordt (zonder de open plekken).
+- Elke foute keuze heeft een  uit de lijst.
+- Bij elk grammaticapunt van het hoofdstuk hoort een stap  met minstens twee oefeningen.
+- Een gesprek heeft minstens vier beurten.
+- De controle heeft twee vragen zonder hint en zonder steuntaal.
+
 ## De tekening (`art`)
 
 Een tekening is 340 bij 214. Het pakket kiest een achtergrond en zet er dingen op; het brengt nooit eigen SVG mee.
