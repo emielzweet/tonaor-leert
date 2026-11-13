@@ -34,7 +34,7 @@ c = model(); c.S.items.regel = { ...c.api.item(), s: 3, due: 0, reps: 2 }; c.S.i
 c.api.practiced({ items: ['regel', 'woord'], exid: 'ex.1' }, false, 'gap');
 ok('fout op een oefening: alleen het doelitem krijgt de fout', c.S.items.regel.lapses === 1 && c.S.items.woord.lapses === 0 && c.S.items.woord.s === 3);
 c.api.practiced({ items: ['regel', 'woord'], exid: 'ex.2' }, true, 'gap');
-ok('goed: bij-item krijgt vorm en oefening, maar groeit niet', c.S.items.woord.s === 3 && c.S.items.woord.exs.includes('ex.2') && c.S.items.woord.forms.includes('gap'));
+ok('goed: bij-item krijgt de oefening (exs), geen vorm, en groeit niet', c.S.items.woord.s === 3 && c.S.items.woord.exs.includes('ex.2') && !c.S.items.woord.forms.includes('gap'));
 ok('goed: doelitem houdt bij welke oefening goed ging', c.S.items.regel.exs.includes('ex.2'));
 
 // 3. bloei: bekijken en de controlevraag tellen niet als vorm
@@ -123,4 +123,16 @@ ok('de app vult de soort per item uit de pakketten', html.includes("KIND[x.id]=x
 }
 // 12. tuin: regels en klanken, uitleg bij tikken, lampje bij hardnekkig
 ok('tuin: bed voor regels en klanken, tikken opent de uitleg, lampje bij hardnekkig', html.includes("const beds=['nl','regel','rek','en'];") && html.includes('if(w.xid)return openExplain(w.xid);') && html.includes("class=\"lamp\""));
+// 13. review fase 3: volle bloei komt terug, fout en direct goed geeft geen groei
+{ const m = model(); m.S.items.b = { ...m.api.item(), s: 33, t: 23 * DAY, due: 56 * DAY, reps: 9, forms: ['herkennen', 'typen', 'luisteren'] };
+  at(m, 40); const voor = m.api.thirsty('b'); at(m, 56); const op = m.api.thirsty('b'); at(m, 400); const later = m.api.thirsty('b');
+  ok('volle bloei: na de wachttijd weer aan de beurt (ook na een jaar)', m.api.stage('b') === 5 && !voor && op && later);
+  const f = model(); f.S.items.v = { ...f.api.item(), s: 9, t: 1 * DAY, due: 10 * DAY, reps: 5, forms: ['herkennen', 'typen', 'luisteren'] };
+  at(f, 10); f.api.review('v', false, 'typen'); const na = f.S.items.v.s; at(f, 10.001); f.api.review('v', true, 'typen');
+  ok('fout en direct daarna goed: geen groei, opnieuw ingepland vanaf de fout', Math.abs(f.S.items.v.s - na) < 1e-9 && Math.abs(f.S.items.v.due - (10 * DAY + na * DAY)) < 1e-6, 's ' + f.S.items.v.s);
+  at(f, 10 + na * 0.6); f.api.review('v', true, 'typen');
+  ok('na de fout op een latere dag goed: wel groei', f.S.items.v.s > na);
+  const o = model(); o.S.items.x = { ...o.api.item(), s: 4, due: 10 * DAY, reps: 3, forms: [] }; delete o.S.items.x.t; at(o, 9); o.api.review('x', true, 'typen');
+  ok('item zonder t (oude opslag): t wordt afgeleid uit due − s', Math.abs(o.S.items.x.s - 4 * (1 + 1.4 * 0.75)) < 1e-9);
+}
 console.log(fails ? fails + ' FOUT' : 'alles OK');

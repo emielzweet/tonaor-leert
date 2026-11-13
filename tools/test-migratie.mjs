@@ -115,4 +115,7 @@ ok('Alles wissen maakt eerst een reservekopie', /\$\('#yes'\)\.onclick=\(\)=>\{b
 ok('bewaren buiten stand ok: ruwe opslag met het schema van de gegevens zelf', /d=STORE==='ok'\?S:\(parseState\(rawStore\(KEY\)\)\|\|S\)/.test(h) && /schema:schemaOf\(d\)/.test(h));
 ok('geen systeemvenster (confirm) voor opnieuw beginnen', !/[^.\w]confirm\(/.test(h.slice(h.indexOf('function vRecover('), h.indexOf('function vNewer('))));
 ok('opstarten toont herstel- of bijwerkscherm', /if\(STORE==='broken'\)vRecover\(\);else if\(STORE==='newer'\)vNewer\(\);/.test(h));
+// review fase 3: de migratie vult het begin van de wachttijd (t) voor bestaande items
+r = run({ [KEY]: raw({ ...CUR, schema: 3, items: { werk: { s: 2, due: 10 * 864e5, reps: 3, lapses: 0, forms: [] }, nieuw: { s: 0, due: 5, reps: 0, lapses: 0, forms: [] } } }) });
+ok('schema 3 → 4: t = due − s voor items met voortgang, niets bij nieuwe items', r.S.items.werk.t === 8 * 864e5 && r.S.items.nieuw.t == null);
 console.log(fails ? fails + ' FOUT' : 'alles OK');

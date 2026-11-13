@@ -60,4 +60,19 @@ ok('de leerklok kan niet struikelen over het laden', html.includes('function lea
   const nieuw = new Set(got.filter(x => x.step === 2 && x.type === 'learn').map(x => x.w.id));
   ok('lage woordscore: hooguit 3 nieuwe woorden per les', nieuw.size <= 3 && nieuw.size > 0, [...nieuw].join(', '));
 }
+// review fase 3: bijsturen ook voor regels en sommen (een makkelijkere oefening)
+{ const S3 = { v: 2, introduced: [], items: {}, explained: {}, rounds: {}, log: [], days: {} };
+  const c3 = await boot({ S: S3, random: rnd }); c3.NOW = BASE;
+  vm.runInContext('let Q=[],qi=0,SESS=[];' + line('const EASIER=') + '\n' + fnBlock('adapt') + '\n' + fnBlock('easierEx') + '\nthis.ad={adapt,set:(q,s)=>{Q=q;qi=0;SESS=s},get:()=>Q};', c3);
+  const rk = c3.api.get().PACKS.find(p => p.id === 'rk-1'); S3.items['r-10'].reps = 5; S3.items['r-10'].s = 6; S3.items['r-10'].forms = ['voorbeeld', 'korting'];
+  const own = c3.api.exQ(rk.exercises.find(e => e.id === 'rk.korting.zelf.gen'), 4, 'nl', 'r-10');
+  c3.ad.set([own], [false, false, true, false]); c3.ad.adapt(); const q2 = c3.ad.get()[0];
+  ok('onder 65% goed: korting helemaal zelf wordt een lagere afbouwtrede', q2 !== own && q2._easy && (q2.k === 'worked' || q2.k === 'partial'), q2.k);
+  const nl = c3.api.get().PACKS.find(p => p.id === 'nl-t1'); S3.items['nl.regel.heb'].reps = 3; S3.items['nl.regel.heb'].forms = ['gap', 'build'];
+  const b = c3.api.exQ(nl.exercises.find(e => e.id === 'nl.zin.heb'), 3, 'nl', 'nl.regel.heb');
+  c3.ad.set([b], [false, false, false, true]); c3.ad.adapt(); const b2 = c3.ad.get()[0];
+  ok('onder 65% goed: zin bouwen wordt een kiesvorm (gatzin) voor dezelfde regel', b2.type === 'gap' && b2.items[0] === 'nl.regel.heb', b2.type);
+  c3.ad.set([b], Array(8).fill(true)); c3.ad.adapt();
+  ok('bij goed gaan blijft de oefening zoals ze is', c3.ad.get()[0] === b);
+}
 console.log(fails ? fails + ' FOUT' : 'alles OK');

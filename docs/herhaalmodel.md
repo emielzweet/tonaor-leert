@@ -139,6 +139,8 @@ De uitslag per vaardigheid (`S.placement.lv`: woorden, grammatica, luisteren, le
 
 **Bij de bouw van stap 5 (13 november 2026):** het recept kreeg de plek `practice` (`n`, `n2`, `newMax`, `kinds`). Per oefenstap komen er hooguit twee nieuwe regels of klanken (`newMax` 2) en twee nieuwe rekenvaardigheden in de eerste ronde. Wie al lessen deed, krijgt bij de migratie naar schema 4 eenmalig de regels en klanken uit de vaste les als geïntroduceerd (`f3pending`), zodat de les niet dunner wordt. Bij-items tellen niet als herhaald; de komma kreeg daarom een eigen geldopgave. Het afbouwende voorbeeld bestaat nu voor korting (`fade`); voor grammatica volgt het met de lesstof van thema 2.
 
+**Na de review van de bouw (Fable, 13 november 2026), besluit eigenaar "alles zo":** (1) ook in volle bloei komt een onderdeel na zijn wachttijd terug; (2) het begin van de wachttijd staat op het item (`t`): na een fout is `t` = nu, zodat fout en direct goed geen groei geeft (migratie vult `t` = `due − s`); (3) een bij-item krijgt alleen de oefening (`exs`), geen vorm; (4) bijsturen onder 65% geeft ook regels en sommen een makkelijkere oefening (lagere afbouwtrede of kiesvorm); (5) de service worker bewaart alleen geslaagde antwoorden; (6) een langere startmeting staat genoteerd bij fase 9.
+
 ## 11. Wat de leerder merkt
 
 - Elke ronde is anders: wat bijna vergeten is komt terug, ook grammatica, klanken en sommen.

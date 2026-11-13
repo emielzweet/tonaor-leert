@@ -110,4 +110,5 @@ ok('BUILTIN en SHELL noemen dezelfde pakketten', JSON.stringify(bi.slice().sort(
 ok('elk pakket in content/ staat in BUILTIN', files.every(f => bi.includes('content/' + f)));
 ok('pakketcheck.js staat in SHELL en wordt vóór de app geladen', shell.includes('./pakketcheck.js') && html.indexOf('<script src="pakketcheck.js">') < html.indexOf('(async function(){'));
 ok('service worker vraagt eigen bestanden vers op: geen oud pakket uit de browsercache naast nieuwe code', sw.includes("SHELL.map(u=>new Request(u,{cache:'reload'}))") && sw.includes("fetch(r.url,{cache:'no-cache'") && !/fetch(r).then/.test(sw));
+ok('service worker bewaart alleen geslaagde antwoorden', sw.includes('if(res.ok){const cp=res.clone()'));
 console.log(fails ? fails + ' FOUT' : 'alles OK');

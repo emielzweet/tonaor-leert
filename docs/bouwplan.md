@@ -162,6 +162,9 @@ Wie: de ontwerpsessie ontwerpt de spellen en bouwt de eerste twee als voorbeeld;
 
 ## Fase 9 — Toetsen die bijsturen
 
+- **Langere startmeting** (uit de review van fase 3, 13 november 2026): grammatica heeft nu 3 vragen, luisteren en Engels 2. Twee van drie goed telt al als hoog, en dat haalt iemand die gokt ongeveer één op de vier keer; dan staan alle regels als plantje. Het vangnet werkt (een fout bij de eerste controle maakt het onderdeel weer nieuw, zonder strafpunt), maar per vaardigheid horen er minstens 5 tot 6 vragen te zijn.
+- **Zeker maar toch fout krijgt voorrang** (uit het onderbouwde ontwerp, doorgeschoven uit fase 3).
+
 Doel: een toets is geen eindpunt maar bepaalt wat de leerder daarna krijgt.
 
 1. **Instaptoets per thema.** Kort, vooraf. Wat de leerder al kan, wordt als bekend gemarkeerd en hoeft niet opnieuw geleerd, alleen herhaald.

@@ -1531,10 +1531,10 @@ function exsFor(id,learn){return PACKS.filter(p=>p.learn===learn).flatMap(p=>p.e
 /* de uitleg bij een onderdeel, als die er is */
 function explForItem(id,learn){const o=EXPL_LIST.find(o=>o.learn===learn&&(o.x.items||[]).includes(id));return o?o.x.id:null}
 /* welke oefening: afbouwend voorbeeld (fade 1 voorbeeld, 2 laatste stap zelf, 3 helemaal zelf), dan een vorm die voor bloei nog ontbreekt, dan een oefening die nog niet goed ging */
-function chooseEx(id,learn){const it=S.items[id]||{forms:[],exs:[],s:0,reps:0},f=it.forms||[],x=it.exs||[];let c=exsFor(id,learn);if(!c.length)return null;
-  if(c.some(e=>e.fade)){const lv=!f.includes('voorbeeld')&&c.some(e=>e.fade===1)?1:it.s<1.5?2:3;let best=c.filter(e=>e.fade===lv);for(let l=lv+1;!best.length&&l<=3;l++)best=c.filter(e=>e.fade===l);if(best.length)c=best}
-  const k=KIND[id];if(it.reps>0&&it.lapses<4){const need=k==='rule'&&!f.includes('build')?e=>e.form==='build':k==='sound'&&!f.includes('luisteren')?e=>e.data&&e.data.mode==='type':null;if(need&&c.some(need))c=c.filter(need)}
-  if(it.lapses>=4||it.reps===0)if(k==='rule'||k==='sound'){const easy=c.filter(e=>e.form!=='build'&&!(e.data&&e.data.mode==='type'));if(easy.length)c=easy}
+function chooseEx(id,learn,easy){const it=S.items[id]||{forms:[],exs:[],s:0,reps:0},f=it.forms||[],x=it.exs||[];let c=exsFor(id,learn);if(!c.length)return null;
+  if(c.some(e=>e.fade)){const lv=easy?Math.min(...c.filter(e=>e.fade).map(e=>e.fade)):!f.includes('voorbeeld')&&c.some(e=>e.fade===1)?1:it.s<1.5?2:3;let best=c.filter(e=>e.fade===lv);for(let l=lv+1;!best.length&&l<=3;l++)best=c.filter(e=>e.fade===l);if(best.length)c=best}
+  const k=KIND[id];if(!easy&&it.reps>0&&it.lapses<4){const need=k==='rule'&&!f.includes('build')?e=>e.form==='build':k==='sound'&&!f.includes('luisteren')?e=>e.data&&e.data.mode==='type':null;if(need&&c.some(need))c=c.filter(need)}
+  if(easy||it.lapses>=4||it.reps===0)if(k==='rule'||k==='sound'){const ez=c.filter(e=>e.form!=='build'&&!(e.data&&e.data.mode==='type'));if(ez.length)c=ez}
   const fresh=c.filter(e=>e.gen||!x.includes(e.id));if(fresh.length)c=fresh;
   return shuffle(c)[0]}
 /* dezelfde oefenvorm hooguit twee keer achter elkaar */
@@ -1689,7 +1689,7 @@ const MIGRATE={
  1:s=>{if(!s.profile||typeof s.profile!=='object')s.profile={name:''};if(!LEARN.includes(s.learn))s.learn='nl';if(!SUPPORT.includes(s.sup))s.sup='th';
    if(s.v2ok&&!s.v2seen)s.v2seen=Date.now();delete s.v2ok;if(s.v2seen)s.tl1off=true;return s},
  2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s},   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
- 3:s=>{for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];if(Object.keys(s.days||{}).length&&s.f3pending==null)s.f3pending=1;return s}   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
+ 3:s=>{for(const it of Object.values(s.items||{})){if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];if(it&&typeof it==='object'&&it.t==null&&typeof it.s==='number'&&it.s>0&&typeof it.due==='number')it.t=it.due-it.s*864e5}if(Object.keys(s.days||{}).length&&s.f3pending==null)s.f3pending=1;return s}   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
 };
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
@@ -1732,7 +1732,7 @@ if(STORE==='ok')ensureCodes();
 /* herhaalmodel: stabiliteit (dagen) groeit bij goed, krimpt bij fout */
 function stage(id){const s=S.items[id].s;return s<=0?0:s<1.5?1:s<4?2:s<10?3:s<25?4:5}
 const STAGES=[['zaadje','เมล็ด','seed'],['kiemplant','ต้นอ่อน','seedling'],['plantje','ต้นเล็ก','small plant'],['knop','ดอกตูม','bud'],['bloem','ดอกไม้','flower'],['in volle bloei','บานเต็มที่','in full bloom']];
-function thirsty(id){const it=S.items[id];return !!it&&it.reps>0&&it.due<=now()&&stage(id)<5}
+function thirsty(id){const it=S.items[id];return !!it&&it.reps>0&&it.due<=now()}   // ook in volle bloei: na de wachttijd komt het terug (review fase 3, punt 1)
 function review(id,res,form,exid,passive){
   /* res: true = goed bij de eerste poging, 'retry' = goed na een hint of tweede poging, false = fout.
      passive: een bij-item van een oefening; telt alleen bij goed, voor vormen en oefeningen, zonder groei (docs/herhaalmodel.md sectie 3).
@@ -1741,13 +1741,15 @@ function review(id,res,form,exid,passive){
   const it=S.items[id];if(!it)return;if(!Array.isArray(it.exs))it.exs=[];
   if(passive&&res!==true)return;
   if(!passive&&it.placed){delete it.placed;if(res===false){it.s=0;it.reps=0;it.due=now();S.introduced=S.introduced.filter(x=>x!==id);S.log.push({t:now(),id,ok:false,pl:1});if(S.log.length>600)S.log.shift();save();return}}   // uit de startmeting en toch fout: als nieuw, geen fout (sectie 9)
-  if(res===true||res==='retry'){if(form&&!it.forms.includes(form))it.forms.push(form);if(exid&&!it.exs.includes(exid)){it.exs.push(exid);if(it.exs.length>10)it.exs.shift()}}
+  if(res===true||res==='retry'){if(form&&!passive&&!it.forms.includes(form))it.forms.push(form);if(exid&&!it.exs.includes(exid)){it.exs.push(exid);if(it.exs.length>10)it.exs.shift()}}
   if(!passive)it.reps++;
   if(!passive){
-    if(res===true){if(it.s<=0){it.s=1;it.due=now()+DAY}
-      else{const f=Math.min(1,(now()-(it.due-it.s*DAY))/(it.s*DAY));if(f>=.5){it.s=Math.min(120,it.s*(1+1.4*f));if(it.s>=10&&!canBloom(id,it))it.s=9;it.due=now()+it.s*DAY}}}
-    else if(res==='retry'){it.due=now()+Math.max(0,it.s)*DAY}
-    else{it.lapses++;it.s=Math.max(.5,it.s*.4);it.due=now()}}
+    /* it.t = begin van de huidige wachttijd (laatste fout, groei of inplanning). Na een fout: t = nu, dus direct daarna goed geeft geen groei (review fase 3, punt 2). */
+    const t0=typeof it.t==='number'?it.t:it.due-Math.max(0,it.s)*DAY;
+    if(res===true){if(it.s<=0){it.s=1;it.t=now();it.due=now()+DAY}
+      else{const f=Math.min(1,(now()-t0)/(it.s*DAY));if(f>=.5){it.s=Math.min(120,it.s*(1+1.4*f));if(it.s>=10&&!canBloom(id,it))it.s=9;it.t=now();it.due=now()+it.s*DAY}else{it.t=t0;it.due=t0+it.s*DAY}}}
+    else if(res==='retry'){it.t=now();it.due=now()+Math.max(0,it.s)*DAY}
+    else{it.lapses++;it.s=Math.max(.5,it.s*.4);it.t=now();it.due=now()}}
   S.log.push({t:now(),id,ok:res===true,...(res==='retry'?{r:1}:{}),...(exid?{ex:exid}:{}),...(passive?{p:1}:{})});if(S.log.length>600)S.log.shift();
   if(!passive&&res===true&&it.lapses>=4){const L=S.log.filter(e=>e.id===id&&!e.p).slice(-3);if(L.length===3&&L.every(e=>e.ok))it.lapses=2}   // hardnekkig: na 3 keer achter elkaar goed weer gewoon (sectie 8)
   save();
@@ -1975,8 +1977,12 @@ function finishTime(){save();syncUp(true)}   // leertijd telt de klok (leertijd 
 const EASIER={recall:'recog',hear:'recog',enrecall:'enrecog',enhear:'enrecog'},HARDER={recog:'recall',enrecog:'enrecall'};
 function adapt(){const last=SESS.slice(-8);if(last.length<4)return;const acc=last.filter(Boolean).length/last.length;
   for(let i=qi;i<Q.length;i++){const q=Q[i];if(q._t)continue;
-    if(acc<.65){if(q._new)q._skip=true;else if(EASIER[q.type]&&q.w&&S.introduced.includes(q.w.id))q.type=EASIER[q.type]}
+    if(acc<.65){if(q._new)q._skip=true;else if(EASIER[q.type]&&q.w&&S.introduced.includes(q.w.id))q.type=EASIER[q.type];else if(!q.w&&q.items&&q.items.length&&q.exid&&!q._easy)Q[i]=easierEx(q)||q}
     else if(acc>.95&&last.length>=8&&HARDER[q.type]&&q.w&&((S.items[q.w.id]||{}).forms||[]).includes('herkennen'))q.type=HARDER[q.type]}}
+/* een makkelijkere oefening voor hetzelfde onderdeel, als die er is: lagere afbouwtrede (fade) of een kiesvorm i.p.v. bouwen of opschrijven */
+function easierEx(q){try{const base=q.exid.split('#')[0],P=PACKS.find(p=>(p.exercises||[]).some(e=>e.id===base));if(!P)return null;const cur=P.exercises.find(e=>e.id===base),id=q.items[0];
+  const hard=e=>(e.fade||0)*2+(e.form==='build'||(e.data&&e.data.mode==='type')?1:0),e=chooseEx(id,P.learn,true);if(!e||hard(e)>=hard(cur))return null;
+  const n=exQ(e,q.step,P.learn==='en'?'en':'nl',id);if(n)n._easy=1;return n}catch(err){return null}}
 function next(){qi++;adapt();window.scrollTo(0,0);step()}
 function step(){voicePend=null;while(Q[qi]&&Q[qi]._skip)qi++;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
 function score(ok,n,part){sessTotal++;SESS.push(!!ok);if(ok){sessRight++;sp+=n;addPts(n)}else if(part>0){sp+=part;addPts(part)}}
@@ -2239,7 +2245,7 @@ H.place=q=>{const sl=!nlOnly()&&Array.isArray(L_(q.p)),p={...q.p,o:nlOnly()&&q.p
 /* startmeting gebruiken (docs/herhaalmodel.md sectie 9): bij een hoge score (vanaf 0,67) komen de basisonderdelen van die vaardigheid
    binnen als plantje (s 2, over 2 dagen gecontroleerd), met placed. Alleen onderdelen zonder voortgang; bestaande voortgang blijft staan. */
 function placeFromLevels(lv){const hi=k=>((lv||{})[k]||0)>=.67,ids=(learn,kinds)=>PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>kinds.includes(x.kind)).map(x=>x.id);
-  const mark=id=>{const it=S.items[id];if(!it||it.reps>0)return;it.s=2;it.reps=1;it.due=now()+2*DAY;it.placed=1;if(!S.introduced.includes(id))S.introduced.push(id)};
+  const mark=id=>{const it=S.items[id];if(!it||it.reps>0)return;it.s=2;it.reps=1;it.t=now();it.due=now()+2*DAY;it.placed=1;if(!S.introduced.includes(id))S.introduced.push(id)};
   if(hi('woorden'))NL.slice(0,6).forEach(w=>mark(w.id));
   if(hi('grammatica'))ids('nl',['rule']).forEach(mark);
   if(hi('luisteren'))ids('nl',['sound']).forEach(mark);
