@@ -21,7 +21,7 @@ export async function boot({ S = { v: 2, introduced: [], items: {} }, englishDay
     nlOnly: () => false, supL: () => 'th', supAttr: () => 'lang="th"', supSpan: s => s, bi: (a, b) => a + '|' + b, T: k => k, LANG: {}, icon: { play: '' }, say() {}, $: () => null, now: () => ctx.NOW, isEnglishDay: () => englishDay, NOW: Date.now() };
   vm.createContext(ctx);
   vm.runInContext(packCode + '\n' + fnBlock('stage') + '\n' + fnBlock('thirsty') + '\n' + shuffleCode + '\n' + fnBlock('startLesson') + '\n' + fnBlock('startEnglish')
-    + '\nthis.api={loadPacks,compose,startLesson,startEnglish,explFor,get:()=>({PACKS,PACK_MISSING,NL,EN,REK,SENT,PAIRS,DICTEE,STORY,PLACE,EXPL,EXPL_LIST})};', ctx);
+    + '\nthis.api={loadPacks,compose,startLesson,startEnglish,explFor,exQ:(e,s,l)=>exQ(e,s,l),get:()=>({PACKS,PACK_MISSING,NL,EN,REK,SENT,PAIRS,DICTEE,STORY,PLACE,EXPL,EXPL_LIST})};', ctx);
   await ctx.api.loadPacks();
   return ctx;
 }

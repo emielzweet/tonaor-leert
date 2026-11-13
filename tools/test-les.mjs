@@ -1,4 +1,5 @@
-// Fase 2, test 2: zelfde les. De samensteller levert met vaste opslag en vaste zaadwaarde precies de rij van vóór fase 2 (tools/les-verwacht.json).
+// Zelfde les: de samensteller levert met vaste opslag en vaste zaadwaarde precies de vastgelegde rij (tools/les-verwacht.json).
+// Verandert de les bewust, leg dan opnieuw vast met: node tools/les-vastleggen.mjs --huidig (en zeg dat in de commit).
 import { readFileSync } from 'node:fs';
 import { boot } from './app-harness.mjs';
 import { SCENARIOS, summarize, seeded } from './les-scenarios.mjs';
@@ -17,5 +18,5 @@ for (const sc of SCENARIOS) {
 const ctx = await boot({ S: SCENARIOS[2].state(), random: seeded(3) }); ctx.NOW = SCENARIOS[2].now;
 let q = null; ctx.runSession = (n, x) => { q = x; }; ctx.api.startLesson(false);
 ok('kaarten hebben een weergave', q.filter(x => x.type === 'card').every(x => typeof x.html === 'function'));
-ok('gatzin, klok en geld hebben hun gegevens', q.find(x => x.type === 'gap').o.length === 2 && q.find(x => x.type === 'clock').c.qTh && q.find(x => x.type === 'money').d.coins.length === 4);
+ok('gatzin, klok en geld hebben hun gegevens', q.find(x => x.type === 'gap').o.length === 2 && q.find(x => x.type === 'clock').c.qTh && q.find(x => x.type === 'money').d.coins.length >= 3 && q.find(x => x.type === 'money').d.o.length === 4 && q.find(x => x.type === 'money').d.o.includes(q.find(x => x.type === 'money').d.a));
 console.log(fails ? fails + ' FOUT' : 'alles OK');

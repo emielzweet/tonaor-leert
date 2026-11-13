@@ -1,7 +1,7 @@
 {
  "format": 1,
  "id": "nl-t1",
- "version": 1,
+ "version": 2,
  "learn": "nl",
  "level": "A2-B1",
  "order": 10,
@@ -1137,11 +1137,11 @@
   },
   {
    "step": 4,
-   "ex": "rk.geld.1"
+   "ex": "rk.geld.gen"
   },
   {
    "step": 4,
-   "ex": "rk.klok.dienst"
+   "ex": "rk.klok.gen"
   },
   {
    "step": 4,
@@ -1149,7 +1149,7 @@
   },
   {
    "step": 4,
-   "ex": "rk.korting.deel"
+   "ex": "rk.korting.deel.gen"
   },
   {
    "step": 5,
@@ -1180,7 +1180,7 @@
   },
   {
    "step": 4,
-   "ex": "rk.klok.halfvier"
+   "ex": "rk.klok.gen"
   },
   {
    "step": 5,

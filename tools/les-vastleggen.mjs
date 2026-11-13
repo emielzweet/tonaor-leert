@@ -1,6 +1,21 @@
 // Legt de les van vóór fase 2 vast als verwachte uitkomst (tools/les-verwacht.json).
 // Eenmalig gedraaid op de code van vóór de ombouw; tools/test-les.mjs vergelijkt de nieuwe samensteller hiermee.
 // Gebruik: node tools/les-vastleggen.mjs <pad naar index.html van vóór fase 2>
+//      of: node tools/les-vastleggen.mjs --huidig   (legt de les van de huidige code en pakketten vast, na een bewuste wijziging)
+if (process.argv[2] === '--huidig') {
+  const { boot } = await import('./app-harness.mjs');
+  const { SCENARIOS: SC, summarize: sum, seeded: sd } = await import('./les-scenarios.mjs');
+  const out = {};
+  for (const sc of SC) {
+    const ctx = await boot({ S: sc.state(), englishDay: sc.englishDay, random: sd(sc.seed) }); ctx.NOW = sc.now;
+    let got = null; ctx.runSession = (name, q) => { got = { name, q }; };
+    if (sc.kind === 'en') ctx.api.startEnglish(); else ctx.api.startLesson(sc.kind === 'short');
+    out[sc.name] = sum(got);
+  }
+  writeFileSync(new URL('./les-verwacht.json', import.meta.url), JSON.stringify(out, null, 1));
+  console.log('vastgelegd (huidige code):', Object.keys(out).join(', '));
+  process.exit(0);
+}
 import vm from 'node:vm';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { SCENARIOS, summarize, seeded } from './les-scenarios.mjs';

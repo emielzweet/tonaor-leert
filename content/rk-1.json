@@ -1,7 +1,7 @@
 {
  "format": 1,
  "id": "rk-1",
- "version": 1,
+ "version": 2,
  "learn": "nl",
  "level": "A2-B1",
  "order": 5,
@@ -184,6 +184,97 @@
     "thing": "schoenen",
     "price": 80,
     "pct": 20
+   }
+  },
+  {
+   "id": "rk.geld.gen",
+   "form": "money",
+   "items": [
+    "r-geld",
+    "r-komma"
+   ],
+   "gen": {
+    "coins": [
+     1000,
+     500,
+     200,
+     100,
+     50,
+     20,
+     10
+    ],
+    "n": [
+     3,
+     6
+    ]
+   }
+  },
+  {
+   "id": "rk.klok.gen",
+   "form": "clock",
+   "items": [
+    "r-klok"
+   ],
+   "gen": {
+    "q": {
+     "nl": "Hoe laat is het?",
+     "th": "กี่โมงแล้ว",
+     "en": "What time is it?"
+    },
+    "h": [
+     1,
+     12
+    ],
+    "m": [
+     0,
+     15,
+     30,
+     45
+    ]
+   }
+  },
+  {
+   "id": "rk.korting.deel.gen",
+   "form": "discount",
+   "items": [
+    "r-25",
+    "r-10"
+   ],
+   "gen": {
+    "mode": "part",
+    "pct": [
+     10,
+     25,
+     50
+    ],
+    "price": [
+     20,
+     120,
+     20
+    ]
+   }
+  },
+  {
+   "id": "rk.korting.zelf.gen",
+   "form": "discount",
+   "items": [
+    "r-10",
+    "r-25"
+   ],
+   "gen": {
+    "mode": "own",
+    "pct": [
+     10,
+     20,
+     25,
+     30,
+     50
+    ],
+    "price": [
+     20,
+     200,
+     20
+    ]
    }
   }
  ]

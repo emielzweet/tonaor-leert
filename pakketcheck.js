@@ -157,6 +157,32 @@
       if (c.compare) { str(c.compare.nl, w + '.compare.nl'); str(c.compare.en, w + '.compare.en'); }
       if (c.say != null) str(c.say, w + '.say');
     });
+    // sommen die niet opraken (docs/herhaalmodel.md sectie 4): een recept met bereiken in plaats van vaste getallen
+    var COINS = [1000, 500, 200, 100, 50, 20, 10, 5], MINS = [0, 15, 30, 45], PCTS = [10, 20, 25, 30, 50];
+    var rng = function (a) { return Array.isArray(a) && a.length >= 2 && a.every(function (n) { return typeof n === 'number' && isFinite(n); }) && a[0] <= a[1]; };
+    var genCheck = function (e, w) {
+      var g = e.gen;
+      if (!g || typeof g !== 'object') { err(w + ': gen moet een object zijn'); return; }
+      if (!Array.isArray(e.items) || !e.items.length) err(w + ': items ontbreekt');
+      else e.items.forEach(function (r) { if (!find('items', r)) err(w + ': item ' + r + ' bestaat niet'); else useCount[r] = (useCount[r] || 0) + 1; });
+      if (e.pool != null && (typeof e.pool !== 'string' || !ID.test(e.pool))) err(w + ': ongeldige groepsnaam');
+      switch (e.form) {
+        case 'money':
+          if (!Array.isArray(g.coins) || !g.coins.length || !g.coins.every(function (c) { return COINS.indexOf(c) >= 0; })) err(w + ': gen.coins mag alleen bestaande munten en briefjes bevatten (' + COINS.join(', ') + ' cent)');
+          if (!rng(g.n) || g.n[0] < 2 || g.n[1] > 8) err(w + ': gen.n moet een bereik van 2 tot 8 munten zijn'); break;
+        case 'clock':
+          tekst(g.q, w + '.gen.q');
+          if (!rng(g.h) || g.h[0] < 1 || g.h[1] > 12) err(w + ': gen.h moet een bereik binnen 1 tot 12 zijn');
+          if (!Array.isArray(g.m) || !g.m.length || !g.m.every(function (m) { return MINS.indexOf(m) >= 0; })) err(w + ': gen.m kent alleen hele uren en kwartieren (0, 15, 30, 45)'); break;
+        case 'discount':
+          if (['part', 'own'].indexOf(g.mode) < 0) err(w + ': gen.mode moet part of own zijn');
+          if (!Array.isArray(g.pct) || !g.pct.length || !g.pct.every(function (x) { return PCTS.indexOf(x) >= 0; })) err(w + ': gen.pct kent alleen ' + PCTS.join(', ') + ' procent');
+          if (!Array.isArray(g.price) || g.price.length !== 3 || !rng(g.price) || !(g.price[2] > 0)) err(w + ': gen.price moet [laagste, hoogste, stap] zijn');
+          else for (var pr = g.price[0]; pr <= g.price[1]; pr += g.price[2]) (g.pct || []).forEach(function (x) { if (Math.round(pr * x) % 100) err(w + ': ' + x + '% van ' + pr + ' is geen heel bedrag'); });
+          break;
+        default: err(w + ': gen kan alleen bij geld, klok en korting');
+      }
+    };
     // oefeningen
     var tested = {};
     ((p.tests && p.tests.placement) || []).forEach(function (e) { tested[e] = 1; if (!find('exercises', e)) err(id + '.tests: oefening ' + e + ' bestaat niet'); });
@@ -172,7 +198,8 @@
       if (e.qtype != null && QTYPES.indexOf(e.qtype) < 0) err(w + ': onbekend vraagtype ' + e.qtype);
       if (e.para != null && !(Number.isInteger(e.para) && e.para >= 0)) err(w + ': para moet een getal zijn');
       if (e.data && e.data.lang != null && e.data.lang !== 'en') err(w + ': data.lang kent alleen "en"');
-      if (!e.data) err(w + ': data ontbreekt');
+      if (!e.data && !e.gen) err(w + ': data of gen ontbreekt');
+      if (e.gen) { genCheck(e, w); return; }
       var opts = function (o, a, n) { if (!Array.isArray(o) || o.length < 2) { err(w + ': opties ontbreken'); return; } if (n && o.length !== n) err(w + ': precies ' + n + ' opties nodig'); };
       switch (e.form) {
         case 'build':

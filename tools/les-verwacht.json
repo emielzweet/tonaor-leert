@@ -113,7 +113,7 @@
    {
     "type": "clock",
     "step": 4,
-    "c": "zes uur"
+    "c": "half twee"
    },
    {
     "type": "discount",
@@ -234,7 +234,7 @@
    {
     "type": "clock",
     "step": 4,
-    "c": "zes uur"
+    "c": "twee uur"
    },
    {
     "type": "discount",
@@ -370,7 +370,7 @@
    {
     "type": "clock",
     "step": 4,
-    "c": "zes uur"
+    "c": "kwart voor acht"
    },
    {
     "type": "discount",
@@ -481,7 +481,7 @@
    {
     "type": "clock",
     "step": 4,
-    "c": "zes uur"
+    "c": "twee uur"
    },
    {
     "type": "discount",
@@ -567,7 +567,7 @@
    {
     "type": "clock",
     "step": 4,
-    "c": "zes uur"
+    "c": "tien uur"
    },
    {
     "type": "discount",
@@ -620,7 +620,7 @@
    {
     "type": "clock",
     "step": 4,
-    "c": "half vier"
+    "c": "kwart voor vijf"
    },
    {
     "type": "conf",
@@ -653,7 +653,7 @@
    {
     "type": "clock",
     "step": 4,
-    "c": "half vier"
+    "c": "kwart over één"
    },
    {
     "type": "conf",
