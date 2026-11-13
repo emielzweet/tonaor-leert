@@ -109,4 +109,5 @@ const bi = builtin();
 ok('BUILTIN en SHELL noemen dezelfde pakketten', JSON.stringify(bi.slice().sort()) === JSON.stringify(shell.filter(s => s.startsWith('./content/')).map(s => s.slice(2)).sort()), 'BUILTIN ' + bi + ' / SHELL ' + shell);
 ok('elk pakket in content/ staat in BUILTIN', files.every(f => bi.includes('content/' + f)));
 ok('pakketcheck.js staat in SHELL en wordt vóór de app geladen', shell.includes('./pakketcheck.js') && html.indexOf('<script src="pakketcheck.js">') < html.indexOf('(async function(){'));
+ok('service worker vraagt eigen bestanden vers op: geen oud pakket uit de browsercache naast nieuwe code', sw.includes("SHELL.map(u=>new Request(u,{cache:'reload'}))") && sw.includes("fetch(r.url,{cache:'no-cache'") && !/fetch(r).then/.test(sw));
 console.log(fails ? fails + ' FOUT' : 'alles OK');
