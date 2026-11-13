@@ -1,6 +1,6 @@
 # Route met tijd: blokken, tempo en een verwachte examendatum
 
-Status: **ontwerp, 14 november 2026, wacht op akkoord van de eigenaar.** Werkt bouwplan fase 5 (routekaart) uit en hoort bij `docs/leerroute.md` en `docs/concept-leerwereld.md`.
+Status: **ontwerp, 14 november 2026. Akkoord van de eigenaar op alle besluiten onderaan, volgens het advies.** Werkt bouwplan fase 5 (routekaart) uit en hoort bij `docs/leerroute.md` en `docs/concept-leerwereld.md`.
 
 ## Waarom
 

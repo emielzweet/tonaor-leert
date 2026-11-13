@@ -49,8 +49,10 @@ De ervaringstest (`node tools/test-ervaring.mjs --streng`): met thema 1 en de 10
 ## Open besluiten voor de eigenaar
 
 - Nieuw concept (kaart, scènes, album): docs/concept-leerwereld.md. Richting goedgekeurd op 14 november 2026; vier besluiten staan onderaan dat ontwerp. Akkoord op alle vier (14 november 2026): stap 1 en 2 mogen gebouwd worden; formaat en tekencatalogus in docs/scenes.md, `scene.js` en docs/voorbeeld-scene.json. Pushen en stap 4 blijven een apart akkoord.
-- Route met tijd en een verwachte examendatum: docs/route-en-prognose.md (vier besluiten, wacht op akkoord).
-- Aanvoer van lesmateriaal en het scherm van de begeleider: docs/aanvoer-en-begeleider.md (drie besluiten, wacht op akkoord).
+- Route met tijd en een verwachte examendatum: docs/route-en-prognose.md. Akkoord op de vier besluiten (14 november 2026); bouwen na de scènespeler.
+- Scherm van de begeleider: docs/aanvoer-en-begeleider.md, deel 2. Akkoord (14 november 2026): in één keer, na de scènespeler; eerst de widget, dan de app.
+- Automatische redactie (lesstof, fout melden met punten, vragen van de leerder, wie doet wat): docs/automatische-redactie.md, werkbestanden in redactie/. Richting akkoord; de proef met het hoofdstuk "bij de dokter" loopt. Voor de bouwsessie volgt hieruit: lesstof los van de code (content/index.json) en redactie/uitbrengen. Zelf uitbrengen door de lijn gaat pas in als de regel in CLAUDE.md staat.
+- Wereld en kennis: geen vast stramien per stroming; één specifieke vraag per les (docs/concept-leerwereld.md).
 
 - Herzien plan na gebruik: docs/plan-herzien.md (sporen A tot F, zes open besluiten). Onderzoek: docs/onderzoek-beloning.md.
 

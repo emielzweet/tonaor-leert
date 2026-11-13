@@ -48,7 +48,7 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 
 | # | Wens | Gevraagd | Stand | Waar | Wie | Volgende stap |
 |---|---|---|---|---|---|---|
-| 24 | Levensbeschouwing breed: boeddhisme, islam, christendom, jodendom, hindoeïsme, vrijmetselarij, rastafari, sjamanisme en meer | 14 nov | open | bibliotheek Wereld en kennis | ontwerp, dan bouw | stramien per les vastleggen; één proefles in het proefscherm |
+| 24 | Levensbeschouwing breed: boeddhisme, islam, christendom, jodendom, hindoeïsme, vrijmetselarij, rastafari, sjamanisme en meer. Geen vast stramien per stroming (dat is saai): de diepte in, echt specifieke dingen leren (14 nov) | 14 nov | plan | `docs/concept-leerwereld.md`, Wereld en kennis | ontwerp, dan redactielijn | eerste reeks van specifieke lessen in de productielijst; één proefles in het proefscherm vervangen |
 | 25 | Politiek en staatsinrichting | 14 nov | open | idem | idem | idem |
 | 26 | Geschiedenis als eigen onderdeel, veel onderwerpen | 14 nov | open | idem | idem | idem |
 | 27 | Kennislessen verweven in de gewone lessen | 14 nov | plan | `docs/concept-leerwereld.md`: een kennisles bij elke plek | ontwerp | eerste voorbeeld in het proefhoofdstuk (hoe werkt de zorg) |
@@ -57,13 +57,15 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 
 | # | Wens | Gevraagd | Stand | Waar | Wie | Volgende stap |
 |---|---|---|---|---|---|---|
-| 34 | De route realistisch tonen: blokken met de echte tijd erbij, ook als het drie jaar duurt; korter bij hard werken, langer bij weinig doen | 14 nov | plan | `docs/route-en-prognose.md` | eigenaar, dan bouw | vier besluiten in het ontwerp |
+| 34 | De route realistisch tonen: blokken met de echte tijd erbij, ook als het drie jaar duurt; korter bij hard werken, langer bij weinig doen | 14 nov | plan | `docs/route-en-prognose.md`; akkoord op de vier besluiten (14 nov) | bouw | bouwen na de scènespeler |
 | 35 | Prominent een verwachte datum voor het eerste Staatsexamen Nt2, die vervroegt en verlaat | 14 nov | plan | idem | idem | idem |
-| 36 | Het scherm van de begeleider (EDGE) meenemen in het nieuwe concept en de route | 14 nov | plan | `docs/aanvoer-en-begeleider.md`, deel 2 | eigenaar, dan bouw | besluit 2; eerst de widget, dan de app |
-| 37 | Lesmateriaal dat vanzelf wordt aangevuld en ontwikkeld, met een voorraad | 14 nov | plan | `docs/aanvoer-en-begeleider.md`, deel 1 | ontwerp | de eigenaar wil het volledig automatisch, zie wens 38 |
-| 38 | Een automatisch systeem dat nieuwe en geplande lesstof maakt wanneer die nodig is, ook zonder akkoord van de eigenaar per keer | 14 nov | open | – | ontwerp | ontwerp "automatische redactie": lijn, poorten, wat zelf beslist wordt en wat doorgaat naar de eigenaar; eerst één hoofdstuk met de hand als proef |
-| 39 | Vragen aan de eigenaar worden eerst door AI beantwoord; alleen wat AI niet kan oplossen gaat door naar de eigenaar | 14 nov | open | – | ontwerp | navragen welke vragen bedoeld zijn (van de leerder, van het systeem, of beide); dan regels voor zelf beslissen en doorzetten |
+| 36 | Het scherm van de begeleider (EDGE) meenemen in het nieuwe concept en de route | 14 nov | plan | `docs/aanvoer-en-begeleider.md`, deel 2; akkoord (14 nov): in één keer, na de scènespeler | bouw | protocol beschrijven; eerst de widget, dan de app |
+| 37 | Lesmateriaal dat vanzelf wordt aangevuld en ontwikkeld, met een voorraad | 14 nov | plan | `docs/automatische-redactie.md` | ontwerp, dan bouw | zie wens 38 |
+| 38 | Een automatisch systeem dat nieuwe en geplande lesstof maakt wanneer die nodig is, ook zonder akkoord van de eigenaar per keer | 14 nov | deels | `docs/automatische-redactie.md`, map `redactie/` (opdrachten, controle, wachtrij) | ontwerp, dan bouw | proef met één hoofdstuk loopt; dan lesstof los van de code, uitbrengen, inplannen |
+| 39 | Vragen van de leerder worden eerst door AI beantwoord; alleen wat niet helpt gaat door naar de begeleider. Het systeem zelf blijft de eigenaar voorlopig besluiten voorleggen | 14 nov | plan | `docs/automatische-redactie.md`, Vragen van de leerder | bouw | na de AI-sleutel (#11, #12) |
 | 40 | Later, als de app naar tevredenheid werkt: een volledige backend en een volledige bibliotheek, met het oog op gebruik door anderen | 14 nov | open (bewust later) | roadmap punt 1 | – | nu alleen zorgen dat keuzes dit niet blokkeren: lesstof los van de code, niets persoonlijks, protocol beschreven |
+| 41 | Altijd een fout kunnen melden (de leerder of iemand anders), met punten; meldingen worden volledig automatisch opgepakt, geduid en in een update verwerkt | 14 nov | plan (hoeft niet direct) | `docs/automatische-redactie.md`, Fouten melden | bouw | na de redactielijn; ontvangen via een eigen meekijker (#5) |
+| 42 | Rekening houden met wat het sterkste model moet doen en wat een ander model kan | 14 nov | deels | `docs/automatische-redactie.md`, Wie doet wat | ontwerp | toegepast in de proef: schrijven en reviewen door andere modellen |
 
 ## Eigen voorstellen van de ontwerpsessie (goedgekeurd op 13 november)
 

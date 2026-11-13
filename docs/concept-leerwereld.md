@@ -103,9 +103,21 @@ De scènes 1 en het rekenspel bestaan al in het proefscherm en dienen als voorbe
 3. **Proefweek.** Meten: minuten per dag, scènes per dag, hoe vaak de leerder na een scène zelf doorgaat, aandeel goed, en de tik "leuk of saai". Naast de week ervoor leggen.
 4. **Besluit, daarna de kaart als thuisscherm** en het album in plaats van de tuin.
 5. **Rekenen en Engels als eigen route** op de kaart (R1 tot R4, Engels tot A2), elk met eigen plekken.
-6. **Bibliotheek Wereld en kennis** (levensbeschouwing, politiek en bestuur, geschiedenis), met een eigen ontwerp voor het stramien en de bronnen.
+6. **Bibliotheek Wereld en kennis** (levensbeschouwing, politiek en bestuur, geschiedenis). Zie "Wereld en kennis: de diepte in" hieronder.
 
 Werkverdeling: de ontwerpsessie levert `scene.js` (de tekencatalogus) en het uitgeschreven proefhoofdstuk als voorbeeld; de bouwsessie bouwt de speler, de opslag, de tests en de overige lesstof, en doet de releases.
+
+## Wereld en kennis: de diepte in
+
+Besluit van de eigenaar (14 november 2026): **geen vast stramien per stroming.** Een rijtje "oorsprong, kernideeën, feesten, plekken" voor elke stroming is een folder, geen les, en wordt snel saai. Elke kennisles leert één ding dat specifiek is en dat je kunt navertellen.
+
+- **Eén les, één vraag.** De titel is een vraag waar een volwassene nieuwsgierig van wordt, geen onderwerp. Niet *Het boeddhisme*, maar *Waarom scheert een monnik zijn hoofd?* Niet *De Tweede Kamer*, maar *Waarom zitten er 150 mensen in, en niet 100?*
+- **De diepte in, niet de breedte.** Een stroming krijgt een reeks van veel kleine lessen, elk vanuit een andere hoek: een voorwerp, een ritueel, een dag uit een leven, een woord en waar het vandaan komt, een misverstand (*Klopt het dat …?*), een plek, een jaartal, een ruzie binnen de stroming, een vergelijking met een andere stroming.
+- **Volwassen inhoud in eenvoudige taal.** Het niveau van de taal volgt de leerder; het niveau van de inhoud niet.
+- **Geen vaste volgorde van onderdelen.** De vorm volgt de vraag: een verhaal, een beeld met aantikbare delen, een tijdlijn, twee meningen naast elkaar, een keuze (*wat zou jij doen?*).
+- **Elke les eindigt met iets om te vertellen of te vragen** aan tafel of aan iemand die erbij hoort.
+- **Feiten blijven gecontroleerd.** De redactielijn eist per les een bron en de reviewer controleert die; dat is de waarborg, juist bij geloof en politiek. De bronnen staan niet in de weg: ze zitten achter een tik.
+- **Gelijkwaardig zonder gelijkvormig:** elke stroming krijgt evenveel aandacht en dezelfde toon (beschrijven, niet oordelen), maar niet dezelfde hokjes.
 
 ## Besluiten van de eigenaar (14 november 2026)
 

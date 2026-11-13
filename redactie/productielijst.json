@@ -1,0 +1,24 @@
+{
+  "uitleg": "De wachtrij van de redactielijn. stand: gepland | geschreven | gereviewd | klaar | uitgebracht. De volgorde volgt docs/leerroute.md.",
+  "hoofdstukken": [
+    {
+      "id": "nl-dokter",
+      "place": "dokter",
+      "blok": "N1",
+      "level": "A1-A2",
+      "stand": "gepland",
+      "titel": "Bij de dokter",
+      "grammatica": ["willen, kunnen en moeten met een tweede werkwoord aan het eind", "een zin die met een tijd begint: het werkwoord blijft op plek twee (Morgen kan ik niet)"],
+      "woordvelden": ["afspraak en tijd", "lichaamsdelen en klachten", "aan de balie: gegevens geven", "medicijnen"],
+      "scenes": [
+        { "n": 1, "titel": "De praktijk bellen", "meemaken": "telefoongesprek", "doen": "de klok zetten op de afgesproken tijd", "kunnen": "een afspraak maken", "opmerking": "bestaat al: neem docs/voorbeeld-scene.json over en sluit de item-id's aan" },
+        { "n": 2, "titel": "Aan de balie", "meemaken": "gesprek met de assistent", "doen": "een geboortedatum kiezen, zeggen voor wie de afspraak is", "kunnen": "je melden en gegevens geven" },
+        { "n": 3, "titel": "In de spreekkamer", "meemaken": "gesprek over klachten", "doen": "lichaamsdelen aanwijzen in de tekening; zin afmaken: Ik heb pijn aan …", "kunnen": "zeggen wat je voelt" },
+        { "n": 4, "titel": "De afspraak verzetten", "meemaken": "een bericht lezen", "doen": "een kort bericht schrijven met een schrijfkader", "kunnen": "een afspraak verzetten" },
+        { "n": 5, "titel": "Terug voor controle", "meemaken": "gesprek zonder steuntaal bij de eerste poging", "doen": "eigen zinnen kiezen en afmaken (mix)", "kunnen": "het hele bezoek zelf doen" },
+        { "subject": "rk", "titel": "Bij de apotheek", "meemaken": "een etiket lezen: 3 keer per dag 2 tabletten", "doen": "uitrekenen hoeveel tabletten voor een week; betalen en wisselgeld", "kunnen": "een etiket en een bedrag begrijpen" },
+        { "subject": "kn", "titel": "Hoe werkt de zorg hier?", "meemaken": "leestekst van 80 tot 120 woorden: huisarts, verwijzing, zorgverzekering", "doen": "twee vragen bij de tekst", "kunnen": "weten waar je heen gaat" }
+      ]
+    }
+  ]
+}

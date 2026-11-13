@@ -1,6 +1,6 @@
 # Aanvoer van lesmateriaal en het scherm van de begeleider
 
-Status: **ontwerp, 14 november 2026, wacht op akkoord van de eigenaar.** Twee dingen die in de eerdere ontwerpen te licht zijn meegenomen: hoe er genoeg lesmateriaal komt zonder dat elke stap apart gevraagd moet worden, en wat de begeleider op zijn scherm ziet van het nieuwe concept en de route.
+Status: **ontwerp, 14 november 2026. Akkoord van de eigenaar op alle besluiten onderaan, volgens het advies.** Twee dingen die in de eerdere ontwerpen te licht zijn meegenomen: hoe er genoeg lesmateriaal komt zonder dat elke stap apart gevraagd moet worden, en wat de begeleider op zijn scherm ziet van het nieuwe concept en de route.
 
 ## Stand van nu, eerlijk
 
