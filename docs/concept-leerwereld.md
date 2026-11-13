@@ -1,6 +1,6 @@
 # Concept: de leerwereld (verhaal in scènes, kaart als thuisscherm)
 
-Status: **ontwerp, 14 november 2026. De richting is door de eigenaar goedgekeurd op basis van het aanklikbare proefscherm (versie 2). Bouwen begint pas na akkoord op de besluiten onderaan.** Vervangt het concept van de tuin als hoofdscherm; vult `docs/bouwplan.md` (fase 7 en 8) en `docs/plan-herzien.md` (spoor E) in.
+Status: **ontwerp, 14 november 2026. De richting is door de eigenaar goedgekeurd op basis van het aanklikbare proefscherm (versie 2). Akkoord op de vier besluiten onderaan: stap 1 en 2 mogen gebouwd worden.** Vervangt het concept van de tuin als hoofdscherm; vult `docs/bouwplan.md` (fase 7 en 8) en `docs/plan-herzien.md` (spoor E) in.
 
 ## Waarom
 
@@ -107,9 +107,11 @@ De scènes 1 en het rekenspel bestaan al in het proefscherm en dienen als voorbe
 
 Werkverdeling: de ontwerpsessie levert `scene.js` (de tekencatalogus) en het uitgeschreven proefhoofdstuk als voorbeeld; de bouwsessie bouwt de speler, de opslag, de tests en de overige lesstof, en doet de releases.
 
-## Besluiten voor de eigenaar
+## Besluiten van de eigenaar (14 november 2026)
 
-1. **Proefhoofdstuk naast de huidige les** (advies: zo verliest de leerder niets als het tegenvalt), of de les meteen vervangen?
-2. **De tuin wordt het album** na de proefweek (advies), of blijft de tuin als extra scherm bestaan?
-3. **Het figuurtje op de kaart:** neutraal, met een kleur die de leerder kiest (advies), of geen figuur?
-4. **De volgorde van de stappen:** zoals hierboven (advies), of eerst rekenen en Engels als route (stap 5) vóór de proefweek?
+1. Het proefhoofdstuk komt **naast de huidige les**; de les blijft.
+2. **De tuin wordt het album,** na de proefweek.
+3. Een **neutraal figuurtje** op de kaart, met een kleur die de leerder kiest.
+4. **De volgorde van de stappen** zoals hierboven.
+
+Stap 1 en 2 mogen gebouwd worden. Pushen, de kaart als thuisscherm (stap 4) en elke volgende stap blijven een apart akkoord. Formaat van een scène en de tekencatalogus: `docs/scenes.md`.

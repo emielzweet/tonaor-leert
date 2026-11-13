@@ -14,7 +14,7 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | 2 | Lesstof los van de code | 13 nov | live | fase 2 | – | – |
 | 3 | Herhaling die klopt, bloei haalbaar, les die varieert | 13 nov | live | fase 3 | bouw | #28 en #29 sluiten na de test op de telefoon |
 | 4 | Kwaliteit van oefeningen geborgd op de didactiek van de drie boeken | 13 nov | deels | kwaliteitskader, pakketcontrole | bouw | 115 kwaliteitsmeldingen wegwerken; thema 1 volledig |
-| 5 | Leerroute realistisch: de stof van de drie boeken, rekenen en Engels onderzocht | 13 nov | deels | `docs/leerroute.md` | bouw | de routekaart in de app toont de oude route nog; lesstof volgt per thema |
+| 5 | Leerroute realistisch: de stof van de drie boeken, rekenen en Engels onderzocht | 13 nov | deels | `docs/leerroute.md` | bouw | de routekaart in de app toont de oude route nog (zie wens 34 en 35); lesstof volgt per thema (zie wens 37) |
 | 6 | Veel meer woorden; 4 per ronde is te weinig | 13 nov | plan | spoor A en F | bouw | dagbudget 16, frequentielijst deel 1 |
 | 7 | Bekende woorden snel voorbij; "zeker" telt | 13 nov | plan | spoor F | bouw | eerste vraag goed = grote sprong met één controle |
 | 8 | Niet direct achter elkaar herhalen | 13 nov | deels | spoor F | bouw | spreiding binnen een ronde; ervaringstest |
@@ -52,6 +52,15 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | 25 | Politiek en staatsinrichting | 14 nov | open | idem | idem | idem |
 | 26 | Geschiedenis als eigen onderdeel, veel onderwerpen | 14 nov | open | idem | idem | idem |
 | 27 | Kennislessen verweven in de gewone lessen | 14 nov | plan | `docs/concept-leerwereld.md`: een kennisles bij elke plek | ontwerp | eerste voorbeeld in het proefhoofdstuk (hoe werkt de zorg) |
+
+## Route, begeleider en aanvoer (gevraagd op 14 november)
+
+| # | Wens | Gevraagd | Stand | Waar | Wie | Volgende stap |
+|---|---|---|---|---|---|---|
+| 34 | De route realistisch tonen: blokken met de echte tijd erbij, ook als het drie jaar duurt; korter bij hard werken, langer bij weinig doen | 14 nov | plan | `docs/route-en-prognose.md` | eigenaar, dan bouw | vier besluiten in het ontwerp |
+| 35 | Prominent een verwachte datum voor het eerste Staatsexamen Nt2, die vervroegt en verlaat | 14 nov | plan | idem | idem | idem |
+| 36 | Het scherm van de begeleider (EDGE) meenemen in het nieuwe concept en de route | 14 nov | plan | `docs/aanvoer-en-begeleider.md`, deel 2 | eigenaar, dan bouw | besluit 2; eerst de widget, dan de app |
+| 37 | Lesmateriaal dat vanzelf wordt aangevuld en ontwikkeld, met een voorraad | 14 nov | plan | `docs/aanvoer-en-begeleider.md`, deel 1 | eigenaar, dan bouw | besluit 1 (vaste taak of op verzoek) |
 
 ## Eigen voorstellen van de ontwerpsessie (goedgekeurd op 13 november)
 

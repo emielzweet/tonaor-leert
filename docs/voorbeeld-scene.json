@@ -1,0 +1,60 @@
+{
+  "id": "dokter-1",
+  "place": "dokter",
+  "subject": "nl",
+  "level": "A1",
+  "n": 1,
+  "title": { "nl": "Je belt de huisarts", "th": "คุณโทรหาแพทย์ประจำครอบครัว", "en": "You call the doctor" },
+  "intro": { "nl": "Je hebt al drie dagen hoofdpijn. Je wilt een afspraak maken.", "th": "คุณปวดหัวมาสามวันแล้ว คุณอยากนัดพบแพทย์", "en": "You have had a headache for three days. You want to make an appointment." },
+  "can": { "nl": "Een afspraak maken bij de dokter", "th": "นัดหมายกับแพทย์ได้แล้ว", "en": "Make an appointment with the doctor" },
+  "targets": ["dok.afspraak", "dok.huisarts", "dok.hoofdpijn", "dok.graag", "dok.datkan", "tijd.half"],
+  "art": {
+    "bg": "room",
+    "tone": "mint",
+    "alt": { "nl": "Een kamer met een raam, een klok, een agenda en een telefoon die gaat." },
+    "things": [
+      { "kind": "window", "x": 258, "y": 62 },
+      { "kind": "clock", "x": 132, "y": 54, "value": "9:05", "hot": true, "item": "dok.klok", "label": { "nl": "de klok", "th": "นาฬิกา", "en": "the clock" } },
+      { "kind": "plant", "x": 44, "y": 198 },
+      { "kind": "table", "x": 168, "y": 190, "s": 1.05 },
+      { "kind": "agenda", "x": 130, "y": 158, "hot": true, "item": "dok.agenda", "label": { "nl": "de agenda", "th": "สมุดนัดหมาย", "en": "the diary" } },
+      { "kind": "phone", "x": 200, "y": 158, "on": true, "hot": true, "item": "dok.telefoon", "label": { "nl": "de telefoon", "th": "โทรศัพท์", "en": "the phone" } },
+      { "kind": "person", "x": 290, "y": 204, "s": 1.7, "who": "ik", "look": "worried", "tone": "lilac", "hair": "long" }
+    ]
+  },
+  "steps": [
+    { "type": "look", "min": 2 },
+    {
+      "type": "talk",
+      "who": "assistent",
+      "looks": { "ik": "talk" },
+      "turns": [
+        {
+          "them": { "nl": "Goedemorgen, huisartsenpraktijk. Waarmee kan ik u helpen?", "th": "สวัสดีตอนเช้า คลินิกแพทย์ประจำครอบครัวค่ะ มีอะไรให้ช่วยไหมคะ", "en": "Good morning, doctor's surgery. How can I help you?" },
+          "items": ["dok.graag", "dok.afspraak"],
+          "opts": [
+            { "t": "Ik wil afspraak.", "r": "near", "why": { "nl": "Bijna. Je mist <b>een</b>, en met <b>graag</b> is het beleefder: Ik wil graag een afspraak maken.", "th": "เกือบถูกแล้ว ขาดคำว่า <b>een</b> และถ้าใส่ <b>graag</b> จะสุภาพกว่า", "en": "Almost. You are missing <b>een</b>, and <b>graag</b> makes it polite." } },
+            { "t": "Ik wil graag een afspraak maken.", "r": "ok", "why": { "nl": "Precies goed. Met <b>graag</b> klinkt je vraag beleefd.", "th": "ถูกต้อง คำว่า <b>graag</b> ทำให้คำขอฟังดูสุภาพ", "en": "Exactly right. <b>Graag</b> makes your request polite." } },
+            { "t": "Geef mij de dokter.", "r": "no", "why": { "nl": "Dit klinkt als een bevel. Aan de telefoon vraag je: Ik wil graag een afspraak maken.", "th": "ประโยคนี้ฟังเหมือนคำสั่ง ทางโทรศัพท์ควรพูดว่า Ik wil graag een afspraak maken.", "en": "This sounds like an order. On the phone you ask: Ik wil graag een afspraak maken." } }
+          ]
+        },
+        {
+          "them": { "nl": "Dat kan. Kunt u morgen om half drie?", "th": "ได้ค่ะ พรุ่งนี้บ่ายสองโมงครึ่งสะดวกไหมคะ", "en": "Certainly. Can you come tomorrow at half past two?" },
+          "items": ["dok.datkan"],
+          "opts": [
+            { "t": "Ja, dat kan. Dank u wel.", "r": "ok", "why": { "nl": "Goed. <b>Dat kan</b> betekent: die tijd past.", "th": "ถูกต้อง <b>Dat kan</b> แปลว่า เวลานั้นสะดวก", "en": "Good. <b>Dat kan</b> means: that time suits me." } },
+            { "t": "Ja, ik kan dat.", "r": "near", "why": { "nl": "Bijna. De vaste zin is: <b>Ja, dat kan.</b>", "th": "เกือบถูกแล้ว ประโยคที่ใช้กันคือ <b>Ja, dat kan.</b>", "en": "Almost. The fixed phrase is: <b>Ja, dat kan.</b>" } },
+            { "t": "Nee, dank u wel.", "r": "no", "why": { "nl": "Dan heb je geen afspraak. Zeg: Ja, dat kan.", "th": "แบบนี้จะไม่ได้นัด ให้พูดว่า Ja, dat kan.", "en": "Then you have no appointment. Say: Ja, dat kan." } }
+          ]
+        }
+      ]
+    },
+    { "type": "slot", "n": 2, "kinds": ["word", "rule"] },
+    { "type": "explain", "id": "klok-half", "when": "first" },
+    { "type": "do", "form": "setclock", "items": ["tijd.half"], "ask": { "nl": "Zet de klok op half drie", "th": "ตั้งนาฬิกาเป็นบ่ายสองโมงครึ่ง", "en": "Set the clock to half past two" }, "answer": "2:30",
+      "why": { "nl": "<b>Half drie</b>: een half uur vóór drie uur. Op een digitale klok staat 14.30.", "th": "<b>half drie</b> คือครึ่งชั่วโมงก่อนสามโมง นาฬิกาดิจิทัลแสดง 14.30", "en": "<b>Half drie</b>: half an hour before three. A digital clock shows 14.30." } },
+    { "type": "end",
+      "next": { "nl": "Aan de balie: wat vraagt de assistent?", "th": "ที่เคาน์เตอร์: ผู้ช่วยถามอะไร", "en": "At the desk: what does the assistant ask?" },
+      "real": { "nl": "Zeg de zin vanavond aan tafel: Ik wil graag een afspraak maken.", "th": "ลองพูดประโยคนี้ที่โต๊ะอาหารคืนนี้", "en": "Say the sentence at dinner tonight." } }
+  ]
+}

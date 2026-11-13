@@ -37,18 +37,20 @@ Wat er is, naast wat het kwaliteitskader en de leerroute vragen. Bepaalt de volg
 | | Spreken | gesprekskaart aan tafel | spreeksituaties, opnemen en terugluisteren | ±5% |
 | | Taalfuncties | 0 | kaders met standaardzinnen | 0% |
 | | Afsluitende mix | 0 | mix die 70% van de doelwoorden raakt | 0% |
-| Nederlands woordenschat | Frequentielijst | 0 | ±8 per lesdag, op weg naar 3.000–5.000 (B1) | 0% |
+| Nederlands woordenschat | Frequentielijst | 100 basiswoorden (nl-basis): 50 zelfstandige naamwoorden, 30 werkwoorden, 20 bijvoeglijke naamwoorden en tijdwoorden, met omschrijving | ±8 per lesdag, op weg naar 3.000–5.000 (B1) | ±3% van B1 |
 | Rekenen | Onderwerpen R1–R4 | 5 vaardigheden (geld, komma, klok, 10%, 25%), 11 oefeningen, wisselende getallen | R1 tot R4 volledig (±20 onderwerpen) | ±25% |
 | | Uitleg | 17 uitleggen | per onderwerp | ±60% voor R1–R2 |
 | Engels | Woorden en regels | 8 woorden, 1 regel, 1 klank, 8 oefeningen | route tot A2 | ±5% |
 | Uitleg | Totaal | 32 (rekenen 17, Nederlands 11, Engels 4) | catalogus R1–R4, thema 1–3, Engels A2 | ±35% |
 | Kwaliteit | Meldingen pakketcontrole | 115 open | 0 | – |
 
-De ervaringstest (`node tools/test-ervaring.mjs`) laat zien dat de nieuwe woorden van thema 1 bij 16 per dag op de eerste dag op zijn.
+De ervaringstest (`node tools/test-ervaring.mjs --streng`): met thema 1 en de 100 basiswoorden is de nieuwe lesstof bij 16 per dag na 6 dagen op; gemiddeld 8,4 verschillende onderdelen per ronde.
 
 ## Open besluiten voor de eigenaar
 
-- Nieuw concept (kaart, scènes, album): docs/concept-leerwereld.md. Richting goedgekeurd op 14 november 2026; vier besluiten staan onderaan dat ontwerp. Bouwen van stap 1 en 2 pas na akkoord daarop.
+- Nieuw concept (kaart, scènes, album): docs/concept-leerwereld.md. Richting goedgekeurd op 14 november 2026; vier besluiten staan onderaan dat ontwerp. Akkoord op alle vier (14 november 2026): stap 1 en 2 mogen gebouwd worden; formaat en tekencatalogus in docs/scenes.md, `scene.js` en docs/voorbeeld-scene.json. Pushen en stap 4 blijven een apart akkoord.
+- Route met tijd en een verwachte examendatum: docs/route-en-prognose.md (vier besluiten, wacht op akkoord).
+- Aanvoer van lesmateriaal en het scherm van de begeleider: docs/aanvoer-en-begeleider.md (drie besluiten, wacht op akkoord).
 
 - Herzien plan na gebruik: docs/plan-herzien.md (sporen A tot F, zes open besluiten). Onderzoek: docs/onderzoek-beloning.md.
 
