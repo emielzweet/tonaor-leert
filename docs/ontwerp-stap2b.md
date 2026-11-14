@@ -93,6 +93,19 @@ Uit `docs/onderbouwing-engels.md` hoofdstuk 3. Stand in de code:
 | E-M5 | Engelse teksten op het aandeel bekende woorden, oplopend naar 800 tot 1.200 woorden | – | hoort bij M8 en de bibliotheek (stap 11) |
 | E-M6 | voortgang tegen de woordenlijsten (ongeveer 1.600 en 3.000) | – | het aantal beheerste Engelse woorden naast de maat, in de dekkingstabel |
 
+## Motivatie: MO-M1 tot MO-M6
+
+Uit `docs/onderbouwing-motivatie-en-kennis.md` hoofdstuk 3. Stand in de code:
+
+| # | Eis | Wat er is | Wat ontbreekt |
+|---|---|---|---|
+| MO-M1 | voortgang concreet tonen en delen met de begeleider | weekring met het weekdoel, de tuin, het bericht aan de begeleider (`week.goal`) | voortgang per hoofdstuk en examenonderdeel; hoort bij de kaart en de route (stap 5) en het scherm van de begeleider (stap 9) |
+| MO-M2 | punten alleen achteraf, nooit een voorwaarde voor inhoud of een functie | punten na een antwoord (`score`, `addPts`) | nagaan dat geen inhoud of functie aan een puntenaantal hangt (de codereview neemt dit mee); punten nooit vooraf beloven in een tekst |
+| MO-M3 | na een scène twee tot vier wegen; op Ontdek een handvol vragen | na een scène: volgende scène, zwaarder, verder leren, Vandaag | het aantal wegen begrenzen op vier; Ontdek hoort bij stap 11 |
+| MO-M4 | gedrag meten (doorgaan na een scène, terugkomen op een dag, minuten per week) naast de tikken | minuten per dag (`S.mins`), rondes per dag, de tikken na een ronde (`S.conf`) | doorgaan na een scène en terugkomen per dag vastleggen en naast de tikken leggen (proefweek, stap 4) |
+| MO-M5 | weekdoel herstelbaar, geen reeks die breekt | weekdoel met inhalen binnen de week; geen reeks | niets |
+| MO-M6 | in de eerste twaalf weken na twee keer "saai" of "te moeilijk" op hetzelfde soort onderdeel meteen bijsturen en de begeleider melden | `feel()` stuurt de volgende ronde op "te moeilijk"/"te makkelijk"; "saai" wordt bewaard | per soort onderdeel tellen; na twee keer meteen minder van die soort (H5) en een regel voor de begeleider |
+
 ## Wat kan breken
 
 - M12 en M5 veranderen de opslag: migratie 6 → 7 met reservekopie, alleen toevoegen. De omvang van de opslag wordt bewaakt in `test-migratie` (een nagebootste opslag van drie jaar moet onder 1 MB blijven).

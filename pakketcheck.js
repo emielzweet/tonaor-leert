@@ -8,7 +8,7 @@
   var LEARN = ['nl', 'en'];
   var FORMS = ['learn', 'recog', 'recall', 'build', 'gap', 'listen', 'dictee', 'mc', 'clock', 'money', 'discount'];
   var RESERVED = ['hear-type', 'complete', 'own', 'write', 'situation', 'match', 'spot'];
-  var TOP = ['format', 'id', 'type', 'version', 'scenes', 'place', 'goals', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests'];
+  var TOP = ['format', 'id', 'type', 'version', 'scenes', 'place', 'goals', 'purpose', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests'];
   var TAGS = /<\/?(b|i|u)>/g;
   // id's (pakket, item, tekst, kaart, oefening, groep): alleen letters, cijfers, punt, streepje, onderstreepje
   var ID = /^[A-Za-z0-9._-]+$/;
@@ -310,6 +310,7 @@
       });
     });
     // kwaliteit per thema (alleen voor een Nederlands thema met woorden; een woordenlijst is geen thema)
+    if (p.purpose != null) tekst(p.purpose, id + '.purpose');   /* masterplan G5: waar het hoofdstuk voor dient */
     if (p.type != null && ['thema', 'woordenlijst', 'hoofdstuk'].indexOf(p.type) < 0) err(id + ': type kent alleen thema, woordenlijst en hoofdstuk');
     // scènes (docs/scenes.md): vaste stappen, gesprekken met één goede keuze en een reden bij elke keuze, de tekening uit de catalogus
     if (p.scenes != null) {
@@ -360,7 +361,7 @@
           if (st.type === 'talk') {
             if (!Array.isArray(st.turns) || !st.turns.length) err(v + ': turns ontbreekt');
             else st.turns.forEach(function (tu, ti) { var u = v + '.turns[' + ti + ']'; tekst(tu.them, u + '.them'); itemsOk(tu.items, u);
-              if (!Array.isArray(tu.opts) || tu.opts.length < 2) err(u + ': minstens twee keuzes');
+              if (!Array.isArray(tu.opts) || tu.opts.length < 2 || tu.opts.length > 4) err(u + ': twee tot vier keuzes');
               else { if (tu.opts.filter(function (o) { return o && o.r === 'ok'; }).length !== 1) err(u + ': precies één keuze met r = ok');
                 tu.opts.forEach(function (o, oi) { if (!o || typeof o.t !== 'string' || !o.t) err(u + '.opts[' + oi + ']: t ontbreekt'); else str(o.t, u + '.opts[' + oi + '].t'); if (['ok', 'near', 'no'].indexOf(o && o.r) < 0) err(u + '.opts[' + oi + ']: r moet ok, near of no zijn'); if (!o || !o.why) err(u + '.opts[' + oi + ']: why ontbreekt (ook bij de goede keuze)'); else tekst(o.why, u + '.opts[' + oi + '].why'); if (o) errOk(o, u + '.opts[' + oi + ']'); }); } });
           }

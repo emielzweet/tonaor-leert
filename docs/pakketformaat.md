@@ -254,3 +254,7 @@ Uit `docs/onderbouwing-engels.md` (E-M2): de betekenis van een Engels woord komt
 
 De vertaling `tr.nl` blijft zoals hij is; `nlLike` is de brug, geen vertaling.
 
+## Waar een hoofdstuk voor dient (voorstel, 14 november 2026)
+
+Masterplan G5 en `docs/onderbouwing-motivatie-en-kennis.md`: bij elk hoofdstuk in gewone taal waar het voor dient. Veld `purpose` op het pakket (`type: "hoofdstuk"`): een Tekst van één zin, bijvoorbeeld *Dit heb je nodig om zelf een afspraak bij de huisarts te maken, en voor het examen spreken.* De app toont hem bij het begin van het hoofdstuk.
+
