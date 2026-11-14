@@ -56,7 +56,7 @@ Elke regel is een afgerond stuk: kort ontwerp, bouwen, tests, controle op 375 br
 3. **De redactielijn in bedrijf** (masterplan stap 3): lesstof los van de code, het script om uit te brengen, en doorschrijven: eerst de overige hoofdstukken van thema 1, dan rekenscènes voor de onderwerpen die er zijn, dan de eerste twintig lessen algemene ontwikkeling. Voorraad: twee weken.
 4. **De route met tijd** op het bestaande scherm Route: blokken met duur, vier examendata, tempo, "wat als" (masterplan E5, M10, N-M8).
 5. **De motor verder langs het didactisch plan**, in deze volgorde: een woord aantikken is een keuze (N-M1); soorten sommen mengen (R-M3); zelf maken zwaarder dan kiezen (N-M2); de trede per regel (M5, N-M4); grammatica korter gespreid (N-M3); punten alleen achteraf (MO-M2); sneller bijsturen in de eerste twaalf weken (MO-M6); gedrag meten (MO-M4); de vier strengen (M6, N-M6); Engels gescheiden en via de steuntaal (E-M1, E-M2).
-6. **Werkvormen** (masterplan stap 6): opnemen en terugluisteren; de luistertekst en de examenvorm; schatten op de getallenlijn, de strook en de verhoudingstabel als vraag; rekenen in stappen; slepen; daarna de spellen.
+6. **Werkvormen** (masterplan stap 6; ontwerp in `werkvormen.md`): opnemen en terugluisteren; de luistertekst en de examenvorm; schatten op de getallenlijn, de strook en de verhoudingstabel als vraag; rekenen in stappen; slepen; daarna de spellen.
 7. **Tegels voor rekenen en Engels** op Vandaag, met de leerlijn per onderwerp.
 8. **Fout melden** in de app, en de eerste trede van Vraag het.
 9. **De kaart en het album** naast het huidige thuisscherm, met de schakelaar.
@@ -78,7 +78,8 @@ De bouwsessie zet een stand klaar en meldt dat aan de ontwerpsessie met de commi
 4. Verandert de opslag: de migratie voegt alleen toe, maakt vooraf een reservekopie en is getest tegen de vorm die live staat.
 5. Nieuwe lesstof heeft de poort gehaald en een review "goed".
 6. De wijzigingen ten opzichte van wat live staat bevatten geen privégegevens: geen namen, paden van de computer, links naar privédocumenten, koppelcodes of sleutels.
-7. Niets wat werkt is weggehaald zonder dat het in dit document of het masterplan staat.
+7. De toets op trucs uit `controle-bij-release.md` geeft nergens een ja.
+8. Niets wat werkt is weggehaald zonder dat het in dit document of het masterplan staat.
 
 Na de push opent de ontwerpsessie de live versie, controleert dat ze laadt zonder fouten, en schrijft in `docs/STATUS.md` wat er live staat. Gaat er iets mis, dan wordt de vorige stand teruggezet met een nieuwe commit en een hogere versie; nooit met een herschreven geschiedenis.
 
