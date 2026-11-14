@@ -135,7 +135,7 @@ ok('hoofdstuk B1: te weinig antwoordmomenten', /antwoordmomenten/.test(cc(p => {
 ok('hoofdstuk B2: leestekst met vijf tot tien vragen, luistertekst, spreken en spel', ['leestekst', 'luistertekst', 'spreekopdracht', 'spel'].every((w, i) => new RegExp(w).test(cc(p => { const t = ['read', 'listen', 'speak', 'game'][i]; p.scenes.forEach(sc => { sc.steps = sc.steps.filter(s => s.type !== t); }); }))));
 ok('hoofdstuk A6: zelf typen zonder hint in twee stappen', /zonder hint/.test(cc(p => { delete p.scenes[0].steps[2].q[0].hint; })));
 ok('hoofdstuk E3: een foute keuze zonder soort fout', /zonder soort fout/.test(cc(p => { delete p.scenes[0].steps[3].turns[0].opts[1].err; })));
-ok('hoofdstuk E2: een grammaticapunt zonder extra', /zonder stap extra/.test(cc(p => { p.scenes[0].steps = p.scenes[0].steps.filter(s => s.type !== 'extra'); })));
+ok('hoofdstuk E2: een grammaticapunt zonder extra', /hoort een stap extra/.test(cc(p => { p.scenes.forEach(sc => { sc.steps = sc.steps.filter(s => s.type !== 'extra'); }); })));
 ok('hoofdstuk G2: goals bij hoofdstuk en scène', /goals/.test(cc(p => { delete p.goals; })) && /goals/.test(cc(p => { delete p.scenes[0].goals; })));
 ok('hoofdstuk: vragen bij een tekst in de nieuwe vorm (met err), een gesprek hooguit zes beurten, een tekst hooguit tien vragen', /nieuwe vorm/.test(cc(p => { p.scenes[0].steps[6].q[0] = { q: T3('x'), items: [w0], o: [T3('a'), T3('b')], a: 0, why: T3('Zo.') }; })) && /zes beurten/.test(cc(p => { const t = p.scenes[0].steps[3]; while (t.turns.length < 7) t.turns.push(t.turns[0]); })) && /tien vragen/.test(cc(p => { const t = p.scenes[0].steps[6]; while (t.q.length < 11) t.q.push(ch(w0, 'lezen', T3('x' + t.q.length))); })));
 ok('hoofdstuk: rekenen in de situatie is verplicht', /rekenen in de situatie/.test(cc(p => { p.scenes = p.scenes.filter(s => s.subject !== 'rk'); })));
@@ -144,4 +144,9 @@ for (const p of packs.filter(p => p.type === 'hoofdstuk')) { const e = PC.checkC
 ok('controle: soort fout model (verkeerd model of aanpak) mag', chk(sc => { sc.steps[0].q[0].opts[1].err = 'model'; }) === '');
 ok('controle: een vraag met ongeveer zonder tol wordt geweigerd, met tol niet', /tol nodig/.test(chk(sc => { sc.steps[5].q[1].ask = { nl: 'Ongeveer hoeveel?' }; })) && chk(sc => { sc.steps[5].q[1].ask = { nl: 'Ongeveer hoeveel?' }; sc.steps[5].q[1].tol = 2; }) === '');
 ok('speler: een antwoord binnen de marge (tol) is goed', html.includes("<=(typeof qq.tol==='number'?qq.tol:1e-9)"));
+// review 2 (aan de bouwsessie)
+ok('controle: een uitleg-id die niet bestaat wordt geweigerd, een bestaande niet', /bestaat niet/.test(chk(sc => { sc.steps.splice(1, 0, { type: 'explain', id: 'klok-half' }); })) && chk(sc => { sc.steps.splice(1, 0, { type: 'explain', id: 'u.rk.klok' }); }) === '');
+ok('hoofdstuk: bij elk grammaticapunt een extra', /hoort een stap extra/.test(cc(p => { p.scenes.forEach(sc => { const r = sc.steps.find(s => s.type === 'rule'); if (r) { r.items = ['nl.regel.heb']; r.q.forEach(q => { q.items = ['nl.regel.heb']; }); } }); })));
+ok('speler: bij een getal tellen euroteken, spaties en cent niet als fout', html.includes('€ 6,60 en 25 cent zijn ook goed'));
+ok('zwaardere vorm: alleen een kort antwoord wordt typen', html.includes('lange antwoorden blijven kiezen'));
 console.log(fails ? fails + ' FOUT' : 'alles OK');
