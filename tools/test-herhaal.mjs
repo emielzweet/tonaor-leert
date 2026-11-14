@@ -4,12 +4,13 @@ import { html } from './app-harness.mjs';
 let fails = 0; const ok = (n, v, extra) => { if (!v) fails++; console.log((v ? 'OK  ' : 'FOUT') + ' ' + n + (v || extra == null ? '' : '\n     ' + extra)); };
 const fnBlock = name => { const i = html.indexOf('function ' + name + '('); if (i < 0) throw new Error(name); let d = 0, j = html.indexOf('{', i); for (; j < html.length; j++) { if (html[j] === '{') d++; else if (html[j] === '}') { d--; if (!d) break; } } return html.slice(i, j + 1); };
 const line = start => { const i = html.indexOf(start); return html.slice(i, html.indexOf('\n', i)); };
+const MOTORCODE = html.slice(html.indexOf('const MOTOR={'), html.indexOf('\n};', html.indexOf('const MOTOR={')) + 3);   // alle waarden van de motor (didactisch plan, hoofdstuk 5)
 const DAY = 864e5;
 
 function model() {
   const ctx = { S: { items: {}, introduced: [], log: [] }, T: 0, DAY, Math, Array, Object };
   vm.createContext(ctx);
-  vm.runInContext('const now=()=>T;const today=()=>Math.floor(T/DAY)*DAY;const save=()=>{};' + line('const NOGROW=') + '\n' + line('let KIND=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('item') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\n' + fnBlock('stage') + '\n' + fnBlock('thirsty') + '\nthis.api={review,introduce,practiced,stage,thirsty,item,canBloom,setKind:(id,k)=>{KIND[id]=k}};', ctx);
+  vm.runInContext(MOTORCODE + '\nconst now=()=>T;const today=()=>Math.floor(T/DAY)*DAY;const save=()=>{};' + line('const NOGROW=') + '\n' + line('let KIND=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('item') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\n' + fnBlock('stage') + '\n' + fnBlock('thirsty') + '\nthis.api={review,introduce,practiced,stage,thirsty,item,canBloom,setKind:(id,k)=>{KIND[id]=k}};', ctx);
   return ctx;
 }
 const at = (c, d) => { c.T = d * DAY; };
@@ -101,7 +102,7 @@ ok('de app vult de soort per item uit de pakketten', html.includes("KIND[x.id]=x
 }
 // 10. bijsturen binnen een ronde (stap 6, sectie 7)
 { const cx = { S: { introduced: ['a', 'b'], items: { a: { forms: ['herkennen'] }, b: { forms: [] } } }, Q: [], qi: 0, SESS: [] }; vm.createContext(cx);
-  vm.runInContext(line('const EASIER=') + '\n' + fnBlock('adapt') + '\nthis.adapt=adapt;', cx);
+  vm.runInContext(MOTORCODE + '\n' + line('const EASIER=') + '\n' + fnBlock('adapt') + '\nthis.adapt=adapt;', cx);
   const mk = () => [{ type: 'recall', w: { id: 'a' } }, { type: 'learn', w: { id: 'n' }, _new: 1 }, { type: 'recog', w: { id: 'a' } }, { type: 'hear', w: { id: 'b' } }, { type: 'recall', w: { id: 'z' } }];
   cx.Q = mk(); cx.qi = 0; cx.SESS = [false, false, true, false]; cx.adapt();
   ok('onder 65% goed: typen wordt kiezen, nieuw wordt overgeslagen', cx.Q[0].type === 'recog' && cx.Q[1]._skip && cx.Q[3].type === 'recog' && cx.Q[4].type === 'recall');
@@ -134,5 +135,16 @@ ok('tuin: bed voor regels en klanken, tikken opent de uitleg, lampje bij hardnek
   ok('na de fout op een latere dag goed: wel groei', f.S.items.v.s > na);
   const o = model(); o.S.items.x = { ...o.api.item(), s: 4, due: 10 * DAY, reps: 3, forms: [] }; delete o.S.items.x.t; at(o, 9); o.api.review('x', true, 'typen');
   ok('item zonder t (oude opslag): t wordt afgeleid uit due − s', Math.abs(o.S.items.x.s - 4 * (1 + 1.4 * 0.75)) < 1e-9);
+}
+// didactisch plan hoofdstuk 5: elke waarde van de motor op één plek, met bron of aanname
+{
+  const L = MOTORCODE.split('\n'), WHY = /aanname|§|kwaliteitskader|masterplan/i;
+  const vals = L.filter(l => /^\s+[a-zA-Z]+:[\d.[]/.test(l));
+  const bad = vals.filter(l => !WHY.test(l) && !WHY.test(L[L.indexOf(l) - 1] || ''));
+  ok('motor: de waarden staan in MOTOR, elk met een bron (§) of het woord aanname', vals.length >= 15 && !bad.length, bad.join(' | '));
+  ok('motor: geen losse waarden meer in review, adapt, retryLater, newWords en het foutprofiel',
+    !['it.s=Math.max(.5,it.s*.4)', '.length>40', 'acc<.65', 'acc>.95', 'qi+6,at', 'it.s=14;', 'n>=2&&(!best', 'SCN.errs[err]<2'].some(x => html.includes(x)));
+  const head = f => { const i = html.indexOf(f); return html.slice(i, html.indexOf('\n', i) + 120); };
+  ok('motor: de functies die bepalen wat de leerder krijgt, noemen hun M-eis', ['function review(', 'function adapt(', 'function retryLater(', 'function errNote(', 'function canBloom('].every(f => /M\d/.test(head(f))));
 }
 console.log(fails ? fails + ' FOUT' : 'alles OK');

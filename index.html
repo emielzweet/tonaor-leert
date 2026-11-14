@@ -1601,6 +1601,41 @@ let EXPL={},EXPL_LIST=[];
 let KIND={};
 const fw=w=>w&&w.art?w.art+' '+w.w:(w?w.w:'');   // woord met lidwoord als het er een heeft
 const EASIER={recall:'recog',hear:'recog',enrecall:'enrecog',enhear:'enrecog'},HARDER={recog:'recall',enrecog:'enrecall'};   // makkelijker en moeilijker vorm (bijsturen)
+/* ============ MOTOR: alle waarden op één plek (docs/didactisch-plan.md, hoofdstuk 5) ============
+   Elke waarde met de bron uit het didactisch plan (§ = paragraaf) of het woord "aanname". Een waarde wijzigen gaat via docs/toets-per-stap.md
+   (welke regel, herkomst van het getal, een doorgerekende week) en daarna de ervaringstest. M1 tot M12 = de eisen aan de motor. */
+const MOTOR={
+  // M1, M2 herhaalmodel (docs/herhaalmodel.md; §3.2 gespreid ophalen, Cepeda e.a. 2006/2008, Settles & Meeder 2016)
+  growFrom:.5,        // groei pas vanaf de helft van de wachttijd. Aanname binnen §3.2 (dát er ruimte tussen zit telt, Nakata 2015)
+  growGain:1.4,       // groeifactor 1 + 1,4 × deel van de wachttijd: 1,7 op de helft, 2,4 aan de beurt. Aanname binnen §3.2 (tussentijd 10 tot 20% van de bewaartijd)
+  firstDays:1,        // eerste wachttijd na de eerste goede poging (dagen). Aanname
+  maxDays:120,        // langste wachttijd (dagen). Aanname
+  lapseKeep:.4,       // na een fout blijft 40% van de wachttijd over. Aanname
+  lapseMin:.5,        // kortste wachttijd na een fout (dagen). Aanname
+  // M1, M9 bloei: pas boven deze wachttijd als ook de vormen er zijn (§3.1: minstens vier ontmoetingen in drie vormen; kwaliteitskader A5)
+  bloomCap:9, bloomDays:10, bloomForms:3, bloomExs:3,
+  // M4 grote sprong: bij de eerste vraag al gekend (§3.1 "bekende woorden direct ver vooruit"; §3.3 Kalyuga e.a. 2003). 14 dagen: aanname
+  knownDays:14,
+  // M3, M4 hardnekkig: na zoveel fouten eerst weer herkennen en uitleg; na zoveel keer achter elkaar goed weer gewoon. Aanname (herhaalmodel sectie 8)
+  leechLapses:4, leechBack:2, leechRecover:3,
+  // M4 bijsturen binnen een ronde op 80 tot 90% goed (§3.3, Wilson e.a. 2019 85%; de grenzen 65 en 95% zijn een aanname)
+  adaptWindow:8, adaptMin:4, adaptEasier:.65, adaptHarder:.95,
+  // M3 na een fout komt het onderdeel terug, zoveel plekken later en in een andere vorm (§3.2 niet in een rijtje). Aanname
+  retryGap:6,
+  // §3.1 nieuwe woorden per dag (keuze op Ik: 8, 16, 24). 16: aanname (docs/toets-per-stap.md)
+  newPerDay:16, newPerDayOpts:[8,16,24],
+  busyMax:40,         // rem op nieuw: meer onderdelen aan de beurt dan dit, dan geen nieuwe. Aanname (docs/toets-per-stap.md)
+  roundMin:8,         // een ronde heeft minstens zoveel verschillende onderdelen (variatie, §3.3). Aanname (docs/toets-per-stap.md)
+  logMax:600,         // M12 aantal pogingen in het logboek. Aanname, begrensd door de opslag
+  // M5, M11 foutprofiel en extra (docs/scenes.md "Diepte en diagnose"; §3.4, §3.8)
+  errHalfDays:14,     // een fout weegt half zo zwaar na zoveel dagen. Aanname
+  errSteer:2,         // vanaf dit gewicht stuurt de soort fout de open plekken. Aanname
+  errIds:8,           // per soort fout de laatste zoveel onderdelen. Aanname
+  extraAfter:2,       // extra oefening na de zoveelste fout van dezelfde soort in een scène. Aanname (docs/scenes.md)
+  slotErrShare:.5,    // hooguit dit deel van een open plek op het foutprofiel. Aanname
+  // C5 spel: één tot drie minuten (masterplan C5); 60 seconden: aanname
+  gameSeconds:60
+};
 let QUIET=false;   // stille stand: zonder voorlezen en luisteroefeningen, alleen voor deze sessie (Bijsturen op Ik)
 let SCENES=[];   // scènes uit de pakketten: {sc, learn}
 let PACKS=[],PACK_MISSING=[],NL=[],EN=[],REK=[],SENT=[],PAIRS=[],DICTEE=null,STORY=null,PLACE=[];
@@ -1729,7 +1764,7 @@ function varyForms(list,drop){const units=[];let pend=[];for(const q of list){if
   const ty=u=>u[u.length-1].type,out=[],rest=units.slice();while(rest.length){const n=out.length,same=n>=2&&ty(out[n-1])===ty(out[n-2])?ty(out[n-1]):null;let i=same?rest.findIndex(u=>ty(u)!==same):0;if(i<0){if(drop)break;i=0}out.push(rest.splice(i,1)[0])}return out.flat()}   // drop: een derde gelijke vorm schuift door naar een volgende ronde (blijft aan de beurt)
 function practice(s,learn,used){const P=s.practice,n=isEnglishDay()&&P.n2!=null?P.n2:P.n,R=id=>S.items[id];
   const ids=PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>P.kinds.includes(x.kind)&&R(x.id)&&exsFor(x.id,learn).length&&!used.has(x.id)).map(x=>x.id);
-  const busy=Object.keys(S.items).filter(id=>thirsty(id)).length>40;   // rem op nieuw (docs/toets-per-stap.md)
+  const busy=Object.keys(S.items).filter(id=>thirsty(id)).length>MOTOR.busyMax;   // rem op nieuw (docs/toets-per-stap.md)
   const due=ids.filter(id=>thirsty(id)).sort((a,b)=>overdue(b)-overdue(a)),fresh=ids.filter(id=>R(id).reps===0).slice(0,busy?0:(P.newMax!=null?P.newMax:1)),LS=lastSeen(),td=today(),seen=ids.filter(id=>R(id).reps>0&&!thirsty(id)).sort((a,b)=>((LS[a]||0)>=td)-((LS[b]||0)>=td)||(LS[a]||0)-(LS[b]||0));   // wat het langst geleden is eerst; vandaag al geoefend achteraan
   const pick=[...new Set([...due,...fresh])].slice(0,n),out=[];   // geen opvulling met wat niet aan de beurt is (advies ontwerpsessie A2)
   for(const id of pick){used.add(id);const isNew=R(id).reps===0,hard=R(id).lapses>=4,xid=(isNew||hard)&&explForItem(id,learn);
@@ -1745,9 +1780,9 @@ function recentEx(){const c=now()-2*DAY,R=new Set();for(const e of S.log||[])if(
    - elk nieuw woord eerst als vraag (_probe): bij de eerste poging goed zonder hulp is het al gekend (grote sprong, telt niet mee);
    - anders de leerkaart (_ifUnknown), en de kiesvraag pas later in de ronde (in later), na minstens drie andere onderdelen. */
 let NEWPLAN=0;   // nieuwe woorden die al in deze les gepland zijn (telt mee in het budget)
-function dayBudget(){return [8,16,24].includes(S.newPerDay)?S.newPerDay:16}
+function dayBudget(){return MOTOR.newPerDayOpts.includes(S.newPerDay)?S.newPerDay:MOTOR.newPerDay}
 function newLeft(){return Math.max(0,dayBudget()-((S.newLog||{})[today()]||0))}
-function newWords(cap,step,words,q,later){const busy=Object.keys(S.items).filter(id=>thirsty(id)).length>40;if(busy)return;
+function newWords(cap,step,words,q,later){const busy=Object.keys(S.items).filter(id=>thirsty(id)).length>MOTOR.busyMax;if(busy)return;
   const inQ=new Set(q.filter(x=>x.w).map(x=>x.w.id)),nw=words.filter(w=>!S.introduced.includes(w.id)&&!inQ.has(w.id)).slice(0,Math.max(0,Math.min(cap,newLeft()-NEWPLAN)));NEWPLAN+=nw.length;
   nw.forEach(w=>{q.push({type:'recall',step,w,_probe:1,_new:1});q.push({type:'learn',step,w,_ifUnknown:1,_new:1})});   // vraag en leerkaart om en om
   let speak=false;try{speak=typeof window!=='undefined'&&!!window.speechSynthesis&&!QUIET}catch(e){}
@@ -1759,8 +1794,8 @@ function feel(){const c=(S.conf||[])[0];return c&&['makkelijk','goed','moeilijk'
 /* te kleine ronde (minder dan 8 verschillende onderdelen): aanvullen met ander soort werk, niet met dezelfde woorden
    (advies ontwerpsessie A2): eerst nieuwe woorden binnen het dagbudget, dan sommen met nieuwe getallen (rekenvaardigheden die er al zijn). */
 function topUp(q,learn,words,later,used){const ids=()=>new Set(q.concat(later).map(x=>x.w?x.w.id:x.items&&x.items[0]).filter(Boolean));
-  if(ids().size<8)newWords(8-ids().size,2,words,q,later);
-  if(ids().size<8){const LS=lastSeen(),sk=PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>x.kind==='skill'&&S.items[x.id]&&!used.has(x.id)).map(x=>x.id).sort((a,b)=>(LS[a]||0)-(LS[b]||0));
+  if(ids().size<MOTOR.roundMin)newWords(MOTOR.roundMin-ids().size,2,words,q,later);
+  if(ids().size<MOTOR.roundMin){const LS=lastSeen(),sk=PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>x.kind==='skill'&&S.items[x.id]&&!used.has(x.id)).map(x=>x.id).sort((a,b)=>(LS[a]||0)-(LS[b]||0));
     for(const id of sk){if(ids().size>=8)break;const e=shuffle(exsFor(id,learn).filter(x=>x.gen&&!(QUIET&&x.form==='listen')))[0];if(!e)continue;const x=exQ(e,4,learn,id);if(!x)continue;used.add(id);const xid=S.items[id].reps===0&&explForItem(id,learn);if(xid&&!(S.explained||{})[xid])q.push({type:'explain',step:4,x:xid,lang:learn});q.push(x)}}}
 /* drie gelijke vormen achter elkaar breken door een verplaatsbaar onderdeel ertussen te zetten (geen vraag, leerkaart of kiesvraag van een nieuw woord) */
 function breakTriples(q){const free=(x,n)=>!x._probe&&!x._ifUnknown&&x.type!=='learn'&&!['card','conf','end','explain'].includes(x.type)&&!(n>0&&q[n-1].type==='explain');
@@ -1956,25 +1991,25 @@ if(STORE==='ok')ensureCodes();
 function stage(id){const s=S.items[id].s;return s<=0?0:s<1.5?1:s<4?2:s<10?3:s<25?4:5}
 const STAGES=[['zaadje','เมล็ด','seed'],['kiemplant','ต้นอ่อน','seedling'],['plantje','ต้นเล็ก','small plant'],['knop','ดอกตูม','bud'],['bloem','ดอกไม้','flower'],['in volle bloei','บานเต็มที่','in full bloom']];
 function thirsty(id){const it=S.items[id];return !!it&&it.reps>0&&it.due<=now()}   // ook in volle bloei: na de wachttijd komt het terug (review fase 3, punt 1)
-function review(id,res,form,exid,passive){
+function review(id,res,form,exid,passive){   /* M1 (stand per onderdeel), M2 (gespreid, groei alleen na een echte wachttijd), M12 (logboek) */
   /* res: true = goed bij de eerste poging, 'retry' = goed na een hint of tweede poging, false = fout.
      passive: een bij-item van een oefening; telt alleen bij goed, voor vormen en oefeningen, zonder groei (docs/herhaalmodel.md sectie 3).
      Groei alleen bij gespreid ophalen (sectie 5): pas vanaf de helft van de wachttijd, en naar verhouding:
      op de helft × 1,7, aan de beurt × 2,4. Zo levert vaker oefenen op één dag geen snellere bloei op. */
   const it=S.items[id];if(!it)return;if(!Array.isArray(it.exs))it.exs=[];
   if(passive&&res!==true)return;
-  if(!passive&&it.placed){delete it.placed;if(res===false){it.s=0;it.reps=0;it.due=now();S.introduced=S.introduced.filter(x=>x!==id);S.log.push({t:now(),id,ok:false,pl:1});if(S.log.length>600)S.log.shift();save();return}}   // uit de startmeting en toch fout: als nieuw, geen fout (sectie 9)
+  if(!passive&&it.placed){delete it.placed;if(res===false){it.s=0;it.reps=0;it.due=now();S.introduced=S.introduced.filter(x=>x!==id);S.log.push({t:now(),id,ok:false,pl:1});if(S.log.length>MOTOR.logMax)S.log.shift();save();return}}   // uit de startmeting en toch fout: als nieuw, geen fout (sectie 9)
   if(res===true||res==='retry'){if(form&&!passive&&!it.forms.includes(form))it.forms.push(form);if(exid&&!it.exs.includes(exid)){it.exs.push(exid);if(it.exs.length>10)it.exs.shift()}}
   if(!passive)it.reps++;
   if(!passive){
     /* it.t = begin van de huidige wachttijd (laatste fout, groei of inplanning). Na een fout: t = nu, dus direct daarna goed geeft geen groei (review fase 3, punt 2). */
     const t0=typeof it.t==='number'?it.t:it.due-Math.max(0,it.s)*DAY;
-    if(res===true){if(it.s<=0){it.s=1;it.t=now();it.due=now()+DAY}
-      else{const f=Math.min(1,(now()-t0)/(it.s*DAY));if(f>=.5){it.s=Math.min(120,it.s*(1+1.4*f));if(it.s>=10&&!canBloom(id,it))it.s=9;it.t=now();it.due=now()+it.s*DAY}else{it.t=t0;it.due=t0+it.s*DAY}}}
+    if(res===true){if(it.s<=0){it.s=MOTOR.firstDays;it.t=now();it.due=now()+MOTOR.firstDays*DAY}
+      else{const f=Math.min(1,(now()-t0)/(it.s*DAY));if(f>=MOTOR.growFrom){it.s=Math.min(MOTOR.maxDays,it.s*(1+MOTOR.growGain*f));if(it.s>=MOTOR.bloomDays&&!canBloom(id,it))it.s=MOTOR.bloomCap;it.t=now();it.due=now()+it.s*DAY}else{it.t=t0;it.due=t0+it.s*DAY}}}
     else if(res==='retry'){it.t=now();it.due=now()+Math.max(0,it.s)*DAY}
-    else{it.lapses++;it.s=Math.max(.5,it.s*.4);it.t=now();it.due=now()}}
-  S.log.push({t:now(),id,ok:res===true,...(res==='retry'?{r:1}:{}),...(exid?{ex:exid}:{}),...(passive?{p:1}:{})});if(S.log.length>600)S.log.shift();
-  if(!passive&&res===true&&it.lapses>=4){const L=S.log.filter(e=>e.id===id&&!e.p).slice(-3);if(L.length===3&&L.every(e=>e.ok))it.lapses=2}   // hardnekkig: na 3 keer achter elkaar goed weer gewoon (sectie 8)
+    else{it.lapses++;it.s=Math.max(MOTOR.lapseMin,it.s*MOTOR.lapseKeep);it.t=now();it.due=now()}}
+  S.log.push({t:now(),id,ok:res===true,...(res==='retry'?{r:1}:{}),...(exid?{ex:exid}:{}),...(passive?{p:1}:{})});if(S.log.length>MOTOR.logMax)S.log.shift();
+  if(!passive&&res===true&&it.lapses>=MOTOR.leechLapses){const L=S.log.filter(e=>e.id===id&&!e.p).slice(-MOTOR.leechRecover);if(L.length===MOTOR.leechRecover&&L.every(e=>e.ok))it.lapses=MOTOR.leechBack}   // hardnekkig: na 3 keer achter elkaar goed weer gewoon (sectie 8)
   save();
 }
 /* vormen die niet meetellen voor bloei: bekijken en de controlevraag bij een uitleg */
@@ -1982,8 +2017,8 @@ const NOGROW=['voorbeeld','check','spel'];   /* spel: wel wachttijd, geen vorm v
 /* eis voor doorgroeien boven 9 dagen (docs/herhaalmodel.md sectie 4, besluit 13 november 2026):
    woord: drie vormen; regel: drie verschillende oefeningen, minstens één keer zin bouwen;
    klank: drie verschillende oefeningen, minstens één keer luisteren en typen; rekenvaardigheid: drie verschillende varianten. */
-function canBloom(id,it){const k=KIND[id]||'word',f=(it.forms||[]).filter(x=>!NOGROW.includes(x)),n=(it.exs||[]).length;
-  return k==='rule'?n>=3&&f.includes('build'):k==='sound'?n>=3&&f.includes('luisteren'):k==='skill'?n>=3:f.length>=3}
+function canBloom(id,it){const k=KIND[id]||'word',f=(it.forms||[]).filter(x=>!NOGROW.includes(x)),n=(it.exs||[]).length,B=MOTOR.bloomExs;   /* M9 beheerst pas na meerdere vormen over tijd */
+  return k==='rule'?n>=B&&f.includes('build'):k==='sound'?n>=B&&f.includes('luisteren'):k==='skill'?n>=B:f.length>=MOTOR.bloomForms}
 /* een onderdeel is voor het eerst aangeboden (voorbeeld, uitleg, kaart): plannen, maar niet als gekend tellen */
 function introduce(id,form){const it=S.items[id];if(!it)return;if(!S.introduced.includes(id))S.introduced.push(id);if(form&&!it.forms.includes(form))it.forms.push(form);if(it.reps===0){it.reps=1;it.due=now()}save()}
 /* een oefening met items: het eerste item is het doel; alleen dat krijgt een fout */
@@ -2200,10 +2235,10 @@ function frame(inner,label,stepNo,ofN){app.dataset.vak=vakOf(Q[qi],stepNo);
 function finishTime(){save();syncUp(true)}   // leertijd telt de klok (leertijd en weekdoel)
 /* bijsturen (docs/herhaalmodel.md sectie 7): over de laatste 8 antwoorden van deze ronde.
    Onder 65% goed: typen wordt kiezen, geen nieuwe onderdelen meer. Boven 95% (8 antwoorden): kiezen wordt typen. Stil, zonder oordeel. */
-function adapt(){const last=SESS.slice(-8);if(last.length<4)return;const acc=last.filter(Boolean).length/last.length;
+function adapt(){const last=SESS.slice(-MOTOR.adaptWindow);if(last.length<MOTOR.adaptMin)return;   /* M4 sturen op 80 tot 90% goed */const acc=last.filter(Boolean).length/last.length;
   for(let i=qi;i<Q.length;i++){const q=Q[i];if(q._t)continue;
-    if(acc<.65){if(q._new)q._skip=true;else if(EASIER[q.type]&&q.w&&S.introduced.includes(q.w.id))q.type=EASIER[q.type];else if(!q.w&&q.items&&q.items.length&&q.exid&&!q._easy)Q[i]=easierEx(q)||q}
-    else if(acc>.95&&last.length>=8&&HARDER[q.type]&&q.w&&((S.items[q.w.id]||{}).forms||[]).includes('herkennen'))q.type=HARDER[q.type]}}
+    if(acc<MOTOR.adaptEasier){if(q._new)q._skip=true;else if(EASIER[q.type]&&q.w&&S.introduced.includes(q.w.id))q.type=EASIER[q.type];else if(!q.w&&q.items&&q.items.length&&q.exid&&!q._easy)Q[i]=easierEx(q)||q}
+    else if(acc>MOTOR.adaptHarder&&last.length>=MOTOR.adaptWindow&&HARDER[q.type]&&q.w&&((S.items[q.w.id]||{}).forms||[]).includes('herkennen'))q.type=HARDER[q.type]}}
 /* een makkelijkere oefening voor hetzelfde onderdeel, als die er is: lagere afbouwtrede (fade) of een kiesvorm i.p.v. bouwen of opschrijven */
 function easierEx(q){try{const base=q.exid.split('#')[0],P=PACKS.find(p=>(p.exercises||[]).some(e=>e.id===base));if(!P)return null;const cur=P.exercises.find(e=>e.id===base),id=q.items[0];
   const hard=e=>(e.fade||0)*2+(e.form==='build'||(e.data&&e.data.mode==='type')?1:0),e=chooseEx(id,P.learn,true);if(!e||hard(e)>=hard(cur))return null;
@@ -2213,9 +2248,10 @@ let KNOWN=new Set(),RETRIED=new Set();
 function step(){voicePend=null;while(Q[qi]&&(Q[qi]._skip||(Q[qi]._ifUnknown&&Q[qi].w&&KNOWN.has(Q[qi].w.id))||(Q[qi]._skipKnown&&KNOWN.has(Q[qi]._rule||(Q[qi].items||[])[0]))))qi++;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
 /* na een fout: het onderdeel één keer terug in deze ronde, minstens vijf onderdelen later, in een andere vorm (advies ontwerpsessie B) */
 const OTHER={recall:'recog',recog:'recall',hear:'recog',enrecall:'enrecog',enrecog:'enrecall',enhear:'enrecog'};
-function retryLater(q){if(!q||q._probe||q._retry)return;const id=q.w?q.w.id:q.items&&q.items[0];if(!id||RETRIED.has(id))return;
+function retryLater(q){   /* M3 terug in een andere vorm, niet direct erna */
+if(!q||q._probe||q._retry)return;const id=q.w?q.w.id:q.items&&q.items[0];if(!id||RETRIED.has(id))return;
   let r=null;if(q.w&&OTHER[q.type])r={type:OTHER[q.type],step:q.step,w:q.w};else if(q.items&&q.exid)r=easierEx(q);if(!r)return;
-  RETRIED.add(id);r._retry=1;const conf=Q.findIndex((x,i)=>i>qi&&x.type==='conf'),at=conf<0?Q.length:conf;Q.splice(Math.min(qi+6,at),0,r)}
+  RETRIED.add(id);r._retry=1;const conf=Q.findIndex((x,i)=>i>qi&&x.type==='conf'),at=conf<0?Q.length:conf;Q.splice(Math.min(qi+MOTOR.retryGap,at),0,r)}
 function score(ok,n,part){sessTotal++;SESS.push(!!ok);if(!ok)retryLater(Q[qi]);if(ok){sessRight++;sp+=n;addPts(n)}else if(part>0){sp+=part;addPts(part)}}
 /* fbBox(ok, tekst in de leertaal, tekst in de steuntaal); fbK(ok, sleutel, variabelen) haalt beide uit I18N */
 function fbBox(ok,msg,msgSup){let offer='';if(!ok&&app.classList.contains('sess')&&Q[qi]&&Q[qi]._sceneErr)scFault(Q[qi],Q[qi]._sceneErr);if(!ok&&app.classList.contains('sess')&&Q[qi]){const q=Q[qi];q._wrong=(q._wrong||0)+1;const x=q._wrong>=2&&explFor(q);if(x)offer=`<button class="linkish u-offer" data-uopen="${esc(x)}">${TB('explain.offer')}</button>`}const k=ok?'fb.ok':'fb.no',s=ts(k);return `<div class="fb ${ok?'fb-ok':'fb-no'}" role="status"><strong>${t(k)}${nlOnly()||!s?'':` <span ${supAttr()}>${s}</span>`}</strong>${msg?bi(msg,msgSup||''):''}${offer}</div>`}
@@ -2270,7 +2306,7 @@ H.explain=q=>{const o=EXPL[q.x];if(!o){next();return}
   const tm=setTimeout(()=>openExplain(q.x),250);$('#nx').onclick=()=>{clearTimeout(tm);next()}};
 /* uitkomst van de eerste vraag bij een nieuw woord (_probe) */
 function probeDone(w,known){const it=S.items[w.id];if(!S.introduced.includes(w.id))S.introduced.push(w.id);
-  if(known){KNOWN.add(w.id);it.s=14;it.t=now();it.due=now()+14*DAY;it.reps=Math.max(1,it.reps);if(!it.forms.includes('typen'))it.forms.push('typen');S.log.push({t:now(),id:w.id,ok:true,known:1})}   // al gekend: bloem, één controle na twee weken
+  if(known){KNOWN.add(w.id);it.s=MOTOR.knownDays;it.t=now();it.due=now()+MOTOR.knownDays*DAY;   /* M4 grote sprong */it.reps=Math.max(1,it.reps);if(!it.forms.includes('typen'))it.forms.push('typen');S.log.push({t:now(),id:w.id,ok:true,known:1})}   // al gekend: bloem, één controle na twee weken
   else{S.newLog=S.newLog||{};S.newLog[today()]=(S.newLog[today()]||0)+1}   // echt nieuw: telt mee in het dagbudget
   save()}
 /* ============ scènes (concept stap 2, docs/scenes.md) ============
@@ -2301,7 +2337,7 @@ function sceneQ(sc,hard){const q=[],vak=sc.subject||'nl',ph={look:1,talk:2,read:
     else if(st.type==='talk')st.turns.forEach((tu,ti)=>q.push({...base,type:'sc_talk',tu,ti,items:tu.items.slice(),exid:sc.id+'#t'+k+'.'+ti}));
     else if(st.type==='read'||st.type==='listen')st.q.forEach((qq,qi)=>push(qq.form?ask(base,qq,sc.id+'#q'+k+'.'+qi,{ctx:st.type}):{...base,type:'sc_read',qq,qi,items:qq.items.slice(),exid:sc.id+'#q'+k+'.'+qi}));
     else if(st.type==='slot'){const used=new Set(sc.targets),out=[],top=errTop();   // open plek: eerst de soort fout die het vaakst voorkomt (hooguit de helft), dan wat aan de beurt is
-      if(top)for(const id of top.ids){if(out.length>=Math.max(1,Math.floor(st.n/2)))break;if(used.has(id)||!S.items[id]||!S.items[id].reps)continue;const w=NL.find(x=>x.id===id);let x=null;
+      if(top)for(const id of top.ids){if(out.length>=Math.max(1,Math.floor(st.n*MOTOR.slotErrShare)))break;if(used.has(id)||!S.items[id]||!S.items[id].reps)continue;const w=NL.find(x=>x.id===id);let x=null;
         if(w)x={type:pickForm(w,'nl','recall'),step,w,vak};else{const e=chooseEx(id,'nl',true);if(e){x=exQ(e,step,'nl',id);if(x)x.vak=vak}}if(x){x._err=top.err;out.push(x);used.add(id)}}
       NL.filter(w=>thirsty(w.id)&&!used.has(w.id)).sort((a,b)=>overdue(b.id)-overdue(a.id)).slice(0,st.n-out.length).forEach(w=>out.push({type:pickForm(w,'nl','recall'),step,w,vak}));
       out.forEach(x=>q.push(x))}
@@ -2359,10 +2395,11 @@ H.sc_make=q=>{const st=q.st,fr=[].concat(st.frame),pre=fr.every(x=>/___/.test(pl
 /* ---- diepte en diagnose (docs/scenes.md) ----
    Elke foute keuze heeft een soort fout (err). De app telt per soort, recente fouten wegen zwaarder (halveert in 14 dagen): het foutprofiel S.errs.
    Tweede fout van dezelfde soort in dezelfde scène: de stap extra van die soort komt direct na deze vraag. */
-function errNote(err,id){if(!ERRS.includes(err))return;S.errs=S.errs||{};const e=S.errs[err]||{n:0,t:0,ids:[]},t0=now();e.n=+((e.n||0)*Math.pow(.5,(t0-(e.t||t0))/(14*DAY))+1).toFixed(3);e.t=t0;if(id)e.ids=[id,...(e.ids||[]).filter(x=>x!==id)].slice(0,8);S.errs[err]=e;save()}
-function errTop(){const t0=now();let best=null;for(const [err,e] of Object.entries(S.errs||{})){if(!e||!ERRS.includes(err))continue;const n=(e.n||0)*Math.pow(.5,(t0-(e.t||t0))/(14*DAY));if(n>=2&&(!best||n>best.n))best={err,n,ids:(e.ids||[]).slice()}}return best}
+function errNote(err,id){   /* M5 per fout het soort; recent weegt zwaarder */
+  if(!ERRS.includes(err))return;S.errs=S.errs||{};const e=S.errs[err]||{n:0,t:0,ids:[]},t0=now();e.n=+((e.n||0)*Math.pow(.5,(t0-(e.t||t0))/(MOTOR.errHalfDays*DAY))+1).toFixed(3);e.t=t0;if(id)e.ids=[id,...(e.ids||[]).filter(x=>x!==id)].slice(0,MOTOR.errIds);S.errs[err]=e;save()}
+function errTop(){const t0=now();let best=null;for(const [err,e] of Object.entries(S.errs||{})){if(!e||!ERRS.includes(err))continue;const n=(e.n||0)*Math.pow(.5,(t0-(e.t||t0))/(MOTOR.errHalfDays*DAY));if(n>=MOTOR.errSteer&&(!best||n>best.n))best={err,n,ids:(e.ids||[]).slice()}}return best}
 function scFault(q,err){if(!err||!ERRS.includes(err))return;errNote(err,q.items&&q.items[0]);if(!SCN||SCN.sc!==q.sc)return;SCN.errs[err]=(SCN.errs[err]||0)+1;
-  if(SCN.errs[err]<2||SCN.extra.has(err))return;const ex=q.sc.steps.filter(st=>st.type==='extra'&&st.err===err);if(!ex.length)return;SCN.extra.add(err);
+  if(SCN.errs[err]<MOTOR.extraAfter||SCN.extra.has(err))return;   /* M11 bij een herhaalde fout uitleg en extra oefening */const ex=q.sc.steps.filter(st=>st.type==='extra'&&st.err===err);if(!ex.length)return;SCN.extra.add(err);
   const add=[];ex.forEach(st=>{const k=q.sc.steps.indexOf(st),base={sc:q.sc,st,step:3,vak:q.vak};add.push({...base,type:'sc_extra'});st.q.forEach((qq,i)=>add.push({...base,type:'sc_q',qq,items:qq.items.slice(),exid:q.sc.id+'#x'+k+'.'+i,role:'extra'}))});
   Q.splice(qi+1,0,...add)}
 /* instap goed bij de eerste poging: een nieuw woord maakt de grote sprong (probeDone), en ophalen van dat onderdeel valt weg */
@@ -2397,7 +2434,7 @@ H.sc_speak=q=>{const st=q.st,m=plainX(st.model,'nl');
    met de vorm 'spel', die niet meetelt voor bloei (masterplan C5: vervangt productief oefenen niet). */
 H.sc_game=q=>{const sc=q.sc,ids=new Set([...q.items,...sc.targets]),pool0=NL.filter(w=>(w.art==='de'||w.art==='het')&&ids.has(w.id)),more=NL.filter(w=>(w.art==='de'||w.art==='het')&&!ids.has(w.id)&&S.items[w.id]&&S.items[w.id].reps>0&&thirsty(w.id));
   const pool=[...pool0,...more.slice(0,Math.max(0,12-pool0.length))];if(!pool.length)return next();
-  let good=0,left=60,cur=null,timer=null,started=false,last=null;const pick=()=>{let n=pool[Math.floor(Math.random()*pool.length)];if(pool.length>1)while(n===last)n=pool[Math.floor(Math.random()*pool.length)];last=n;return n};
+  let good=0,left=MOTOR.gameSeconds,cur=null,timer=null,started=false,last=null;const pick=()=>{let n=pool[Math.floor(Math.random()*pool.length)];if(pool.length>1)while(n===last)n=pool[Math.floor(Math.random()*pool.length)];last=n;return n};
   const done=()=>{clearInterval(timer);score(good>0,Math.min(30,good*2));if(SCN&&SCN.sc===sc)SCN.game=Math.max(SCN.game||0,good);
     scFrame(q,`<div class="card celebrate stack" style="text-align:center"><div class="big num">${good}</div>${T('speed.nice')}</div>${nextBtn('btn-main')}`);$('#nx').onclick=next};
   const draw=()=>{scFrame(q,started?`<div class="card stack" style="text-align:center"><div class="timer"><i style="width:${left/60*100}%"></i></div><p class="eyebrow">de of het?</p><p class="speed">${esc(cur.w)}</p>${supSpan(L_(cur))}

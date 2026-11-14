@@ -28,6 +28,10 @@ Bijgewerkt: 14 november 2026.
 - Stap 2 van het masterplan, de rest (docs/ontwerp-stap2.md): elke bestaande oefenvorm als vraag in een scène (`build`, `gap`, `listen`, `money`, `clock`, `discount`; hetzelfde scherm als in de les, een fout telt in het foutprofiel); `hear-type` en `complete`; hint in twee stappen (goed na een hint telt als `'retry'`; niet bij instap, controle en de zwaardere vorm); stap `speak` (voorbeeld om te horen, checklist; opnemen volgt in stap 6); stap `game` met `dehet` (60 seconden, woorden van de scène en wat aan de beurt is, vorm `spel` telt niet voor bloei); de zwaardere vorm (een gespeelde scène opnieuw zonder steuntaal, typen waar een vraag ook `answer` heeft, eigen record in `S.world.best`, in dezelfde migratie 5 → 6). Hoofdstukcontrole `PakketCheck.checkChapter` (A6, B1, B2, C1, C2, E2, E3, G2), gebruikt door de poort en de scènetest. Migratie 5 → 6 getest. Getest in de browser op 375 px: spreken, spel, zwaarder met nieuw record.
 - Stap 2 is af als het proefhoofdstuk uit de redactielijn in `content/` staat en de hoofdstukcontrole haalt (de scènetest meldt het nu als "NOG"); dan volgt ijkmoment G1.
 
+## Stap 2b: de motor langs het didactisch plan
+
+De stand per eis M1 tot M12 (wat er is, wat ontbreekt) staat in `docs/ontwerp-stap2b.md`. Kort: M1 en M2 bestaan; M3, M4, M7, M9, M11 en M12 deels; M5, M6, M8 en M10 nieuw. Alle waarden van de motor staan nu op één plek (`MOTOR` in `index.html`) met bron of "aanname"; `test-herhaal` bewaakt dat, en de les van `test-les` is ongewijzigd. Volgende bouw: M12 (reeks pogingen per onderdeel), M5 (trede per regel), M6 (vier strengen), M10 (na `docs/eindtermen.md`); drie vragen aan de ontwerpsessie staan onderaan het ontwerp.
+
 ## Afstemming redactielijn en app (voor de schrijversopdracht)
 
 `redactie/controleer.mjs` draait nu ook `pakketcheck.js` tegen de ingebouwde pakketten: wat de app weigert, keurt de lijn af. De schrijversopdracht moet daarom overnemen:
