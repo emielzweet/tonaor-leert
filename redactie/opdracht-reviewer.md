@@ -15,7 +15,7 @@ Je beoordeelt één hoofdstuk lesstof (`redactie/uit/<id>.json`) voor een leer-a
 5. **Kennisles:** staat elk feit in een van de genoemde bronnen? Controleer de bronnen als je kunt; een feit zonder bron is een fout.
 6. **Geen namen of persoonlijke gegevens,** niets wat een groep mensen tekortdoet.
 7. **Didactiek:** komt elk woord vaak genoeg terug, loopt de moeilijkheid op, moet de leerder zelf iets maken, sluit de rekenscène aan op de situatie?
-8. **Eén goed antwoord:** ga bij elke gatzin (`gap` van een woord, een `gap`-oefening, een `complete`) en elke keuzevraag na of een ander woord uit het pakket of uit de pakketten die het nodig heeft er even goed in past. Dan rekent de app een goed antwoord fout: blokkerend. Herstel: een zin die maar één woord toelaat, of `also` (de woorden die ook passen, in beide richtingen). Ga ook na of twee woorden dezelfde vertaling in de steuntaal hebben (bij kiezen van Thais naar Nederlands zijn er dan twee goede antwoorden), en of een omschrijving het woord zelf gebruikt.
+8. **Eén goed antwoord:** ga bij elke gatzin (`gap` van een woord, een `gap`-oefening, een `complete`) en elke keuzevraag na of een ander woord uit het pakket of uit de pakketten die het nodig heeft er even goed in past. Dan rekent de app een goed antwoord fout: blokkerend bij een keuzevraag of zin bouwen, klein bij een getypt woord (zie hieronder). Herstel: een zin die maar één woord toelaat, of `also` (de woorden die ook passen, in beide richtingen). Ga ook na of twee woorden dezelfde vertaling in de steuntaal hebben (bij kiezen van Thais naar Nederlands zijn er dan twee goede antwoorden), en of een omschrijving het woord zelf gebruikt.
 9. **Tekeningen:** past wat er staat bij de tekst (de klok die genoemd wordt, de dingen die aantikbaar zijn)?
 
 ## Uitkomst
@@ -27,4 +27,8 @@ Je beoordeelt één hoofdstuk lesstof (`redactie/uit/<id>.json`) voor een leer-a
   "samenvatting": "twee of drie zinnen" }
 ```
 
-`goed` = geen blokkerende fouten en hooguit vijf kleine. `verbeteren` = de schrijver kan het herstellen. `afkeuren` = opnieuw schrijven. Wees streng: een fout die hier blijft staan, leert iemand aan.
+**Wat blokkerend is (masterplan, uitleg bij de eisen 18):** blokkerend is alleen (a) de lesstof leert iets wat niet klopt: een foute regel, vertaling, uitkomst of lidwoord; of (b) de app rekent een goed antwoord fout zonder dat de leerder er iets aan kan doen: bij kiezen en bij een zin bouwen uit blokken. Klein is: een variant die ontbreekt bij een getypt woord (daarvoor heeft de leerder de knop "Mijn antwoord is ook goed"), stijl, een vraag die beter kan. Een typvraag met meer dan twee woorden als antwoord weigert de poort al.
+
+**Na een herstelronde** krijg je de vorige review erbij. Tel dan alleen nieuwe blokkerende fouten en terugval (iets wat goed was en nu fout is). Wat eerder als klein is aanvaard, blijft klein.
+
+`goed` = geen blokkerende fouten; de kleine punten gaan als lijst mee naar de volgende ronde van onderhoud. `verbeteren` = er zijn blokkerende fouten die de schrijver kan herstellen. `afkeuren` = opnieuw schrijven. Wees streng op wat blokkerend is: een fout die hier blijft staan, leert iemand aan.
