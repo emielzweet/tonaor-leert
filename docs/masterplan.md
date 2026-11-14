@@ -10,6 +10,20 @@ Stand: 14 november 2026. **Dit is het leidende document.** Het zegt wat er geëi
 
 Het nieuwe concept (kaart, scènes, album; `docs/concept-leerwereld.md`) is een andere **vorm**, geen nieuw begin. Alles wat eerder is geëist blijft onverminderd gelden: de didactiek van de drie leergangen, de variatie in lesstof, de diepgang, de grote verscheidenheid aan werkvormen, de uitdaging, de onderbouwing uit onderzoek, de uitleg, de toetsen die bijsturen, de leerroute, het weekdoel, en de regels voor opslag, privacy en beveiliging. Een scène die een eis hieronder niet haalt, is niet af, hoe mooi hij er ook uitziet.
 
+**Wat werkt, blijft.** Het nieuwe ontwerp bouwt op wat er staat en gooit niets weg wat zijn werk doet. Dit blijft, ongewijzigd of als bouwsteen in de nieuwe vorm:
+
+- het herhaalmodel en de samensteller (gespreid ophalen, groei na een echte wachttijd, bijsturen binnen een ronde, hardnekkige onderdelen, de grote sprong voor wat al gekend is);
+- alle bestaande oefenschermen (herkennen, zelf typen, horen en typen, zin bouwen, gatzin, klankparen, dictee, meerkeuze bij een tekst, klok, geld, korting): ze worden vragen in een scène en blijven in de korte ronde;
+- de uitleg met tekeningen en stem (32 uitleggen, de speler, de drie ingangen) en `uitleg.js`;
+- sommen met wisselende getallen;
+- het weekdoel van tien uur met de weekring en de klok die alleen echte leertijd telt;
+- Bijsturen op Ik, de tikken na een ronde, het dagbudget voor nieuwe woorden;
+- de startmeting, het verhaal, de gesprekskaart, het dagboek, de snelronde;
+- de veilige opslag met reservekopie en terugzetten, de pakketten en hun controle, de koppeling met de begeleider, de steuntalen en de vertaaltabel;
+- de werkwijze: tests bij elke wijziging, controle op 375 breed, een onafhankelijke review, niets stil repareren.
+
+Een onderdeel dat live staat, verdwijnt alleen als gemeten is dat wat ervoor in de plaats komt beter werkt, en na een besluit van de eigenaar. Tot die tijd staat het nieuwe ernaast.
+
 Wat wel vervangen is, en door wat:
 
 | Was | Wordt | Wat blijft |
