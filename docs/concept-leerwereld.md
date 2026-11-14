@@ -52,6 +52,8 @@ Geen ranglijst, niets afpakken, geen schuldgevoel, geen tijdsdruk, geen geld.
 
 > **Bijgesteld op 14 november 2026:** een scène is dieper dan in het proefscherm: 20 tot 30 antwoorden, zes tot negen minuten, met een instap, een controle en extra stappen bij fouten (`docs/scenes.md`, Diepte en diagnose). In de rekensom hieronder worden dat twee nieuwe scènes Nederlands per dag in plaats van drie, met zes tot acht nieuwe woorden per scène; het dagbudget van 16 woorden blijft gelijk en er zijn ongeveer drie hoofdstukken per week nodig in plaats van vier.
 
+> **Bijgesteld op 14 november 2026 (nooit een grind, masterplan groep H):** de 36 minuten "Onderweg" per dag in de tabel hieronder zijn te veel losse herhaling. De verdeling wordt: twee nieuwe scènes Nederlands (16 minuten, met het ophalen erin verwerkt), twee scènes rekenen of Engels (16), twee tot drie lessen algemene ontwikkeling (15), lezen of luisteren naar keuze (11), een spel of een scène in de zwaardere vorm (8), uitleg of een toets (8), en hooguit 12 minuten Onderweg. Losse herhaling blijft onder een vijfde van de tijd.
+
 ## Een week doorgerekend
 
 Uitgangspunt: het weekdoel van 10 uur, dus ongeveer 86 minuten per dag, en 16 nieuwe woorden per dag (`docs/toets-per-stap.md`).
@@ -110,6 +112,8 @@ De scènes 1 en het rekenspel bestaan al in het proefscherm en dienen als voorbe
 Werkverdeling: de ontwerpsessie levert `scene.js` (de tekencatalogus) en het uitgeschreven proefhoofdstuk als voorbeeld; de bouwsessie bouwt de speler, de opslag, de tests en de overige lesstof, en doet de releases.
 
 ## Wereld en kennis: de diepte in
+
+> **Verbreed op 14 november 2026:** dit onderdeel heet nu algemene ontwikkeling en gaat over alles. De uitwerking staat in `docs/algemene-ontwikkeling.md`; wat hieronder staat, blijft als uitgangspunt gelden.
 
 Besluit van de eigenaar (14 november 2026): **geen vast stramien per stroming.** Een rijtje "oorsprong, kernideeën, feesten, plekken" voor elke stroming is een folder, geen les, en wordt snel saai. Elke kennisles leert één ding dat specifiek is en dat je kunt navertellen.
 

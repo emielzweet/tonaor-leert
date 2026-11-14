@@ -15,10 +15,10 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | 3 | Herhaling die klopt, bloei haalbaar, les die varieert | 13 nov | live | fase 3 | bouw | #28 en #29 sluiten na de test op de telefoon |
 | 4 | Kwaliteit van oefeningen geborgd op de didactiek van de drie boeken | 13 nov | deels | kwaliteitskader, pakketcontrole | bouw | 115 kwaliteitsmeldingen wegwerken; thema 1 volledig |
 | 5 | Leerroute realistisch: de stof van de drie boeken, rekenen en Engels onderzocht | 13 nov | deels | `docs/leerroute.md` | bouw | de routekaart in de app toont de oude route nog (zie wens 34 en 35); lesstof volgt per thema (zie wens 37) |
-| 6 | Veel meer woorden; 4 per ronde is te weinig | 13 nov | plan | spoor A en F | bouw | dagbudget 16, frequentielijst deel 1 |
-| 7 | Bekende woorden snel voorbij; "zeker" telt | 13 nov | plan | spoor F | bouw | eerste vraag goed = grote sprong met één controle |
-| 8 | Niet direct achter elkaar herhalen | 13 nov | deels | spoor F | bouw | spreiding binnen een ronde; ervaringstest |
-| 9 | Zelf kunnen bijsturen in de app | 13 nov | plan | spoor F | bouw | blok Bijsturen op Ik |
+| 6 | Veel meer woorden; 4 per ronde is te weinig | 13 nov | live | dagbudget van 16 nieuwe woorden per dag, instelbaar | – | aangescherpt in masterplan groep H |
+| 7 | Bekende woorden snel voorbij; "zeker" telt | 13 nov | live | een woord dat bij de eerste vraag goed is, maakt de grote sprong | – | aangescherpt in masterplan groep H |
+| 8 | Niet direct achter elkaar herhalen | 13 nov | live | spreiding binnen een ronde; ervaringstest | – | aangescherpt in masterplan groep H |
+| 9 | Zelf kunnen bijsturen in de app | 13 nov | live | blok Bijsturen op Ik | – | aangescherpt in masterplan groep H |
 | 10 | Elke stap toetsen aan onderzoek, methodiek en leerervaring | 13 nov | deels | `docs/toets-per-stap.md` | bouw | opnemen in de werkwijze; ervaringstest bouwen |
 | 11 | Spreken en schrijven, luisterteksten, standaardzinnen (uit de vergelijking met het boek) | 13 nov | plan | spoor G en A | bouw | per thema, vanaf thema 1 volledig |
 
@@ -48,9 +48,9 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 
 | # | Wens | Gevraagd | Stand | Waar | Wie | Volgende stap |
 |---|---|---|---|---|---|---|
-| 24 | Levensbeschouwing breed: boeddhisme, islam, christendom, jodendom, hindoeïsme, vrijmetselarij, rastafari, sjamanisme en meer. Geen vast stramien per stroming (dat is saai): de diepte in, echt specifieke dingen leren (14 nov) | 14 nov | plan | `docs/concept-leerwereld.md`, Wereld en kennis | ontwerp, dan redactielijn | eerste reeks van specifieke lessen in de productielijst; één proefles in het proefscherm vervangen |
-| 25 | Politiek en staatsinrichting | 14 nov | open | idem | idem | idem |
-| 26 | Geschiedenis als eigen onderdeel, veel onderwerpen | 14 nov | open | idem | idem | idem |
+| 24 | Levensbeschouwing breed: boeddhisme, islam, christendom, jodendom, hindoeïsme, vrijmetselarij, rastafari, sjamanisme, atheïsme en meer; geen vast stramien, de diepte in | 14 nov | plan | opgegaan in algemene ontwikkeling (wens 47) | redactielijn | zie wens 47 |
+| 25 | Politiek en staatsinrichting, het Nederlandse politieke landschap, Europa, geopolitiek | 14 nov | plan | idem | idem | idem |
+| 26 | Geschiedenis als eigen onderdeel, veel onderwerpen; ook archeologie en oorlogen | 14 nov | plan | idem | idem | idem |
 | 27 | Kennislessen verweven in de gewone lessen | 14 nov | plan | `docs/concept-leerwereld.md`: een kennisles bij elke plek | ontwerp | eerste voorbeeld in het proefhoofdstuk (hoe werkt de zorg) |
 
 ## Route, begeleider en aanvoer (gevraagd op 14 november)
@@ -68,6 +68,10 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | 42 | Rekening houden met wat het sterkste model moet doen en wat een ander model kan | 14 nov | deels | `docs/automatische-redactie.md`, Wie doet wat | ontwerp | toegepast in de proef: schrijven en reviewen door andere modellen |
 | 43 | Diepte per onderwerp: veel meer vragen en opdrachten per scène, met een diagnostisch didactisch model erachter | 14 nov | plan | `docs/scenes.md`, Diepte en diagnose | ontwerp, dan bouw | proefhoofdstuk verdiepen volgens de nieuwe opbouw; herhaalmodel bestaat, de drie andere lagen zijn nieuw |
 | 44 | Niets van het eerdere werk vervalt: de eisen aan variatie, diepgang, verscheidenheid aan werkvormen, uitdaging en onderbouwing blijven onverminderd gelden; de ontwerpsessie stuurt met een masterplan, de bouwsessie voert uit | 14 nov | deels | docs/masterplan.md | ontwerp stuurt, bouw voert uit | ijkmoment G1 na de scènespeler |
+| 45 | Kwalitatief onderwijs dat echt toewerkt naar leeruitkomsten: de criteria van de staatsexamens en de examens van alle vakken | 14 nov | plan | `docs/masterplan.md` groep G; `docs/eindtermen.md` moet nog gemaakt worden | bouw, ijkmoment ontwerp | stap 3b: eindtermen uit de officiële bronnen, lesstof en toetsen verwijzen ernaar |
+| 46 | Voorkom te veel herhaling: het mag nooit saai of een grind worden; progressief, uitdagend, met echte diepgang | 14 nov | plan | `docs/masterplan.md` groep H en B | bouw | de ervaringstest meet losse herhaling (hooguit een vijfde van de tijd) |
+| 47 | Algemene ontwikkeling als vrije encyclopedie van kennis en begrippen: moeilijke woorden, geschiedenis, aardrijkskunde, topografie, archeologie, oorlogen, economie, politiek, Europa, Azië, geopolitiek, geloof, atheïsme en alles wat eronder valt; geen stramien, uitdagend en verdiepend, mag de rest ondersteunen maar hoeft niet | 14 nov | plan | `docs/algemene-ontwikkeling.md` | ontwerp (kaart en tijdlijn), redactielijn (lessen), bouw (scherm Ontdek) | veertig vragen als begin van de wachtrij; stap 11 van het masterplan |
+| 48 | Toetsen en diagnostische checks in de app, voor alle vakken | 14 nov | plan | `docs/masterplan.md` E3, E4, G3; `docs/scenes.md` | bouw | instap en controle komen met de scènespeler; toetsen per thema en in examenvorm in stap 8 |
 
 ## Eigen voorstellen van de ontwerpsessie (goedgekeurd op 13 november)
 
@@ -77,8 +81,8 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | 29 | Foutprofiel; bijna goed; oefeningen die zichzelf melden | plan: soort fout per keuze, extra stappen bij herhaalde fout, samensteller kiest op het profiel (`docs/scenes.md`) |
 | 30 | Tikbare teksten; vervolgverhaal met keuzes | plan (onderdeel van het nieuwe concept) |
 | 31 | Samen spelen aan tafel; opdrachten buiten de app; weekadvies voor de begeleider | open |
-| 32 | Knop "vertaling klopt niet" | plan (eerste stap van de herziene volgorde) |
-| 33 | Dekkingstabel van de lesstof in `docs/STATUS.md` | open |
+| 32 | Knop "vertaling klopt niet" | live; wordt uitgebreid tot Fout melden (wens 41) |
+| 33 | Dekkingstabel van de lesstof in `docs/STATUS.md` | live; krijgt een tabel per eindterm (wens 45) |
 
 ## Wacht op de eigenaar
 

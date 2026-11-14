@@ -1,5 +1,10 @@
 {
   "uitleg": "De wachtrij van de redactielijn. stand: gepland | geschreven | gereviewd | klaar | uitgebracht. De volgorde volgt docs/leerroute.md.",
+  "algemeneOntwikkeling": {
+    "uitleg": "Losse lessen, één vraag per les, volgens docs/algemene-ontwikkeling.md. De eerste veertig vragen staan in dat document onder 'Om de toon te zetten'. Vul de wachtrij aan met vragen uit alle gebieden door elkaar; nooit twee achter elkaar in dezelfde vorm, hooguit twee uit hetzelfde gebied. Elk feit met een bron.",
+    "stand": "gepland",
+    "klaar": []
+  },
   "hoofdstukken": [
     {
       "id": "nl-dokter",

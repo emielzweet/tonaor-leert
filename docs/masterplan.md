@@ -41,7 +41,7 @@ Elke eis heeft een bron en een manier waarop hij bewaakt wordt: **T** (een test 
 | B3 | Wie het al kan, gaat sneller (instap, grote sprong); wie fouten maakt, krijgt extra op precies dat punt | scenes, herhaalmodel | T |
 | B4 | Elke scène is opnieuw te spelen in een zwaardere vorm: zonder steuntaal, met open antwoorden, of op eigen record | nieuw | T |
 | B5 | Minstens tien oefeningen per thema raken stof uit eerdere thema's; elk grammaticapunt komt in een later thema terug | kwaliteitskader | T |
-| B6 | Kennislessen gaan de diepte in: één specifieke vraag per les, geen vast stramien, feiten met een bron | concept | R |
+| B6 | Algemene ontwikkeling is een vrije encyclopedie over alles (taal en begrippen, geschiedenis, aardrijkskunde en topografie, archeologie, oorlogen, economie, politiek, Europa, Azië, geopolitiek, geloof en atheïsme, wetenschap, kunst en meer): één vraag per les, de diepte in, uitdagend, zonder stramien, feiten met een bron | algemene ontwikkeling | R |
 | B7 | De stof volgt de drie leergangen tot en met B2, rekenen tot niveau 4, Engels tot B1 lezen en luisteren | leerroute | G |
 
 ### C. Variatie en werkvormen
@@ -85,6 +85,29 @@ Elke eis heeft een bron en een manier waarop hij bewaakt wordt: **T** (een test 
 | F5 | Lesstof wordt automatisch aangevuld met een voorraad; fouten kunnen altijd gemeld worden en worden automatisch verwerkt; vragen van de leerder gaan eerst naar AI | automatische redactie | M |
 | F6 | Werkt op een telefoon van 375 breed, ook zonder verbinding; spraak via de stem van het toestel, met vaste opnamen waar die tekortschiet; opnemen en terugluisteren zonder server | bouwplan fase 6 | T, G |
 
+### G. Leeruitkomsten: toewerken naar de examens
+
+| # | Eis | Bron | Bewaking |
+|---|---|---|---|
+| G1 | Voor elk vak een lijst eindtermen uit de officiële bronnen, met de bron erbij: Staatsexamen Nt2 programma I en II per onderdeel (lezen, luisteren, schrijven, spreken), de mbo-rekenniveaus 2, 3 en 4 per domein, Engels B1 lezen en luisteren en A2 spreken en schrijven, en de tussenniveaus op weg daarheen. Vast te leggen in `docs/eindtermen.md` | leerroute, de officiële regelingen | G |
+| G2 | Elk hoofdstuk, elke scène en elke toets noemt de eindtermen die het dient; de dekkingstabel laat per eindterm zien hoeveel lesstof en hoeveel toetsvragen er zijn. Lesstof die geen eindterm dient, hoort bij algemene ontwikkeling of gaat eruit | nieuw | T |
+| G3 | Toetsen melden de uitslag per eindterm. De route en de verwachte examendatum hangen aan beheersing van eindtermen, niet alleen aan uren | route en prognose | T |
+| G4 | Elk examenonderdeel wordt geoefend in de echte vorm: de tijden, de aantallen opgaven, zonder steuntaal, met de hulpmiddelen die bij het examen mogen | leerroute | T, R |
+| G5 | De leerder ziet bij een hoofdstuk in gewone taal waar het voor dient: *dit heb je nodig voor schrijven op het examen* | nieuw | G |
+
+### H. Nooit een grind
+
+Ophalen blijft nodig om te onthouden (A2, A5). Het verschil zit in **waar** het gebeurt: in een nieuwe situatie, een nieuwe tekst of een spel, niet in een rij losse vragen.
+
+| # | Eis | Bron | Bewaking |
+|---|---|---|---|
+| H1 | Losse herhaling (de ronde Onderweg) is hooguit een vijfde van de leertijd; de rest van het ophalen zit verwerkt in scènes, teksten en spellen | nieuw | T (ervaringstest), M |
+| H2 | Een onderdeel komt nooit twee keer achter elkaar in dezelfde vorm terug, ook niet over dagen heen | toets per stap, aangescherpt | T |
+| H3 | Wat de leerder kent, verdwijnt snel: goed bij de eerste vraag is de grote sprong; wat drie keer op rij goed ging in drie vormen komt alleen nog voor in teksten en scènes | herhaalmodel, aangescherpt | T |
+| H4 | Elke dag is er iets wat er gisteren niet was: een nieuwe scène, een nieuwe werkvorm of een nieuwe les algemene ontwikkeling. Is de nieuwe lesstof op, dan zegt de app dat en vult niet op met herhaling | toets per stap | T |
+| H5 | De tik "saai" stuurt bij: twee keer saai op hetzelfde soort onderdeel betekent minder daarvan, en een regel in het logboek van de redactie | toets per stap | M |
+| H6 | Algemene ontwikkeling volgt geen stramien en kent geen verplichte herhaling: nooit twee lessen achter elkaar in dezelfde vorm, hooguit twee achter elkaar uit hetzelfde gebied | algemene ontwikkeling | T, R |
+
 ## Catalogus van werkvormen
 
 Elke vorm is een stap of een vraag in een scène, en telt voor het herhaalmodel. "Staat" zegt of de vorm al in de app zit.
@@ -112,6 +135,7 @@ Elke stap is los uit te brengen en heeft een toets waaraan hij moet voldoen. Les
 | 1 | Stijl: kleur per vak, knoppen met diepte, tekenstijl | beheer | zichtbaar op 375 breed, geen gedrag gewijzigd | – |
 | 2 | Scènespeler met alle stappen uit `docs/scenes.md`, het foutprofiel, en het proefhoofdstuk naast de les | beheer | de scènetest bewaakt A1 tot A7, B1, B3, C1, C2, E2, E3; migratie getest | **G1:** de ontwerpsessie speelt drie scènes en legt ze langs de eisen |
 | 3 | Redactielijn in bedrijf: proefhoofdstuk door de review, lesstof los van de code, uitbrengen, inplannen | beheer voert uit | drie hoofdstukken achter elkaar "goed" zonder ingrijpen; voorraad van twee weken | **G2:** steekproef op de eerste drie hoofdstukken |
+| 3b | Eindtermen: `docs/eindtermen.md` uit de officiële bronnen, en het veld waarmee lesstof en toetsen ernaar verwijzen | beheer, met een goedkoper model voor het bronnenonderzoek; elke eindterm met zijn bron | G1 en G2; de dekkingstabel per eindterm bestaat | **G2:** de ontwerpsessie legt een steekproef naast de bronnen |
 | 4 | Proefweek en meten | de leerder; beheer levert de cijfers | cijfers naast de week ervoor: minuten, scènes per dag, doorgaan, aandeel goed, leuk of saai | **G3:** advies aan de eigenaar over de kaart |
 | 5 | Kaart als thuisscherm, album, route met tijd en examendatum | beheer | E5; niets van de bestaande voortgang verloren | – |
 | 6 | Ontbrekende werkvormen: opnemen en terugluisteren, luisterteksten, zin afmaken en eigen zin, koppelen, fout zoeken, slepen; daarna de spellen | beheer, naar een ontwerp per groep | C2 en C3 gehaald voor elk nieuw hoofdstuk | **G4:** per groep één keer |
@@ -119,7 +143,7 @@ Elke stap is los uit te brengen en heeft een toets waaraan hij moet voldoen. Les
 | 8 | Toetsen die bijsturen (E4), zwaardere herhaling van scènes (B4) | beheer, naar ontwerp | de toets verandert aantoonbaar wat de leerder daarna krijgt | **G5** |
 | 9 | Scherm van de begeleider: protocol, widget, app | beheer; installeren met toestemming | F4 | – |
 | 10 | Fout melden met punten en automatische verwerking; Vraag het | beheer | een melding leidt zonder tussenkomst tot een verbeterde les | – |
-| 11 | Bibliotheek Wereld en kennis | redactielijn, naar een reekslijst van de ontwerpsessie | B6 | steekproef |
+| 11 | Algemene ontwikkeling: het scherm Ontdek met draden, kaart en tijdlijn; de lessen via de redactielijn. Eerste lessen mogen eerder, als leestekst bij een scène | beheer; kaart en tijdlijn naar een ontwerp van de ontwerpsessie; lessen via de redactielijn | B6, H6; honderd lessen uit minstens acht gebieden | steekproef |
 | 12 | Generiek maken (#4 tot #10), lettertypen en CSP (#15), naam (#13) | beheer | F2 en F3 volledig | – |
 | 13 | Backend en volledige bibliotheek | later, na besluit van de eigenaar | – | – |
 
@@ -142,6 +166,8 @@ Bij een ijkmoment krijgt de ontwerpsessie de code en de lesstof, niet de conclus
 | `STATUS.md` | wat live is, wat lokaal klaarstaat, de dekkingstabel |
 | `kwaliteitskader.md`, `leerroute.md`, `uitleg.md`, `herhaalmodel.md`, `pakketformaat.md` | de inhoudelijke kaders; ongewijzigd van kracht |
 | `concept-leerwereld.md`, `scenes.md` | de vorm: kaart, scènes, diepte en diagnose |
+| `algemene-ontwikkeling.md` | de vrije encyclopedie |
+| `eindtermen.md` (te maken) | waar elk vak naartoe werkt, met de officiële bronnen |
 | `route-en-prognose.md`, `aanvoer-en-begeleider.md`, `automatische-redactie.md` | route met tijd; scherm van de begeleider; lesstof, meldingen en vragen automatisch |
 | `toets-per-stap.md`, `onderzoek-beloning.md` | de toets bij elke stap; het onderzoek |
 | `bouwplan.md`, `plan-herzien.md` | de inhoud van de fasen en sporen; de volgorde staat nu hier |
@@ -154,3 +180,5 @@ Deze eisen staan in `docs/scenes.md` ("Werkvormen, hints en de zwaardere vorm") 
 - B2: per hoofdstuk een leestekst met vijf tot tien vragen, een luistertekst en een spreeksituatie met opnemen.
 - A6: de hint in twee stappen bij zelf typen.
 - B4: de zwaardere vorm van een scène.
+- G2: het veld `goals` (eindtermen) bij een hoofdstuk, een scène en een toets.
+- H1 tot H4: de ervaringstest (`tools/test-ervaring.mjs`) meet het aandeel losse herhaling, herhaling in dezelfde vorm, en een dag zonder iets nieuws.

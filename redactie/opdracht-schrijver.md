@@ -36,7 +36,7 @@ Je schrijft één hoofdstuk lesstof voor een leer-app Nederlands voor volwassen 
 - **Elk woord komt in minstens twee scènes voor** (in `targets`, in `items` van een stap, of als aantikbaar ding in de tekening).
 - **Scène 2 tot 5 hebben een stap `slot`** voor herhaling.
 - **Tekeningen:** alleen achtergronden en dingen uit de catalogus; plekken binnen 340 bij 214; elk aantikbaar ding heeft een `label` in drie talen en een `item`.
-- **De kennisles leert één specifiek ding,** geen overzicht: de titel is een vraag die nieuwsgierig maakt, de tekst gaat de diepte in en eindigt met iets om na te vertellen. Geen vast rijtje onderdelen (zie `docs/concept-leerwereld.md`, Wereld en kennis).
+- **De kennisles leert één specifiek ding,** geen overzicht: de titel is een vraag die nieuwsgierig maakt, de tekst gaat de diepte in en eindigt met iets om na te vertellen. Geen vast rijtje onderdelen, en de vorm mag per les anders zijn (zie `docs/algemene-ontwikkeling.md`: het enige wat vastligt, en de voorraad vormen).
 - **De kennisles** bevat alleen feiten die je met een bron kunt staven. Zet de bronnen (adres en titel) in `sources` bij de stap `read`. Weet je iets niet zeker, laat het weg.
 - **Thais:** natuurlijk, beleefd en in Thais schrift. Vertaal de betekenis, niet woord voor woord. Nederlandse voorbeeldwoorden in een Thaise uitleg blijven Nederlands.
 
