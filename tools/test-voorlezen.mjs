@@ -54,4 +54,11 @@ ok('iPhone, lege lijst: meteen voorlezen met lang nl-NL, zonder wachten', r.spok
 // j) iPhone mét lijst: gewoon de beste Nederlandse stem
 r = run([V('Xander', 'nl-NL'), V('Samantha', 'en-US')], {}, 'Mozilla/5.0 (iPhone)'); r.ctx.say('Hallo');
 ok('iPhone met lijst: Nederlandse stem gekozen', r.spoken[0].voice.name === 'Xander');
+{ // geluid ook met de stilteschakelaar van de iPhone (wens eigenaar, 15 nov 2026)
+  const m = h.match(/function silentWav\(\)\{[^\n]*\}/);
+  const sw = m && new Function(m[0] + ';return silentWav')();
+  const buf = sw && Buffer.from(sw().split(',')[1], 'base64');
+  ok('stilteschakelaar: een geldig stil geluidje (wav, 8000 Hz, alleen stilte)', !!buf && buf.toString('ascii', 0, 4) === 'RIFF' && buf.toString('ascii', 8, 12) === 'WAVE' && buf.readUInt32LE(24) === 8000 && buf.length === 844 && buf.subarray(44).every(x => x === 128));
+  ok('stilteschakelaar: afspelen als playback en bij de eerste tik het geluid ontgrendelen, vóór elk voorlezen', h.includes("navigator.audioSession.type='playback'") && h.includes("if(isIOS()){audioPlayback();try{['touchend','click'].forEach(ev=>document.addEventListener(ev,unlockAudio,{capture:true,passive:true}))}catch(e){}}") && h.includes('function speakNow(t,slow,lang,v){audioPlayback();'));
+}
 console.log(fails ? fails + ' FOUT' : 'alles OK');
