@@ -205,6 +205,10 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
 .wordcard{display:grid;gap:8px;text-align:center;justify-items:center;padding:10px 0}
 .wordcard .art{font-weight:800;font-size:.9rem;border-radius:999px;padding:3px 12px}
 .art-de{background:var(--sky);color:var(--sky-ink)} .art-het{background:var(--lilac);color:var(--lilac-ink)}
+/* aanbeveling 10.3: een vaste kleur met een vorm voor de en het, zodat het niet alleen op kleur steunt */
+.art-de::before,.art-het::before{content:"";display:inline-block;width:.55em;height:.55em;margin-right:.3em;vertical-align:.05em;background:currentColor}
+.art-de::before{border-radius:50%} .art-het::before{border-radius:1px}
+.artw{border-radius:999px;padding:0 .35em;font-weight:700}
 .wordcard .w{font-family:var(--f-display);font-size:2.2rem;font-weight:800;overflow-wrap:anywhere}
 .garden{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:10px}
 .plant{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;min-width:0}
@@ -1651,6 +1655,8 @@ let EXPL={},EXPL_LIST=[];
 /* KIND: soort per item (word, rule, sound, skill), gevuld na het laden van de pakketten */
 let KIND={};
 const fw=w=>w&&w.art?w.art+' '+w.w:(w?w.w:'');   // woord met lidwoord als het er een heeft
+/* woord met lidwoord als HTML, met de vaste kleur en vorm voor de en het (aanbeveling 10.3) */
+const artFull=w=>w&&(w.art==='de'||w.art==='het')?`<span class="artw art-${w.art}">${esc(w.art)}</span> ${esc(w.w)}`:(w?esc(fw(w)):'');
 const EASIER={recall:'recog',hear:'recog',enrecall:'enrecog',enhear:'enrecog'},HARDER={recog:'recall',enrecog:'enrecall'};   // makkelijker en moeilijker vorm (bijsturen)
 /* ============ MOTOR: alle waarden op één plek (docs/didactisch-plan.md, hoofdstuk 5) ============
    Elke waarde met de bron uit het didactisch plan (§ = paragraaf) of het woord "aanname". Een waarde wijzigen gaat via docs/toets-per-stap.md
@@ -2410,7 +2416,7 @@ H.recog=q=>{const w=q.w;let first=true;const g=nlOnly()?gapEx(w):null,AL=alsoOf(
   app.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const ok=b.dataset.id===w.id;b.classList.add(ok?'right':'wrong');
     if(ok){score(first,5);review(w.id,first,'herkennen');if(first)grown.push(w.id);say(g?gapFull(w):`${fw(w)}`);$('#fb').innerHTML=fbBox(true,g?`<b>${w.art} ${esc(w.w)}</b>. ${esc(gapFull(w))}`:'','')+nextBtn();$('#nx').onclick=next}
     else{first=false;b.disabled=true;$('#fb').innerHTML=fbK(false,'recog.again')}})};   /* een foute keuze gaat uit (zoals bij gatzin en sc_q) */
-H.hear=q=>{const w=q.w;let tries=0,hint=0,done=false;const fullT=`${fw(w)}`,full=esc(fullT);
+H.hear=q=>{const w=q.w;let tries=0,hint=0,done=false;const fullT=`${fw(w)}`,full=artFull(w);
   frame(`<div class="card stack">${T('hear.title')}<p class="muted small">${T('hear.tip')}</p>${speakBtns('sp','sps')}
   <label for="ans" class="small muted">${T(w.art?'recall.typeArt':'recall.typeWord')}</label><input id="ans" class="input" lang="nl" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${w.art?'de … / het …':'…'}">
   <div class="hint-row"><button class="hintbtn" id="hint">${T('btn.hint')}</button><span class="hintshow" id="hs" aria-live="polite"></span></div>
@@ -2580,7 +2586,7 @@ H.sc_end=q=>{const sc=q.sc,st=q.st;finishTime();S.world=S.world||{done:{},at:nul
   const pu=scPurpose(sc,'last');paint(`<div class="card celebrate stack">${T('scene.canTitle')}<p class="prompt">${scT(sc.can)}</p>${pu?`<p class="note sky small">${scT(pu)}</p>`:''}${st.real?`<div class="note">${T('scene.real')}<p>${scT(st.real)}</p></div>`:''}${st.next?`<p class="muted">${scT(st.next)}</p>`:''}${SCN&&SCN.sc===sc&&SCN.hard?`<p class="num">${T(rec?'scene.newRecord':'scene.record',{n:(S.world.best||{})[sc.id]||0})}</p>`:''}</div>
    ${more?`<button class="btn btn-main" id="scNext">${TB('scene.next')}</button>`:''}<button class="btn btn-ghost" id="scHard">${TB('scene.harder')}</button>${contHtml()}<button class="btn btn-ghost" id="home">${T('cont.home')}</button>`);
   petals();bindCont();if($('#scNext'))$('#scNext').onclick=()=>startScene(nx);$('#scHard').onclick=()=>startScene(sc,true);$('#home').onclick=()=>show('vandaag')};
-H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${fw(w)}`,full=esc(fullT),g=nlOnly()?gapEx(w):null;
+H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${fw(w)}`,full=artFull(w),g=nlOnly()?gapEx(w):null;
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past in de zin?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Wat is dit in het Nederlands?</p><p class="prompt sp" ${supAttr()}>${L_(w)}</p>`}
   <label for="ans" class="small muted">${g?'Typ het woord dat op de open plek past':T(w.art?'recall.typeArt':'recall.typeWord')}</label>
   <input id="ans" class="input" lang="nl" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${g||!w.art?'…':'de … / het …'}">

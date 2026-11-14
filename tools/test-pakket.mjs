@@ -44,7 +44,7 @@ const noCheck = { ...PC, checkPack: () => ({ errors: [], quality: [] }) };
 const evil2 = clone(nl); evil2.items[0].tr.th = '<script>x</script>'; evil2.texts[0].title.nl = '<img src=x onerror=1>'; evil2.exercises.find(e => e.text === 'nl.verhaal.1').data.q.nl = '<b onclick="x">a</b>'; evil2.items[0].ex = '<i onclick="y">z</i>';
 app = await boot({ override: { 'content/nl-t1.json': evil2 }, pc: noCheck }); g = app.api.get();
 ok('app: velden die rauw in de HTML komen, gaan altijd door safeText, ook zonder controle', g.NL[0].th.startsWith('&lt;script') && g.STORY.title.startsWith('&lt;img') && g.STORY.q[0].q.startsWith('&lt;b onclick'));
-ok('app: velden die platte tekst blijven, toont het scherm met esc()', g.NL[0].ex === '<i onclick="y">z</i>' && ['esc(w.ex)', 'esc(w.w)', 'esc(l[0])', 'esc(p.text)', 'esc(x.s)', 'esc(x.nl)', 'esc(w.nl)', 'full=esc(fullT)'].every(s => html.includes(s)));
+ok('app: velden die platte tekst blijven, toont het scherm met esc()', g.NL[0].ex === '<i onclick="y">z</i>' && ['esc(w.ex)', 'esc(w.w)', 'esc(l[0])', 'esc(p.text)', 'esc(x.s)', 'esc(x.nl)', 'esc(w.nl)', 'full=artFull(w)', '${esc(w.art)}</span> ${esc(w.w)}'].every(s => html.includes(s)));
 ok('app: opties in klok, Engelse gatzin en geld met esc(), ook in het attribuut', ['c.o.map(o=>`<button class="choice" data-o="${esc(o)}">${esc(o)}', 'x.o.map(o=>`<button class="choice" data-o="${esc(o)}" lang="en">${esc(o)}', 'd.o.map(o=>`<button class="choice num" data-o="${esc(o)}">${esc(o)}'].every(s => html.includes(s)));
 ok('voorlezen spreekt geen tags of tekencodes uit', html.includes("t=String(t==null?'':t).replace(/<[^>]*>/g,'')"));
 app = await boot(); g = app.api.get();
