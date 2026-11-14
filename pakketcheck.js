@@ -8,7 +8,7 @@
   var LEARN = ['nl', 'en'];
   var FORMS = ['learn', 'recog', 'recall', 'build', 'gap', 'listen', 'dictee', 'mc', 'clock', 'money', 'discount'];
   var RESERVED = ['hear-type', 'complete', 'own', 'write', 'situation', 'match', 'spot'];
-  var TOP = ['format', 'id', 'type', 'version', 'scenes', 'place', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests'];
+  var TOP = ['format', 'id', 'type', 'version', 'scenes', 'place', 'goals', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests'];
   var TAGS = /<\/?(b|i|u)>/g;
   // id's (pakket, item, tekst, kaart, oefening, groep): alleen letters, cijfers, punt, streepje, onderstreepje
   var ID = /^[A-Za-z0-9._-]+$/;
@@ -335,6 +335,7 @@
           var an = [].concat(qq.answer == null ? [] : qq.answer); if (!an.length || an.some(function (a) { return typeof a !== 'string' && typeof a !== 'number' || String(a).trim() === ''; })) err(u + ': answer ontbreekt');
           if (qq.form === 'number' && an.some(function (a) { return !/^-?\d+([.,]\d+)?$/.test(String(a).trim()); })) err(u + ': answer is geen getal');
           if (!qq.why) err(u + ': why ontbreekt'); else tekst(qq.why, u + '.why'); if (qq.err != null && ERRS.indexOf(qq.err) < 0) err(u + ': err ' + qq.err + ' staat niet in de lijst');
+          if (qq.accept != null && (!Array.isArray(qq.accept) || qq.accept.some(function (a) { return (typeof a !== 'string' && typeof a !== 'number') || String(a).trim() === ''; }))) err(u + ': accept moet een lijst andere schrijfwijzen zijn');
         } };
       var itemsOk = function (a, w) { if (!Array.isArray(a) || !a.length) { err(w + ': items ontbreekt (het doel op de eerste plek)'); return; } a.forEach(function (x) { if (!allItems[x]) err(w + ': item ' + x + ' bestaat niet'); }); };
       if (!Array.isArray(p.scenes)) err(id + '.scenes: moet een lijst zijn');

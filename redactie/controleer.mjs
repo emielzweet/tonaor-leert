@@ -36,15 +36,16 @@ const opt = (q, w) => {
 let itemIdsRef = null, useRef = null;
 const question = (q, w, sid, nosup) => {
   if (!q || typeof q !== 'object') { E(w, 'vraag ontbreekt'); return 0; }
-  if (!['choose', 'hear', 'type', 'number'].includes(q.form)) E(w, 'form moet choose, hear, type of number zijn');
+  if (!['choose', 'hear', 'type', 'number', 'hear-type', 'complete', 'build', 'gap', 'listen', 'money', 'clock', 'discount'].includes(q.form)) E(w, 'vorm ' + q.form + ' kan (nog) niet in een scène');   // de gegevens van build, gap enz. controleert pakketcheck
   if (!Array.isArray(q.items) || !q.items.length) E(w, 'items ontbreekt'); else for (const t of q.items) { if (!itemIdsRef.has(t)) E(w, 'item bestaat niet: ' + t); else useRef(t, sid); }
-  txt(q.ask, w + '.ask', nosup ? ['nl'] : LANGS);
+  if (q.ask != null || !['build', 'gap', 'listen', 'money', 'clock', 'discount'].includes(q.form)) txt(q.ask, w + '.ask', nosup ? ['nl'] : LANGS);   // een bestaande oefenvorm heeft zijn vraag in data
   if (q.form === 'choose' || q.form === 'hear') {
     const o = q.opts || [];
     if (o.length < 2 || o.length > 4) E(w, 'twee tot vier keuzes');
     if (o.filter(x => x.r === 'ok').length !== 1) E(w, 'precies één keuze moet ok zijn');
     o.forEach((x, k) => opt(x, w + '.opts[' + k + ']'));
-  } else { if (q.answer == null || String(q.answer).trim() === '') E(w, 'answer ontbreekt'); txt(q.why, w + '.why'); }
+  } else if (['type', 'number', 'hear-type', 'complete'].includes(q.form)) { if (q.answer == null || String(q.answer).trim() === '') E(w, 'answer ontbreekt'); txt(q.why, w + '.why'); }
+  else txt(q.why, w + '.why');
   return 1;
 };
 
