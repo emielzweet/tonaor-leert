@@ -2192,15 +2192,21 @@ function voiceFor(lang){const vs=voicesFor(lang),want=S.voice&&S.voice[lang];ret
 function noVoice(lang){return loadVoices().length>0&&!voicesFor(lang).length}
 try{speechSynthesis.onvoiceschanged=()=>{loadVoices();try{if(tab==='ik'&&!route&&!app.classList.contains('sess'))vMe()}catch(e){}};loadVoices()}catch(e){}
 /* Geluid ook als de stilteschakelaar van de iPhone aan staat (wens van de eigenaar, 15 nov 2026): wie de telefoon op stil zet om
-   niet gestoord te worden, wil in de app toch voorlezen horen. Twee wegen: de browser zeggen dat dit afspelen is (Audio Session API,
-   iOS 16.4 en later), en bij de eerste tik een stil geluidje afspelen (oudere iOS: dan blijft het geluid van de pagina aan). */
+   niet gestoord te worden, wil in de app toch voorlezen horen. iOS behandelt voorlezen alleen als "afspelen" (dat de schakelaar
+   negeert) zolang de pagina zelf geluid afspeelt. Daarom loopt er een stil geluid mee: het start bij elke tik en bij elk voorlezen,
+   en stopt een halve minuut na de laatste tik of het laatste voorlezen, of meteen als de app naar de achtergrond gaat. Daarnaast
+   zeggen we het de browser ook rechtstreeks (Audio Session API, iOS 16.4 en later). Eerste poging (alleen een geluidje bij de
+   eerste tik, cache v2-51) was niet genoeg: daarna schakelde iOS terug. */
 function audioPlayback(){try{if(navigator.audioSession&&navigator.audioSession.type!=='playback')navigator.audioSession.type='playback'}catch(e){}}
-let audioOn=false;
 function silentWav(){const n=800,u32=x=>String.fromCharCode(x&255,x>>8&255,x>>16&255,x>>>24&255),u16=x=>String.fromCharCode(x&255,x>>8&255);return 'data:audio/wav;base64,'+btoa('RIFF'+u32(36+n)+'WAVEfmt '+u32(16)+u16(1)+u16(1)+u32(8000)+u32(8000)+u16(1)+u16(8)+'data'+u32(n)+String.fromCharCode(128).repeat(n))}
-function unlockAudio(){if(audioOn)return;audioOn=true;audioPlayback();try{const a=new Audio(silentWav());a.setAttribute('playsinline','');const p=a.play();if(p&&p.catch)p.catch(()=>{audioOn=false})}catch(e){audioOn=false}}
-if(isIOS()){audioPlayback();try{['touchend','click'].forEach(ev=>document.addEventListener(ev,unlockAudio,{capture:true,passive:true}))}catch(e){}}
+const KEEPMS=30000;   // aanname: een halve minuut na de laatste tik of het laatste voorlezen mag het stille geluid stoppen
+let KEEP=null,keepStop=null;
+function keepOn(){if(!isIOS())return;audioPlayback();try{clearTimeout(keepStop);if(!KEEP){KEEP=new Audio(silentWav());KEEP.loop=true;KEEP.preload='auto';KEEP.setAttribute('playsinline','')}if(KEEP.paused){const p=KEEP.play();if(p&&p.catch)p.catch(()=>{})}}catch(e){}}
+function keepOff(ms){if(!KEEP)return;clearTimeout(keepStop);keepStop=setTimeout(()=>{try{KEEP.pause()}catch(e){}},ms)}
+function keepTap(){keepOn();keepOff(KEEPMS)}
+if(isIOS()){audioPlayback();try{['touchend','click'].forEach(ev=>document.addEventListener(ev,keepTap,{capture:true,passive:true}));document.addEventListener('visibilitychange',()=>{if(document.visibilityState!=='visible')keepOff(0)})}catch(e){}}
 let voiceWait=null,voicePend=null;
-function speakNow(t,slow,lang,v){audioPlayback();speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=LANGS[lang].tag;if(v)u.voice=v;u.rate=slow?.68:.9;speechSynthesis.speak(u)}
+function speakNow(t,slow,lang,v){keepOn();speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=LANGS[lang].tag;if(v)u.voice=v;u.rate=slow?.68:.9;u.onend=u.onerror=()=>keepOff(KEEPMS);speechSynthesis.speak(u)}
 function say(t,slow,lang,waited){if(QUIET)return;lang=LANGS[lang]?lang:'nl';const L=LANGS[lang];t=String(t==null?'':t).replace(/<[^>]*>/g,'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&');
   if(typeof speechSynthesis==='undefined'||typeof SpeechSynthesisUtterance==='undefined'){if(!voiceWarned.api){voiceWarned.api=1;toast('Voorlezen werkt niet in deze browser.')}return}
   try{
