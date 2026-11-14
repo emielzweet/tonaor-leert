@@ -30,14 +30,17 @@ Bijgewerkt: 14 november 2026.
 
 ## Klaar om uit te brengen?
 
-Stand f10d095 (cache v2-41), 14 november 2026. **Nog niet**: eerst de onafhankelijke codereview van stap 2 en 2b (loopt). Daarna vraagt de bouwsessie de eigenaar zelf om akkoord voor de push.
+Stand 99154cc, 14 november 2026. **Nog niet.** Gedaan: onafhankelijke codereview van stap 2 en 2b (geen beveiligingsproblemen; veilig tonen en opslag in orde), de fouten eruit verwerkt (A2, A3, B1, B2, B3, B5 en de kleine punten), alle tests groen, browsercontrole op 375 px en migratie 4 → 6 in de browser.
+Open voor de release:
+- A1 (vraag aan de ontwerpsessie): een onderdeel in rust telt nog als dorst en verloopt nooit; raakt de leerder na ongeveer negen dagen.
+- B4 (vraag aan de ontwerpsessie): na de laatste nieuwe woorden vult de ronde geen sommen met nieuwe getallen meer aan.
+- B6 (besluit eigenaar, opslag): lukt de reservekopie vóór de migratie niet (bijna volle telefoon), dan schrijft de eerste save() de gemigreerde opslag toch weg, zonder kopie. Bestond al.
+- Een kopie van een echte opslag (Ik → Voortgang bewaren) als de eigenaar die wil aanleveren; blijft lokaal.
+- Het proefhoofdstuk staat helemaal buiten de app (ook zijn woorden) tot het de hoofdstukcontrole haalt.
 
-- Klaar: alle tests groen; browsercontrole op 375 px van de les met H2 tot H4 en M12; migratie van schema 4 (zoals live, v2-34) naar 6 in de browser: alle onderdelen, aangeboden woorden en pogingen gelijk, reservekopie gemaakt, geen fouten.
-- Het proefhoofdstuk is niet zichtbaar: een hoofdstuk verschijnt pas als het de hoofdstukcontrole haalt; de versie in `content/` haalt die niet.
-- H3 bij de eerste start: na de migratie is elke reeks leeg, dus niets rust en er verdwijnt niets uit Onderweg. Rust pas na drie goede pogingen in drie vormen op minstens drie verschillende dagen, met minstens zeven dagen tussen de eerste en de laatste (`MOTOR.restDays`, `restSpan`; antwoord ontwerpsessie). De ervaringstest blijft groen; H1 staat zoals verwacht op 100 procent losse herhaling (er is nog geen dagindeling met scènes).
-- G5: een hoofdstuk met `goals` heeft `purpose` (poort); de app toont die bij het begin van de eerste scène en op het slot van de laatste.
-- H4: de melding komt pas als ook alle 100 basiswoorden zijn aangeboden.
-- Open: de migratie op een kopie van een echte opslag (Ik → Voortgang bewaren), als de eigenaar die wil aanleveren; het bestand bevat de koppelcodes en blijft lokaal, buiten de repo.
+## Redactielijn: "bij de dokter" na drie reviews
+
+Review 1 en 2: verbeteren. Review 3 (redactie/uit/nl-dokter.review3.json): **verbeteren**, 2 blokkerend en 11 klein; alle blokkerende fouten van review 2 zijn opgelost. Blokkerend nu: dok.pijnaan en dok.pijnin overlappen (recall en recog kunnen "pijn in" fout rekenen), en de cent-vraag rekent "25 cent" fout (deels de getallenlezer van de app). Na drie rondes zonder "goed" stopt de lijn en gaat het hoofdstuk naar de eigenaar (docs/automatische-redactie.md). Ook nog: purpose ontbreekt.
 
 ## Nooit een grind (H2 tot H4) en M12, 14 november 2026
 
