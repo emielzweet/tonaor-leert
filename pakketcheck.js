@@ -101,7 +101,7 @@
       if (['word', 'phrase', 'rule', 'sound', 'skill'].indexOf(x.kind) < 0) { err(w + ': onbekende soort ' + x.kind); return; }
       if (x.kind === 'word' || x.kind === 'phrase') {
         str(x.w, w + '.w'); tr(x.tr, w);
-        if (x.art != null && x.art !== '' && ['de', 'het'].indexOf(x.art) < 0) err(w + ': art moet de of het zijn (of leeg)'); if (x.kind === 'phrase' && x.art) err(w + ': een vaste zin (phrase) heeft geen lidwoord');
+        if (x.art != null && x.art !== '' && ['de', 'het'].indexOf(x.art) < 0) err(w + ': art moet de of het zijn (of leeg)'); if (x.kind === 'phrase' && x.art) err(w + ': een vaste zin (phrase) heeft geen lidwoord'); if (x.nlLike != null) str(x.nlLike, w + '.nlLike'); if (x.falseFriend != null && (x.falseFriend !== true || !x.nlLike)) err(w + ': falseFriend is true en alleen samen met nlLike');   /* E-M2 (docs/pakketformaat.md) */
         str(x.ex, w + '.ex');
         if (p.learn === 'nl') {
           if (typeof x.gap !== 'string' || x.gap.split('___').length !== 2) err(w + ': gap moet precies één ___ hebben');

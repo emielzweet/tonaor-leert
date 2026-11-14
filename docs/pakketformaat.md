@@ -242,3 +242,15 @@ In fase 3 komen er plekken bij die kiezen op wat bijna vergeten is, voor alle so
 ## Soort pakket (`type`)
 
 `type` is `thema` (standaard) of `woordenlijst`. Een woordenlijst (zoals `nl-basis`, de basiswoorden van de frequentielijst) heeft geen teksten of recepten; de thema-eisen uit het kwaliteitskader (40 tot 60 doelwoorden, teksten, luistertekst) gelden er niet voor, de woordeisen wel (vertaling, omschrijving `def`, eigen voorbeeldzin, zin met een open plek). Een woord zonder `art` (werkwoord, bijvoeglijk naamwoord, tijdwoord) wordt zonder lidwoord gevraagd en getoond. De woorden komen in de les via de woordstappen van het Nederlandse recept, na de themawoorden (volgorde `order`).
+
+## Engelse woorden: brug met het Nederlands (voorstel, 14 november 2026)
+
+Uit `docs/onderbouwing-engels.md` (E-M2): de betekenis van een Engels woord komt in de steuntaal, met het Nederlandse woord erbij als het erop lijkt, en een waarschuwing bij een valse vriend. Twee optionele velden bij een Engels woord (`learn: "en"`):
+
+| Veld | Wat | Regel |
+|---|---|---|
+| `nlLike` | het Nederlandse woord dat erop lijkt (*doctor* – `"de dokter"`) | tekst; alleen als het echt lijkt in vorm |
+| `falseFriend` | `true` als het lijkt maar iets anders betekent (*eventually* – niet *eventueel*) | alleen samen met `nlLike`; de app toont dan een waarschuwing en de echte betekenis |
+
+De vertaling `tr.nl` blijft zoals hij is; `nlLike` is de brug, geen vertaling.
+

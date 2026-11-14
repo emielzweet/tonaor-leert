@@ -80,6 +80,19 @@ Uit `docs/onderbouwing-nederlands.md` hoofdstuk 3, aanvullend op M1 tot M12. Sta
 | N-M8 | per examenonderdeel de stand en een verwachte datum | – | hoort bij M10 en de route (stap 5): vier data, de eerstvolgende op het thuisscherm |
 | N-M9 | melden bij vier weken leertijd zonder vooruitgang op de toetsen | – | hoort bij de toets per vier weken (stap 8) en het scherm van de begeleider (stap 9) |
 
+## Engels: E-M1 tot E-M6
+
+Uit `docs/onderbouwing-engels.md` hoofdstuk 3. Stand in de code:
+
+| # | Eis | Wat er is | Wat ontbreekt |
+|---|---|---|---|
+| E-M1 | Engels en Nederlands gescheiden: geen gemengde reeks; het Engelse en Nederlandse woord voor hetzelfde niet in dezelfde week als nieuw | de Engelse les is een eigen ronde op vaste dagen (`startEnglish`) | de regel "niet in dezelfde week als nieuw": per Engels woord het Nederlandse doel (`tr.nl`) kennen en het nieuwe Engelse woord uitstellen tot het Nederlandse een week oud is |
+| E-M2 | betekenis via de steuntaal, met het verwante Nederlandse woord en een waarschuwing bij een valse vriend | betekenis in de steuntaal (`L_`) | de velden `nlLike` en `falseFriend` (voorstel in `docs/pakketformaat.md`), tonen bij de leerkaart en bij een fout |
+| E-M3 | de vooruitgang in het Nederlands naast het aandeel Engels, en het aandeel bijstellen | Engels op vaste dagen | een aandeel in `MOTOR` (een tiende tot Nederlands op B1; aanname uit de onderbouwing) en bijstellen op de vierwekelijkse toets Nederlands (stap 8) |
+| E-M4 | luisteren afbouwen: meelezen, alleen luisteren, examenvorm | luisteroefeningen met en zonder tekst | de afbouw per luistertekst; de examenvorm Engels (opnieuw afspelen mag, vragen in het Engels) bij `"exam": true` |
+| E-M5 | Engelse teksten op het aandeel bekende woorden, oplopend naar 800 tot 1.200 woorden | – | hoort bij M8 en de bibliotheek (stap 11) |
+| E-M6 | voortgang tegen de woordenlijsten (ongeveer 1.600 en 3.000) | – | het aantal beheerste Engelse woorden naast de maat, in de dekkingstabel |
+
 ## Wat kan breken
 
 - M12 en M5 veranderen de opslag: migratie 6 → 7 met reservekopie, alleen toevoegen. De omvang van de opslag wordt bewaakt in `test-migratie` (een nagebootste opslag van drie jaar moet onder 1 MB blijven).

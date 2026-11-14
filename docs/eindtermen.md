@@ -70,14 +70,32 @@ In een code staat N voor het niveau: `rekenen-2-procenten`, `rekenen-4-procenten
 
 ## 3. Engels
 
-**Kader.** Voor het generieke Engels in mbo 4 geldt B1; de syllabus voor het centraal examen mbo Engels B1 (2017) gaat over lezen en luisteren [EN1]. Dat spreken en schrijven op A2 liggen, komt uit een SLO-publicatie uit 2014 die niet is geopend. Of er nu centrale examens Engels in het mbo zijn: niet gevonden. **Gecontroleerd: nee.**
+**De eis** (mbo 4): lezen en luisteren op B1, schrijven, spreken en gesprekken voeren op A2. Lezen en luisteren worden centraal geëxamineerd; de andere drie toetst de school, met een vorm die landelijk niet vastligt. Het eindcijfer is het gemiddelde van het centrale examen en het schoolexamen. Op mbo 2 en 3 is Engels geen algemene eis. Bron: `docs/onderbouwing-engels.md` hoofdstuk 1 (ontwerpsessie; Examen- en kwalificatiebesluit beroepsopleidingen WEB, Regeling examinering Engels, Staatscourant 2016, 58595, en de syllabus Engels B1 lezen en luisteren). **Gecontroleerd door de bouwsessie: nee**; de A2-doelen in bijlage 2 van het besluit nog in de wet nalezen.
 
-| Code (groep) | Eindterm | Niveau | Bron | Gecontroleerd |
-|---|---|---|---|---|
-| en-B1-lezen | Teksten in alledaagse of werkgerelateerde taal begrijpen | B1 | [E1] Lezen B1 | nee |
-| en-B1-luisteren | De hoofdpunten begrijpen van duidelijke standaardtaal over vertrouwde zaken | B1 | [E1] Luisteren B1 | nee |
-| en-A2-spreken | Eenvoudige alledaagse taken en korte gesprekken; familie, werk en omgeving beschrijven | A2 | [E1] Spreken A2 | nee |
-| en-A2-schrijven | Korte notities, berichten en een eenvoudige persoonlijke brief | A2 | [E1] Schrijven A2 | nee |
+**Het centrale examen lezen en luisteren, B1** (voor G4: oefenen in de echte vorm, vanaf module E4):
+
+| | |
+|---|---|
+| Vorm | lezen en luisteren in één zitting van 90 minuten, digitaal, ongeveer half om half; 40 tot 50 meetpunten |
+| Vragen | meerkeuze (drie of vier antwoorden), uitspraken beoordelen, meerdere goede antwoorden kiezen; alle vragen en antwoorden in het Engels, niet boven B1 |
+| Leesteksten | meestal 800 tot 1.200 woorden: brieven en e-mails, brochures en korte officiële documenten, artikelen, verslagen en verhalen, instructies en bijsluiters |
+| Luisterfragmenten | meestal 2 tot 8 minuten, met of zonder beeld; een fragment mag opnieuw worden afgespeeld, ook vooruit en terug; Brits, Amerikaans en Australisch Engels |
+| Onderwerpen | algemeen en maatschappelijk: bestuur en recht, economie, samenleving, gezondheid en leefstijl, loopbaan |
+| Hulpmiddelen | een papieren vertalend woordenboek Engels en de eigen taal, in beide richtingen |
+
+| Code (groep) | Eindterm | Niveau | Bron |
+|---|---|---|---|
+| en-B1-lezen-1 | Feiten op woord- en zinsniveau vinden; wat doe je als … | B1 | syllabus |
+| en-B1-lezen-2 | De hoofdpunten van een alinea of tekst; hoofdzaak van bijzaak onderscheiden | B1 | syllabus |
+| en-B1-lezen-3 | Een onbekend woord afleiden uit de context | B1 | syllabus |
+| en-B1-lezen-4 | Wensen en bedoelingen van de schrijver herkennen | B1 | syllabus |
+| en-B1-luisteren-1 | Hoofdpunten en feiten uit gesprekken, uitleg, aankondigingen, nieuws en documentaires | B1 | syllabus |
+| en-B1-vraagtaal | Engelse vraagtaal begrijpen (according to the text, which statement is true, what is the purpose of) | B1 | syllabus: alle vragen in het Engels |
+| en-A2-spreken | Eenvoudige alledaagse taken en korte gesprekken; familie, werk en omgeving beschrijven | A2 | besluit, bijlage 2 (na te lezen) |
+| en-A2-gesprekken | Korte gesprekken over vertrouwde onderwerpen voeren | A2 | besluit, bijlage 2 (na te lezen) |
+| en-A2-schrijven | Korte notities, berichten en een eenvoudige persoonlijke brief | A2 | besluit, bijlage 2 (na te lezen) |
+
+**Woorden:** de Cambridge-lijsten (ongeveer 1.600 voor A2, ongeveer 3.000 voor B1) zijn de maat; de app neemt geen lijst over, maar legt de eigen woorden ernaast (E-M6).
 
 ## 4. Kennis
 
@@ -85,7 +103,7 @@ In een code staat N voor het niveau: `rekenen-2-procenten`, `rekenen-4-procenten
 
 ## Open
 
-1. Nalezen (bouwsessie): of er een nieuwere regeling is dan [N2] en [N4] (2025 of 2026); de tekst per niveau in bijlage 3 van [R1]; [EN1] en het ERK-raster voor Engels.
+1. Nalezen (bouwsessie): of er een nieuwere regeling is dan [N2] en [N4] (2025 of 2026); de tekst per niveau in bijlage 3 van [R1]; de A2-doelen Engels in bijlage 2 van het Examen- en kwalificatiebesluit.
 2. De dekkingstabel per eindterm (G2) komt in `docs/STATUS.md` zodra het hoofdstuk "bij de dokter" in `content/` staat en de goals naar deze codes zijn omgezet.
 
 ## Bronnen
