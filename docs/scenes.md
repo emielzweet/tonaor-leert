@@ -69,7 +69,7 @@ De lengte past zich aan: wie de instap goed maakt, slaat delen van 2, 3 en 5 ove
 Vier lagen. De eerste bestaat en is uitgebracht; de andere drie zijn nieuw.
 
 1. **Per onderdeel: het herhaalmodel** (`docs/herhaalmodel.md`). Hoe stevig zit dit woord, deze regel, deze som; wanneer komt het terug; in welke vormen is het al gelukt.
-2. **Per fout: het soort fout.** Elke foute keuze en elk fout antwoord krijgt een soort uit een vaste lijst: `lidwoord`, `woordvolgorde`, `werkwoordsvorm`, `tijd`, `voorzetsel`, `spelling`, `klank`, `betekenis`, `beleefdheid`, `getal`, `rekenstap`, `lezen` (de vraag niet goed gelezen). In het pakket staat dat bij de keuze als `err`. De app telt per soort, met meer gewicht voor recente fouten: het foutprofiel.
+2. **Per fout: het soort fout.** Elke foute keuze en elk fout antwoord krijgt een soort uit een vaste lijst: `lidwoord`, `woordvolgorde`, `werkwoordsvorm`, `tijd`, `voorzetsel`, `spelling`, `klank`, `betekenis`, `beleefdheid`, `getal`, `rekenstap`, `model` (het verkeerde model of de verkeerde aanpak gekozen, bijvoorbeeld optellen waar een verhouding nodig is), `lezen` (de vraag niet goed gelezen). In het pakket staat dat bij de keuze als `err`. De app telt per soort, met meer gewicht voor recente fouten: het foutprofiel.
 3. **Direct gevolg, in de scène.** Bij een fout: de reden. Bij een tweede fout van dezelfde soort in dezelfde scène: de korte uitleg die bij die soort hoort, en twee extra oefeningen op precies dat punt (stap `extra`, met `err` en een lijst oefeningen). Wie het daarna goed doet, gaat verder; de scène wordt dus langer voor wie het nodig heeft.
 4. **Gevolg daarna.** De samensteller vult een deel van de open plekken met oefeningen voor de soort fout die het vaakst voorkomt, niet alleen met wat aan de beurt is. Elk hoofdstuk eindigt met een toets zonder hints (de mix van scène 5): de uitkomst is *door*, *gericht extra* (een korte herstelscène op het zwakke punt) of *sneller* (de instap van het volgende hoofdstuk telt zwaarder). De uitkomst stelt ook de schatting van de route bij (`docs/route-en-prognose.md`), en de begeleider ziet het foutprofiel.
 
@@ -104,6 +104,16 @@ Ook de keuzes in een gesprek (`talk`) krijgen bij `near` en `no` een `err`. Een 
 - **Spel:** stap `game` met `kind` (uit de catalogus van het masterplan) en `items`; de speler kiest de onderdelen die erbij horen en die aan de beurt zijn.
 - **Zwaardere vorm:** een scène die af is, is opnieuw te spelen als `replay`: zonder steuntaal, met typen waar eerst kiezen stond, en op eigen record. Het pakket hoeft daar niets voor te bevatten behalve vragen met zowel `opts` als `answer`.
 - **Per hoofdstuk** (de vijf scènes samen): minstens één leestekst met vijf tot tien vragen in tekstvolgorde (geheel, detail, waarom, toepassen of woord), één luistertekst met de vragen vooraf, één stap `speak`, één stap `game`, en minstens twaalf verschillende werkvormen. Per scène minstens zes verschillende werkvormen, en nooit dezelfde vorm meer dan twee keer achter elkaar.
+
+### De examenvorm en "ongeveer" (formaatbesluiten van 14 november 2026)
+
+- **`"exam": true` op een stap** zet die stap in de vorm van het examen. De tijden en regels komen uit de speler, niet uit het pakket, zodat ze overal gelijk zijn en op één plek bij te stellen als het examen verandert:
+  - `listen`: het fragment één keer, niet te pauzeren, met 25 seconden om de vraag te lezen;
+  - `speak`: met `"len": "short"` 20 seconden, `"medium"` 30 seconden, `"long"` twee minuten na voorbereidingstijd; de tijd is zichtbaar, de opname stopt als de tijd om is;
+  - `make` en vragen met typen: zonder spellingscontrole en zonder hint;
+  - `read`: zonder steuntaal; de leerder mag een papieren woordenboek gebruiken.
+  In de examenvorm is er geen hint en geen steuntaal, en de reden bij elk antwoord komt **na de stap**, niet per vraag: zo lijkt het op het examen en leert de leerder er toch van. De tijd is nooit een straf: is de tijd om, dan telt de poging gewoon, en opnieuw proberen mag altijd. Een examenstap telt voor het herhaalmodel als elke andere stap.
+- **`tol` bij een vraag met `form: "number"`:** een absolute marge in dezelfde eenheid als `answer`. Een antwoord binnen `answer` plus of min `tol` is goed. Zegt de vraag "ongeveer" of "schat", dan is `tol` verplicht. `accept` blijft voor andere schrijfwijzen van hetzelfde getal.
 
 ### Een woord aantikken is een keuze (`onderbouwing-nederlands.md`, 2.1)
 
