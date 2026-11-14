@@ -56,6 +56,9 @@ if (!ID.test(p.place || '')) E('pakket', 'place ontbreekt');
 
 // ---- items ----
 const items = Array.isArray(p.items) ? p.items : [], itemIds = new Set();
+// masterplan uitleg 19: een bestaand woord uit een pakket in requires mag doel en item zijn (hetzelfde id)
+const reqIds = new Set(); { const dir = new URL('../content/', import.meta.url); for (const f of readdirSync(dir).filter(f => f.endsWith('.json') && f !== 'index.json')) { try { const o = JSON.parse(readFileSync(new URL(f, dir), 'utf8')); if ((p.requires || []).includes(o.id)) (o.items || []).forEach(x => reqIds.add(x.id)); } catch (e) {} } }
+const known = t => itemIds.has(t) || reqIds.has(t);
 if (!items.length) E('items', 'ontbreekt');
 for (const it of items) {
   const w = 'item ' + (it && it.id);
@@ -92,9 +95,9 @@ for (const s of scenes) {
   if (!['nl', 'rk', 'en', 'kn'].includes(s.subject)) E(w, 'subject ongeldig');
   for (const k of ['title', 'intro', 'can']) { txt(s[k], w + '.' + k); thai(s[k], w + '.' + k); names(s[k] && s[k].nl, w + '.' + k); }
   if (!Array.isArray(s.targets) || !s.targets.length) E(w, 'targets ontbreekt');
-  else for (const t of s.targets) { if (!itemIds.has(t)) E(w, 'target bestaat niet als item: ' + t); else use(t, s.id); }
+  else for (const t of s.targets) { if (!known(t)) E(w, 'target bestaat niet als item: ' + t); else use(t, s.id); }
   for (const m of SceneVis.check(s.art)) E(w + '.art', m);
-  for (const [i, t] of ((s.art && s.art.things) || []).entries()) if (t && t.hot) { txt(t.label, w + '.art.things[' + i + '].label'); thai(t.label, w + '.art.things[' + i + ']'); if (t.item && !itemIds.has(t.item)) E(w + '.art.things[' + i + ']', 'item bestaat niet: ' + t.item); if (t.item) use(t.item, s.id); }
+  for (const [i, t] of ((s.art && s.art.things) || []).entries()) if (t && t.hot) { txt(t.label, w + '.art.things[' + i + '].label'); thai(t.label, w + '.art.things[' + i + ']'); if (t.item && !known(t.item)) E(w + '.art.things[' + i + ']', 'item bestaat niet: ' + t.item); if (t.item) use(t.item, s.id); }
   const st = Array.isArray(s.steps) ? s.steps : [];
   if (st.length < 3) { E(w, 'te weinig stappen'); continue; }
   if (st[st.length - 1].type !== 'end') E(w, 'de laatste stap moet end zijn');
@@ -114,7 +117,7 @@ for (const s of scenes) {
       if (x.role === 'controle' && (x.q || []).length !== 2) E(ws, 'de controle heeft precies twee vragen');
     }
     if (x.type === 'rule') {
-      if (!Array.isArray(x.items) || !x.items.length) E(ws, 'items (de regel) ontbreekt'); else for (const t of x.items) { if (!itemIds.has(t)) E(ws, 'item bestaat niet: ' + t); else use(t, s.id); }
+      if (!Array.isArray(x.items) || !x.items.length) E(ws, 'items (de regel) ontbreekt'); else for (const t of x.items) { if (!known(t)) E(ws, 'item bestaat niet: ' + t); else use(t, s.id); }
       txt(x.example, ws + '.example'); thai(x.example, ws + '.example');
       if (!Array.isArray(x.q) || x.q.length < 3) E(ws, 'minstens drie oefeningen');
       (x.q || []).forEach((q, k) => { moments += question(q, ws + '.q[' + k + ']', s.id); });
@@ -128,13 +131,13 @@ for (const s of scenes) {
     }
     const its = x.items || [];
     if (['do', 'make', 'read', 'listen'].includes(x.type)) { if (!its.length) E(ws, 'items ontbreekt (doel op de eerste plek)'); }
-    for (const t of its) { if (!itemIds.has(t)) E(ws, 'item bestaat niet: ' + t); else use(t, s.id); }
+    for (const t of its) { if (!known(t)) E(ws, 'item bestaat niet: ' + t); else use(t, s.id); }
     if (x.type === 'talk') {
       if (!Array.isArray(x.turns) || !x.turns.length) return E(ws, 'turns ontbreekt');
       x.turns.forEach((t, j) => {
         const wt = ws + '.turns[' + j + ']';
         txt(t.them, wt + '.them'); thai(t.them, wt + '.them'); names(t.them && t.them.nl, wt + '.them');
-        if (!Array.isArray(t.items) || !t.items.length) E(wt, 'items ontbreekt'); else for (const q of t.items) { if (!itemIds.has(q)) E(wt, 'item bestaat niet: ' + q); else use(q, s.id); }
+        if (!Array.isArray(t.items) || !t.items.length) E(wt, 'items ontbreekt'); else for (const q of t.items) { if (!known(q)) E(wt, 'item bestaat niet: ' + q); else use(q, s.id); }
         const o = t.opts || [];
         if (o.length !== 3) E(wt, 'verwacht drie keuzes');
         if (o.filter(q => q.r === 'ok').length !== 1) E(wt, 'precies één keuze moet ok zijn');
