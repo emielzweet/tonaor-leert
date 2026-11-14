@@ -325,6 +325,7 @@ en:{
  "scene.check":"Check whether your text has this:",
  "scene.model":"This is one way:",
  "scene.ruleTitle":"Language from the scene",
+ "stock.out":"You have seen all the new material for now. New chapters are on the way; until then you can repeat what is due, play a scene or read.",
  "scene.speakTitle":"Say it",
  "scene.speakOk":"I said it like this",
  "scene.speakCheck":"Did you say this?",
@@ -737,6 +738,7 @@ nl:{
  "scene.check":"Kijk of jouw tekst dit heeft:",
  "scene.model":"Zo kan het ook:",
  "scene.ruleTitle":"Taal uit de scène",
+ "stock.out":"Je hebt alle nieuwe lesstof voor nu gezien. Er komen nieuwe hoofdstukken aan; tot dan kun je herhalen wat aan de beurt is, een scène spelen of lezen.",
  "scene.speakTitle":"Zeg het zelf",
  "scene.speakOk":"Zo heb ik het gezegd",
  "scene.speakCheck":"Heb je dit gezegd?",
@@ -1145,6 +1147,7 @@ th:{
  "scene.check":"ดูว่าข้อความของคุณมีสิ่งเหล่านี้หรือไม่",
  "scene.model":"ตัวอย่างคำตอบ",
  "scene.ruleTitle":"ภาษาจากฉากนี้",
+ "stock.out":"คุณได้เห็นบทเรียนใหม่ทั้งหมดแล้วในตอนนี้ บทใหม่กำลังจะมา ระหว่างนี้คุณทบทวนสิ่งที่ถึงเวลา เล่นฉาก หรืออ่านได้",
  "scene.speakTitle":"พูดเอง",
  "scene.speakOk":"ฉันพูดแบบนี้แล้ว",
  "scene.speakCheck":"คุณพูดสิ่งเหล่านี้แล้วหรือยัง",
@@ -1634,8 +1637,34 @@ const MOTOR={
   extraAfter:2,       // extra oefening na de zoveelste fout van dezelfde soort in een scène. Aanname (docs/scenes.md)
   slotErrShare:.5,    // hooguit dit deel van een open plek op het foutprofiel. Aanname
   // C5 spel: één tot drie minuten (masterplan C5); 60 seconden: aanname
-  gameSeconds:60
+  gameSeconds:60,
+  // M12 reeks pogingen per onderdeel: genoeg om de aannames te toetsen (didactisch plan hoofdstuk 6; antwoord ontwerpsessie 14 nov 2026)
+  histMax:24, histBloom:6,
+  // H3 rust: zoveel keer achter elkaar goed bij de eerste poging, in zoveel verschillende vormen (masterplan H3)
+  restRun:3, restForms:3
 };
+/* vormen die niet meetellen voor bloei: bekijken en de controlevraag bij een uitleg */
+const NOGROW=['voorbeeld','check','spel'];   /* spel: wel wachttijd, geen vorm voor bloei (masterplan C5) */
+/* M12: per onderdeel de reeks pogingen [dagnummer, vorm, uitkomst 1 goed / 2 goed na een poging of hint / 0 fout].
+   Afgekapt op MOTOR.histMax (MOTOR.histBloom in volle bloei); wat daardoor verloren gaat staat in f1 (eerste dag), na (pogingen) en nk (goed). */
+function histAdd(it,id,form,res){const d=Math.floor(now()/DAY);if(!Array.isArray(it.h))it.h=[];if(it.f1==null)it.f1=d;it.na=(it.na||0)+1;if(res===true)it.nk=(it.nk||0)+1;
+  it.h.push([d,form||'',res===true?1:res==='retry'?2:0]);const max=it.s>=MOTOR.bloomDays&&canBloom(id,it)?MOTOR.histBloom:MOTOR.histMax;if(it.h.length>max)it.h.splice(0,it.h.length-max)}
+/* H2: de vorm van de vorige poging van een onderdeel (uit de reeks), ook van een vorige dag */
+function lastForm(id){const h=(S.items[id]||{}).h;return h&&h.length?h[h.length-1][1]:null}
+/* H3: rust = de laatste MOTOR.restRun pogingen goed bij de eerste poging, in MOTOR.restForms verschillende vormen. Komt dan alleen nog in teksten en scènes voor, niet in Onderweg. */
+function rests(id){const h=((S.items[id]||{}).h||[]).filter(x=>!NOGROW.includes(x[1])).slice(-MOTOR.restRun);return h.length===MOTOR.restRun&&h.every(x=>x[2]===1)&&new Set(h.map(x=>x[1])).size>=MOTOR.restForms}
+/* de vorm die een scherm in het herhaalmodel schrijft (zie de handlers) */
+const QFORM={recall:'typen',enrecall:'typen',hear:'luisteren',enhear:'luisteren',recog:'herkennen',enrecog:'herkennen',build:'build',gap:'gap',engap:'gap',listen:'listen',dictee:'dictee',money:'geld',clock:'klok',discount:'korting'};
+const ALTW={recall:['recog','hear'],hear:['recall','recog'],recog:['recall','hear'],enrecall:['enrecog','enhear'],enhear:['enrecall','enrecog'],enrecog:['enrecall','enhear']};
+/* H2 voor een hele ronde: krijgt een onderdeel dezelfde vorm als de vorige keer, dan een andere vorm (woord) of een andere oefening (regel, klank, som).
+   Vangnet na de keuze in pickForm en chooseEx; is er geen andere vorm, dan blijft het zo (een tekort aan lesstof). */
+function noSameForm(q,learn){let speak=false;try{speak=typeof window!=='undefined'&&!!window.speechSynthesis&&!QUIET}catch(e){}
+  const out=[];for(let i=0;i<q.length;i++){const x=q[i],id=x.w?x.w.id:x.items&&x.items[0];if(!id||x._probe||x._ifUnknown||x.type==='learn'||!QFORM[x.type]){out.push(x);continue}
+    const lf=lastForm(id);if(!lf||QFORM[x.type]!==lf){out.push(x);continue}
+    if(x.w){const prev=out.length?out[out.length-1].type:null,alts=(ALTW[x.type]||[]).filter(t=>QFORM[t]!==lf&&(speak||!/hear/.test(t))),alt=alts.find(t=>t!==prev)||alts[0];if(alt){out.push({...x,type:alt});continue}}
+    else if(x.exid){const L=(PACKS.find(p=>(p.exercises||[]).some(e=>e.id===String(x.exid).split('#')[0]))||{}).learn||learn,e=shuffle(exsFor(id,L).filter(e=>QFORM[e.form==='listen'?'listen':e.form]!==lf&&!(QUIET&&(e.form==='listen'||e.form==='dictee'))))[0],n=e&&exQ(e,x.step,L==='en'?'en':learn,id);if(n){out.push(n);continue}}
+    out.push(x)}   /* geen andere vorm beschikbaar: dan toch (een tekort aan lesstof, geen reden om het onderdeel over te slaan) */
+  return out}
 let QUIET=false;   // stille stand: zonder voorlezen en luisteroefeningen, alleen voor deze sessie (Bijsturen op Ik)
 let SCENES=[];   // scènes uit de pakketten: {sc, learn}
 let PACKS=[],PACK_MISSING=[],NL=[],EN=[],REK=[],SENT=[],PAIRS=[],DICTEE=null,STORY=null,PLACE=[];
@@ -1742,7 +1771,7 @@ function pickForm(w,learn,def){if(def!=='recall'&&def!=='enrecall')return def;co
   if(!f.includes('typen'))return def;
   if(speak&&!f.includes('luisteren'))return learn==='en'?'enhear':'hear';
   if(learn==='en'&&!f.includes('herkennen'))return 'enrecog';
-  const it=S.items[w.id]||{},cyc=learn==='en'?(speak?['enrecall','enhear','enrecall','enrecog']:['enrecall','enrecog']):(speak?['recall','hear','recall','recog']:['recall','recog']);/* zonder stem: typen en kiezen om en om */return cyc[(it.reps||0)%cyc.length]}   // vorm wisselt per keer (feedback: niet steeds dezelfde vorm)
+  const it=S.items[w.id]||{},lf=lastForm(w.id),cyc0=learn==='en'?(speak?['enrecall','enhear','enrecall','enrecog']:['enrecall','enrecog']):(speak?['recall','hear','recall','recog']:['recall','recog']);/* zonder stem: typen en kiezen om en om */const cyc=cyc0.filter(t=>QFORM[t]!==lf).length?cyc0.filter(t=>QFORM[t]!==lf):cyc0;return cyc[(it.reps||0)%cyc.length]}   /* H2: niet de vorm van de vorige keer */   // vorm wisselt per keer (feedback: niet steeds dezelfde vorm)
 /* ---- oefenen per onderdeel (docs/herhaalmodel.md sectie 6) ---- */
 /* hoe ver over tijd, ten opzichte van de stabiliteit: het grootst = het meest bijna vergeten */
 function overdue(id){const it=S.items[id];return (now()-it.due)/(Math.max(.5,it.s)*DAY)}
@@ -1752,6 +1781,7 @@ function exsFor(id,learn){return PACKS.filter(p=>p.learn===learn).flatMap(p=>p.e
 function explForItem(id,learn){const o=EXPL_LIST.find(o=>o.learn===learn&&(o.x.items||[]).includes(id));return o?o.x.id:null}
 /* welke oefening: afbouwend voorbeeld (fade 1 voorbeeld, 2 laatste stap zelf, 3 helemaal zelf), dan een vorm die voor bloei nog ontbreekt, dan een oefening die nog niet goed ging */
 function chooseEx(id,learn,easy){const it=S.items[id]||{forms:[],exs:[],s:0,reps:0},f=it.forms||[],x=it.exs||[];let c=exsFor(id,learn);if(!c.length)return null;
+  {const lf=lastForm(id),o=c.filter(e=>QFORM[e.form]!==lf);if(lf&&o.length)c=o}   /* H2: niet dezelfde vorm als de vorige keer, als er een andere is */
   if(c.some(e=>e.fade)){const lv=easy?Math.min(...c.filter(e=>e.fade).map(e=>e.fade)):!f.includes('voorbeeld')&&c.some(e=>e.fade===1)?1:it.s<1.5?2:3;let best=c.filter(e=>e.fade===lv);for(let l=lv+1;!best.length&&l<=3;l++)best=c.filter(e=>e.fade===l);if(best.length)c=best}
   const k=KIND[id];if(!easy&&it.reps>0&&it.lapses<4){const need=k==='rule'&&!f.includes('build')?e=>e.form==='build':k==='sound'&&!f.includes('luisteren')?e=>e.data&&e.data.mode==='type':null;if(need&&c.some(need))c=c.filter(need)}
   if(easy||it.lapses>=4||it.reps===0)if(k==='rule'||k==='sound'){const ez=c.filter(e=>e.form!=='build'&&!(e.data&&e.data.mode==='type'));if(ez.length)c=ez}
@@ -1764,8 +1794,8 @@ function varyForms(list,drop){const units=[];let pend=[];for(const q of list){if
   const ty=u=>u[u.length-1].type,out=[],rest=units.slice();while(rest.length){const n=out.length,same=n>=2&&ty(out[n-1])===ty(out[n-2])?ty(out[n-1]):null;let i=same?rest.findIndex(u=>ty(u)!==same):0;if(i<0){if(drop)break;i=0}out.push(rest.splice(i,1)[0])}return out.flat()}   // drop: een derde gelijke vorm schuift door naar een volgende ronde (blijft aan de beurt)
 function practice(s,learn,used){const P=s.practice,n=isEnglishDay()&&P.n2!=null?P.n2:P.n,R=id=>S.items[id];
   const ids=PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>P.kinds.includes(x.kind)&&R(x.id)&&exsFor(x.id,learn).length&&!used.has(x.id)).map(x=>x.id);
-  const busy=Object.keys(S.items).filter(id=>thirsty(id)).length>MOTOR.busyMax;   // rem op nieuw (docs/toets-per-stap.md)
-  const due=ids.filter(id=>thirsty(id)).sort((a,b)=>overdue(b)-overdue(a)),fresh=ids.filter(id=>R(id).reps===0).slice(0,busy?0:(P.newMax!=null?P.newMax:1)),LS=lastSeen(),td=today(),seen=ids.filter(id=>R(id).reps>0&&!thirsty(id)).sort((a,b)=>((LS[a]||0)>=td)-((LS[b]||0)>=td)||(LS[a]||0)-(LS[b]||0));   // wat het langst geleden is eerst; vandaag al geoefend achteraan
+  const busy=Object.keys(S.items).filter(id=>thirsty(id)&&!rests(id)).length>MOTOR.busyMax;   // rem op nieuw (docs/toets-per-stap.md)
+  const due=ids.filter(id=>thirsty(id)&&!rests(id)).sort((a,b)=>overdue(b)-overdue(a)),fresh=ids.filter(id=>R(id).reps===0).slice(0,busy?0:(P.newMax!=null?P.newMax:1)),LS=lastSeen(),td=today(),seen=ids.filter(id=>R(id).reps>0&&!thirsty(id)).sort((a,b)=>((LS[a]||0)>=td)-((LS[b]||0)>=td)||(LS[a]||0)-(LS[b]||0));   // wat het langst geleden is eerst; vandaag al geoefend achteraan
   const pick=[...new Set([...due,...fresh])].slice(0,n),out=[];   // geen opvulling met wat niet aan de beurt is (advies ontwerpsessie A2)
   for(const id of pick){used.add(id);const isNew=R(id).reps===0,hard=R(id).lapses>=4,xid=(isNew||hard)&&explForItem(id,learn);
     if(xid&&(hard||!(S.explained||{})[xid]))out.push({type:'explain',step:s.step,x:xid,lang:learn,...(isNew?{_new:1}:{})});   // hardnekkig: de uitleg opnieuw (sectie 8)
@@ -1782,7 +1812,7 @@ function recentEx(){const c=now()-2*DAY,R=new Set();for(const e of S.log||[])if(
 let NEWPLAN=0;   // nieuwe woorden die al in deze les gepland zijn (telt mee in het budget)
 function dayBudget(){return MOTOR.newPerDayOpts.includes(S.newPerDay)?S.newPerDay:MOTOR.newPerDay}
 function newLeft(){return Math.max(0,dayBudget()-((S.newLog||{})[today()]||0))}
-function newWords(cap,step,words,q,later){const busy=Object.keys(S.items).filter(id=>thirsty(id)).length>MOTOR.busyMax;if(busy)return;
+function newWords(cap,step,words,q,later){const busy=Object.keys(S.items).filter(id=>thirsty(id)&&!rests(id)).length>MOTOR.busyMax;if(busy)return;
   const inQ=new Set(q.filter(x=>x.w).map(x=>x.w.id)),nw=words.filter(w=>!S.introduced.includes(w.id)&&!inQ.has(w.id)).slice(0,Math.max(0,Math.min(cap,newLeft()-NEWPLAN)));NEWPLAN+=nw.length;
   nw.forEach(w=>{q.push({type:'recall',step,w,_probe:1,_new:1});q.push({type:'learn',step,w,_ifUnknown:1,_new:1})});   // vraag en leerkaart om en om
   let speak=false;try{speak=typeof window!=='undefined'&&!!window.speechSynthesis&&!QUIET}catch(e){}
@@ -1793,26 +1823,30 @@ function lenF(){return {kort:.6,normaal:1,lang:1.5}[S.roundLen]||1}
 function feel(){const c=(S.conf||[])[0];return c&&['makkelijk','goed','moeilijk'].includes(c.c)?c.c:'goed'}
 /* te kleine ronde (minder dan 8 verschillende onderdelen): aanvullen met ander soort werk, niet met dezelfde woorden
    (advies ontwerpsessie A2): eerst nieuwe woorden binnen het dagbudget, dan sommen met nieuwe getallen (rekenvaardigheden die er al zijn). */
+/* H4: de nieuwe woorden van alle pakketten zijn aangeboden */
+function stockOut(){return NL.length>0&&NL.every(w=>S.introduced.includes(w.id))}
 function topUp(q,learn,words,later,used){const ids=()=>new Set(q.concat(later).map(x=>x.w?x.w.id:x.items&&x.items[0]).filter(Boolean));
   if(ids().size<MOTOR.roundMin)newWords(MOTOR.roundMin-ids().size,2,words,q,later);
-  if(ids().size<MOTOR.roundMin){const LS=lastSeen(),sk=PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>x.kind==='skill'&&S.items[x.id]&&!used.has(x.id)).map(x=>x.id).sort((a,b)=>(LS[a]||0)-(LS[b]||0));
+  if(ids().size<MOTOR.roundMin&&!stockOut()){const LS=lastSeen(),sk=PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>x.kind==='skill'&&S.items[x.id]&&!used.has(x.id)).map(x=>x.id).sort((a,b)=>(LS[a]||0)-(LS[b]||0));
     for(const id of sk){if(ids().size>=8)break;const e=shuffle(exsFor(id,learn).filter(x=>x.gen&&!(QUIET&&x.form==='listen')))[0];if(!e)continue;const x=exQ(e,4,learn,id);if(!x)continue;used.add(id);const xid=S.items[id].reps===0&&explForItem(id,learn);if(xid&&!(S.explained||{})[xid])q.push({type:'explain',step:4,x:xid,lang:learn});q.push(x)}}}
 /* drie gelijke vormen achter elkaar breken door een verplaatsbaar onderdeel ertussen te zetten (geen vraag, leerkaart of kiesvraag van een nieuw woord) */
 function breakTriples(q){const free=(x,n)=>!x._probe&&!x._ifUnknown&&x.type!=='learn'&&!['card','conf','end','explain'].includes(x.type)&&!(n>0&&q[n-1].type==='explain');
   const real=i=>!['card','conf','end','explain','learn'].includes(q[i].type),SWAP={recall:'recog',recog:'recall',hear:'recog',enrecall:'enrecog',enrecog:'enrecall',enhear:'enrecog'};
   for(let k=0;k<4;k++)for(let i=2;i<q.length;i++){if(!real(i)||!real(i-1)||!real(i-2))continue;const t=q[i].type;if(q[i-1].type!==t||q[i-2].type!==t)continue;
-    const sw=[i,i-1,i-2].find(n=>q[n].w&&!q[n]._probe&&!q[n]._ifUnknown&&SWAP[q[n].type]);if(sw!=null){q[sw].type=SWAP[q[sw].type];continue}   /* een gewone woordvraag: andere vorm */
+    let speak=false;try{speak=typeof window!=='undefined'&&!!window.speechSynthesis&&!QUIET}catch(e){}
+    const alt=n=>(ALTW[q[n].type]||[]).find(a=>a!==t&&QFORM[a]!==lastForm(q[n].w.id)&&(speak||!/hear/.test(a)));   /* een andere vorm, niet die van de vorige keer (H2) */
+    const sw=[i,i-1,i-2].find(n=>q[n].w&&!q[n]._probe&&!q[n]._ifUnknown&&alt(n));if(sw!=null){q[sw].type=alt(sw);continue}   /* een gewone woordvraag: andere vorm */
     let j=q.findIndex((x,n)=>n>i&&free(x,n)&&x.type!==t);const fl=q.findIndex(x=>x.type==='learn'),lim=fl<0?i-2:Math.min(i-2,fl);
     if(j<0){j=q.findIndex((x,n)=>n<lim&&free(x,n)&&x.type!==t&&(n===0||q[n-1].type!==t||n+1>=q.length||q[n+1].type!==t));if(j<0)continue;const [m]=q.splice(j,1);q.splice(i-2,0,m);continue}   // naar achteren alleen van vóór de eerste leerkaart
     const [m]=q.splice(j,1);q.splice(i-1,0,m)}
   return q}
 function compose(recipe,learn){const used=new Set(),later=[];NEWPLAN=0;recipe=(recipe||[]).map(s=>{const o={...s},f=lenF(),fe=feel();if(o.max!=null)o.max=Math.max(1,Math.round(o.max*f)+(o.words==='new'?(fe==='makkelijk'?1:fe==='moeilijk'?-1:0):0));if(o.practice)o.practice={...o.practice,n:Math.max(1,Math.round(o.practice.n*f))};return o});const q=[],words=learn==='en'?EN:NL,R=id=>S.items[id];
-  const dueAll=words.filter(w=>thirsty(w.id));
+  const dueAll=words.filter(w=>thirsty(w.id)&&!rests(w.id));   /* H3: wat rust komt niet meer losse terug */
   for(const s of recipe||[]){
     if(s.card){const c=CARDP[s.card];if(!c)continue;const [label,btn]=(CARD_LABEL[learn]||{})[s.step]||['',''];const o={type:'card',label,step:s.step,html:()=>packCardHtml(c,learn==='en'&&s.step===1?'ENGLISH':'')};if(btn)o.btn=btn;if(c.say)o.bind=()=>{if($('#csp'))$('#csp').onclick=()=>say(c.say,false,c.sayLang||'nl')};q.push(o)}
     else if(s.words==='due'){
       const type0=learn==='en'?'enrecall':s.forms[0];
-      let due=dueAll.slice();if(s.sort!=='list')due=words.filter(w=>S.introduced.includes(w.id)&&thirsty(w.id)).sort((a,b)=>R(a.id).due-R(b.id).due);
+      let due=dueAll.slice();if(s.sort!=='list')due=words.filter(w=>S.introduced.includes(w.id)&&thirsty(w.id)&&!rests(w.id)).sort((a,b)=>R(a.id).due-R(b.id).due);
       let rec=due;if(s.thenFresh)rec=[...due,...words.filter(w=>R(w.id).reps===0)];
       rec=rec.slice(0,s.max);   // alleen wat aan de beurt is: geen opvulling met woorden die dat niet zijn (advies ontwerpsessie A2)
       if(rec.length)varyForms(rec.map(w=>{let ty=pickForm(w,learn,type0);if(feel()==='moeilijk'&&EASIER[ty])ty=EASIER[ty];else if(feel()==='makkelijk'&&HARDER[ty])ty=HARDER[ty];return {type:ty,step:s.step,w}})).forEach(x=>q.push(x));
@@ -1821,14 +1855,15 @@ function compose(recipe,learn){const used=new Set(),later=[];NEWPLAN=0;recipe=(r
     else if(s.words==='new'){let cap=isEnglishDay()&&s.max2!=null?s.max2:s.max;if(learn!=='en'&&S.placement&&S.placement.lv&&S.placement.lv.woorden!=null&&S.placement.lv.woorden<.34)cap=Math.min(cap,3);   // lage woordscore in de startmeting
       newWords(cap,s.step,words,q,later)}
     else if(s.pool){const n=isEnglishDay()&&s.n2!=null?s.n2:s.n;shuffle(PACKS.flatMap(p=>p.exercises||[]).filter(e=>e.pool===s.pool)).slice(0,n).forEach(e=>{const x=exQ(e,s.step,learn);if(x)q.push(x)})}
-    else if(s.ex){const e=EXS[s.ex];if(!e)continue;{const tid=(e.items||[])[0];if(tid&&q.filter(x=>(x.w&&x.w.id===tid)||(x.items&&x.items[0]===tid)).length>=2)continue}if(QUIET&&(e.form==='listen'||e.form==='dictee'))continue;/* stille stand */const x=exQ(e,s.step,(PACKS.find(p=>(p.exercises||[]).includes(e))||{}).learn==='en'?'en':learn);if(x)q.push(x)}
+    else if(s.ex){const e=EXS[s.ex];if(!e)continue;{const tid=(e.items||[])[0];if(tid&&(rests(tid)||lastForm(tid)===QFORM[e.form]))continue;   /* H2, H3: ook een vaste oefening uit het recept */
+      if(tid&&q.filter(x=>(x.w&&x.w.id===tid)||(x.items&&x.items[0]===tid)).length>=2)continue}if(QUIET&&(e.form==='listen'||e.form==='dictee'))continue;/* stille stand */const x=exQ(e,s.step,(PACKS.find(p=>(p.exercises||[]).includes(e))||{}).learn==='en'?'en':learn);if(x)q.push(x)}
     else if(s.practice)practice(s,learn,used).forEach(x=>q.push(x));
     else if(s.end){if(learn!=='en')topUp(q,learn,words,later,used);q.push({type:'conf',step:s.step});q.push({type:'end',step:s.step})}
   }
   if(later.length){const real=x=>!['card','conf','end','explain'].includes(x.type);let i=q.map(x=>x.type).lastIndexOf('learn')+1,cnt=0,k=0;   // kiesvragen voor nieuwe woorden: na drie echte onderdelen, daarna telkens twee ertussen
     while(k<later.length){const conf=q.findIndex(x=>x.type==='conf'),at=conf<0?q.length:conf;if(i>=at){q.splice(at,0,...later.slice(k));break}
       if(real(q[i])&&q[i-1].type!=='explain')cnt++;if(cnt>=(k===0?3:2)&&(i+1>=q.length||q[i+1].type!=='explain'||true)){if(q[i].type==='explain'){i++;continue}q.splice(i+1,0,later[k]);k++;cnt=0;i+=2;continue}i++}}
-  return breakTriples(q)}
+  return breakTriples(noSameForm(q,learn))}   /* H2 */
 /* ============ leertijd en weekdoel ============
    Het streven is S.weekGoal minuten per week (standaard 600 = 10 uur; op Ik 3,5, 5, 7 of 10 uur; S.weekGoalSet = zelf gekozen). Het dagdeel is een zevende daarvan.
    Alle leertijd telt: les, uitleg, verhaal, snelronde, gesprek, dagboek, kijkopdracht. De klok loopt alleen bij actieve tijd:
@@ -1947,7 +1982,7 @@ const MIGRATE={
  2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s},   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
  3:s=>{for(const it of Object.values(s.items||{})){if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];if(it&&typeof it==='object'&&it.t==null&&typeof it.s==='number'&&it.s>0&&typeof it.due==='number')it.t=it.due-it.s*864e5}if(Object.keys(s.days||{}).length&&s.f3pending==null)s.f3pending=1;return s},
  4:s=>{if(!s.world||typeof s.world!=='object'||Array.isArray(s.world))s.world={done:{},at:null};if(!s.world.done||typeof s.world.done!=='object')s.world.done={};return s},
- 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};if(s.world&&typeof s.world==='object'&&(!s.world.best||typeof s.world.best!=='object'))s.world.best={};return s}   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
+ 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};if(s.world&&typeof s.world==='object'&&(!s.world.best||typeof s.world.best!=='object'))s.world.best={};for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&!Array.isArray(it.h))it.h=[];return s}   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
 };
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
@@ -2009,11 +2044,10 @@ function review(id,res,form,exid,passive){   /* M1 (stand per onderdeel), M2 (ge
     else if(res==='retry'){it.t=now();it.due=now()+Math.max(0,it.s)*DAY}
     else{it.lapses++;it.s=Math.max(MOTOR.lapseMin,it.s*MOTOR.lapseKeep);it.t=now();it.due=now()}}
   S.log.push({t:now(),id,ok:res===true,...(res==='retry'?{r:1}:{}),...(exid?{ex:exid}:{}),...(passive?{p:1}:{})});if(S.log.length>MOTOR.logMax)S.log.shift();
+  if(!passive)histAdd(it,id,form,res);
   if(!passive&&res===true&&it.lapses>=MOTOR.leechLapses){const L=S.log.filter(e=>e.id===id&&!e.p).slice(-MOTOR.leechRecover);if(L.length===MOTOR.leechRecover&&L.every(e=>e.ok))it.lapses=MOTOR.leechBack}   // hardnekkig: na 3 keer achter elkaar goed weer gewoon (sectie 8)
   save();
 }
-/* vormen die niet meetellen voor bloei: bekijken en de controlevraag bij een uitleg */
-const NOGROW=['voorbeeld','check','spel'];   /* spel: wel wachttijd, geen vorm voor bloei (masterplan C5) */
 /* eis voor doorgroeien boven 9 dagen (docs/herhaalmodel.md sectie 4, besluit 13 november 2026):
    woord: drie vormen; regel: drie verschillende oefeningen, minstens één keer zin bouwen;
    klank: drie verschillende oefeningen, minstens één keer luisteren en typen; rekenvaardigheid: drie verschillende varianten. */
@@ -2185,7 +2219,7 @@ function vToday(){
       <li><span class="dot">4</span>${T('lesson.step.maths')}<span class="min">5 min</span></li>
       <li><span class="dot">5</span>${T('lesson.step.end')}<span class="min">1 min</span></li>
     </ol>
-    <button class="btn btn-main" id="start">${T(done?'today.again':'today.begin')}</button>
+    ${stockOut()?`<p class="note sky small">${T('stock.out')}</p>`:''}<button class="btn btn-main" id="start">${T(done?'today.again':'today.begin')}</button>
     <button class="linkish" id="short">${T('today.short')}</button>
   </section>
   ${enDay?`<button class="tile wide" id="en"><span class="ic" style="background:var(--sky);color:var(--sky-ink)">${icon.globe}</span><span>${T('today.english')}<span class="small muted">${T('today.english.sub')}</span></span></button>`:''}

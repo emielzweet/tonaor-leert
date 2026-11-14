@@ -11,14 +11,15 @@ const DAY = 864e5, BASE = Date.UTC(2026, 10, 16, 7);
 let seed = 23; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
 
 const S = { v: 2, introduced: [], items: {}, explained: {}, rounds: {}, log: [], days: {}, newPerDay: 16, newLog: {}, conf: [], weekGoal: 600 };
-const c = await boot({ S, random: rnd }); c.NOW = BASE;
-vm.runInContext(line('const NOGROW=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\nlet KNOWN=new Set();\n' + fnBlock('probeDone') + '\nthis.sim={review,introduce,practiced,probeDone};', c);
+const c = await boot({ S, random: rnd }); c.NOW = BASE; c.window.speechSynthesis = {};   // het doeltoestel (iPhone) heeft een stem: ook horen en typen
+vm.runInContext(fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\nlet KNOWN=new Set();\n' + fnBlock('probeDone') + '\nthis.sim={review,introduce,practiced,probeDone};', c);
 const FORM = { recall: 'typen', hear: 'luisteren', recog: 'herkennen', build: 'build', gap: 'gap', dictee: 'dictee', money: 'geld', clock: 'klok', discount: 'korting' };
 const P_GOED = 0.85, P_AL_GEKEND = 0.3, RONDES = 6;   // aannames: 85% goed (doel 80-90%), 30% van de nieuwe woorden kent de leerder al, 6 rondes per dag (10 uur per week)
 const rondes = [], probleem = { herhaling: [], vorm: [], klein: [], geenNieuw: [] };
 // nooit een grind (masterplan H1 tot H4): per onderdeel de rij vormen over de hele week, en de reeks goed in verschillende vormen
-const vormRij = {}, reeks = {}, rust = new Set(), grind = { zelfdeVorm: [], rustTerug: [] };
-const zag = (id, vorm, goed, d, r) => { const rij = vormRij[id] = vormRij[id] || []; if (rij.length && rij[rij.length - 1] === vorm && grind.zelfdeVorm.length < 400) grind.zelfdeVorm.push('dag ' + d + ' ronde ' + r + ': ' + id + ' weer ' + vorm); rij.push(vorm);
+const vormRij = {}, reeks = {}, rust = new Set(), grind = { zelfdeVorm: [], stof: [], rustTerug: [] };
+const eenVorm = id => { const g = c.api.get(); if (g.NL.some(w => w.id === id) || g.EN.some(w => w.id === id)) return false; const ex = g.PACKS.flatMap(p => p.exercises || []).filter(e => (e.items || [])[0] === id); return new Set(ex.map(e => e.form)).size <= 1; };   // alleen één vorm in de lesstof: een tekort aan lesstof
+const zag = (id, vorm, goed, d, r) => { const rij = vormRij[id] = vormRij[id] || []; if (rij.length && rij[rij.length - 1] === vorm && grind.zelfdeVorm.length < 400) (eenVorm(id) ? grind.stof : grind.zelfdeVorm).push('dag ' + d + ' ronde ' + r + ': ' + id + ' weer ' + vorm); rij.push(vorm);
   if (rust.has(id)) grind.rustTerug.push('dag ' + d + ' ronde ' + r + ': ' + id);
   const k = reeks[id] = goed ? (reeks[id] || { n: 0, v: new Set() }) : { n: 0, v: new Set() }; if (goed) { k.n++; k.v.add(vorm); if (k.n >= 3 && k.v.size >= 3) rust.add(id); } };
 let opDag = null;
@@ -64,11 +65,15 @@ else if (!stofOk) console.log('LET OP de lesstof is op dag ' + opDag + ' op: nl-
 // H1: losse herhaling (Onderweg) hooguit een vijfde van de leertijd. De nagebootste dag bestaat nu alleen uit Onderweg-rondes:
 // scènes, algemene ontwikkeling en spel staan nog niet in de dagindeling (masterplan stap 5 en 11). H2 en H3 vragen een samensteller
 // die vormen over dagen bijhoudt en wat rust niet meer losse oefent; H4 een melding als de nieuwe lesstof op is. Tot dat gebouwd is: LET OP, met --streng FOUT.
-const H = [
-  ['H1 losse herhaling hooguit een vijfde van de leertijd', false, 'de nagebootste week is ' + rondes.length + ' Onderweg-rondes en niets anders (100%); de dagindeling met scènes en algemene ontwikkeling bestaat nog niet'],
+const Hs = [   // H2 tot H4 gelden nu (antwoord ontwerpsessie 14 nov 2026): FOUT. H1 komt met masterplan stap 5: tot dan LET OP
   ['H2 een onderdeel nooit twee keer achter elkaar in dezelfde vorm, ook niet over dagen', !grind.zelfdeVorm.length, grind.zelfdeVorm.length + ' keer, bijvoorbeeld ' + grind.zelfdeVorm.slice(0, 3).join('; ')],
   ['H3 wat drie keer op rij goed ging in drie vormen komt niet meer losse terug', !grind.rustTerug.length, grind.rustTerug.length + ' keer (' + rust.size + ' onderdelen in rust), bijvoorbeeld ' + grind.rustTerug.slice(0, 3).join('; ')],
-  ['H4 is de nieuwe lesstof op, dan zegt de app dat (en vult niet op met herhaling)', /lesstof is op|nieuwe lesstof op/i.test(html), 'er is geen melding voor als de nieuwe lesstof op is'],
+  ['H4 is de nieuwe lesstof op, dan zegt de app dat en vult niet op met sommen die niet aan de beurt zijn', html.includes('"stock.out"') && html.includes('${stockOut()?') && html.includes('MOTOR.roundMin&&!stockOut()'), 'melding of rem ontbreekt'],
+];
+for (const [n, v, extra] of Hs) ok(n, v, extra);
+if (grind.stof.length) console.log('LET OP H2 bij onderdelen met maar één vorm in de lesstof: ' + grind.stof.length + ' keer (meer werkvormen nodig, redactielijn), bijvoorbeeld ' + grind.stof.slice(0, 3).join('; '));
+const H = [
+  ['H1 losse herhaling hooguit een vijfde van de leertijd', false, 'de nagebootste week is ' + rondes.length + ' Onderweg-rondes en niets anders (100%); de dagindeling met scènes en algemene ontwikkeling bestaat nog niet'],
 ];
 for (const [n, v, extra] of H) { if (streng) ok(n, v, extra); else console.log((v ? 'OK  ' : 'LET OP') + ' ' + n + (v ? '' : '\n     ' + extra)); }
 const gem = rondes.reduce((a, x) => a + x.verschillend, 0) / rondes.length;

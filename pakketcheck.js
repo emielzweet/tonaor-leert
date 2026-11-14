@@ -442,6 +442,9 @@
       var nd = Object.keys(distinct).length;
       if (nd < 6) err(w + ': ' + nd + ' werkvormen, minstens zes nodig (' + Object.keys(distinct).join(', ') + ')');
       for (var i = 2; i < f.seq.length; i++) if (f.seq[i] === f.seq[i - 1] && f.seq[i] === f.seq[i - 2]) { err(w + ': drie keer achter elkaar ' + f.seq[i]); break; }
+      // blokken (masterplan, uitleg bij de eisen): een gesprek hooguit zes beurten, een tekst hooguit tien vragen, twee blokken van dezelfde soort niet direct na elkaar
+      var blocks = (sc.steps || []).filter(function (s) { return ['talk', 'read', 'listen'].indexOf(s.type) >= 0 || (s.q || s.turns || s.form || s.type === 'make' || s.type === 'speak' || s.type === 'game' || s.type === 'look'); });
+      for (var b = 1; b < blocks.length; b++) if (['talk', 'read', 'listen'].indexOf(blocks[b].type) >= 0 && blocks[b].type === blocks[b - 1].type) { err(w + ': twee blokken ' + blocks[b].type + ' direct na elkaar'); break; }
       if (sc.subject === 'nl' && f.moments < 18) err(w + ': ' + f.moments + ' antwoordmomenten, minstens 18');
       if (sc.subject !== 'nl' && f.moments < 8) err(w + ': ' + f.moments + ' antwoordmomenten, minstens 8');
       if (sc.subject === 'nl' && f.turns < 4) err(w + ': het gesprek heeft ' + f.turns + ' beurten, minstens vier');
@@ -450,7 +453,10 @@
       steps.forEach(function (st, k) {
         var v = w + '.steps[' + k + ']', qq = st.q || [];
         if (st.type === 'read' && qq.length >= 5 && qq.length <= 10) has.read510 = true;
-        if (st.type === 'listen') has.listen = true;
+        if (st.type === 'listen' && qq.length >= 5 && qq.length <= 10) has.listen = true;
+        if (st.type === 'talk' && (st.turns || []).length > 6) err(v + ': een gesprek heeft hooguit zes beurten');
+        if ((st.type === 'read' || st.type === 'listen') && qq.length > 10) err(v + ': een tekst heeft hooguit tien vragen');
+        if ((st.type === 'read' || st.type === 'listen') && qq.some(function (q) { return q && !q.form; })) err(v + ': vragen bij een tekst in de nieuwe vorm (form, ask, opts met err en why)');
         if (st.type === 'speak') has.speak = true;
         if (st.type === 'game') has.game = true;
         if (st.type === 'make') has.make = true;
@@ -463,7 +469,7 @@
     var n = Object.keys(all).length;
     if (n < 12) err(id + ': ' + n + ' werkvormen in het hoofdstuk, minstens twaalf nodig');
     if (!has.read510) err(id + ': een leestekst met vijf tot tien vragen ontbreekt');
-    if (!has.listen) err(id + ': een luistertekst (stap listen) ontbreekt');
+    if (!has.listen) err(id + ': een luistertekst (stap listen) met vijf tot tien vragen ontbreekt');
     if (!has.speak) err(id + ': een spreekopdracht (stap speak) ontbreekt');
     if (!has.game) err(id + ': een spel (stap game) ontbreekt');
     if (!has.make) err(id + ': schrijven (stap make) ontbreekt');

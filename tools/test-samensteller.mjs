@@ -9,7 +9,7 @@ let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 21474836
 
 const S = { v: 2, introduced: [], items: {}, explained: {}, rounds: {}, log: [], days: {} };
 const ctx = await boot({ S, random: rnd }); ctx.NOW = BASE;
-vm.runInContext(line('const NOGROW=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\nthis.sim={review,introduce,practiced};', ctx);
+vm.runInContext(fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\nthis.sim={review,introduce,practiced};', ctx);
 const FORM = { recall: 'typen', hear: 'luisteren', recog: 'herkennen', enrecall: 'typen', enhear: 'luisteren', enrecog: 'herkennen', build: 'build', gap: 'gap', engap: 'gap', dictee: 'dictee', money: 'geld', clock: 'klok', discount: 'korting' };
 const lesson = short => { let got = null; ctx.runSession = (name, q) => { got = { name, q }; }; ctx.api.startLesson(short); return got; };
 const answer = q => {
@@ -48,7 +48,7 @@ ok('de leerklok kan niet struikelen over het laden', html.includes('function lea
 // startmeting gebruiken (stap 7, docs/herhaalmodel.md sectie 9)
 { const S2 = { v: 2, introduced: [], items: {}, explained: {}, rounds: {}, log: [], days: {} };
   const c2 = await boot({ S: S2, random: rnd }); c2.NOW = BASE;
-  vm.runInContext(line('const NOGROW=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('placeFromLevels') + '\nthis.pl={review,placeFromLevels};', c2);
+  vm.runInContext(fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('placeFromLevels') + '\nthis.pl={review,placeFromLevels};', c2);
   S2.items.werk.reps = 3; S2.items.werk.s = 5;   // bestaande voortgang
   c2.pl.placeFromLevels({ woorden: .8, grammatica: .9, luisteren: .2, rekenen: .7, engels: 0 });
   const g = c2.api.get(), w6 = g.NL.slice(0, 6).map(x => x.id);
@@ -81,7 +81,7 @@ ok('de leerklok kan niet struikelen over het laden', html.includes('function lea
 // feedback eigenaar (13 november): drie rondes op één dag, niet steeds dezelfde woorden en vormen
 { const S4 = { v: 2, introduced: [], items: {}, explained: {}, rounds: {}, log: [], days: {} };
   const c4 = await boot({ S: S4, random: rnd }); c4.NOW = BASE;
-  vm.runInContext(line('const NOGROW=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\nthis.sim={review,introduce,practiced};', c4);
+  vm.runInContext(fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\nthis.sim={review,introduce,practiced};', c4);
   const run = short => { let got = null; c4.runSession = (n, q) => { got = q; }; c4.api.startLesson(short); return got; };
   const doAll = q => { for (const x of q) { if (x.type === 'explain') { S4.explained[x.x] = c4.NOW; continue; } if (x.type === 'learn') { if (!S4.introduced.includes(x.w.id)) S4.introduced.push(x.w.id); const it = S4.items[x.w.id]; it.reps = Math.max(1, it.reps); it.due = c4.NOW; continue; } if (x.w) { c4.sim.review(x.w.id, true, FORM[x.type]); continue; } if (x.type === 'discount' && x.k === 'worked') { c4.sim.introduce(x.items[0], 'voorbeeld'); continue; } if (x.items && x.items.length) c4.sim.practiced(x, true, x.type === 'listen' && x.p && x.p.mode === 'type' ? 'luisteren' : x.type === 'listen' ? 'listen' : FORM[x.type]); } };
   // vier dagen gewoon leren, zodat er bekende woorden zijn
@@ -134,11 +134,11 @@ ok('de leerklok kan niet struikelen over het laden', html.includes('function lea
 { const mk = () => { const S6 = { v: 2, introduced: [], items: {}, explained: {}, rounds: {}, log: [], days: {}, newPerDay: 16, newLog: {}, conf: [] }; return S6; };
   // vier dagen leren zodat er van alles aan de beurt is, dan dezelfde opslag met verschillende instellingen
   const S6 = mk(); const c6 = await boot({ S: S6, random: rnd }); c6.NOW = BASE;
-  vm.runInContext(line('const NOGROW=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\nthis.sim={review,introduce,practiced};', c6);
+  vm.runInContext(fnBlock('canBloom') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\nthis.sim={review,introduce,practiced};', c6);
   const run = () => { let got = null; c6.runSession = (n, x) => { got = x; }; c6.api.startLesson(false); return got; };
   for (let d = 0; d < 4; d++) { c6.NOW = BASE + d * DAY; const r = run(); for (const x of r) { if (x.type === 'learn') { if (!S6.introduced.includes(x.w.id)) S6.introduced.push(x.w.id); const it = S6.items[x.w.id]; it.reps = Math.max(1, it.reps); it.due = c6.NOW; } else if (x.w && !x._probe) c6.sim.review(x.w.id, false, 'typen'); else if (x.items && x.items.length) c6.sim.practiced(x, false, 'gap'); } }
   c6.NOW = BASE + 5 * DAY; const snap = JSON.stringify(S6);
-  const withS = (set) => { Object.assign(S6, JSON.parse(snap)); set(S6); return run(); };
+  const withS = (set) => { Object.assign(S6, JSON.parse(snap)); for (const it of Object.values(S6.items)) it.h = [];   /* hier gaat het om bijsturen, niet om rust (H3) of de vorige vorm (H2) */ set(S6); return run(); };
   const kort = withS(o => { o.roundLen = 'kort'; }), normaal = withS(o => { o.roundLen = 'normaal'; }), lang = withS(o => { o.roundLen = 'lang'; });
   const n = r => r.filter(x => !['card', 'conf', 'end', 'explain'].includes(x.type)).length;
   ok('lengte van een ronde: kort < normaal < lang', n(kort) < n(normaal) && n(normaal) < n(lang), n(kort) + ' / ' + n(normaal) + ' / ' + n(lang));

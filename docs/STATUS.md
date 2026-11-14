@@ -28,6 +28,20 @@ Bijgewerkt: 14 november 2026.
 - Stap 2 van het masterplan, de rest (docs/ontwerp-stap2.md): elke bestaande oefenvorm als vraag in een scène (`build`, `gap`, `listen`, `money`, `clock`, `discount`; hetzelfde scherm als in de les, een fout telt in het foutprofiel); `hear-type` en `complete`; hint in twee stappen (goed na een hint telt als `'retry'`; niet bij instap, controle en de zwaardere vorm); stap `speak` (voorbeeld om te horen, checklist; opnemen volgt in stap 6); stap `game` met `dehet` (60 seconden, woorden van de scène en wat aan de beurt is, vorm `spel` telt niet voor bloei); de zwaardere vorm (een gespeelde scène opnieuw zonder steuntaal, typen waar een vraag ook `answer` heeft, eigen record in `S.world.best`, in dezelfde migratie 5 → 6). Hoofdstukcontrole `PakketCheck.checkChapter` (A6, B1, B2, C1, C2, E2, E3, G2), gebruikt door de poort en de scènetest. Migratie 5 → 6 getest. Getest in de browser op 375 px: spreken, spel, zwaarder met nieuw record.
 - Stap 2 is af als het proefhoofdstuk uit de redactielijn in `content/` staat en de hoofdstukcontrole haalt (de scènetest meldt het nu als "NOG"); dan volgt ijkmoment G1.
 
+## Nooit een grind (H2 tot H4) en M12, 14 november 2026
+
+- M12: elke poging staat per onderdeel in `S.items[id].h` als `[dag, vorm, uitkomst]` (24, in volle bloei 6), met `f1`, `na` en `nk` voor wat afvalt; in migratie 5 → 6 (nog niet uitgebracht). Omvang na drie jaar (3.000 onderdelen): 1.022 kB voor de onderdelen, net onder de grens van 1 MB in `test-herhaal`. **Risico:** met de reservekopie erbij is dat ruim 2 MB van de ongeveer 5 MB die `localStorage` heeft; de vormen als korte code bewaren scheelt ongeveer een derde.
+- H2: `pickForm` en `chooseEx` kiezen niet de vorm van de vorige poging (ook van een vorige dag); `noSameForm` en `breakTriples` als vangnet. Wat overblijft in de ervaringstest zijn onderdelen met maar één vorm in de lesstof (klanken met alleen luisteren, rekenvaardigheden met alleen één soort som): een lesstoftekort voor de redactielijn (LET OP).
+- H3: wat drie keer op rij goed ging bij de eerste poging in drie vormen (`rests`), komt niet meer in Onderweg; wel in scènes (de open plek).
+- H4: is alle nieuwe lesstof aangeboden (`stockOut`), dan staat dat op Vandaag en vult de ronde niet aan met sommen die niet aan de beurt zijn.
+- De ervaringstest: H2, H3 en H4 nu als FOUT en groen; H1 LET OP tot stap 5. De test rekent met de stem van het toestel (iPhone).
+- Hoofdstukcontrole aangescherpt (antwoord ontwerpsessie): een gesprek hooguit zes beurten, een tekst hooguit tien vragen, twee blokken van dezelfde soort niet direct na elkaar, vragen bij een tekst in de nieuwe vorm (met `err`), een luistertekst met vijf tot tien vragen.
+
+## Redactielijn: "bij de dokter"
+
+- Ronde 3 (schrijver, goedkoper model): poort 0 fouten. Review (ander, groter model): **verbeteren**, 3 blokkerend en 26 klein (`redactie/uit/nl-dokter.review.json`). Blokkerend: de regel "pijn aan, niet pijn in" is onjuist; open typvragen in de controle keuren goede antwoorden af; vragen bij lees- en luisterteksten in de oude vorm zonder `err`. Verder o.a. rollen en tijden die niet kloppen, alle de/het-oefeningen met antwoord "de", een kennistekst ver boven A2, labels in de tekening die niet passen, en Thaise tijdsaanduidingen. De kennisles klopt met de bron.
+- De poort vangt het derde blokkerende punt nu zelf af. Ronde 4: de schrijver herstelt op de review.
+
 ## Stap 2b: de motor langs het didactisch plan
 
 De stand per eis M1 tot M12 (wat er is, wat ontbreekt) staat in `docs/ontwerp-stap2b.md`. Kort: M1 en M2 bestaan; M3, M4, M7, M9, M11 en M12 deels; M5, M6, M8 en M10 nieuw. Alle waarden van de motor staan nu op één plek (`MOTOR` in `index.html`) met bron of "aanname"; `test-herhaal` bewaakt dat, en de les van `test-les` is ongewijzigd. Volgende bouw: M12 (reeks pogingen per onderdeel), M5 (trede per regel), M6 (vier strengen), M10 (na `docs/eindtermen.md`); drie vragen aan de ontwerpsessie staan onderaan het ontwerp.
