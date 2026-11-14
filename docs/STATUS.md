@@ -28,6 +28,16 @@ Bijgewerkt: 14 november 2026.
 - Stap 2 van het masterplan, de rest (docs/ontwerp-stap2.md): elke bestaande oefenvorm als vraag in een scène (`build`, `gap`, `listen`, `money`, `clock`, `discount`; hetzelfde scherm als in de les, een fout telt in het foutprofiel); `hear-type` en `complete`; hint in twee stappen (goed na een hint telt als `'retry'`; niet bij instap, controle en de zwaardere vorm); stap `speak` (voorbeeld om te horen, checklist; opnemen volgt in stap 6); stap `game` met `dehet` (60 seconden, woorden van de scène en wat aan de beurt is, vorm `spel` telt niet voor bloei); de zwaardere vorm (een gespeelde scène opnieuw zonder steuntaal, typen waar een vraag ook `answer` heeft, eigen record in `S.world.best`, in dezelfde migratie 5 → 6). Hoofdstukcontrole `PakketCheck.checkChapter` (A6, B1, B2, C1, C2, E2, E3, G2), gebruikt door de poort en de scènetest. Migratie 5 → 6 getest. Getest in de browser op 375 px: spreken, spel, zwaarder met nieuw record.
 - Stap 2 is af als het proefhoofdstuk uit de redactielijn in `content/` staat en de hoofdstukcontrole haalt (de scènetest meldt het nu als "NOG"); dan volgt ijkmoment G1.
 
+## Klaar om uit te brengen?
+
+Stand f10d095 (cache v2-41), 14 november 2026. **Nog niet**: eerst de onafhankelijke codereview van stap 2 en 2b (loopt). Daarna vraagt de bouwsessie de eigenaar zelf om akkoord voor de push.
+
+- Klaar: alle tests groen; browsercontrole op 375 px van de les met H2 tot H4 en M12; migratie van schema 4 (zoals live, v2-34) naar 6 in de browser: alle onderdelen, aangeboden woorden en pogingen gelijk, reservekopie gemaakt, geen fouten.
+- Het proefhoofdstuk is niet zichtbaar: een hoofdstuk verschijnt pas als het de hoofdstukcontrole haalt; de versie in `content/` haalt die niet.
+- H3 bij de eerste start: na de migratie is elke reeks leeg, dus niets rust en er verdwijnt niets uit Onderweg. Aandachtspunt (vraag aan de ontwerpsessie): rust kan nu ontstaan na drie goede pogingen binnen één of twee dagen; misschien "verspreid over minstens twee dagen" eisen (M9).
+- H4: de melding komt pas als ook alle 100 basiswoorden zijn aangeboden.
+- Open: de migratie op een kopie van een echte opslag (Ik → Voortgang bewaren), als de eigenaar die wil aanleveren; het bestand bevat de koppelcodes en blijft lokaal, buiten de repo.
+
 ## Nooit een grind (H2 tot H4) en M12, 14 november 2026
 
 - M12: elke poging staat per onderdeel in `S.items[id].h` als één korte tekenreeks (dagen sinds de vorige poging, vormcode, uitkomst), 24 pogingen en 6 in volle bloei, met `f1`, `na` en `nk` voor wat afvalt; in migratie 5 → 6 (nog niet uitgebracht). F1 (antwoord ontwerpsessie): alle reeksen samen hooguit 300.000 tekens (eerst de oudste pogingen van onderdelen in volle bloei weg, nooit de stand); na drie nagebootste jaren met de reservekopie 1,36 miljoen tekens (grens in de test: 2 miljoen); lukt wegschrijven niet, dan maakt `save()` eerst ruimte in de reeksen, anders één melding, en de bestaande opslag blijft heel. IndexedDB is niet nodig.
