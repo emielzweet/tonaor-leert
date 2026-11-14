@@ -17,10 +17,11 @@ Hier wordt wel op hem gewacht; alles wat hier niet staat, gaat door.
 
 - Een beveiligingsprobleem of een lek van privégegevens: volgens `SECURITY.md`, nooit openbaar.
 - Alles wat geld kost of een account, sleutel of wachtwoord vraagt (de AI-sleutel, een server, een domein).
-- Iets installeren of herstarten op de computer van de eigenaar (de widget van de begeleider).
 - Gegevens van de leerder wissen of onomkeerbaar veranderen; een migratie die niet alleen toevoegt.
 - Instellingen van de repository; issues sluiten die een test op de telefoon vragen.
 - Een geschiedenis herschrijven of geforceerd pushen: nooit.
+
+**De widget van de begeleider** (aanvulling van de eigenaar, 14 november 2026): installeren en het programma herstarten mag de ontwerpsessie zelf doen. Zij doet dat volgens de vaste werkwijze van de widget: verder bouwen op de nieuwste versie, de versie ophogen, een regel in het logboek, en vooraf een kopie van de geïnstalleerde versie zodat terugzetten kan. Na het installeren controleert zij dat de koppeling met de app nog werkt. De bouwsessie bereidt het pakket voor; de ontwerpsessie installeert.
 
 ## Standaardkeuzes bij open besluiten
 
@@ -40,7 +41,7 @@ Hier wordt wel op hem gewacht; alles wat hier niet staat, gaat door.
 | Uitleg in de les | als stap in de scène en bij een herhaalde fout; de bestaande ingangen blijven | `uitleg.md`, masterplan E2 |
 | Verwijzingen naar video's | de bouwsessie stelt per rekenonderwerp één of twee links voor van publieke of educatieve bronnen, alleen https, buiten de app geopend; de reviewer controleert dat de link werkt en past | besluit van 13 november: buiten de app |
 | Geschiedenis van pogingen past niet in de opslag | binnen het budget blijven door ouder weg te laten; geen ander soort opslag zonder de eigenaar | raakt de opslag |
-| Scherm van de begeleider | protocol en widget voorbereiden in een pakket; de app stuurt nieuwe berichten pas als de widget ze kent; installeren doet de eigenaar | zijn computer |
+| Scherm van de begeleider | protocol en widget voorbereiden in een pakket; de app stuurt nieuwe berichten pas als de widget ze kent; de ontwerpsessie installeert, met een kopie vooraf | toestemming van de eigenaar |
 | Fout melden | het deel in de app nu (knop, soorten, wachtrij op het toestel, punten achteraf); ontvangen en verwerken zodra er een ingang is | hangt aan issue #5 |
 | Vraag het (AI) | de eerste trede nu (de uitleg bij de stap); de AI-trede wacht op de sleutel | kost geld |
 | Ontbreekt een ontwerp van de ontwerpsessie | de bouwsessie schrijft zelf een kort ontwerp langs de eisen en bouwt; de ontwerpsessie kijkt bij het ijkmoment | niet op elkaar wachten |
@@ -61,7 +62,9 @@ Elke regel is een afgerond stuk: kort ontwerp, bouwen, tests, controle op 375 br
 9. **De kaart en het album** naast het huidige thuisscherm, met de schakelaar.
 10. **Toetsen die bijsturen** (masterplan stap 8) en de vierwekelijkse toets per examenonderdeel.
 11. **Het scherm Ontdek** voor algemene ontwikkeling, met kaart en tijdlijn.
-12. **Het pakket voor het scherm van de begeleider.**
+12. **Het scherm van de begeleider:** protocol beschrijven, het pakket voor de widget, installeren door de ontwerpsessie, daarna de nieuwe berichten in de app. De wekelijkse versleutelde reservekopie van de voortgang (`aanbevelingen.md`, 1.1) gaat hierin mee en mag naar voren als de rest wacht.
+
+De voorstellen uit `docs/aanbevelingen.md` horen bij deze volgorde; op welke plek staat onderaan dat document.
 
 Een release volgt na stuk 1 en 2, en daarna telkens als er een afgerond stuk ligt dat de leerder iets oplevert, hooguit één keer per dag.
 

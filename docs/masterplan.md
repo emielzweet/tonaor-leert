@@ -209,6 +209,7 @@ Vragen van de bouwsessie die een eis raken, met het antwoord. Dit hoofdstuk groe
 |---|---|
 | `masterplan.md` | eisen, volgorde, rollen |
 | `werkorder.md` | doorwerken zonder te wachten: standaardkeuzes, volgorde van het werk, uitbrengen |
+| `aanbevelingen.md` | voorstellen van de ontwerpsessie die nog niet in het plan stonden, met de plek in de volgorde van het werk |
 | `didactisch-plan.md` | het fundament: leeruitkomsten, leerweg, onderbouwing met bronnen, eisen aan de motor |
 | `onderbouwing-nederlands.md` | Nederlands uitgediept: het Staatsexamen per onderdeel, de niveaus, het onderzoek, en de eisen N-M1 tot N-M9 aan de motor |
 | `onderbouwing-engels.md` | Engels uitgediept: het examen lezen en luisteren op B1, een derde taal naast een tweede, en de eisen E-M1 tot E-M6 aan de motor |
