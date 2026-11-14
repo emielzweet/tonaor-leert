@@ -159,6 +159,8 @@ Rekenen is ook taal: de uitspraak en schrijfwijze van getallen, rekenwoorden met
 
 Spreken, gesprekken en schrijven blijven op A2 en worden door de school zelf getoetst.
 
+> **Aangevuld op 14 november 2026 (`onderbouwing-engels.md`):** het eindcijfer Engels is het gemiddelde van het centrale examen (lezen en luisteren) en het examen van de school (spreken, gesprekken, schrijven); de vorm van dat laatste moet bij de school worden nagevraagd. In het centrale examen zijn alle vragen in het Engels, mogen luisterfragmenten opnieuw worden afgespeeld, en mag een vertalend woordenboek Engels en de eigen taal, op papier. De officiële woordenlijsten bij de Cambridge-examens (ongeveer 1.600 woorden en uitdrukkingen voor A2, ongeveer 3.000 voor B1) zijn de maat voor de woordenschat.
+
 ## Hoeveel tijd dit kost
 
 Er is geen officiële urennorm voor Nederlands of rekenen. Het beste houvast:

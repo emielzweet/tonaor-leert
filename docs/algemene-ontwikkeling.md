@@ -61,7 +61,8 @@ Los, met drie zachte verbindingen:
 
 - lezen hier telt als leestijd voor de route en het weekdoel, want het is lezen in het Nederlands;
 - bij een scène kan een les uit de bibliotheek worden aangeraden (de dokter: *Waarom ga je eerst naar de huisarts?*), nooit verplicht;
-- woorden die de leerder bewaart, komen terug in de gewone herhaling.
+- woorden die de leerder bewaart, komen terug in de gewone herhaling;
+- vanaf A2 Engels is er ook een deel van de bibliotheek in het Engels: het centrale examen Engels gaat over algemene maatschappelijke onderwerpen, in teksten van 800 tot 1.200 woorden (`onderbouwing-engels.md`).
 
 ## Wat ervoor nodig is
 

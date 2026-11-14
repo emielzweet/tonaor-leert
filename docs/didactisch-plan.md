@@ -52,7 +52,7 @@ Stand: 14 november 2026. Dit is het fundament onder het masterplan: **waar de le
 
 ## 3. Onderbouwing per facet
 
-> **Uitgediept op 14 november 2026:** rekenen in `onderbouwing-rekenen.md`, Nederlands in `onderbouwing-nederlands.md`. Wat daar staat gaat voor op dit hoofdstuk. Voor Nederlands zijn de belangrijkste bijstellingen: het examen bestaat uit vier losse onderdelen met elk een eigen datum; een onbekend woord in een tekst laat de leerder eerst zelf de betekenis kiezen; zelf maken weegt zwaarder dan kiezen; een grammaticaregel wordt in het begin korter gespreid dan een woord; bij leerders van het Nederlands was uitleg in vrij schrijven niet beter dan blootstelling, dus het gebruik moet veel geoefend worden; en er zijn geen betrouwbare cijfers over leertijd, zodat de route op gemeten vooruitgang moet draaien. De indeling in vier strengen (hoofdstuk 2) rust op een bron waarvan alleen het bestaan is bevestigd; ze blijft een werkbare indeling, geen bewezen norm.
+> **Uitgediept op 14 november 2026:** rekenen in `onderbouwing-rekenen.md`, Nederlands in `onderbouwing-nederlands.md`, Engels in `onderbouwing-engels.md`. Wat daar staat gaat voor op dit hoofdstuk. Voor Nederlands zijn de belangrijkste bijstellingen: het examen bestaat uit vier losse onderdelen met elk een eigen datum; een onbekend woord in een tekst laat de leerder eerst zelf de betekenis kiezen; zelf maken weegt zwaarder dan kiezen; een grammaticaregel wordt in het begin korter gespreid dan een woord; bij leerders van het Nederlands was uitleg in vrij schrijven niet beter dan blootstelling, dus het gebruik moet veel geoefend worden; en er zijn geen betrouwbare cijfers over leertijd, zodat de route op gemeten vooruitgang moet draaien. De indeling in vier strengen (hoofdstuk 2) rust op een bron waarvan alleen het bestaan is bevestigd; ze blijft een werkbare indeling, geen bewezen norm.
 
 Per facet: wat het onderzoek zegt, en wat de app daarom doet. Bewijs: **sterk** (meerdere meta-analyses), **redelijk** (één meta-analyse of veel losse studies), **zwak** (weinig of indirect).
 
@@ -147,7 +147,9 @@ Per facet: wat het onderzoek zegt, en wat de app daarom doet. Bewijs: **sterk** 
 
 ### 3.12 Engels
 
-Alle facetten hierboven gelden. Daarbij: het examen vraagt lezen en luisteren op B1 en de rest op A2, dus het zwaartepunt ligt op input en woorden herkennen (ongeveer 3.000). Engels en Nederlands lijken op elkaar; wie eerst Nederlands leert, heeft daar bij Engels voordeel van. Daarom begint Engels klein en groeit het pas na B1 Nederlands. Uitleg van Engelse grammatica gebeurt in het Nederlands, zodat het Nederlands meeprofiteert. *De volgorde is een afweging, niet onderzocht voor deze situatie.*
+Alle facetten hierboven gelden. Daarbij: het examen vraagt lezen en luisteren op B1 en de rest op A2, dus het zwaartepunt ligt op input en woorden herkennen (ongeveer 3.000). Engels en Nederlands lijken op elkaar; wie eerst Nederlands leert, heeft daar bij Engels voordeel van. Daarom begint Engels klein en groeit het pas na B1 Nederlands. *De volgorde is een afweging, niet onderzocht voor deze situatie.*
+
+> **Uitgediept op 14 november 2026 in `onderbouwing-engels.md`;** wat daar staat gaat voor. De bijstellingen: de betekenis van Engelse woorden en de uitleg lopen via de moedertaal (de sterkste taal, en de taal van het woordenboek dat bij het examen mag), met het Nederlands als brug waar zinsbouw of woorden erop lijken en een waarschuwing bij valse vrienden; Engels en Nederlands worden in tijd en ronde gescheiden gehouden; alleen lezen en luisteren levert te weinig woorden op, dus gericht woorden leren blijft nodig; en de motor bewaakt of het Nederlands niet lijdt onder het Engels. Dat twee talen tegelijk niet schaadt, rust op één studie.
 
 ### 3.13 Algemene ontwikkeling
 
