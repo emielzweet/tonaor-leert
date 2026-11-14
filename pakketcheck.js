@@ -314,7 +314,7 @@
     // scènes (docs/scenes.md): vaste stappen, gesprekken met één goede keuze en een reden bij elke keuze, de tekening uit de catalogus
     if (p.scenes != null) {
       var SV = root.SceneVis || null; if (!SV && typeof require === 'function') { try { SV = require('./scene.js'); } catch (e) { SV = null; } }
-      var GAMES = ['dehet'], STEP = ['look', 'talk', 'read', 'listen', 'slot', 'explain', 'do', 'make', 'end', 'quiz', 'rule', 'extra', 'speak', 'game'], ERRS = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen'], DOFORM = ['setclock', 'change', 'point', 'money', 'clock', 'discount', 'gap', 'build', 'listen'];
+      var GAMES = ['dehet'], STEP = ['look', 'talk', 'read', 'listen', 'slot', 'explain', 'do', 'make', 'end', 'quiz', 'rule', 'extra', 'speak', 'game'], ERRS = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen', 'model'], DOFORM = ['setclock', 'change', 'point', 'money', 'clock', 'discount', 'gap', 'build', 'listen'];
       var allItems = {}; [p].concat(others || []).forEach(function (o) { (o.items || []).forEach(function (x) { allItems[x.id] = 1; }); });
       var errOk = function (o, u) { if (o.err != null && ERRS.indexOf(o.err) < 0) err(u + ': err ' + o.err + ' staat niet in de lijst'); else if (o.r !== 'ok' && o.err == null) q(u + ': soort fout (err) ontbreekt bij een foute keuze'); };
       var tekstOf = function (x, u) { if (Array.isArray(x)) { if (!x.length) err(u + ': leeg'); x.forEach(function (y, i) { tekst(y, u + '[' + i + ']'); }); } else tekst(x, u); };
@@ -334,6 +334,8 @@
         } else if (TYP.indexOf(qq.form) >= 0 || qq.form === 'number') {
           var an = [].concat(qq.answer == null ? [] : qq.answer); if (!an.length || an.some(function (a) { return typeof a !== 'string' && typeof a !== 'number' || String(a).trim() === ''; })) err(u + ': answer ontbreekt');
           if (qq.form === 'number' && an.some(function (a) { return !/^-?\d+([.,]\d+)?$/.test(String(a).trim()); })) err(u + ': answer is geen getal');
+          if (qq.tol != null && (qq.form !== 'number' || typeof qq.tol !== 'number' || !(qq.tol >= 0))) err(u + ': tol (marge bij ongeveer) is een getal van 0 of meer, alleen bij number');
+          if (qq.form === 'number' && qq.tol == null && /ongeveer|schat/i.test(qq.ask && typeof qq.ask === 'object' ? qq.ask.nl || '' : String(qq.ask || ''))) err(u + ': een vraag met ongeveer of schatten heeft tol nodig (docs/scenes.md, de examenvorm en ongeveer)');
           if (!qq.why) err(u + ': why ontbreekt'); else tekst(qq.why, u + '.why'); if (qq.err != null && ERRS.indexOf(qq.err) < 0) err(u + ': err ' + qq.err + ' staat niet in de lijst');
           if (qq.accept != null && (!Array.isArray(qq.accept) || qq.accept.some(function (a) { return (typeof a !== 'string' && typeof a !== 'number') || String(a).trim() === ''; }))) err(u + ': accept moet een lijst andere schrijfwijzen zijn');
         } };
@@ -412,7 +414,7 @@
   /* Hoofdstukcontrole (docs/masterplan.md A6, B1, B2, C1, C2, G2; docs/scenes.md "Werkvormen, hints en de zwaardere vorm").
      Los van checkPack: de app laadt ook lichtere pakketten; de redactielijn en de scènetest eisen dit van een hoofdstuk.
      Een werkvorm is de vorm van een vraag of een do, of het soort stap; een gesprek telt als één blok (docs/ontwerp-stap2.md). */
-  var ERRS_ = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen'];
+  var ERRS_ = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen', 'model'];
   function sceneForms(sc) {
     var seq = [], kinds = {}, moments = 0, turns = 0;   // seq: de rij voor C1 (gesprek, lees- en luistertekst als één blok); kinds: alle werkvormen voor C2
     (sc.steps || []).forEach(function (st) {

@@ -10,7 +10,7 @@ const DAY = 864e5;
 function model() {
   const ctx = { S: { items: {}, introduced: [], log: [] }, T: 0, DAY, Math, Array, Object };
   vm.createContext(ctx);
-  vm.runInContext(MOTORCODE + '\nconst now=()=>T;const today=()=>Math.floor(T/DAY)*DAY;const save=()=>{};' + line('const NOGROW=') + '\n' + fnBlock('histAdd') + '\n' + line('let KIND=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('item') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\n' + fnBlock('stage') + '\n' + fnBlock('thirsty') + '\nthis.api={review,introduce,practiced,stage,thirsty,item,canBloom,setKind:(id,k)=>{KIND[id]=k}};', ctx);
+  vm.runInContext(MOTORCODE + '\nconst now=()=>T;const today=()=>Math.floor(T/DAY)*DAY;const save=()=>{};' + line('const NOGROW=') + '\n' + line('const HCODE=') + '\n' + line('const HFORM=') + '\n' + fnBlock('histParse') + '\n' + fnBlock('histSet') + '\n' + 'let HISTN=0;' + '\n' + fnBlock('histTrim') + '\n' + fnBlock('histAdd') + '\n' + line('let KIND=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('item') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\n' + fnBlock('stage') + '\n' + fnBlock('thirsty') + '\nthis.api={histParse,histTrim,review,introduce,practiced,stage,thirsty,item,canBloom,setKind:(id,k)=>{KIND[id]=k}};', ctx);
   return ctx;
 }
 const at = (c, d) => { c.T = d * DAY; };
@@ -141,16 +141,22 @@ ok('tuin: bed voor regels en klanken, tikken opent de uitleg, lampje bij hardnek
   const o = model(); o.S.items.x = o.api.item(); at(o, 3);
   o.api.review('x', true, 'typen'); o.api.review('x', 'retry', 'herkennen'); o.api.review('x', false, 'luisteren');
   const it = o.S.items.x;
-  ok('M12: elke poging met dag, vorm en uitkomst (1 goed, 2 goed na een poging, 0 fout)', JSON.stringify(it.h) === JSON.stringify([[3, 'typen', 1], [3, 'herkennen', 2], [3, 'luisteren', 0]]) && it.f1 === 3 && it.na === 3 && it.nk === 1, JSON.stringify(it));
+  ok('M12: elke poging met dag, vorm en uitkomst (1 goed, 2 goed na een poging, 0 fout), als korte tekenreeks', typeof it.h === 'string' && JSON.stringify(o.api.histParse(it)) === JSON.stringify([[3, 'typen', 1], [3, 'herkennen', 2], [3, 'luisteren', 0]]) && it.f1 === 3 && it.na === 3 && it.nk === 1, JSON.stringify(it));
+  at(o, 10); o.api.review('x', true, 'herkennen');
+  ok('M12: de dagen tussen pogingen blijven bewaard', o.api.histParse(it).pop()[0] === 10, it.h);
   for (let i = 0; i < 40; i++) o.api.review('x', false, 'typen');
-  ok('M12: de reeks is afgekapt op ' + 24 + ' pogingen; de totalen blijven tellen', it.h.length === 24 && it.na === 43 && it.f1 === 3);
+  ok('M12: de reeks is afgekapt op 24 pogingen; de totalen blijven tellen', o.api.histParse(it).length === 24 && it.na === 44 && it.f1 === 3);
   const p = model(); p.S.items.y = p.api.item(); at(p, 1); p.api.review('y', true, 'typen', 'e#1', true);
-  ok('M12: een bij-item (passief) krijgt geen poging in de reeks', !(p.S.items.y.h || []).length);
-  // omvang na drie jaar: 3.000 onderdelen, vier op de vijf in volle bloei (6 pogingen), de rest 24 (docs/ontwerp-stap2b.md)
-  const reeks = n => Array.from({ length: n }, (_, i) => [21000 + i, 'herkennen', 1]);
-  const items = {}; for (let i = 0; i < 3000; i++) items['nlb.woord' + i] = { s: 30, due: 1, reps: 12, lapses: 1, forms: ['typen', 'herkennen', 'luisteren'], exs: [], h: reeks(i % 5 ? 6 : 24), f1: 20000, na: 40, nk: 33 };
-  const kb = JSON.stringify(items).length / 1024;
-  ok('M12: de opslag blijft na drie jaar onder 1 MB (' + Math.round(kb) + ' kB voor de onderdelen)', kb < 1024);
+  ok('M12: een bij-item (passief) krijgt geen poging in de reeks', !p.S.items.y.h);
+  // F1 (antwoord ontwerpsessie): omvang na drie nagebootste jaren, met de reservekopie erbij, onder 2 miljoen tekens; het budget van de reeksen wordt gehouden
+  const q = model(); const DAYS = 3 * 365, N = 3000, FORMS = ['typen', 'herkennen', 'luisteren', 'gap', 'build'];
+  for (let i = 0; i < N; i++) q.S.items['nlb.woord' + i] = q.api.item();
+  for (let d = 0; d < DAYS; d++) { at(q, d); for (let k = 0; k < 40; k++) { const id = 'nlb.woord' + ((d * 40 + k) % N); q.api.review(id, (d + k) % 7 ? true : false, FORMS[(d + k) % 5]); } }
+  q.api.histTrim();
+  const hist = Object.values(q.S.items).reduce((a, it) => a + (it.h || '').length, 0), all = JSON.stringify(q.S).length;
+  ok('F1: de reeksen samen blijven binnen het budget van 300.000 tekens (' + hist + ')', hist <= 300000);
+  ok('F1: de opslag na drie jaar met de reservekopie blijft onder 2 miljoen tekens (' + (2 * all) + ')', 2 * all < 2e6);
+  ok('F1: inkorten raakt de stand van een onderdeel nooit', Object.values(q.S.items).every(it => typeof it.s === 'number' && typeof it.due === 'number' && it.na > 0));
 }
 // didactisch plan hoofdstuk 5: elke waarde van de motor op één plek, met bron of aanname
 {

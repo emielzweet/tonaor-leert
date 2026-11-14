@@ -29,17 +29,21 @@ Een code bestaat uit vak, niveau of programma, vaardigheid en een volgnummer: `n
 
 **Het doel is programma I.** Programma I is bedoeld voor werk of studie op mbo 3- of mbo 4-niveau; programma II (hbo en universiteit) is geen stap op de route naar mbo 4. De vier onderdelen worden los afgenomen, het hele jaar door; per gehaald onderdeel een certificaat dat onbeperkt geldig is. Daarom heeft de route vier verwachte data, één per onderdeel (`docs/route-en-prognose.md`). Bron: `docs/onderbouwing-nederlands.md` hoofdstuk 1 (ontwerpsessie; staatsexamensnt2.nl en Staatscourant 2024, 32587).
 
-**Examenvorm programma I** (voor masterplan G4: oefenen in de echte vorm, vanaf blok N2). Bron: `docs/onderbouwing-nederlands.md` hoofdstuk 1. **Gecontroleerd: nog niet door de bouwsessie** (de controle op staatsexamensnt2.nl loopt). Het eerste bronnenonderzoek gaf voor lezen "ongeveer 35 vragen" (Staatscourant 2022, 408); de onderbouwing zegt 36.
+**Examenvorm programma I** (voor masterplan G4: oefenen in de echte vorm, vanaf blok N2). Bron: `docs/onderbouwing-nederlands.md` hoofdstuk 1. **Gecontroleerd: ja** (14 november 2026, staatsexamensnt2.nl "Hoe ziet het examen eruit" [N3] en het Examenreglement Nt2 2025 [N4] artikel 4 en 8), met één verbetering: spreken duurt volgens het reglement hooguit 30 minuten (de site zegt "ongeveer 25"). Lezen: 36 vragen volgens de site, "35 of 36" in de uitlegvideo; het aantal staat niet in het reglement.
 
 | Onderdeel | Programma I | Wat het vraagt |
 |---|---|---|
 | Lezen | 110 minuten; 36 meerkeuzevragen bij 6 teksten; teksten op papier, antwoorden op de computer; alleen het voorgeschreven pocketwoordenboek Nt2 | teksten over werk, studie en het dagelijks leven: onderwerp, bron of doelgroep; betekenis van een deel, verband tussen delen, conclusie; informatie opzoeken, ordenen en combineren |
 | Luisteren | 90 minuten; ongeveer 40 meerkeuzevragen bij 5 of meer fragmenten en 1 tot 3 filmpjes; één keer horen, niet pauzeren; 25 seconden om de vraag te lezen; geen woordenboek | echte opnamen met verschillende stemmen, accenten en achtergrondgeluid |
 | Schrijven | 100 minuten; zinnen afmaken, een brief, tekst of formulier aanvullen, een korte tekst; typen zonder spellingscontrole; het pocketwoordenboek mag | vooral werk en opleiding |
-| Spreken | ongeveer 25 minuten; 8 korte opdrachten (20 seconden spreektijd) en 8 middellange (30 seconden); tegen de computer, loopt automatisch door; geen woordenboek | – |
+| Spreken | hooguit 30 minuten (reglement; de site zegt ongeveer 25); 8 korte opdrachten (20 seconden spreektijd) en 8 middellange (30 seconden); de opdracht staat op het scherm en wordt voorgelezen; tegen de computer, loopt automatisch door; geen woordenboek | – |
 | Uitslag | geslaagd bij een schaalscore van 500 of hoger; schrijven en spreken door twee beoordelaars | – |
 
-**Beoordeling van schrijven en spreken:** het officiële beoordelingsvoorschrift is nog niet gevonden (de zoektocht loopt). Voorlopig, uit een presentatie van de examencommissie uit 2017 (niet officieel): spreken op inhoud, woord- en zinsvorming, woordkeus, woordenschat, uitspraak en tempo; schrijven op begrijpelijkheid, grammaticale correctheid, spelling, woordgebruik en samenhang.
+**Beoordeling van schrijven en spreken** (Regeling beoordelingsnormen [N2], bijlage 1 en 2; **gecontroleerd: ja**, de algemene aanwijzingen; de specifieke aanwijzingen per opgave niet volledig gelezen):
+
+- *Schrijven I:* aspecten adequaatheid en begrijpelijkheid, samenhang, woordgebruik, grammaticale correctheid en spelling (tekstverzorging en opbouw alleen bij II). Een zinsopgave (8 opgaven): adequaatheid 0-1 en grammatica 0-1; bij adequaatheid 0 ook grammatica 0. Een kort bericht, tekst aanvullen, formulier of korte tekst: adequaatheid 0-3 en grammatica 0-2, met 2 punten als uitgangspunt als alle gevraagde onderdelen erin staan; per opdracht kunnen spelling, samenhang en woordgebruik meetellen (bij een formulier geen samenhang). Bij adequaatheid 0 volgen geen andere punten.
+- *Spreken I:* eerst de vraag of de uiting te beoordelen is (niet bij onverstaanbaar, niet-Nederlands, stilte of een technisch probleem). Korte opdracht: inhoud 0-1 en woord- en zinsvorming of woordkeus 0-1. Middellange opdracht: altijd inhoud en woord- en zinsvorming, plus een of meer van woordenschat, uitspraak (elk 0-3) en tempo (0-1); 9 tot 12 punten per opdracht. Elke opdracht apart, het gemiddelde van meerdere beoordelaars.
+- *Voor de app:* de checklists bij `make` en `speak` volgen deze aspecten (eerst: doet het wat gevraagd is; dan zinsbouw en woorden); bij een zinsopgave telt grammatica pas als de inhoud klopt. De volledige beoordelingsmodellen zijn niet openbaar; ze worden pas als oefenopgaven gepubliceerd als de opgaven niet meer in een examen voorkomen.
 
 **Woorden:** de meeste woorden in de opgaven staan in de lijsten Core en General van het frequentiewoordenboek van het Nederlands (Tiberius & Schoonheim) of in de aanvullende woordenlijst van de examencommissie. De woordenschatlijn van de app legt de eigen frequentiewoorden daarnaast.
 
@@ -81,13 +85,15 @@ In een code staat N voor het niveau: `rekenen-2-procenten`, `rekenen-4-procenten
 
 ## Open
 
-1. Nalezen (bouwsessie): [N2] voor de examenvorm Nt2, de tekst per niveau in bijlage 3 van [R1], [EN1] en het ERK-raster voor Engels.
+1. Nalezen (bouwsessie): of er een nieuwere regeling is dan [N2] en [N4] (2025 of 2026); de tekst per niveau in bijlage 3 van [R1]; [EN1] en het ERK-raster voor Engels.
 2. De dekkingstabel per eindterm (G2) komt in `docs/STATUS.md` zodra het hoofdstuk "bij de dokter" in `content/` staat en de goals naar deze codes zijn omgezet.
 
 ## Bronnen
 
 - [N1] College voor Toetsen en Examens, Regeling examenprogramma Staatsexamens Nt2, CvTE-19.01144, Staatscourant 2020, 1123. https://zoek.officielebekendmakingen.nl/stcrt-2020-1123.html
 - [N2] College voor Toetsen en Examens, Regeling beoordelingsnormen Staatsexamen Nt2, CvTE-21.01023, Staatscourant 2022, 408. https://zoek.officielebekendmakingen.nl/stcrt-2022-408.html
+- [N3] Staatsexamens Nt2, Hoe ziet het examen eruit. https://www.staatsexamensnt2.nl/voorbereiden/hoe-ziet-het-examen-eruit
+- [N4] Examenreglement Staatsexamens Nt2 2025, Staatscourant 2024, 21299. https://zoek.officielebekendmakingen.nl/stcrt-2024-21299.pdf (de wijziging van de beoordelingsregeling, Staatscourant 2022, 34930, verhoogt de duur van spreken naar 30 minuten). Een nieuwere regeling uit 2025 of 2026 is nog niet nagelezen.
 - [R1] Besluit referentieniveaus Nederlandse taal en rekenen, geldend vanaf 1 augustus 2022. https://wetten.overheid.nl/BWBR0027879/2022-08-01
 - [R2] Rijksoverheid, Welke niveaus zijn er voor het rekenexamen? https://www.rijksoverheid.nl/vraag-en-antwoord/basisvaardigheden/welke-niveaus-zijn-er-voor-het-rekenexamen
 - [EN1] College voor Toetsen en Examens, Regeling syllabus centraal examen mbo Engels referentieniveau B1, Staatscourant 2017, 31870. https://zoek.officielebekendmakingen.nl/stcrt-2017-31870.pdf

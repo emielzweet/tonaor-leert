@@ -24,7 +24,7 @@ const thai = (x, w) => { if (x && typeof x.th === 'string' && x.th && !THAI.test
 const OK_CAPS = new Set(['Nederland', 'Nederlands', 'Nederlandse', 'Engels', 'Engelse', 'Thais', 'Thaise', 'Ik', 'U', 'Uw']);
 const names = (s, w) => { if (typeof s !== 'string') return; const m = s.replace(/<[^>]+>/g, '').match(/(?<![.!?:]\s|^|[„“"'(]\s?)\b[A-ZÀ-Ý][a-zà-ÿ]{2,}\b/g); (m || []).filter(x => !OK_CAPS.has(x)).forEach(x => Wn(w, 'mogelijk een eigennaam: ' + x)); };
 
-const ERRS = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen'];
+const ERRS = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen', 'model'];
 // een keuze: t, r, why in drie talen, en bij een foute keuze het soort fout
 const opt = (q, w) => {
   if (!['ok', 'near', 'no'].includes(q.r)) E(w, 'r ongeldig');

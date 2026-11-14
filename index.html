@@ -298,7 +298,7 @@ const $=s=>document.querySelector(s);
 const app=$('#app');
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 /* save() schrijft alleen als de opslag veilig geladen is (STORE==='ok', zie 'opslag veilig laden') */
-function save(){if(STORE!=='ok')return;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function save(){if(STORE!=='ok')return;const w=()=>{localStorage.setItem(KEY,JSON.stringify(S));return true};try{return w()}catch(e){}try{if(typeof histTrim==='function'){histTrim(Math.floor(MOTOR.histBudget/3));return w()}}catch(e){}if(!save.warned){save.warned=1;try{toast(tx('store.full'))}catch(e){}}return false}   /* F1: setItem schrijft alles of niets; bij een volle opslag eerst ruimte in de reeksen (nooit in de stand), dan één melding */
 /* ============ talen en vertalingen (#4) ============
    Leertaal = de taal die je leert (nu alleen nl). Steuntaal = de taal van uitleg en vertaling (th of en), te kiezen op Ik (S.sup).
    S.thai ('altijd' | 'tik' | 'uit') regelt hoeveel steuntaal je ziet; de naam is historisch en blijft voor de opgeslagen voortgang.
@@ -325,6 +325,7 @@ en:{
  "scene.check":"Check whether your text has this:",
  "scene.model":"This is one way:",
  "scene.ruleTitle":"Language from the scene",
+ "store.full":"The phone storage is full: your latest progress could not be saved. Your earlier progress is safe. Free up some space, or save your progress via Me.",
  "stock.out":"You have seen all the new material for now. New chapters are on the way; until then you can repeat what is due, play a scene or read.",
  "scene.speakTitle":"Say it",
  "scene.speakOk":"I said it like this",
@@ -738,6 +739,7 @@ nl:{
  "scene.check":"Kijk of jouw tekst dit heeft:",
  "scene.model":"Zo kan het ook:",
  "scene.ruleTitle":"Taal uit de scène",
+ "store.full":"De opslag van de telefoon is vol: je laatste voortgang kon niet bewaard worden. Je eerdere voortgang is veilig. Maak wat ruimte vrij, of bewaar je voortgang via Ik.",
  "stock.out":"Je hebt alle nieuwe lesstof voor nu gezien. Er komen nieuwe hoofdstukken aan; tot dan kun je herhalen wat aan de beurt is, een scène spelen of lezen.",
  "scene.speakTitle":"Zeg het zelf",
  "scene.speakOk":"Zo heb ik het gezegd",
@@ -1147,6 +1149,7 @@ th:{
  "scene.check":"ดูว่าข้อความของคุณมีสิ่งเหล่านี้หรือไม่",
  "scene.model":"ตัวอย่างคำตอบ",
  "scene.ruleTitle":"ภาษาจากฉากนี้",
+ "store.full":"พื้นที่เก็บข้อมูลในโทรศัพท์เต็ม บันทึกความคืบหน้าล่าสุดไม่ได้ ความคืบหน้าก่อนหน้านี้ยังปลอดภัย ลองลบข้อมูลบางอย่าง หรือบันทึกความคืบหน้าผ่านหน้า ฉัน",
  "stock.out":"คุณได้เห็นบทเรียนใหม่ทั้งหมดแล้วในตอนนี้ บทใหม่กำลังจะมา ระหว่างนี้คุณทบทวนสิ่งที่ถึงเวลา เล่นฉาก หรืออ่านได้",
  "scene.speakTitle":"พูดเอง",
  "scene.speakOk":"ฉันพูดแบบนี้แล้ว",
@@ -1640,19 +1643,35 @@ const MOTOR={
   gameSeconds:60,
   // M12 reeks pogingen per onderdeel: genoeg om de aannames te toetsen (didactisch plan hoofdstuk 6; antwoord ontwerpsessie 14 nov 2026)
   histMax:24, histBloom:6,
+  histBudget:300000,  // F1: alle reeksen samen hooguit zoveel tekens (localStorage ~5 MB = ~2,5 miljoen tekens, en de reservekopie verdubbelt). Aanname; antwoord ontwerpsessie
   // H3 rust: zoveel keer achter elkaar goed bij de eerste poging, in zoveel verschillende vormen (masterplan H3)
   restRun:3, restForms:3
 };
 /* vormen die niet meetellen voor bloei: bekijken en de controlevraag bij een uitleg */
 const NOGROW=['voorbeeld','check','spel'];   /* spel: wel wachttijd, geen vorm voor bloei (masterplan C5) */
-/* M12: per onderdeel de reeks pogingen [dagnummer, vorm, uitkomst 1 goed / 2 goed na een poging of hint / 0 fout].
-   Afgekapt op MOTOR.histMax (MOTOR.histBloom in volle bloei); wat daardoor verloren gaat staat in f1 (eerste dag), na (pogingen) en nk (goed). */
-function histAdd(it,id,form,res){const d=Math.floor(now()/DAY);if(!Array.isArray(it.h))it.h=[];if(it.f1==null)it.f1=d;it.na=(it.na||0)+1;if(res===true)it.nk=(it.nk||0)+1;
-  it.h.push([d,form||'',res===true?1:res==='retry'?2:0]);const max=it.s>=MOTOR.bloomDays&&canBloom(id,it)?MOTOR.histBloom:MOTOR.histMax;if(it.h.length>max)it.h.splice(0,it.h.length-max)}
+/* M12: per onderdeel de reeks pogingen als één korte tekenreeks in it.h (F1: de opslag is klein).
+   Een poging = dagen sinds de vorige poging (base 36) + vormcode (één letter) + uitkomst (1 goed, 2 goed na een poging of hint, 0 fout), gescheiden door een komma.
+   De dagen tellen vanaf it.hd (de dag van de eerste poging in de reeks). Afgekapt op MOTOR.histMax (MOTOR.histBloom in volle bloei);
+   wat afvalt staat in f1 (eerste dag ooit), na (pogingen) en nk (goed). Alle reeksen samen hooguit MOTOR.histBudget tekens (histTrim). */
+const HCODE={typen:'t',herkennen:'k',luisteren:'l',build:'b',gap:'g',listen:'i',dictee:'d',geld:'m',klok:'c',korting:'p',talk:'s',make:'w',spreken:'o',point:'a',read:'r',rekenen:'n',spel:'x',voorbeeld:'v',check:'q',tik:'j',luisteren2:'u'};
+const HFORM=Object.fromEntries(Object.entries(HCODE).map(([k,v])=>[v,k]));
+function histParse(it){const out=[];if(!it||typeof it.h!=='string'||!it.h)return out;let d=it.hd||0;
+  for(const p of it.h.split(',')){if(p.length<3)continue;d+=parseInt(p.slice(0,-2),36)||0;out.push([d,HFORM[p[p.length-2]]||'',+p[p.length-1]])}return out}
+function histAdd(it,id,form,res){const d=Math.floor(now()/DAY);if(typeof it.h!=='string')it.h='';if(it.f1==null)it.f1=d;it.na=(it.na||0)+1;if(res===true)it.nk=(it.nk||0)+1;
+  const L=histParse(it);L.push([d,form||'',res===true?1:res==='retry'?2:0]);const max=it.s>=MOTOR.bloomDays&&canBloom(id,it)?MOTOR.histBloom:MOTOR.histMax;histSet(it,L.slice(-max));
+  if(++HISTN%50===0)histTrim()}
+function histSet(it,L){if(!L.length){it.h='';delete it.hd;return}it.hd=L[0][0];let prev=L[0][0];
+  it.h=L.map(([d,fm,rs])=>{const p=Math.max(0,d-prev).toString(36)+(HCODE[fm]||'z')+rs;prev=d;return p}).join(',')}
+let HISTN=0;
+/* F1: alle reeksen samen binnen MOTOR.histBudget. Eerst de oudste pogingen van onderdelen in volle bloei, daarna van de rest; nooit de stand van een onderdeel zelf. */
+function histTrim(budget){const B=budget||MOTOR.histBudget,ids=Object.keys(S.items).filter(k=>typeof S.items[k].h==='string'&&S.items[k].h);let tot=ids.reduce((a,k)=>a+S.items[k].h.length,0);if(tot<=B)return 0;
+  const bloom=k=>{const it=S.items[k];return it.s>=MOTOR.bloomDays&&canBloom(k,it)};let cut=0;
+  for(const pass of [1,0])for(let keep of [3,1,0]){for(const k of ids.filter(k=>bloom(k)===!!pass)){if(tot<=B)return cut;const it=S.items[k],L=histParse(it);if(L.length<=keep)continue;const before=it.h.length;histSet(it,L.slice(-keep));tot-=before-it.h.length;cut++}}
+  return cut}
 /* H2: de vorm van de vorige poging van een onderdeel (uit de reeks), ook van een vorige dag */
-function lastForm(id){const h=(S.items[id]||{}).h;return h&&h.length?h[h.length-1][1]:null}
+function lastForm(id){const it=S.items[id];if(!it||typeof it.h!=='string'||!it.h)return null;const p=it.h.slice(it.h.lastIndexOf(',')+1);return HFORM[p[p.length-2]]||null}
 /* H3: rust = de laatste MOTOR.restRun pogingen goed bij de eerste poging, in MOTOR.restForms verschillende vormen. Komt dan alleen nog in teksten en scènes voor, niet in Onderweg. */
-function rests(id){const h=((S.items[id]||{}).h||[]).filter(x=>!NOGROW.includes(x[1])).slice(-MOTOR.restRun);return h.length===MOTOR.restRun&&h.every(x=>x[2]===1)&&new Set(h.map(x=>x[1])).size>=MOTOR.restForms}
+function rests(id){const h=histParse(S.items[id]).filter(x=>!NOGROW.includes(x[1])).slice(-MOTOR.restRun);return h.length===MOTOR.restRun&&h.every(x=>x[2]===1)&&new Set(h.map(x=>x[1])).size>=MOTOR.restForms}
 /* de vorm die een scherm in het herhaalmodel schrijft (zie de handlers) */
 const QFORM={recall:'typen',enrecall:'typen',hear:'luisteren',enhear:'luisteren',recog:'herkennen',enrecog:'herkennen',build:'build',gap:'gap',engap:'gap',listen:'listen',dictee:'dictee',money:'geld',clock:'klok',discount:'korting'};
 const ALTW={recall:['recog','hear'],hear:['recall','recog'],recog:['recall','hear'],enrecall:['enrecog','enhear'],enhear:['enrecall','enrecog'],enrecog:['enrecall','enhear']};
@@ -1982,7 +2001,7 @@ const MIGRATE={
  2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s},   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
  3:s=>{for(const it of Object.values(s.items||{})){if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];if(it&&typeof it==='object'&&it.t==null&&typeof it.s==='number'&&it.s>0&&typeof it.due==='number')it.t=it.due-it.s*864e5}if(Object.keys(s.days||{}).length&&s.f3pending==null)s.f3pending=1;return s},
  4:s=>{if(!s.world||typeof s.world!=='object'||Array.isArray(s.world))s.world={done:{},at:null};if(!s.world.done||typeof s.world.done!=='object')s.world.done={};return s},
- 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};if(s.world&&typeof s.world==='object'&&(!s.world.best||typeof s.world.best!=='object'))s.world.best={};for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&!Array.isArray(it.h))it.h=[];return s}   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
+ 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};if(s.world&&typeof s.world==='object'&&(!s.world.best||typeof s.world.best!=='object'))s.world.best={};for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&typeof it.h!=='string')it.h='';return s}   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
 };
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
@@ -2347,7 +2366,7 @@ function probeDone(w,known){const it=S.items[w.id];if(!S.introduced.includes(w.i
    Een scène wordt een rij schermen voor de lesmotor (runSession): kijken, gesprek, open plek, uitleg, doen, maken, slot.
    Elk antwoord gaat langs practiced() of review(); het doelonderdeel staat op de eerste plek van items. */
 const SV=(typeof window!=='undefined'&&window.SceneVis)||null;
-const ERRS=['lidwoord','woordvolgorde','werkwoordsvorm','tijd','voorzetsel','spelling','klank','betekenis','beleefdheid','getal','rekenstap','lezen'];   // soorten fout (docs/scenes.md)
+const ERRS=['lidwoord','woordvolgorde','werkwoordsvorm','tijd','voorzetsel','spelling','klank','betekenis','beleefdheid','getal','rekenstap','lezen','model'];   // soorten fout (docs/scenes.md)
 let SCN=null;   // de scène die nu loopt: fouten per soort, gebruikte extra's, uitkomst van de controle
 try{if(SV&&!document.getElementById('scenecss')){const st=document.createElement('style');st.id='scenecss';st.textContent=SV.CSS;document.head.appendChild(st)}}catch(e){}
 const scT=x=>TKx(x,'nl'),scP=x=>plainX(x,'nl');
@@ -2452,7 +2471,7 @@ H.sc_q=q=>{const sc=q.sc,qq=q.qq,id=q.items[0],typeIt=q.hard&&qq.answer!=null&&(
   const right=msg=>{done=true;if(hint)first=false;score(first,10);if(first&&SCN&&SCN.sc===sc)SCN.good++;if(q.role==='controle'&&SCN)SCN.ctrl=SCN.ctrl!==false&&first;if(q.role==='instap'&&first)scKnow(q);else if(!inst)practiced(q,first?true:'retry',SCF[f]);$('#fb').innerHTML=fbBox(true,msg,'')+nextBtn();$('#nx').onclick=next};
   const wrong=(msg,err)=>{if(first&&nos)$('#ask').innerHTML=scT(qq.ask);first=false;scFault(q,err);$('#fb').innerHTML=fbBox(false,msg,'')};   // na een poging mag de steuntaal erbij
   if(opts){app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{if(done)return;const o=qq.opts[+b.dataset.o];if(o.r==='ok'){b.classList.add('right');say(o.t);right(scT(o.why))}else{b.classList.add('wrong');b.disabled=true;wrong(scT(o.why),o.err)}});return}
-  const as=[].concat(qq.answer!=null?qq.answer:((qq.opts||[]).find(o=>o.r==='ok')||{}).t,qq.accept||[]),num=v=>parseFloat(String(v).replace(',','.')),ok=v=>f==='number'?as.some(a=>Math.abs(num(a)-num(v))<1e-9):as.some(a=>scNorm(a)===scNorm(v));
+  const as=[].concat(qq.answer!=null?qq.answer:((qq.opts||[]).find(o=>o.r==='ok')||{}).t,qq.accept||[]),num=v=>parseFloat(String(v).replace(',','.')),ok=v=>f==='number'?as.some(a=>Math.abs(num(a)-num(v))<=(typeof qq.tol==='number'?qq.tol:1e-9)):as.some(a=>scNorm(a)===scNorm(v));
   const chk=()=>{const v=$('#ans').value.trim();if(!v||done)return;if(ok(v)){$('#ans').disabled=true;$('#chk').remove();right(scT(qq.why||((qq.opts||[]).find(o=>o.r==='ok')||{}).why));return}
     if(first){wrong(T('scene.again'),qq.err);return}
     done=true;$('#ans').disabled=true;$('#chk').remove();if(q.role==='controle'&&SCN)SCN.ctrl=false;if(!inst)practiced(q,false,SCF[f]);   // tweede keer fout: het antwoord met uitleg, geen dood spoor

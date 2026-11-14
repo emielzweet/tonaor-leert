@@ -131,4 +131,10 @@ r = run({ [KEY]: raw({ ...CUR, schema: 5, errs: { lidwoord: { n: 2, t: 1, ids: [
 ok('schema 5 → 6 is herhaalbaar: een bestaand foutprofiel en record blijven', r.S.errs.lidwoord.n === 2 && r.S.world.ok.a === true && r.S.world.best.a === 7);
 r = run({ [KEY]: raw({ ...CUR, schema: 5, errs: [1, 2] }) });
 ok('schema 5 → 6: een ongeldig foutprofiel wordt een leeg object', r.S.errs && !Array.isArray(r.S.errs) && Object.keys(r.S.errs).length === 0);
+// F1: een volle opslag. setItem schrijft alles of niets; save() maakt eerst ruimte in de reeksen en meldt het anders één keer, zonder de opslag te beschadigen
+{ const store = { [KEY]: 'oud' }, toasts = []; let full = true; const ctx = { STORE: 'ok', KEY, S: { v: 2, items: {} }, MOTOR: { histBudget: 300000 }, histTrim: () => 0, toast: m => toasts.push(m), tx: k => k, localStorage: { setItem(k, v) { if (full) throw new Error('QuotaExceededError'); store[k] = v; } } };
+  vm.createContext(ctx); vm.runInContext(saveFn + '\nthis.save=save;', ctx);
+  const r1 = ctx.save(), r2 = ctx.save();
+  ok('F1: lukt wegschrijven niet, dan blijft de oude opslag staan, komt er één melding en geeft save() false', r1 === false && r2 === false && store[KEY] === 'oud' && toasts.length === 1 && toasts[0] === 'store.full');
+  full = false; ok('F1: is er weer ruimte, dan schrijft save() gewoon', ctx.save() === true && store[KEY] !== 'oud'); }
 console.log(fails ? fails + ' FOUT' : 'alles OK');
