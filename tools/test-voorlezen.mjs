@@ -81,5 +81,12 @@ ok('geen proeven meer met stille geluidjes of de audiosessie (stilteschakelaar v
   ok('geluid: Engels gaat via de stem van het toestel en niet op de lijst', S.audioMiss.length === 1);
   vm.runInContext("AEL.listeners.error()", ctx);
   ok('geluid: een bestand dat niet laadt (offline) valt terug op de stem van het toestel', spoken.length >= 2);
+  const before = spoken.length;
+  ctx.say('de afspraak. Ik heb een afspraak morgen.'); vm.runInContext("AEL.listeners.error()", ctx);
+  ok('geluid: bij een fout leest het toestel de rest van de tekst, niet alleen de eerste zin (review geluid K1)', spoken[spoken.length - 1] === 'de afspraak. Ik heb een afspraak morgen.');
+  const b2 = spoken.length; ctx.say('de afspraak'); vm.runInContext("audioStop(); AEL.listeners.error()", ctx);
+  ok('geluid: na stoppen leest een late fout niets meer voor (review geluid K2)', spoken.length === b2);
+  vm.runInContext("S.audioMiss=[]", ctx); const long = 'x'.repeat(250); ctx.say(long); ctx.say(long);
+  ok('geluid: een lange tekst komt één keer op de lijst (review geluid K4)', S.audioMiss.length === 1);
 }
 console.log(fails ? fails + ' FOUT' : 'alles OK');

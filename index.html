@@ -620,6 +620,7 @@ en:{
  "voice.deviceChooses":"This device chooses the Dutch voice itself.",
  "voice.notLoaded":"No voices have been loaded (yet). Tap Try the voice. If you hear nothing, use Chrome or Edge.",
  "voice.try":"Try the voice",
+ "voice.missTitle":"Texts without a sound file ({n}): the editing line will add them",
  "voice.supSilent":"Dutch also sounds with the silent switch on. The {sup} line is read by the device itself, and stays silent while the switch is on.",
  "voice.install":"Install a (better) Dutch voice",
  "voice.reopen":"Then open the app again.",
@@ -1058,6 +1059,7 @@ nl:{
  "voice.deviceChooses":"Dit toestel kiest zelf de Nederlandse stem.",
  "voice.notLoaded":"Er zijn (nog) geen stemmen geladen. Tik op <b>Probeer de stem</b>. Hoor je niets, gebruik dan Chrome of Edge.",
  "voice.try":"Probeer de stem",
+ "voice.missTitle":"Teksten zonder geluidsbestand ({n}): de redactielijn maakt ze nog",
  "voice.supSilent":"Het Nederlands klinkt ook met de stilteschakelaar aan. De regel in het {sup} leest het toestel zelf voor; die blijft stil zolang de schakelaar aan staat.",
  "voice.install":"Een (betere) Nederlandse stem installeren",
  "voice.reopen":"Open de app daarna opnieuw.",
@@ -1494,6 +1496,7 @@ th:{
  "voice.deviceChooses":"เครื่องนี้เลือกเสียงภาษาดัตช์เอง",
  "voice.notLoaded":"ยังไม่มีเสียงที่โหลด แตะ ลองฟังเสียง ถ้าไม่ได้ยิน ให้ใช้ Chrome หรือ Edge",
  "voice.try":"ลองฟังเสียง",
+ "voice.missTitle":"ข้อความที่ยังไม่มีไฟล์เสียง ({n}) จะทำเพิ่มภายหลัง",
  "voice.supSilent":"ภาษาดัตช์มีเสียงแม้เปิดโหมดเงียบ ส่วนบรรทัดภาษา{sup} เครื่องอ่านเอง และจะไม่มีเสียงขณะเปิดโหมดเงียบ",
  "voice.install":"ติดตั้งเสียงภาษาดัตช์",
  "voice.reopen":"จากนั้นเปิดแอปใหม่",
@@ -2237,19 +2240,21 @@ function speakNow(t,slow,lang,v){audioStop();speechSynthesis.cancel();const u=ne
 const AUDIOSTEM='pim',AUDIOMISSMAX=200;
 let AUD=new Set(),AEL=null,AQ=[],ACUR='';
 async function loadAudioLists(){try{const lim=(p,ms)=>Promise.race([p,new Promise(r=>setTimeout(()=>r(null),ms))]);
-  const ls=await Promise.all(PACKS.filter(p=>p.learn!=='en').map(p=>lim(fetch('audio/'+encodeURIComponent(p.id)+'.json').then(r=>r&&r.ok?r.json():null).catch(()=>null),PACK_TIMEOUT)));
+  const ls=await Promise.all(PACKS.filter(p=>p.learn!=='en').map(p=>p.id).concat(['app']).map(id=>lim(fetch('audio/'+encodeURIComponent(id)+'.json').then(r=>r&&r.ok?r.json():null).catch(()=>null),PACK_TIMEOUT)));
   ls.forEach(l=>{if(l&&l.stem===AUDIOSTEM&&Array.isArray(l.h))l.h.forEach(h=>{if(typeof h==='string'&&/^[0-9a-f]{14}$/.test(h))AUD.add(h)})})}catch(e){}}
 function audioEl(){if(!AEL){AEL=new Audio();AEL.setAttribute('playsinline','');AEL.preload='auto';
   AEL.addEventListener('ended',()=>{if(AQ.length)audioNext()});
-  AEL.addEventListener('error',()=>{const t=ACUR;AQ=[];if(t)speakDevice(t,AEL.playbackRate<1,'nl')})}return AEL}
-function audioNext(){const x=AQ.shift();if(!x)return;const a=audioEl();ACUR=x.t;a.src='audio/nl/'+AUDIOSTEM+'/'+x.h+'.m4a';a.defaultPlaybackRate=a.playbackRate=x.slow?.8:1;const p=a.play();if(p&&p.catch)p.catch(()=>{})}
+  AEL.addEventListener('error',()=>audioFail())}return AEL}
+/* een bestand dat niet laadt of niet mag spelen: de rest van de tekst door de stem van het toestel (review geluid K1, K3); na stoppen niets (K2) */
+function audioFail(){if(!ACUR)return;const rest=[ACUR].concat(AQ.map(x=>x.t)).join(' '),slow=AEL&&AEL.playbackRate<1;AQ=[];ACUR='';speakDevice(rest,slow,'nl')}
+function audioNext(){const x=AQ.shift();if(!x)return;const a=audioEl();ACUR=x.t;a.src='audio/nl/'+AUDIOSTEM+'/'+x.h+'.m4a';a.defaultPlaybackRate=a.playbackRate=x.slow?.8:1;const p=a.play();if(p&&p.catch)p.catch(e=>{if(!e||e.name!=='AbortError')audioFail()})}
 function playAudio(t,slow){if(!PC||!PC.audioHash||!AUD.size)return false;const h=PC.audioHash(t,AUDIOSTEM);let list=null;
   if(AUD.has(h))list=[{h,t}];else{const parts=PC.audioParts(t);if(parts.length>1){const hs=parts.map(x=>({h:PC.audioHash(x,AUDIOSTEM),t:x}));if(hs.every(x=>AUD.has(x.h)))list=hs}}
-  if(!list)return false;try{if(typeof speechSynthesis!=='undefined')speechSynthesis.cancel()}catch(e){}try{audioEl().pause()}catch(e){}AQ=list.map(x=>({...x,slow}));audioNext();return true}
-function noteNoAudio(t){if(!AUD.size||STORE!=='ok')return;const k=PC&&PC.audioKey?PC.audioKey(t):t;if(!k)return;const L=Array.isArray(S.audioMiss)?S.audioMiss:[];if(L.includes(k))return;S.audioMiss=L.concat([k.slice(0,200)]).slice(-AUDIOMISSMAX);save()}
-function audioStop(){AQ=[];try{if(AEL)AEL.pause()}catch(e){}}
-function say(t,slow,lang,waited){if(QUIET)return;lang=LANGS[lang]?lang:'nl';
-  if(lang==='nl'&&!waited){const tt=String(t==null?'':t);if(playAudio(tt,slow))return;noteNoAudio(tt)}
+  if(!list)return false;voicePend=null;try{clearTimeout(voiceWait)}catch(e){}try{if(typeof speechSynthesis!=='undefined')speechSynthesis.cancel()}catch(e){}try{audioEl().pause()}catch(e){}AQ=list.map(x=>({...x,slow}));audioNext();return true}
+function noteNoAudio(t){if(!AUD.size||STORE!=='ok')return;const k=String(PC&&PC.audioKey?PC.audioKey(t):t).slice(0,200);if(!k)return;const L=Array.isArray(S.audioMiss)?S.audioMiss:[];if(L.includes(k))return;S.audioMiss=L.concat([k]).slice(-AUDIOMISSMAX);save()}
+function audioStop(){AQ=[];ACUR='';try{if(AEL)AEL.pause()}catch(e){}}
+function say(t,slow,lang,waited){if(QUIET)return;lang=LANGS[lang]?lang:'nl';t=String(t==null?'':t).replace(/_{2,}/g,'…');   // een open plek leest als een pauze
+  if(lang==='nl'&&!waited){const tt=t;if(playAudio(tt,slow))return;noteNoAudio(tt)}
   speakDevice(t,slow,lang,waited)}
 function speakDevice(t,slow,lang,waited){if(QUIET)return;lang=LANGS[lang]?lang:'nl';const L=LANGS[lang];t=String(t==null?'':t).replace(/<[^>]*>/g,'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&');
   if(typeof speechSynthesis==='undefined'||typeof SpeechSynthesisUtterance==='undefined'){if(!voiceWarned.api){voiceWarned.api=1;toast('Voorlezen werkt niet in deze browser.')}return}
@@ -2267,7 +2272,7 @@ function voiceCard(){const vs=voicesFor('nl'),cur=voiceFor('nl');
   ${vs.length?`<label class="small muted" for="vsel">${T('voice.dutchVoice')}</label><select id="vsel" class="input">${vs.map(v=>`<option value="${esc(v.voiceURI||v.name)}"${v===cur?' selected':''}>${esc(v.name)} · ${esc(v.lang)}</option>`).join('')}</select>`
    :noVoice('nl')?`<div class="note">${T('voice.none')}</div>`
    :isIOS()?`<p class="small muted">${T('voice.deviceChooses')}</p>`:`<p class="small muted">${T('voice.notLoaded')}</p>`}
-  <button class="btn btn-ghost" id="vtest">${T('voice.try')}</button><p class="small muted">${T('voice.supSilent')}</p>
+  <button class="btn btn-ghost" id="vtest">${T('voice.try')}</button><p class="small muted">${T('voice.supSilent')}</p>${(L=>L.length?`<details class="small"><summary>${T('voice.missTitle',{n:L.length})}</summary><ul>${L.slice().reverse().map(x=>`<li lang="nl">${esc(x)}</li>`).join('')}</ul></details>`:'')(Array.isArray(S.audioMiss)?S.audioMiss:[])}
   <details${noVoice('nl')?' open':''}><summary class="small muted">${T('voice.install')}</summary>
    <ul class="small" style="margin:8px 0 0;padding-left:18px;display:grid;gap:6px">
     <li><b>iPhone:</b> Instellingen → Toegankelijkheid → Gesproken materiaal → Stemmen → Nederlands. Kies een stem (bijvoorbeeld Xander of Claire), liefst de versie <i>Verbeterd</i>, en download die.</li>
@@ -2304,7 +2309,7 @@ const heroArt=()=>`<svg class="art" viewBox="0 0 140 120" aria-hidden="true"><ci
 
 /* ============ navigatie ============ */
 let tab='vandaag',route=null;
-function show(t){tab=t;route=null;delete app.dataset.vak;$('#nav').hidden=false;document.querySelectorAll('#nav [data-tab]').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===t?'page':'false'));app.classList.remove('sess');rerender();window.scrollTo(0,0)}
+function show(t){audioStop();tab=t;route=null;delete app.dataset.vak;$('#nav').hidden=false;document.querySelectorAll('#nav [data-tab]').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===t?'page':'false'));app.classList.remove('sess');rerender();window.scrollTo(0,0)}
 document.querySelectorAll('#nav [data-tab]').forEach(b=>b.onclick=()=>show(b.dataset.tab));
 function rerender(){if(route)return route();({vandaag:vToday,tuin:vGarden,route:vRoute,ik:vMe,emiel:vEmiel}[tab])()}
 function paint(html){app.innerHTML=`<div class="view">${STORE==='newer'?`<div class="note sky small" role="status">${T('newer.banner')}</div>`:''}${html}</div>`;bindCommon()}
@@ -2438,7 +2443,7 @@ function adapt(){const last=SESS.slice(-MOTOR.adaptWindow);if(last.length<MOTOR.
 function easierEx(q){try{const base=q.exid.split('#')[0],P=PACKS.find(p=>(p.exercises||[]).some(e=>e.id===base));if(!P)return null;const cur=P.exercises.find(e=>e.id===base),id=q.items[0];
   const hard=e=>(e.fade||0)*2+(e.form==='build'||(e.data&&e.data.mode==='type')?1:0),e=chooseEx(id,P.learn,true);if(!e||hard(e)>=hard(cur))return null;
   const n=exQ(e,q.step,P.learn==='en'?'en':'nl',id);if(n)n._easy=1;return n}catch(err){return null}}
-function next(){flushPend();qi++;adapt();window.scrollTo(0,0);step()}
+function next(){flushPend();audioStop();qi++;adapt();window.scrollTo(0,0);step()}
 let KNOWN=new Set(),RETRIED=new Set();
 function step(){voicePend=null;while(Q[qi]&&(Q[qi]._skip||(Q[qi]._ifUnknown&&Q[qi].w&&KNOWN.has(Q[qi].w.id))||(Q[qi]._skipKnown&&KNOWN.has(Q[qi]._rule||(Q[qi].items||[])[0]))))qi++;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
 /* na een fout: het onderdeel één keer terug in deze ronde, minstens vijf onderdelen later, in een andere vorm (advies ontwerpsessie B) */

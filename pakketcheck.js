@@ -508,9 +508,10 @@
   /* Geluid (docs/geluid.md): dezelfde sleutel in de app en in de redactielijn. De tekst zonder opmaak en met gewone spaties;
      de sleutel zonder slotteken, zodat "de afspraak" en "de afspraak." hetzelfde bestand zijn. Hash: cyrb53 van stem|sleutel. */
   function audioText(s) {
-    return String(s == null ? '' : s).replace(/<[^>]*>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+    return String(s == null ? '' : s).replace(/<[^>]*>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/_{2,}/g, '…').replace(/\s+/g, ' ').trim();   // een open plek (___) wordt een pauze
   }
-  function audioKey(s) { return audioText(s).replace(/[.!?…:;,]+$/, '').trim(); }
+  /* zonder slotpunt, maar met vraag- en uitroepteken: "Kom je?" en "Kom je." klinken anders (review geluid K5) */
+  function audioKey(s) { return audioText(s).replace(/[.…:;,\s]+$/, '').trim(); }
   function audioHash(s, stem) {
     var str = String(stem) + '|' + audioKey(s), h1 = 0xdeadbeef, h2 = 0x41c6ce57;
     for (var i = 0; i < str.length; i++) { var c = str.charCodeAt(i); h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677); }
@@ -519,13 +520,13 @@
     return ((h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0')).slice(-14);
   }
   /* zinnen los (zonder lookbehind: oude iOS kent dat niet) */
-  function audioParts(s) { return (audioText(s).match(/[^.!?]+[.!?]*/g) || []).map(function (x) { return x.trim(); }).filter(function (x) { return audioKey(x); }); }
+  function audioParts(s) { return (audioText(s).match(/[^.!?]+(?:[.!?]+["'”’»)\]]*)?/g) || []).map(function (x) { return x.trim(); }).filter(function (x) { return /[A-Za-zÀ-ÿ0-9]/.test(audioKey(x)); }); }   // aanhalingsteken na het slotteken hoort bij de zin
   /* alle Nederlandse teksten die de app uit een pakket kan voorlezen: woord (met lidwoord), voorbeeld, gatzin ingevuld,
      wat er gezegd of gehoord wordt, keuzes, teksten, vragen, en de Nederlandse kant van elke Tekst (nl, nl@…) */
   var AUDIOKEYS = { w: 1, ex: 1, gap: 1, say: 1, t: 1, text: 1, model: 1, them: 1, q: 1, ask: 1, a: 1, s: 1, lines: 1 };
   function audioTexts(p) {
     var out = [], seen = {};
-    var add = function (s) { var k = audioKey(s); if (k && !/___/.test(k) && /[A-Za-zÀ-ÿ0-9]/.test(k) && !/[฀-๿]/.test(k) && !seen[k]) { seen[k] = 1; out.push(audioText(s)); } };
+    var add = function (s) { var k = audioKey(s); if (k && /[A-Za-zÀ-ÿ0-9]/.test(k) && !/[฀-๿]/.test(k) && !seen[k]) { seen[k] = 1; out.push(audioText(s)); } };
     if (!p || p.learn === 'en') return out;
     (p.items || []).forEach(function (x) {
       if (!x || typeof x.w !== 'string') return;
@@ -541,8 +542,14 @@
       }
       if (o && typeof o === 'object') for (var kk in o) { if (kk === 'th' || kk === 'en' || /@en$|@th$|Th$|En$/.test(kk) && kk.indexOf('nl@') !== 0) continue; walk(o[kk], kk); }
     })(p, '');
+    return withParts(out);
+  }
+  /* ook elke losse zin, zodat samengevoegde teksten (woord met voorbeeld, het hele verhaal) zin voor zin kunnen spelen (review geluid B1) */
+  function withParts(list) {
+    var seen = {}, out = [];
+    list.forEach(function (t) { [t].concat(audioParts(t).length > 1 ? audioParts(t) : []).forEach(function (x) { var k = audioKey(x); if (k && !seen[k]) { seen[k] = 1; out.push(x); } }); });
     return out;
   }
-  var api = { safeText: safeText, checkPack: checkPack, checkChapter: checkChapter, sceneForms: sceneForms, FORMS: FORMS, SUBJECTS: SUBJECTS, audioText: audioText, audioKey: audioKey, audioHash: audioHash, audioParts: audioParts, audioTexts: audioTexts };
+  var api = { safeText: safeText, checkPack: checkPack, checkChapter: checkChapter, sceneForms: sceneForms, FORMS: FORMS, SUBJECTS: SUBJECTS, audioText: audioText, audioKey: audioKey, audioHash: audioHash, audioParts: audioParts, audioTexts: audioTexts, withParts: withParts };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.PakketCheck = api;
 })(this);
