@@ -66,7 +66,7 @@ Elke regel is een afgerond stuk: kort ontwerp, bouwen, tests, controle op 375 br
 
 De voorstellen uit `docs/aanbevelingen.md` horen bij deze volgorde; op welke plek staat onderaan dat document.
 
-Een release volgt na stuk 1 en 2, en daarna telkens als er een afgerond stuk ligt dat de leerder iets oplevert, hooguit één keer per dag.
+Een release volgt na stuk 1 en 2, en daarna telkens als er een afgerond stuk ligt dat de poorten haalt. Zolang de app in de test- en ontwikkelfase is, mag dat zo vaak als nodig (besluit van de eigenaar, 15 november 2026); de poorten hieronder blijven bij elke release gelden. Wie de stand klaarzet en controleert, mag hem pushen: de ontwerpsessie, of de bouwsessie als de eigenaar dat in haar eigen sessie heeft gezegd.
 
 ## Uitbrengen
 
