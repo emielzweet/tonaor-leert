@@ -147,4 +147,5 @@ ok('schema 5 → 6: een ongeldig foutprofiel wordt een leeg object', r.S.errs &&
   ok('lukt de reservekopie later wel, dan eerst de kopie en daarna de nieuwe vorm', r3 === true && store[KEY + '.bak'] === 'oud' && store[KEY] !== 'oud' && ctx.nb() === null); }
 r = run({ [KEY]: raw({ ...CUR, schema: 5 }) });
 ok('schema 5 → 6: seenNews leeg (een bestaande leerder ziet Wat is nieuw één keer) en trial uit (Proefonderdelen)', r.S.seenNews === '' && r.S.trial === false);
+ok('schema 5 → 6: bkNudge gezet, zodat de eerste herinnering aan een kopie pas na een maand komt', typeof r.S.bkNudge === 'number');
 console.log(fails ? fails + ' FOUT' : 'alles OK');

@@ -325,6 +325,9 @@ en:{
  "scene.check":"Check whether your text has this:",
  "scene.model":"This is one way:",
  "scene.ruleTitle":"Language from the scene",
+ "bk.nudge":"It has been a month: save a copy of your progress to your own files, so nothing can get lost.",
+ "bk.nudgeNow":"Save now",
+ "bk.nudgeLater":"Later",
  "news.title":"What is new",
  "news.ok":"Got it",
  "news.1":"An exercise no longer comes back twice in a row in the same form.",
@@ -751,6 +754,9 @@ nl:{
  "scene.check":"Kijk of jouw tekst dit heeft:",
  "scene.model":"Zo kan het ook:",
  "scene.ruleTitle":"Taal uit de scène",
+ "bk.nudge":"Het is een maand geleden: bewaar een kopie van je voortgang in je eigen bestanden, dan kan er niets kwijtraken.",
+ "bk.nudgeNow":"Nu bewaren",
+ "bk.nudgeLater":"Later",
  "news.title":"<p><b>Wat is nieuw</b></p>",
  "news.ok":"Begrepen",
  "news.1":"Een oefening komt niet meer twee keer achter elkaar in dezelfde vorm terug.",
@@ -1173,6 +1179,9 @@ th:{
  "scene.check":"ดูว่าข้อความของคุณมีสิ่งเหล่านี้หรือไม่",
  "scene.model":"ตัวอย่างคำตอบ",
  "scene.ruleTitle":"ภาษาจากฉากนี้",
+ "bk.nudge":"ผ่านไปหนึ่งเดือนแล้ว บันทึกสำเนาความคืบหน้าไว้ในไฟล์ของคุณเอง จะได้ไม่มีอะไรหาย",
+ "bk.nudgeNow":"บันทึกตอนนี้",
+ "bk.nudgeLater":"ไว้ทีหลัง",
  "news.title":"มีอะไรใหม่",
  "news.ok":"เข้าใจแล้ว",
  "news.1":"แบบฝึกหัดจะไม่กลับมาในรูปแบบเดิมติดกันสองครั้งอีกแล้ว",
@@ -1891,6 +1900,8 @@ function feel(){const c=(S.conf||[])[0];return c&&['makkelijk','goed','moeilijk'
 /* te kleine ronde (minder dan 8 verschillende onderdelen): aanvullen met ander soort werk, niet met dezelfde woorden
    (advies ontwerpsessie A2): eerst nieuwe woorden binnen het dagbudget, dan sommen met nieuwe getallen (rekenvaardigheden die er al zijn). */
 /* H4: de nieuwe woorden van alle pakketten zijn aangeboden */
+/* aanbeveling 1.1c: één keer per maand herinneren aan een kopie van de voortgang naar de eigen bestanden (Ik → Voortgang bewaren) */
+function bkDue(){const last=Math.max(S.lastBackup||0,S.bkNudge||0);return STORE==='ok'&&now()-last>30*DAY}
 function stockOut(){const I=new Set(S.introduced),L=NL.filter(w=>!CHAPTER.has(w.id));return L.length>0&&L.every(w=>I.has(w.id))}   /* hoofdstukwoorden komen via de scènes */
 function topUp(q,learn,words,later,used){const ids=()=>new Set(q.concat(later).map(x=>x.w?x.w.id:x.items&&x.items[0]).filter(Boolean));
   if(ids().size<MOTOR.roundMin){const have=ids();words.filter(w=>thirsty(w.id)&&!have.has(w.id)&&S.introduced.includes(w.id)).sort((a,b)=>overdue(b.id)-overdue(a.id)).slice(0,MOTOR.roundMin-have.size).forEach(w=>q.push({type:pickForm(w,learn,'recall'),step:3,w}))}   /* eerst wat echt aan de beurt is (uitleg bij de eisen 9) */
@@ -2038,7 +2049,7 @@ function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
     points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
-    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,trial:false,seenNews:NEWS,weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},roundLen:'normaal',errs:{},world:{ok:{},best:{},done:{},at:null},schema:SCHEMA};
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,trial:false,seenNews:NEWS,bkNudge:Date.now(),weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},roundLen:'normaal',errs:{},world:{ok:{},best:{},done:{},at:null},schema:SCHEMA};
 }
 /* ============ opslag veilig laden (#30) ============
    S.v blijft 2. S.schema telt de vorm van de opslag (zonder veld = 1). Elke stap n -> n+1 staat in MIGRATE en mag vaker draaien.
@@ -2052,7 +2063,7 @@ const MIGRATE={
  2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s},   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
  3:s=>{for(const it of Object.values(s.items||{})){if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];if(it&&typeof it==='object'&&it.t==null&&typeof it.s==='number'&&it.s>0&&typeof it.due==='number')it.t=it.due-it.s*864e5}if(Object.keys(s.days||{}).length&&s.f3pending==null)s.f3pending=1;return s},
  4:s=>{if(!s.world||typeof s.world!=='object'||Array.isArray(s.world))s.world={done:{},at:null};if(!s.world.done||typeof s.world.done!=='object')s.world.done={};return s},
- 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};if(s.world&&typeof s.world==='object'&&(!s.world.best||typeof s.world.best!=='object'))s.world.best={};for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&typeof it.h!=='string')it.h='';if(typeof s.trial!=='boolean')s.trial=false;if(typeof s.seenNews!=='string')s.seenNews='';return s}   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
+ 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};if(s.world&&typeof s.world==='object'&&(!s.world.best||typeof s.world.best!=='object'))s.world.best={};for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&typeof it.h!=='string')it.h='';if(typeof s.trial!=='boolean')s.trial=false;if(typeof s.seenNews!=='string')s.seenNews='';if(typeof s.bkNudge!=='number')s.bkNudge=Date.now();return s}   /* bkNudge: de eerste herinnering aan een kopie na een maand */   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
 };
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
@@ -2076,6 +2087,7 @@ PACKS.forEach(p=>(p.items||[]).forEach(x=>{if(x&&x.id&&x.kind)KIND[x.id]=x.kind=
 /* eenmalig bij de overstap op fase 3: wie al lessen deed, heeft de regels en klanken uit de vaste les al gehad. Die tellen als geïntroduceerd en zijn aan de beurt. */
 if(STORE==='ok'&&S.f3pending){Object.keys(KIND).filter(id=>(KIND[id]==='rule'||KIND[id]==='sound')&&S.items[id]&&S.items[id].reps===0).forEach(id=>{S.items[id].reps=1;S.items[id].due=now();if(!S.introduced.includes(id))S.introduced.push(id)});delete S.f3pending;setTimeout(()=>save(),0)}   // opslaan pas na het opstarten (save() gebruikt later gedeclareerde variabelen)
 if(!S.profile||typeof S.profile!=='object')S.profile={name:''};
+try{if(navigator.storage&&navigator.storage.persisted)navigator.storage.persisted().then(p=>{if(!p&&navigator.storage.persist)navigator.storage.persist()}).catch(()=>{})}catch(e){}   /* aanbeveling 1.1a: de browser vragen de opslag niet op te ruimen (F1) */
 if(!LEARN.includes(S.learn))S.learn='nl';if(!SUPPORT.includes(S.sup))S.sup='th';
 /* naam van de leerder: alleen uit het profiel op dit toestel (nooit in de code). nm() = naam (veilig) of leeg, who() = naam of 'de leerder'. */
 function nm(){const n=(S.profile&&S.profile.name||'').trim();return n?esc(n):''}
@@ -2291,7 +2303,7 @@ function vToday(){
       <li><span class="dot">4</span>${T('lesson.step.maths')}<span class="min">5 min</span></li>
       <li><span class="dot">5</span>${T('lesson.step.end')}<span class="min">1 min</span></li>
     </ol>
-    ${S.seenNews!==NEWS?`<div class="note sky stack-sm" id="news">${T('news.title')}<ul>${Array.from({length:NEWS_N},(_,i)=>`<li>${T('news.'+(i+1))}</li>`).join('')}</ul><button class="btn btn-ghost" id="newsOk">${TB('news.ok')}</button></div>`:''}${stockOut()?`<p class="note sky small">${T('stock.out')}</p>`:''}<button class="btn btn-main" id="start">${T(done?'today.again':'today.begin')}</button>
+    ${bkDue()?`<div class="note sky stack-sm" id="bknudge">${T('bk.nudge')}<div class="row" style="gap:8px"><button class="btn btn-leaf" id="bkNow" style="width:auto">${TB('bk.nudgeNow')}</button><button class="btn btn-ghost" id="bkLater" style="width:auto">${TB('bk.nudgeLater')}</button></div></div>`:''}${S.seenNews!==NEWS?`<div class="note sky stack-sm" id="news">${T('news.title')}<ul>${Array.from({length:NEWS_N},(_,i)=>`<li>${T('news.'+(i+1))}</li>`).join('')}</ul><button class="btn btn-ghost" id="newsOk">${TB('news.ok')}</button></div>`:''}${stockOut()?`<p class="note sky small">${T('stock.out')}</p>`:''}<button class="btn btn-main" id="start">${T(done?'today.again':'today.begin')}</button>
     <button class="linkish" id="short">${T('today.short')}</button>
   </section>
   ${enDay?`<button class="tile wide" id="en"><span class="ic" style="background:var(--sky);color:var(--sky-ink)">${icon.globe}</span><span>${T('today.english')}<span class="small muted">${T('today.english.sub')}</span></span></button>`:''}
@@ -2309,6 +2321,8 @@ function vToday(){
     ${!enDay?`<button class="tile sky" id="video"><span class="ic">${icon.tv}</span>${T('extra.watch')}<span class="small muted">${T('extra.watch.sub')}</span></button>`:''}
   </div>`);
   $('#start').onclick=()=>startLesson(false);
+  if($('#bkNow'))$('#bkNow').onclick=()=>exportBackup().then(ok=>{S.bkNudge=now();save();show('vandaag')});
+  if($('#bkLater'))$('#bkLater').onclick=()=>{S.bkNudge=now();save();const n=$('#bknudge');if(n)n.remove()};
   if($('#newsOk'))$('#newsOk').onclick=()=>{S.seenNews=NEWS;save();const n=$('#news');if(n)n.remove()};   /* Wat is nieuw: één keer */
   $('#short').onclick=()=>startLesson(true);
   $('#en').onclick=startEnglish;
