@@ -116,13 +116,13 @@ const CH = (() => {
       { type: 'talk', who: 'assistent', turns: [0, 1, 2, 3].map(i => ({ them: T3('Zin ' + i), items: [w0], opts: [{ t: 'ja', r: 'ok', why: T3('Ja.') }, { t: 'nee', r: 'no', err: 'beleefdheid', why: T3('Nee.') }] })) },
       { type: 'rule', items: [rl], example: T3('Vb.'), q: [Object.assign(ch(rl, 'woordvolgorde', T3('r1')), { help: 2 }), Object.assign({ ...typeQ, form: 'complete', items: [rl] }, { help: 1 }), Object.assign(ch(rl, 'woordvolgorde', T3('r3')), { help: 0 })] },
       { type: 'extra', err: 'woordvolgorde', explain: T3('Kort.'), q: [ch(rl, 'woordvolgorde', T3('e1')), ch(rl, 'woordvolgorde', T3('e2'))] },
-      { type: 'read', text: T3('Tekst.'), q: [1, 2, 3, 4, 5].map(i => ch(w0, 'lezen', T3('v' + i))) },
-      { type: 'listen', say: 'Hallo.', q: [1, 2, 3, 4, 5].map(i => ch(w0, 'klank', T3('l' + i))) },
+      { type: 'read', text: T3('Tekst.'), q: [1, 2, 3, 4].map(i => ch(w0, 'lezen', T3('v' + i))).concat([{ ...typeQ, ask: T3('Typ uit de tekst.') }]) },
+      { type: 'listen', say: 'Hallo.', q: [1, 2, 3, 4].map(i => ch(w0, 'klank', T3('l' + i))).concat([{ ...typeQ, form: 'hear-type', say: 'x', ask: T3('Typ wat je hoort.') }]) },
       { type: 'make', items: [w0], frame: 'Ik ___.', model: T3('Ik ben.'), checklist: [T3('a'), T3('b')] },
       { type: 'speak', items: [w0], ask: T3('Zeg.'), model: T3('Zo.'), checklist: [T3('a')] }, { type: 'game', kind: 'dehet', items: [w0] },
-      { type: 'quiz', role: 'controle', q: [{ form: 'type', items: [w0], ask: { nl: 'Typ.' }, answer: 'x', why: T3('Zo.') }, { form: 'number', items: [w1], ask: { nl: 'Reken.' }, answer: '42', why: T3('Zo.') }] },
+      { type: 'quiz', role: 'controle', q: [{ form: 'type', items: [w0], ask: { nl: 'Typ het woord.' }, answer: 'x', why: T3('Zo.') }, { form: 'number', items: [w1], ask: { nl: 'Reken.' }, answer: '42', why: T3('Zo.') }] },
       { type: 'end' }] });
-  const rk = { ...deep, id: 'h-rk', subject: 'rk', n: undefined, steps: [{ type: 'look' }, { type: 'read', text: T3('Etiket.'), q: [1, 2].map(i => ch(w1, 'lezen', T3('v' + i))) },
+  const rk = { ...deep, id: 'h-rk', subject: 'rk', n: undefined, steps: [{ type: 'look' }, { type: 'explain', id: 'u.rk.klok' }, { type: 'read', text: T3('Etiket.'), q: [1, 2].map(i => ch(w1, 'lezen', T3('v' + i))) },
     { type: 'quiz', role: 'ophalen', q: [{ form: 'number', items: [w1], ask: T3('Reken.'), answer: '6', why: T3('Zo.') }, ch(w1, 'getal', T3('k')), { form: 'money', items: [w1], why: T3('Zo.'), gen: { coins: [500, 200, 100, 50], n: [2, 4] } }, { form: 'number', items: [w1], ask: T3('Reken.'), answer: '42', why: T3('Zo.') }, { ...typeQ, items: [w1] }] },
     { type: 'do', form: 'money', items: [w1], gen: { coins: [500, 200, 100, 50], n: [2, 4] } },
     { type: 'quiz', role: 'controle', q: [{ form: 'number', items: [w1], ask: { nl: 'R.' }, answer: '1', why: T3('Zo.') }, ch(w1, 'getal', { nl: 'K.' })] }, { type: 'end' }] };
@@ -165,4 +165,5 @@ ok('Proefonderdelen: de scènetegel alleen met de schakelaar aan; standaard uit 
 ok('korte ronde: de melding komt aan (de vlag gaat mee met de rij die compose teruggeeft)', html.includes('if(q._short)out._short=q._short;return out'));
 ok('speltimer stopt als de sessie verlaten is', html.includes("const here=Q[qi]===q&&app.classList.contains('sess')"));
 ok('herkennen: geen afleider met dezelfde vertaling of uit also (twee goede antwoorden)', html.includes('!AL.includes(x.id)&&x.th!==w.th&&x.en!==w.en'));
+ok('poort (uitleg bij de eisen 13, 14): dubbele vraag, tekst zonder typen, te weinig zelf maken, rekenscène zonder voorbeeld, schuine streep', /dezelfde vraag/.test(cc(p => { const q = p.scenes[0].steps[1].q; q.push(JSON.parse(JSON.stringify(q[0]))); })) && /zelf typt of bouwt/.test(cc(p => { const r = p.scenes[0].steps.find(s => s.type === 'read'); r.q = r.q.slice(0, 4).concat([ch(w0, 'lezen', T3('v5'))]); })) && /uitgewerkt voorbeeld/.test(cc(p => { const r = p.scenes.find(s => s.subject === 'rk'); r.steps = r.steps.filter(s => s.type !== 'explain'); })) && /schuine streep/.test(cc(p => { p.items = [{ id: 'x', kind: 'phrase', w: 'a / b' }]; })));
 console.log(fails ? fails + ' FOUT' : 'alles OK');

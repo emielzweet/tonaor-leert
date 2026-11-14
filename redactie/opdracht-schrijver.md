@@ -51,6 +51,12 @@ Je schrijft één hoofdstuk lesstof voor een leer-app Nederlands voor volwassen 
 - **Een woord aantikken is een keuze** (`docs/scenes.md`): in een tekst of gesprek kiest de leerder eerst uit drie betekenissen. Geef bij de tikbare woorden van een tekst (`gloss`) daarom twee afleiders die echt lijken.
 - **Engels** (`docs/onderbouwing-engels.md`): eigen scènes, nooit Engels en Nederlands door elkaar in één reeks vragen. De betekenis van een Engels woord in de steuntaal; geef `nlLike` als het op een Nederlands woord lijkt en `falseFriend: true` bij een valse vriend. Vraagtaal (according to the text, which statement is true) en een woord afleiden uit de context zijn eigen onderdelen. Onderwerpen algemeen en maatschappelijk. In de examenvorm (`"exam": true`, vanaf module E4): vragen in het Engels, lange teksten en fragmenten, opnieuw afspelen mag.
 - **Hooguit vier keuzes** op een scherm (ook in een gesprek).
+- **Zelf maken, minstens een derde** (A7, uitleg bij de eisen 13): per scène Nederlands is minstens een derde van de antwoorden zelf maken (`type`, `hear-type`, `complete`, `build`, `number`, sommen, `make`, `speak`). Elke leestekst of luistertekst met meer dan drie vragen heeft minstens één vraag waarin de leerder zelf typt of bouwt. Niet meer dan drie keuzevragen achter elkaar.
+- **Geen dubbele vragen:** in een scène nooit twee vragen met dezelfde vraag, vorm en antwoord.
+- **Eerst aanbieden, dan vragen:** vraag een woord pas na het is aangeboden (in de tekening om aan te tikken, in een eerdere scène, of eerder in deze scène); alleen de instap mag een woord vragen dat nog niet is aangeboden.
+- **Een woord (`w`) zonder schuine streep:** de app zet `w` in een zin. Twee vormen die allebei goed zijn, worden twee onderdelen met `also`, of een regel.
+- **De rekenscène begint met een uitgewerkt voorbeeld** (een stap `rule` of `explain`) vóór de eerste som (uitleg bij de eisen 14).
+- **Review:** een hoofdstuk krijgt het veld `review` pas van de bouwsessie, na het oordeel "goed" van de reviewer. Zet het niet zelf.
 - **Waar het voor dient** (masterplan G5): geef het hoofdstuk een veld `purpose` (Tekst, één zin in gewone taal, bijvoorbeeld "Dit heb je nodig om zelf een afspraak te maken en bij het examen voor spreken"). Voorstel in `docs/pakketformaat.md`.
 - **Algemene ontwikkeling en de kennisles** (`docs/algemene-ontwikkeling.md`): open met raden of schatten (een vraag waarop de leerder eerst gokt), en vertel waar het kan een verhaal.
 - **Bronnen** bij de kennisles: `sources: [{ "url": "https://…", "title": "…" }]`.

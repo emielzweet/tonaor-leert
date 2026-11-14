@@ -442,6 +442,7 @@
     var scenes = (p && p.scenes) || [];
     var goals = function (g, w) { if (!Array.isArray(g) || !g.length || g.some(function (x) { return typeof x !== 'string' || !x; })) err(w + ': goals (de eindtermen die het dient) ontbreekt'); };
     goals(p && p.goals, id);
+    ((p && p.items) || []).forEach(function (x) { if (x && typeof x.w === 'string' && x.w.indexOf('/') >= 0) err(id + '.' + x.id + ': w zonder schuine streep (de app zet w in een zin); maak er twee onderdelen of een regel van (uitleg bij de eisen 13)'); });
     var rv = p && p.review; if (!rv || typeof rv !== 'object' || rv.verdict !== 'goed' || typeof rv.model !== 'string' || !rv.model || !/^\d{4}-\d{2}-\d{2}$/.test(String(rv.date))) err(id + ': review ontbreekt: een hoofdstuk is pas zichtbaar na een review met oordeel goed door een groter model dan de schrijver ({ model, date: jjjj-mm-dd, verdict: "goed" }; masterplan, uitleg bij de eisen 12)');
     if (p && Array.isArray(p.goals) && p.goals.length && !p.purpose) err(id + ': purpose (waar het hoofdstuk voor dient, één zin in gewone taal) ontbreekt (masterplan G5)');
     var has = { read510: false, listen: false, speak: false, game: false, make: false, reken: false };
@@ -459,6 +460,24 @@
       if (sc.subject !== 'nl' && f.moments < 8) err(w + ': ' + f.moments + ' antwoordmomenten, minstens 8');
       if (sc.subject === 'nl' && f.turns < 4) err(w + ': het gesprek heeft ' + f.turns + ' beurten, minstens vier');
       var steps = sc.steps || [];
+      // uitleg bij de eisen 13 en 14
+      var PROD = ['type', 'hear-type', 'complete', 'build', 'number', 'money', 'clock', 'discount'], allQ = [], prod = 0, seenW = {};
+      (p.scenes || []).forEach(function (o) { if (o !== sc && ((o.n || 6) < (sc.n || 6))) (o.targets || []).forEach(function (t) { seenW[t] = 1; }); });
+      var isWord = {}; (p.items || []).forEach(function (x) { if (x && (x.kind === 'word' || x.kind === 'phrase')) isWord[x.id] = 1; });
+      var offered = function (id) { return !isWord[id] || seenW[id]; };
+      steps.forEach(function (st) {
+        if (st.type === 'look') ((sc.art && sc.art.things) || []).forEach(function (t) { if (t && t.hot && t.item) seenW[t.item] = 1; });
+        var qs = (st.q || []).concat(st.turns ? [] : []);
+        qs.forEach(function (q) { if (!q) return; allQ.push(JSON.stringify([q.ask && (q.ask.nl || q.ask), q.form, q.answer != null ? q.answer : ((q.opts || []).find(function (o) { return o.r === 'ok'; }) || {}).t])); if (PROD.indexOf(q.form) >= 0) prod++;
+          var tgt = (q.items || [])[0]; if (st.role !== 'instap' && st.type !== 'extra' && tgt && !offered(tgt)) err(w + ': vraag naar ' + tgt + ' voordat het is aangeboden (alleen in de instap mag dat)'); });
+        (st.turns || []).forEach(function (t) { var tgt = (t.items || [])[0]; if (tgt && !offered(tgt)) err(w + ': gesprek vraagt ' + tgt + ' voordat het is aangeboden'); (t.items || []).forEach(function (x) { seenW[x] = 1; }); });
+        if (['make', 'speak', 'do'].indexOf(st.type) >= 0 && (st.type !== 'do' || ['setclock', 'money', 'clock', 'discount', 'gap', 'build'].indexOf(st.form) >= 0)) prod++;
+        if ((st.type === 'read' || st.type === 'listen') && (st.q || []).length > 3 && !(st.q || []).some(function (q) { return q && PROD.indexOf(q.form) >= 0; })) err(w + ': een tekst met meer dan drie vragen heeft minstens één vraag waarbij de leerder zelf typt of bouwt');
+        (st.items || []).concat(st.targets || []).forEach(function (x) { seenW[x] = 1; }); (st.q || []).forEach(function (q) { ((q && q.items) || []).forEach(function (x) { seenW[x] = 1; }); });
+      });
+      for (var qa = 0; qa < allQ.length; qa++) if (allQ.indexOf(allQ[qa]) !== qa) { err(w + ': twee vragen met dezelfde vraag, vorm en antwoord: ' + allQ[qa].slice(0, 80)); break; }
+      if (sc.subject === 'nl' && f.moments && prod / f.moments < 1 / 3) err(w + ': ' + prod + ' van ' + f.moments + ' antwoorden is zelf maken; minstens een derde nodig (A7)');
+      if (sc.subject === 'rk') { var firstCalc = steps.findIndex(function (st) { return (st.type === 'do' && ['money', 'clock', 'setclock', 'discount'].indexOf(st.form) >= 0) || (st.q || []).some(function (q) { return q && (q.form === 'number' || ['money', 'clock', 'discount'].indexOf(q.form) >= 0); }); }), firstEx = steps.findIndex(function (st) { return st.type === 'rule' || st.type === 'explain'; }); if (firstCalc >= 0 && (firstEx < 0 || firstEx > firstCalc)) err(w + ': de rekenscène begint met een uitgewerkt voorbeeld (rule of explain) vóór de eerste som (uitleg bij de eisen 14)'); }
       steps.filter(function (s) { return s.type === 'rule'; }).forEach(function (rs) { var rid = (rs.items || [])[0]; if (rid && !scenes.some(function (o) { return (o.steps || []).some(function (x) { return x.type === 'extra' && (x.q || []).some(function (q) { return q && (q.items || [])[0] === rid; }); }); })) err(w + ': bij grammaticapunt ' + rid + ' hoort een stap extra met oefeningen op dat punt (docs/scenes.md)'); });
       steps.forEach(function (st, k) {
         var v = w + '.steps[' + k + ']', qq = st.q || [];
