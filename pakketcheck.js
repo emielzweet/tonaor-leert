@@ -200,7 +200,7 @@
       var opts = function (o, a, n) { if (!Array.isArray(o) || o.length < 2) { err(w + ': opties ontbreken'); return; } if (n && o.length !== n) err(w + ': precies ' + n + ' opties nodig'); };
       switch (e.form) {
         case 'build':
-          if (!Array.isArray(d.parts) || d.parts.length < 2) err(w + ': parts ontbreekt'); else { d.parts.forEach(function (s) { str(s, w + '.parts'); }); if (d.parts.indexOf(d.verb) < 0) err(w + ': verb staat niet in parts'); }
+          if (!Array.isArray(d.parts) || d.parts.length < 2) err(w + ': parts ontbreekt'); else { d.parts.forEach(function (s) { str(s, w + '.parts'); }); if (d.verb != null && d.parts.indexOf(d.verb) < 0) err(w + ': verb staat niet in parts'); }   // zonder verb: dingen in volgorde leggen (een tijdlijn, een keten)
           tr(d.tr, w); break;
         case 'gap':
           if (typeof d.s !== 'string' || d.s.split('___').length !== 2) err(w + ': s moet precies één ___ hebben');

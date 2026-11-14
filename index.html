@@ -577,6 +577,7 @@ en:{
  "build.verbPos":"Put the orange verb in position 2. Try again!",
  "build.ok":"The verb {verb} is in position 2.",
  "build.again":"Look at the order again. Try again!",
+ "build.tipOrder":"Tap the pieces in the right order.",
  "build.okFirst":"The verb {verb} comes first: that makes it a question.",
  "build.okPlain":"Well done.",
  "build.verbFirst":"In a question the orange verb comes first. Try again!",
@@ -1024,6 +1025,7 @@ nl:{
  "build.verbPos":"Zet het oranje werkwoord op <b>plek 2</b>. Nieuwe kans!",
  "build.ok":"Het werkwoord <b>{verb}</b> staat op plek 2.",
  "build.again":"Kijk nog eens naar de volgorde. Nieuwe kans!",
+ "build.tipOrder":"Tik de stukjes in de goede volgorde.",
  "build.okFirst":"Het werkwoord <b>{verb}</b> staat vooraan: zo maak je een vraag.",
  "build.okPlain":"Goed zo.",
  "build.verbFirst":"In een vraag staat het oranje werkwoord <b>vooraan</b>. Nieuwe kans!",
@@ -1472,6 +1474,7 @@ th:{
  "build.verbPos":"วางกริยาสีส้มไว้ตำแหน่งที่ 2 ลองใหม่",
  "build.ok":"กริยา {verb} อยู่ตำแหน่งที่ 2",
  "build.again":"ดูลำดับอีกครั้ง ลองใหม่",
+ "build.tipOrder":"แตะชิ้นส่วนตามลำดับที่ถูกต้อง",
  "build.okFirst":"กริยา {verb} อยู่หน้าสุด แบบนี้เป็นประโยคคำถาม",
  "build.okPlain":"เก่งมาก",
  "build.verbFirst":"ในประโยคคำถาม กริยาสีส้มอยู่หน้าสุด ลองใหม่",
@@ -2753,7 +2756,7 @@ H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${fw(w)}`,full=artFull(
     else $('#fb').innerHTML=fbK(false,'try.again')};
   $('#chk').onclick=check;inp.onkeydown=e=>{if(e.key==='Enter'&&!inp.disabled)check()}};
 H.build=q=>{const s=q.s;let pool=shuffle(s.parts);if(pool.join()===s.parts.join())pool.reverse();let chosen=[],first=true;
-  const draw=fb=>{frame(`<div class="card stack">${T('build.title')}<p class="muted small">${T('build.tip')}</p>
+  const draw=fb=>{frame(`<div class="card stack">${T('build.title')}<p class="muted small">${T(s.verb?'build.tip':'build.tipOrder')}</p>
     ${nlOnly()||!L_(s)?'':`<p ${supAttr()} style="font-size:1.12rem">${esc(L_(s))}</p>`}
     <div class="pieces" aria-label="Jouw zin">${chosen.map((p,i)=>`<button class="piece ${p===s.verb?'verb':''}" data-back="${i}">${esc(p)}</button>`).join('')}</div>
     <div class="pieces pool" aria-label="Stukjes">${pool.map((p,i)=>`<button class="piece ${p===s.verb?'verb':''}" data-take="${i}">${esc(p)}</button>`).join('')}</div>
@@ -2762,9 +2765,9 @@ H.build=q=>{const s=q.s;let pool=shuffle(s.parts);if(pool.join()===s.parts.join(
     app.querySelectorAll('[data-take]').forEach(b=>b.onclick=()=>{chosen.push(pool.splice(+b.dataset.take,1)[0]);draw()});
     app.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>{pool.push(chosen.splice(+b.dataset.back,1)[0]);draw()});
     $('#chk').onclick=()=>{if(pool.length)return;const right=s.parts.join(' ');
-      const vp=s.parts.indexOf(s.verb),okK=vp===1?'build.ok':vp===0?'build.okFirst':'build.okPlain';   /* review dokter 7: de plek van het werkwoord volgt uit de goede zin (een vraag begint met het werkwoord) */
+      const vp=s.verb?s.parts.indexOf(s.verb):-1,okK=vp===1?'build.ok':vp===0?'build.okFirst':'build.okPlain';   /* zonder verb: in volgorde leggen, geen werkwoordtekst */   /* review dokter 7: de plek van het werkwoord volgt uit de goede zin (een vraag begint met het werkwoord) */
       if(chosen.join(' ')===right){score(first,15);practiced(q,first,'build');say(right,false,q.lang||'nl');$('#fb').innerHTML=fbBox(true,`<b>${esc(right)}</b> ${t(okK,{verb:esc(s.verb)})}`,ts(okK,{verb:esc(s.verb)}));$('#chk').outerHTML=nextBtn();$('#nx').onclick=next}
-      else{first=false;const vi=chosen.indexOf(s.verb);pool=shuffle(s.parts);chosen=[];draw(fbK(false,vi===vp?'build.rest':vp===1?'build.verbPos':vp===0?'build.verbFirst':'build.again'))}}};
+      else{first=false;const vi=chosen.indexOf(s.verb);pool=shuffle(s.parts);chosen=[];draw(fbK(false,vp<0?'build.again':vi===vp?'build.rest':vp===1?'build.verbPos':vp===0?'build.verbFirst':'build.again'))}}};
   draw()};
 H.gap=q=>{let first=true;
   frame(`<div class="card stack">${T('gap.title')}<p class="prompt">${q.s.replace('___','<span class="slot s2">___</span>')}</p>${supSpan(L_(q))}

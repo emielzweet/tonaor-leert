@@ -195,7 +195,7 @@ ok('poort (uitleg bij de eisen 16): een typvraag met een zin als antwoord is een
   ok('de lijst houdt de laatste vijftig, zonder html', cx.S.claims.length === 50 && cx.S.claims[49].id === 'x59' && cx.S.claims[49].q === 'q');
   ok('alle getypte schermen hebben de knop (ophalen, gatzin, luisteren, Engels, scène)', (html.match(/bindClaim\(/g) || []).length >= 9 && html.includes('function next(){flushPend();') && html.includes("$('#quit').onclick=()=>{flushPend();"));
 }
-ok('zin bouwen: de plek van het werkwoord volgt uit de goede zin (vraag: werkwoord vooraan), en de scènevraag staat erboven', html.includes("const vp=s.parts.indexOf(s.verb),okK=vp===1?'build.ok':vp===0?'build.okFirst':'build.okPlain';") && html.includes("vi===vp?'build.rest':vp===1?'build.verbPos':vp===0?'build.verbFirst':'build.again'") && html.includes('...(qq.ask?{_ask:qq.ask}:{})'));
+ok('zin bouwen: de plek van het werkwoord volgt uit de goede zin (vraag: werkwoord vooraan), en de scènevraag staat erboven', html.includes("const vp=s.verb?s.parts.indexOf(s.verb):-1,okK=vp===1?'build.ok':vp===0?'build.okFirst':'build.okPlain';") && html.includes("vp<0?'build.again':vi===vp?'build.rest':vp===1?'build.verbPos':vp===0?'build.verbFirst':'build.again'") && html.includes('...(qq.ask?{_ask:qq.ask}:{})'));
 { const cx = {}; vm.createContext(cx); vm.runInContext(lineOf('const scNorm=') + ';' + fnBlock('scNum') + ';' + fnBlock('scLoose') + ';this.f=scLoose;', cx);
   ok('standreview 3: in de zwaardere vorm telt het keel niet voor de keel, keel en de keel wel', !cx.f('de keel', 'het keel') && cx.f('de keel', 'keel') && cx.f('de keel', 'de keel')); }
 ok('standreview: knop weg na de tik, controle niet gehaald na de knop, lidwoord kiezen is geen typfout, alle fouten bij luisteren krijgen de knop, also alleen bij het doelwoord, tekens niet dubbel', html.includes("b.onclick=()=>{b.remove();PEND=[];if(info.after)") && html.includes("after:()=>{if(q.role==='controle'&&SCN)SCN.ctrl=false}") && html.includes('&&!q._probe&&!picked;') && html.includes("bad=res===false,") && html.includes("na(String(as[0]))===na(w0.w)") && html.includes(".replace(/&amp;/g,'&')"));
@@ -249,4 +249,5 @@ ok('standreview: knop weg na de tik, controle niet gehaald na de knop, lidwoord 
   cx.S.world.done = { 'ao-a-1': 1 };
   ok('les: zonder gekozen draad de volgende uit order; met een draad die', cx.f().id === 'ao-b' && (cx.set('ao-c'), cx.f().id === 'ao-c'));
 }
+ok('zin bouwen zonder werkwoord: dingen in volgorde leggen, zonder oranje blok en zonder werkwoordtekst', html.includes("T(s.verb?'build.tip':'build.tipOrder')") && html.includes("vp<0?'build.again':") && /d.verb != null && d.parts.indexOf\(d.verb\) < 0/.test(readFileSync(new URL('pakketcheck.js', ROOT), 'utf8')));
 console.log(fails ? fails + ' FOUT' : 'alles OK');
