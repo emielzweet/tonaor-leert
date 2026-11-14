@@ -1714,7 +1714,8 @@ const safeArr=a=>(a||[]).map(SAFE);
 const exList=(learn,pred)=>PACKS.filter(p=>p.learn===learn).flatMap(p=>p.exercises||[]).filter(pred);
 const LEGACY={};   // oefening-id -> object in de vorm van vóór fase 2
 function buildLists(){
-  SCENES=PACKS.flatMap(p=>(p.scenes||[]).map(sc=>({sc,learn:p.learn})));
+  /* een hoofdstuk verschijnt pas als het de hoofdstukcontrole haalt (masterplan: lesstof door de poort en de review); zo komt een half hoofdstuk nooit bij de leerder */
+  SCENES=PACKS.filter(p=>p.type!=='hoofdstuk'||!PC||!PC.checkChapter||!PC.checkChapter(p).errors.length).flatMap(p=>(p.scenes||[]).map(sc=>({sc,learn:p.learn})));
   const items=k=>PACKS.flatMap(p=>(p.items||[]).filter(x=>x.kind===k||(k==='word'&&x.kind==='phrase')).map(x=>({x,p})));   // phrase: een vaste zin, als woord zonder lidwoord
   // woord, voorbeeldzin, gatzin en lidwoord toont het scherm met esc() of leest het voor: RAW. Vertalingen staan rauw in de HTML: SAFE.
   NL=items('word').filter(o=>o.p.learn==='nl').map(({x})=>{const o={id:x.id,art:x.art?RAW(x.art):'',w:RAW(x.w),th:SAFE(x.tr.th),en:SAFE(x.tr.en),ex:RAW(x.ex),gap:RAW(x.gap)};if(x.askArt)o.askArt=1;if(x.also)o.also=x.also.slice();if(x.def)o.def=RAW(x.def);return o});

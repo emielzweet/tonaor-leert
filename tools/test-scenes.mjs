@@ -149,4 +149,5 @@ ok('controle: een uitleg-id die niet bestaat wordt geweigerd, een bestaande niet
 ok('hoofdstuk: bij elk grammaticapunt een extra', /hoort een stap extra/.test(cc(p => { p.scenes.forEach(sc => { const r = sc.steps.find(s => s.type === 'rule'); if (r) { r.items = ['nl.regel.heb']; r.q.forEach(q => { q.items = ['nl.regel.heb']; }); } }); })));
 ok('speler: bij een getal tellen euroteken, spaties en cent niet als fout', html.includes('€ 6,60 en 25 cent zijn ook goed'));
 ok('zwaardere vorm: alleen een kort antwoord wordt typen', html.includes('lange antwoorden blijven kiezen'));
+ok('een hoofdstuk verschijnt alleen als het de hoofdstukcontrole haalt', html.includes("SCENES=PACKS.filter(p=>p.type!=='hoofdstuk'||!PC||!PC.checkChapter||!PC.checkChapter(p).errors.length)"));
 console.log(fails ? fails + ' FOUT' : 'alles OK');
