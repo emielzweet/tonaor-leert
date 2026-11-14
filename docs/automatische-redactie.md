@@ -7,7 +7,7 @@ Status: **ontwerp, 14 november 2026. De eigenaar is akkoord met de richting: les
 | | Automatisch | Naar de eigenaar |
 |---|---|---|
 | Lesstof schrijven, controleren, reviewen, klaarzetten | ja | – |
-| Lesstof uitbrengen (alleen bestanden met lesstof) | ja, na de poorten hieronder | als een poort drie keer achter elkaar faalt |
+| Lesstof uitbrengen (alleen bestanden met lesstof) | ja, na de poorten hieronder | – (drie rondes zonder "goed" gaan naar de ontwerpsessie) |
 | Een gemelde fout in lesstof duiden en herstellen | ja | – |
 | Een vraag van de leerder over de stof | eerst de uitleg in de app, dan AI | als de leerder zegt dat het antwoord niet helpt |
 | Een gemelde fout in de code | duiden en een herstel voorbereiden met tests | uitbrengen: voorlopig de eigenaar |
@@ -21,7 +21,7 @@ De werkbestanden staan in `redactie/`: de wachtrij (`productielijst.json`), de o
 1. **Voorraad meten.** Ligt er minder dan twee weken lesstof klaar vóór de plek van de leerder (vier hoofdstukken per week bij het weekdoel), dan start de lijn. Anders niet: er wordt niet meer geschreven dan nodig.
 2. **Schrijven** door een goedkoper model, met de opdracht en het voorbeeld als sjabloon.
 3. **Automatische poort:** `redactie/controleer.mjs`, `pakketcheck` en de testreeks. Nul fouten, anders terug naar de schrijver.
-4. **Onafhankelijke review** door een ander model dan de schrijver, dat alleen het hoofdstuk en de kaders krijgt. Uitkomst: goed, verbeteren of afkeuren. Bij verbeteren herstelt de schrijver en volgt een tweede review; na drie rondes zonder "goed" stopt de lijn voor dit hoofdstuk en gaat het naar de eigenaar.
+4. **Onafhankelijke review** door een ander model dan de schrijver, dat alleen het hoofdstuk en de kaders krijgt. Uitkomst: goed, verbeteren of afkeuren. Bij verbeteren herstelt de schrijver en volgt een tweede review; na drie rondes zonder "goed" stopt de lijn voor dit hoofdstuk en gaat het naar de ontwerpsessie (`werkorder.md`; masterplan, "Uitleg bij de eisen", punt 10). Een ronde waarin de poort of de app onderweg veranderde, telt niet mee.
 5. **Klaarzetten:** het pakket naar `content/`, de stand in de productielijst en de dekkingstabel bijgewerkt, lokaal gecommit.
 6. **Uitbrengen** met `redactie/uitbrengen` (te bouwen): weigert als de wijziging iets anders raakt dan lesstof, draait alle tests, en brengt dan uit.
 7. **Logboek:** elke run schrijft één regel (wat, uitkomst van de poorten, kosten). De eigenaar kan het lezen maar hoeft niets te doen.
