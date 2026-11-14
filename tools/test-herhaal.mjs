@@ -87,7 +87,7 @@ ok('de app vult de soort per item uit de pakketten', html.includes("KIND[x.id]=x
 
 // 9. haalbaar met de inhoud die er nu is? (meldt welk onderdeel meer oefeningen of een vorm nodig heeft)
 { const { boot } = await import('./app-harness.mjs'); const app = await boot(); const P = app.api.get().PACKS;
-  const all = P.flatMap(p => (p.items || []).map(x => ({ ...x, learn: p.learn }))), exs = P.flatMap(p => p.exercises || []);
+  const all = P.filter(p => p.type !== 'hoofdstuk').flatMap(p => (p.items || []).map(x => ({ ...x, learn: p.learn }))), exs = P.flatMap(p => p.exercises || []);   // een hoofdstuk oefent zijn onderdelen in de scènes (eigen controle: checkChapter)
   const gaps = [];
   for (const x of all) {
     const mine = exs.filter(e => (e.items || []).includes(x.id)), gen = mine.some(e => e.gen);

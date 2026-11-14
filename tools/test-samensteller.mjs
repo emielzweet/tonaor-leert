@@ -33,7 +33,7 @@ ok('de les is elke dag anders (7 dagen)', new Set(sigs).size === 7, sigs.join('\
 const size = x => new Set(x.split(' ').filter(t => !/^(card|conf|end|explain):/.test(t))).size;
 ok('elke les heeft minstens 8 verschillende onderdelen zolang er nieuwe lesstof is (docs/toets-per-stap.md, punt 8)', sigs.every((x, d) => !stofOver[d] || size(x) >= 8), sigs.map(size).join(','));
 if (stofOver.some(v => !v)) console.log('     LET OP: de nieuwe woorden van nl-t1 zijn op dag ' + stofOver.indexOf(false) + ' op; daarna worden de rondes korter (meer lesstof nodig, plan spoor A)');
-const nlKinds = ctx.api.get().PACKS.filter(p => p.learn === 'nl').flatMap(p => p.items || []).filter(x => ['rule', 'sound', 'skill'].includes(x.kind)).map(x => x.id);
+const nlKinds = ctx.api.get().PACKS.filter(p => p.learn === 'nl' && p.type !== 'hoofdstuk').flatMap(p => p.items || []).filter(x => ['rule', 'sound', 'skill'].includes(x.kind)).map(x => x.id);
 const notYet = nlKinds.filter(id => !(S.items[id] && S.items[id].reps > 0));
 ok('na 7 dagen zijn alle regels, klanken en rekenvaardigheden aan bod geweest', !notYet.length, notYet.join(', '));
 ok('dezelfde oefenvorm hooguit twee keer achter elkaar', !tooMany.length, tooMany.join('; '));
