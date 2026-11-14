@@ -42,6 +42,7 @@ Hier wordt wel op hem gewacht; alles wat hier niet staat, gaat door.
 | Verwijzingen naar video's | de bouwsessie stelt per rekenonderwerp één of twee links voor van publieke of educatieve bronnen, alleen https, buiten de app geopend; de reviewer controleert dat de link werkt en past | besluit van 13 november: buiten de app |
 | Geschiedenis van pogingen past niet in de opslag | binnen het budget blijven door ouder weg te laten; geen ander soort opslag zonder de eigenaar | raakt de opslag |
 | Scherm van de begeleider | protocol en widget voorbereiden in een pakket; de app stuurt nieuwe berichten pas als de widget ze kent; de ontwerpsessie installeert, met een kopie vooraf | toestemming van de eigenaar |
+| Geluid met de stilteschakelaar aan | voorlezen uit geluidsbestanden, gemaakt met een open spraakprogramma op de computer; de stem van het toestel als terugval; een betaalde dienst (natuurlijker, ook Thais) beslist de eigenaar | eis van de eigenaar; `geluid.md` |
 | Fout melden | het deel in de app nu (knop, soorten, wachtrij op het toestel, punten achteraf); ontvangen en verwerken zodra er een ingang is | hangt aan issue #5 |
 | Vraag het (AI) | de eerste trede nu (de uitleg bij de stap); de AI-trede wacht op de sleutel | kost geld |
 | Ontbreekt een ontwerp van de ontwerpsessie | de bouwsessie schrijft zelf een kort ontwerp langs de eisen en bouwt; de ontwerpsessie kijkt bij het ijkmoment | niet op elkaar wachten |
@@ -52,6 +53,7 @@ Hier wordt wel op hem gewacht; alles wat hier niet staat, gaat door.
 Elke regel is een afgerond stuk: kort ontwerp, bouwen, tests, controle op 375 breed, onafhankelijke review, lokaal committen, één regel in `docs/STATUS.md`. Dan door naar de volgende, zonder te wachten. Lesstof loopt er steeds naast via de redactielijn.
 
 1. **Release A:** de stand met de anti-grindregels, de bewaarde pogingen, de stijl en de scènespeler (het proefhoofdstuk nog onzichtbaar), na de codereview.
+1b. **Geluid met de stilteschakelaar aan** (masterplan F7, `geluid.md`): voorrang boven alles hierna, want voorlezen is nu in de praktijk stil. Bron A (een open spraakprogramma, lokaal) als standaard; een betaalde dienst is een keuze van de eigenaar.
 2. **Het proefhoofdstuk** door de review tot "goed", in `content/`, zichtbaar. Dan ijkmoment G1 en **release B**.
 3. **De redactielijn in bedrijf** (masterplan stap 3): lesstof los van de code, het script om uit te brengen, en doorschrijven: eerst de overige hoofdstukken van thema 1, dan rekenscènes voor de onderwerpen die er zijn, dan de eerste twintig lessen algemene ontwikkeling. Voorraad: twee weken.
 4. **De route met tijd** op het bestaande scherm Route: blokken met duur, vier examendata, tempo, "wat als" (masterplan E5, M10, N-M8).

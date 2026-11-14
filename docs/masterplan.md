@@ -106,6 +106,7 @@ Elke eis heeft een bron en een manier waarop hij bewaakt wordt: **T** (een test 
 | F4 | De koppeling met de begeleider blijft werken; de begeleider ziet de route, de datum, wat de leerder kan en het foutprofiel | aanvoer en begeleider | T |
 | F5 | Lesstof wordt automatisch aangevuld met een voorraad; fouten kunnen altijd gemeld worden en worden automatisch verwerkt; vragen van de leerder gaan eerst naar AI | automatische redactie | M |
 | F6 | Werkt op een telefoon van 375 breed, ook zonder verbinding; spraak via de stem van het toestel, met vaste opnamen waar die tekortschiet; opnemen en terugluisteren zonder server | bouwplan fase 6 | T, G |
+| F7 | Alles wat de app in het Nederlands voorleest, klinkt ook met de stilteschakelaar aan: voorlezen uit geluidsbestanden, de stem van het toestel alleen als terugval; geen lesstof zonder geluid voor wat voorgelezen wordt | eis van de eigenaar, 15 november 2026; `geluid.md` | T |
 
 ### G. Leeruitkomsten: toewerken naar de examens
 
@@ -223,6 +224,7 @@ Vragen van de bouwsessie die een eis raken, met het antwoord. Dit hoofdstuk groe
 |---|---|
 | `masterplan.md` | eisen, volgorde, rollen |
 | `werkorder.md` | doorwerken zonder te wachten: standaardkeuzes, volgorde van het werk, uitbrengen |
+| `geluid.md` | voorlezen uit geluidsbestanden zodat het geluid werkt met de stilteschakelaar aan: bronnen, opslag, cache, redactielijn, volgorde |
 | `werkvormen.md` | ontwerp van de nieuwe werkvormen per groep (rekenen, zinsbouw, luisteren en lezen, spreken, spellen), met nakijken, vormcode en volgorde |
 | `controle-bij-release.md` | de telefooncheck voor de eigenaar en de toets op trucs bij elke release |
 | `aanbevelingen.md` | voorstellen van de ontwerpsessie die nog niet in het plan stonden, met de plek in de volgorde van het werk |

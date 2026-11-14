@@ -6,6 +6,8 @@ Per vorm: wat de leerder doet, wat er in het pakket staat, hoe het wordt nagekek
 
 ## Algemeen
 
+- **Geluid:** alles wat een vorm voorleest, speelt als geluidsbestand (`geluid.md`, masterplan F7); de stem van het toestel alleen als terugval.
+
 - **Tekenen:** waar een vorm een beeld nodig heeft, komt dat uit `uitleg.js` of `scene.js`, nooit uit het pakket. Nieuwe tekeningen worden daar een type, met `check()` voor de poort.
 - **Minder beweging:** elke animatie heeft een stilstaande vorm.
 - **Steuntaal:** de opdracht staat in het Nederlands met de steunregel; in de examenvorm zonder.
@@ -108,6 +110,9 @@ Wekelijks één tekst die elke maand langer wordt, naar de examenlengte; de vrag
 ## 4. Spreken en uitspraak
 
 ### 4.1 Opnemen en terugluisteren (`speak`)
+
+Het voorbeeld speelt als geluidsbestand (`geluid.md`), zodat het ook met de stilteschakelaar aan klinkt; de opname gebruikt hetzelfde audio-element.
+
 - **Leerder:** hoort het voorbeeld, neemt zelf op (MediaRecorder), luistert terug naast het voorbeeld, en vinkt de checklist af. De opname blijft op het toestel.
 - **Nakijken:** niet door de app; de leerder vinkt zelf af (open, regel 16). Telt voor het herhaalmodel als productieve vorm met de uitkomst die de leerder aangeeft (*klonk goed*, *nog niet*).
 - **Examenvorm:** 20 of 30 seconden zichtbaar, opname stopt zelf (`scenes.md`).

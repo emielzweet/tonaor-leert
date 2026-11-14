@@ -101,7 +101,7 @@ De voorstellen zijn eigen oordeel van de ontwerpsessie, onderbouwd waar het kan 
 
 ## 6. Gereedschap
 
-6.1 **Vaste geluidsbestanden en een inspreekhulp.** Een eenvoudige pagina die een rij zinnen toont, per zin opneemt, en de bestanden in een pakket zet. Zo kunnen mensen thuis de kernzinnen inspreken (meerdere stemmen), en klinkt het op elk toestel gelijk. Een spraakdienst kan later; die kost geld. *M; bouw.*
+6.1 **Vaste geluidsbestanden en een inspreekhulp.** *(Sinds 15 november een eis: `geluid.md`; de inspreekhulp is daar bron 1.)* Een eenvoudige pagina die een rij zinnen toont, per zin opneemt, en de bestanden in een pakket zet. Zo kunnen mensen thuis de kernzinnen inspreken (meerdere stemmen), en klinkt het op elk toestel gelijk. Een spraakdienst kan later; die kost geld. *M; bouw.*
 
 6.2 **Een voorvertoning voor scènes.** Een pagina die een hoofdstuk uit de redactielijn toont zoals de leerder het ziet, met alle tekeningen onder elkaar. Voor de reviewer en voor de ijkmomenten. *K; bouw (de controlepagina van de tekencatalogus is het begin).*
 
