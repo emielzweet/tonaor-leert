@@ -150,4 +150,21 @@ ok('de leerklok kan niet struikelen over het laden', html.includes('function lea
   ok('Bijsturen op Ik: nieuwe woorden per dag, lengte, stille stand, terug naar standaard; geen oefenvormen uitzetten', ['data-npd', 'data-len', 'data-quiet', 'steerReset'].every(k => html.includes(k)) && !html.includes('data-form-off'));
   ok('na de ronde: te makkelijk, goed, te moeilijk en leuk of saai; gaat mee naar de begeleider', html.includes('data-c=\"makkelijk\"') && html.includes('data-f=\"saai\"') && html.includes('steer:{newPerDay:dayBudget()'));
 }
+// R-M3 (onderbouwing-rekenen.md 2.5): nooit twee sommen met dezelfde aanpak achter elkaar in herhaling; nieuw mag geblokt
+{ const cm = vm.createContext({}); vm.runInContext(fnBlock('mixAppr') + '\nthis.mix=mixAppr;', cm);
+  const s = (a, o) => ({ type: 'discount', items: ['r-' + a], _appr: a, ...(o || {}) }), w = id => ({ type: 'recall', w: { id } });
+  const ap = q => q.filter(x => x._appr).map(x => x._appr).join(',');
+  const adj = q => { const r = q.filter(x => !['explain', 'card', 'conf', 'end', 'learn'].includes(x.type)); return r.some((x, i) => i && x._appr && !x._new && !r[i - 1]._new && x._appr === r[i - 1]._appr); };
+  const q1 = cm.mix([s('procent'), s('procent'), w('a'), s('geld')]);
+  ok('R-M3: twee procentsommen achter elkaar worden gescheiden', !adj(q1), q1.map(x => x._appr || x.w.id).join(' '));
+  const q2 = cm.mix([s('procent', { _new: 1 }), s('procent', { _new: 1 }), s('geld')]);
+  ok('R-M3: nieuwe sommen mogen geblokt (aanpak eerst leren)', ap(q2) === 'procent,procent,geld');
+  const q3 = cm.mix([s('klok'), { type: 'explain', x: 'u.x' }, s('klok'), w('b')]);
+  ok('R-M3: een uitleg blijft bij de som erna', q3.findIndex(x => x.type === 'explain') === q3.indexOf(q3.filter(x => x._appr === 'klok')[1]) - 1 && !adj(q3), q3.map(x => x._appr || x.type).join(' '));
+  const q5 = cm.mix([s('klok'), s('klok'), { type: 'explain', x: 'u.y' }, s('geld'), s('geld')]);
+  ok('R-M3: een som schuift niet over een uitleg heen naar voren', q5[2].type === 'explain', q5.map(x => x._appr || x.type).join(' '));
+  const q4 = cm.mix([s('geld'), s('geld')]);
+  ok('R-M3: niets om ertussen te zetten: de volgorde blijft (niets valt weg)', q4.length === 2);
+  ok('R-M3: elke som kent zijn aanpak (veld approach, anders de vorm)', /function apprOf\(r,e\)\{if\(r&&KIND\[\(r\.items\|\|\[\]\)\[0\]\]==='skill'\)r\._appr=e\.approach\|\|e\.form/.test(html) && /breakTriples\(mixAppr\(noSameForm\(q,learn\)\)\)/.test(html));
+}
 console.log(fails ? fails + ' FOUT' : 'alles OK');

@@ -153,6 +153,7 @@ Elke oefening:
 | `hint` | strict bij gesloten productie | Twee Teksten: eerst een kleine, dan een grotere aanwijzing |
 | `model`, `check` | bij open productie | Voorbeelduitwerking en een checklist om zelf na te kijken |
 | `skill`, `mode`, `open`, `tier` | nee | Alleen als ze afwijken van de standaard van de vorm |
+| `approach` | nee | Bij een som: de aanpak, een korte naam (`procent`, `tellen`). Twee sommen met dezelfde aanpak komen in de herhaling nooit direct na elkaar (R-M3). Zonder dit veld geldt de vorm. |
 
 **Oefenvormen en hun standaardlabels**
 

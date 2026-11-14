@@ -170,6 +170,8 @@ textarea.input{min-height:90px;font-size:1rem;resize:vertical}
 .s1{background:var(--sky);color:var(--sky-ink)} .s2{background:var(--apricot);color:var(--apricot-ink)} .s3{background:var(--mint);color:var(--mint-ink)}
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .choices.one{grid-template-columns:1fr}
+.tw{all:unset;cursor:pointer;padding:6px 1px;margin:-6px -1px;text-decoration:underline dotted var(--sky-ink);text-decoration-thickness:2px;text-underline-offset:4px;border-radius:3px}.tw:focus-visible{outline:2px solid var(--sky-ink);outline-offset:2px}.tw.on{background:var(--sky)}
+.tikp .choices{margin-top:8px}
 .choice{border:2px solid var(--line);background:var(--surface);border-radius:16px;min-height:64px;font-size:1.12rem;font-weight:700;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 .choice.right{border-color:var(--mint-fill);background:var(--mint)}
 .choice.wrong{border-color:var(--apricot-fill);background:var(--apricot)}
@@ -757,6 +759,7 @@ en:{
  "garden.tip":"Every word and every skill is a plant. Remembering it well makes it grow. A drop means: review it briefly today.",
  "garden.empty":"Your first plant will grow here soon.",
  "route.title":"My route",
+ "tik.ask":"What does “{w}” mean?",
  "route.tip":"Your whole way, with the time each part takes at your pace.",
  "route.line":"{gate} · expected {m}",
  "route.band":"between {a} and {b}",
@@ -1248,6 +1251,7 @@ nl:{
  "garden.tip":"Elk woord en elke vaardigheid is een plantje. Goed onthouden laat het groeien. Een druppel betekent: vandaag even herhalen.",
  "garden.empty":"Hier groeit straks je eerste plantje.",
  "route.title":"<h1>Mijn route</h1>",
+ "tik.ask":"Wat betekent “{w}”?",
  "route.tip":"Je hele weg, met de tijd die elk stuk ongeveer kost in jouw tempo.",
  "route.line":"{gate} · verwacht {m}",
  "route.band":"tussen {a} en {b}",
@@ -1737,6 +1741,7 @@ th:{
  "garden.tip":"ทุกคำและทุกทักษะคือต้นไม้ จำได้ดีต้นไม้จะโต หยดน้ำหมายถึงวันนี้ควรทบทวน",
  "garden.empty":"ต้นไม้ต้นแรกจะเติบโตที่นี่",
  "route.title":"เส้นทางของฉัน",
+ "tik.ask":"“{w}” แปลว่าอะไร",
  "route.tip":"เส้นทางทั้งหมดของคุณ พร้อมเวลาโดยประมาณของแต่ละช่วงตามจังหวะของคุณ",
  "route.line":"{gate} · คาดว่า {m}",
  "route.band":"ระหว่าง {a} ถึง {b}",
@@ -2037,8 +2042,10 @@ const GEN={
 function exQ(e,step,learn,want){
   if(e.gen){const seed=1+Math.floor(Math.random()*9999),v=GEN[e.form]&&GEN[e.form](e.gen,mulberry32(seed),want);if(!v)return null;
     const items=v.items||(e.items||[]).slice(),r=exQ0({...e,data:v.data,items},step,learn);if(!r)return null;
-    r.items=items;r.exid=e.id+'#'+seed;if(v.g)r.g=v.g;if(v.gk&&r.c)r.c.gk=v.gk;return r}
-  const r=exQ0(e,step,learn);if(r){r.items=(e.items||[]).slice();r.exid=e.id}return r}
+    r.items=items;r.exid=e.id+'#'+seed;if(v.g)r.g=v.g;if(v.gk&&r.c)r.c.gk=v.gk;return apprOf(r,e)}
+  const r=exQ0(e,step,learn);if(r){r.items=(e.items||[]).slice();r.exid=e.id}return r&&apprOf(r,e)}
+/* R-M3 (onderbouwing-rekenen.md 2.5): een som kent zijn aanpak (veld approach in het pakket, anders de vorm), zodat de samensteller kan mengen */
+function apprOf(r,e){if(r&&KIND[(r.items||[])[0]]==='skill')r._appr=e.approach||e.form;return r}
 function exQ0(e,step,learn){const d=e.data;
   switch(e.form){
     case 'build':return learn==='en'?{type:'build',step,lang:'en',s:{parts:d.parts.map(RAW),verb:RAW(d.verb),th:RAW(d.tr.th),en:RAW(d.tr.nl)}}:{type:'build',step,s:LEGACY[e.id]||{parts:d.parts.map(RAW),verb:RAW(d.verb),th:RAW(d.tr.th),en:RAW(d.tr.en)}};
@@ -2157,7 +2164,13 @@ function compose(recipe,learn){const used=new Set(),later=[];NEWPLAN=0;recipe=(r
   if(later.length){const real=x=>!['card','conf','end','explain'].includes(x.type);let i=q.map(x=>x.type).lastIndexOf('learn')+1,cnt=0,k=0;   // kiesvragen voor nieuwe woorden: na drie echte onderdelen, daarna telkens twee ertussen
     while(k<later.length){const conf=q.findIndex(x=>x.type==='conf'),at=conf<0?q.length:conf;if(i>=at){q.splice(at,0,...later.slice(k));break}
       if(real(q[i])&&q[i-1].type!=='explain')cnt++;if(cnt>=(k===0?3:2)&&(i+1>=q.length||q[i+1].type!=='explain'||true)){if(q[i].type==='explain'){i++;continue}q.splice(i+1,0,later[k]);k++;cnt=0;i+=2;continue}i++}}
-  {const out=breakTriples(noSameForm(q,learn));if(q._short)out._short=q._short;return out}}   /* H2 */
+  {const out=breakTriples(mixAppr(noSameForm(q,learn)));if(q._short)out._short=q._short;return out}}   /* H2; R-M3 */
+/* R-M3: nooit twee sommen met dezelfde aanpak achter elkaar in herhaling. Een nieuwe som (eerste keer) mag wel: dan leer je de aanpak eerst geblokt.
+   Schuift een verplaatsbaar onderdeel ertussen (zoals breakTriples); een uitleg blijft bij de oefening erna. Lukt dat niet, dan blijft de volgorde. */
+function mixAppr(q){const real=x=>x&&!['card','conf','end','explain','learn'].includes(x.type),free=(n)=>{const x=q[n];return real(x)&&!x._probe&&!x._ifUnknown&&!(n>0&&q[n-1].type==='explain')};
+  for(let i=1;i<q.length;i++){if(!real(q[i])||!q[i]._appr||q[i]._new)continue;let p=i-1;while(p>=0&&!real(q[p]))p--;if(p<0||q[p]._appr!==q[i]._appr||q[p]._new)continue;
+    let j=-1;for(let n=i+1;n<q.length;n++){if(q[n].type==='explain'||q[n].type==='card')break;if(free(n)&&q[n]._appr!==q[i]._appr){j=n;break}}if(j<0)continue;   /* nooit over een uitleg of kaart heen naar voren (codereview R-M3 5) */const [m]=q.splice(j,1);let at=i;while(at>0&&q[at-1].type==='explain')at--;q.splice(at,0,m)}
+  return q}
 /* ============ leertijd en weekdoel ============
    Het streven is S.weekGoal minuten per week (standaard 600 = 10 uur; op Ik 3,5, 5, 7 of 10 uur; S.weekGoalSet = zelf gekozen). Het dagdeel is een zevende daarvan.
    Alle leertijd telt: les, uitleg, verhaal, snelronde, gesprek, dagboek, kijkopdracht. De klok loopt alleen bij actieve tijd:
@@ -2756,6 +2769,32 @@ function scPurpose(sc,where){const o=SCENES.find(x=>x.sc===sc);if(!o||!o.purpose
 const PHROLE={instap:'scene.warm',ophalen:'scene.recall',controle:'scene.check'};
 function scFrame(q,inner){frame(inner,t(PHROLE[q.role]||PH[q.step]||'scene.do'),q.step)}
 H.sc_intro=q=>{const sc=q.sc,pu=scPurpose(sc,'first');scFrame(q,`<div class="card stack">${scArt(sc)}<h2>${scT(sc.title)}</h2>${pu?`<p class="note sky small">${scT(pu)}</p>`:''}<p>${scT(sc.intro)}</p>${q.hard?`<p class="note sky">${T('scene.hardTip',{n:(S.world.best||{})[sc.id]||0})}</p>`:''}</div>${nextBtn('btn-main')}`);$('#nx').onclick=next};
+/* N-M1 (onderbouwing-nederlands.md 2.1, scenes.md "Een woord aantikken is een keuze"): in een tekst of gesprek is een woord van het
+   hoofdstuk aan te tikken. Eerst kiezen uit drie betekenissen in de steuntaal, dan de juiste met de omschrijving. Een juiste keuze is een
+   ontmoeting: gezien en de vorm tik (passief: geen groei, geen fout; tik telt niet voor bloei). Zonder steuntaal (examenvorm) niet. */
+function tikPack(sc){return PACKS.find(p=>(p.scenes||[]).includes(sc))||null}
+function tikWords(pack){const L=supL(),m={},list=[];if(pack){(pack.requires||[]).forEach(id=>{const r=PACKS.find(o=>o.id===id&&o.learn===pack.learn);if(r)list.push(...(r.items||[]))});list.push(...(pack.items||[]))}   /* ook woorden uit eerdere pakketten (requires): die kunnen nog onbekend zijn */
+  list.forEach(x=>{if(x&&(x.kind==='word'||x.kind==='phrase')&&typeof x.w==='string'&&!/\s/.test(x.w.trim())&&x.tr&&x.tr[L])m[x.w.trim().toLowerCase()]=x});return m}
+function tikNoSup(q){return !!(q.hard||(q.sc&&q.sc.nosup)||(!(typeof LES!=='undefined'&&LES)&&(q.role==='instap'||q.role==='controle')))}   /* gelijk aan nos in sc_q: waar de steuntaal bewust uit staat, ook niet via aantikken (codereview N-M1 2) */
+function tikify(root,q){if(!root||!q||nlOnly()||tikNoSup(q))return;const sc=q.sc,skip=q.items,pack=tikPack(sc),W=tikWords(pack);root._tkDone=root._tkDone||new Set();(skip||[]).forEach(id=>{for(const k in W)if(W[k].id===id)delete W[k]});   /* skip: wat de vraag zelf oefent, anders verraadt aantikken het antwoord */if(!Object.keys(W).length)return;
+  root.querySelectorAll('.nl,[lang="nl"]').forEach(el=>{if(el.closest('.sup,button,.tikp'))return;
+    const walk=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),nodes=[];let n;while((n=walk.nextNode()))if(!n.parentElement.closest('button,.sup'))nodes.push(n);
+    nodes.forEach(tn=>{const txt=tn.nodeValue,re=/[\p{L}]+/gu;let m,last=0,frag=null;
+      while((m=re.exec(txt))){const x=W[m[0].toLowerCase()];if(!x)continue;frag=frag||document.createDocumentFragment();frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+        const b=document.createElement('button');b.type='button';b.className='tw';b.dataset.tw=x.id;b.textContent=m[0];frag.appendChild(b);last=m.index+m[0].length}
+      if(frag){frag.appendChild(document.createTextNode(txt.slice(last)));tn.parentNode.replaceChild(frag,tn)}})});
+  let panel=root.querySelector('.tikp');if(!panel){panel=document.createElement('div');panel.className='tikp';panel.setAttribute('aria-live','polite');const at=root.querySelector('.note,.bubble');(at||root).insertAdjacentElement(at?'afterend':'beforeend',panel)}
+  root.querySelectorAll('.tw').forEach(b=>b.onclick=e=>{e.stopPropagation();const x=Object.values(W).find(o=>o.id===b.dataset.tw);if(!x)return;root.querySelectorAll('.tw.on').forEach(o=>o.classList.remove('on'));b.classList.add('on');tikAsk(panel,x,W,root._tkDone)})}
+function tikAsk(panel,x,W,done){done=done||new Set();const L=supL(),mine=x.tr[L],pool=shuffle(Object.values(W).filter(o=>o.id!==x.id&&o.tr[L]!==mine&&o.kind===x.kind)),others=[];
+  for(const o of pool){if(others.length>=2)break;if(!others.some(y=>y.tr[L]===o.tr[L]))others.push(o)}
+  if(others.length<2)for(const o of shuffle(NL)){if(others.length>=2)break;const tr=o.tr&&o.tr[L];if(tr&&tr!==mine&&o.id!==x.id&&!others.some(y=>(y.tr&&y.tr[L])===tr))others.push(o)}
+  const opts=shuffle([x,...others]);let first=true;
+  panel.innerHTML=`<div class="note sky stack-sm"><span>${T('tik.ask',{w:esc(x.w)})}</span><div class="choices one">${opts.map(o=>`<button class="choice" data-tk="${esc(o.id)}" lang="${LANG[L].tag}">${esc(o.tr[L])}</button>`).join('')}</div><div class="tik-fb"></div></div>`;
+  panel.querySelectorAll('[data-tk]').forEach(c=>c.onclick=()=>{const ok=c.dataset.tk===x.id;c.classList.add(ok?'right':'wrong');
+    if(!ok){first=false;done.add(x.id);c.disabled=true;return}   /* fout gekozen: dit woord telt op dit scherm niet meer als ontmoeting, ook niet na opnieuw tikken */
+    panel.querySelectorAll('[data-tk]').forEach(o=>o.disabled=true);say(x.art?x.art+' '+x.w:x.w);
+    if(first&&!done.has(x.id)&&STORE==='ok'&&!(typeof LES!=='undefined'&&LES)&&S.items[x.id]&&S.items[x.id].reps>0)review(x.id,true,'tik',null,true);done.add(x.id);   /* alleen een woord dat al in de herhaling zit (een nieuw woord niet verweesd achterlaten, codereview N-M1 1); één keer per woord per scherm */
+    const fb=panel.querySelector('.tik-fb');fb.tabIndex=-1;fb.innerHTML=`<p><b>${esc((x.art?x.art+' ':'')+x.w)}</b> = <span lang="${LANG[L].tag}">${esc(mine)}</span></p>${x.def?`<p class="small">${esc(x.def)}</p>`:''}`;try{fb.focus({preventScroll:true})}catch(e){}})}   /* de focus naar de uitleg: de knoppen gaan uit */
 H.sc_look=q=>{const sc=q.sc,seen=new Set(),min=q.st.min||1;
   scFrame(q,`<div class="card stack">${T('scene.lookTip')}${scArt(sc)}<div id="lk" class="note sky" aria-live="polite">${T('scene.lookStart')}</div></div><button class="btn btn-leaf" id="nx" disabled>${T('btn.next')}</button>`);
   app.querySelectorAll('.s-hot').forEach(g=>{const go=()=>{const th=sc.art.things[+g.dataset.i];if(!th)return;g.classList.add('on');seen.add(g.dataset.i);
@@ -2765,7 +2804,7 @@ H.sc_look=q=>{const sc=q.sc,seen=new Set(),min=q.st.min||1;
 H.sc_talk=q=>{const sc=q.sc,tu=q.tu;let first=true,done=false;const opts=shuffle(tu.opts.map((o,i)=>({...o,i})));
   scFrame(q,`<div class="card stack">${scArt(sc,{[q.st.who]:'talk',...(q.st.looks||{})})}<div class="bubble"><span class="who">${esc(q.st.who||'')}</span>${scT(tu.them)}</div>
    <div class="choices one">${opts.map(o=>`<button class="choice" data-o="${o.i}">${esc(o.t)}</button>`).join('')}</div><div id="fb"></div></div>`);
-  setTimeout(()=>say(scP(tu.them)),300);
+  setTimeout(()=>say(scP(tu.them)),300);tikify(app.querySelector('.card'),q);   /* N-M1 */
   app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{if(done)return;const o=tu.opts[+b.dataset.o];
     if(o.r==='ok'){done=true;b.classList.add('right');score(first,10);practiced(q,first?true:'retry','talk');say(o.t);$('#fb').innerHTML=fbBox(true,scT(o.why),'')+nextBtn();$('#nx').onclick=next}
     else{first=false;b.classList.add('wrong');b.disabled=true;scFault(q,o.err);$('#fb').innerHTML=fbBox(false,scT(o.why),'')}})};
@@ -2773,6 +2812,7 @@ H.sc_read=q=>{const st=q.st,qq=q.qq;let first=true;
   scFrame(q,`<div class="card stack">${st.type==='read'?`<div class="note">${scT(st.text)}</div>${scSrc(st)}`:speakBtns('sp','sps')}<p class="prompt">${scT(qq.q)}</p>
    <div class="choices one">${qq.o.map((o,i)=>`<button class="choice" data-o="${i}">${scT(o)}</button>`).join('')}</div><div id="fb"></div></div>`);
   if(st.type==='listen'){setTimeout(()=>say(st.say),300);$('#sp').onclick=()=>say(st.say);$('#sps').onclick=()=>say(st.say,true)}
+  if(st.type==='read')tikify(app.querySelector('.card'),q);   /* N-M1 */
   app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=+b.dataset.o===qq.a;b.classList.add(ok?'right':'wrong');
     if(ok){score(first,10);practiced(q,first?true:'retry',st.type);$('#fb').innerHTML=fbBox(true,scT(qq.why),'')+nextBtn();$('#nx').onclick=next}
     else{first=false;b.disabled=true;$('#fb').innerHTML=fbBox(false,scT(qq.why),'')}})};
@@ -2823,6 +2863,7 @@ H.sc_q=q=>{const sc=q.sc,qq=q.qq,id=q.items[0],typeIt=q.hard&&qq.answer!=null&&S
    ${opts?`<div class="choices one">${opts.map(o=>`<button class="choice" data-o="${o.i}">${esc(o.t)}</button>`).join('')}</div>`:`<input id="ans" class="input" lang="nl" ${f==='number'?'inputmode="decimal"':''} autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">${hintOk?`<div class="hint-row"><button class="hintbtn" id="hint">${T('btn.hint')}</button><span class="hintshow" id="hs" aria-live="polite"></span></div>`:''}<button class="btn btn-leaf" id="chk">${T('btn.check')}</button>`}<div id="fb"></div></div>`);
   if(hintOk&&$('#hint'))$('#hint').onclick=()=>{if(hint>=2)return;$('#hs').innerHTML=scT(qq.hint[hint]);hint++;if(hint>=2)$('#hint').disabled=true};   // hint in twee stappen (A6): goed daarna telt als 'retry'
   if(q.ctx==='listen'){setTimeout(()=>say(q.st.say),300);$('#sp').onclick=()=>say(q.st.say);$('#sps').onclick=()=>say(q.st.say,true)}
+  if(q.ctx==='read'&&q.sc&&!nos)tikify(app.querySelector('.card'),q);   /* N-M1 */
   if(f==='hear'||f==='hear-type'){setTimeout(()=>say(heard),300);$('#hp').onclick=()=>say(heard);$('#hps').onclick=()=>say(heard,true)}
   const stand=qq.standpunt===true;   /* standpunt: geen goed of fout, alleen de uitleg bij de eigen keuze */
   const right=msg=>{if(stand){done=true;$('#fb').innerHTML=`<div class="note sky">${msg}</div>`+nextBtn();$('#nx').onclick=next;return}done=true;if(hint)first=false;score(first,10);if(first&&SCN&&SCN.sc===sc)SCN.good++;if(q.role==='controle'&&SCN)SCN.ctrl=SCN.ctrl!==false&&first;if(q.role==='instap'&&first)scKnow(q);else if(!inst)practiced(q,first?true:'retry',SCF[f]);$('#fb').innerHTML=fbBox(true,msg,'')+nextBtn();$('#nx').onclick=next};

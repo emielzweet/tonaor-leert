@@ -16,6 +16,18 @@ Bijgewerkt: 14 november 2026.
 - Uitleg (speler, drie ingangen, 32 uitleggen) en het weekdoel (standaard 10 uur, merktekens op 3,5, 7 en 10 uur).
 - Fase 3, het herhaalmodel (docs/herhaalmodel.md), inclusief de verwerkte review: live sinds 13 november 2026.
 - Na gebruik: herhaling met tijd ertussen, dagbudget voor nieuwe woorden (eerst als vraag), Bijsturen op Ik, na de ronde te makkelijk/goed/te moeilijk en leuk/saai, vertaling melden, ervaringstest: live sinds 14 november 2026, cache v2-34 (t/m bad647d).
+- Werkorder stap 5, eerste deel (docs/ontwerp-stap5a.md), cache v2-66:
+  - N-M1: een woord in een lees- of gesprekstekst aantikken geeft eerst drie betekenissen in de steuntaal, daarna het woord met de omschrijving. Een goede keuze is een ontmoeting, alleen voor een woord in de herhaling. Niet zonder steuntaal.
+  - R-M3: in de herhaling nooit twee sommen met dezelfde aanpak achter elkaar (veld `approach`, anders de vorm). Nieuw mag geblokt.
+  - Tests: tools/test-tik.mjs en test-samensteller.
+  - Codereview (Opus): 2 blokkerend (een nieuw woord verweesd, aantikken waar de steuntaal bewust uit staat) en 6 klein, verwerkt.
+  - Drie vragen voor de ontwerpsessie staan in het ontwerp.
+- Lesstof in redactie/uit (niet in content, wacht op een volgende sessie; gestopt om tokens te sparen, besluit eigenaar 15 november 2026):
+  - nl-buren: review 1 verbeteren (3 blokkerend), hersteld, nacontrole nog te doen.
+  - Lessen 21 tot 26 (tweede reeks): review 1 (4 goed, 2 verbeteren), hersteld, nacontrole loopt of nog te doen.
+  - Lessen 27 tot 32: geschreven, review loopt.
+  - Lessen 33 tot 40: nog niet geschreven.
+  - Uitbrengen kan pas als alle draden bestaan.
 - Werkorder stap 4, de route met tijd (docs/route-en-prognose.md, bouwontwerp docs/ontwerp-stap4.md), cache v2-65:
   - Vandaag toont de eerstvolgende poort met maand, bandbreedte en hoeveel eerder of later dan vorige maand.
   - Route toont alle poorten (tot stap 10 één datum voor programma I, met de vier onderdelen eronder), het tempo naast het weekdoel, 'wat als' met een schuif, per vak de blokken met duur en voortgang, tijd buiten de app (hooguit 60 minuten per dag) en één keer per maand waarom de datum verschoof.
@@ -195,6 +207,10 @@ De ervaringstest (`node tools/test-ervaring.mjs --streng`): met thema 1 en de 10
 ## Leidend plan
 
 docs/didactisch-plan.md is het fundament (leeruitkomsten per jaar, leerweg, onderbouwing met bronnen, eisen M1 tot M12 aan de motor). docs/masterplan.md (14 november 2026): de eisen die onverminderd gelden, de catalogus van werkvormen, de stappen 1 tot 13 met wie bouwt en wanneer iets klaar is, en de ijkmomenten G1 tot G5 van de ontwerpsessie. De volgorde daar vervangt de volgorde hieronder en die in docs/bouwplan.md en docs/plan-herzien.md.
+
+## Open punten per stap van de werkorder
+
+- **Stap 10 (toetsen die bijsturen):** de bijstelling na een afgerond blok (`RC.adjusted`, `S.blockAdj` per baan) gaat werken zodra een blok als af gemarkeerd wordt. De factor geldt dan alleen voor de blokken ná het afgeronde blok (codereview route 9, akkoord ontwerpsessie 15 november 2026).
 
 ## Open besluiten voor de eigenaar
 

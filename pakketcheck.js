@@ -244,6 +244,7 @@
       if (e.data && e.data.lang != null && e.data.lang !== 'en') err(w + ': data.lang kent alleen "en"');
       if (!e.data && !e.gen) err(w + ': data of gen ontbreekt');
       if (e.fade != null && [1, 2, 3].indexOf(e.fade) < 0) err(w + ': fade moet 1 (voorbeeld), 2 (laatste stap zelf) of 3 (helemaal zelf) zijn');
+      if (e.approach != null && (typeof e.approach !== 'string' || !/^[a-z-]{1,30}$/.test(e.approach))) err(w + ': approach is een korte naam van de aanpak (kleine letters en -), bijvoorbeeld procent of tellen');   // R-M3: zonder approach geldt de vorm
       if (e.gen) { genCheck(e, w); return; }
       exData(e, w, d);
       if (e.fb) { tekst(e.fb.ok, w + '.fb.ok', true); tekst(e.fb.no, w + '.fb.no', true); }
