@@ -145,6 +145,86 @@ Verwijzingen als kijk-, lees- en luisteropdrachten, buiten de app geopend. Uit k
 - Rechten: alle lesstof eigen werk, bronnen bij de kennislessen, voorwaarden van woordenlijsten en lettertypen vastgelegd.
 - Een duidelijke uitleg over gegevens: wat op het toestel blijft, wat naar de begeleider gaat, hoe je alles wist.
 
+## 10. Tweede reeks (14 november 2026, op de vraag "heb je nog meer?")
+
+### Leren
+
+10.1 **Zeg het tegen het toetsenbord.** De telefoon heeft een dicteerknop op het toetsenbord. Laat de leerder een zin inspreken in een invulveld met het Nederlandse toetsenbord: schrijft de telefoon op wat ze bedoelde, dan was het verstaanbaar. Gratis terugkoppeling op uitspraak, zonder server en zonder sleutel. De app beoordeelt alleen of de tekst overeenkomt. *K; bouw; uitproberen op het toestel.*
+
+10.2 **Klemtoon zichtbaar.** Bij elk woord van meer dan één lettergreep de beklemtoonde lettergreep onderstreept, in de woordkaart en in de tikbare tekst. Voor wie uit een toontaal komt, is klemtoon niet vanzelfsprekend, en een verkeerde klemtoon maakt een woord onverstaanbaar. *M; redactielijn (veld per woord) en bouw.*
+
+10.3 **De en het een vaste kleur.** Overal in de app krijgt een *de*-woord dezelfde rand of stip en een *het*-woord een andere. Zo wordt het lidwoord mee onthouden zonder extra oefening. Binnen het palet, niet alleen met kleur (ook een vorm, voor wie kleuren slecht ziet). *K; ontwerp en bouw.*
+
+10.4 **Een eigen ezelsbruggetje.** Bij elk woord kan de leerder een eigen aantekening zetten, in welke taal ook: waar het op lijkt, een zin die helpt. Zelf bedachte geheugensteuntjes werken beter dan gegeven. *K; bouw.*
+
+10.5 **Getallen, tijden en bedragen verstaan en zeggen.** Een eigen lijn: *vijfentwintig* (eerst de vijf), *half drie*, data, telefoonnummers, prijzen, jaartallen. Als dictee (horen en intikken) en als spreekoefening. Hoort bij Nederlands én rekenen, en komt in elk luisterexamen voor. *M; bouw (wisselende getallen bestaan al) en redactielijn.*
+
+10.6 **Een zinsbouwtafel.** De uitleg van "het werkwoord op de tweede plek" als iets wat je kunt aanraken: schuif een zinsdeel naar voren en zie het werkwoord blijven staan en het onderwerp verspringen; hetzelfde voor de bijzin (werkwoord naar achteren) en de vraag. Eén werktuig voor alle woordvolgorde, van thema 1 tot B2. *M; ontwerp en bouw.*
+
+10.7 **Een tijdlijn voor werkwoordstijden** en de onregelmatige werkwoorden als eigen reeks in groepjes die op elkaar lijken (*zingen, zong, gezongen*; *drinken, dronk, gedronken*). Het Thais kent geen tijdsvormen op het werkwoord; dit is het grootste grammaticale gat. *M; ontwerp, redactielijn en bouw.*
+
+10.8 **Signaalwoorden kleuren.** In leesteksten de woorden die een verband aangeven (*omdat, maar, dus, hoewel, daarna*) laten aantikken en benoemen. Het examen vraagt naar het verband tussen delen van een tekst. *K; redactielijn en bouw.*
+
+10.9 **De dagelijkse vijf.** Vijf gemengde vragen in examenvorm, elke dag, twee minuten: één lezen, één luisteren, één woord, één rekenen, één Engels of algemene kennis. Maakt de examenvorm gewoon en geeft een eerlijke dagmeting. *K; bouw; vragen via de redactielijn.*
+
+10.10 **Mijn fouten, verbeterd.** Een bladzijde met zinnen die de leerder zelf fout schreef of zei, naast de goede versie. Eigen fouten zijn de persoonlijkste lesstof. *K; bouw.*
+
+10.11 **Het vervolgverhaal als luisterserie.** Elke dag een aflevering van twee minuten, om te luisteren en mee te lezen, met een open eind. Nieuwsgierigheid naar hoe het verder gaat is een eerlijke reden om morgen terug te komen. *M; redactielijn.*
+
+10.12 **Het woordenboek leren gebruiken.** Zoeken op alfabet, de grondvorm van een werkwoord vinden, afkortingen in een woordenboek lezen. Bij beide examens mag een papieren woordenboek; wie er niet snel in kan zoeken, heeft er niets aan. *K; redactielijn.*
+
+### Rekenen en Engels
+
+10.13 **Een rekenkaart in de app.** Eén naslagscherm met de ankers: het metriek stelsel, helft, kwart en tiende als procent, de stappen van een vraagstuk. Te openen vanuit elke som. *K; ontwerp en bouw.*
+
+10.14 **Schatspellen zonder sommen.** Wat is meer, wat past, hoeveel ongeveer: rekenen dat begint met gevoel voor grootte en zonder angst. *K; bouw.*
+
+10.15 **Woorden die op elkaar lijken, Nederlands en Engels.** Een spel dat de brug laat zien (*water, huis en house, appel en apple*) en de valse vrienden apart zet. *K; redactielijn en bouw.*
+
+### Wat een mbo-opleiding verder vraagt
+
+10.16 **Hoe werkt Nederland.** Een reeks in algemene ontwikkeling over de dingen die je moet regelen: de inlogcode van de overheid, de huisarts, belasting en toeslagen, verzekeringen, de gemeente, en vooral het onderwijs zelf: wat is mbo, wat is een stage, wat is studiefinanciering. *M; redactielijn, met bronnen.*
+
+10.17 **Leren leren.** Plannen, aantekeningen maken, een tekst samenvatten, een toets voorbereiden, een korte presentatie houden. Wie na jaren weer naar school gaat, heeft dit nodig naast de taal. *M; redactielijn.*
+
+10.18 **De computer voor school.** Typen met tien vingers in het Nederlands, een e-mail aan een docent, een document opmaken, inloggen op een leeromgeving. Als scènes en als typespel. *M; redactielijn en bouw.*
+
+10.19 **Het toelatingsgesprek oefenen.** Scènes voor de intake bij de school: vertellen wie je bent, waarom deze opleiding, wat je al kunt. Met opnemen en terugluisteren. *K; redactielijn.*
+
+10.20 **Loopbaan en burgerschap.** Het mbo toetst ook deze twee. De onderwerpen (werk zoeken, rechten en plichten, gezondheid, politiek) vallen samen met de thema's van het Engelse examen en met algemene ontwikkeling: één reeks dient drie doelen. *M; redactielijn.*
+
+### Het product
+
+10.21 **Opzoeken.** Eén zoekveld over alles: woorden, uitleg, lessen, eigen zinnen. En een naslag: het grammatica-overzicht, de werkwoordenlijst, de standaardzinnen per situatie, de rekenkaart. *M; bouw.*
+
+10.22 **Bewaar voor later** en **print.** Een woord, zin of les bewaren; de woorden van de week afdrukken voor op de koelkast. *K; bouw.*
+
+10.23 **Een meekijkpagina in de browser.** Hetzelfde als het scherm van de begeleider, maar op elke telefoon of computer te openen met een eigen koppelcode (issue #5). Nodig voor een tweede begeleider en voor gebruik door anderen. *M; bouw.*
+
+10.24 **De steuntaal ook voorgelezen.** De uitleg in het Thais laten voorlezen door de Thaise stem van het toestel, naast het Nederlands. *K; bouw.*
+
+10.25 **Proefonderdelen.** Een schakelaar op Ik waarmee nieuwe onderdelen eerst aan kunnen voor wie wil, en pas later standaard worden. Zo komt niets nieuws ongevraagd in de les. *K; bouw.*
+
+10.26 **Een proefversie naast de gewone.** Een tweede adres met dezelfde app en een eigen, losse opslag met voorbeeldvoortgang. Daar kijkt de ontwerpsessie bij een ijkmoment, en kan de eigenaar een nieuwe versie zien vóór de leerder haar krijgt. *K tot M; bouw; de opslag van de proefversie mag nooit die van de leerder raken.*
+
+10.27 **Zeg het tegen de makers.** Naast "fout melden" een vrije opmerking of wens, die bij de begeleider aankomt. *K; bouw.*
+
+10.28 **Even pauze.** Na een half uur achter elkaar stelt de app een korte pauze voor; verspreid leren werkt beter dan lang achter elkaar. Geen dwang. *K; bouw.*
+
+10.29 **Tolerant bij typen.** Een antwoord niet fout rekenen om een hoofdletter, een spatie, een trema of een accent, tenzij de oefening over spelling gaat; automatische correctie en hoofdletters uit in invulvelden; het juiste taalkenmerk voor de voorleesstem. *K; bouw.*
+
+10.30 **De telefooncheck van drie minuten.** Een vaste lijst voor de eigenaar na een grote update: openen vanaf het beginscherm, geluid, opnemen, een les afmaken, de koppeling. Wat alleen op een echte telefoon te zien is, staat erop. *K; ontwerp.*
+
+10.31 **Een toets op trucs.** Bij elke release een korte lijst: pakt iets iets af, wekt iets schuld op, zet iets onder tijdsdruk, hangt iets aan punten? De grenzen staan in het masterplan; dit bewaakt ze. *K; ontwerp; de reviewer loopt hem na.*
+
+### Bij de eigenaar
+
+10.32 **Een docent Nederlands als tweede taal** die de eerste drie hoofdstukken en het didactisch plan één keer naleest. Eén middag van iemand uit het vak is meer waard dan veel extra onderzoek.
+
+## Besluit van de eigenaar
+
+Op 14 november 2026 heeft de eigenaar gezegd dat alles in dit document mag worden uitgevoerd. Wat geld, een sleutel of een mens van buiten vraagt (hoofdstuk 8 en 10.32) blijft bij hem.
+
 ## Hoe dit in het werk past
 
 De bouwsessie neemt de voorstellen op in de volgorde van `werkorder.md`, op deze plekken:
@@ -155,5 +235,9 @@ De bouwsessie neemt de voorstellen op in de volgorde van `werkorder.md`, op deze
 - **Bij de redactielijn (stuk 3):** 6.3, 6.4, 6.2, en in de wachtrij 3.1, 2.2, 2.3, 2.5, 2.6, 3.3, 3.4.
 - **Bij de route (stuk 4):** 4.1, 4.2, 2.11.
 - **Als eigen stukken daarna:** 2.1, 2.4, 5.4, 5.5, 5.6, 5.7, 5.8, 2.13, 2.14, 3.2, 6.5, 6.6, 6.7.
-- **Bij het scherm van de begeleider (stuk 12):** 1.1 (b).
+- **Bij het scherm van de begeleider (stuk 12):** 1.1 (b), 10.23, 10.27.
+- **Uit de tweede reeks, meteen (klein en veilig):** 10.29, 10.3, 10.24, 10.28, 10.25.
+- **Uit de tweede reeks, bij de werkvormen (stuk 6):** 10.1, 10.5, 10.6, 10.7, 10.8, 10.13, 10.14, 10.2.
+- **Uit de tweede reeks, bij de redactielijn (stuk 3):** 10.11, 10.12, 10.15, 10.16, 10.17, 10.18, 10.19, 10.20, en de vragen voor 10.9.
+- **Uit de tweede reeks, als eigen stukken:** 10.4, 10.9, 10.10, 10.21, 10.22, 10.26; 10.30 en 10.31 levert de ontwerpsessie.
 - **Wacht op de eigenaar:** hoofdstuk 8.
