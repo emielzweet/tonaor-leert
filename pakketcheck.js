@@ -404,7 +404,7 @@
             if (!Array.isArray(st.q) || st.q.length < 2) err(v + ': minstens twee oefeningen'); else st.q.forEach(function (qq, qi) { vraag(qq, v + '.q[' + qi + ']'); }); }
           if (st.type === 'end') { if (st.next) tekst(st.next, v + '.next'); if (st.real) tekst(st.real, v + '.real'); }
         });
-        if (!doen) err(w + ': minstens één stap waarin de leerder iets doet of maakt (do of make)');
+        if (!doen && p.type !== 'les') err(w + ': minstens één stap waarin de leerder iets doet of maakt (do of make)');   // een losse les: geen stramien
         if (sc.steps[sc.steps.length - 1].type !== 'end') err(w + ': de laatste stap is end');
       });
     }

@@ -149,7 +149,7 @@ for (const s of scenes) {
     }
     if (x.type === 'do') { txt(x.ask, ws + '.ask'); txt(x.why, ws + '.why'); if (x.answer == null && !x.gen && !x.opts) E(ws, 'answer, opts of gen ontbreekt'); }
     if (x.type === 'make') { txt(x.ask, ws + '.ask'); if (typeof x.frame !== 'string' && !Array.isArray(x.frame)) E(ws, 'frame (schrijfkader) ontbreekt'); if (typeof x.model !== 'string') E(ws, 'model (voorbeeldantwoord) ontbreekt'); if (!Array.isArray(x.checklist) || x.checklist.length < 2) E(ws, 'checklist met minstens twee punten ontbreekt'); }
-    if (x.type === 'read') { if (!x.text || typeof x.text.nl !== 'string') E(ws, 'text.nl ontbreekt'); if (!Array.isArray(x.q) || x.q.length < 2) E(ws, 'minstens twee vragen'); if (s.subject === 'kn' && (!Array.isArray(x.sources) || !x.sources.length)) E(ws, 'een kennisles heeft bronnen nodig (sources)'); }
+    if (x.type === 'read') { if (!x.text || typeof x.text.nl !== 'string') E(ws, 'text.nl ontbreekt'); if (!LES && (!Array.isArray(x.q) || x.q.length < 2)) E(ws, 'minstens twee vragen'); if (s.subject === 'kn' && (!Array.isArray(x.sources) || !x.sources.length)) E(ws, 'een kennisles heeft bronnen nodig (sources)'); }
     if (x.type === 'end') { txt(x.next, ws + '.next'); txt(x.real, ws + '.real'); }
   });
   // diepte (docs/scenes.md, Diepte en diagnose)
