@@ -47,6 +47,23 @@ Alle waarden van de motor staan sinds deze stap in `MOTOR` (bovenaan het lesblok
 - Wacht op `docs/eindtermen.md`. Dan: per eindterm de onderdelen en vragen die ernaar verwijzen (`goals` bij hoofdstuk en scène; later ook bij toetsvragen).
 - Beheersing per eindterm = het deel van die onderdelen dat beheerst is (M9), en de uitslag van de toetsvragen voor die eindterm (stap 8), samen in één getal per eindterm. De route (stap 5) rekent met de eindtermen die nog openstaan en het tempo van de laatste weken; zo hangt de examendatum aan beheersing, niet alleen aan uren (masterplan G3).
 
+## Rekenen: R-M1 tot R-M8
+
+Uit `docs/onderbouwing-rekenen.md` hoofdstuk 3, aanvullend op M1 tot M12. Stand in de code:
+
+| # | Eis | Wat er is | Wat ontbreekt |
+|---|---|---|---|
+| R-M1 | per rekenvaardigheid de laag (situatie, model, tabel, som), op en terug | rekenvaardigheden als onderdeel (`kind: "skill"`), afbouw `fade` 1-2-3 bij korting | de laag per vaardigheid; hoort bij M5 (trede): voor een vaardigheid zijn de treden situatie, model, tabel, som |
+| R-M2 | hulp afbouwen van voorbeeld naar zelf | `fade` 1-2-3 in `chooseEx` (alleen korting) | voor alle rekenonderwerpen; komt met de lesstof via de redactielijn |
+| R-M3 | soorten sommen mengen zodra aangeleerd; nooit twee sommen met dezelfde aanpak achter elkaar | sommen met wisselende getallen (`GEN`), dezelfde vorm hooguit twee keer achter elkaar | "dezelfde aanpak" kennen: een veld `approach` per oefening, en de samensteller die daarop mengt |
+| R-M4 | drie soorten fouten: vraag gelezen, model gekozen, rekenen | foutsoorten `lezen`, `rekenstap`, `getal` | een eigen soort voor het model (voorstel `model`, toe te voegen aan de lijst in `docs/scenes.md`) en per soort een eigen reactie: taal (lezen), voorbeeld (model), extra som (rekenen) |
+| R-M5 | de taal van een opgave onder het taalniveau | de poort controleert de zinslengte niet | een controle in de poort op zinslengte en aantal woorden per opgave |
+| R-M6 | uitkomst en stappen beoordelen, niet de methode; marge bij "ongeveer" | `accept` (andere schrijfwijzen); `number` met exacte vergelijking | een marge (`tol`) bij `number`; tussenstappen als eigen vraag (rekenen in stappen) |
+| R-M7 | meten per domein en niveau van de officiële eisen | de codes per domein en niveau in `docs/eindtermen.md` | hoort bij M10 |
+| R-M8 | de begeleider ziet welk onderwerp blijft hangen, met een gesprekskaart | het foutprofiel (`S.errs`) | het scherm van de begeleider (masterplan stap 9), met een wekelijkse gesprekskaart op basis van het foutprofiel |
+
+Vragen aan de ontwerpsessie: mag de soort fout `model` erbij (R-M4), en wordt `tol` (marge) een veld van een `number`-vraag (R-M6)?
+
 ## Wat kan breken
 
 - M12 en M5 veranderen de opslag: migratie 6 → 7 met reservekopie, alleen toevoegen. De omvang van de opslag wordt bewaakt in `test-migratie` (een nagebootste opslag van drie jaar moet onder 1 MB blijven).

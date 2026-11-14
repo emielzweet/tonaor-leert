@@ -43,19 +43,20 @@ Een code bestaat uit vak, niveau of programma, vaardigheid en een volgnummer: `n
 
 **Kader.** Sinds 1 augustus 2022 gelden in het mbo eigen rekenniveaus: entree en basisberoepsopleiding mbo-rekenniveau 2, vakopleiding niveau 3, middenkader- en specialistenopleiding niveau 4. Bron [R1] artikel 3 onder h tot en met l. **Gecontroleerd: ja.** De Rijksoverheid [R2] zegt hetzelfde voor mbo 2, 3 en 4, maar dat de entreeopleiding geen aparte rekeneisen heeft; voor de oude cohorten gold 3F voor mbo 4 en 2F voor mbo 2 en 3. **Gecontroleerd: ja.**
 
-Het einddoel van de app (mbo 4) is dus **mbo-rekenniveau 4**, niet "3F". De beschrijving per niveau staat in bijlage 3 van [R1], in vijf domeinen. **Gecontroleerd: deels** (de vijf domeinen en een deel van domein 5 zijn gelezen; de beschrijvingen per niveau van domein 1 tot en met 4 nog niet woordelijk).
+Het einddoel van de app (mbo 4) is dus **mbo-rekenniveau 4**, niet "3F". De eisen staan in het Besluit van 1 februari 2022 (Staatsblad 2022, 62), bijlage 3 van [R1], in vijf domeinen; getallen en bewerkingen zijn geen eigen domein maar ondersteunende vaardigheden in elk domein. De beschrijving per domein en niveau hieronder komt uit `docs/onderbouwing-rekenen.md` hoofdstuk 1 (ontwerpsessie; bron Staatsblad 2022, 62 en het advies van de Expertgroep herijking rekeneisen mbo, 2020). **Gecontroleerd: deels** (door de bouwsessie: de vijf domeinen en de koppeling aan de opleidingen; de tekst per niveau is overgenomen uit de onderbouwing).
 
-| Code (groep) | Domein | Bron | Gecontroleerd |
-|---|---|---|---|
-| rekenen-4-grootheden | Grootheden en eenheden | [R1] bijlage 3, domein 1 | deels |
-| rekenen-4-ruimte | Oriëntatie in de twee- en driedimensionale wereld | [R1] bijlage 3, domein 2 | deels |
-| rekenen-4-verhoudingen | Verhoudingen herkennen en gebruiken | [R1] bijlage 3, domein 3 | deels |
-| rekenen-4-procenten | Procenten gebruiken | [R1] bijlage 3, domein 4 | deels |
-| rekenen-4-informatie | Omgaan met kwantitatieve informatie: gegevens aflezen uit formulieren, schema's, tabellen en grafische voorstellingen | [R1] bijlage 3, domein 5 | deels |
+| Code (groep) | Domein | Niveau 2 | Niveau 3 | Niveau 4 |
+|---|---|---|---|---|
+| rekenen-N-grootheden | Grootheden en eenheden | referentiematen voor lengte, gewicht en tijd; de juiste eenheid herkennen; meten en aflezen; vuistregels en eenvoudige woordformules | samengestelde eenheden (km per uur, km per liter); de gemeten waarde interpreteren | veel referentiematen; zelf grootheid en eenheid kiezen; het effect van verkeerd meten bepalen |
+| rekenen-N-ruimte | Oriëntatie in twee en drie dimensies | een route volgen en beschrijven; een eenvoudige kaart of werktekening lezen; omtrek, oppervlakte en inhoud schatten, meten of berekenen | formules gebruiken; een schets maken; eenheden omzetten | hoeken, coördinaten en symbolen; ruimtelijke objecten en platte tekeningen verbinden |
+| rekenen-N-verhoudingen | Verhoudingen | verhoudingen herkennen; een aanpak kiezen (verhoudingstabel); omzetten naar breuk, deling of percentage | samengestelde grootheden als verhouding zien | de vaste factor gebruiken; schakelen tussen verhouding, breuk, decimaal getal en percentage |
+| rekenen-N-procenten | Procenten | "deel van" herkennen; toe- en afname met tienvouden en enkele vijfvouden; 50, 25 en 10 procent als helft, kwart en tiende | weten wat 100 procent is; "inclusief 21 procent btw" als 121 procent; van deel naar geheel met eenvoudige percentages | de structuur doorzien; terugrekenen naar 100 procent; samenhang met breuken en factoren |
+| rekenen-N-informatie | Omgaan met kwantitatieve informatie | aflezen uit formulieren, tabellen en grafieken; kritisch bekijken; eenvoudige statistische grootheden | gegevens uit meerdere bronnen combineren; absolute en relatieve waarden | analyseren, ook op betrouwbaarheid; conclusies trekken; zelf vragen formuleren |
+| rekenen-steun | Ondersteunende vaardigheden (in elk domein) | getallen ordenen, handig rekenen met nullen, rekenen met tijd, de vier bewerkingen met hele en decimale getallen, schatten en afronden, eenheden omzetten; een deel paraat | idem | idem |
 
-Dezelfde groepen bestaan voor niveau 2 en 3 (`rekenen-2-…`, `rekenen-3-…`): dat zijn de tussenstappen. Het referentiekader 1F, 2F en 3F (bijlage 2 van [R1], vier domeinen: getallen, verhoudingen, meten en meetkunde, verbanden) blijft bruikbaar als onderliggende leerlijn voor de basis; het eerste onderzoek beschreef die per domein. Wat het mbo-rekenexamen zelf vraagt (duur, rekenmachine, cesuur): niet gevonden; het is een examen van de school [R2].
+In een code staat N voor het niveau: `rekenen-2-procenten`, `rekenen-4-procenten`. Fijnere eindtermen per cel krijgen een volgnummer (`rekenen-2-procenten-1`).
 
-**Eerst doen:** bijlage 3 van [R1] woordelijk lezen en per domein de eindtermen voor niveau 2, 3 en 4 hier opnemen, met de vier domeinen van het referentiekader ernaast.
+**Het examen** is een instellingsexamen; de school bepaalt duur en vorm. Volgens de handreiking bij de voorbeeldexamens (`docs/onderbouwing-rekenen.md`, hoofdstuk 1) mag de rekenmachine altijd, leveren tussenstappen punten op, en is bij sommige vragen "ongeveer" goed. Een rekenkaart is voor het mbo niet bevestigd. De vorm bij de gekozen school moet worden nagevraagd.
 
 ## 3. Engels
 
@@ -74,7 +75,7 @@ Dezelfde groepen bestaan voor niveau 2 en 3 (`rekenen-2-…`, `rekenen-3-…`): 
 
 ## Open
 
-1. Nalezen (bouwsessie): [N2] voor de examenvorm, bijlage 3 van [R1] voor de rekeneindtermen, [EN1] en het ERK-raster voor Engels.
+1. Nalezen (bouwsessie): [N2] voor de examenvorm Nt2, de tekst per niveau in bijlage 3 van [R1], [EN1] en het ERK-raster voor Engels.
 2. De dekkingstabel per eindterm (G2) komt in `docs/STATUS.md` zodra het hoofdstuk "bij de dokter" in `content/` staat en de goals naar deze codes zijn omgezet.
 
 ## Bronnen
