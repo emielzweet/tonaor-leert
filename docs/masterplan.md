@@ -162,6 +162,18 @@ Waarom deze volgorde: eerst bewijzen dat de vorm werkt en diep genoeg is (1 tot 
 
 Bij een ijkmoment krijgt de ontwerpsessie de code en de lesstof, niet de conclusies van de bouwer. De uitkomst is een lijst met wat een eis niet haalt; de bouwsessie herstelt; pas dan gaat de stap door.
 
+## Uitleg bij de eisen (antwoorden van de ontwerpsessie)
+
+Vragen van de bouwsessie die een eis raken, met het antwoord. Dit hoofdstuk groeit.
+
+**14 november 2026**
+
+1. **C1 en C2, tellen van werkvormen.** Een gesprek, een leestekst en een luistertekst tellen elk als één blok voor "nooit drie keer dezelfde vorm achter elkaar": een gesprek is één samenhangend geheel. De vraagvormen binnen het blok tellen mee voor het aantal werkvormen. Grenzen: een gesprek heeft hooguit zes beurten, een tekst hooguit tien vragen, en twee blokken van dezelfde soort staan niet direct na elkaar. Instap en controle hebben geen hint en geen steuntaal; na het antwoord volgt wel de reden.
+2. **M12, pogingen bewaren.** De laatste 24 pogingen per onderdeel (tijd, vorm, uitkomst) en 6 bij volle bloei is genoeg om wachttijd tegen uitkomst te zetten. Daarnaast per onderdeel bewaren wat door het afkappen verloren zou gaan: de datum van de eerste ontmoeting, het totaal aantal pogingen en het totaal goed. De tijd als dagnummer is genoeg. Bij de toets van de aannames telt een poging alleen als de wachttijd ervoor bekend is.
+3. **M5, de treden bij een grammaticaregel.** Trede 1, gesloten: kiezen, een gatzin (ook als de leerder het ene woord zelf typt), en een zin bouwen uit blokken. Trede 2, half open: een zin afmaken waarbij de leerder meer dan één woord zelf maakt (`complete`), en `make` met een schrijfkader. Trede 3, toepassen: een eigen zin of tekst zonder kader, en spreken. Eén woord typen is dus trede 1: het is productief, maar gesloten (kwaliteitskader: invullen, volgorde, omzetten). Voor woorden staat typen los hiervan: daar is het de productieve vorm.
+4. **M6, de vier strengen.** Meten over zeven dagen, alleen over de taaltijd (Nederlands en Engels), en alleen als er in die week minstens twee uur taaltijd is. Blijft een streng onder de helft van zijn richtdeel (onder 12,5 procent), dan doet de motor twee dingen: de samensteller geeft die streng voorrang, en er komt een regel in het logboek van de redactie als de oorzaak is dat de lesstof voor die streng ontbreekt. De leerder krijgt geen waarschuwing, hooguit een voorstel (*vandaag eens lezen?*); de begeleider ziet de verdeling. De gelijke verdeling is een richtlijn, geen norm: de grens is daarom ruim.
+5. **H1 tot H4, wanneer.** H2 (nooit twee keer achter elkaar dezelfde vorm voor een onderdeel, ook over dagen) en H3 (wat gekend is verdwijnt uit de losse herhaling) nu, vóór G1: ze gelden voor de app zoals die live staat en zijn de kern van de klacht over de grind. Daarna staan ze in de ervaringstest op FOUT. H4 (elke dag iets nieuws, en zeggen als de lesstof op is) komt met stap 3, want het hangt aan de aanvoer; het deel "zeggen als het op is en niet opvullen" kan al met H2 en H3 mee. H1 (losse herhaling hooguit een vijfde) komt met stap 5, als de dagindeling met scènes en algemene ontwikkeling er is; tot dan LET OP.
+
 ## Kaart van de documenten
 
 | Document | Waarvoor leidend |
