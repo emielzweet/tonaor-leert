@@ -212,5 +212,22 @@ ok('standreview: knop weg na de tik, controle niet gehaald na de knop, lidwoord 
   cx.S.world.done = { 'thu-1': 1 }; ok('volgende scène: wat af is, slaat hij over', cx.f().id === 'thu-2');
   cx.S.world.done = { 'thu-1': 1, 'thu-2': 1, 'dok-1': 1 }; ok('volgende scène: alles af → de eerste', cx.f().id === 'thu-1');
   vm.runInContext('SCENES=' + JSON.stringify([{ sc: { id: 'b-1', n: 1 }, order: 10, pack: 'b' }, { sc: { id: 'a-2', n: 2 }, order: 10, pack: 'a' }, { sc: { id: 'a-1', n: 1 }, order: 10, pack: 'a' }, { sc: { id: 'b-2', n: 2 }, order: 10, pack: 'b' }]), cx); cx.S.world.done = { 'a-1': 1 };
-  ok('volgende scène: twee pakketten met dezelfde order lopen niet door elkaar', cx.f().id === 'a-2'); }
+  ok('volgende scène: twee pakketten met dezelfde order lopen niet door elkaar', cx.f().id === 'a-2');
+  vm.runInContext('SCENES=' + JSON.stringify([{ sc: { id: 'dok-1', n: 1 }, order: 30, pack: 'nl-dokter' }, { sc: { id: 'dok-2', n: 2 }, order: 30, pack: 'nl-dokter' }, { sc: { id: 'dok-3', n: 3 }, order: 30, pack: 'nl-dokter' }, { sc: { id: 'thu-1', n: 1 }, order: 10, pack: 'nl-thuis' }]), cx); cx.S.world.done = { 'dok-1': 1, 'dok-2': 1 };
+  ok('volgende scène: begonnen in de dokter, thuis komt erbij → de dokter blijft de volgende (uitleg 22)', cx.f().id === 'dok-3');
+  cx.S.world.done = { 'dok-1': 1, 'dok-2': 1, 'dok-3': 1 }; ok('volgende scène: hoofdstuk af → daarna de route op volgorde', cx.f().id === 'thu-1'); }
+{ // masterplan uitleg 20-21: foute keuzes bij herkennen
+  const cx = {}; vm.createContext(cx);
+  vm.runInContext('var NL=' + JSON.stringify([{ id: 'a', pack: 'p', w: 'huis', art: 'het', th: '1', en: '1', gap: 'Ik woon in een ___.', wrong: ['fiets', 'appel'] }, { id: 'b', pack: 'p', w: 'tafel', art: 'de', th: '2', en: '2' }, { id: 'c', pack: 'p', w: 'stoel', art: 'de', th: '3', en: '3' }, { id: 'd', pack: 'p', w: 'snel', art: '', th: '4', en: '4' }, { id: 'e', pack: 'q', w: 'kamer', art: 'de', th: '5', en: '5' }, { id: 'f', pack: 'p', w: 'kast', art: 'de', th: '6', en: '6', also: ['b'] }]) + ';var shuffle=a=>a.slice();' + fnBlock('alsoOf') + ';' + fnBlock('recogWrong') + ';this.f=recogWrong;this.NL=NL;', cx);
+  const ids = r => r.map(x => x.id || x.w).join(',');
+  ok('herkennen: een gatzin met eigen wrong gebruikt die (uitleg 20)', ids(cx.f(cx.NL[0], true)) === '#wrong0,#wrong1');
+  ok('herkennen: zonder gatzin of zonder wrong alleen uit hetzelfde pakket, dezelfde soort, nooit uit also (uitleg 21)', ids(cx.f(cx.NL[1], false)) === 'a,c' && !cx.f(cx.NL[1], false).some(x => x.pack !== 'p'));
+  ok('herkennen: te weinig van dezelfde soort → het hele pakket, nooit een ander pakket', cx.f(cx.NL[3], false).every(x => x.pack === 'p') && cx.f(cx.NL[3], false).length === 2);
+}
+{ const nb = packs.find(p => p.id === 'nl-basis'), withW = (wr, mut) => { const p = JSON.parse(JSON.stringify(nb)), it = p.items.find(x => x.kind === 'word' && x.gap && x.gap.includes('___') && !x.also); it.wrong = wr; if (mut) mut(it); return PC.checkPack(p, packs.filter(o => o.id !== 'nl-basis')).errors.filter(e => /wrong/.test(e)).join(' | '); };
+  const it0 = nb.items.find(x => x.kind === 'word' && x.gap && x.gap.includes('___') && !x.also);
+  ok('pakketcheck wrong: 2 of 3 gewone woorden mag', withW(['fiets', 'appel']) === '');
+  ok('pakketcheck wrong: 1 of 4 woorden, het antwoord zelf, een lidwoord vooraan, twee keer hetzelfde, of zonder gatzin wordt geweigerd',
+    /2 of 3/.test(withW(['fiets'])) && /2 of 3/.test(withW(['a', 'b', 'c', 'd'])) && /goed antwoord/.test(withW([it0.w, 'fiets'])) && /lidwoord/.test(withW(['de fiets', 'appel'])) && /twee keer/.test(withW(['fiets', 'Fiets'])) && /gatzin/.test(withW(['fiets', 'appel'], it => { delete it.gap; })));
+}
 console.log(fails ? fails + ' FOUT' : 'alles OK');

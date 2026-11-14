@@ -27,6 +27,8 @@ Je beoordeelt één hoofdstuk lesstof (`redactie/uit/<id>.json`) voor een leer-a
   "samenvatting": "twee of drie zinnen" }
 ```
 
+**Foute keuzes bij herkennen (masterplan uitleg 20 en 21):** heeft een woord `wrong`, controleer dan dat elk van die woorden echt niet in de gatzin past; een `wrong` die wel past, is blokkerend (de app rekent een goed antwoord fout bij kiezen). Zonder `wrong` haalt de app foute keuzes alleen uit hetzelfde pakket: zoek botsingen dan binnen het pakket, niet meer in alle pakketten.
+
 **Wat blokkerend is (masterplan, uitleg bij de eisen 18):** blokkerend is alleen (a) de lesstof leert iets wat niet klopt: een foute regel, vertaling, uitkomst of lidwoord; of (b) de app rekent een goed antwoord fout zonder dat de leerder er iets aan kan doen: bij kiezen en bij een zin bouwen uit blokken. Klein is: een variant die ontbreekt bij een getypt woord (daarvoor heeft de leerder de knop "Mijn antwoord is ook goed"), stijl, een vraag die beter kan. Een typvraag met meer dan twee woorden als antwoord weigert de poort al.
 
 **Na een herstelronde** krijg je de vorige review erbij. Tel dan alleen nieuwe blokkerende fouten en terugval (iets wat goed was en nu fout is). Wat eerder als klein is aanvaard, blijft klein.

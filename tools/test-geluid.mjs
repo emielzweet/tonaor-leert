@@ -19,8 +19,8 @@ const swTxt = readFileSync(new URL('sw.js', ROOT), 'utf8');
 ok('geluid gaat buiten de service worker om (iOS vraagt een bytebereik; review geluid B2)', swTxt.includes("if(u.origin===location.origin&&/\\/audio\\/.+\\.m4a$/.test(u.pathname))return;"));
 const dir = new URL('audio/nl/pim/', ROOT);
 if (existsSync(dir)) {
-  const files = readdirSync(dir), big = files.filter(f => statSync(new URL(f, dir)).size > 200000);
-  ok('elk geluidsbestand is .m4a en kleiner dan 200 kB', files.every(f => /^[0-9a-f]{14}\.m4a$/.test(f)) && !big.length, big.join(', '));
+  const files = readdirSync(dir), big = files.filter(f => statSync(new URL(f, dir)).size > 400000);
+  ok('elk geluidsbestand is .m4a en kleiner dan 400 kB (een hele leestekst duurt ongeveer een minuut)', files.every(f => /^[0-9a-f]{14}\.m4a$/.test(f)) && !big.length, big.join(', '));
 }
 const html = readFileSync(new URL('index.html', ROOT), 'utf8'), lijn = readFileSync(new URL('redactie/geluid.mjs', ROOT), 'utf8');
 ok('app en lijn gebruiken dezelfde stem', /const AUDIOSTEM='([a-z0-9_-]+)'/.exec(html)[1] === /const STEM = '([a-z0-9_-]+)'/.exec(lijn)[1]);

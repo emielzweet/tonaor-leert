@@ -1822,10 +1822,12 @@ function buildLists(){
   /* een hoofdstuk verschijnt pas als het de hoofdstukcontrole haalt (masterplan: lesstof door de poort en de review); zo komt een half hoofdstuk nooit bij de leerder */
   HIDDEN=PACKS.filter(p=>p.type==='hoofdstuk'&&(!PC||!PC.checkChapter||PC.checkChapter(p).errors.length)).map(p=>p.id);PACKS=PACKS.filter(p=>!HIDDEN.includes(p.id));   /* codereview B3: ook de woorden niet */
   CHAPTER=new Set(PACKS.filter(p=>p.type==='hoofdstuk').flatMap(p=>(p.items||[]).map(x=>x.id)));
-  SCENES=PACKS.flatMap(p=>(p.scenes||[]).map(sc=>({sc,learn:p.learn,purpose:p.purpose||null,pack:p.id,order:typeof p.order==='number'?p.order:999})));
+  {const ids=new Set(PACKS.flatMap(p=>(p.items||[]).map(x=>x.id)));   /* masterplan uitleg 22: een scène met een doel dat geen item heeft (een pakket uit requires ontbreekt) wordt niet getoond; de rest blijft speelbaar */
+  const refs=sc=>{const r=(sc.targets||[]).slice();((sc.art&&sc.art.things)||[]).forEach(t=>{if(t&&t.item)r.push(t.item)});(sc.steps||[]).forEach(st=>{(st.items||[]).forEach(x=>r.push(x));(st.q||[]).forEach(q=>((q&&q.items)||[]).forEach(x=>r.push(x)));(st.turns||[]).forEach(t=>((t&&t.items)||[]).forEach(x=>r.push(x)))});return r};   /* ook woorden in vragen, gesprekken en de tekening (review uitleg 20-22, punt 4) */
+  SCENES=PACKS.flatMap(p=>(p.scenes||[]).filter(sc=>refs(sc).every(t=>typeof t!=='string'||ids.has(t))).map(sc=>({sc,learn:p.learn,purpose:p.purpose||null,pack:p.id,order:typeof p.order==='number'?p.order:999})))}
   const items=k=>PACKS.flatMap(p=>(p.items||[]).filter(x=>x.kind===k||(k==='word'&&x.kind==='phrase')).map(x=>({x,p})));   // phrase: een vaste zin, als woord zonder lidwoord
   // woord, voorbeeldzin, gatzin en lidwoord toont het scherm met esc() of leest het voor: RAW. Vertalingen staan rauw in de HTML: SAFE.
-  NL=items('word').filter(o=>o.p.learn==='nl').map(({x})=>{const o={id:x.id,art:x.art?RAW(x.art):'',w:RAW(x.w),th:SAFE(x.tr.th),en:SAFE(x.tr.en),ex:RAW(x.ex),gap:RAW(x.gap)};if(x.askArt)o.askArt=1;if(x.also)o.also=x.also.slice();if(x.def)o.def=RAW(x.def);return o});
+  NL=items('word').filter(o=>o.p.learn==='nl').map(({x,p})=>{const o={id:x.id,pack:p.id,art:x.art?RAW(x.art):'',w:RAW(x.w),th:SAFE(x.tr.th),en:SAFE(x.tr.en),ex:RAW(x.ex),gap:RAW(x.gap)};if(x.askArt)o.askArt=1;if(x.also)o.also=x.also.slice();if(Array.isArray(x.wrong))o.wrong=x.wrong.map(RAW);if(x.def)o.def=RAW(x.def);return o});
   EN=items('word').filter(o=>o.p.learn==='en').map(({x})=>({id:x.id,w:RAW(x.w),nl:RAW(x.tr.nl),th:SAFE(x.tr.th),ex:RAW(x.ex)}));
   REK=items('skill').map(({x})=>({id:x.id,label:RAW(x.title.nl),th:SAFE(x.title.th),en:SAFE(x.title.en)}));
   // zin bouwen: stukjes en vertaling met esc() in het scherm
@@ -2488,13 +2490,19 @@ H.learn=q=>{const w=q.w;
 };
 /* woorden die ook passen, in beide richtingen (also bij het ene of het andere woord): nooit als foute keuze, getypt geen fout (review 3) */
 function alsoOf(w){return [...new Set([...(w.also||[]),...NL.filter(x=>(x.also||[]).includes(w.id)).map(x=>x.id)])]}
-H.recog=q=>{const w=q.w;let first=true;const g=nlOnly()?gapEx(w):null,AL=alsoOf(w),others=NL.filter(x=>x.id!==w.id&&!AL.includes(x.id)&&x.th!==w.th&&x.en!==w.en),   /* nooit een afleider met dezelfde vertaling: dan zijn er twee goede antwoorden (review nl-basis) */opts=shuffle([w,...shuffle(others).slice(0,2)]);
+H.recog=q=>{const w=q.w;let first=true;const g=nlOnly()?gapEx(w):null,opts=shuffle([w,...recogWrong(w,!!g)]);
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Welk woord is dit?</p><p class="prompt sp" ${supAttr()}>${L_(w)}</p>`}
   <div class="choices one">${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}">${g||!o.art?'':o.art+' '}${esc(o.w)}</button>`).join('')}</div><div id="fb"></div></div>`,'Herkennen',q.step);
   if(nlOnly()&&!g){setTimeout(()=>say(`${fw(w)}`),250);$('#sp').onclick=()=>say(`${fw(w)}`);$('#sps').onclick=()=>say(`${fw(w)}`,true)}
   app.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const ok=b.dataset.id===w.id;b.classList.add(ok?'right':'wrong');
     if(ok){score(first,5);review(w.id,first,'herkennen');if(first)grown.push(w.id);say(g?gapFull(w):`${fw(w)}`);$('#fb').innerHTML=fbBox(true,g?`<b>${w.art} ${esc(w.w)}</b>. ${esc(gapFull(w))}`:'','')+nextBtn();$('#nx').onclick=next}
     else{first=false;b.disabled=true;$('#fb').innerHTML=fbK(false,'recog.again')}})};   /* een foute keuze gaat uit (zoals bij gatzin en sc_q) */
+/* Foute keuzes bij herkennen (masterplan uitleg 20 en 21): een gatzin met een eigen lijst `wrong` gebruikt die; anders alleen woorden uit
+   hetzelfde pakket, dezelfde soort (met of zonder lidwoord) waar het kan, nooit uit also en nooit met dezelfde vertaling.
+   Te weinig in het pakket: liever twee keuzes dan aanvullen uit andere pakketten. */
+function recogWrong(w,gap){if(gap&&Array.isArray(w.wrong)&&w.wrong.length)return shuffle(w.wrong.map((t,i)=>({id:'#wrong'+i,w:t,art:''}))).slice(0,2);
+  const AL=alsoOf(w),pool=NL.filter(x=>x.id!==w.id&&x.pack===w.pack&&!AL.includes(x.id)&&x.th!==w.th&&x.en!==w.en),same=pool.filter(x=>!!x.art===!!w.art);
+  return shuffle(same.length>=2?same:pool).slice(0,2)}
 H.hear=q=>{const w=q.w;let tries=0,hint=0,done=false;const fullT=`${fw(w)}`,full=artFull(w);
   frame(`<div class="card stack">${T('hear.title')}<p class="muted small">${T('hear.tip')}</p>${speakBtns('sp','sps')}
   <label for="ans" class="small muted">${T(w.art?'recall.typeArt':'recall.typeWord')}</label><input id="ans" class="input" lang="nl" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${w.art?'de … / het …':'…'}">
@@ -2526,7 +2534,9 @@ let SCN=null;   // de scène die nu loopt: fouten per soort, gebruikte extra's, 
 try{if(SV&&!document.getElementById('scenecss')){const st=document.createElement('style');st.id='scenecss';st.textContent=SV.CSS;document.head.appendChild(st)}}catch(e){}
 const scT=x=>TKx(x,'nl'),scP=x=>plainX(x,'nl');
 function scArt(sc,looks){return SV&&sc.art?SV.render(sc.art,SAFE,{text:scP,looks:looks||{}}):''}
-function nextScene(){const all=SCENES.slice().sort((a,b)=>a.order-b.order||(a.pack<b.pack?-1:a.pack>b.pack?1:0)||(a.sc.n||6)-(b.sc.n||6)).map(o=>o.sc),   /* de volgorde van de route: pakket (order), dan de scène (n) */done=(S.world&&S.world.done)||{};return all.find(s=>!done[s.id])||all[0]||null}
+function nextScene(){const all=SCENES.slice().sort((a,b)=>a.order-b.order||(a.pack<b.pack?-1:a.pack>b.pack?1:0)||(a.sc.n||6)-(b.sc.n||6)),done=(S.world&&S.world.done)||{};   /* de volgorde van de route: pakket (order), dan de scène (n) */
+  const started=all.find(o=>!done[o.sc.id]&&all.some(x=>x.pack===o.pack&&done[x.sc.id]));   /* masterplan uitleg 22: een hoofdstuk waarin de leerder al bezig is, gaat voor; eerst afmaken */
+  return (started||all.find(o=>!done[o.sc.id])||all[0]||{}).sc||null}
 function sceneQ(sc,hard){const q=[],vak=sc.subject||'nl',ph={look:1,talk:2,read:2,listen:2,slot:3,explain:3,do:3,make:3,rule:3,end:4},qph={instap:1,ophalen:1,controle:4};
   q.push({type:'sc_intro',sc,step:1,vak,hard:!!hard});
   const EXF=['build','gap','listen','money','clock','discount'];

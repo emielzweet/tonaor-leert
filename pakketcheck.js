@@ -113,6 +113,15 @@
             if (x.askArt && /\b(de|het|ons|onze|dit|dat|deze)\s+(\S+\s+)?$/i.test(before)) err(w + ': askArt aan terwijl het lidwoord af te leiden is');
           }
           (x.also || []).forEach(function (a) { if (a === x.id) err(w + ': also verwijst naar ' + a); else if (!(words.some(function (o) { return o.id === a; }) || (others || []).some(function (op) { return (op.items || []).some(function (o) { return o.id === a && (o.kind === 'word' || o.kind === 'phrase'); }); }))) q(w + ': also verwijst naar ' + a + ' (niet geladen; in de app geen reden om het pakket te weigeren)'); });   /* ook een woord uit een ander pakket (review nl-basis: vriend en collega, dokter en huisarts) */
+          if (x.wrong != null) {   // masterplan uitleg 20: eigen foute keuzes bij een gatzin, 2 of 3, geen van alle het antwoord of een woord uit also
+            var nrm = function (t) { return String(t).toLowerCase().replace(/[^a-zà-ÿ0-9 ]/g, '').trim(); };
+            if (!Array.isArray(x.wrong) || x.wrong.length < 2 || x.wrong.length > 3 || x.wrong.some(function (t) { return typeof t !== 'string' || !t.trim(); })) err(w + ': wrong moet 2 of 3 woorden zijn');
+            else if (x.wrong.some(function (t) { return /^(de|het|een)\s/i.test(t.trim()); })) err(w + ': wrong zonder lidwoord (de knoppen tonen het goede woord ook zonder)');
+            else if (x.wrong.some(function (t, i) { return x.wrong.map(nrm).indexOf(nrm(t)) !== i; })) err(w + ': wrong heeft twee keer hetzelfde woord');
+            else if (typeof x.gap !== 'string' || x.gap.indexOf('___') < 0) err(w + ': wrong hoort bij een gatzin');
+            else x.wrong.forEach(function (t) { var alsoW = (x.also || []).map(function (a) { var o = words.filter(function (y) { return y.id === a; })[0] || null; (others || []).forEach(function (op) { (op.items || []).forEach(function (y) { if (y.id === a) o = y; }); }); return o ? nrm(o.w) : ''; });
+              if (nrm(t) === nrm(x.w) || alsoW.indexOf(nrm(t)) >= 0) err(w + ': wrong bevat een goed antwoord: ' + t); });
+          }
           if (words.length - 1 - (x.also || []).length < 2) err(w + ': te weinig foute keuzes');
         }
         if (!x.def) q(w + ': omschrijving in eenvoudig Nederlands (def) ontbreekt');
