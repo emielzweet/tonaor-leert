@@ -105,7 +105,7 @@ const hq = app.sq(deep, true);
 ok('zwaardere vorm: elke vraag van de scène weet dat hij zwaarder is', hq.filter(x => x.type === 'sc_q').every(x => x.hard) && hq[0].hard);
 ok('fout in een bestaand oefenscherm telt in het foutprofiel, hooguit één keer per vraag, bij Volgende (codereview A2, standreview 1)', html.includes('Q[qi]._sceneErr&&!Q[qi]._faulted){Q[qi]._faulted=1;const fq=Q[qi];later(()=>scFault(fq,fq._sceneErr))}'));
 ok('spel telt niet als vorm voor bloei (C5)', /const NOGROW=\[[^\]]*'spel'/.test(html));
-ok('hint in twee stappen: goed na een hint telt als retry', html.includes('const right=msg=>{done=true;if(hint)first=false;'));
+ok('hint in twee stappen: goed na een hint telt als retry', html.includes('done=true;if(hint)first=false;score(first,10)'));
 ok('opslag: eigen record per scène (world.best) in migratie 5', html.includes('s.world.best={}') && html.includes('world:{ok:{},best:{},done:{}'));
 ok('alle schermen voor stap 2 bestaan', ['sc_speak', 'sc_game'].every(t => html.includes('H.' + t + '=q=>')));
 // hoofdstukcontrole (masterplan A6, B1, B2, C1, C2, G2): een volledig hoofdstuk haalt hem, en elke eis wordt afzonderlijk bewaakt
@@ -204,7 +204,7 @@ ok('standreview: knop weg na de tik, controle niet gehaald na de knop, lidwoord 
   const rid = req.items.find(x => x.kind === 'word').id, nid = notReq.items[0].id;
   ok('hoofdstuk: een woord uit een pakket in requires mag doel en item van een vraag zijn', !/bestaat niet/.test(bad(sc => { sc.targets = sc.targets.concat([rid]); const q = sc.steps.find(st => Array.isArray(st.q) && st.q.length).q[0]; q.items = q.items.concat([rid]); })), rid);
   ok('hoofdstuk: een woord uit een pakket dat niet in requires staat, blijft een fout', /bestaat niet/.test(bad(sc => { sc.targets = sc.targets.concat([nid]); })), nid);
-  ok('hoofdstuk: zo\'n woord is hetzelfde item (geen eigen hoofdstukonderdeel, voortgang op het bestaande id)', html.includes("CHAPTER=new Set(PACKS.filter(p=>p.type==='hoofdstuk').flatMap(p=>(p.items||[]).map(x=>x.id)));") && !(base.items || []).some(x => x.id === rid));
+  ok('hoofdstuk: zo\'n woord is hetzelfde item (geen eigen hoofdstukonderdeel, voortgang op het bestaande id)', html.includes("CHAPTER=new Set(PACKS.filter(p=>p.type==='hoofdstuk'||p.type==='les').flatMap(") && !(base.items || []).some(x => x.id === rid));
 }
 { const cx = { S: { world: { done: {} } } }; vm.createContext(cx);
   vm.runInContext('var SCENES=' + JSON.stringify([{ sc: { id: 'dok-1', place: 'dokter', n: 1 }, order: 30 }, { sc: { id: 'thu-2', place: 'thuis', n: 2 }, order: 10 }, { sc: { id: 'thu-1', place: 'thuis', n: 1 }, order: 10 }]) + ';' + fnBlock('nextScene') + ';this.f=nextScene;', cx);
@@ -245,11 +245,16 @@ ok('standreview: knop weg na de tik, controle niet gehaald na de knop, lidwoord 
   ok('les: een gok of antwoord dat niet klopt, geeft meteen de uitleg (geen tweede poging, review proeflessen)', html.includes("if(first&&!(typeof LES!=='undefined'&&LES)){if(nos)$('#ask')"));
   ok('les: stappen dieper krijgen vooraf een keuze en mogen worden overgeslagen', html.includes("q.splice(di,0,{type:'sc_deeper',sc,step:3,vak})") && html.includes("for(let i=qi+1;i<Q.length;i++)if(Q[i]._deep)Q[i]._skip=true;next()"));
   const cx = { S: { world: { done: {} } } }; vm.createContext(cx);
-  vm.runInContext('var LESSEN=' + JSON.stringify([A, B, C]) + ',LESNEXT=null;' + fnBlock('nextLes') + ';this.f=nextLes;this.set=v=>{LESNEXT=v};', cx);
+  vm.runInContext('var LESSEN=' + JSON.stringify([A, B, C]) + ';' + fnBlock('nextLes') + ';this.f=nextLes;', cx);
   cx.S.world.done = { 'ao-a-1': 1 };
-  ok('les: zonder gekozen draad de volgende uit order; met een draad die', cx.f().id === 'ao-b' && (cx.set('ao-c'), cx.f().id === 'ao-c'));
+  ok('les: de volgende uit order; een draad start de les direct', cx.f().id === 'ao-b' && html.includes("const x=LESSEN.find(y=>y.id===b.dataset.draad);if(x)startLes(x)"));
 }
 ok('zin bouwen zonder werkwoord: dingen in volgorde leggen, zonder oranje blok en zonder werkwoordtekst', html.includes("T(s.verb?'build.tip':'build.tipOrder')") && html.includes("vp<0?'build.again':") && /d.verb != null && d.parts.indexOf\(d.verb\) < 0/.test(readFileSync(new URL('pakketcheck.js', ROOT), 'utf8')));
 ok('standpunt: een keuzevraag waarin elke keuze ok is, alleen in een losse les', /qq.standpunt === true/.test(readFileSync(new URL('pakketcheck.js', ROOT), 'utf8')) && /standpunt kan alleen in een losse les/.test(readFileSync(new URL('pakketcheck.js', ROOT), 'utf8')));
 ok('les: de steuntaal blijft zichtbaar bij instap en controle (er wordt niets gemeten)', html.includes("nos=!!(q.hard||sc.nosup||(!(typeof LES!=='undefined'&&LES)&&(q.role==='instap'||q.role==='controle')))"));
+ok('codereview lessen: woorden uit een les nooit nieuw in de gewone les, geen zekerheidsscherm of uitlegpunten in een les, dieper alleen in een les en niet op end, standpunt zonder Goed zo, geen bezwaarknop in een les', html.includes("p.type==='hoofdstuk'||p.type==='les').flatMap(") && html.includes("if(!isLes)q.push({type:'conf'") && html.includes("if(isLes){const di=") && html.includes("x.type!=='sc_end')x._deep=true") && html.includes("if(first&&!(typeof LES!=='undefined'&&LES))addPts(10)") && html.includes("if(stand){done=true;") && html.includes("const claimHtml=()=>(typeof LES!=='undefined'&&LES)?''") && /dieper kan alleen in een losse les/.test(readFileSync(new URL('pakketcheck.js', ROOT), 'utf8')));
+{ const les2 = { id: 'ao-x', type: 'les', learn: 'nl', order: 1, gebied: 'g', vorm: 'v', draden: ['a', 'a'], sources: 'x', scenes: [{ id: 'x-1', subject: 'kn', steps: [] }] };
+  ok('codereview lessen: sources geen lijst laat checkLes niet vastlopen; dubbele draad en dubbele order geweigerd', (() => { try { return PC.checkLes(les2).errors.length > 0; } catch (e) { return false; } })() && /verschillende/.test(PC.checkLes({ ...les2, sources: [{ url: 'https://x', title: 't' }] }).errors.join()) && /order/.test(PC.checkLessen([{ ...les2, id: 'a', draden: [] }, { ...les2, id: 'b', draden: [] }]).errors.join())); }
+{ const cx = {}; vm.createContext(cx); vm.runInContext(fnBlock('scNum') + ';this.n=scNum;', cx);
+  ok('scNum: - 6, min 6 euro 76 en − 6,76 negatief', cx.n('- 6') === -6 && Math.abs(cx.n('min 6 euro 76') + 6.76) < 1e-9 && Math.abs(cx.n('− 6,76') + 6.76) < 1e-9); }
 console.log(fails ? fails + ' FOUT' : 'alles OK');

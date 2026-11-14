@@ -48,7 +48,7 @@ for (const f of changed.filter(f => f.startsWith('content/') && f !== 'content/i
     let out = '';
     try { out = execFileSync('node', ['redactie/controleer.mjs', f], { cwd: ROOT, encoding: 'utf8' }); }
     catch (e) { stop('poort niet gehaald voor ' + f + ':\n' + String(e.stdout || '').trim()); }
-    if (p.type === 'hoofdstuk' && /eigennaam/i.test(out)) stop('mogelijk een eigennaam in ' + f + ' (publieke repo; eerst nakijken):\n' + out.trim());
+    if (/eigennaam/i.test(out)) stop('mogelijk een eigennaam in ' + f + ' (publieke repo; eerst nakijken):\n' + out.trim());
   } else {
     const r = PC.checkPack(p, all.filter(o => o.id !== p.id));
     if (r.errors.length) stop('pakketcheck niet gehaald voor ' + f + ':\n  ' + r.errors.join('\n  '));

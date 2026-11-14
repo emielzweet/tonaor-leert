@@ -404,6 +404,7 @@
             if (!Array.isArray(st.q) || st.q.length < 2) err(v + ': minstens twee oefeningen'); else st.q.forEach(function (qq, qi) { vraag(qq, v + '.q[' + qi + ']'); }); }
           if (st.type === 'end') { if (st.next) tekst(st.next, v + '.next'); if (st.real) tekst(st.real, v + '.real'); }
         });
+        if (p.type !== 'les' && (sc.steps || []).some(function (st) { return st && st.dieper; })) err(w + ': dieper kan alleen in een losse les');
         if (!doen && p.type !== 'les') err(w + ': minstens één stap waarin de leerder iets doet of maakt (do of make)');   // een losse les: geen stramien
         if (sc.steps[sc.steps.length - 1].type !== 'end') err(w + ': de laatste stap is end');
       });
@@ -565,9 +566,12 @@
     var errors = [], id = (p && p.id) || '?', err = function (m) { errors.push(id + ': ' + m); };
     if (!p || p.type !== 'les') return { errors: ['geen les'] };
     ['gebied', 'vorm'].forEach(function (k) { if (typeof p[k] !== 'string' || !p[k].trim()) err(k + ' ontbreekt'); });
-    if (!Array.isArray(p.draden) || p.draden.length < 2 || p.draden.length > 3 || p.draden.some(function (d) { return typeof d !== 'string' || d === p.id; })) err('draden: twee of drie id\'s van andere lessen');
+    if (!Array.isArray(p.draden) || p.draden.length < 2 || p.draden.length > 3 || p.draden.some(function (d, i) { return typeof d !== 'string' || d === p.id || p.draden.indexOf(d) !== i; })) err('draden: twee of drie verschillende id\'s van andere lessen');
     var sc = p.scenes || [];
     if (sc.length !== 1) err('precies één scène'); else if (sc[0].subject !== 'kn') err('de scène heeft subject kn');
+    if (p.sources != null && !Array.isArray(p.sources)) { err('sources moet een lijst zijn'); return { errors: errors }; }
+    if ((p.scenes || []).some(function (x) { return (x.steps || []).some(function (st) { return st.sources != null && !Array.isArray(st.sources); }); })) { err('sources in een stap moet een lijst zijn'); return { errors: errors }; }
+    if ((p.scenes || []).some(function (x) { return (x.steps || []).some(function (st) { return st.dieper && st.type === 'end'; }); })) err('de stap end kan niet dieper zijn');
     var src = (p.sources || []).concat.apply(p.sources || [], sc.map(function (x) { return (x.steps || []).map(function (st) { return st.sources || []; }).reduce(function (a, b) { return a.concat(b); }, []); }));
     if (!src.length || src.some(function (x) { return !x || !/^https:\/\//.test(x.url || '') || typeof x.title !== 'string' || !x.title.trim(); })) err('bronnen (url met https en titel) ontbreken');
     return { errors: errors };
@@ -576,6 +580,7 @@
     var errors = [], L = list.filter(function (p) { return p && p.type === 'les'; }).sort(function (a, b) { return a.order - b.order; }), ids = {};
     L.forEach(function (p) { ids[p.id] = 1; });
     L.forEach(function (p, i) {
+      if (i > 0 && L[i - 1].order === p.order) errors.push(p.id + ': order ' + p.order + ' komt twee keer voor');
       (p.draden || []).forEach(function (d) { if (!ids[d]) errors.push(p.id + ': draad ' + d + ' bestaat niet'); });
       if (i > 0 && L[i - 1].vorm === p.vorm) errors.push(p.id + ': twee keer achter elkaar de vorm ' + p.vorm);
       if (i > 1 && L[i - 1].gebied === p.gebied && L[i - 2].gebied === p.gebied) errors.push(p.id + ': drie keer achter elkaar het gebied ' + p.gebied);
