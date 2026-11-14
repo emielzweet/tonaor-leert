@@ -14,7 +14,8 @@ const err = [], warn = [];
 { const PC = require('../pakketcheck.js'), dir = new URL('../content/', import.meta.url);
   const others = readdirSync(dir).filter(f => f.endsWith('.json') && f !== 'index.json').map(f => { try { return JSON.parse(readFileSync(new URL(f, dir), 'utf8')); } catch (e) { return null; } }).filter(o => o && o.id !== p.id);
   const r = PC.checkPack(p, others); for (const m of r.errors) err.push('pakketcheck: ' + m); for (const m of r.quality || []) (/also verwijst naar/.test(m) ? err : warn).push('pakketcheck: ' + m);   // in de redactielijn is een losse also een fout; in de app een melding
-  for (const m of PC.checkChapter(p).errors) err.push('hoofdstuk: ' + m); }   // werkvormen, hints, lees- en luistertekst, spreken, spel, goals (masterplan A6, B1, B2, C1, C2, G2)
+  if (p.type === 'les') { for (const m of PC.checkLes(p).errors) err.push('les: ' + m); if (!(p.review && p.review.verdict === 'goed')) err.push('les: review ontbreekt (oordeel goed door een groter model dan de schrijver)'); }
+  else for (const m of PC.checkChapter(p).errors) err.push('hoofdstuk: ' + m); }   // werkvormen, hints, lees- en luistertekst, spreken, spel, goals (masterplan A6, B1, B2, C1, C2, G2)
 const ID = /^[A-Za-z0-9._-]+$/, LANGS = ['nl', 'th', 'en'];
 const E = (w, m) => err.push(w + ': ' + m), Wn = (w, m) => warn.push(w + ': ' + m);
 const txt = (x, w, langs = LANGS) => { if (!x || typeof x !== 'object') return E(w, 'tekst ontbreekt'); for (const l of langs) if (typeof x[l] !== 'string' || !x[l].trim()) E(w, 'taal ' + l + ' ontbreekt'); };

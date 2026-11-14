@@ -559,6 +559,29 @@
     list.forEach(function (t) { [t].concat(audioParts(t).length > 1 ? audioParts(t) : []).forEach(function (x) { var k = audioKey(x); if (k && !seen[k]) { seen[k] = 1; out.push(x); } }); });
     return out;
   }
-  var api = { safeText: safeText, checkPack: checkPack, checkChapter: checkChapter, sceneForms: sceneForms, FORMS: FORMS, SUBJECTS: SUBJECTS, audioText: audioText, audioKey: audioKey, audioHash: audioHash, audioParts: audioParts, audioTexts: audioTexts, withParts: withParts };
+  /* Een losse les algemene ontwikkeling (docs/algemene-ontwikkeling.md, Formaat van een losse les): geen vaste opbouw en geen vast
+     aantal vragen; wel gebied, vorm, twee of drie draden, bronnen en één kennisscène. De lijst (vorm, gebied, draden) controleert checkLessen. */
+  function checkLes(p) {
+    var errors = [], id = (p && p.id) || '?', err = function (m) { errors.push(id + ': ' + m); };
+    if (!p || p.type !== 'les') return { errors: ['geen les'] };
+    ['gebied', 'vorm'].forEach(function (k) { if (typeof p[k] !== 'string' || !p[k].trim()) err(k + ' ontbreekt'); });
+    if (!Array.isArray(p.draden) || p.draden.length < 2 || p.draden.length > 3 || p.draden.some(function (d) { return typeof d !== 'string' || d === p.id; })) err('draden: twee of drie id\'s van andere lessen');
+    var sc = p.scenes || [];
+    if (sc.length !== 1) err('precies één scène'); else if (sc[0].subject !== 'kn') err('de scène heeft subject kn');
+    var src = (p.sources || []).concat.apply(p.sources || [], sc.map(function (x) { return (x.steps || []).map(function (st) { return st.sources || []; }).reduce(function (a, b) { return a.concat(b); }, []); }));
+    if (!src.length || src.some(function (x) { return !x || !/^https:\/\//.test(x.url || '') || typeof x.title !== 'string' || !x.title.trim(); })) err('bronnen (url met https en titel) ontbreken');
+    return { errors: errors };
+  }
+  function checkLessen(list) {
+    var errors = [], L = list.filter(function (p) { return p && p.type === 'les'; }).sort(function (a, b) { return a.order - b.order; }), ids = {};
+    L.forEach(function (p) { ids[p.id] = 1; });
+    L.forEach(function (p, i) {
+      (p.draden || []).forEach(function (d) { if (!ids[d]) errors.push(p.id + ': draad ' + d + ' bestaat niet'); });
+      if (i > 0 && L[i - 1].vorm === p.vorm) errors.push(p.id + ': twee keer achter elkaar de vorm ' + p.vorm);
+      if (i > 1 && L[i - 1].gebied === p.gebied && L[i - 2].gebied === p.gebied) errors.push(p.id + ': drie keer achter elkaar het gebied ' + p.gebied);
+    });
+    return { errors: errors };
+  }
+  var api = { safeText: safeText, checkPack: checkPack, checkChapter: checkChapter, checkLes: checkLes, checkLessen: checkLessen, sceneForms: sceneForms, FORMS: FORMS, SUBJECTS: SUBJECTS, audioText: audioText, audioKey: audioKey, audioHash: audioHash, audioParts: audioParts, audioTexts: audioTexts, withParts: withParts };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.PakketCheck = api;
 })(this);

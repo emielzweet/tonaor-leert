@@ -479,6 +479,13 @@ en:{
  "bk.last":"Last backed up: {when}",
  "bk.load":"Restore progress",
  "bk.save":"Back up progress",
+ "les.deeper":"Want to know more? The next part goes deeper. You can also skip it.",
+ "les.deeperGo":"Read on",
+ "les.deeperSkip":"Skip",
+ "les.end":"Now you know",
+ "les.later":"Continue later",
+ "les.threads":"Read on about:",
+ "les.tile":"Discover",
  "claim.btn":"My answer is right too",
  "claim.thanks":"Thank you. Your answer goes on the list to be checked. It does not count as a mistake.",
  "claim.title":"Answers to check ({n})",
@@ -922,6 +929,13 @@ nl:{
  "bk.last":"Laatst bewaard: {when}",
  "bk.load":"Voortgang terugzetten",
  "bk.save":"Voortgang bewaren",
+ "les.deeper":"<p>Wil je meer weten? Het volgende deel gaat dieper. Je mag het ook overslaan.</p>",
+ "les.deeperGo":"Lees verder",
+ "les.deeperSkip":"Overslaan",
+ "les.end":"<h2>Dit weet je nu</h2>",
+ "les.later":"Later verder",
+ "les.threads":"<p>Lees verder over:</p>",
+ "les.tile":"Ontdek",
  "claim.btn":"Mijn antwoord is ook goed",
  "claim.thanks":"Dank je. Je antwoord gaat naar de lijst om na te kijken. Het telt niet als fout.",
  "claim.title":"Antwoorden om na te kijken ({n})",
@@ -1361,6 +1375,13 @@ th:{
  "bk.last":"บันทึกล่าสุด: {when}",
  "bk.load":"กู้คืนความก้าวหน้า",
  "bk.save":"บันทึกความก้าวหน้า",
+ "les.deeper":"อยากรู้เพิ่มไหม ส่วนต่อไปลึกขึ้น จะข้ามก็ได้",
+ "les.deeperGo":"อ่านต่อ",
+ "les.deeperSkip":"ข้าม",
+ "les.end":"ตอนนี้คุณรู้แล้ว",
+ "les.later":"ไว้ต่อทีหลัง",
+ "les.threads":"อ่านต่อเรื่อง:",
+ "les.tile":"ค้นพบ",
  "claim.btn":"คำตอบของฉันก็ถูกเหมือนกัน",
  "claim.thanks":"ขอบคุณ คำตอบของคุณจะถูกส่งไปตรวจ และไม่นับเป็นคำตอบผิด",
  "claim.title":"คำตอบที่รอตรวจ ({n})",
@@ -1786,7 +1807,7 @@ function noSameForm(q,learn){let speak=false;try{speak=typeof window!=='undefine
 /* Wat is nieuw (aanbeveling 1.3): verhoog NEWS bij een release die de leerder merkt, en zet de punten in I18N (news.1 …). Een nieuwe installatie ziet het niet. */
 const NEWS='2026-11-15',NEWS_N=5;
 let QUIET=false;   // stille stand: zonder voorlezen en luisteroefeningen, alleen voor deze sessie (Bijsturen op Ik)
-let SCENES=[];   // scènes uit de pakketten: {sc, learn}
+let SCENES=[],LESSEN=[],LES=null,LESNEXT=null;   // LES: de les die nu loopt (geen herhaling, geen foutprofiel, geen punten); LESNEXT: de gekozen draad   // scènes uit de pakketten: {sc, learn}
 let PACKS=[],PACK_MISSING=[],NL=[],EN=[],REK=[],SENT=[],PAIRS=[],DICTEE=null,STORY=null,PLACE=[];
 const EXS={},CARDP={},PACKBY={};
 async function loadPacks(){
@@ -1820,11 +1841,12 @@ let HIDDEN=[],CHAPTER=new Set();   /* CHAPTER: onderdelen uit een hoofdstuk; nie
 let _h0=0;   // hoofdstukken die de hoofdstukcontrole (nog) niet halen: niet zichtbaar, ook hun woorden niet
 function buildLists(){
   /* een hoofdstuk verschijnt pas als het de hoofdstukcontrole haalt (masterplan: lesstof door de poort en de review); zo komt een half hoofdstuk nooit bij de leerder */
-  HIDDEN=PACKS.filter(p=>p.type==='hoofdstuk'&&(!PC||!PC.checkChapter||PC.checkChapter(p).errors.length)).map(p=>p.id);PACKS=PACKS.filter(p=>!HIDDEN.includes(p.id));   /* codereview B3: ook de woorden niet */
+  HIDDEN=PACKS.filter(p=>(p.type==='hoofdstuk'&&(!PC||!PC.checkChapter||PC.checkChapter(p).errors.length))||(p.type==='les'&&(!PC||!PC.checkLes||PC.checkLes(p).errors.length||!(p.review&&p.review.verdict==='goed')))).map(p=>p.id);PACKS=PACKS.filter(p=>!HIDDEN.includes(p.id));   /* codereview B3: ook de woorden niet */
   CHAPTER=new Set(PACKS.filter(p=>p.type==='hoofdstuk').flatMap(p=>(p.items||[]).map(x=>x.id)));
   {const ids=new Set(PACKS.flatMap(p=>(p.items||[]).map(x=>x.id)));   /* masterplan uitleg 22: een scène met een doel dat geen item heeft (een pakket uit requires ontbreekt) wordt niet getoond; de rest blijft speelbaar */
   const refs=sc=>{const r=(sc.targets||[]).slice();((sc.art&&sc.art.things)||[]).forEach(t=>{if(t&&t.item)r.push(t.item)});(sc.steps||[]).forEach(st=>{(st.items||[]).forEach(x=>r.push(x));(st.q||[]).forEach(q=>((q&&q.items)||[]).forEach(x=>r.push(x)));(st.turns||[]).forEach(t=>((t&&t.items)||[]).forEach(x=>r.push(x)))});return r};   /* ook woorden in vragen, gesprekken en de tekening (review uitleg 20-22, punt 4) */
-  SCENES=PACKS.flatMap(p=>(p.scenes||[]).filter(sc=>refs(sc).every(t=>typeof t!=='string'||ids.has(t))).map(sc=>({sc,learn:p.learn,purpose:p.purpose||null,pack:p.id,order:typeof p.order==='number'?p.order:999})))}
+  LESSEN=PACKS.filter(p=>p.type==='les'&&Array.isArray(p.scenes)&&p.scenes.length).sort((a,b)=>a.order-b.order);   /* losse lessen algemene ontwikkeling (docs/algemene-ontwikkeling.md, Formaat van een losse les) */
+  SCENES=PACKS.filter(p=>p.type!=='les').flatMap(p=>(p.scenes||[]).filter(sc=>refs(sc).every(t=>typeof t!=='string'||ids.has(t))).map(sc=>({sc,learn:p.learn,purpose:p.purpose||null,pack:p.id,order:typeof p.order==='number'?p.order:999})))}
   const items=k=>PACKS.flatMap(p=>(p.items||[]).filter(x=>x.kind===k||(k==='word'&&x.kind==='phrase')).map(x=>({x,p})));   // phrase: een vaste zin, als woord zonder lidwoord
   // woord, voorbeeldzin, gatzin en lidwoord toont het scherm met esc() of leest het voor: RAW. Vertalingen staan rauw in de HTML: SAFE.
   NL=items('word').filter(o=>o.p.learn==='nl').map(({x,p})=>{const o={id:x.id,pack:p.id,art:x.art?RAW(x.art):'',w:RAW(x.w),th:SAFE(x.tr.th),en:SAFE(x.tr.en),ex:RAW(x.ex),gap:RAW(x.gap)};if(x.askArt)o.askArt=1;if(x.also)o.also=x.also.slice();if(Array.isArray(x.wrong))o.wrong=x.wrong.map(RAW);if(x.def)o.def=RAW(x.def);return o});
@@ -2162,7 +2184,7 @@ if(STORE==='ok')ensureCodes();
 function stage(id){const s=S.items[id].s;return s<=0?0:s<1.5?1:s<4?2:s<10?3:s<25?4:5}
 const STAGES=[['zaadje','เมล็ด','seed'],['kiemplant','ต้นอ่อน','seedling'],['plantje','ต้นเล็ก','small plant'],['knop','ดอกตูม','bud'],['bloem','ดอกไม้','flower'],['in volle bloei','บานเต็มที่','in full bloom']];
 function thirsty(id){const it=S.items[id];return !!it&&it.reps>0&&it.due<=now()}   // ook in volle bloei: na de wachttijd komt het terug (review fase 3, punt 1)
-function review(id,res,form,exid,passive){   /* M1 (stand per onderdeel), M2 (gespreid, groei alleen na een echte wachttijd), M12 (logboek) */
+function review(id,res,form,exid,passive){if(typeof LES!=='undefined'&&LES)return;   /* M1 (stand per onderdeel), M2 (gespreid, groei alleen na een echte wachttijd), M12 (logboek) */
   /* res: true = goed bij de eerste poging, 'retry' = goed na een hint of tweede poging, false = fout.
      passive: een bij-item van een oefening; telt alleen bij goed, voor vormen en oefeningen, zonder groei (docs/herhaalmodel.md sectie 3).
      Groei alleen bij gespreid ophalen (sectie 5): pas vanaf de helft van de wachttijd, en naar verhouding:
@@ -2190,9 +2212,9 @@ function review(id,res,form,exid,passive){   /* M1 (stand per onderdeel), M2 (ge
 function canBloom(id,it){const k=KIND[id]||'word',f=(it.forms||[]).filter(x=>!NOGROW.includes(x)),n=(it.exs||[]).length,B=MOTOR.bloomExs;   /* M9 beheerst pas na meerdere vormen over tijd */
   return k==='rule'?n>=B&&f.includes('build'):k==='sound'?n>=B&&f.includes('luisteren'):k==='skill'?n>=B:f.length>=MOTOR.bloomForms}
 /* een onderdeel is voor het eerst aangeboden (voorbeeld, uitleg, kaart): plannen, maar niet als gekend tellen */
-function introduce(id,form){const it=S.items[id];if(!it)return;if(!S.introduced.includes(id))S.introduced.push(id);if(form&&!it.forms.includes(form))it.forms.push(form);if(it.reps===0){it.reps=1;it.due=now()}save()}
+function introduce(id,form){if(typeof LES!=='undefined'&&LES)return;const it=S.items[id];if(!it)return;if(!S.introduced.includes(id))S.introduced.push(id);if(form&&!it.forms.includes(form))it.forms.push(form);if(it.reps===0){it.reps=1;it.due=now()}save()}
 /* een oefening met items: het eerste item is het doel; alleen dat krijgt een fout */
-function practiced(q,res,form){const ids=(q&&q.items)||[];ids.forEach((id,i)=>{if(!S.introduced.includes(id)&&S.items[id])S.introduced.push(id);review(id,res,form,q.exid,i>0)})}
+function practiced(q,res,form){if(typeof LES!=='undefined'&&LES)return;const ids=(q&&q.items)||[];ids.forEach((id,i)=>{if(!S.introduced.includes(id)&&S.items[id])S.introduced.push(id);review(id,res,form,q.exid,i>0)})}
 const leeches=()=>Object.entries(S.items).filter(([,v])=>v.lapses>=4).map(([k])=>k);
 const pts=()=>S.points[today()]||0;
 function addPts(n){S.points[today()]=pts()+n;S.days[today()]=1;save();syncUp()}
@@ -2311,7 +2333,7 @@ const heroArt=()=>`<svg class="art" viewBox="0 0 140 120" aria-hidden="true"><ci
 
 /* ============ navigatie ============ */
 let tab='vandaag',route=null;
-function show(t){audioStop();tab=t;route=null;delete app.dataset.vak;$('#nav').hidden=false;document.querySelectorAll('#nav [data-tab]').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===t?'page':'false'));app.classList.remove('sess');rerender();window.scrollTo(0,0)}
+function show(t){audioStop();LES=null;tab=t;route=null;delete app.dataset.vak;$('#nav').hidden=false;document.querySelectorAll('#nav [data-tab]').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===t?'page':'false'));app.classList.remove('sess');rerender();window.scrollTo(0,0)}
 document.querySelectorAll('#nav [data-tab]').forEach(b=>b.onclick=()=>show(b.dataset.tab));
 function rerender(){if(route)return route();({vandaag:vToday,tuin:vGarden,route:vRoute,ik:vMe,emiel:vEmiel}[tab])()}
 function paint(html){app.innerHTML=`<div class="view">${STORE==='newer'?`<div class="note sky small" role="status">${T('newer.banner')}</div>`:''}${html}</div>`;bindCommon()}
@@ -2390,6 +2412,7 @@ function vToday(){
   ${due?`<button class="card row between" id="water" style="background:var(--sky);border-color:var(--sky-fill)"><span>${T('today.thirsty',{n:due})}<span class="small muted">${T('today.water.tip')}</span></span><span class="pill pill-sky" style="background:var(--surface)">${T('today.water')}</span></button>`:''}
   <h3 style="margin-top:4px">${T('today.more')}</h3>
   <div class="tiles2">
+    ${LESSEN.length&&S.trial?(l=>l?`<button class="tile sky" id="ontdek"><span class="ic">${icon.book}</span>${T('les.tile')}<span class="small muted">${esc(scP(l.title))}</span></button>`:'')(nextLes()):''}
     ${SCENES.length&&S.trial?`<button class="tile mint" id="scene"><span class="ic">${icon.book}</span>${T('scene.tile')}<span class="small muted">${(ns=>{const pk=ns&&PACKS.find(p=>(p.scenes||[]).includes(ns));return (pk&&pk.title?esc(scP(pk.title))+': ':'')+esc(scP((ns||{}).title))})(nextScene())} · ${SCENES.filter(o=>((S.world||{}).done||{})[o.sc.id]).length}/${SCENES.length}</span></button>`:''}
     ${EXPL_LIST.length?`<button class="tile apricot" id="uitleg"><span class="ic">${icon.bulb}</span>${T('explain.tile')}<span class="small muted">${T('explain.tile.sub',{done:EXPL_LIST.filter(o=>S.explained[o.x.id]).length,n:EXPL_LIST.length})}</span></button>`:''}
     <button class="tile lilac" id="story"><span class="ic">${icon.book}</span>${T('extra.story')}<span class="small muted">${T('extra.story.sub')}</span></button>
@@ -2408,6 +2431,7 @@ function vToday(){
   $('#en').onclick=startEnglish;
   $('#story').onclick=startStory;
   if($('#scene'))$('#scene').onclick=()=>startScene(nextScene());
+  if($('#ontdek'))$('#ontdek').onclick=()=>startLes(nextLes());
   if($('#uitleg'))$('#uitleg').onclick=()=>{route=vExplain;rerender();window.scrollTo(0,0)};
   $('#speed').onclick=startSpeed;
   $('#talk').onclick=()=>{route=vTalk;rerender();window.scrollTo(0,0)};
@@ -2454,7 +2478,7 @@ function retryLater(q){   /* M3 terug in een andere vorm, niet direct erna */
 if(!q||q._probe||q._retry)return;const id=q.w?q.w.id:q.items&&q.items[0];if(!id||RETRIED.has(id))return;
   let r=null;if(q.w&&OTHER[q.type])r={type:OTHER[q.type],step:q.step,w:q.w};else if(q.items&&q.exid)r=easierEx(q);if(!r)return;
   RETRIED.add(id);r._retry=1;const conf=Q.findIndex((x,i)=>i>qi&&x.type==='conf'),at=conf<0?Q.length:conf;Q.splice(Math.min(qi+MOTOR.retryGap,at),0,r)}
-function score(ok,n,part){sessTotal++;SESS.push(!!ok);if(!ok)retryLater(Q[qi]);if(ok){sessRight++;sp+=n;addPts(n)}else if(part>0){sp+=part;addPts(part)}}
+function score(ok,n,part){if(typeof LES!=='undefined'&&LES)return;sessTotal++;SESS.push(!!ok);if(!ok)retryLater(Q[qi]);if(ok){sessRight++;sp+=n;addPts(n)}else if(part>0){sp+=part;addPts(part)}}
 /* fbBox(ok, tekst in de leertaal, tekst in de steuntaal); fbK(ok, sleutel, variabelen) haalt beide uit I18N */
 function fbBox(ok,msg,msgSup){let offer='';if(!ok&&app.classList.contains('sess')&&Q[qi]&&Q[qi]._sceneErr&&!Q[qi]._faulted){Q[qi]._faulted=1;const fq=Q[qi];later(()=>scFault(fq,fq._sceneErr))}   /* telt bij Volgende, zodat Mijn antwoord is ook goed haar nog kan wegnemen (standreview 1) */   /* hooguit één keer per vraag (codereview A2) */if(!ok&&app.classList.contains('sess')&&Q[qi]){const q=Q[qi];q._wrong=(q._wrong||0)+1;const x=q._wrong>=2&&explFor(q);if(x)offer=`<button class="linkish u-offer" data-uopen="${esc(x)}">${TB('explain.offer')}</button>`}const k=ok?'fb.ok':'fb.no',s=ts(k);return `<div class="fb ${ok?'fb-ok':'fb-no'}" role="status"><strong>${t(k)}${nlOnly()||!s?'':` <span ${supAttr()}>${s}</span>`}</strong>${msg?bi(msg,msgSup||''):''}${offer}</div>`}
 function fbK(ok,k,vars){return fbBox(ok,t(k,vars),ts(k,vars))}
@@ -2565,9 +2589,12 @@ function sceneQ(sc,hard){const q=[],vak=sc.subject||'nl',ph={look:1,talk:2,read:
       else{const e={id:sc.id+'.d'+k,form:st.form,items:st.items.slice(),...(st.gen?{gen:st.gen}:{data:st.data})},x=exQ(e,step,'nl',st.items[0]);if(x){x.vak=vak;if(st.ask)x._ask=st.ask;q.push(x)}}}   /* review dokter 5: de vraag van de stap (Heb je genoeg?) staat boven de oefening */
     else if(st.type==='make')q.push({...base,type:'sc_make',items:st.items.slice(),exid:sc.id+'#m'+k});
     else if(st.type==='end'){q.push({type:'conf',step:4,vak});q.push({...base,type:'sc_end'})}}catch(e){}});
+  {const di=q.findIndex(x=>x&&x.st&&x.st.dieper);if(di>=0){q.forEach(x=>{if(x&&x.st&&x.st.dieper)x._deep=true});q.splice(di,0,{type:'sc_deeper',sc,step:3,vak})}}   /* les in lagen: wie wil, slaat de stappen 'dieper' over */
   return q}
-function startScene(sc,hard){if(!sc)return toast(tx('pack.none'));S.world=S.world||{done:{},at:null};if(hard==null)hard=!!(S.world.done||{})[sc.id];   // een scène die af is: de zwaardere vorm (B4)
-  S.world.at=sc.id;SCN={sc,errs:{},extra:new Set(),ctrl:null,hard:!!hard,good:0};save();runSession(plainX(sc.title,'nl'),sceneQ(sc,hard))}
+function nextLes(){const done=(S.world&&S.world.done)||{};if(LESNEXT){const l=LESSEN.find(x=>x.id===LESNEXT);if(l)return l}return LESSEN.find(l=>!done[l.scenes[0].id])||null}   /* zonder gekozen draad: de volgende uit order */
+function startLes(l){if(!l)return toast(tx('pack.none'));LESNEXT=null;startScene(l.scenes[0],false,l)}
+function startScene(sc,hard,les){LES=les||null;if(!sc)return toast(tx('pack.none'));S.world=S.world||{done:{},at:null};if(hard==null)hard=!!(S.world.done||{})[sc.id];   // een scène die af is: de zwaardere vorm (B4)
+  if(LES)hard=false;S.world.at=sc.id;SCN={sc,errs:{},extra:new Set(),ctrl:null,hard:!!hard,good:0};save();runSession(plainX(sc.title,'nl'),sceneQ(sc,hard))}
 const PH=['','scene.look','scene.live','scene.do','scene.can'];
 /* masterplan G5: waar het hoofdstuk voor dient, bij het begin (eerste scène) en op het slot van de laatste scène van de plek */
 function scPurpose(sc,where){const o=SCENES.find(x=>x.sc===sc);if(!o||!o.purpose)return null;const same=SCENES.filter(x=>x.pack===o.pack).map(x=>x.sc).sort((a,b)=>(a.n||6)-(b.n||6));return (where==='first'?same[0]:same[same.length-1])===sc?o.purpose:null}
@@ -2619,12 +2646,12 @@ H.sc_make=q=>{const st=q.st,fr=[].concat(st.frame),pre=fr.every(x=>/___/.test(pl
 function errNote(err,id){   /* M5 per fout het soort; recent weegt zwaarder */
   if(!ERRS.includes(err))return;S.errs=S.errs||{};const e=S.errs[err]||{n:0,t:0,ids:[]},t0=now();e.n=+((e.n||0)*Math.pow(.5,(t0-(e.t||t0))/(MOTOR.errHalfDays*DAY))+1).toFixed(3);e.t=t0;if(id)e.ids=[id,...(e.ids||[]).filter(x=>x!==id)].slice(0,MOTOR.errIds);S.errs[err]=e;save()}
 function errTop(){const t0=now();let best=null;for(const [err,e] of Object.entries(S.errs||{})){if(!e||!ERRS.includes(err))continue;const n=(e.n||0)*Math.pow(.5,(t0-(e.t||t0))/(MOTOR.errHalfDays*DAY));if(n>=MOTOR.errSteer&&(!best||n>best.n))best={err,n,ids:(e.ids||[]).slice()}}return best}
-function scFault(q,err){if(!err||!ERRS.includes(err))return;errNote(err,q.items&&q.items[0]);if(!SCN||SCN.sc!==q.sc)return;SCN.errs[err]=(SCN.errs[err]||0)+1;
+function scFault(q,err){if(typeof LES!=='undefined'&&LES)return;if(!err||!ERRS.includes(err))return;errNote(err,q.items&&q.items[0]);if(!SCN||SCN.sc!==q.sc)return;SCN.errs[err]=(SCN.errs[err]||0)+1;
   if(SCN.errs[err]<MOTOR.extraAfter||SCN.extra.has(err))return;   /* M11 bij een herhaalde fout uitleg en extra oefening */const ex=q.sc.steps.filter(st=>st.type==='extra'&&st.err===err);if(!ex.length)return;SCN.extra.add(err);
   const add=[];ex.forEach(st=>{const k=q.sc.steps.indexOf(st),base={sc:q.sc,st,step:3,vak:q.vak};add.push({...base,type:'sc_extra'});st.q.forEach((qq,i)=>add.push({...base,type:'sc_q',qq,items:qq.items.slice(),exid:q.sc.id+'#x'+k+'.'+i,role:'extra'}))});
   Q.splice(qi+1,0,...add)}
 /* instap goed bij de eerste poging: een nieuw woord maakt de grote sprong (probeDone), en ophalen van dat onderdeel valt weg */
-function scKnow(q){const id=q.items[0],it=S.items[id],w=NL.find(x=>x.id===id);KNOWN.add(id);if(w&&it&&it.reps===0)probeDone(w,true);else practiced(q,true,SCF[q.qq.form])}
+function scKnow(q){if(typeof LES!=='undefined'&&LES)return;const id=q.items[0],it=S.items[id],w=NL.find(x=>x.id===id);KNOWN.add(id);if(w&&it&&it.reps===0)probeDone(w,true);else practiced(q,true,SCF[q.qq.form])}
 const SCF={choose:'herkennen',hear:'luisteren','hear-type':'luisteren',type:'typen',complete:'typen',number:'rekenen'};
 const scN=x=>x&&typeof x==='object'?`<span lang="nl">${SAFE(plainX(x,'nl'))}</span>`:TKx(x,'nl');   // zonder steuntaal (nosup, instap, controle)
 /* een getal zoals een Nederlander het typt: € 1.250,50 · 6,60 · 6 euro 60 · 25 cent · 1.000 (codereview B2). NaN als het geen getal is. */
@@ -2674,7 +2701,16 @@ H.sc_game=q=>{const sc=q.sc,counted=new Set(),ids=new Set([...q.items,...sc.targ
 H.sc_rule=q=>{const it=PACKS.flatMap(p=>p.items||[]).find(x=>x.id===q.items[0]);if(S.items[q.items[0]])introduce(q.items[0]);
   scFrame(q,`<div class="card stack">${T('scene.ruleTitle')}${it&&it.title?`<h2>${scT(it.title)}</h2>`:''}<div class="note sky">${scT(q.st.example)}</div></div>${nextBtn('btn-main')}`);$('#nx').onclick=next};
 H.sc_extra=q=>{scFrame(q,`<div class="card stack">${T('scene.extraTitle')}<div class="note sky">${scT(q.st.explain)}</div></div>${nextBtn('btn-main')}`);$('#nx').onclick=next};
-H.sc_end=q=>{const sc=q.sc,st=q.st;finishTime();S.world=S.world||{done:{},at:null};S.world.done[sc.id]=now();if(SCN&&SCN.sc===sc&&SCN.ctrl!=null){S.world.ok=S.world.ok||{};S.world.ok[sc.id]=SCN.ctrl}let rec=false;if(SCN&&SCN.sc===sc&&SCN.hard){S.world.best=S.world.best||{};rec=SCN.good>(S.world.best[sc.id]||0);if(rec)S.world.best[sc.id]=SCN.good}const td=today();S.rounds[td]=(S.rounds[td]||0)+1;pruneWeeks();save();
+/* einde van een les: wat je nu weet, en de draden om te kiezen (of later verder) */
+function lesEnd(q){const sc=q.sc,l=LES;finishTime();S.world=S.world||{done:{},at:null};S.world.done[sc.id]=now();save();
+  const dr=(l.draden||[]).map(id=>LESSEN.find(x=>x.id===id)).filter(Boolean);
+  paint(`<div class="card celebrate stack">${T('les.end')}<p class="prompt">${scT(sc.can)}</p></div>
+   ${dr.length?`<div class="card stack">${T('les.threads')}${dr.map(x=>`<button class="btn btn-ghost" data-draad="${esc(x.id)}">${esc(scP(x.title))}</button>`).join('')}</div>`:''}
+   <button class="btn btn-ghost" id="home">${T('les.later')}</button>`);
+  petals();app.querySelectorAll('[data-draad]').forEach(b=>b.onclick=()=>{const x=LESSEN.find(y=>y.id===b.dataset.draad);if(x)startLes(x)});$('#home').onclick=()=>show('vandaag')}
+H.sc_deeper=q=>{scFrame(q,`<div class="card stack">${T('les.deeper')}<div class="btn-row"><button class="btn btn-leaf" id="dpGo">${TB('les.deeperGo')}</button><button class="btn btn-ghost" id="dpSkip">${TB('les.deeperSkip')}</button></div></div>`);
+  $('#dpGo').onclick=next;$('#dpSkip').onclick=()=>{for(let i=qi+1;i<Q.length;i++)if(Q[i]._deep)Q[i]._skip=true;next()}};
+H.sc_end=q=>{if(LES)return lesEnd(q);const sc=q.sc,st=q.st;finishTime();S.world=S.world||{done:{},at:null};S.world.done[sc.id]=now();if(SCN&&SCN.sc===sc&&SCN.ctrl!=null){S.world.ok=S.world.ok||{};S.world.ok[sc.id]=SCN.ctrl}let rec=false;if(SCN&&SCN.sc===sc&&SCN.hard){S.world.best=S.world.best||{};rec=SCN.good>(S.world.best[sc.id]||0);if(rec)S.world.best[sc.id]=SCN.good}const td=today();S.rounds[td]=(S.rounds[td]||0)+1;pruneWeeks();save();
   const nx=nextScene(),more=nx&&nx.id!==sc.id&&!(S.world.done[nx.id]);
   const pu=scPurpose(sc,'last');paint(`<div class="card celebrate stack">${T('scene.canTitle')}<p class="prompt">${scT(sc.can)}</p>${pu?`<p class="note sky small">${scT(pu)}</p>`:''}${st.real?`<div class="note">${T('scene.real')}<p>${scT(st.real)}</p></div>`:''}${st.next?`<p class="muted">${scT(st.next)}</p>`:''}${SCN&&SCN.sc===sc&&SCN.hard?`<p class="num">${T(rec?'scene.newRecord':'scene.record',{n:(S.world.best||{})[sc.id]||0})}</p>`:''}</div>
    ${more?`<button class="btn btn-main" id="scNext">${TB('scene.next')}</button>`:''}<button class="btn btn-ghost" id="scHard">${TB('scene.harder')}</button>${contHtml()}<button class="btn btn-ghost" id="home">${T('cont.home')}</button>`);

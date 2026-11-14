@@ -234,4 +234,18 @@ ok('standreview: knop weg na de tik, controle niet gehaald na de knop, lidwoord 
   ok('pakketcheck wrong: 1 of 4 woorden, het antwoord zelf, een lidwoord vooraan, twee keer hetzelfde, of zonder gatzin wordt geweigerd',
     /2 of 3/.test(withW(['fiets'])) && /2 of 3/.test(withW(['a', 'b', 'c', 'd'])) && /goed antwoord/.test(withW([it0.w, 'fiets'])) && /lidwoord/.test(withW(['de fiets', 'appel'])) && /twee keer/.test(withW(['fiets', 'Fiets'])) && /gatzin/.test(withW(['fiets', 'appel'], it => { delete it.gap; })));
 }
+{ // losse les algemene ontwikkeling (docs/algemene-ontwikkeling.md, Formaat van een losse les)
+  const les = (id, vorm, gebied, order, draden) => ({ id, type: 'les', learn: 'nl', order, gebied, vorm, draden, sources: [{ url: 'https://example.org/x', title: 'Bron' }], scenes: [{ id: id + '-1', subject: 'kn', steps: [] }] });
+  const A = les('ao-a', 'verhaal', 'geschiedenis', 1, ['ao-b', 'ao-c']), B = les('ao-b', 'raadsel', 'natuur', 2, ['ao-a', 'ao-c']), C = les('ao-c', 'tijdlijn', 'natuur', 3, ['ao-a', 'ao-b']);
+  ok('les: een goede les haalt de poort, zonder vaste opbouw of vast aantal vragen', PC.checkLes(A).errors.length === 0);
+  ok('les: zonder gebied, met één draad, zonder bron of zonder kennisscène geweigerd', PC.checkLes({ ...A, gebied: '' }).errors.length && PC.checkLes({ ...A, draden: ['ao-b'] }).errors.length && PC.checkLes({ ...A, sources: [] }).errors.length && PC.checkLes({ ...A, scenes: [{ id: 'x', subject: 'nl', steps: [] }] }).errors.length);
+  ok('lijst: draden bestaan, nooit twee keer achter elkaar dezelfde vorm, hooguit twee uit hetzelfde gebied', PC.checkLessen([A, B, C]).errors.length === 0 && /draad/.test(PC.checkLessen([A, B]).errors.join()) && /vorm/.test(PC.checkLessen([A, { ...B, vorm: 'verhaal' }, C]).errors.join()) && /gebied/.test(PC.checkLessen([{ ...A, gebied: 'natuur' }, B, C]).errors.join()));
+  ok('lijst: de lessen in content/ halen samen de lijstcontrole', PC.checkLessen(packs).errors.length === 0, PC.checkLessen(packs).errors.join(' | '));
+  ok('les: geen herhaling, geen foutprofiel, geen punten (score, review, practiced, scFault, scKnow, introduce)', ['function score(ok,n,part){', 'function review(id,res,form,exid,passive){', 'function practiced(q,res,form){', 'function scFault(q,err){', 'function scKnow(q){', 'function introduce(id,form){'].every(f => html.includes(f + "if(typeof LES!=='undefined'&&LES)return;")));
+  ok('les: stappen dieper krijgen vooraf een keuze en mogen worden overgeslagen', html.includes("q.splice(di,0,{type:'sc_deeper',sc,step:3,vak})") && html.includes("for(let i=qi+1;i<Q.length;i++)if(Q[i]._deep)Q[i]._skip=true;next()"));
+  const cx = { S: { world: { done: {} } } }; vm.createContext(cx);
+  vm.runInContext('var LESSEN=' + JSON.stringify([A, B, C]) + ',LESNEXT=null;' + fnBlock('nextLes') + ';this.f=nextLes;this.set=v=>{LESNEXT=v};', cx);
+  cx.S.world.done = { 'ao-a-1': 1 };
+  ok('les: zonder gekozen draad de volgende uit order; met een draad die', cx.f().id === 'ao-b' && (cx.set('ao-c'), cx.f().id === 'ao-c'));
+}
 console.log(fails ? fails + ' FOUT' : 'alles OK');
