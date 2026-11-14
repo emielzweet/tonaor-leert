@@ -68,7 +68,7 @@ De ervaringstest (`node tools/test-ervaring.mjs --streng`): met thema 1 en de 10
 
 ## Leidend plan
 
-docs/masterplan.md (14 november 2026): de eisen die onverminderd gelden, de catalogus van werkvormen, de stappen 1 tot 13 met wie bouwt en wanneer iets klaar is, en de ijkmomenten G1 tot G5 van de ontwerpsessie. De volgorde daar vervangt de volgorde hieronder en die in docs/bouwplan.md en docs/plan-herzien.md.
+docs/didactisch-plan.md is het fundament (leeruitkomsten per jaar, leerweg, onderbouwing met bronnen, eisen M1 tot M12 aan de motor). docs/masterplan.md (14 november 2026): de eisen die onverminderd gelden, de catalogus van werkvormen, de stappen 1 tot 13 met wie bouwt en wanneer iets klaar is, en de ijkmomenten G1 tot G5 van de ontwerpsessie. De volgorde daar vervangt de volgorde hieronder en die in docs/bouwplan.md en docs/plan-herzien.md.
 
 ## Open besluiten voor de eigenaar
 

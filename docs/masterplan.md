@@ -2,6 +2,10 @@
 
 Stand: 14 november 2026. **Dit is het leidende document.** Het zegt wat er geëist wordt, in welke volgorde er gebouwd wordt, wie wat doet en wanneer iets klaar is. De andere documenten in `docs/` werken onderdelen uit; waar ze dit plan tegenspreken, geldt dit plan.
 
+## Het fundament
+
+`docs/didactisch-plan.md` is het fundament onder dit plan: de leeruitkomsten per jaar en per vak, de leerweg (vier strengen), de wetenschappelijke onderbouwing per facet met bronnen, wat de drie leergangen toevoegen, en twaalf eisen aan de motor (M1 tot M12). Een eis hieronder zonder onderbouwing daar is een aanname en wordt zo genoemd. Code die bepaalt wat de leerder krijgt, wanneer en hoe moeilijk, verwijst naar een M-eis.
+
 ## Uitgangspunt: niets vervalt
 
 Het nieuwe concept (kaart, scènes, album; `docs/concept-leerwereld.md`) is een andere **vorm**, geen nieuw begin. Alles wat eerder is geëist blijft onverminderd gelden: de didactiek van de drie leergangen, de variatie in lesstof, de diepgang, de grote verscheidenheid aan werkvormen, de uitdaging, de onderbouwing uit onderzoek, de uitleg, de toetsen die bijsturen, de leerroute, het weekdoel, en de regels voor opslag, privacy en beveiliging. Een scène die een eis hieronder niet haalt, is niet af, hoe mooi hij er ook uitziet.
@@ -135,6 +139,7 @@ Elke stap is los uit te brengen en heeft een toets waaraan hij moet voldoen. Les
 | 1 | Stijl: kleur per vak, knoppen met diepte, tekenstijl | beheer | zichtbaar op 375 breed, geen gedrag gewijzigd | – |
 | 2 | Scènespeler met alle stappen uit `docs/scenes.md`, het foutprofiel, en het proefhoofdstuk naast de les | beheer | de scènetest bewaakt A1 tot A7, B1, B3, C1, C2, E2, E3; migratie getest | **G1:** de ontwerpsessie speelt drie scènes en legt ze langs de eisen |
 | 3 | Redactielijn in bedrijf: proefhoofdstuk door de review, lesstof los van de code, uitbrengen, inplannen | beheer voert uit | drie hoofdstukken achter elkaar "goed" zonder ingrijpen; voorraad van twee weken | **G2:** steekproef op de eerste drie hoofdstukken |
+| 2b | De motor langs het didactisch plan: wat van M1 tot M12 bestaat, wat deels en wat ontbreekt; elke waarde op één plek met bron of "aanname"; de vier strengen en de tijd per vak meten (M6, M7), pogingen bewaren om de aannames te toetsen (M12) | beheer | een overzicht per M-eis in `docs/STATUS.md`; M5, M6, M10 en M12 gebouwd en getest | **G1** |
 | 3b | Eindtermen: `docs/eindtermen.md` uit de officiële bronnen, en het veld waarmee lesstof en toetsen ernaar verwijzen | beheer, met een goedkoper model voor het bronnenonderzoek; elke eindterm met zijn bron | G1 en G2; de dekkingstabel per eindterm bestaat | **G2:** de ontwerpsessie legt een steekproef naast de bronnen |
 | 4 | Proefweek en meten | de leerder; beheer levert de cijfers | cijfers naast de week ervoor: minuten, scènes per dag, doorgaan, aandeel goed, leuk of saai | **G3:** advies aan de eigenaar over de kaart |
 | 5 | Kaart als thuisscherm, album, route met tijd en examendatum | beheer | E5; niets van de bestaande voortgang verloren | – |
@@ -162,6 +167,7 @@ Bij een ijkmoment krijgt de ontwerpsessie de code en de lesstof, niet de conclus
 | Document | Waarvoor leidend |
 |---|---|
 | `masterplan.md` | eisen, volgorde, rollen |
+| `didactisch-plan.md` | het fundament: leeruitkomsten, leerweg, onderbouwing met bronnen, eisen aan de motor |
 | `wensen.md` | alles wat de eigenaar gevraagd heeft, met de stand |
 | `STATUS.md` | wat live is, wat lokaal klaarstaat, de dekkingstabel |
 | `kwaliteitskader.md`, `leerroute.md`, `uitleg.md`, `herhaalmodel.md`, `pakketformaat.md` | de inhoudelijke kaders; ongewijzigd van kracht |
