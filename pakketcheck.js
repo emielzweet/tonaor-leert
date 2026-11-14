@@ -112,7 +112,7 @@
             if (!x.askArt && x.art && !new RegExp('\\b' + x.art + '\\s+(\\S+\\s+)?$', 'i').test(before)) err(w + ': lidwoord niet zichtbaar voor het gat en askArt staat uit');
             if (x.askArt && /\b(de|het|ons|onze|dit|dat|deze)\s+(\S+\s+)?$/i.test(before)) err(w + ': askArt aan terwijl het lidwoord af te leiden is');
           }
-          (x.also || []).forEach(function (a) { if (a === x.id || !(words.some(function (o) { return o.id === a; }) || (others || []).some(function (op) { return (op.items || []).some(function (o) { return o.id === a && (o.kind === 'word' || o.kind === 'phrase'); }); }))) err(w + ': also verwijst naar ' + a); });   /* ook een woord uit een ander pakket (review nl-basis: vriend en collega, dokter en huisarts) */
+          (x.also || []).forEach(function (a) { if (a === x.id) err(w + ': also verwijst naar ' + a); else if (!(words.some(function (o) { return o.id === a; }) || (others || []).some(function (op) { return (op.items || []).some(function (o) { return o.id === a && (o.kind === 'word' || o.kind === 'phrase'); }); }))) q(w + ': also verwijst naar ' + a + ' (niet geladen; in de app geen reden om het pakket te weigeren)'); });   /* ook een woord uit een ander pakket (review nl-basis: vriend en collega, dokter en huisarts) */
           if (words.length - 1 - (x.also || []).length < 2) err(w + ': te weinig foute keuzes');
         }
         if (!x.def) q(w + ': omschrijving in eenvoudig Nederlands (def) ontbreekt');
