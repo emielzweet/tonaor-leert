@@ -86,7 +86,7 @@ const known = g.NL.filter(w => w.pack === 'nl-t1')[2]; vm.runInContext(`S.items[
 vm.runInContext("S.errs={}", app);
 ok('alle nieuwe schermsoorten bestaan', ['sc_q', 'sc_rule', 'sc_extra'].every(t => html.includes('H.' + t + '=q=>')));
 ok('de controle bepaalt of de scène beheerst is (S.world.ok)', html.includes('S.world.ok[sc.id]=SCN.ctrl'));
-ok('opslag: SCHEMA 6 voegt errs en world.ok toe', /const SCHEMA=6/.test(html) && html.includes('5:s=>{if(!s.errs'));
+ok('opslag: SCHEMA 6 voegt errs en world.ok toe', +(html.match(/const SCHEMA=(\d+)/)||[])[1] >= 6 && html.includes('5:s=>{if(!s.errs'));
 ok('gesprek: een foute keuze telt in het foutprofiel', html.includes("scFault(q,o.err);$('#fb').innerHTML=fbBox(false,scT(o.why),'')"));
 // stap 2 afmaken (docs/ontwerp-stap2.md): bestaande oefenvormen als vraag, hint, spreken, spel, zwaardere vorm, hoofdstukcontrole
 const gapQ = { form: 'gap', items: [w0], err: 'lidwoord', why: T3('Zo.'), data: { s: 'Ik zie de ___.', o: ['a', 'b'], a: 'a', tr: { th: 'ก', en: 'x' } } };

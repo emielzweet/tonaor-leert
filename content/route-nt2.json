@@ -1,0 +1,74 @@
+{
+  "format": 1,
+  "id": "route-nt2",
+  "type": "route",
+  "version": 1,
+  "bron": "docs/route-en-prognose.md en docs/leerroute.md: uren per blok zijn schattingen met een bandbreedte (Cambridge-uren per niveaustap met een marge voor taalafstand; rekenen eigen schatting); de verdeling van N1/N2 en R1-R4/R5 is een aanname; marge van acht weken voor aanmelden (onderbouwing-nederlands.md).",
+  "naam": { "nl": "Naar het Staatsexamen Nt2 en een mbo-opleiding", "th": "สู่การสอบ Staatsexamen Nt2 และการเรียนสายอาชีพ (mbo)", "en": "Towards the State Exam Dutch (Nt2) and a vocational course (mbo)" },
+  "aandeel": { "nl": 0.6, "rk": 0.3, "en": 0.1 },
+  "banen": [
+    {
+      "vak": "nl",
+      "naam": { "nl": "Nederlands", "th": "ภาษาดัตช์", "en": "Dutch" },
+      "blokken": [
+        { "id": "N1", "lo": 200, "hi": 320,
+          "naam": { "nl": "Van A2 naar B1", "th": "จาก A2 ไป B1", "en": "From A2 to B1" },
+          "kan": { "nl": "Je redt je in het dagelijks leven, op het werk en bij instanties.", "th": "คุณใช้ชีวิตประจำวัน ทำงาน และติดต่อหน่วยงานได้ด้วยตัวเอง", "en": "You manage in daily life, at work and with official bodies." } },
+        { "id": "N2", "lo": 50, "hi": 80,
+          "naam": { "nl": "Examenklaar voor B1", "th": "พร้อมสอบระดับ B1", "en": "Exam-ready for B1" },
+          "kan": { "nl": "Je kent de vragen van het examen en oefent ze in examenvorm.", "th": "คุณรู้จักข้อสอบและฝึกในรูปแบบการสอบ", "en": "You know the exam questions and practise them in exam form." } },
+        { "id": "N3", "lo": 250, "hi": 400,
+          "naam": { "nl": "Van B1 naar B2", "th": "จาก B1 ไป B2", "en": "From B1 to B2" },
+          "kan": { "nl": "Je volgt lessen en teksten van een opleiding.", "th": "คุณเข้าใจบทเรียนและข้อความในการเรียน", "en": "You follow the lessons and texts of a course." } }
+      ]
+    },
+    {
+      "vak": "rk",
+      "naam": { "nl": "Rekenen", "th": "คณิตศาสตร์", "en": "Maths" },
+      "blokken": [
+        { "id": "R1-4", "lo": 120, "hi": 240,
+          "naam": { "nl": "Basis tot niveau 2", "th": "พื้นฐานถึงระดับ 2", "en": "Basics to level 2" },
+          "kan": { "nl": "Je rekent met geld, tijd, procenten en maten van elke dag.", "th": "คุณคำนวณเงิน เวลา เปอร์เซ็นต์ และหน่วยวัดในชีวิตประจำวันได้", "en": "You calculate with money, time, percentages and everyday measures." } },
+        { "id": "R5", "lo": 80, "hi": 160,
+          "naam": { "nl": "Niveau 3", "th": "ระดับ 3", "en": "Level 3" },
+          "kan": { "nl": "Je rekent op het niveau dat een opleiding bij de start vraagt.", "th": "คุณคำนวณได้ในระดับที่การเรียนต้องการตอนเริ่ม", "en": "You calculate at the level a course asks for at the start." } },
+        { "id": "R6", "lo": 100, "hi": 200,
+          "naam": { "nl": "Niveau 4 en examen", "th": "ระดับ 4 และการสอบ", "en": "Level 4 and exam" },
+          "kan": { "nl": "Je haalt het rekenexamen van de opleiding.", "th": "คุณสอบผ่านวิชาคณิตศาสตร์ของการเรียน", "en": "You pass the maths exam of the course." } }
+      ]
+    },
+    {
+      "vak": "en",
+      "naam": { "nl": "Engels", "th": "ภาษาอังกฤษ", "en": "English" },
+      "blokken": [
+        { "id": "E1-2", "lo": 150, "hi": 300,
+          "naam": { "nl": "Naar A2", "th": "ไปสู่ A2", "en": "Towards A2" },
+          "kan": { "nl": "Je leest en verstaat eenvoudig Engels.", "th": "คุณอ่านและฟังภาษาอังกฤษง่าย ๆ ได้", "en": "You read and understand simple English." } },
+        { "id": "E3-4", "lo": 150, "hi": 300,
+          "naam": { "nl": "Naar B1, lezen en luisteren", "th": "ไปสู่ B1 การอ่านและการฟัง", "en": "Towards B1, reading and listening" },
+          "kan": { "nl": "Je haalt het examen Engels van de opleiding.", "th": "คุณสอบผ่านวิชาภาษาอังกฤษของการเรียน", "en": "You pass the English exam of the course." } }
+      ]
+    }
+  ],
+  "poorten": [
+    { "id": "nt2-1", "na": "N2", "marge": 8,
+      "naam": { "nl": "Staatsexamen Nt2, programma I", "th": "สอบ Staatsexamen Nt2 โปรแกรม I", "en": "State Exam Dutch (Nt2), programme I" },
+      "onderdelen": [
+        { "nl": "Lezen", "th": "การอ่าน", "en": "Reading" },
+        { "nl": "Luisteren", "th": "การฟัง", "en": "Listening" },
+        { "nl": "Schrijven", "th": "การเขียน", "en": "Writing" },
+        { "nl": "Spreken", "th": "การพูด", "en": "Speaking" }
+      ],
+      "voorwaarden": { "nl": "Daarvoor nodig: de uren, de stof van N1 en N2, en een oefenexamen op voldoende voor alle vier de onderdelen. Schrijven en spreken kan de app niet zelf beoordelen: daar helpt de begeleider of een les.", "th": "สิ่งที่ต้องมี: ชั่วโมงเรียน เนื้อหาของ N1 และ N2 และผ่านข้อสอบจำลองทั้งสี่ส่วน แอปตรวจการเขียนและการพูดเองไม่ได้ ผู้ดูแลหรือครูช่วยได้", "en": "What it takes: the hours, the material of N1 and N2, and a passing practice exam for all four parts. The app cannot assess writing and speaking itself: the supporter or a teacher helps with that." } },
+    { "id": "nt2-2", "na": "N3", "marge": 8,
+      "naam": { "nl": "Staatsexamen Nt2, programma II", "th": "สอบ Staatsexamen Nt2 โปรแกรม II", "en": "State Exam Dutch (Nt2), programme II" } },
+    { "id": "rk-nul", "na": "R5", "marge": 0,
+      "naam": { "nl": "Nulmeting rekenen bij de school", "th": "การวัดระดับคณิตศาสตร์ที่โรงเรียน", "en": "Baseline maths test at the school" } },
+    { "id": "rk-ex", "na": "R6", "marge": 0,
+      "naam": { "nl": "Rekenexamen (tijdens de opleiding)", "th": "สอบคณิตศาสตร์ (ระหว่างเรียน)", "en": "Maths exam (during the course)" } },
+    { "id": "en-a2", "na": "E1-2", "marge": 0,
+      "naam": { "nl": "Engels lezen en luisteren A2", "th": "ภาษาอังกฤษ การอ่านและการฟัง A2", "en": "English reading and listening A2" } },
+    { "id": "en-ex", "na": "E3-4", "marge": 0,
+      "naam": { "nl": "Examen Engels (tijdens de opleiding)", "th": "สอบภาษาอังกฤษ (ระหว่างเรียน)", "en": "English exam (during the course)" } }
+  ]
+}

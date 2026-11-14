@@ -543,7 +543,7 @@
   function audioTexts(p) {
     var out = [], seen = {};
     var add = function (s) { var k = audioKey(s); if (k && /[A-Za-zÀ-ÿ0-9]/.test(k) && !/[฀-๿]/.test(k) && !seen[k]) { seen[k] = 1; out.push(audioText(s)); } };
-    if (!p || p.learn === 'en') return out;
+    if (!p || p.learn === 'en' || p.type === 'route') return out;   // de route wordt niet voorgelezen
     (p.items || []).forEach(function (x) {
       if (!x || typeof x.w !== 'string') return;
       if (x.art) add(x.art + ' ' + x.w);

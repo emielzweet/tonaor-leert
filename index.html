@@ -71,6 +71,7 @@ button:active{transform:scale(.98)}
 .card{background:var(--surface);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);border:1px solid var(--line)}
 button.card{width:100%;text-align:left}
 .stack{display:grid;gap:12px}
+.rt{display:grid;gap:6px}   /* route met tijd: regels onder elkaar */
 .row{display:flex;align-items:center;gap:12px}
 .between{justify-content:space-between}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -291,6 +292,7 @@ body.u-open{overflow:hidden}
 <script src="tlsync.js"></script>
 <script src="scene.js"></script>
 <script src="kaart.js"></script>
+<script src="route.js"></script>
 <script src="pakketcheck.js"></script>
 <script src="uitleg.js"></script>
 <script>
@@ -533,7 +535,6 @@ en:{
  "size.groot":"Larger",
  "size.normaal":"Normal",
  "route.next.place":"Do the starting test. Then your route really begins.",
- "route.next.placed":"Finish theme 1. Choose a reward together with Emiel for when you succeed.",
  "garden.water":{"one":"Water {n} plant","other":"Water {n} plants"},
  "bed.en":"English",
  "bed.rek":"Maths",
@@ -756,7 +757,45 @@ en:{
  "garden.tip":"Every word and every skill is a plant. Remembering it well makes it grow. A drop means: review it briefly today.",
  "garden.empty":"Your first plant will grow here soon.",
  "route.title":"My route",
- "route.tip":"From the starting test to your diploma. We celebrate every milestone together.",
+ "route.tip":"Your whole way, with the time each part takes at your pace.",
+ "route.line":"{gate} · expected {m}",
+ "route.band":"between {a} and {b}",
+ "route.earlier":{"one": "1 week earlier than last month", "other": "{n} weeks earlier than last month"},
+ "route.later":{"one": "1 week later than last month", "other": "{n} weeks later than last month"},
+ "route.gates":"Your gates",
+ "route.expect":"Expected: {m}",
+ "route.ifGoal":"If you reach your weekly goal: {m}",
+ "route.noTempo":"No pace yet: learn for a few days, then a date appears here.",
+ "route.parts":"A separate date per part follows after the first test in exam form.",
+ "route.tempo":"Your pace",
+ "route.tempo.own":"Your pace, the last four weeks: {h} hours a week",
+ "route.tempo.goal":"Your weekly goal: {h} hours a week",
+ "route.tempo.start":"In your first two weeks the route uses your weekly goal.",
+ "route.why.later":{"one": "The last four weeks you did {h} hours a week on average; your goal is {g}. So the expected date moved 1 week later. Nothing is lost: with your weekly goal it moves back.", "other": "The last four weeks you did {h} hours a week on average; your goal is {g}. So the expected date moved {n} weeks later. Nothing is lost: with your weekly goal it moves back."},
+ "route.why.earlier":{"one": "The last four weeks you did {h} hours a week on average. So the expected date moved 1 week earlier.", "other": "The last four weeks you did {h} hours a week on average. So the expected date moved {n} weeks earlier."},
+ "route.whatif":"What if",
+ "route.whatif.tip":"Move the hours per week and see the date move along.",
+ "route.whatif.res":"At {h} hours a week: {gate} around {m}",
+ "route.block.dur":{"one": "about 1 month at your pace", "other": "about {n} months at your pace"},
+ "route.block.span":"{a} to {b}",
+ "route.block.done":"Done",
+ "route.block.pct":"{p}% done",
+ "route.gate.flag":"Gate: {gate}",
+ "route.out":"Time outside the app",
+ "route.out.tip":"Reading, watching and listening, a lesson or a conversation in Dutch counts for your route (at most 60 minutes a day).",
+ "route.out.k.lezen":"Reading",
+ "route.out.k.kijken":"Watching and listening",
+ "route.out.k.les":"A lesson",
+ "route.out.k.gesprek":"A conversation",
+ "route.out.today":"Today outside the app: {m} of 60 minutes",
+ "route.out.added":"{m} minutes added",
+ "route.out.full":"Today's 60 minutes are full.",
+ "route.none":"The route could not load.",
+ "route.why.slower":{"one": "Your pace is a bit lower than before ({h} hours a week), so the expected date moved 1 week later.", "other": "Your pace is a bit lower than before ({h} hours a week), so the expected date moved {n} weeks later."},
+ "route.block.weeks":{"one": "about 1 week at your pace", "other": "about {n} weeks at your pace"},
+ "route.hours":"{h} hours a week",
+ "route.next.placed":"Finish the block “{blok}”. Choose a reward together with your supporter for when you succeed.",
+ "route.startEst":"Starting point estimated from your learning time in the app; it becomes more precise after the starting test.",
  "route.next":"Next milestone",
  "me.title":"Me",
  "me.about":"About you",
@@ -991,7 +1030,6 @@ nl:{
  "size.groot":"Groter",
  "size.normaal":"Normaal",
  "route.next.place":"Doe de startmeting. Daarna begint je route echt.",
- "route.next.placed":"Thema 1 afronden. Kies samen met Emiel een beloning voor als het lukt.",
  "garden.water":{"one":"Geef {n} plantje water","other":"Geef {n} plantjes water"},
  "bed.en":"<h2>Engels</h2>",
  "bed.rek":"<h2>Rekenen</h2>",
@@ -1210,7 +1248,45 @@ nl:{
  "garden.tip":"Elk woord en elke vaardigheid is een plantje. Goed onthouden laat het groeien. Een druppel betekent: vandaag even herhalen.",
  "garden.empty":"Hier groeit straks je eerste plantje.",
  "route.title":"<h1>Mijn route</h1>",
- "route.tip":"Van de startmeting naar je diploma. Elk station vieren we samen.",
+ "route.tip":"Je hele weg, met de tijd die elk stuk ongeveer kost in jouw tempo.",
+ "route.line":"{gate} · verwacht {m}",
+ "route.band":"tussen {a} en {b}",
+ "route.earlier":{"one": "1 week eerder dan vorige maand", "other": "{n} weken eerder dan vorige maand"},
+ "route.later":{"one": "1 week later dan vorige maand", "other": "{n} weken later dan vorige maand"},
+ "route.gates":"<h3>Je poorten</h3>",
+ "route.expect":"Verwacht: {m}",
+ "route.ifGoal":"Als je je weekdoel haalt: {m}",
+ "route.noTempo":"Nog geen tempo: leer een paar dagen, dan verschijnt hier een datum.",
+ "route.parts":"Een eigen datum per onderdeel volgt na de eerste toets in examenvorm.",
+ "route.tempo":"<h3>Je tempo</h3>",
+ "route.tempo.own":"Jouw tempo, de laatste vier weken: {h} uur per week",
+ "route.tempo.goal":"Je weekdoel: {h} uur per week",
+ "route.tempo.start":"In je eerste twee weken rekent de route met je weekdoel.",
+ "route.why.later":{"one": "De laatste vier weken deed je gemiddeld {h} uur per week; je doel is {g}. Daardoor is de verwachte datum 1 week later geworden. Er gaat niets verloren: met je weekdoel schuift hij terug.", "other": "De laatste vier weken deed je gemiddeld {h} uur per week; je doel is {g}. Daardoor is de verwachte datum {n} weken later geworden. Er gaat niets verloren: met je weekdoel schuift hij terug."},
+ "route.why.earlier":{"one": "De laatste vier weken deed je gemiddeld {h} uur per week. Daardoor is de verwachte datum 1 week eerder geworden.", "other": "De laatste vier weken deed je gemiddeld {h} uur per week. Daardoor is de verwachte datum {n} weken eerder geworden."},
+ "route.whatif":"<h3>Wat als</h3>",
+ "route.whatif.tip":"Schuif met de uren per week en kijk hoe de datum meebeweegt.",
+ "route.whatif.res":"Bij {h} uur per week: {gate} rond {m}",
+ "route.block.dur":{"one": "ongeveer 1 maand in jouw tempo", "other": "ongeveer {n} maanden in jouw tempo"},
+ "route.block.span":"{a} tot {b}",
+ "route.block.done":"Af",
+ "route.block.pct":"{p}% gedaan",
+ "route.gate.flag":"Poort: {gate}",
+ "route.out":"<h3>Tijd buiten de app</h3>",
+ "route.out.tip":"Lezen, kijken en luisteren, een les of een gesprek in het Nederlands telt mee voor je route (hooguit 60 minuten per dag).",
+ "route.out.k.lezen":"Lezen",
+ "route.out.k.kijken":"Kijken en luisteren",
+ "route.out.k.les":"Een les",
+ "route.out.k.gesprek":"Een gesprek",
+ "route.out.today":"Vandaag buiten de app: {m} van 60 minuten",
+ "route.out.added":"{m} minuten toegevoegd",
+ "route.out.full":"Vandaag zitten de 60 minuten vol.",
+ "route.none":"De route kon niet laden.",
+ "route.why.slower":{"one": "Je tempo is iets lager dan eerst ({h} uur per week), daardoor is de verwachte datum 1 week later geworden.", "other": "Je tempo is iets lager dan eerst ({h} uur per week), daardoor is de verwachte datum {n} weken later geworden."},
+ "route.block.weeks":{"one": "ongeveer 1 week in jouw tempo", "other": "ongeveer {n} weken in jouw tempo"},
+ "route.hours":"{h} uur per week",
+ "route.next.placed":"Rond het blok “{blok}” af. Kies samen met je begeleider een beloning voor als het lukt.",
+ "route.startEst":"Startpunt geschat uit je leertijd in de app; wordt nauwkeuriger na de startmeting.",
  "route.next":"<h3>Volgende mijlpaal</h3>",
  "me.title":"<h1>Ik</h1>",
  "me.about":"<h3>Over jou</h3>",
@@ -1444,7 +1520,6 @@ th:{
  "size.groot":"ใหญ่ขึ้น",
  "size.normaal":"ปกติ",
  "route.next.place":"ทำการวัดระดับ แล้วเส้นทางของคุณจะเริ่มจริงๆ",
- "route.next.placed":"ทำธีม 1 ให้เสร็จ เลือกรางวัลกับเอมิลไว้ก่อน",
  "garden.water":"รดน้ำ {n} ต้น",
  "bed.en":"ภาษาอังกฤษ",
  "bed.rek":"คณิตศาสตร์",
@@ -1662,7 +1737,45 @@ th:{
  "garden.tip":"ทุกคำและทุกทักษะคือต้นไม้ จำได้ดีต้นไม้จะโต หยดน้ำหมายถึงวันนี้ควรทบทวน",
  "garden.empty":"ต้นไม้ต้นแรกจะเติบโตที่นี่",
  "route.title":"เส้นทางของฉัน",
- "route.tip":"จากการวัดระดับไปจนถึงประกาศนียบัตร เราจะฉลองทุกสถานีด้วยกัน",
+ "route.tip":"เส้นทางทั้งหมดของคุณ พร้อมเวลาโดยประมาณของแต่ละช่วงตามจังหวะของคุณ",
+ "route.line":"{gate} · คาดว่า {m}",
+ "route.band":"ระหว่าง {a} ถึง {b}",
+ "route.earlier":{"one": "เร็วขึ้น 1 สัปดาห์จากเดือนที่แล้ว", "other": "เร็วขึ้น {n} สัปดาห์จากเดือนที่แล้ว"},
+ "route.later":{"one": "ช้าลง 1 สัปดาห์จากเดือนที่แล้ว", "other": "ช้าลง {n} สัปดาห์จากเดือนที่แล้ว"},
+ "route.gates":"ประตูของคุณ",
+ "route.expect":"คาดว่า: {m}",
+ "route.ifGoal":"ถ้าทำได้ตามเป้าหมายรายสัปดาห์: {m}",
+ "route.noTempo":"ยังไม่มีจังหวะการเรียน เรียนสักสองสามวัน แล้ววันที่จะปรากฏที่นี่",
+ "route.parts":"วันที่แยกตามแต่ละส่วนจะมีหลังการทดสอบในรูปแบบข้อสอบครั้งแรก",
+ "route.tempo":"จังหวะของคุณ",
+ "route.tempo.own":"จังหวะของคุณ สี่สัปดาห์ที่ผ่านมา: {h} ชั่วโมงต่อสัปดาห์",
+ "route.tempo.goal":"เป้าหมายรายสัปดาห์: {h} ชั่วโมงต่อสัปดาห์",
+ "route.tempo.start":"ในสองสัปดาห์แรก เส้นทางคำนวณจากเป้าหมายรายสัปดาห์ของคุณ",
+ "route.why.later":{"one": "สี่สัปดาห์ที่ผ่านมาคุณเรียนเฉลี่ย {h} ชั่วโมงต่อสัปดาห์ เป้าหมายคือ {g} วันที่คาดไว้จึงช้าลง 1 สัปดาห์ ไม่มีอะไรหายไป ถ้าทำได้ตามเป้า วันที่จะกลับมา", "other": "สี่สัปดาห์ที่ผ่านมาคุณเรียนเฉลี่ย {h} ชั่วโมงต่อสัปดาห์ เป้าหมายคือ {g} วันที่คาดไว้จึงช้าลง {n} สัปดาห์ ไม่มีอะไรหายไป ถ้าทำได้ตามเป้า วันที่จะกลับมา"},
+ "route.why.earlier":{"one": "สี่สัปดาห์ที่ผ่านมาคุณเรียนเฉลี่ย {h} ชั่วโมงต่อสัปดาห์ วันที่คาดไว้จึงเร็วขึ้น 1 สัปดาห์", "other": "สี่สัปดาห์ที่ผ่านมาคุณเรียนเฉลี่ย {h} ชั่วโมงต่อสัปดาห์ วันที่คาดไว้จึงเร็วขึ้น {n} สัปดาห์"},
+ "route.whatif":"ถ้า...",
+ "route.whatif.tip":"เลื่อนจำนวนชั่วโมงต่อสัปดาห์ แล้วดูวันที่เปลี่ยนตาม",
+ "route.whatif.res":"ที่ {h} ชั่วโมงต่อสัปดาห์: {gate} ประมาณ {m}",
+ "route.block.dur":{"one": "ประมาณ 1 เดือนตามจังหวะของคุณ", "other": "ประมาณ {n} เดือนตามจังหวะของคุณ"},
+ "route.block.span":"{a} ถึง {b}",
+ "route.block.done":"เสร็จแล้ว",
+ "route.block.pct":"ทำแล้ว {p}%",
+ "route.gate.flag":"ประตู: {gate}",
+ "route.out":"เวลานอกแอป",
+ "route.out.tip":"การอ่าน การดูและการฟัง การเรียนในชั้น หรือการสนทนาเป็นภาษาดัตช์ นับรวมในเส้นทางของคุณ (ไม่เกิน 60 นาทีต่อวัน)",
+ "route.out.k.lezen":"อ่าน",
+ "route.out.k.kijken":"ดูและฟัง",
+ "route.out.k.les":"เรียนในชั้น",
+ "route.out.k.gesprek":"สนทนา",
+ "route.out.today":"วันนี้นอกแอป: {m} จาก 60 นาที",
+ "route.out.added":"เพิ่ม {m} นาทีแล้ว",
+ "route.out.full":"วันนี้ครบ 60 นาทีแล้ว",
+ "route.none":"โหลดเส้นทางไม่ได้",
+ "route.why.slower":{"one": "จังหวะของคุณต่ำกว่าก่อนเล็กน้อย ({h} ชั่วโมงต่อสัปดาห์) วันที่คาดไว้จึงช้าลง 1 สัปดาห์", "other": "จังหวะของคุณต่ำกว่าก่อนเล็กน้อย ({h} ชั่วโมงต่อสัปดาห์) วันที่คาดไว้จึงช้าลง {n} สัปดาห์"},
+ "route.block.weeks":{"one": "ประมาณ 1 สัปดาห์ตามจังหวะของคุณ", "other": "ประมาณ {n} สัปดาห์ตามจังหวะของคุณ"},
+ "route.hours":"{h} ชั่วโมงต่อสัปดาห์",
+ "route.next.placed":"ทำช่วง “{blok}” ให้เสร็จ เลือกรางวัลกับผู้ดูแลไว้ก่อนสำหรับตอนที่ทำได้",
+ "route.startEst":"จุดเริ่มต้นประมาณจากเวลาเรียนในแอป จะแม่นยำขึ้นหลังการวัดระดับ",
  "route.next":"เป้าหมายถัดไป",
  "me.title":"ฉัน",
  "me.about":"เกี่ยวกับคุณ",
@@ -2064,7 +2177,8 @@ function learning(){try{return app.classList.contains('sess')||!!UX||(!!route&&r
 let lastAct=now(),tickN=0;
 ['pointerdown','keydown','input','touchstart','wheel'].forEach(ev=>document.addEventListener(ev,()=>{lastAct=now()},{passive:true,capture:true}));
 setInterval(()=>{if(STORE!=='ok'||document.visibilityState!=='visible'||now()-lastAct>12e4||!learning())return;
-  const before=weekMins();S.mins[today()]=(S.mins[today()]||0)+5/60;weekCheck(before);if(++tickN>=6){tickN=0;save()}},5000);
+  const before=weekMins();S.mins[today()]=(S.mins[today()]||0)+5/60;weekCheck(before);
+  {const v=UX&&UX.e?(UX.e.learn==='en'?'en':UX.e.x&&UX.e.x.subject==='rekenen'?'rk':'nl'):['nl','rk','en'].includes(app.dataset.vak)?app.dataset.vak:'nl',sh=(ROUTE&&ROUTE.aandeel)||{nl:.6,rk:.3,en:.1};if(!S.minsV||typeof S.minsV!=='object')S.minsV={};let d=S.minsV[today()];if(!d){const m0=Math.max(0,(S.mins[today()]||0)-5/60);d=S.minsV[today()]={nl:m0*sh.nl,rk:m0*sh.rk,en:m0*sh.en}}d[v]=(+d[v]||0)+5/60}   /* tijd per vak voor de route; wat er vandaag al was, verdeeld naar aandeel */if(++tickN>=6){tickN=0;save()}},5000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState!=='visible')save()});
 /* bericht als het weekdoel bijna (80 procent) of helemaal gehaald is; één keer per week */
 function pruneWeeks(){const cut=monday()-8*7*DAY;for(const o of [S.rounds,S.weekSeen,S.newLog])for(const k of Object.keys(o||{}))if(+k<cut)delete o[k]}
@@ -2141,7 +2255,10 @@ document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest
 function vExplain(){const groups=[['nl','rekenen'],['nl','grammatica'],['nl','leestekens'],['en','grammatica'],['en','leestekens']];
   sub('page.explain',`<p class="muted">${T('explain.intro')}</p>${groups.map(([l,s])=>{const list=EXPL_LIST.filter(o=>o.learn===l&&o.x.subject===s);if(!list.length)return '';
     return `<section class="card stack">${T(l==='en'?'explain.subj.en.'+s:'explain.subj.'+s)}<div class="u-list">${list.map(o=>`<button class="u-item${S.explained[o.x.id]?' done':''}" data-uopen="${esc(o.x.id)}"><span>${TKx(o.x.title,o.learn)}</span>${S.explained[o.x.id]?`<span class="pill pill-mint" aria-label="${esc(t('explain.again'))}">✓</span>`:''}</button>`).join('')}</div></section>`}).join('')}`)}
-await loadPacks();
+/* ============ route met tijd (docs/route-en-prognose.md, docs/ontwerp-stap4.md): de route staat in een pakket, het rekenen in route.js ============ */
+const RC=(typeof window!=='undefined'&&window.RouteCalc)||null;let ROUTE=null,RWHAT=null;
+async function loadRoute(){try{const r=await fetch('content/route-nt2.json');if(!r.ok)return;const d=await r.json();if(RC&&!RC.checkRoute(d).length)ROUTE=d}catch(e){}}
+const routeP=loadRoute();await loadPacks();await routeP;   // de route laadt naast de pakketten
 loadAudioLists();   // geluidsbestanden per pakket (docs/geluid.md); wacht er niet op
 
 /* ============ staat ============ */
@@ -2150,21 +2267,22 @@ function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
     points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
-    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,trial:false,seenNews:NEWS,bkNudge:Date.now(),weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},roundLen:'normaal',errs:{},world:{ok:{},best:{},done:{},at:null},schema:SCHEMA};
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,trial:false,seenNews:NEWS,bkNudge:Date.now(),weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},roundLen:'normaal',errs:{},world:{ok:{},best:{},done:{},at:null},minsV:{},outside:{},prog:{},blockAdj:{},schema:SCHEMA};
 }
 /* ============ opslag veilig laden (#30) ============
    S.v blijft 2. S.schema telt de vorm van de opslag (zonder veld = 1). Elke stap n -> n+1 staat in MIGRATE en mag vaker draaien.
    Vóór een migratie gaat de ruwe opslag ongewijzigd naar BAK (één generatie); ook vóór Alles wissen en vóór Terugzetten.
    STORE: 'ok' = normaal | 'broken' = onleesbaar of onbekend: herstelscherm, niets wegschrijven | 'newer' = van een nieuwere app: alleen lezen.
    Buiten 'ok' schrijft de app niets weg en verstuurt ze geen voortgang. Onleesbare opslag wordt pas vervangen na een kopie in BROKEN. */
-const SCHEMA=6,BAK=KEY+'.bak',BROKEN=KEY+'.kapot';
+const SCHEMA=7,BAK=KEY+'.bak',BROKEN=KEY+'.kapot';
 const MIGRATE={
  1:s=>{if(!s.profile||typeof s.profile!=='object')s.profile={name:''};if(!LEARN.includes(s.learn))s.learn='nl';if(!SUPPORT.includes(s.sup))s.sup='th';
    if(s.v2ok&&!s.v2seen)s.v2seen=Date.now();delete s.v2ok;if(s.v2seen)s.tl1off=true;return s},
  2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s},   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
  3:s=>{for(const it of Object.values(s.items||{})){if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];if(it&&typeof it==='object'&&it.t==null&&typeof it.s==='number'&&it.s>0&&typeof it.due==='number')it.t=it.due-it.s*864e5}if(Object.keys(s.days||{}).length&&s.f3pending==null)s.f3pending=1;return s},
  4:s=>{if(!s.world||typeof s.world!=='object'||Array.isArray(s.world))s.world={done:{},at:null};if(!s.world.done||typeof s.world.done!=='object')s.world.done={};return s},
- 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};if(s.world&&typeof s.world==='object'&&(!s.world.best||typeof s.world.best!=='object'))s.world.best={};for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&typeof it.h!=='string')it.h='';if(typeof s.trial!=='boolean')s.trial=false;if(typeof s.seenNews!=='string')s.seenNews='';if(typeof s.bkNudge!=='number')s.bkNudge=Date.now();return s}   /* bkNudge: de eerste herinnering aan een kopie na een maand */   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
+ 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};if(s.world&&typeof s.world==='object'&&(!s.world.best||typeof s.world.best!=='object'))s.world.best={};for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&typeof it.h!=='string')it.h='';if(typeof s.trial!=='boolean')s.trial=false;if(typeof s.seenNews!=='string')s.seenNews='';if(typeof s.bkNudge!=='number')s.bkNudge=Date.now();return s},   /* bkNudge: de eerste herinnering aan een kopie na een maand */   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
+ 6:s=>{for(const k of ['minsV','outside','prog','blockAdj'])if(!s[k]||typeof s[k]!=='object'||Array.isArray(s[k]))s[k]={};return s}   // route met tijd (docs/ontwerp-stap4.md): tijd per vak, tijd buiten de app, de vastgelegde verwachting per week, de bijstelling per baan (alleen toegevoegd)
 };
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
@@ -2415,6 +2533,7 @@ function vToday(){
   paint(`
   <header class="top"><div>${bi(`<h1>${h}${nm()?', '+nm():''}</h1>`,ht)}</div>${thaiSwitch()}</header>
   ${weekCard()}
+  ${routeLine()}
   ${PACK_MISSING.length?`<div class="note" role="status">${T('pack.missing',{list:esc(PACK_MISSING.join(', '))})}</div>`:''}
   ${ans?`<button class="card row" id="answers" style="background:var(--lilac);border-color:var(--lilac-fill)"><span class="pill pill-lilac" style="background:var(--surface)">${ans}</span>${T('today.answered')}</button>`:''}
   ${S.unsent?`<button class="card row between" id="send" style="background:var(--lilac);border-color:var(--lilac-fill)"><span>${T('today.unsent')}</span><span class="pill pill-lilac" style="background:var(--surface)">${T('btn.send')}</span></button>`:''}
@@ -2465,6 +2584,7 @@ function vToday(){
   if($('#buddha'))$('#buddha').onclick=()=>{route=vBuddha;rerender();window.scrollTo(0,0)};
   if($('#water'))$('#water').onclick=()=>startLesson(true);
   if($('#place'))$('#place').onclick=startPlacement;
+  if($('#routeLine'))$('#routeLine').onclick=()=>show('route');
   if($('#answers'))$('#answers').onclick=()=>show('ik');
   if($('#send'))$('#send').onclick=()=>syncUp(true,ok=>{toast(tx(ok?'sync.sent':'sync.offline'));rerender()});
 }
@@ -2977,6 +3097,7 @@ H.storyq=q=>{const x=q.x;let first=true;
 
 /* ============ snelronde ============ */
 function startSpeed(){
+  app.dataset.vak='nl';   /* de/het-snelronde is Nederlands, ook na een les die met rekenen eindigde */
   $('#nav').hidden=true;app.classList.add('sess');let good=0,left=60,cur=null,timer=null,started=false;
   const DH=NL.filter(x=>x.art==='de'||x.art==='het'),pick=()=>DH[Math.floor(Math.random()*DH.length)];   // alleen woorden met de of het
   const draw=()=>{paint(`<div class="sess-top"><button class="close" id="quit" aria-label="Stoppen">×</button><div class="timer" style="flex:1"><i style="width:${left/60*100}%"></i></div><span class="pill pill-apricot num" id="sec">${left}s</span></div>
@@ -3080,23 +3201,60 @@ function vGarden(){
 }
 
 /* ============ route ============ */
+const RNAME=(x,l)=>esc((x&&(x[l]||x.nl))||'');   // tekst uit het routepakket: precies één keer esc
+function rMonth(ts,l){const L=LANG[l]||LANG.nl;try{return new Date(ts).toLocaleDateString(L.tag+(l==='th'?'-u-ca-gregory':''),{month:'long',year:'numeric'})}catch(e){return new Date(ts).toISOString().slice(0,7)}}
+const rH=h=>l=>{const v=Math.round(h*10)/10;return l==='nl'?String(v).replace('.',','):String(v)};   // decimaalteken per taal (codereview route 6)
+/* bandbreedte: valt de vroegste en laatste maand samen, dan alleen die maand */
+const rBand=(lo,hi)=>rMonth(lo,'nl')===rMonth(hi,'nl')?'':`<span class="small muted">${T('route.band',{a:l=>rMonth(lo,l),b:l=>rMonth(hi,l)})}</span>`;
+/* de verwachting: hoursWeek = null is het eigen tempo per vak, een getal is wat-als (alle vakken samen, verdeeld naar aandeel) */
+function rCalc(hoursWeek){const sh=ROUTE.aandeel,td=now(),out={};
+  for(const b of ROUTE.banen){const v=b.vak,done=RC.doneHours(S,v,sh),tp=RC.tempo(S,v,sh,td,weekGoal()),goal=weekGoal()/60*sh[v],pw=hoursWeek==null?tp.h:hoursWeek*sh[v];out[v]={done,tp,goal,pw,blocks:RC.blocks(b,done,S.blockAdj)}}
+  const gates=(ROUTE.poorten||[]).map(g=>{const v=RC.baanOf(ROUTE,g.na).vak;return {g,v,f:RC.forecast(ROUTE,g,out[v].done,out[v].pw,td,S.blockAdj),fGoal:RC.forecast(ROUTE,g,out[v].done,out[v].goal,td,S.blockAdj)}});
+  return {vak:out,gates,next:RC.nextGate(gates)}}
+/* één keer per week vastleggen, zodat de datum op Vandaag niet elke dag springt (ontwerp: rust); ontbreekt de eerstvolgende poort (week begon zonder tempo), dan opnieuw (codereview route 1) */
+function rSnap(c){const k=RC.monday(now());if(!S.prog||typeof S.prog!=='object')S.prog={};const cur=S.prog[k];
+  if(!cur||(c.next&&!cur[c.next.g.id])){const o={};c.gates.forEach(x=>{if(x.f)o[x.g.id]=[Math.round(x.f.lo),Math.round(x.f.mid),Math.round(x.f.hi)]});S.prog[k]=o;const ks=Object.keys(S.prog).map(Number).sort((a,b)=>a-b);while(ks.length>60)delete S.prog[ks.shift()];if(STORE==='ok')save()}
+  return S.prog[k]}
+function rShift(id){return RC.shiftFrom(S.prog,RC.monday(now()),id)}
+function routeLine(){if(!RC||!ROUTE||!S.onboarded)return '';try{const c=rCalc(null),n=c.next;if(!n)return '';const sn=rSnap(c)[n.g.id];if(!sn)return '';const sh=rShift(n.g.id);
+  return `<button class="card row between" id="routeLine" style="background:var(--sky);border-color:var(--sky-fill);text-align:left"><span style="display:flex;flex-direction:column;gap:2px">${T('route.line',{gate:l=>RNAME(n.g.naam,l),m:l=>rMonth(sn[1],l)})}${rBand(sn[0],sn[2])}${sh?`<span class="small muted">${T(sh<0?'route.earlier':'route.later',{n:Math.abs(sh)})}</span>`:''}</span><span class="pill pill-sky" style="background:var(--surface)" aria-hidden="true">›</span></button>`}catch(e){return ''}}
 function vRoute(){
-  const placed=!!S.placement,t1=NL.filter(w=>stage(w.id)>=3).length/NL.length;
-  const st=[
-   {k:'S',nl:'Startmeting',th:'การวัดระดับ',en:'Starting test',d:placed?'Gedaan':'Waar sta je nu?',dTh:placed?'เสร็จแล้ว':'ตอนนี้คุณอยู่ตรงไหน',dEn:placed?'Done':'Where are you now?',s:placed?'done':'now'},
-   {k:'1',nl:'Thema 1 · Werk en dagelijks leven',th:'ธีม 1 · งานและชีวิตประจำวัน',en:'Theme 1 · Work and daily life',d:`${Math.round(t1*100)}% van de woorden is knop of bloem`,dTh:`${Math.round(t1*100)}% ของคำเป็นดอกตูมหรือดอกไม้`,dEn:`${Math.round(t1*100)}% of the words are a bud or a flower`,s:placed?'now':''},
-   {k:'2',nl:'Thema 2 · Wonen en de buurt',th:'ธีม 2 · บ้านและละแวกบ้าน',en:'Theme 2 · Housing and the neighbourhood'},
-   {k:'3',nl:'Thema 3 · Geld en boodschappen',th:'ธีม 3 · เงินและการซื้อของ',en:'Theme 3 · Money and shopping'},
-   {k:'4',nl:'Thema 4 · Gezondheid',th:'ธีม 4 · สุขภาพ',en:'Theme 4 · Health'},
-   {k:'…',nl:'Thema 5 tot 9 · samenleving, natuur, cultuur, media',th:'ธีม 5 ถึง 9 · สังคม ธรรมชาติ วัฒนธรรม สื่อ',en:'Themes 5 to 9 · society, nature, culture, media',d:'Fase 1: van A2 naar B1',dTh:'ระยะที่ 1: จาก A2 ไป B1',dEn:'Phase 1: from A2 to B1'},
-   {k:'F2',nl:'Fase 2 · Toelatingsklaar',th:'ระยะที่ 2 · พร้อมสมัครเรียน',en:'Phase 2 · Ready for admission',d:'Examentraining · Engels A2 · rekenen',dTh:'ฝึกข้อสอบ · ภาษาอังกฤษ A2 · คณิตศาสตร์',dEn:'Exam training · English A2 · maths'},
-   {k:'P1',nl:'Poort 1 · Staatsexamen NT2 I en toelating',th:'ประตู 1 · สอบ NT2 I และสมัครเรียน',en:'Gate 1 · State exam NT2 I and admission',s:'gate'},
-   {k:'F3',nl:'Fase 3 · Tijdens de opleiding',th:'ระยะที่ 3 · ระหว่างเรียน',en:'Phase 3 · During the course',d:'Naar B2 · rekenen · Engels B1',dTh:'ไปสู่ B2 · คณิตศาสตร์ · ภาษาอังกฤษ B1',dEn:'Towards B2 · maths · English B1'},
-   {k:'P2',nl:'Poort 2 · Diploma',th:'ประตู 2 · ประกาศนียบัตร',en:'Gate 2 · Diploma',s:'gate'}];
-  paint(`<header class="top"><div>${T('route.title')}</div>${thaiSwitch()}</header>
-  <p class="muted">${T('route.tip')}</p>
-  <section class="card"><div class="route">${st.map(x=>`<div class="stn ${x.s||''}"><div class="mk"><span>${x.k}</span></div><div class="tx">${bi(`<b>${x.nl}</b>`,L_(x))}${x.d?`<span class="small muted">${bi(x.d,L_(x,'d'))}</span>`:''}</div></div>`).join('')}</div></section>
-  <section class="card stack" style="background:var(--apricot);border-color:var(--apricot-fill)">${T('route.next')}<p>${T(placed?'route.next.placed':'route.next.place')}</p></section>`);
+  const head=`<header class="top"><div>${T('route.title')}</div>${thaiSwitch()}</header><p class="muted">${T('route.tip')}</p>`;
+  if(!RC||!ROUTE){paint(head+`<div class="note">${T('route.none')}</div>`);return}
+  const c=rCalc(null),td=now(),placed=!!S.placement,tot=ROUTE.banen.reduce((a,b)=>a+c.vak[b.vak].tp.h,0),start=ROUTE.banen.some(b=>c.vak[b.vak].tp.bron==='doel'),goalH=weekGoal()/60;rSnap(c);
+  const gates=c.gates.slice().sort((a,b)=>(a.f?a.f.mid:Infinity)-(b.f?b.f.mid:Infinity)||(a.fGoal?a.fGoal.mid:0)-(b.fGoal?b.fGoal.mid:0));
+  const ifGoal=x=>`<span class="small">${T('route.ifGoal',{m:l=>rMonth(x.fGoal.mid,l)})}</span>`;
+  const gateCard=x=>`<div class="rt" style="padding:10px 0;border-top:1px solid var(--line)"><b>${bi(RNAME(x.g.naam,learnL()),RNAME(x.g.naam,supL()))}</b>
+    ${x.f?`<span>${T('route.expect',{m:l=>rMonth(x.f.mid,l)})}</span>${rBand(x.f.lo,x.f.hi)}${x.fGoal&&Math.abs(x.fGoal.mid-x.f.mid)>RC.WEEK*2?ifGoal(x):''}`:`<span class="small muted">${T('route.noTempo')}</span>${x.fGoal?ifGoal(x):''}`}
+    ${(x.g.onderdelen||[]).length?`<span class="small">${x.g.onderdelen.map(o=>RNAME(o,learnL())).join(' · ')}</span><span class="small muted">${T('route.parts')}</span>`:''}
+    ${x.g.voorwaarden?`<span class="small muted">${bi(RNAME(x.g.voorwaarden,learnL()),RNAME(x.g.voorwaarden,supL()))}</span>`:''}</div>`;
+  const n=c.next,sh=n&&rShift(n.g.id),firstWeek=new Date(RC.monday(td)).getDate()<=7;
+  /* waarom verschoof de datum: één keer per maand (de eerste week van de maand), en alleen "onder je doel" als dat ook zo is (codereview route 4) */
+  const whyKey=sh>0?(tot<goalH-0.05?'route.why.later':'route.why.slower'):'route.why.earlier';
+  const why=n&&sh&&firstWeek?`<section class="card rt" style="background:var(--lilac);border-color:var(--lilac-fill)">${T(whyKey,{n:Math.abs(sh),h:rH(tot),g:rH(goalH)})}</section>`:'';
+  const lane=b=>{const V=c.vak[b.vak],bn=l=>RNAME(b.naam,l);return `<section class="card rt"><h3>${bi(bn(learnL()),bn(supL()))}</h3>${V.blocks.map(o=>{const pct=Math.floor(o.prog*100),dn=o.prog>=1,left=Math.max(0,o.end.mid-Math.max(o.start.mid,V.done)),wk=V.pw>0.01?left/V.pw:null,
+    gs=(ROUTE.poorten||[]).filter(g=>g.na===o.id),at=h=>td+Math.max(0,h-V.done)/V.pw*RC.WEEK;
+    return `<div class="rt" style="padding:8px 0;border-top:1px solid var(--line)"><div class="row between"><b>${esc(o.id)} · ${RNAME(o.b.naam,learnL())}</b><span class="small muted">${dn?T('route.block.done'):T('route.block.pct',{p:pct})}</span></div>
+      <span class="small">${bi(RNAME(o.b.kan,learnL()),RNAME(o.b.kan,supL()))}</span>
+      <div class="bar" role="img" aria-label="${esc(o.id)}: ${pct}%"><i style="width:${pct}%"></i></div>
+      ${!dn&&wk!=null?`<span class="small muted">${wk<6?T('route.block.weeks',{n:Math.max(1,Math.round(wk))}):T('route.block.dur',{n:Math.round(wk/4.35)})} · ${T('route.block.span',{a:l=>rMonth(at(o.start.mid),l),b:l=>rMonth(at(o.end.mid),l)})}</span>`:''}
+      ${gs.map(g=>`<span class="pill pill-apricot" style="align-self:flex-start">${T('route.gate.flag',{gate:l=>RNAME(g.naam,l)})}</span>`).join('')}</div>`}).join('')}</section>`};
+  const om=RC.outsideMins(S,today()),kinds=['lezen','kijken','les','gesprek'],ro=STORE!=='ok';
+  const wv=RWHAT==null?Math.min(20,Math.max(1,Math.round((start?goalH:tot)*2)/2)):RWHAT;
+  /* wat als: de poort die in het eigen tempo de eerstvolgende is, of zonder tempo de eerstvolgende bij deze uren (codereview route 2) */
+  const whatRes=h=>{const w=rCalc(h),x=(n&&w.gates.find(y=>y.g.id===n.g.id))||w.next;return x&&x.f?T('route.whatif.res',{h:rH(h),gate:l=>RNAME(x.g.naam,l),m:l=>rMonth(x.f.mid,l)}):T('route.noTempo')};
+  const nextBlock=(()=>{const b=ROUTE.banen[0],bl=c.vak[b.vak].blocks;return bl.find(x=>x.prog<1)||null})();
+  paint(`${head}
+  <section class="card rt">${T('route.gates')}<span class="small muted">${T('route.startEst')}</span>${gates.map(gateCard).join('')}</section>
+  <section class="card rt">${T('route.tempo')}${start?`<span class="small muted">${T('route.tempo.start')}</span>`:`<span>${T('route.tempo.own',{h:rH(tot)})}</span>`}<span>${T('route.tempo.goal',{h:rH(goalH)})}</span></section>
+  ${why}
+  <section class="card rt">${T('route.whatif')}<span class="small muted">${T('route.whatif.tip')}</span><input type="range" id="rwhat" min="1" max="20" step="0.5" value="${wv}" aria-label="${esc(strip(t('route.whatif')))}" aria-valuetext="${esc(strip(t('route.hours',{h:rH(wv)})))}" style="width:100%"><div id="rwres" aria-live="polite">${whatRes(wv)}</div></section>
+  ${ROUTE.banen.map(lane).join('')}
+  <section class="card rt">${T('route.out')}<span class="small muted">${T('route.out.tip')}</span><span id="rout">${T('route.out.today',{m:Math.round(om)})}</span>
+    <div class="row" style="flex-wrap:wrap;gap:6px">${kinds.map(k=>`<button class="btn btn-ghost" style="width:auto" data-out="${k}" ${om>=60||ro?'disabled':''}>${TB('route.out.k.'+k)} +15</button>`).join('')}</div></section>
+  ${nextBlock||!placed?`<section class="card stack" style="background:var(--apricot);border-color:var(--apricot-fill)">${T('route.next')}<p>${placed?T('route.next.placed',{blok:l=>RNAME(nextBlock.b.naam,l)}):T('route.next.place')}</p></section>`:''}`);
+  const r=$('#rwhat');if(r)r.oninput=()=>{RWHAT=+r.value;r.setAttribute('aria-valuetext',strip(t('route.hours',{h:rH(RWHAT)})));$('#rwres').innerHTML=whatRes(RWHAT)};
+  app.querySelectorAll('[data-out]').forEach(b=>b.onclick=()=>{if(STORE!=='ok')return;const d=today();if(!S.outside||typeof S.outside!=='object')S.outside={};const o=S.outside[d]&&typeof S.outside[d]==='object'?S.outside[d]:(S.outside[d]={});const room=60-RC.outsideMins(S,d);if(room<=0)return toast(tx('route.out.full'));const add=Math.min(15,room);o[b.dataset.out]=(+o[b.dataset.out]||0)+add;save();toast(tx('route.out.added',{m:add}));vRoute()});
 }
 
 /* ============ ik ============ */

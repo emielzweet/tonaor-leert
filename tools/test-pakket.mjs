@@ -2,7 +2,9 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { boot, builtin, PC, html, ROOT } from './app-harness.mjs';
 let fails = 0; const ok = (n, v, extra) => { if (!v) fails++; console.log((v ? 'OK  ' : 'FOUT') + ' ' + n + (v || !extra ? '' : '\n     ' + extra)); };
-const files = readdirSync(new URL('content/', ROOT)).filter(f => f.endsWith('.json') && f !== 'index.json');
+const ALL = readdirSync(new URL('content/', ROOT)).filter(f => f.endsWith('.json') && f !== 'index.json');
+const ROUTES = ALL.filter(f => { try { return JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8')).type === 'route'; } catch (e) { return false; } });   // de route is geen lespakket (docs/ontwerp-stap4.md)
+const files = ALL.filter(f => !ROUTES.includes(f));
 const HIDDEN = files.map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8'))).filter(p => p.type === 'hoofdstuk' && PC.checkChapter(p).errors.length).map(p => p.id);   // haalt de hoofdstukcontrole niet: niet in de app (codereview B3)
 const NLWORDS = files.map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8'))).filter(p => p.learn === 'nl' && !HIDDEN.includes(p.id)).reduce((a, p) => a + (p.items || []).filter(x => x.kind === 'word' || x.kind === 'phrase').length, 0);
 const packs = files.map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8')));
@@ -115,8 +117,10 @@ ok('startmeting heeft zijn tussenstand (PL) nog', /\r?\nlet PL=\{\};\r?\nfunctio
 const sw = readFileSync(new URL('sw.js', ROOT), 'utf8');
 const shell = eval(sw.slice(sw.indexOf('const SHELL=') + 'const SHELL='.length, sw.indexOf(';', sw.indexOf('const SHELL='))));
 const bi = builtin();
-ok('BUILTIN en SHELL noemen dezelfde pakketten, plus de index', JSON.stringify(bi.concat(['content/index.json']).sort()) === JSON.stringify(shell.filter(s => s.startsWith('./content/')).map(s => s.slice(2)).sort()), 'BUILTIN ' + bi + ' / SHELL ' + shell);
-ok('elk pakket in content/ staat in BUILTIN of in de index, en de index noemt alleen bestaande pakketten buiten BUILTIN', files.every(f => bi.includes('content/' + f) || IDX.includes('content/' + f)) && IDX.every(u => files.includes(u.slice(8)) && !bi.includes(u)));
+/* de route (docs/ontwerp-stap4.md) is geen lespakket: hij laadt apart, staat in SHELL en wordt gecontroleerd door route.js */
+ok('BUILTIN en SHELL noemen dezelfde pakketten, plus de index en de route', JSON.stringify(bi.concat(['content/index.json'], ROUTES.map(f => 'content/' + f)).sort()) === JSON.stringify(shell.filter(s => s.startsWith('./content/')).map(s => s.slice(2)).sort()), 'BUILTIN ' + bi + ' / SHELL ' + shell);
+ok('elk pakket in content/ staat in BUILTIN of in de index (de route apart), en de index noemt alleen bestaande pakketten buiten BUILTIN', files.every(f => bi.includes('content/' + f) || IDX.includes('content/' + f) || ROUTES.includes(f)) && IDX.every(u => files.includes(u.slice(8)) && !bi.includes(u)));
+{ const RCx = (await import('node:module')).createRequire(import.meta.url)('../route.js'); ROUTES.forEach(f => { const e = RCx.checkRoute(JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8'))); ok('route ' + f + ' is in orde', !e.length, e.join('; ')); }); }
 { // lesstof los van de code (docs/ontwerp-stap3a.md)
   let a = await boot({ missing: ['content/index.json'] }), g2 = a.api.get();
   ok('zonder index: alleen de basis, geen melding over de index', g2.PACKS.length === bi.length && !g2.PACK_MISSING.length, g2.PACK_MISSING.join());
