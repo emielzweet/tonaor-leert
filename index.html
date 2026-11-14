@@ -2361,7 +2361,7 @@ let Q=[],qi=0,sp=0,grown=[],sessName='',sessStart=0,sessRight=0,sessTotal=0;
 function runSession(name,queue){Q=queue;qi=0;SESS=[];KNOWN=new Set();RETRIED=new Set();sp=0;grown=[];sessName=name;sessStart=now();sessRight=0;sessTotal=0;$('#nav').hidden=true;app.classList.add('sess');window.scrollTo(0,0);step()}
 function vakOf(q,stepNo){return q&&q.vak?q.vak:stepNo===4||(q&&['money','clock','discount'].includes(q.type))?'rk':(q&&(q.lang==='en'||/^en/.test(q.type)))||sessName==='Engels'?'en':'nl'}
 function scPh(q){const ph=[];Q.forEach(x=>{if(x&&x.sc===q.sc&&x.step&&!ph.includes(x.step))ph.push(x.step)});return {n:ph.indexOf(q.step)+1,m:ph.length}}   /* G1: tel en noem alleen de delen die deze scène echt heeft */
-function frame(inner,label,stepNo,ofN){app.dataset.vak=vakOf(Q[qi],stepNo);if(Q[qi]&&Q[qi].sc&&Q[qi].step){const r=scPh(Q[qi]);if(r.n>0){stepNo=r.n;ofN=r.m}}
+function frame(inner,label,stepNo,ofN){app.dataset.vak=vakOf(Q[qi],stepNo);if(Q[qi]&&Q[qi]._ask&&inner.startsWith('<div class="card stack">'))inner='<div class="card stack"><p class="prompt">'+scT(Q[qi]._ask)+'</p>'+inner.slice(24);if(Q[qi]&&Q[qi].sc&&Q[qi].step){const r=scPh(Q[qi]);if(r.n>0){stepNo=r.n;ofN=r.m}}
   const p=Math.round(qi/Math.max(1,Q.length-1)*100);
   paint(`<div class="sess-top"><button class="close" id="quit" aria-label="Stoppen">×</button><div class="bar" role="progressbar" aria-label="Voortgang" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><i style="width:${p}%"></i></div>${thaiSwitch()}</div>
   <div class="stage-label"><span class="eyebrow">${stepNo?`Stap ${stepNo} van ${ofN||(Q.some(x=>x.type==="sc_end")?4:5)} · `:''}${label}</span>${(x=>x?`<button class="u-btn" data-uopen="${esc(x)}">${TB('explain.open')}</button>`:'')(explFor(Q[qi]))}<span class="pill pill-apricot num">+${sp}</span></div>${inner}`);
@@ -2483,7 +2483,7 @@ function sceneQ(sc,hard){const q=[],vak=sc.subject||'nl',ph={look:1,talk:2,read:
     else if(st.type==='explain'){if(EXPL[st.id]&&(st.when!=='first'||!(S.explained||{})[st.id]))q.push({type:'explain',step,x:st.id,lang:'nl',vak})}
     else if(st.type==='do'){if(st.form==='setclock')q.push({...base,type:'sc_clock',items:st.items.slice(),exid:sc.id+'#d'+k});
       else if(st.form==='point')q.push({...base,type:'sc_point',items:st.items.slice(),exid:sc.id+'#d'+k});
-      else{const e={id:sc.id+'.d'+k,form:st.form,items:st.items.slice(),...(st.gen?{gen:st.gen}:{data:st.data})},x=exQ(e,step,'nl',st.items[0]);if(x){x.vak=vak;q.push(x)}}}
+      else{const e={id:sc.id+'.d'+k,form:st.form,items:st.items.slice(),...(st.gen?{gen:st.gen}:{data:st.data})},x=exQ(e,step,'nl',st.items[0]);if(x){x.vak=vak;if(st.ask)x._ask=st.ask;q.push(x)}}}   /* review dokter 5: de vraag van de stap (Heb je genoeg?) staat boven de oefening */
     else if(st.type==='make')q.push({...base,type:'sc_make',items:st.items.slice(),exid:sc.id+'#m'+k});
     else if(st.type==='end'){q.push({type:'conf',step:4,vak});q.push({...base,type:'sc_end'})}}catch(e){}});
   return q}
@@ -2552,6 +2552,7 @@ const scN=x=>x&&typeof x==='object'?`<span lang="nl">${SAFE(plainX(x,'nl'))}</sp
 function scNum(v){let x=String(v).toLowerCase().trim().replace(/€/g,'').replace(/,-$/,'').trim();let m=/^(\d+)\s*(euro|eur)\s*(\d{1,2})$/.exec(x);if(m)return +m[1]+ +m[3]/(m[3].length===1?10:100);
   m=/^(\d+)\s*(ct|cent)$/.exec(x);if(m)return +m[1]/100;x=x.replace(/(euro|eur)$/,'').replace(/\s+/g,'');
   if(x.includes(','))x=x.replace(/\.(?=\d{3}(\D|$))/g,'').replace(',','.');else if(/^-?[1-9]\d{0,2}(\.\d{3})+$/.test(x))x=x.replace(/\./g,'');   /* 0.125 blijft 0,125 (nareview) */return /^-?\d+(\.\d+)?$/.test(x)?parseFloat(x):NaN}
+function scLoose(a,v){const A=scNorm(a),V=scNorm(v),noArt=x=>x.replace(/^(de|het|een) /,''),m=/^(\d+(?:[.,]\d+)?) [a-z]+$/.exec(A);return noArt(A)===noArt(V)||(!!m&&/^\d+(?:[.,]\d+)?$/.test(V)&&scNum(m[1])===scNum(V))}   /* review dokter 5: in de zwaardere vorm (typen i.p.v. kiezen) telt keel voor de keel en 45 voor 45 minuten */
 const scNorm=a=>String(a).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[’‘`]/g,"'").replace(/\s+/g,' ').replace(/[.!?]+$/,'').trim();
 function scSrc(st){const b=(st&&st.sources)||[];if(!b.length)return '';return `<p class="small muted">${T('scene.source')} ${b.map(x=>{const ti=typeof x==='string'?x:plainX(x.title!=null?x.title:x.t,'nl'),u=x&&typeof x==='object'&&/^https:\/\/[^\s"'<>]+$/.test(x.url||'')?x.url:'';return u?`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(ti)}</a>`:esc(ti)}).join(' · ')}</p>`}
 H.sc_q=q=>{const sc=q.sc,qq=q.qq,id=q.items[0],typeIt=q.hard&&qq.answer!=null&&String(qq.answer).trim().split(/\s+/).length<=3&&(qq.form==='choose'||qq.form==='hear'),   /* lange antwoorden blijven kiezen */f=typeIt?(qq.form==='hear'?'hear-type':'type'):qq.form,nos=!!(q.hard||sc.nosup||q.role==='instap'||q.role==='controle'),inst=q.role==='instap'&&S.items[id]&&S.items[id].reps===0;let first=true,done=false;
@@ -2564,7 +2565,7 @@ H.sc_q=q=>{const sc=q.sc,qq=q.qq,id=q.items[0],typeIt=q.hard&&qq.answer!=null&&S
   const right=msg=>{done=true;if(hint)first=false;score(first,10);if(first&&SCN&&SCN.sc===sc)SCN.good++;if(q.role==='controle'&&SCN)SCN.ctrl=SCN.ctrl!==false&&first;if(q.role==='instap'&&first)scKnow(q);else if(!inst)practiced(q,first?true:'retry',SCF[f]);$('#fb').innerHTML=fbBox(true,msg,'')+nextBtn();$('#nx').onclick=next};
   const wrong=(msg,err)=>{if(first&&nos)$('#ask').innerHTML=scT(qq.ask);first=false;scFault(q,err);$('#fb').innerHTML=fbBox(false,msg,'')};   // na een poging mag de steuntaal erbij
   if(opts){app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{if(done)return;const o=qq.opts[+b.dataset.o];if(o.r==='ok'){b.classList.add('right');say(o.t);right(scT(o.why))}else{b.classList.add('wrong');b.disabled=true;wrong(scT(o.why),o.err)}});return}
-  const as=[].concat(qq.answer!=null?qq.answer:((qq.opts||[]).find(o=>o.r==='ok')||{}).t,qq.accept||[]),num=scNum,ok=v=>f==='number'?as.some(a=>Math.abs(num(a)-num(v))<=(typeof qq.tol==='number'?qq.tol:1e-9)):as.some(a=>scNorm(a)===scNorm(v));
+  const as=[].concat(qq.answer!=null?qq.answer:((qq.opts||[]).find(o=>o.r==='ok')||{}).t,qq.accept||[]),num=scNum,ok=v=>f==='number'?as.some(a=>Math.abs(num(a)-num(v))<=(typeof qq.tol==='number'?qq.tol:1e-9)):as.some(a=>scNorm(a)===scNorm(v)||(typeIt&&scLoose(a,v)));
   const chk=()=>{const v=$('#ans').value.trim();if(!v||done)return;if(ok(v)){$('#ans').disabled=true;$('#chk').remove();right(scT(qq.why||((qq.opts||[]).find(o=>o.r==='ok')||{}).why));return}
     if(first){wrong(T('scene.again'),qq.err);return}
     done=true;$('#ans').disabled=true;$('#chk').remove();if(q.role==='controle'&&SCN)SCN.ctrl=false;score(false,10);if(!inst)practiced(q,false,SCF[f]);   // tweede keer fout: het antwoord met uitleg, geen dood spoor
@@ -2622,7 +2623,9 @@ H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${fw(w)}`,full=artFull(
     if(alsoOf(w).some(id=>{const o=NL.find(x=>x.id===id);return o&&norm(o.w)===word})){$('#fb').innerHTML=`<div class="note sky">Dat past ook! Maar hier zoeken we een ander woord. Neem gerust een hulpje.</div>`;return}
     tries++;if(tries>1)return done(false,false,`Het is <b>${esc(w.w)}</b> (${full}). ${ctx}`);
     $('#fb').innerHTML=fbBox(false,'Probeer het nog een keer, of neem een hulpje.','')};
-  const check=()=>{if(g)return checkGap();const a=norm(inp.value);if(!a)return;tries++;const ok=a===norm(fullT);let msg=null,th=null;
+  const check=()=>{if(g)return checkGap();const a=norm(inp.value);if(!a)return;
+    if(alsoOf(w).some(id=>{const o=NL.find(x=>x.id===id);return o&&(norm(o.w)===a||norm(fw(o))===a)})){$('#fb').innerHTML=`<div class="note sky">Dat past ook! Maar hier zoeken we een ander woord. Neem gerust een hulpje.</div>`;return}   /* review dokter 5: also geldt ook zonder gatzin (pijn in / pijn aan) */
+    tries++;const ok=a===norm(fullT);let msg=null,th=null;
     if(ok){msg=`<b>${full}</b>. ${esc(w.ex)}`;th=ts('recall.yes',{full})}
     else if(a===norm(w.w)){msg=t('recall.addArt',{art:w.art,full});th=ts('recall.addArt',{art:w.art,full})}
     else if(a.endsWith(norm(w.w))){msg=t('recall.wrongArt',{art:w.art,full});th=ts('recall.wrongArt',{art:w.art,full})}

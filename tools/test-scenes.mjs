@@ -171,4 +171,8 @@ ok('poort (uitleg bij de eisen 13, 14): dubbele vraag, tekst zonder typen, te we
   const r1 = cx.f({ sc: A, step: 3 }), r2 = cx.f({ sc: B, step: 2 });
   ok('voortgang in een scène telt alleen de delen die de scène heeft (G1: geen Stap 1 van 4 bij drie delen)', r1.n === 2 && r1.m === 3 && r2.n === 1 && r2.m === 1, JSON.stringify([r1, r2]));
   ok('de instap heet niet Kijken', html.includes("PHROLE={instap:'scene.warm'") && html.includes('t(PHROLE[q.role]||PH[q.step]')); }
+{ const cx = {}; vm.createContext(cx); vm.runInContext(lineOf('const scNorm=') + ';' + fnBlock('scNum') + ';' + fnBlock('scLoose') + ';this.f=scLoose;', cx);
+  ok('zwaardere vorm: keel telt voor de keel, 45 voor 45 minuten, maar 45 uur en hals niet', cx.f('de keel', 'keel') && cx.f('45 minuten', '45') && cx.f('de keel', 'De keel.') && !cx.f('45 minuten', '45 uur') && !cx.f('de keel', 'hals') && !cx.f('45 minuten', '50'));
+  ok('typen vanuit de steuntaal: een woord uit also is geen fout (pijn in bij pijn aan)', html.includes("if(alsoOf(w).some(id=>{const o=NL.find(x=>x.id===id);return o&&(norm(o.w)===a||norm(fw(o))===a)}))"));
+  ok('een do-oefening in een scène toont de vraag van de stap (Heb je genoeg?)', html.includes('if(st.ask)x._ask=st.ask') && html.includes("Q[qi]._ask&&inner.startsWith('<div class=\"card stack\">'))inner='<div class=\"card stack\"><p class=\"prompt\">'+scT(Q[qi]._ask)+'</p>'+inner.slice(24)")); }
 console.log(fails ? fails + ' FOUT' : 'alles OK');
