@@ -163,4 +163,5 @@ ok('Proefonderdelen: de scènetegel alleen met de schakelaar aan; standaard uit 
   ok('tolerant typen (10.29): hoofdletter, spatie, accent en trema geen fout; het dictee blijft streng', cx.n('  Ruïne ') === cx.n('ruine') && cx.n('Café') === 'cafe' && cx.s('ruïne') !== cx.s('ruine')); }
 ok('korte ronde: de melding komt aan (de vlag gaat mee met de rij die compose teruggeeft)', html.includes('if(q._short)out._short=q._short;return out'));
 ok('speltimer stopt als de sessie verlaten is', html.includes("const here=Q[qi]===q&&app.classList.contains('sess')"));
+ok('herkennen: geen afleider met dezelfde vertaling of uit also (twee goede antwoorden)', html.includes('!AL.includes(x.id)&&x.th!==w.th&&x.en!==w.en'));
 console.log(fails ? fails + ' FOUT' : 'alles OK');

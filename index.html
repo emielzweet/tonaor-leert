@@ -2409,7 +2409,7 @@ H.learn=q=>{const w=q.w;
 };
 /* woorden die ook passen, in beide richtingen (also bij het ene of het andere woord): nooit als foute keuze, getypt geen fout (review 3) */
 function alsoOf(w){return [...new Set([...(w.also||[]),...NL.filter(x=>(x.also||[]).includes(w.id)).map(x=>x.id)])]}
-H.recog=q=>{const w=q.w;let first=true;const g=nlOnly()?gapEx(w):null,AL=alsoOf(w),others=NL.filter(x=>x.id!==w.id&&!AL.includes(x.id)),opts=shuffle([w,...shuffle(others).slice(0,2)]);
+H.recog=q=>{const w=q.w;let first=true;const g=nlOnly()?gapEx(w):null,AL=alsoOf(w),others=NL.filter(x=>x.id!==w.id&&!AL.includes(x.id)&&x.th!==w.th&&x.en!==w.en),   /* nooit een afleider met dezelfde vertaling: dan zijn er twee goede antwoorden (review nl-basis) */opts=shuffle([w,...shuffle(others).slice(0,2)]);
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Welk woord is dit?</p><p class="prompt sp" ${supAttr()}>${L_(w)}</p>`}
   <div class="choices one">${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}">${g||!o.art?'':o.art+' '}${esc(o.w)}</button>`).join('')}</div><div id="fb"></div></div>`,'Herkennen',q.step);
   if(nlOnly()&&!g){setTimeout(()=>say(`${fw(w)}`),250);$('#sp').onclick=()=>say(`${fw(w)}`);$('#sps').onclick=()=>say(`${fw(w)}`,true)}
