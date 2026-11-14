@@ -44,16 +44,19 @@ if (dubbel.length) stop('pakket-id komt twee keer voor: ' + dubbel.join(', '));
 const all = files.map(f => JSON.parse(readFileSync(new URL(f, ROOT), 'utf8')));
 for (const f of changed.filter(f => f.startsWith('content/') && f !== 'content/index.json' && existsSync(new URL(f, ROOT)))) {
   const p = JSON.parse(readFileSync(new URL(f, ROOT), 'utf8'));
-  if (p.type === 'hoofdstuk') {
+  if (p.type === 'hoofdstuk' || p.type === 'les') {   // een losse les: dezelfde poort, met review
     let out = '';
     try { out = execFileSync('node', ['redactie/controleer.mjs', f], { cwd: ROOT, encoding: 'utf8' }); }
     catch (e) { stop('poort niet gehaald voor ' + f + ':\n' + String(e.stdout || '').trim()); }
-    if (/eigennaam/i.test(out)) stop('mogelijk een eigennaam in ' + f + ' (publieke repo; eerst nakijken):\n' + out.trim());
+    if (p.type === 'hoofdstuk' && /eigennaam/i.test(out)) stop('mogelijk een eigennaam in ' + f + ' (publieke repo; eerst nakijken):\n' + out.trim());
   } else {
     const r = PC.checkPack(p, all.filter(o => o.id !== p.id));
     if (r.errors.length) stop('pakketcheck niet gehaald voor ' + f + ':\n  ' + r.errors.join('\n  '));
   }
 }
+
+// de lijst lessen: draden bestaan, nooit twee keer achter elkaar dezelfde vorm, hooguit twee uit hetzelfde gebied
+{ const r = PC.checkLessen(all); if (r.errors.length) stop('lijst lessen: ' + r.errors.join('; ')); }
 
 // 5. alle tests
 for (const t of readdirSync(new URL('tools/', ROOT)).filter(f => /^test-.*\.mjs$/.test(f))) {
