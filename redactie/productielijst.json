@@ -1,28 +1,686 @@
 {
-  "uitleg": "De wachtrij van de redactielijn. stand: gepland | geschreven | gereviewd | klaar | uitgebracht. De volgorde volgt docs/leerroute.md.",
+  "uitleg": "De wachtrij van de redactielijn. stand: gepland | geschreven | gereviewd | klaar | uitgebracht. Volgorde: het veld volgorde (= order in het pakket). Thema 1 (leerroute N1, thema 1: werk en dagelijks leven) bestaat uit zes hoofdstukken; de grammatica van het thema is over de hoofdstukken verdeeld. Elk hoofdstuk: vijf scènes Nederlands, één rekenscène, één kennisles; geen namen van personen, straten, steden of bedrijven.",
   "algemeneOntwikkeling": {
-    "uitleg": "Losse lessen, één vraag per les, volgens docs/algemene-ontwikkeling.md. De eerste veertig vragen staan in dat document onder 'Om de toon te zetten'. Vul de wachtrij aan met vragen uit alle gebieden door elkaar; nooit twee achter elkaar in dezelfde vorm, hooguit twee uit hetzelfde gebied. Elk feit met een bron.",
+    "uitleg": "Losse lessen, één vraag per les, volgens docs/algemene-ontwikkeling.md. De eerste veertig vragen staan in dat document onder 'Om de toon te zetten'. Vul de wachtrij aan met vragen uit alle gebieden door elkaar; nooit twee achter elkaar in dezelfde vorm, hooguit twee uit hetzelfde gebied. Elk feit met een bron. De eerste twintig staan hieronder in volgorde; bij elke les één bron, eerst raden of schatten, waar het kan een verhaal, en twee of drie draden naar een andere les.",
     "stand": "gepland",
-    "klaar": []
+    "klaar": [],
+    "eerste": [
+      {
+        "id": "ao-zeespiegel",
+        "volgorde": 1,
+        "vraag": "Waarom ligt een kwart van Nederland onder de zeespiegel?",
+        "gebied": "aardrijkskunde",
+        "vorm": "eerst schatten",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-inflatie",
+        "volgorde": 2,
+        "vraag": "Wat is inflatie, en wie heeft er last van?",
+        "gebied": "economie",
+        "vorm": "één getal en wat erachter zit",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-monnik",
+        "volgorde": 3,
+        "vraag": "Waarom scheert een monnik zijn hoofd?",
+        "gebied": "geloof",
+        "vorm": "een voorwerp en zijn verhaal",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-1953",
+        "volgorde": 4,
+        "vraag": "Wat gebeurde er in de nacht van 1 februari 1953?",
+        "gebied": "geschiedenis",
+        "vorm": "een verhaal",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-gezellig",
+        "volgorde": 5,
+        "vraag": "Waar komt het woord gezellig vandaan?",
+        "gebied": "taal",
+        "vorm": "een woord en zijn herkomst",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-kamer150",
+        "volgorde": 6,
+        "vraag": "Waarom zitten er 150 mensen in de Tweede Kamer?",
+        "gebied": "politiek",
+        "vorm": "eerst raden",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-zout",
+        "volgorde": 7,
+        "vraag": "Waarom is de zee zout?",
+        "gebied": "natuur",
+        "vorm": "een keten van oorzaak en gevolg",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-aardappel",
+        "volgorde": 8,
+        "vraag": "Hoe kwam de aardappel in Europa?",
+        "gebied": "geschiedenis",
+        "vorm": "een tijdlijn om zelf te leggen",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-ramadan",
+        "volgorde": 9,
+        "vraag": "Waarom eten moslims overdag niet tijdens de ramadan?",
+        "gebied": "geloof",
+        "vorm": "een dag uit een leven",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-holland",
+        "volgorde": 10,
+        "vraag": "Wat is het verschil tussen Holland en Nederland?",
+        "gebied": "aardrijkskunde",
+        "vorm": "een misverstand (klopt het dat…?)",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-vaccin",
+        "volgorde": 11,
+        "vraag": "Hoe werkt een vaccin?",
+        "gebied": "wetenschap",
+        "vorm": "een tekening om te ontleden",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-koning",
+        "volgorde": 12,
+        "vraag": "Waarom heeft Nederland een koning en geen president?",
+        "gebied": "politiek",
+        "vorm": "twee dingen naast elkaar",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-mekong",
+        "volgorde": 13,
+        "vraag": "Waarom is de Mekong zo belangrijk voor zes landen?",
+        "gebied": "Azië",
+        "vorm": "een plek op de kaart",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-btw",
+        "volgorde": 14,
+        "vraag": "Wat is btw, en waarom betaal je die?",
+        "gebied": "economie",
+        "vorm": "eerst schatten",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-tijdzones",
+        "volgorde": 15,
+        "vraag": "Waarom zijn er tijdzones?",
+        "gebied": "aardrijkskunde",
+        "vorm": "een raadsel dat pas aan het eind opgelost wordt",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-wet",
+        "volgorde": 16,
+        "vraag": "Hoe wordt een wet gemaakt?",
+        "gebied": "politiek",
+        "vorm": "een tijdlijn om zelf te leggen",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-zijderoute",
+        "volgorde": 17,
+        "vraag": "Wat was de zijderoute?",
+        "gebied": "geschiedenis",
+        "vorm": "een zoektocht op de kaart",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-atheisme",
+        "volgorde": 18,
+        "vraag": "Wat gelooft iemand die niet gelooft?",
+        "gebied": "levensbeschouwing",
+        "vorm": "twee meningen naast elkaar",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-archeoloog",
+        "volgorde": 19,
+        "vraag": "Hoe weet een archeoloog hoe oud iets is?",
+        "gebied": "archeologie",
+        "vorm": "eerst raden",
+        "level": "A2",
+        "stand": "gepland"
+      },
+      {
+        "id": "ao-links-rechts",
+        "volgorde": 20,
+        "vraag": "Wat is het verschil tussen links en rechts in de politiek?",
+        "gebied": "politiek",
+        "vorm": "een dilemma (wat zou jij doen?)",
+        "level": "A2",
+        "stand": "gepland"
+      }
+    ]
   },
   "hoofdstukken": [
+    {
+      "blok": "N1",
+      "thema": 1,
+      "stand": "gepland",
+      "id": "nl-thuis",
+      "place": "thuis",
+      "volgorde": 10,
+      "level": "A2",
+      "titel": "Over jezelf vertellen",
+      "purpose": "Hiermee kun je vertellen wie je bent, waar je woont en hoe je dag eruitziet; dat vraagt het examen bij spreken en schrijven.",
+      "grammatica": [
+        "de vraagzin: met een vraagwoord of met het werkwoord vooraan (Waar woon je? Woon je hier?)",
+        "zijn en hebben, en de tegenwoordige tijd van gewone werkwoorden (ik werk, jij werkt, hij werkt)"
+      ],
+      "woordvelden": [
+        "jezelf voorstellen",
+        "familie",
+        "het huis en de buurt",
+        "de dag en de tijd",
+        "een formulier"
+      ],
+      "doelen": [
+        "nt2-I-spreken-1",
+        "nt2-I-schrijven-1",
+        "nt2-I-luisteren-1",
+        "nt2-I-lezen-4",
+        "rekenen-2-informatie",
+        "rekenen-steun",
+        "kennis-nederland"
+      ],
+      "scenes": [
+        {
+          "n": 1,
+          "titel": "Een nieuwe buur",
+          "meemaken": "kennismaken op de trap",
+          "doen": "vragen en antwoorden kiezen; de goede vraag bouwen",
+          "kunnen": "jezelf voorstellen en iets vragen"
+        },
+        {
+          "n": 2,
+          "titel": "Een formulier",
+          "meemaken": "een formulier bij de gemeente lezen",
+          "doen": "een formulier invullen (naam, geboortedatum, adres als voorbeeld, nooit echt)",
+          "kunnen": "een eenvoudig formulier invullen"
+        },
+        {
+          "n": 3,
+          "titel": "Mijn familie",
+          "meemaken": "een foto bekijken en erover praten",
+          "doen": "familieleden aanwijzen in de tekening; zin afmaken met een kader",
+          "kunnen": "over je familie vertellen"
+        },
+        {
+          "n": 4,
+          "titel": "Mijn dag",
+          "meemaken": "luistertekst: iemand vertelt over de dag",
+          "doen": "de dag op volgorde leggen met tijden; een kort bericht schrijven met een kader",
+          "kunnen": "je dag beschrijven"
+        },
+        {
+          "n": 5,
+          "titel": "Een praatje",
+          "meemaken": "gesprek zonder steuntaal bij de eerste poging",
+          "doen": "mix van het hoofdstuk; spreekopdracht van 30 seconden over jezelf",
+          "kunnen": "een kort gesprek over jezelf voeren"
+        },
+        {
+          "subject": "rk",
+          "titel": "De vaste lasten",
+          "meemaken": "een overzicht van huur, energie en verzekering per maand",
+          "doen": "optellen per maand en per jaar; aflezen uit een tabel; schatten vóór rekenen",
+          "kunnen": "een overzicht van kosten lezen en optellen"
+        },
+        {
+          "subject": "kn",
+          "titel": "Wat doet de gemeente voor jou?",
+          "meemaken": "leestekst van 80 tot 120 woorden, met bron",
+          "doen": "eerst raden, dan lezen; vragen bij de tekst",
+          "kunnen": "weten waarvoor je naar de gemeente gaat"
+        }
+      ]
+    },
+    {
+      "blok": "N1",
+      "thema": 1,
+      "stand": "gepland",
+      "id": "nl-werk",
+      "place": "werk",
+      "volgorde": 20,
+      "level": "A2",
+      "titel": "Op het werk",
+      "purpose": "Hiermee kun je je melden op je werk, een rooster lezen en uitleg van je leidinggevende volgen; het examen gaat vaak over werk.",
+      "grammatica": [
+        "inversie: begint de zin met een tijd of plaats, dan staat het werkwoord op plek twee en het onderwerp erachter (Morgen werk ik)",
+        "volgorde tijd, manier, plaats (Ik ga morgen met de fiets naar mijn werk)"
+      ],
+      "woordvelden": [
+        "collega's en leidinggevende",
+        "het rooster en diensten",
+        "veiligheid en instructies",
+        "ziek melden",
+        "pauze en praatjes"
+      ],
+      "doelen": [
+        "nt2-I-spreken-1",
+        "nt2-I-luisteren-1",
+        "nt2-I-luisteren-2",
+        "nt2-I-lezen-3",
+        "nt2-I-schrijven-1",
+        "rekenen-2-grootheden",
+        "rekenen-2-verhoudingen",
+        "rekenen-steun",
+        "kennis-nederland"
+      ],
+      "scenes": [
+        {
+          "n": 1,
+          "titel": "De eerste dag",
+          "meemaken": "gesprek met een collega die je rondleidt",
+          "doen": "dingen aanwijzen op de werkplek; zin bouwen met inversie",
+          "kunnen": "je voorstellen en de weg vragen op je werk"
+        },
+        {
+          "n": 2,
+          "titel": "Het rooster",
+          "meemaken": "een rooster lezen",
+          "doen": "diensten aflezen; een dienst ruilen in een gesprek",
+          "kunnen": "een rooster lezen en een dienst ruilen"
+        },
+        {
+          "n": 3,
+          "titel": "Uitleg van de leidinggevende",
+          "meemaken": "luistertekst: een instructie",
+          "doen": "de stappen op volgorde leggen; om verduidelijking vragen",
+          "kunnen": "een instructie volgen en iets navragen"
+        },
+        {
+          "n": 4,
+          "titel": "Ziek melden",
+          "meemaken": "telefoongesprek",
+          "doen": "een ziekmelding per bericht schrijven met een kader",
+          "kunnen": "je ziek melden"
+        },
+        {
+          "n": 5,
+          "titel": "In de pauze",
+          "meemaken": "gesprek over het weekend en een mening met een reden",
+          "doen": "mix van het hoofdstuk; spreekopdracht: zeg wat je vindt en waarom",
+          "kunnen": "een praatje maken en een mening geven"
+        },
+        {
+          "subject": "rk",
+          "titel": "Uren en loon",
+          "meemaken": "een rooster met begin- en eindtijden",
+          "doen": "tijdsduur uitrekenen; uren × uurloon met een verhoudingstabel; de rekenmachine",
+          "kunnen": "je uren en je loon uitrekenen"
+        },
+        {
+          "subject": "kn",
+          "titel": "Wat staat er op een loonstrook?",
+          "meemaken": "leestekst met een getekende loonstrook (bruto, netto, belasting), met bron",
+          "doen": "eerst schatten, dan lezen; dingen aanwijzen op de loonstrook",
+          "kunnen": "een loonstrook begrijpen"
+        }
+      ]
+    },
     {
       "id": "nl-dokter",
       "place": "dokter",
       "blok": "N1",
       "level": "A1-A2",
-      "stand": "gepland",
+      "stand": "uitgebracht",
       "titel": "Bij de dokter",
-      "grammatica": ["willen, kunnen en moeten met een tweede werkwoord aan het eind", "een zin die met een tijd begint: het werkwoord blijft op plek twee (Morgen kan ik niet)"],
-      "woordvelden": ["afspraak en tijd", "lichaamsdelen en klachten", "aan de balie: gegevens geven", "medicijnen"],
+      "grammatica": [
+        "willen, kunnen en moeten met een tweede werkwoord aan het eind",
+        "een zin die met een tijd begint: het werkwoord blijft op plek twee (Morgen kan ik niet)"
+      ],
+      "woordvelden": [
+        "afspraak en tijd",
+        "lichaamsdelen en klachten",
+        "aan de balie: gegevens geven",
+        "medicijnen"
+      ],
       "scenes": [
-        { "n": 1, "titel": "De praktijk bellen", "meemaken": "telefoongesprek", "doen": "de klok zetten op de afgesproken tijd", "kunnen": "een afspraak maken", "opmerking": "bestaat al: neem docs/voorbeeld-scene.json over en sluit de item-id's aan" },
-        { "n": 2, "titel": "Aan de balie", "meemaken": "gesprek met de assistent", "doen": "een geboortedatum kiezen, zeggen voor wie de afspraak is", "kunnen": "je melden en gegevens geven" },
-        { "n": 3, "titel": "In de spreekkamer", "meemaken": "gesprek over klachten", "doen": "lichaamsdelen aanwijzen in de tekening; zin afmaken: Ik heb pijn aan …", "kunnen": "zeggen wat je voelt" },
-        { "n": 4, "titel": "De afspraak verzetten", "meemaken": "een bericht lezen", "doen": "een kort bericht schrijven met een schrijfkader", "kunnen": "een afspraak verzetten" },
-        { "n": 5, "titel": "Terug voor controle", "meemaken": "gesprek zonder steuntaal bij de eerste poging", "doen": "eigen zinnen kiezen en afmaken (mix)", "kunnen": "het hele bezoek zelf doen" },
-        { "subject": "rk", "titel": "Bij de apotheek", "meemaken": "een etiket lezen: 3 keer per dag 2 tabletten", "doen": "uitrekenen hoeveel tabletten voor een week; betalen en wisselgeld", "kunnen": "een etiket en een bedrag begrijpen" },
-        { "subject": "kn", "titel": "Hoe werkt de zorg hier?", "meemaken": "leestekst van 80 tot 120 woorden: huisarts, verwijzing, zorgverzekering", "doen": "twee vragen bij de tekst", "kunnen": "weten waar je heen gaat" }
+        {
+          "n": 1,
+          "titel": "De praktijk bellen",
+          "meemaken": "telefoongesprek",
+          "doen": "de klok zetten op de afgesproken tijd",
+          "kunnen": "een afspraak maken",
+          "opmerking": "bestaat al: neem docs/voorbeeld-scene.json over en sluit de item-id's aan"
+        },
+        {
+          "n": 2,
+          "titel": "Aan de balie",
+          "meemaken": "gesprek met de assistent",
+          "doen": "een geboortedatum kiezen, zeggen voor wie de afspraak is",
+          "kunnen": "je melden en gegevens geven"
+        },
+        {
+          "n": 3,
+          "titel": "In de spreekkamer",
+          "meemaken": "gesprek over klachten",
+          "doen": "lichaamsdelen aanwijzen in de tekening; zin afmaken: Ik heb pijn aan …",
+          "kunnen": "zeggen wat je voelt"
+        },
+        {
+          "n": 4,
+          "titel": "De afspraak verzetten",
+          "meemaken": "een bericht lezen",
+          "doen": "een kort bericht schrijven met een schrijfkader",
+          "kunnen": "een afspraak verzetten"
+        },
+        {
+          "n": 5,
+          "titel": "Terug voor controle",
+          "meemaken": "gesprek zonder steuntaal bij de eerste poging",
+          "doen": "eigen zinnen kiezen en afmaken (mix)",
+          "kunnen": "het hele bezoek zelf doen"
+        },
+        {
+          "subject": "rk",
+          "titel": "Bij de apotheek",
+          "meemaken": "een etiket lezen: 3 keer per dag 2 tabletten",
+          "doen": "uitrekenen hoeveel tabletten voor een week; betalen en wisselgeld",
+          "kunnen": "een etiket en een bedrag begrijpen"
+        },
+        {
+          "subject": "kn",
+          "titel": "Hoe werkt de zorg hier?",
+          "meemaken": "leestekst van 80 tot 120 woorden: huisarts, verwijzing, zorgverzekering",
+          "doen": "twee vragen bij de tekst",
+          "kunnen": "weten waar je heen gaat"
+        }
+      ],
+      "volgorde": 30,
+      "doelen": [
+        "nt2-I-spreken-1",
+        "nt2-I-luisteren-1",
+        "nt2-I-luisteren-2",
+        "nt2-I-lezen-2",
+        "nt2-I-schrijven-1",
+        "rekenen-2-informatie",
+        "rekenen-2-grootheden",
+        "kennis-nederland"
+      ]
+    },
+    {
+      "blok": "N1",
+      "thema": 1,
+      "stand": "gepland",
+      "id": "nl-markt",
+      "place": "markt",
+      "volgorde": 40,
+      "level": "A2",
+      "titel": "Boodschappen doen",
+      "purpose": "Hiermee kun je boodschappen doen, naar een prijs vragen en iets terugbrengen; je oefent ook vertellen wat je gedaan hebt.",
+      "grammatica": [
+        "de voltooide tijd met hebben (ik heb brood gekocht; ge-…-d of ge-…-t)",
+        "het meervoud (een appel, twee appels; een ei, twee eieren)"
+      ],
+      "woordvelden": [
+        "eten en drinken",
+        "hoeveelheden en verpakkingen",
+        "prijzen en betalen",
+        "iets terugbrengen"
+      ],
+      "doelen": [
+        "nt2-I-spreken-1",
+        "nt2-I-luisteren-1",
+        "nt2-I-lezen-4",
+        "nt2-I-schrijven-1",
+        "rekenen-2-procenten",
+        "rekenen-2-verhoudingen",
+        "rekenen-steun",
+        "kennis-nederland"
+      ],
+      "scenes": [
+        {
+          "n": 1,
+          "titel": "Het boodschappenlijstje",
+          "meemaken": "samen een lijstje maken",
+          "doen": "meervouden kiezen en typen; dingen in de tekening aantikken",
+          "kunnen": "een boodschappenlijst maken"
+        },
+        {
+          "n": 2,
+          "titel": "Op de markt",
+          "meemaken": "gesprek aan de kraam: prijs en hoeveelheid",
+          "doen": "betalen en wisselgeld; een hoeveelheid vragen",
+          "kunnen": "iets kopen en naar de prijs vragen"
+        },
+        {
+          "n": 3,
+          "titel": "In de supermarkt",
+          "meemaken": "iets niet kunnen vinden en het vragen",
+          "doen": "aanbiedingen lezen; de weg in de winkel volgen",
+          "kunnen": "iets vragen in een winkel"
+        },
+        {
+          "n": 4,
+          "titel": "Iets terugbrengen",
+          "meemaken": "beleefd klagen aan de kassa",
+          "doen": "een kort bericht aan de klantenservice met een kader",
+          "kunnen": "iets terugbrengen of ruilen"
+        },
+        {
+          "n": 5,
+          "titel": "Wat heb je gekocht?",
+          "meemaken": "iemand vertelt wat hij gisteren gekocht heeft",
+          "doen": "mix; zelf vertellen in de voltooide tijd",
+          "kunnen": "vertellen wat je gedaan hebt"
+        },
+        {
+          "subject": "rk",
+          "titel": "Korting en prijs per kilo",
+          "meemaken": "aanbiedingen en prijskaartjes",
+          "doen": "10, 25 en 50 procent korting met de strook; prijs per kilo vergelijken; welke aanbieding is goedkoper",
+          "kunnen": "korting uitrekenen en prijzen vergelijken"
+        },
+        {
+          "subject": "kn",
+          "titel": "Waarom betaal je statiegeld?",
+          "meemaken": "leestekst met bron",
+          "doen": "eerst raden, dan lezen; vragen bij de tekst",
+          "kunnen": "weten wat statiegeld is en waarom het bestaat"
+        }
+      ]
+    },
+    {
+      "blok": "N1",
+      "thema": 1,
+      "stand": "gepland",
+      "id": "nl-onderweg",
+      "place": "onderweg",
+      "volgorde": 50,
+      "level": "A2",
+      "titel": "Onderweg",
+      "purpose": "Hiermee kun je met de trein of de bus reizen, een vertraging begrijpen en vertellen hoe een reis ging.",
+      "grammatica": [
+        "de onvoltooid verleden tijd van veel gebruikte werkwoorden (was, had, ging, kwam, moest)",
+        "de voltooide tijd met zijn bij beweging naar een plek (ik ben naar het station gegaan)"
+      ],
+      "woordvelden": [
+        "trein, bus en fiets",
+        "kaartje en inchecken",
+        "vertraging en omroepen",
+        "de weg vragen en wijzen"
+      ],
+      "doelen": [
+        "nt2-I-luisteren-1",
+        "nt2-I-luisteren-2",
+        "nt2-I-lezen-4",
+        "nt2-I-spreken-1",
+        "nt2-I-schrijven-1",
+        "rekenen-2-grootheden",
+        "rekenen-2-informatie",
+        "rekenen-2-ruimte",
+        "kennis-nederland"
+      ],
+      "scenes": [
+        {
+          "n": 1,
+          "titel": "Op het station",
+          "meemaken": "het bord met vertrektijden lezen",
+          "doen": "spoor en tijd aflezen; inchecken in de juiste volgorde",
+          "kunnen": "de goede trein vinden"
+        },
+        {
+          "n": 2,
+          "titel": "Een omroepbericht",
+          "meemaken": "luistertekst: vertraging en ander spoor (examenvorm: één keer)",
+          "doen": "de hoofdzaak en het detail kiezen",
+          "kunnen": "een omroepbericht begrijpen"
+        },
+        {
+          "n": 3,
+          "titel": "De weg vragen",
+          "meemaken": "gesprek op straat",
+          "doen": "een route volgen op een plattegrond in de tekening",
+          "kunnen": "de weg vragen en begrijpen"
+        },
+        {
+          "n": 4,
+          "titel": "Te laat",
+          "meemaken": "een bericht lezen dat iemand te laat komt",
+          "doen": "zelf een bericht schrijven in de verleden tijd met een kader",
+          "kunnen": "laten weten dat je later bent"
+        },
+        {
+          "n": 5,
+          "titel": "Hoe was je reis?",
+          "meemaken": "gesprek zonder steuntaal bij de eerste poging",
+          "doen": "mix; vertellen hoe een reis ging (verleden tijd)",
+          "kunnen": "vertellen hoe een reis ging"
+        },
+        {
+          "subject": "rk",
+          "titel": "De dienstregeling",
+          "meemaken": "een tabel met vertrek- en aankomsttijden",
+          "doen": "reistijd uitrekenen; overstaptijd; kiezen welke trein op tijd is",
+          "kunnen": "een dienstregeling lezen en reistijd uitrekenen"
+        },
+        {
+          "subject": "kn",
+          "titel": "Waarom fietsen er zoveel mensen in Nederland?",
+          "meemaken": "leestekst met bron",
+          "doen": "eerst raden, dan lezen; vragen bij de tekst",
+          "kunnen": "iets vertellen over fietsen in Nederland"
+        }
+      ]
+    },
+    {
+      "blok": "N1",
+      "thema": 1,
+      "stand": "gepland",
+      "id": "nl-opleiding",
+      "place": "school",
+      "volgorde": 60,
+      "level": "A2-B1",
+      "titel": "Een opleiding kiezen",
+      "purpose": "Hiermee kun je je oriënteren op een opleiding, vragen stellen op een open dag en zeggen wat je wilt en waarom; dit is de weg naar het mbo.",
+      "grammatica": [
+        "een reden geven met want (hoofdzin) en omdat (werkwoord aan het eind)",
+        "plannen met gaan en een tweede werkwoord (ik ga een opleiding doen)"
+      ],
+      "woordvelden": [
+        "opleidingen en beroepen",
+        "de open dag",
+        "aanmelden en intake",
+        "stage en lesrooster"
+      ],
+      "doelen": [
+        "nt2-I-spreken-1",
+        "nt2-I-spreken-2",
+        "nt2-I-luisteren-2",
+        "nt2-I-lezen-1",
+        "nt2-I-lezen-3",
+        "nt2-I-schrijven-1",
+        "rekenen-2-informatie",
+        "rekenen-steun",
+        "kennis-nederland"
+      ],
+      "scenes": [
+        {
+          "n": 1,
+          "titel": "Wat wil ik worden?",
+          "meemaken": "een folder over opleidingen lezen",
+          "doen": "opleiding en beroep koppelen; zin bouwen met omdat",
+          "kunnen": "zeggen wat je wilt worden en waarom"
+        },
+        {
+          "n": 2,
+          "titel": "De open dag",
+          "meemaken": "luistertekst: een presentatie van een docent",
+          "doen": "vragen stellen; de hoofdzaken kiezen",
+          "kunnen": "vragen stellen op een open dag"
+        },
+        {
+          "n": 3,
+          "titel": "Aanmelden",
+          "meemaken": "een aanmeldformulier lezen",
+          "doen": "het formulier invullen (voorbeeldgegevens); een korte motivatie met een kader",
+          "kunnen": "je aanmelden voor een opleiding"
+        },
+        {
+          "n": 4,
+          "titel": "Het intakegesprek",
+          "meemaken": "gesprek met een docent",
+          "doen": "spreekopdracht: vertel wat je al kunt (30 seconden), met opnemen en terugluisteren",
+          "kunnen": "een intakegesprek voeren"
+        },
+        {
+          "n": 5,
+          "titel": "Mijn plan",
+          "meemaken": "gesprek zonder steuntaal bij de eerste poging",
+          "doen": "mix; een plan vertellen met gaan en omdat",
+          "kunnen": "je plan vertellen en uitleggen"
+        },
+        {
+          "subject": "rk",
+          "titel": "Kosten en uren",
+          "meemaken": "een overzicht van lesgeld, boeken en lesuren per week",
+          "doen": "per jaar en per maand uitrekenen; uren per week optellen; schatten",
+          "kunnen": "kosten en tijd van een opleiding uitrekenen"
+        },
+        {
+          "subject": "kn",
+          "titel": "Wat is het mbo, en wat is een stage?",
+          "meemaken": "leestekst met bron",
+          "doen": "eerst raden, dan lezen; vragen bij de tekst",
+          "kunnen": "weten hoe het mbo werkt"
+        }
       ]
     }
   ]
