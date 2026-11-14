@@ -86,7 +86,7 @@ Drie soorten stappen naast die in de tabel hierboven. Een **vraag** heeft overal
   "answer": "…", "why": Tekst, "help": 0 | 1 | 2 }
 ```
 
-`choose` en `hear` (eerst horen, dan kiezen) hebben `opts` met precies één `ok`; `type` en `number` hebben `answer` en één `why`. `help` zegt hoeveel hulp de vraag geeft (2 = half ingevuld, 0 = geen), voor de afbouw.
+`choose` en `hear` (eerst horen, dan kiezen) hebben `opts` met precies één `ok`; `type` en `number` hebben `answer` en één `why`. `help` zegt hoeveel hulp de vraag geeft (2 = half ingevuld, 0 = geen), voor de afbouw. Bij `hear` staat in `say` wat de leerder hoort; de tekst blijft verborgen tot na het antwoord. Bij `type` en `number` mag `accept` een lijst zijn met andere schrijfwijzen die ook goed zijn (bijvoorbeeld `"2,50"`, `"€ 2,50"`, `"2.50"`); hoofdletters en spaties aan het begin en eind tellen niet. Een afleider bij `hear` is een bestaand woord dat erop lijkt, geen verzonnen woord. Ook vragen bij een tekst (`read`, `listen`) hebben deze vorm, met een reden bij elke keuze.
 
 | `type` | Wat | Velden |
 |---|---|---|
@@ -131,7 +131,7 @@ Een tekening is 340 bij 214. Het pakket kiest een achtergrond en zet er dingen o
 | `hot`, `label`, `item` | aantikbaar: `label` is de Tekst die getoond en voorgelezen wordt, `item` het herhaalitem |
 | `text` | korte tekst in de tekening (bord, scherm, prijskaartje), hooguit 14 tekens |
 
-Dingen: `person`, `clock` (`value` als `u:mm`), `window`, `door`, `table`, `counter`, `chair`, `bench`, `bed`, `plant`, `phone` (`on` = gaat over), `agenda`, `letter`, `card`, `bag`, `medicine`, `sign`, `screen`, `shelf`, `stall`, `apples`, `bread`, `train`, `ticket`, `figure` (een heel lichaam van voren, om lichaamsdelen op aan te wijzen met `spot`), en `spot` (onzichtbaar aantikbaar gebied met straal `r`, bijvoorbeeld een lichaamsdeel op een persoon).
+Dingen: `person`, `clock` (`value` als `u:mm`), `window`, `door`, `table`, `counter`, `chair`, `bench`, `bed`, `plant`, `phone` (`on` = gaat over), `agenda`, `letter`, `card`, `bag`, `medicine`, `sign`, `screen`, `shelf`, `stall`, `apples`, `bread`, `train`, `ticket`, `figure` (een heel lichaam van voren, of met `back: true` van achteren voor rug en nek, om lichaamsdelen op aan te wijzen met `spot`), en `spot` (onzichtbaar aantikbaar gebied met straal `r`, bijvoorbeeld een lichaamsdeel op een persoon).
 
 Een persoon heeft `who` (de rol), `look` (`neutral`, `happy`, `worried`, `talk`, `think`), `hair` (`short`, `long`, `bun`, `none`), `hairTone` (`dark`, `brown`, `grey`, `fair`), `skin` (`a`, `b`, `c`) en `arm` (`wave`, `phone`). De speler kan de uitdrukking per rol wisselen zonder het pakket te wijzigen: `SceneVis.render(art, SAFE, { looks: { assistent: 'happy' }, text: L })`. Zo kijkt iemand blij na een goed antwoord en praat hij tijdens zijn beurt.
 

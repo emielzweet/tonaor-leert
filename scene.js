@@ -150,7 +150,8 @@
         '<path d="M-18-80L-26-46M18-80L26-46" stroke="' + skin + '" stroke-width="7" stroke-linecap="round"/>' +
         '<path d="M-17-86h34c4 0 6 3 5 7l-5 37h-34l-5-37c-1-4 1-7 5-7z" fill="' + fill(tn) + '"/><path d="M-18-80l-4 16M18-80l4 16" stroke="' + fill(tn) + '" stroke-width="8" stroke-linecap="round"/>' +
         '<rect x="-3.500" y="-94" width="7" height="9" fill="' + skin + '"/><circle cx="0" cy="-104" r="12" fill="' + skin + '"/><path d="M-12.400-104c0-18 24.800-18 24.800 0-6.500-7-18.300-7-24.800 0z" fill="' + hc + '"/>' +
-        '<circle cx="-4.200" cy="-103" r="1.400" fill="' + INK + '"/><circle cx="4.200" cy="-103" r="1.400" fill="' + INK + '"/><path d="M-3.500-97.500q3.500 2 7 0" fill="none" stroke="' + INK + '" stroke-width="1.500" stroke-linecap="round"/>';
+        (t.back ? '<circle cx="0" cy="-104" r="12" fill="' + hc + '"/><path d="M0-84v40" stroke="' + deep(tn) + '" stroke-width="1.500" stroke-linecap="round" opacity=".5"/>'
+          : '<circle cx="-4.200" cy="-103" r="1.400" fill="' + INK + '"/><circle cx="4.200" cy="-103" r="1.400" fill="' + INK + '"/><path d="M-3.500-97.500q3.500 2 7 0" fill="none" stroke="' + INK + '" stroke-width="1.500" stroke-linecap="round"/>');
     },
     spot: function () { return ''; }
   };
