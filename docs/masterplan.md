@@ -211,6 +211,12 @@ Vragen van de bouwsessie die een eis raken, met het antwoord. Dit hoofdstuk groe
 14. **Een rekenscène begint met voordoen:** een uitgewerkt voorbeeld (stap `rule` met `example`) vóór het zelf rekenen, zoals de leerlijn in `onderbouwing-rekenen.md` vraagt.
 15. **De voortgang bovenaan een scène** telt de delen die de leerder werkelijk doorloopt (instap, kijken, ophalen, gesprek, taal, doen, maken, controle) en noemt het deel waar hij is.
 
+**15 november 2026 (nacht), na drie reviews zonder "goed" voor het proefhoofdstuk**
+
+16. **Automatisch nakijken alleen bij een gesloten antwoord.** Het hoofdstuk bleef steken omdat elke review nieuwe typvragen vond waarbij natuurlijk Nederlands meer goede antwoorden toelaat (*een afspraak maken* of *plannen*; *Mag ik* of *Kan ik*). Dat is niet met een lijst op te lossen: het ligt aan het formaat. De regel wordt: de app keurt alleen een antwoord dat gesloten is. Dat zijn: kiezen; een zin bouwen uit blokken; één woord typen dat een doelonderdeel is (met `also` en `accept` voor wat ook past); een getal. **Een zin of zinsdeel dat de leerder vrij formuleert, wordt niet automatisch gekeurd**: dat is `make` of `speak`, met een voorbeeld en een checklist om zelf na te kijken, zoals het kwaliteitskader voor open productie al vraagt. Een typvraag die een hele zin vraagt, wordt dus zin bouwen (gesloten) of zelf maken (open).
+17. **"Mijn antwoord is ook goed."** Bij elk getypt antwoord dat de app fout rekent, staat deze knop. De poging telt dan niet als fout en niet als goed (geen groei, geen fout in het foutprofiel), en het antwoord gaat met de vraag naar de lijst voor de redactielijn (de voorloper van fout melden, `automatische-redactie.md`). Zo wordt een variant die niemand voorzag een melding in plaats van een onterechte fout. Dit is een vangnet, geen vervanging van regel 16.
+18. **Wat blokkerend is, voor de reviewer.** Blokkerend: de lesstof leert iets wat niet klopt (een foute regel, vertaling, uitkomst of lidwoord), of de app rekent een goed antwoord fout zonder dat de leerder er iets aan kan doen (bij kiezen en bouwen). Klein: een variant die ontbreekt bij een getypt woord (daar is de knop uit 17 voor), stijl, een vraag die beter kan. Een review na een herstelronde telt alleen nieuwe blokkerende fouten en terugval; wat eerder als klein is aanvaard, blijft klein. "Goed" is: geen blokkerende fouten. Zo eindigt een hoofdstuk, en gaat wat klein is als lijst mee naar de volgende ronde van onderhoud.
+
 ## Kaart van de documenten
 
 | Document | Waarvoor leidend |
