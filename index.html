@@ -479,6 +479,11 @@ en:{
  "bk.last":"Last backed up: {when}",
  "bk.load":"Restore progress",
  "bk.save":"Back up progress",
+ "claim.btn":"My answer is right too",
+ "claim.thanks":"Thank you. Your answer goes on the list to be checked. It does not count as a mistake.",
+ "claim.title":"Answers to check ({n})",
+ "claim.want":"expected",
+ "claim.you":"you",
  "bk.private":"Private: the file also contains your connection code. Anyone with the file can read your progress and messages and send messages as you. Only share it with someone you trust.",
  "bk.text":"Save your progress as a file, for example with your files or in the cloud. With that file you can restore everything, even on a new device.",
  "bk.title":"Back up progress",
@@ -911,6 +916,11 @@ nl:{
  "bk.last":"Laatst bewaard: {when}",
  "bk.load":"Voortgang terugzetten",
  "bk.save":"Voortgang bewaren",
+ "claim.btn":"Mijn antwoord is ook goed",
+ "claim.thanks":"Dank je. Je antwoord gaat naar de lijst om na te kijken. Het telt niet als fout.",
+ "claim.title":"Antwoorden om na te kijken ({n})",
+ "claim.want":"verwacht",
+ "claim.you":"jij",
  "bk.private":"<b>Privé:</b> in het bestand staat ook je koppelcode. Wie het bestand heeft, kan je voortgang en berichten lezen en namens jou berichten sturen. Deel het alleen met iemand die je vertrouwt.",
  "bk.text":"Bewaar je voortgang als bestand, bijvoorbeeld bij je bestanden of in de cloud. Met dat bestand zet je alles terug, ook op een nieuw toestel.",
  "bk.title":"<h3>Voortgang bewaren</h3>",
@@ -1339,6 +1349,11 @@ th:{
  "bk.last":"บันทึกล่าสุด: {when}",
  "bk.load":"กู้คืนความก้าวหน้า",
  "bk.save":"บันทึกความก้าวหน้า",
+ "claim.btn":"คำตอบของฉันก็ถูกเหมือนกัน",
+ "claim.thanks":"ขอบคุณ คำตอบของคุณจะถูกส่งไปตรวจ และไม่นับเป็นคำตอบผิด",
+ "claim.title":"คำตอบที่รอตรวจ ({n})",
+ "claim.want":"คำตอบที่คาดไว้",
+ "claim.you":"คุณ",
  "bk.private":"ส่วนตัว: ในไฟล์มีรหัสเชื่อมต่อของคุณด้วย ใครที่มีไฟล์นี้จะอ่านความก้าวหน้าและข้อความของคุณได้ และส่งข้อความแทนคุณได้ แชร์เฉพาะกับคนที่คุณไว้ใจ",
  "bk.text":"บันทึกความก้าวหน้าเป็นไฟล์ เช่น ในไฟล์ของคุณหรือบนคลาวด์ ใช้ไฟล์นั้นกู้คืนทุกอย่างได้ แม้ในเครื่องใหม่",
  "bk.title":"สำรองความก้าวหน้า",
@@ -2365,7 +2380,7 @@ function frame(inner,label,stepNo,ofN){app.dataset.vak=vakOf(Q[qi],stepNo);if(Q[
   const p=Math.round(qi/Math.max(1,Q.length-1)*100);
   paint(`<div class="sess-top"><button class="close" id="quit" aria-label="Stoppen">×</button><div class="bar" role="progressbar" aria-label="Voortgang" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><i style="width:${p}%"></i></div>${thaiSwitch()}</div>
   <div class="stage-label"><span class="eyebrow">${stepNo?`Stap ${stepNo} van ${ofN||(Q.some(x=>x.type==="sc_end")?4:5)} · `:''}${label}</span>${(x=>x?`<button class="u-btn" data-uopen="${esc(x)}">${TB('explain.open')}</button>`:'')(explFor(Q[qi]))}<span class="pill pill-apricot num">+${sp}</span></div>${inner}`);
-  $('#quit').onclick=()=>{finishTime();if(sp>0)toast('Opgeslagen. Je punten blijven staan.');show('vandaag')};
+  $('#quit').onclick=()=>{flushPend();finishTime();if(sp>0)toast('Opgeslagen. Je punten blijven staan.');show('vandaag')};
   // #22: onthoud of er al iets met deze vraag gedaan is; dan tekent een taalwissel hem niet opnieuw (geen dubbele punten, geen reset van pogingen)
   const q=Q[qi],v=app.querySelector('.view');if(q&&v){const t=e=>{if(!e.target.closest('button[data-thai],#quit'))q._t=1};v.addEventListener('click',t,true);v.addEventListener('input',t,true)}
 }
@@ -2380,7 +2395,7 @@ function adapt(){const last=SESS.slice(-MOTOR.adaptWindow);if(last.length<MOTOR.
 function easierEx(q){try{const base=q.exid.split('#')[0],P=PACKS.find(p=>(p.exercises||[]).some(e=>e.id===base));if(!P)return null;const cur=P.exercises.find(e=>e.id===base),id=q.items[0];
   const hard=e=>(e.fade||0)*2+(e.form==='build'||(e.data&&e.data.mode==='type')?1:0),e=chooseEx(id,P.learn,true);if(!e||hard(e)>=hard(cur))return null;
   const n=exQ(e,q.step,P.learn==='en'?'en':'nl',id);if(n)n._easy=1;return n}catch(err){return null}}
-function next(){qi++;adapt();window.scrollTo(0,0);step()}
+function next(){flushPend();qi++;adapt();window.scrollTo(0,0);step()}
 let KNOWN=new Set(),RETRIED=new Set();
 function step(){voicePend=null;while(Q[qi]&&(Q[qi]._skip||(Q[qi]._ifUnknown&&Q[qi].w&&KNOWN.has(Q[qi].w.id))||(Q[qi]._skipKnown&&KNOWN.has(Q[qi]._rule||(Q[qi].items||[])[0]))))qi++;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
 /* na een fout: het onderdeel één keer terug in deze ronde, minstens vijf onderdelen later, in een andere vorm (advies ontwerpsessie B) */
@@ -2406,6 +2421,12 @@ document.addEventListener('click',e=>{const s=e.target.closest&&e.target.closest
 function bindHelp(){app.querySelectorAll('[data-help]').forEach(b=>b.onclick=e=>{e.stopPropagation();S.help.unshift({t:now(),ctx:b.dataset.help,open:true});save();S.unsent=true;save();syncUp(true);toast(tx('help.sent'))})}
 const speakBtns=(a,b)=>`<div class="row" style="flex-wrap:wrap"><button class="speak" id="${a}">${icon.play}${T('btn.listen')}</button>${b?`<button class="speak" id="${b}">${icon.slow}${T('btn.slow')}</button>`:''}</div>`;
 const nextBtn=cls=>`<button class="btn ${cls||'btn-leaf'}" id="nx">${T('btn.next')}</button>`;
+/* Mijn antwoord is ook goed (masterplan, uitleg bij de eisen 17): een fout getypt antwoord telt pas bij Volgende; met de knop telt het niet (geen groei, geen fout) en gaat het met de vraag naar S.claims voor de redactielijn */
+const CLAIMMAX=50;   // besluit ontwerpsessie: begrensd, de laatste vijftig
+let PEND=[];const later=fn=>{PEND.push(fn)};function flushPend(){const p=PEND;PEND=[];p.forEach(fn=>{try{fn()}catch(e){}})}
+const claimHtml=()=>`<button class="linkish" id="claim">${TB('claim.btn')}</button>`;
+function addClaim(c){const tx=x=>String(x==null?'':x).replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim();S.claims=[].concat(Array.isArray(S.claims)?S.claims:[],[{t:now(),id:tx(c.id).slice(0,80),q:tx(c.q).slice(0,200),a:tx(c.a).slice(0,100),want:tx(c.want).slice(0,100)}]).slice(-CLAIMMAX);save()}
+function bindClaim(info){const b=$('#claim');if(!b)return;b.onclick=()=>{PEND=[];const inp=$('#ans');addClaim({...info,a:inp?inp.value:''});if(inp)inp.disabled=true;['#chk','#hint','#nx'].forEach(sel=>{const x=$(sel);if(x)x.remove()});$('#fb').innerHTML=`<div class="note sky">${T('claim.thanks')}</div>`+nextBtn();$('#nx').onclick=next}}
 function adaptiveNote(){return sessTotal>=4&&sessRight/sessTotal<.65?`<div class="note sky">${T('sess.hard')}</div>`:''}
 
 /* ============ oefenvormen ============ */
@@ -2435,9 +2456,9 @@ H.hear=q=>{const w=q.w;let tries=0,hint=0,done=false;const fullT=`${fw(w)}`,full
   $('#hint').onclick=()=>{hint=Math.min(2,hint+1);$('#hs').textContent=hint===1?`${w.art?w.art+' ':''}${w.w[0]}… (${w.w.length})`:fullT;if(hint===2)$('#hint').disabled=true};
   const check=()=>{if(done)return;const a=norm(inp.value);if(!a)return;tries++;const ok=a===norm(fullT),wordOnly=a===norm(w.w);
     if(!ok&&!wordOnly&&tries<2){$('#fb').innerHTML=fbK(false,'try.again');return}
-    done=true;const res=ok&&tries===1&&hint===0?true:(ok||wordOnly)&&hint<2?'retry':false;score(res===true,10,res==='retry'?6:0);review(w.id,res,'luisteren');if(res===true)grown.push(w.id);
+    done=true;const res=ok&&tries===1&&hint===0?true:(ok||wordOnly)&&hint<2?'retry':false,bad=!ok&&!wordOnly,cnt=()=>{score(res===true,10,res==='retry'?6:0);review(w.id,res,'luisteren')};if(bad)later(cnt);else cnt();if(res===true)grown.push(w.id);
     $('#fb').innerHTML=fbBox(ok||wordOnly,ok?`<b>${full}</b>. ${esc(w.ex)}`:wordOnly?t('recall.addArt',{art:w.art,full}):`${t('recall.answer',{full})} ${esc(w.ex)}`,ok?ts('recall.yes',{full}):wordOnly?ts('recall.addArt',{art:w.art,full}):ts('recall.answer',{full}));
-    inp.disabled=true;$('#hint').disabled=true;$('#chk').outerHTML=nextBtn(ok?'btn-leaf':'btn-main');$('#nx').onclick=next};
+    inp.disabled=true;$('#hint').disabled=true;$('#chk').outerHTML=nextBtn(ok?'btn-leaf':'btn-main');$('#nx').onclick=next;if(bad){$('#nx').insertAdjacentHTML('afterend',claimHtml());bindClaim({id:w.id,q:'(luisteren)',want:fullT})}};
   $('#chk').onclick=check;inp.onkeydown=e=>{if(e.key==='Enter')check()}};
 H.explain=q=>{const o=EXPL[q.x];if(!o){next();return}
   frame(`<div class="card stack">${T('lesson.newTopic')}<p class="prompt">${TKx(o.x.title,o.learn)}</p><p class="muted">${TKx(o.x.summary,o.learn)}</p>
@@ -2566,11 +2587,12 @@ H.sc_q=q=>{const sc=q.sc,qq=q.qq,id=q.items[0],typeIt=q.hard&&qq.answer!=null&&S
   const wrong=(msg,err)=>{if(first&&nos)$('#ask').innerHTML=scT(qq.ask);first=false;scFault(q,err);$('#fb').innerHTML=fbBox(false,msg,'')};   // na een poging mag de steuntaal erbij
   if(opts){app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{if(done)return;const o=qq.opts[+b.dataset.o];if(o.r==='ok'){b.classList.add('right');say(o.t);right(scT(o.why))}else{b.classList.add('wrong');b.disabled=true;wrong(scT(o.why),o.err)}});return}
   const as=[].concat(qq.answer!=null?qq.answer:((qq.opts||[]).find(o=>o.r==='ok')||{}).t,qq.accept||[]),num=scNum,ok=v=>f==='number'?as.some(a=>Math.abs(num(a)-num(v))<=(typeof qq.tol==='number'?qq.tol:1e-9)):as.some(a=>scNorm(a)===scNorm(v)||(typeIt&&scLoose(a,v)));
-  const chk=()=>{const v=$('#ans').value.trim();if(!v||done)return;if(ok(v)){$('#ans').disabled=true;$('#chk').remove();right(scT(qq.why||((qq.opts||[]).find(o=>o.r==='ok')||{}).why));return}
+  const chk=()=>{const v=$('#ans').value.trim();if(!v||done)return;const cl=$('#claim');if(cl)cl.remove();if(ok(v)){$('#ans').disabled=true;$('#chk').remove();right(scT(qq.why||((qq.opts||[]).find(o=>o.r==='ok')||{}).why));return}
     {const w0=NL.find(x=>x.id===id),V=scNorm(v).replace(/^(de|het|een) /,'');if(w0&&alsoOf(w0).some(a=>{const o=NL.find(x=>x.id===a);return o&&scNorm(o.w).replace(/^(de|het|een) /,'')===V})){$('#fb').innerHTML=`<div class="note sky">Dat past ook! Maar hier zoeken we een ander woord. Neem gerust een hulpje.</div>`;return}}   /* review dokter 6: een woord uit also is in een scènevraag ook geen fout */
-    if(first){wrong(T('scene.again'),qq.err);return}
-    done=true;$('#ans').disabled=true;$('#chk').remove();if(q.role==='controle'&&SCN)SCN.ctrl=false;score(false,10);if(!inst)practiced(q,false,SCF[f]);   // tweede keer fout: het antwoord met uitleg, geen dood spoor
-    $('#fb').innerHTML=fbBox(false,`${T('scene.answer')} <b lang="nl">${esc(String(as[0]))}</b><br>${scT(qq.why||((qq.opts||[]).find(o=>o.r==='ok')||{}).why)}`,'')+nextBtn();$('#nx').onclick=next};
+    const ci={id:q.exid||id,q:scP(qq.ask),want:String(as[0])};
+    if(first){if(nos)$('#ask').innerHTML=scT(qq.ask);first=false;const e=qq.err;later(()=>scFault(q,e));$('#fb').innerHTML=fbBox(false,T('scene.again'),'')+claimHtml();bindClaim(ci);return}   // de fout telt pas bij Volgende; de knop kan haar nog wegnemen
+    done=true;$('#ans').disabled=true;$('#chk').remove();later(()=>{if(q.role==='controle'&&SCN)SCN.ctrl=false;score(false,10);if(!inst)practiced(q,false,SCF[f])});   // tweede keer fout: het antwoord met uitleg, geen dood spoor
+    $('#fb').innerHTML=fbBox(false,`${T('scene.answer')} <b lang="nl">${esc(String(as[0]))}</b><br>${scT(qq.why||((qq.opts||[]).find(o=>o.r==='ok')||{}).why)}`,'')+nextBtn()+claimHtml();$('#nx').onclick=next;bindClaim(ci)};
   $('#chk').onclick=chk;$('#ans').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();chk()}};setTimeout(()=>{try{$('#ans').focus()}catch(e){}},50)};
 /* spreken (stap speak): de situatie, het voorbeeld om te horen, de checklist; opnemen en terugluisteren komt in stap 6 */
 H.sc_speak=q=>{const st=q.st,m=plainX(st.model,'nl');
@@ -2609,9 +2631,10 @@ H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${fw(w)}`,full=artFull(
   bindHelp();const inp=$('#ans');setTimeout(()=>{try{inp.focus({preventScroll:true})}catch(e){}},80);
   if(nlOnly()&&!g){setTimeout(()=>say(fullT),250);$('#sp').onclick=()=>say(fullT);$('#sps').onclick=()=>say(fullT,true)}
   $('#hint').onclick=()=>{hint=Math.min(3,hint+1);$('#hs').textContent=g?(hint===1?`Begint met: ${w.w[0]}…`:hint===2?`${w.w.slice(0,Math.ceil(w.w.length/2))}…`:w.w):hint===1?(w.art?`Lidwoord: ${w.art}`:`${w.w[0]}…`):hint===2?(w.art?`${w.art} ${w.w[0]}…`:`${w.w.slice(0,Math.ceil(w.w.length/2))}…`):fullT;if(hint===3)$('#hint').disabled=true};
-  const done=(wordOk,artOk,msg)=>{const clean=wordOk&&artOk&&tries===1&&hint<3;if(q._probe){probeDone(w,clean&&hint===0);if(clean&&hint===0)score(true,10)}else{score(clean,hint===0?10:hint===1?7:4);review(w.id,clean?true:wordOk&&artOk?'retry':false,'typen')}if(clean)grown.push(w.id);
+  const ci=()=>({id:w.id,q:g?String(g):String(L_(w)||w.w),want:fullT});
+  const done=(wordOk,artOk,msg)=>{const clean=wordOk&&artOk&&tries===1&&hint<3,bad=!(wordOk&&artOk)&&!q._probe;const cnt=()=>{if(q._probe){probeDone(w,clean&&hint===0);if(clean&&hint===0)score(true,10)}else{score(clean,hint===0?10:hint===1?7:4);review(w.id,clean?true:wordOk&&artOk?'retry':false,'typen')}};if(bad)later(cnt);else cnt();if(clean)grown.push(w.id);
     $('#fb').innerHTML=fbBox(wordOk&&artOk,msg,'');say(gapFull(w));inp.disabled=true;$('#hint').disabled=true;
-    const c=$('#chk');if(c)c.outerHTML=nextBtn(wordOk&&artOk?'btn-leaf':'btn-main');else $('#fb').insertAdjacentHTML('beforeend',nextBtn(wordOk&&artOk?'btn-leaf':'btn-main'));$('#nx').onclick=next};
+    const c=$('#chk');if(c)c.outerHTML=nextBtn(wordOk&&artOk?'btn-leaf':'btn-main');else $('#fb').insertAdjacentHTML('beforeend',nextBtn(wordOk&&artOk?'btn-leaf':'btn-main'));$('#nx').onclick=next;if(bad){$('#nx').insertAdjacentHTML('afterend',claimHtml());bindClaim(ci())}};
   const checkGap=()=>{let a=norm(inp.value);if(!a)return;
     const pre=norm(w.gap.split('___')[0]).split(' ').filter(Boolean);for(const k of [2,1]){const tail=pre.slice(-k).join(' ');if(pre.length>=k&&a.startsWith(tail+' ')){a=a.slice(tail.length+1);break}}
     const m=a.match(/^(de|het) (.+)$/),art=m?m[1]:null,word=m?m[2]:a,ctx=esc(gapFull(w));
@@ -2630,9 +2653,9 @@ H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${fw(w)}`,full=artFull(
     if(ok){msg=`<b>${full}</b>. ${esc(w.ex)}`;th=ts('recall.yes',{full})}
     else if(a===norm(w.w)){msg=t('recall.addArt',{art:w.art,full});th=ts('recall.addArt',{art:w.art,full})}
     else if(a.endsWith(norm(w.w))){msg=t('recall.wrongArt',{art:w.art,full});th=ts('recall.wrongArt',{art:w.art,full})}
-    if(ok||tries>1||msg){const clean=ok&&tries===1&&hint<3;if(q._probe){probeDone(w,clean&&hint===0);if(clean&&hint===0)score(true,10)}else{score(clean,hint===0?10:hint===1?7:4);review(w.id,clean?true:ok?'retry':false,'typen')}if(clean)grown.push(w.id);
+    if(ok||tries>1||msg){const clean=ok&&tries===1&&hint<3,bad=!ok&&!q._probe;const cnt=()=>{if(q._probe){probeDone(w,clean&&hint===0);if(clean&&hint===0)score(true,10)}else{score(clean,hint===0?10:hint===1?7:4);review(w.id,clean?true:ok?'retry':false,'typen')}};if(bad)later(cnt);else cnt();if(clean)grown.push(w.id);
       $('#fb').innerHTML=fbBox(ok,msg||`${t('recall.answer',{full})} ${esc(w.ex)}`,th||ts('recall.answer',{full}));say(fullT);inp.disabled=true;$('#hint').disabled=true;
-      $('#chk').outerHTML=nextBtn(ok?'btn-leaf':'btn-main');$('#nx').onclick=next}
+      $('#chk').outerHTML=nextBtn(ok?'btn-leaf':'btn-main');$('#nx').onclick=next;if(bad){$('#nx').insertAdjacentHTML('afterend',claimHtml());bindClaim(ci())}}
     else $('#fb').innerHTML=fbK(false,'try.again')};
   $('#chk').onclick=check;inp.onkeydown=e=>{if(e.key==='Enter'&&!inp.disabled)check()}};
 H.build=q=>{const s=q.s;let pool=shuffle(s.parts);if(pool.join()===s.parts.join())pool.reverse();let chosen=[],first=true;
@@ -2662,8 +2685,8 @@ function listenType(q){const p=q.p,L=q.lang||'nl';let tries=0,done=false;
   bindHelp();const inp=$('#ans');setTimeout(()=>say(p.say,false,L),350);$('#sp').onclick=()=>say(p.say,false,L);$('#sps').onclick=()=>say(p.say,true,L);
   const check=()=>{if(done)return;const a=norm(inp.value);if(!a)return;tries++;const ok=a===norm(p.say);
     if(!ok&&tries<2){$('#fb').innerHTML=fbBox(false,t('listen.again')+' '+M_(p,'why'),(ts('listen.again')+' '+L_(p,'why')).trim());return}
-    done=true;score(ok&&tries===1,10,ok?6:0);practiced(q,ok?(tries===1?true:'retry'):false,'luisteren');
-    $('#fb').innerHTML=fbBox(ok,`<b>${esc(p.say)}</b>. ${M_(p,'why')}`,L_(p,'why'))+nextBtn(L==='en'?'btn-sky':'');$('#nx').onclick=next;inp.disabled=true;$('#chk').remove()};
+    done=true;const cnt=()=>{score(ok&&tries===1,10,ok?6:0);practiced(q,ok?(tries===1?true:'retry'):false,'luisteren')};if(ok)cnt();else later(cnt);
+    $('#fb').innerHTML=fbBox(ok,`<b>${esc(p.say)}</b>. ${M_(p,'why')}`,L_(p,'why'))+nextBtn(L==='en'?'btn-sky':'')+(ok?'':claimHtml());$('#nx').onclick=next;inp.disabled=true;$('#chk').remove();if(!ok)bindClaim({id:q.exid||'',q:'(luisteren)',want:p.say})};
   $('#chk').onclick=check;inp.onkeydown=e=>{if(e.key==='Enter')check()}}
 H.listen=q=>{const p=q.p,L=q.lang||'nl';if(p.mode==='type')return listenType(q);let first=true;
   frame(`<div class="card stack">${T('listen.title')}<p class="muted">${T('listen.tip')}</p>${speakBtns('sp','sps')}
@@ -2747,9 +2770,9 @@ H.enhear=q=>{const w=q.w;let tries=0,hint=0,done=false;
   $('#hint').onclick=()=>{hint=Math.min(2,hint+1);$('#hs').textContent=hint===1?`${w.w[0]}… (${w.w.length} letters)`:w.w;if(hint===2)$('#hint').disabled=true};
   const check=()=>{if(done)return;const a=norm(inp.value).replace(/^(a|an|the|to) /,'');if(!a)return;tries++;const ok=a===w.w;
     if(!ok&&tries<2){$('#fb').innerHTML=fbK(false,'try.again');return}
-    done=true;const res=ok&&tries===1&&hint===0?true:ok&&hint<2?'retry':false;score(res===true,10,res==='retry'?6:0);review(w.id,res,'luisteren');if(res===true)grown.push(w.id);
+    done=true;const res=ok&&tries===1&&hint===0?true:ok&&hint<2?'retry':false,cnt=()=>{score(res===true,10,res==='retry'?6:0);review(w.id,res,'luisteren')};if(ok)cnt();else later(cnt);if(res===true)grown.push(w.id);
     $('#fb').innerHTML=fbBox(ok,`<b lang="en">${esc(w.w)}</b>. <span lang="en">${esc(w.ex)}</span>`,supL()==='en'?'':ok?ts('fb.ok'):ts('recall.answer',{full:esc(w.w)}));say(`${w.w}. ${w.ex}`,false,'en');
-    inp.disabled=true;$('#hint').disabled=true;$('#chk').outerHTML=nextBtn('btn-sky');$('#nx').onclick=next};
+    inp.disabled=true;$('#hint').disabled=true;$('#chk').outerHTML=nextBtn('btn-sky');$('#nx').onclick=next;if(!ok){$('#nx').insertAdjacentHTML('afterend',claimHtml());bindClaim({id:w.id,q:'(listen)',want:w.w})}};
   $('#chk').onclick=check;inp.onkeydown=e=>{if(e.key==='Enter')check()}};
 H.enrecog=q=>{const w=q.w;let first=true;const opts=shuffle([w,...shuffle(EN.filter(x=>x.id!==w.id)).slice(0,3)]);
   frame(`<div class="card stack">${T('en.choose')}${nlOnly()||supL()==='en'?`<p class="prompt">${esc(w.nl)}</p>`:`<p class="prompt sp" ${supAttr()}>${L_(w)}</p><p class="muted small">Nederlands: <b>${esc(w.nl)}</b></p>`}
@@ -2763,8 +2786,8 @@ H.enrecall=q=>{const w=q.w;let done=false,hint=0;
   <div class="hint-row"><button class="hintbtn" id="hint">${T('btn.hint')}</button><span class="hintshow" id="hs"></span></div>
   <div id="fb"></div><button class="btn btn-sky" id="chk">${T('en.check')}</button>${helpBtn('Engels woord: '+w.w)}</div>`,'English',q.step);
   bindHelp();$('#hint').onclick=()=>{hint=Math.min(2,hint+1);$('#hs').textContent=hint===1?`${w.w[0]}… (${w.w.length} letters)`:w.w};
-  const check=()=>{if(done)return;const a=norm($('#ans').value).replace(/^(a|an|the|to) /,'');if(!a)return;done=true;const ok=a===w.w,clean=ok&&hint<2;score(clean,hint?6:10);review(w.id,clean?true:ok?'retry':false,'typen');if(clean)grown.push(w.id);
-    $('#fb').innerHTML=fbBox(ok,`<b lang="en">${esc(w.w)}</b>. <span lang="en">${esc(w.ex)}</span>`,supL()==='en'?'':ok?ts('fb.ok'):ts('recall.answer',{full:esc(w.w)}));say(`${w.w}. ${w.ex}`,false,'en');$('#chk').outerHTML=nextBtn('btn-sky');$('#nx').onclick=next;$('#ans').disabled=true};
+  const check=()=>{if(done)return;const a=norm($('#ans').value).replace(/^(a|an|the|to) /,'');if(!a)return;done=true;const ok=a===w.w,clean=ok&&hint<2,cnt=()=>{score(clean,hint?6:10);review(w.id,clean?true:ok?'retry':false,'typen')};if(ok)cnt();else later(cnt);if(clean)grown.push(w.id);
+    $('#fb').innerHTML=fbBox(ok,`<b lang="en">${esc(w.w)}</b>. <span lang="en">${esc(w.ex)}</span>`,supL()==='en'?'':ok?ts('fb.ok'):ts('recall.answer',{full:esc(w.w)}));say(`${w.w}. ${w.ex}`,false,'en');$('#chk').outerHTML=nextBtn('btn-sky');$('#nx').onclick=next;$('#ans').disabled=true;if(!ok){$('#nx').insertAdjacentHTML('afterend',claimHtml());bindClaim({id:w.id,q:w.nl,want:w.w})}};
   $('#chk').onclick=check;$('#ans').onkeydown=e=>{if(e.key==='Enter')check()}};
 H.engap=q=>{const x=q.x;let first=true;
   frame(`<div class="card stack">${T('en.choose')}<p class="prompt" lang="en">${esc(x.s).replace('___','<span class="slot s1">___</span>')}</p><p class="muted small">${esc(x.nl)}</p>${supSpan(L_(x))}
@@ -3077,7 +3100,9 @@ function pickFile(cb){const i=document.createElement('input');i.type='file';i.ac
   i.onchange=()=>{const f=i.files&&i.files[0];i.remove();if(!f)return;const r=new FileReader();r.onload=()=>cb(String(r.result||''));r.onerror=()=>cb('');r.readAsText(f)};document.body.appendChild(i);i.click()}
 const backupCard=()=>`<section class="card stack">${T('bk.title')}<p class="small">${T('bk.text')}</p><div class="note small">${T('bk.private')}</div>
   ${S.lastBackup?`<p class="small muted">${T('bk.last',{when:fmtWhen(S.lastBackup)})}</p>`:''}
-  <div class="btn-row"><button class="btn btn-ghost" id="bksave">${T('bk.save')}</button>${STORE==='ok'?`<button class="btn btn-ghost" id="bkload">${T('bk.load')}</button>`:''}</div><div id="bkmsg"></div></section>`;
+  <div class="btn-row"><button class="btn btn-ghost" id="bksave">${T('bk.save')}</button>${STORE==='ok'?`<button class="btn btn-ghost" id="bkload">${T('bk.load')}</button>`:''}</div><div id="bkmsg"></div>${claimsList()}</section>`;
+const claimsList=()=>{const c=Array.isArray(S.claims)?S.claims:[];if(!c.length)return '';   /* uitleg bij de eisen 17: de lijst voor de redactielijn, alleen op dit toestel en in het bestand van Voortgang bewaren */
+  return `<details class="small"><summary>${T('claim.title',{n:c.length})}</summary><ul>${c.slice().reverse().map(x=>`<li><span class="muted">${esc(fmtWhen(x.t)('nl'))}</span> ${esc(x.q)}<br>${t('claim.you')}: <b lang="nl">${esc(x.a)}</b> · ${t('claim.want')}: ${esc(x.want)}</li>`).join('')}</ul></details>`};
 function bindBackup(){if($('#bksave'))$('#bksave').onclick=()=>exportBackup().then(ok=>{if(ok&&tab==='ik'&&!route)vMe()});
   if($('#bkload'))$('#bkload').onclick=()=>pickFile(txt=>{const r=parseBackup(txt),box=$('#bkmsg');if(!box)return;
     if(r.err){box.innerHTML=`<div class="note small" role="status">${T(r.err)}</div>`;return}

@@ -179,4 +179,20 @@ ok('poort (uitleg bij de eisen 13, 14): dubbele vraag, tekst zonder typen, te we
   ok('zwaardere vorm: 3 x 4 en 3*4 tellen voor 3 × 4, 0,25 voor € 0,25, maar 0,30 niet', cx.n('3 x 4') === cx.n('3 × 4') && cx.n('3*4') === cx.n('3 × 4') && cx.f('€ 0,25', '0,25') && !cx.f('€ 0,25', '0,30'));
   ok('scènevraag: een woord uit also van het doel is geen fout', html.includes('/* review dokter 6: een woord uit also is in een scènevraag ook geen fout */')); }
 ok('poort (uitleg bij de eisen 16): een typvraag met een zin als antwoord is een fout', /hooguit twee woorden/.test(cc(p => { const q = p.scenes[0].steps[1].q[0]; q.form = 'type'; q.answer = 'Ik wil een afspraak maken.'; delete q.opts; })) && !/hooguit twee woorden/.test(cc(p => {})));
+{ // Mijn antwoord is ook goed (uitleg bij de eisen 17)
+  const i0 = html.indexOf('const CLAIMMAX='), i1 = html.indexOf('\n', html.indexOf('function bindClaim('));
+  const cx = { S: {}, saved: 0, nexted: 0, els: {} }; vm.createContext(cx);
+  vm.runInContext(`var S=this.S;function save(){this.saved++}var now=()=>1;var T=k=>k,TB=k=>k,nextBtn=()=>'<nx>';function next(){}
+    var EL={};function $(s){return EL[s]||null}this.EL=EL;` + html.slice(i0, i1) + ';this.later=later;this.flushPend=flushPend;this.bindClaim=bindClaim;this.getP=()=>PEND;', cx);
+  let counted = 0; cx.later(() => counted++); cx.flushPend();
+  ok('een uitgestelde fout telt bij Volgende', counted === 1 && cx.getP().length === 0);
+  const btn = {}, fb = { innerHTML: '' }, inp = { value: 'pijn in', disabled: false };
+  Object.assign(cx.EL, { '#claim': btn, '#fb': fb, '#ans': inp, '#nx': { onclick: null, remove() {} } });
+  counted = 0; cx.later(() => counted++); cx.bindClaim({ id: 'dok.pijnaan', q: 'Ik heb ___ mijn arm.', want: 'pijn aan' }); btn.onclick(); cx.flushPend();
+  const c = cx.S.claims || [];
+  ok('de knop neemt de fout weg en zet vraag en antwoord op de lijst', counted === 0 && c.length === 1 && c[0].a === 'pijn in' && c[0].want === 'pijn aan' && inp.disabled && fb.innerHTML.includes('claim.thanks'));
+  for (let k = 0; k < 60; k++) { cx.EL['#claim'] = {}; cx.bindClaim({ id: 'x' + k, q: '<b>q</b>', want: 'w' }); cx.EL['#claim'].onclick(); }
+  ok('de lijst houdt de laatste vijftig, zonder html', cx.S.claims.length === 50 && cx.S.claims[49].id === 'x59' && cx.S.claims[49].q === 'q');
+  ok('alle getypte schermen hebben de knop (ophalen, gatzin, luisteren, Engels, scène)', (html.match(/bindClaim\(/g) || []).length >= 9 && html.includes('function next(){flushPend();') && html.includes("$('#quit').onclick=()=>{flushPend();"));
+}
 console.log(fails ? fails + ' FOUT' : 'alles OK');
