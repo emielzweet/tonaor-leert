@@ -156,4 +156,6 @@ ok('een hoofdstuk dat de hoofdstukcontrole niet haalt, staat helemaal buiten de 
 ok('hoofdstuk G5: een hoofdstuk met goals heeft purpose', /purpose/.test(cc(p => { delete p.purpose; })));
 ok('purpose staat bij het begin en op het slot van de laatste scène (scPurpose)', html.includes("scPurpose(sc,'first')") && html.includes("scPurpose(sc,'last')"));
 ok('H3 rust pas over tijd: drie dagen en zeven dagen ertussen (MOTOR.restDays, restSpan)', html.includes('h[h.length-1][0]-h[0][0]>=MOTOR.restSpan') && html.includes('.size>=MOTOR.restDays'));
+{ const cx = { NL: [{ id: 'a', also: ['b'] }, { id: 'b' }, { id: 'c' }] }; vm.createContext(cx); vm.runInContext(fnBlock('alsoOf') + '\nthis.f=alsoOf;', cx);
+  ok('also werkt in beide richtingen (review 3: pijn aan / pijn in)', JSON.stringify(cx.f(cx.NL[0])) === '["b"]' && JSON.stringify(cx.f(cx.NL[1])) === '["a"]' && cx.f(cx.NL[2]).length === 0); }
 console.log(fails ? fails + ' FOUT' : 'alles OK');

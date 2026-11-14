@@ -137,4 +137,12 @@ ok('schema 5 → 6: een ongeldig foutprofiel wordt een leeg object', r.S.errs &&
   const r1 = ctx.save(), r2 = ctx.save();
   ok('F1: lukt wegschrijven niet, dan blijft de oude opslag staan, komt er één melding en geeft save() false', r1 === false && r2 === false && store[KEY] === 'oud' && toasts.length === 1 && toasts[0] === 'store.full');
   full = false; ok('F1: is er weer ruimte, dan schrijft save() gewoon', ctx.save() === true && store[KEY] !== 'oud'); }
+// besluit eigenaar (codereview B6): lukte de reservekopie vóór de migratie niet, dan eerst de kopie en pas dan de nieuwe vorm wegschrijven
+{ const store = { [KEY]: 'oud' }, toasts = []; let bakFull = true; const ctx = { STORE: 'ok', KEY, BAK: KEY + '.bak', NOBAK: 'oud', S: { v: 2, items: {} }, MOTOR: { histBudget: 300000 }, histTrim: () => 0, toast: m => toasts.push(m), tx: k => k,
+    putStore(k, v) { if (bakFull) return false; store[k] = v; return true; }, localStorage: { setItem(k, v) { store[k] = v; } } };
+  vm.createContext(ctx); vm.runInContext(saveFn + '\nthis.save=save;this.nb=()=>NOBAK;', ctx);
+  const r1 = ctx.save(), r2 = ctx.save();
+  ok('zonder reservekopie schrijft save() de nieuwe vorm niet weg en meldt het één keer', r1 === false && r2 === false && store[KEY] === 'oud' && toasts.length === 1 && toasts[0] === 'store.nobak');
+  bakFull = false; const r3 = ctx.save();
+  ok('lukt de reservekopie later wel, dan eerst de kopie en daarna de nieuwe vorm', r3 === true && store[KEY + '.bak'] === 'oud' && store[KEY] !== 'oud' && ctx.nb() === null); }
 console.log(fails ? fails + ' FOUT' : 'alles OK');

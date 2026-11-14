@@ -298,7 +298,7 @@ const $=s=>document.querySelector(s);
 const app=$('#app');
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 /* save() schrijft alleen als de opslag veilig geladen is (STORE==='ok', zie 'opslag veilig laden') */
-function save(){if(STORE!=='ok')return;const w=()=>{localStorage.setItem(KEY,JSON.stringify(S));return true};try{return w()}catch(e){}try{if(typeof histTrim==='function'){histTrim(Math.floor(MOTOR.histBudget/3));return w()}}catch(e){}if(!save.warned){save.warned=1;try{toast(tx('store.full'))}catch(e){}}return false}   /* F1: setItem schrijft alles of niets; bij een volle opslag eerst ruimte in de reeksen (nooit in de stand), dan één melding */
+function save(){if(STORE!=='ok')return;if(typeof NOBAK!=='undefined'&&NOBAK){if(putStore(BAK,NOBAK))NOBAK=null;else{if(!save.nobak){save.nobak=1;try{toast(tx('store.nobak'))}catch(e){}}return false}}   /* eerst de reservekopie, dan pas de nieuwe vorm (besluit eigenaar, codereview B6) */const w=()=>{localStorage.setItem(KEY,JSON.stringify(S));return true};try{return w()}catch(e){}try{if(typeof histTrim==='function'){histTrim(Math.floor(MOTOR.histBudget/3));return w()}}catch(e){}if(!save.warned){save.warned=1;try{toast(tx('store.full'))}catch(e){}}return false}   /* F1: setItem schrijft alles of niets; bij een volle opslag eerst ruimte in de reeksen (nooit in de stand), dan één melding */
 /* ============ talen en vertalingen (#4) ============
    Leertaal = de taal die je leert (nu alleen nl). Steuntaal = de taal van uitleg en vertaling (th of en), te kiezen op Ik (S.sup).
    S.thai ('altijd' | 'tik' | 'uit') regelt hoeveel steuntaal je ziet; de naam is historisch en blijft voor de opgeslagen voortgang.
@@ -325,6 +325,7 @@ en:{
  "scene.check":"Check whether your text has this:",
  "scene.model":"This is one way:",
  "scene.ruleTitle":"Language from the scene",
+ "store.nobak":"The phone storage is almost full, so the update cannot make a safety copy of your progress. Your progress stays as it was, but today's answers are not saved. Free up some space, or save your progress via Me.",
  "store.full":"The phone storage is full: your latest progress could not be saved. Your earlier progress is safe. Free up some space, or save your progress via Me.",
  "stock.out":"You have seen all the new material for now. New chapters are on the way; until then you can repeat what is due, play a scene or read.",
  "scene.speakTitle":"Say it",
@@ -739,6 +740,7 @@ nl:{
  "scene.check":"Kijk of jouw tekst dit heeft:",
  "scene.model":"Zo kan het ook:",
  "scene.ruleTitle":"Taal uit de scène",
+ "store.nobak":"De opslag van de telefoon is bijna vol, daardoor kan de update geen reservekopie van je voortgang maken. Je voortgang blijft zoals hij was, maar de antwoorden van nu worden niet bewaard. Maak wat ruimte vrij, of bewaar je voortgang via Ik.",
  "store.full":"De opslag van de telefoon is vol: je laatste voortgang kon niet bewaard worden. Je eerdere voortgang is veilig. Maak wat ruimte vrij, of bewaar je voortgang via Ik.",
  "stock.out":"Je hebt alle nieuwe lesstof voor nu gezien. Er komen nieuwe hoofdstukken aan; tot dan kun je herhalen wat aan de beurt is, een scène spelen of lezen.",
  "scene.speakTitle":"Zeg het zelf",
@@ -1149,6 +1151,7 @@ th:{
  "scene.check":"ดูว่าข้อความของคุณมีสิ่งเหล่านี้หรือไม่",
  "scene.model":"ตัวอย่างคำตอบ",
  "scene.ruleTitle":"ภาษาจากฉากนี้",
+ "store.nobak":"พื้นที่เก็บข้อมูลในโทรศัพท์เกือบเต็ม การอัปเดตจึงทำสำเนาสำรองความคืบหน้าไม่ได้ ความคืบหน้าเดิมยังอยู่ แต่คำตอบตอนนี้จะไม่ถูกบันทึก ลองลบข้อมูลบางอย่าง หรือบันทึกความคืบหน้าผ่านหน้า ฉัน",
  "store.full":"พื้นที่เก็บข้อมูลในโทรศัพท์เต็ม บันทึกความคืบหน้าล่าสุดไม่ได้ ความคืบหน้าก่อนหน้านี้ยังปลอดภัย ลองลบข้อมูลบางอย่าง หรือบันทึกความคืบหน้าผ่านหน้า ฉัน",
  "stock.out":"คุณได้เห็นบทเรียนใหม่ทั้งหมดแล้วในตอนนี้ บทใหม่กำลังจะมา ระหว่างนี้คุณทบทวนสิ่งที่ถึงเวลา เล่นฉาก หรืออ่านได้",
  "scene.speakTitle":"พูดเอง",
@@ -2017,13 +2020,13 @@ function rawStore(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function putStore(k,v){try{localStorage.setItem(k,v);return true}catch(e){return false}}
 function backupNow(){const r=rawStore(KEY);if(r!=null)putStore(BAK,r)}
 function parseState(txt){let o=null;try{o=JSON.parse(txt)}catch(e){}return o}
-let STORE='ok',S;
+let STORE='ok',S,NOBAK=null;   /* NOBAK: de ruwe oude opslag als de reservekopie vóór de migratie niet lukte */
 (()=>{const raw=rawStore(KEY);if(raw==null){S=fresh();return}
   const o=parseState(raw),st=checkState(o);
   if(st==='broken'){STORE='broken';S=fresh();return}
   if(st==='newer'){STORE='newer';S=o;return}
   /* Lukt de reservekopie niet, dan is de opslag vol of onbereikbaar: dan lukt wegschrijven ook niet, dus de oude opslag blijft staan. */
-  if(schemaOf(o)<SCHEMA){const bakOk=putStore(BAK,raw);let m;try{m=migrate(o)}catch(e){STORE='broken';S=fresh();return}S=fillDefaults(m);if(bakOk)putStore(KEY,JSON.stringify(S))}else S=fillDefaults(o)})();
+  if(schemaOf(o)<SCHEMA){const bakOk=putStore(BAK,raw);let m;try{m=migrate(o)}catch(e){STORE='broken';S=fresh();return}S=fillDefaults(m);if(bakOk)putStore(KEY,JSON.stringify(S));else NOBAK=raw}else S=fillDefaults(o)})();   /* besluit eigenaar: zonder reservekopie geen nieuwe vorm wegschrijven (NOBAK, zie save) */
 [...NL,...EN,...REK,...PACKS.flatMap(p=>p.items||[]).filter(x=>x.kind==='rule'||x.kind==='sound')].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
 PACKS.forEach(p=>(p.items||[]).forEach(x=>{if(x&&x.id&&x.kind)KIND[x.id]=x.kind==='phrase'?'word':x.kind}));
 /* eenmalig bij de overstap op fase 3: wie al lessen deed, heeft de regels en klanken uit de vaste les al gehad. Die tellen als geïntroduceerd en zijn aan de beurt. */
@@ -2337,7 +2340,9 @@ H.learn=q=>{const w=q.w;
   setTimeout(()=>say(`${fw(w)}`),250);$('#sp').onclick=()=>say(`${fw(w)}. ${w.ex}`);$('#sps').onclick=()=>say(`${fw(w)}`,true);
   $('#nx').onclick=()=>{if(!S.introduced.includes(w.id))S.introduced.push(w.id);const it=S.items[w.id];it.reps=Math.max(1,it.reps);it.due=now();save();next()};
 };
-H.recog=q=>{const w=q.w;let first=true;const g=nlOnly()?gapEx(w):null,others=NL.filter(x=>x.id!==w.id&&!(g&&(w.also||[]).includes(x.id))),opts=shuffle([w,...shuffle(others).slice(0,2)]);
+/* woorden die ook passen, in beide richtingen (also bij het ene of het andere woord): nooit als foute keuze, getypt geen fout (review 3) */
+function alsoOf(w){return [...new Set([...(w.also||[]),...NL.filter(x=>(x.also||[]).includes(w.id)).map(x=>x.id)])]}
+H.recog=q=>{const w=q.w;let first=true;const g=nlOnly()?gapEx(w):null,AL=alsoOf(w),others=NL.filter(x=>x.id!==w.id&&!AL.includes(x.id)),opts=shuffle([w,...shuffle(others).slice(0,2)]);
   frame(`<div class="card stack">${g?`<p class="eyebrow">Welk woord past?</p><p class="prompt">${g}</p>`:nlOnly()?`<p class="eyebrow">Welk woord hoor je?</p>${speakBtns('sp','sps')}`:`<p class="eyebrow">Welk woord is dit?</p><p class="prompt sp" ${supAttr()}>${L_(w)}</p>`}
   <div class="choices one">${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}">${g||!o.art?'':o.art+' '}${esc(o.w)}</button>`).join('')}</div><div id="fb"></div></div>`,'Herkennen',q.step);
   if(nlOnly()&&!g){setTimeout(()=>say(`${fw(w)}`),250);$('#sp').onclick=()=>say(`${fw(w)}`);$('#sps').onclick=()=>say(`${fw(w)}`,true)}
@@ -2536,7 +2541,7 @@ H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${fw(w)}`,full=esc(full
         $('#fb').innerHTML=`<div class="stack-sm"><p>Goed: <b>${esc(w.w)}</b>. Welk lidwoord hoort erbij?</p><div class="choices"><button class="choice" data-art="de">de ${esc(w.w)}</button><button class="choice" data-art="het">het ${esc(w.w)}</button></div></div>`;
         app.querySelectorAll('[data-art]').forEach(b=>b.onclick=()=>{const ok=b.dataset.art===w.art;done(true,ok,ok?`<b>${full}</b>. ${ctx}`:`Het is <b>${full}</b>: een <b>${w.art}</b>-woord. ${ctx}`)});return}
       return done(true,true,`<b>${full}</b>. ${ctx}`+(art&&!w.askArt?` <span class="small muted">Het lidwoord staat al in de zin, dus alleen <b>${esc(w.w)}</b> was genoeg.</span>`:''))}
-    if((w.also||[]).some(id=>{const o=NL.find(x=>x.id===id);return o&&norm(o.w)===word})){$('#fb').innerHTML=`<div class="note sky">Dat past ook! Maar hier zoeken we een ander woord. Neem gerust een hulpje.</div>`;return}
+    if(alsoOf(w).some(id=>{const o=NL.find(x=>x.id===id);return o&&norm(o.w)===word})){$('#fb').innerHTML=`<div class="note sky">Dat past ook! Maar hier zoeken we een ander woord. Neem gerust een hulpje.</div>`;return}
     tries++;if(tries>1)return done(false,false,`Het is <b>${esc(w.w)}</b> (${full}). ${ctx}`);
     $('#fb').innerHTML=fbBox(false,'Probeer het nog een keer, of neem een hulpje.','')};
   const check=()=>{if(g)return checkGap();const a=norm(inp.value);if(!a)return;tries++;const ok=a===norm(fullT);let msg=null,th=null;
