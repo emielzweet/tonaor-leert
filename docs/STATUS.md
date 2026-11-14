@@ -61,6 +61,10 @@ Deze twee zijn nog niet aan de ontwerpsessie gemeld als releasestand; ze kunnen 
 
 **Release A nog niet uit (ontwerpsessie):** de onafhankelijke review van content/nl-basis.json (100 woorden) zei "verbeteren": twaalf gatzinnen lieten ook een ander woord uit de lijst toe, vier omschrijvingen gebruikten het woord zelf, zeggen en spreken hadden dezelfde Thaise vertaling. Hersteld door de schrijver; review 2 door een groter model loopt. App: herkennen kiest geen afleider meer met dezelfde vertaling of uit also (63699fc). De opdracht voor de reviewer vraagt nu uitdrukkelijk naar meer dan één goed antwoord.
 
+**Review 2 van nl-basis (groter model): verbeteren**, 18 gatzinnen met een tweede goed antwoord, ook met woorden uit nl-t1 en nl-dokter. Besloten door de bouwsessie: `also` mag naar een woord uit een ander pakket verwijzen (8fd9f27, test bd1a49b); de app telde het al zo, alleen de controle hield het tegen. Herstelronde 3 door de schrijver loopt, daarna review door een groter model.
+
+**G1-punt opgelost (2dcb693):** de voortgang in een scène telt en noemt alleen de delen die de scène heeft ("Stap 1 van 4 · Kijken" tijdens de instap was fout); de instap heet "Wat ken je al?". Getest; in de browser te bekijken zodra een hoofdstuk de poort haalt.
+
 **De ervaring van vannacht:** de poort ving de vorm, de review ving de inhoud; zonder review van een groter model gaat lesstof niet uit.
 
 **Nog te doen uit de kleine voorstellen:** 5, 15 of 30 minuten bij het openen (5.2), de pauzeknop voor het weekdoel (5.3), de steuntaal ook voorgelezen (10.24), een voorstel voor een pauze na een half uur (10.28). Daarna de rest van de werkorder.
