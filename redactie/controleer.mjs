@@ -3,7 +3,10 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
-const SceneVis = require('../scene.js');
+const SceneVis = require('../scene.js'), KaartVis = require('../kaart.js');
+// kaart en tijdlijn, met de kaartgegevens: ids, uitsnede en maat van aantikbare gebieden (docs/kaart-en-tijdlijn.md)
+const kaartData = n => { if (!KaartVis.MAPS.includes(n)) return null; try { return JSON.parse(readFileSync(new URL('../kaart/' + n + '.json', import.meta.url), 'utf8')); } catch (e) { return null; } };
+const kaartCheck = a => a.kind === 'timeline' || a.form === 'timeline' ? KaartVis.checkTimeline(a, a.form === 'timeline' ? (a.cards || []) : a.cards, a.tol) : KaartVis.checkMapSpec(a, kaartData(a.map));
 
 const file = process.argv[2];
 if (!file) { console.error('Geef een pakketbestand op.'); process.exit(2); }
@@ -99,7 +102,8 @@ for (const s of scenes) {
   for (const k of ['title', 'intro', 'can']) { txt(s[k], w + '.' + k); thai(s[k], w + '.' + k); names(s[k] && s[k].nl, w + '.' + k); }
   if (!Array.isArray(s.targets) || !s.targets.length) E(w, 'targets ontbreekt');
   else for (const t of s.targets) { if (!known(t)) E(w, 'target bestaat niet als item: ' + t); else use(t, s.id); }
-  for (const m of SceneVis.check(s.art)) E(w + '.art', m);
+  if (s.art && (s.art.kind === 'map' || s.art.kind === 'timeline')) { for (const m of kaartCheck(s.art)) E(w + '.art', m); }
+  else for (const m of SceneVis.check(s.art)) E(w + '.art', m);
   for (const [i, t] of ((s.art && s.art.things) || []).entries()) if (t && t.hot) { txt(t.label, w + '.art.things[' + i + '].label'); thai(t.label, w + '.art.things[' + i + ']'); if (t.item && !known(t.item)) E(w + '.art.things[' + i + ']', 'item bestaat niet: ' + t.item); if (t.item) use(t.item, s.id); }
   const st = Array.isArray(s.steps) ? s.steps : [];
   if (st.length < 3) { E(w, 'te weinig stappen'); continue; }
@@ -148,7 +152,7 @@ for (const s of scenes) {
         o.forEach((q, k) => opt(q, wt + '.opts[' + k + ']'));
       });
     }
-    if (x.type === 'do') { txt(x.ask, ws + '.ask'); txt(x.why, ws + '.why'); if (x.answer == null && !x.gen && !x.opts && !(x.form === 'build' && x.data && Array.isArray(x.data.parts))) E(ws, 'answer, opts of gen ontbreekt'); }   // zin bouwen in een do-stap: de blokken zijn het antwoord (gelijk aan pakketcheck)
+    if (x.type === 'do') { txt(x.ask, ws + '.ask'); txt(x.why, ws + '.why'); if (x.answer == null && !x.gen && !x.opts && !(x.form === 'build' && x.data && Array.isArray(x.data.parts)) && x.form !== 'timeline') E(ws, 'answer, opts of gen ontbreekt'); if (x.form === 'map' || x.form === 'timeline') for (const m of kaartCheck(x)) E(ws, m); }   // zin bouwen in een do-stap: de blokken zijn het antwoord (gelijk aan pakketcheck)
     if (x.type === 'make') { txt(x.ask, ws + '.ask'); if (typeof x.frame !== 'string' && !Array.isArray(x.frame)) E(ws, 'frame (schrijfkader) ontbreekt'); if (typeof x.model !== 'string') E(ws, 'model (voorbeeldantwoord) ontbreekt'); if (!Array.isArray(x.checklist) || x.checklist.length < 2) E(ws, 'checklist met minstens twee punten ontbreekt'); }
     if (x.type === 'read') { if (!x.text || typeof x.text.nl !== 'string') E(ws, 'text.nl ontbreekt'); if (!LES && (!Array.isArray(x.q) || x.q.length < 2)) E(ws, 'minstens twee vragen'); if (s.subject === 'kn' && (!Array.isArray(x.sources) || !x.sources.length)) E(ws, 'een kennisles heeft bronnen nodig (sources)'); }
     if (x.type === 'end') { txt(x.next, ws + '.next'); txt(x.real, ws + '.real'); }

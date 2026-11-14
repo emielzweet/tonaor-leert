@@ -290,6 +290,7 @@ body.u-open{overflow:hidden}
 
 <script src="tlsync.js"></script>
 <script src="scene.js"></script>
+<script src="kaart.js"></script>
 <script src="pakketcheck.js"></script>
 <script src="uitleg.js"></script>
 <script>
@@ -479,6 +480,13 @@ en:{
  "bk.last":"Last backed up: {when}",
  "bk.load":"Restore progress",
  "bk.save":"Back up progress",
+ "kaart.answer":"This is the place: {name}.","kaart.loading":"Loading the map…","kaart.missing":"The map could not load (no internet?). This question is skipped for now.",
+ "kaart.far":"You were {km} km off, too far to the {dir}. Try again.","kaart.dir.noord":"north","kaart.dir.noordoost":"north-east","kaart.dir.oost":"east","kaart.dir.zuidoost":"south-east","kaart.dir.zuid":"south","kaart.dir.zuidwest":"south-west","kaart.dir.west":"west","kaart.dir.noordwest":"north-west",
+ "kaart.farEnd":"You were {km} km off, too far to the {dir}.",
+ "kaart.this":"That is {name}. Try again.",
+ "tl.again":"Not yet: look at the order and the years. Try again.",
+ "tl.answer":"The cards are now on their real place.",
+ "tl.tip":"Tap a card, then the place on the line.",
  "les.deeper":"Want to know more? The next part goes deeper. You can also skip it.",
  "les.deeperGo":"Read on",
  "les.deeperSkip":"Skip",
@@ -930,6 +938,13 @@ nl:{
  "bk.last":"Laatst bewaard: {when}",
  "bk.load":"Voortgang terugzetten",
  "bk.save":"Voortgang bewaren",
+ "kaart.answer":"Dit is de plek: {name}.","kaart.loading":"De kaart wordt geladen…","kaart.missing":"De kaart kon niet laden (geen internet?). Deze vraag slaan we nu over.",
+ "kaart.far":"Je zat er {km} km naast, te ver naar het {dir}. Probeer het nog een keer.","kaart.dir.noord":"noorden","kaart.dir.noordoost":"noordoosten","kaart.dir.oost":"oosten","kaart.dir.zuidoost":"zuidoosten","kaart.dir.zuid":"zuiden","kaart.dir.zuidwest":"zuidwesten","kaart.dir.west":"westen","kaart.dir.noordwest":"noordwesten",
+ "kaart.farEnd":"Je zat er {km} km naast, te ver naar het {dir}.",
+ "kaart.this":"Dat is {name}. Probeer het nog een keer.",
+ "tl.again":"Nog niet: kijk naar de volgorde en de jaartallen. Probeer het nog een keer.",
+ "tl.answer":"De kaartjes liggen nu op hun echte plek.",
+ "tl.tip":"Tik op een kaartje en dan op de plek op de lijn.",
  "les.deeper":"<p>Wil je meer weten? Het volgende deel gaat dieper. Je mag het ook overslaan.</p>",
  "les.deeperGo":"Lees verder",
  "les.deeperSkip":"Overslaan",
@@ -1377,6 +1392,13 @@ th:{
  "bk.last":"บันทึกล่าสุด: {when}",
  "bk.load":"กู้คืนความก้าวหน้า",
  "bk.save":"บันทึกความก้าวหน้า",
+ "kaart.answer":"ที่นี่คือ {name}","kaart.loading":"กำลังโหลดแผนที่…","kaart.missing":"โหลดแผนที่ไม่ได้ (ไม่มีอินเทอร์เน็ต?) ข้ามคำถามนี้ไปก่อน",
+ "kaart.far":"คุณห่างไป {km} กม. ไปทาง{dir}มากเกินไป ลองอีกครั้ง","kaart.dir.noord":"ทิศเหนือ","kaart.dir.noordoost":"ทิศตะวันออกเฉียงเหนือ","kaart.dir.oost":"ทิศตะวันออก","kaart.dir.zuidoost":"ทิศตะวันออกเฉียงใต้","kaart.dir.zuid":"ทิศใต้","kaart.dir.zuidwest":"ทิศตะวันตกเฉียงใต้","kaart.dir.west":"ทิศตะวันตก","kaart.dir.noordwest":"ทิศตะวันตกเฉียงเหนือ",
+ "kaart.farEnd":"คุณห่างไป {km} กม. ไปทาง{dir}มากเกินไป",
+ "kaart.this":"นั่นคือ {name} ลองอีกครั้ง",
+ "tl.again":"ยังไม่ถูก ดูลำดับและปีอีกครั้ง ลองใหม่",
+ "tl.answer":"ตอนนี้บัตรอยู่ในตำแหน่งจริงแล้ว",
+ "tl.tip":"แตะบัตร แล้วแตะตำแหน่งบนเส้น",
  "les.deeper":"อยากรู้เพิ่มไหม ส่วนต่อไปลึกขึ้น จะข้ามก็ได้",
  "les.deeperGo":"อ่านต่อ",
  "les.deeperSkip":"ข้าม",
@@ -2560,7 +2582,14 @@ const ERRS=['lidwoord','woordvolgorde','werkwoordsvorm','tijd','voorzetsel','spe
 let SCN=null;   // de scène die nu loopt: fouten per soort, gebruikte extra's, uitkomst van de controle
 try{if(SV&&!document.getElementById('scenecss')){const st=document.createElement('style');st.id='scenecss';st.textContent=SV.CSS;document.head.appendChild(st)}}catch(e){}
 const scT=x=>TKx(x,'nl'),scP=x=>plainX(x,'nl');
-function scArt(sc,looks){return SV&&sc.art?SV.render(sc.art,SAFE,{text:scP,looks:looks||{}}):''}
+/* kaart en tijdlijn (docs/kaart-en-tijdlijn.md): kaartbestanden alleen van het eigen adres, met geldige paden en id's (het pad komt in de tekening) */
+const KV=(typeof window!=='undefined'&&window.KaartVis)||null,KMAPS={};
+try{if(KV&&!document.getElementById('kaartcss')){const st=document.createElement('style');st.id='kaartcss';st.textContent=KV.CSS;document.head.appendChild(st)}}catch(e){}
+function validMap(d){return !!(d&&Array.isArray(d.view)&&d.view.length===4&&d.view.every(n=>isFinite(n))&&d.proj&&['eqr','lcc'].includes(d.proj.type)&&Array.isArray(d.regions)&&d.regions.every(r=>r&&typeof r.id==='string'&&/^[A-Za-z0-9-]{1,40}$/.test(r.id)&&typeof r.d==='string'&&/^[MLZ0-9. -]+$/.test(r.d)))}
+function loadMaps(names){return Promise.all(names.filter(n=>KV&&KV.MAPS.includes(n)&&!KMAPS[n]).map(n=>fetch('kaart/'+n+'.json').then(r=>r&&r.ok?r.json():null).then(d=>{if(validMap(d))KMAPS[n]=d}).catch(()=>{})))}
+function mapsOf(sc){const n=new Set();if(sc&&sc.art&&sc.art.kind==='map')n.add(sc.art.map);((sc&&sc.steps)||[]).forEach(st=>{if(st&&st.form==='map'&&st.map)n.add(st.map);if(st&&st.art&&st.art.kind==='map')n.add(st.art.map)});return [...n]}
+function visOf(art,opts){if(!art)return '';if(art.kind==='map')return KV&&KMAPS[art.map]?KV.renderMap(KMAPS[art.map],art,opts):'';if(art.kind==='timeline')return KV?KV.renderTimeline(art,opts):'';return ''}
+function scArt(sc,looks){if(!sc.art)return '';if(sc.art.kind==='map'||sc.art.kind==='timeline')return visOf(sc.art);return SV?SV.render(sc.art,SAFE,{text:scP,looks:looks||{}}):''}
 function nextScene(){const all=SCENES.slice().sort((a,b)=>a.order-b.order||(a.pack<b.pack?-1:a.pack>b.pack?1:0)||(a.sc.n||6)-(b.sc.n||6)),done=(S.world&&S.world.done)||{};   /* de volgorde van de route: pakket (order), dan de scène (n) */
   const last=all.filter(o=>done[o.sc.id]).sort((a,b)=>(+done[b.sc.id]||0)-(+done[a.sc.id]||0))[0],started=last&&all.find(o=>o.pack===last.pack&&!done[o.sc.id]);   /* masterplan uitleg 22: het hoofdstuk waarin de leerder nu zit (dat van de laatst afgemaakte scène) gaat voor; een uitbreiding van een ander hoofdstuk dat al af was, haalt hem daar niet uit en komt daarna in de volgorde van de route */
   return (started||all.find(o=>!done[o.sc.id])||all[0]||{}).sc||null}
@@ -2587,7 +2616,8 @@ function sceneQ(sc,hard){const isLes=LESSEN.some(l=>(l.scenes||[]).includes(sc))
       NL.filter(w=>thirsty(w.id)&&!used.has(w.id)).sort((a,b)=>overdue(b.id)-overdue(a.id)).slice(0,st.n-out.length).forEach(w=>out.push({type:pickForm(w,'nl','recall'),step,w,vak}));
       out.forEach(x=>q.push(x))}
     else if(st.type==='explain'){if(EXPL[st.id]&&(st.when!=='first'||!(S.explained||{})[st.id]))q.push({type:'explain',step,x:st.id,lang:'nl',vak})}
-    else if(st.type==='do'){if(st.form==='setclock')q.push({...base,type:'sc_clock',items:st.items.slice(),exid:sc.id+'#d'+k});
+    else if(st.type==='do'){if(st.form==='map')q.push({...base,type:'sc_map',items:(st.items||[]).slice(),exid:sc.id+'#d'+k});else if(st.form==='timeline')q.push({...base,type:'sc_tl',items:(st.items||[]).slice(),exid:sc.id+'#d'+k});
+      else if(st.form==='setclock')q.push({...base,type:'sc_clock',items:st.items.slice(),exid:sc.id+'#d'+k});
       else if(st.form==='point')q.push({...base,type:'sc_point',items:st.items.slice(),exid:sc.id+'#d'+k});
       else{const e={id:sc.id+'.d'+k,form:st.form,items:st.items.slice(),...(st.gen?{gen:st.gen}:{data:st.data})},x=exQ(e,step,'nl',st.items[0]);if(x){x.vak=vak;if(st.ask)x._ask=st.ask;q.push(x)}}}   /* review dokter 5: de vraag van de stap (Heb je genoeg?) staat boven de oefening */
     else if(st.type==='make')q.push({...base,type:'sc_make',items:st.items.slice(),exid:sc.id+'#m'+k});
@@ -2597,7 +2627,8 @@ function sceneQ(sc,hard){const isLes=LESSEN.some(l=>(l.scenes||[]).includes(sc))
   return q}
 function nextLes(){const done=(S.world&&S.world.done)||{};return LESSEN.find(l=>!done[l.scenes[0].id])||null}   /* de volgende uit order; een draad start de les direct */
 function startLes(l){if(!l)return toast(tx('pack.none'));startScene(l.scenes[0],false,l)}
-function startScene(sc,hard,les){LES=les||null;if(!sc)return toast(tx('pack.none'));S.world=S.world||{done:{},at:null};if(hard==null)hard=!!(S.world.done||{})[sc.id];   // een scène die af is: de zwaardere vorm (B4)
+let MAPLOAD=false;   /* kaarten laden: één start tegelijk (codereview kaart 11) */
+function startScene(sc,hard,les,maps){if(!maps&&sc&&mapsOf(sc).some(n=>!KMAPS[n])){if(MAPLOAD)return;MAPLOAD=true;toast(tx('kaart.loading'));loadMaps(mapsOf(sc)).then(()=>{MAPLOAD=false;startScene(sc,hard,les,true)});return}LES=les||null;if(!sc)return toast(tx('pack.none'));S.world=S.world||{done:{},at:null};if(hard==null)hard=!!(S.world.done||{})[sc.id];   // een scène die af is: de zwaardere vorm (B4)
   if(LES)hard=false;S.world.at=sc.id;SCN={sc,errs:{},extra:new Set(),ctrl:null,hard:!!hard,good:0};save();runSession(plainX(sc.title,'nl'),sceneQ(sc,hard))}
 const PH=['','scene.look','scene.live','scene.do','scene.can'];
 /* masterplan G5: waar het hoofdstuk voor dient, bij het begin (eerste scène) en op het slot van de laatste scène van de plek */
@@ -2714,6 +2745,36 @@ function lesEnd(q){const sc=q.sc,l=LES;finishTime();S.world=S.world||{done:{},at
    ${dr.length?`<div class="card stack">${T('les.threads')}${dr.map(x=>`<button class="btn btn-ghost" data-draad="${esc(x.id)}">${esc(scP(x.title))}</button>`).join('')}</div>`:''}
    <button class="btn btn-ghost" id="home">${T('les.later')}</button>`);
   petals();app.querySelectorAll('[data-draad]').forEach(b=>b.onclick=()=>{const x=LESSEN.find(y=>y.id===b.dataset.draad);if(x)startLes(x)});$('#home').onclick=()=>show('vandaag')}
+/* kaart als vraag: een gebied aantikken (answer = id) of een plek (answer = [lengte, breedte], tol in km) */
+H.sc_map=q=>{const st=q.st,data=KMAPS[st.map];if(!KV||!data){scFrame(q,`<div class="card stack"><p class="prompt">${scT(st.ask)}</p><div class="note sky">${T('kaart.missing')}</div>${nextBtn()}</div>`);$('#nx').onclick=next;return}   /* geen stille sprong: de leerder ziet waarom de vraag overgaat (codereview kaart 3) */let done=false,first=true;const area=typeof st.answer==='string',nm=id=>((data.regions.find(r=>r.id===id)||{}).name)||id;
+  const draw=o=>KV.renderMap(data,st,Object.assign({tap:area,hide:true},o||{}));
+  scFrame(q,`<div class="card stack"><p class="prompt">${scT(st.ask)}</p><div id="kmap">${draw()}</div><div id="fb" aria-live="polite"></div></div>`);
+  const say_=h=>{$('#fb').innerHTML=h;try{$('#fb').scrollIntoView({behavior:'smooth',block:'center'})}catch(e){}};   /* een hoge uitsnede duwt de melding onder de vouw */
+  const fin=(good,k,vars,o)=>{done=true;$('#kmap').innerHTML=draw(Object.assign({tap:false},o));score(good&&first,10);practiced(q,good?(first?true:'retry'):false,'kaart');say_((k?fbK(good,k,vars):fbBox(good,'',''))+(st.why?`<p>${scT(st.why)}</p>`:'')+nextBtn());$('#nx').onclick=next};
+  const bind=()=>{if(area){app.querySelectorAll('#kmap [data-id]').forEach(el=>{const go=()=>{if(done)return;const id=el.getAttribute('data-id');
+      if(id===st.answer)return fin(true,'',null,{mark:{ok:id}});
+      if(first){first=false;$('#kmap').innerHTML=draw({mark:{no:id}});bind();say_(fbK(false,'kaart.this',{name:esc(nm(id))}));return}
+      fin(false,'kaart.answer',{name:esc(nm(st.answer))},{mark:{ok:st.answer,no:id}})};el.onclick=go;el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});return}
+    const svg=$('#kmap svg');if(!svg)return;svg.style.cursor='crosshair';svg.onclick=e=>{if(done)return;try{const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const m=pt.matrixTransform(svg.getScreenCTM().inverse()),ll=KV.unproject(data.proj,[m.x,m.y]),d=Math.round(KV.distKm(ll,st.answer)),dk='kaart.dir.'+KV.dirOf(st.answer,ll);   /* de afstand en de richting zijn zelf leerzaam (ontwerp) */
+      if(d<=st.tol)return fin(true,'',null,{dot:ll,dot2:st.answer});
+      if(first){first=false;$('#kmap').innerHTML=draw({dot:ll});bind();say_(fbBox(false,t('kaart.far',{km:d,dir:t(dk)}),ts('kaart.far',{km:d,dir:ts(dk)})));return}
+      fin(false,null,null,{dot:ll,dot2:st.answer});say_(fbBox(false,t('kaart.farEnd',{km:d,dir:t(dk)}),ts('kaart.farEnd',{km:d,dir:ts(dk)}))+(st.why?`<p>${scT(st.why)}</p>`:'')+nextBtn());$('#nx').onclick=next}catch(err){}}};
+  bind()};
+/* tijdlijn als vraag: kaartjes leggen (tik een kaartje, dan de plek op de lijn); goed = volgorde klopt en elk binnen tol jaar */
+H.sc_tl=q=>{const st=q.st;if(!KV){next();return}const cards=(st.cards||[]).map(c=>({y:c.y,label:c.label,at:null})),tol=st.tol>0?st.tol:KV.defaultTol(st);let sel=0,done=false,first=true;
+  const paint=(real,msg)=>{scFrame(q,`<div class="card stack"><p class="prompt">${scT(st.ask)}</p><p class="small muted">${T('tl.tip')}</p>
+    <div class="choices">${cards.map((c,i)=>`<button class="choice${i===sel&&!done?' on':''}" data-card="${i}" aria-pressed="${i===sel&&!done}" ${done?'disabled':''}>${scT(c.label)}${c.at!=null?` · ${esc(KV.yearText(c.at))}`:''}</button>`).join('')}</div>
+    <div id="tl">${KV.renderTimeline(st,{cards,real})}</div><div id="fb" aria-live="polite">${msg||''}</div>${done?nextBtn():`<button class="btn btn-leaf" id="chk" ${cards.every(c=>c.at!=null)?'':'disabled'}>${T('btn.check')}</button>`}</div>`);
+    if(msg){try{$('#fb').scrollIntoView({behavior:'smooth',block:'center'})}catch(e){}}   /* de lijn is lang: de melding in beeld */
+    if(done){$('#nx').onclick=next;return}
+    app.querySelectorAll('[data-card]').forEach(b=>b.onclick=()=>{sel=+b.dataset.card;paint()});
+    const svg=$('#tl svg');if(svg)svg.onclick=e=>{try{const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const m=pt.matrixTransform(svg.getScreenCTM().inverse()),t=Math.max(0,Math.min(1,(m.y-KV.TL.top)/KV.TL.h));
+      cards[sel].at=KV.tyear(st,t);const nx=cards.findIndex(c=>c.at==null);if(nx>=0)sel=nx;paint()}catch(err){}};
+    $('#chk').onclick=()=>{const good=KV.checkCards(cards,tol);
+      if(good){done=true;score(first,10);practiced(q,first?true:'retry','tijdlijn');return paint(true,fbBox(true,'','')+(st.why?`<p>${scT(st.why)}</p>`:''))}
+      if(first){first=false;return paint(false,fbK(false,'tl.again'))}
+      done=true;score(false,10);practiced(q,false,'tijdlijn');paint(true,fbK(false,'tl.answer')+(st.why?`<p>${scT(st.why)}</p>`:''))}};
+  paint()};
 H.sc_deeper=q=>{scFrame(q,`<div class="card stack">${T('les.deeper')}<div class="btn-row"><button class="btn btn-leaf" id="dpGo">${TB('les.deeperGo')}</button><button class="btn btn-ghost" id="dpSkip">${TB('les.deeperSkip')}</button></div></div>`);
   $('#dpGo').onclick=next;$('#dpSkip').onclick=()=>{for(let i=qi+1;i<Q.length;i++)if(Q[i]._deep)Q[i]._skip=true;next()}};
 H.sc_end=q=>{if(LES)return lesEnd(q);const sc=q.sc,st=q.st;finishTime();S.world=S.world||{done:{},at:null};S.world.done[sc.id]=now();if(SCN&&SCN.sc===sc&&SCN.ctrl!=null){S.world.ok=S.world.ok||{};S.world.ok[sc.id]=SCN.ctrl}let rec=false;if(SCN&&SCN.sc===sc&&SCN.hard){S.world.best=S.world.best||{};rec=SCN.good>(S.world.best[sc.id]||0);if(rec)S.world.best[sc.id]=SCN.good}const td=today();S.rounds[td]=(S.rounds[td]||0)+1;pruneWeeks();save();

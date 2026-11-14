@@ -324,7 +324,9 @@
     // scènes (docs/scenes.md): vaste stappen, gesprekken met één goede keuze en een reden bij elke keuze, de tekening uit de catalogus
     if (p.scenes != null) {
       var SV = root.SceneVis || null; if (!SV && typeof require === 'function') { try { SV = require('./scene.js'); } catch (e) { SV = null; } }
-      var GAMES = ['dehet'], STEP = ['look', 'talk', 'read', 'listen', 'slot', 'explain', 'do', 'make', 'end', 'quiz', 'rule', 'extra', 'speak', 'game'], ERRS = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen', 'model'], DOFORM = ['setclock', 'point', 'money', 'clock', 'discount', 'gap', 'build', 'listen'];
+      var KV = root.KaartVis || null; if (!KV && typeof require === 'function') { try { KV = require('./kaart.js'); } catch (e) { KV = null; } }   // kaart en tijdlijn (docs/kaart-en-tijdlijn.md)
+      var KD = function (n) { if (!KV || KV.MAPS.indexOf(n) < 0 || typeof require !== 'function' || typeof window !== 'undefined') return null; try { return require('./kaart/' + n + '.json'); } catch (e) { return null; } };   // in Node ook ids en maat (codereview kaart 6); in de app laadt de kaart pas bij de les
+      var GAMES = ['dehet'], STEP = ['look', 'talk', 'read', 'listen', 'slot', 'explain', 'do', 'make', 'end', 'quiz', 'rule', 'extra', 'speak', 'game'], ERRS = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen', 'model'], DOFORM = ['setclock', 'point', 'money', 'clock', 'discount', 'gap', 'build', 'listen', 'map', 'timeline'];
       var allItems = {}; [p].concat(reqPacks).forEach(function (o) { (o.items || []).forEach(function (x) { allItems[x.id] = 1; }); });   // masterplan uitleg 19: een bestaand woord als doel alleen uit een pakket in requires (hetzelfde item, dezelfde voortgang)
       var allExpl = {}; [p].concat(others || []).forEach(function (o) { (o.explain || []).forEach(function (x) { if (x && x.id) allExpl[x.id] = 1; }); });
       var errOk = function (o, u) { if (o.err != null && ERRS.indexOf(o.err) < 0) err(u + ': err ' + o.err + ' staat niet in de lijst'); else if (o.r !== 'ok' && o.err == null) q(u + ': soort fout (err) ontbreekt bij een foute keuze'); };
@@ -361,7 +363,9 @@
         if (sc.nosup != null && typeof sc.nosup !== 'boolean') err(w + ': nosup moet true of false zijn');
         tekst(sc.title, w + '.title'); tekst(sc.intro, w + '.intro'); tekst(sc.can, w + '.can');
         if (!Array.isArray(sc.targets) || !sc.targets.length) err(w + ': targets ontbreekt'); else sc.targets.forEach(function (x) { if (!allItems[x]) err(w + ': doel ' + x + ' bestaat niet'); });
-        if (SV) SV.check(sc.art).forEach(function (m) { err(w + '.art: ' + m); });
+        if (sc.art && sc.art.kind === 'map') { if (KV) KV.checkMapSpec(sc.art, KD(sc.art.map)).forEach(function (m) { err(w + '.art: ' + m); }); }
+        else if (sc.art && sc.art.kind === 'timeline') { if (KV) KV.checkTimeline(sc.art).forEach(function (m) { err(w + '.art: ' + m); }); }
+        else if (SV) SV.check(sc.art).forEach(function (m) { err(w + '.art: ' + m); });
         if (sc.art && Array.isArray(sc.art.things)) sc.art.things.forEach(function (t, ti) { if (t && t.item && !allItems[t.item]) err(w + '.art.things[' + ti + ']: item ' + t.item + ' bestaat niet'); if (t && t.label) tekst(t.label, w + '.art.things[' + ti + '].label'); });
         if (!Array.isArray(sc.steps) || !sc.steps.length) { err(w + ': steps ontbreekt'); return; }
         var doen = false;
@@ -387,6 +391,8 @@
           if (st.type === 'do' && st.opts) { doen = true; vraag({ form: 'choose', items: st.items, ask: st.ask, opts: st.opts }, v); }
           else if (st.type === 'do') { doen = true; if (DOFORM.indexOf(st.form) < 0) err(v + ': onbekende vorm ' + st.form); itemsOk(st.items, v); if (st.ask) tekst(st.ask, v + '.ask'); if (st.why) tekst(st.why, v + '.why');
             if (st.form === 'setclock' && !/^\d{1,2}:\d{2}$/.test(String(st.answer))) err(v + ': answer als u:mm');
+            if (st.form === 'map' && KV) { if (st.answer == null) err(v + ': answer (een gebied of een plek) ontbreekt'); KV.checkMapSpec(st, KD(st.map)).forEach(function (m) { err(v + ': ' + m); }); }
+            if (st.form === 'timeline' && KV) KV.checkTimeline(st, st.cards || [], st.tol).forEach(function (m) { err(v + ': ' + m); });
             if (st.form === 'point' && (!sc.art || !(sc.art.things || []).some(function (t) { return t && t.hot && t.item === st.answer; }))) err(v + ': answer moet het item van een aantikbaar ding zijn');
             if (['money', 'clock', 'discount'].indexOf(st.form) >= 0 && !st.gen) err(v + ': een som in een scène heeft gen nodig');
             if (st.gen) genCheck({ form: st.form, gen: st.gen }, v, true); else if (['gap', 'build', 'listen'].indexOf(st.form) >= 0) { if (!st.data) err(v + ': data ontbreekt'); else exData({ form: st.form, data: st.data }, v, st.data); }
