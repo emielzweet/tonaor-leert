@@ -325,6 +325,8 @@ en:{
  "scene.check":"Check whether your text has this:",
  "scene.model":"This is one way:",
  "scene.ruleTitle":"Language from the scene",
+ "round.short":"A short round today: not much is due.",
+ "round.shortStock":"A short round today: you have seen all the new material and not much is due.",
  "store.nobak":"The phone storage is almost full, so the update cannot make a safety copy of your progress. Your progress stays as it was, but today's answers are not saved. Free up some space, or save your progress via Me.",
  "store.full":"The phone storage is full: your latest progress could not be saved. Your earlier progress is safe. Free up some space, or save your progress via Me.",
  "stock.out":"You have seen all the new material for now. New chapters are on the way; until then you can repeat what is due, play a scene or read.",
@@ -740,6 +742,8 @@ nl:{
  "scene.check":"Kijk of jouw tekst dit heeft:",
  "scene.model":"Zo kan het ook:",
  "scene.ruleTitle":"Taal uit de scène",
+ "round.short":"Vandaag een korte ronde: er is weinig aan de beurt.",
+ "round.shortStock":"Vandaag een korte ronde: je hebt alle nieuwe lesstof gezien en er is weinig aan de beurt.",
  "store.nobak":"De opslag van de telefoon is bijna vol, daardoor kan de update geen reservekopie van je voortgang maken. Je voortgang blijft zoals hij was, maar de antwoorden van nu worden niet bewaard. Maak wat ruimte vrij, of bewaar je voortgang via Ik.",
  "store.full":"De opslag van de telefoon is vol: je laatste voortgang kon niet bewaard worden. Je eerdere voortgang is veilig. Maak wat ruimte vrij, of bewaar je voortgang via Ik.",
  "stock.out":"Je hebt alle nieuwe lesstof voor nu gezien. Er komen nieuwe hoofdstukken aan; tot dan kun je herhalen wat aan de beurt is, een scène spelen of lezen.",
@@ -1151,6 +1155,8 @@ th:{
  "scene.check":"ดูว่าข้อความของคุณมีสิ่งเหล่านี้หรือไม่",
  "scene.model":"ตัวอย่างคำตอบ",
  "scene.ruleTitle":"ภาษาจากฉากนี้",
+ "round.short":"วันนี้รอบสั้น มีสิ่งที่ต้องทบทวนไม่มาก",
+ "round.shortStock":"วันนี้รอบสั้น คุณเห็นบทเรียนใหม่ครบแล้ว และมีสิ่งที่ต้องทบทวนไม่มาก",
  "store.nobak":"พื้นที่เก็บข้อมูลในโทรศัพท์เกือบเต็ม การอัปเดตจึงทำสำเนาสำรองความคืบหน้าไม่ได้ ความคืบหน้าเดิมยังอยู่ แต่คำตอบตอนนี้จะไม่ถูกบันทึก ลองลบข้อมูลบางอย่าง หรือบันทึกความคืบหน้าผ่านหน้า ฉัน",
  "store.full":"พื้นที่เก็บข้อมูลในโทรศัพท์เต็ม บันทึกความคืบหน้าล่าสุดไม่ได้ ความคืบหน้าก่อนหน้านี้ยังปลอดภัย ลองลบข้อมูลบางอย่าง หรือบันทึกความคืบหน้าผ่านหน้า ฉัน",
  "stock.out":"คุณได้เห็นบทเรียนใหม่ทั้งหมดแล้วในตอนนี้ บทใหม่กำลังจะมา ระหว่างนี้คุณทบทวนสิ่งที่ถึงเวลา เล่นฉาก หรืออ่านได้",
@@ -1633,6 +1639,7 @@ const MOTOR={
   retryGap:6,
   // §3.1 nieuwe woorden per dag (keuze op Ik: 8, 16, 24). 16: aanname (docs/toets-per-stap.md)
   newPerDay:16, newPerDayOpts:[8,16,24],
+  busyNew:2,         // H4: ook als de rem op nieuw aan staat, zoveel nieuwe woorden per dag (elke dag iets nieuws). Aanname
   busyMax:40,         // rem op nieuw: meer onderdelen aan de beurt dan dit, dan geen nieuwe. Aanname (docs/toets-per-stap.md)
   roundMin:8,         // een ronde heeft minstens zoveel verschillende onderdelen (variatie, §3.3). Aanname (docs/toets-per-stap.md)
   logMax:600,         // M12 aantal pogingen in het logboek. Aanname, begrensd door de opslag
@@ -1672,6 +1679,9 @@ function histTrim(budget){const B=budget||MOTOR.histBudget,ids=Object.keys(S.ite
   const bloom=k=>{const it=S.items[k];return it.s>=MOTOR.bloomDays&&canBloom(k,it)};let cut=0;
   for(const pass of [1,0])for(let keep of [3,1,0]){for(const k of ids.filter(k=>bloom(k)===!!pass)){if(tot<=B)return cut;const it=S.items[k],L=histParse(it);if(L.length<=keep)continue;const before=it.h.length;histSet(it,L.slice(-keep));tot-=before-it.h.length;cut++}}
   return cut}
+/* H3: rust is geen eindpunt. Een onderdeel in rust telt niet als dorst en komt niet als opvulling; het komt terug als het volgens zijn eigen wachttijd
+   aan de beurt is, één keer, in een andere vorm (H2). Goed: de wachttijd groeit en het rust weer. Fout: weer een gewoon onderdeel. (masterplan, uitleg bij de eisen 8) */
+function dorst(id){return thirsty(id)&&!rests(id)}
 /* H2: de vorm van de vorige poging van een onderdeel (uit de reeks), ook van een vorige dag */
 function lastForm(id){const it=S.items[id];if(!it||typeof it.h!=='string'||!it.h)return null;const p=it.h.slice(it.h.lastIndexOf(',')+1);return HFORM[p[p.length-2]]||null}
 /* H3: rust = de laatste MOTOR.restRun pogingen goed bij de eerste poging, in MOTOR.restForms verschillende vormen. Komt dan alleen nog in teksten en scènes voor, niet in Onderweg. */
@@ -1821,7 +1831,7 @@ function varyForms(list,drop){const units=[];let pend=[];for(const q of list){if
 function practice(s,learn,used){const P=s.practice,n=isEnglishDay()&&P.n2!=null?P.n2:P.n,R=id=>S.items[id];
   const ids=PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>P.kinds.includes(x.kind)&&R(x.id)&&exsFor(x.id,learn).length&&!used.has(x.id)).map(x=>x.id);
   const busy=Object.keys(S.items).filter(id=>thirsty(id)&&!rests(id)).length>MOTOR.busyMax;   // rem op nieuw (docs/toets-per-stap.md)
-  const due=ids.filter(id=>thirsty(id)&&!rests(id)).sort((a,b)=>overdue(b)-overdue(a)),fresh=ids.filter(id=>R(id).reps===0).slice(0,busy?0:(P.newMax!=null?P.newMax:1)),LS=lastSeen(),td=today(),seen=ids.filter(id=>R(id).reps>0&&!thirsty(id)).sort((a,b)=>((LS[a]||0)>=td)-((LS[b]||0)>=td)||(LS[a]||0)-(LS[b]||0));   // wat het langst geleden is eerst; vandaag al geoefend achteraan
+  const due=ids.filter(id=>thirsty(id)).sort((a,b)=>overdue(b)-overdue(a)),fresh=ids.filter(id=>R(id).reps===0).slice(0,busy?0:(P.newMax!=null?P.newMax:1)),LS=lastSeen(),td=today(),seen=ids.filter(id=>R(id).reps>0&&!thirsty(id)).sort((a,b)=>((LS[a]||0)>=td)-((LS[b]||0)>=td)||(LS[a]||0)-(LS[b]||0));   // wat het langst geleden is eerst; vandaag al geoefend achteraan
   const pick=[...new Set([...due,...fresh])].slice(0,n),out=[];   // geen opvulling met wat niet aan de beurt is (advies ontwerpsessie A2)
   for(const id of pick){used.add(id);const isNew=R(id).reps===0,hard=R(id).lapses>=4,xid=(isNew||hard)&&explForItem(id,learn);
     if(xid&&(hard||!(S.explained||{})[xid]))out.push({type:'explain',step:s.step,x:xid,lang:learn,...(isNew?{_new:1}:{})});   // hardnekkig: de uitleg opnieuw (sectie 8)
@@ -1838,7 +1848,7 @@ function recentEx(){const c=now()-2*DAY,R=new Set();for(const e of S.log||[])if(
 let NEWPLAN=0;   // nieuwe woorden die al in deze les gepland zijn (telt mee in het budget)
 function dayBudget(){return MOTOR.newPerDayOpts.includes(S.newPerDay)?S.newPerDay:MOTOR.newPerDay}
 function newLeft(){return Math.max(0,dayBudget()-((S.newLog||{})[today()]||0))}
-function newWords(cap,step,words,q,later){const busy=Object.keys(S.items).filter(id=>thirsty(id)&&!rests(id)).length>MOTOR.busyMax;if(busy)return;
+function newWords(cap,step,words,q,later){const busy=Object.keys(S.items).filter(id=>thirsty(id)&&!rests(id)).length>MOTOR.busyMax;if(busy){if((S.newLog||{})[today()]||NEWPLAN)return;cap=Math.min(cap,MOTOR.busyNew)}   /* H4: ook bij veel herhaling elke dag iets nieuws (hooguit MOTOR.busyNew) */
   const inQ=new Set(q.filter(x=>x.w).map(x=>x.w.id)),nw=words.filter(w=>!S.introduced.includes(w.id)&&!inQ.has(w.id)).slice(0,Math.max(0,Math.min(cap,newLeft()-NEWPLAN)));NEWPLAN+=nw.length;
   nw.forEach(w=>{q.push({type:'recall',step,w,_probe:1,_new:1});q.push({type:'learn',step,w,_ifUnknown:1,_new:1})});   // vraag en leerkaart om en om
   let speak=false;try{speak=typeof window!=='undefined'&&!!window.speechSynthesis&&!QUIET}catch(e){}
@@ -1852,9 +1862,12 @@ function feel(){const c=(S.conf||[])[0];return c&&['makkelijk','goed','moeilijk'
 /* H4: de nieuwe woorden van alle pakketten zijn aangeboden */
 function stockOut(){const I=new Set(S.introduced);return NL.length>0&&NL.every(w=>I.has(w.id))}
 function topUp(q,learn,words,later,used){const ids=()=>new Set(q.concat(later).map(x=>x.w?x.w.id:x.items&&x.items[0]).filter(Boolean));
+  if(ids().size<MOTOR.roundMin){const have=ids();words.filter(w=>thirsty(w.id)&&!have.has(w.id)&&S.introduced.includes(w.id)).sort((a,b)=>overdue(b.id)-overdue(a.id)).slice(0,MOTOR.roundMin-have.size).forEach(w=>q.push({type:pickForm(w,learn,'recall'),step:3,w}))}   /* eerst wat echt aan de beurt is (uitleg bij de eisen 9) */
   if(ids().size<MOTOR.roundMin)newWords(MOTOR.roundMin-ids().size,2,words,q,later);
-  if(ids().size<MOTOR.roundMin&&!stockOut()){const LS=lastSeen(),sk=PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>x.kind==='skill'&&S.items[x.id]&&!used.has(x.id)).map(x=>x.id).sort((a,b)=>(LS[a]||0)-(LS[b]||0));
-    for(const id of sk){if(ids().size>=MOTOR.roundMin)break;const e=shuffle(exsFor(id,learn).filter(x=>x.gen&&!(QUIET&&x.form==='listen')))[0];if(!e)continue;const x=exQ(e,4,learn,id);if(!x)continue;used.add(id);const xid=S.items[id].reps===0&&explForItem(id,learn);if(xid&&!(S.explained||{})[xid])q.push({type:'explain',step:4,x:xid,lang:learn});q.push(x)}}}
+  if(ids().size<MOTOR.roundMin){const LS=lastSeen(),cap=Math.max(1,Math.floor(Math.max(ids().size,MOTOR.roundMin)/3));let added=0;   /* H4: sommen met nieuwe getallen zijn geen herhaling; hooguit een derde van de ronde, niet voor wat rust (uitleg bij de eisen 9) */
+    const sk=PACKS.filter(p=>p.learn===learn).flatMap(p=>p.items||[]).filter(x=>x.kind==='skill'&&S.items[x.id]&&!used.has(x.id)&&!rests(x.id)).map(x=>x.id).sort((a,b)=>(LS[a]||0)-(LS[b]||0));
+    for(const id of sk){if(ids().size>=MOTOR.roundMin||added>=cap)break;const e=shuffle(exsFor(id,learn).filter(x=>x.gen&&!(QUIET&&x.form==='listen')))[0];if(!e)continue;const x=exQ(e,4,learn,id);if(!x)continue;used.add(id);const xid=S.items[id].reps===0&&explForItem(id,learn);if(xid&&!(S.explained||{})[xid])q.push({type:'explain',step:4,x:xid,lang:learn});q.push(x);added++}}
+  if(ids().size<MOTOR.roundMin)q._short=stockOut()?'stock':'none'}   /* een korte ronde: de app zegt waarom */
 /* drie gelijke vormen achter elkaar breken door een verplaatsbaar onderdeel ertussen te zetten (geen vraag, leerkaart of kiesvraag van een nieuw woord) */
 function breakTriples(q){const free=(x,n)=>!x._probe&&!x._ifUnknown&&x.type!=='learn'&&!['card','conf','end','explain'].includes(x.type)&&!(n>0&&q[n-1].type==='explain');
   const real=i=>!['card','conf','end','explain','learn'].includes(q[i].type),SWAP={recall:'recog',recog:'recall',hear:'recog',enrecall:'enrecog',enrecog:'enrecall',enhear:'enrecog'};
@@ -1867,12 +1880,12 @@ function breakTriples(q){const free=(x,n)=>!x._probe&&!x._ifUnknown&&x.type!=='l
     const [m]=q.splice(j,1);q.splice(i-1,0,m)}
   return q}
 function compose(recipe,learn){const used=new Set(),later=[];NEWPLAN=0;recipe=(recipe||[]).map(s=>{const o={...s},f=lenF(),fe=feel();if(o.max!=null)o.max=Math.max(1,Math.round(o.max*f)+(o.words==='new'?(fe==='makkelijk'?1:fe==='moeilijk'?-1:0):0));if(o.practice)o.practice={...o.practice,n:Math.max(1,Math.round(o.practice.n*f))};return o});const q=[],words=learn==='en'?EN:NL,R=id=>S.items[id];
-  const dueAll=words.filter(w=>thirsty(w.id)&&!rests(w.id));   /* H3: wat rust komt niet meer losse terug */
+  const dueAll=words.filter(w=>thirsty(w.id));   /* H3: ook wat rust, als het aan de beurt is (één keer, in een andere vorm) */
   for(const s of recipe||[]){
     if(s.card){const c=CARDP[s.card];if(!c)continue;const [label,btn]=(CARD_LABEL[learn]||{})[s.step]||['',''];const o={type:'card',label,step:s.step,html:()=>packCardHtml(c,learn==='en'&&s.step===1?'ENGLISH':'')};if(btn)o.btn=btn;if(c.say)o.bind=()=>{if($('#csp'))$('#csp').onclick=()=>say(c.say,false,c.sayLang||'nl')};q.push(o)}
     else if(s.words==='due'){
       const type0=learn==='en'?'enrecall':s.forms[0];
-      let due=dueAll.slice();if(s.sort!=='list')due=words.filter(w=>S.introduced.includes(w.id)&&thirsty(w.id)&&!rests(w.id)).sort((a,b)=>R(a.id).due-R(b.id).due);
+      let due=dueAll.slice();if(s.sort!=='list')due=words.filter(w=>S.introduced.includes(w.id)&&thirsty(w.id)).sort((a,b)=>R(a.id).due-R(b.id).due);
       let rec=due;if(s.thenFresh)rec=[...due,...words.filter(w=>R(w.id).reps===0)];
       rec=rec.slice(0,s.max);   // alleen wat aan de beurt is: geen opvulling met woorden die dat niet zijn (advies ontwerpsessie A2)
       if(rec.length)varyForms(rec.map(w=>{let ty=pickForm(w,learn,type0);if(feel()==='moeilijk'&&EASIER[ty])ty=EASIER[ty];else if(feel()==='makkelijk'&&HARDER[ty])ty=HARDER[ty];return {type:ty,step:s.step,w}})).forEach(x=>q.push(x));
@@ -2226,7 +2239,7 @@ function weekCard(){const g=weekGoal(),wm=weekMins(),left=Math.max(0,Math.round(
    <p class="small muted">${st>0?T('week.streak',{n:st}):T('today.daysDone',{n:weekDots().done})}</p></section>`}
 function vToday(){
   if(!S.onboarded)return vOnboard();
-  const [h,ht]=hello(),due=[...NL,...EN,...REK].filter(x=>thirsty(x.id)).length,done=!!S.days[today()],enDay=isEnglishDay(),ans=S.answers.filter(a=>!a.seen).length;
+  const [h,ht]=hello(),due=[...NL,...EN,...REK].filter(x=>dorst(x.id)).length,done=!!S.days[today()],enDay=isEnglishDay(),ans=S.answers.filter(a=>!a.seen).length;
   paint(`
   <header class="top"><div>${bi(`<h1>${h}${nm()?', '+nm():''}</h1>`,ht)}</div>${thaiSwitch()}</header>
   ${weekCard()}
@@ -2651,7 +2664,8 @@ H.end=q=>{finishTime();const rn=S.rounds[today()]=(S.rounds[today()]||0)+1,bonus
 
 /* ============ dagelijkse les ============ */
 function startLesson(short){const p=PACKS.find(p=>p.learn==='nl'&&p.lesson);if(!p)return toast(tx('pack.none'));const later=short||((S.rounds||{})[today()]||0)>=1;   // de eerste ronde van de dag is vol, latere rondes zijn kort (docs/herhaalmodel.md besluit 3)
-  runSession(later?'Korte les':'Les thema 1',compose(later?p.lessonShort:p.lesson,'nl'))}
+  const q=compose(later?p.lessonShort:p.lesson,'nl');if(q._short)toast(tx(q._short==='stock'?'round.shortStock':'round.short'));   /* H4: een korte ronde benoemen */
+  runSession(later?'Korte les':'Les thema 1',q)}
 
 /* ============ Engels ============ */
 function startEnglish(){const p=PACKS.find(p=>p.learn==='en'&&p.lesson);if(!p)return toast(tx('pack.none'));runSession('Engels',p?compose(p.lesson,'en'):[])}
@@ -2799,14 +2813,14 @@ function vBuddha(){sub('page.buddha',`
 function vGarden(){
   const all=[...NL.map(x=>({id:x.id,bed:'nl',l:`${fw(x)}`,sup:L_(x),say:`${fw(x)}. ${x.ex}`,lang:'nl'})),...REK.map(x=>({id:x.id,bed:'rek',l:x.label,sup:L_(x),xid:explForItem(x.id,'nl')})),
     ...PACKS.flatMap(p=>(p.items||[]).filter(x=>(x.kind==='rule'||x.kind==='sound')&&S.items[x.id]).map(x=>({id:x.id,bed:'regel',l:esc((x.title||{})[p.learn==='en'?'en':'nl']||x.id),sup:L_(x.title||{}),lang:p.learn,xid:explForItem(x.id,p.learn)}))),...EN.map(x=>({id:x.id,bed:'en',l:x.w,sup:L_(x),say:`${x.w}. ${x.ex}`,lang:'en'}))];
-  const seen=all.filter(x=>S.items[x.id].reps>0),by=[0,0,0,0,0,0];seen.forEach(x=>by[stage(x.id)]++);const due=seen.filter(x=>thirsty(x.id));
+  const seen=all.filter(x=>S.items[x.id].reps>0),by=[0,0,0,0,0,0];seen.forEach(x=>by[stage(x.id)]++);const due=seen.filter(x=>dorst(x.id));
   const beds=['nl','regel','rek','en'];
   paint(`<header class="top"><div>${T('garden.title')}</div>${thaiSwitch()}</header>
   <p class="muted">${T('garden.tip')}</p>
   <div class="legend">${STAGES.map((s,i)=>`<span class="pill ${i>=4?'pill-lilac':'pill-mint'} num">${by[i]} ${s[0]}</span>`).join('')}</div>
   ${due.length?`<button class="btn btn-sky" id="water">${T('garden.water',{n:due.length})}</button>`:''}
   ${beds.map(k=>{const list=all.filter(i=>i.bed===k),sn=list.filter(i=>S.items[i.id].reps>0);return `<section class="bed"><div class="row between">${T('bed.'+k)}<span class="pill pill-mint num">${sn.length} / ${list.length}</span></div>
-    ${sn.length?`<div class="garden">${sn.map(w=>{const tt=thirsty(w.id);return `<button class="plant ${tt?'thirsty':''}" data-w="${esc(w.id)}" aria-label="${esc(w.l)}, ${STAGES[stage(w.id)][0]}">${plant(stage(w.id),tt)}<span class="w"${w.lang==='en'?' lang="en"':''}>${w.bed==='regel'?w.l:esc(w.l)}</span>${supSpan(w.sup)}${w.xid&&(S.items[w.id].lapses||0)>=4?`<span class="lamp" aria-label="${esc(t('garden.lamp'))}">${icon.bulb}</span>`:''}</button>`}).join('')}</div>`:`<div class="card row small muted">${plant(0,false).replace('<svg','<svg style="width:44px;height:44px;flex-shrink:0"')}${T('garden.empty')}</div>`}</section>`}).join('')}`);
+    ${sn.length?`<div class="garden">${sn.map(w=>{const tt=dorst(w.id);return `<button class="plant ${tt?'thirsty':''}" data-w="${esc(w.id)}" aria-label="${esc(w.l)}, ${STAGES[stage(w.id)][0]}">${plant(stage(w.id),tt)}<span class="w"${w.lang==='en'?' lang="en"':''}>${w.bed==='regel'?w.l:esc(w.l)}</span>${supSpan(w.sup)}${w.xid&&(S.items[w.id].lapses||0)>=4?`<span class="lamp" aria-label="${esc(t('garden.lamp'))}">${icon.bulb}</span>`:''}</button>`}).join('')}</div>`:`<div class="card row small muted">${plant(0,false).replace('<svg','<svg style="width:44px;height:44px;flex-shrink:0"')}${T('garden.empty')}</div>`}</section>`}).join('')}`);
   if($('#water'))$('#water').onclick=()=>{due.some(x=>x.bed==='en')&&!due.some(x=>x.bed!=='en')?startEnglish():startLesson(true)};
   app.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{const w=all.find(x=>x.id===b.dataset.w);if(w.xid)return openExplain(w.xid);if(w.say)say(w.say,false,w.lang);toast(`${w.l} · ${STAGES[stage(w.id)][0]}`)});
 }

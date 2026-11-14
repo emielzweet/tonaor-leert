@@ -20,7 +20,7 @@ const rondes = [], probleem = { herhaling: [], vorm: [], klein: [], geenNieuw: [
 const vormRij = {}, reeks = {}, rust = new Set(), grind = { zelfdeVorm: [], stof: [], rustTerug: [] };
 const eenVorm = id => { const g = c.api.get(); if (g.NL.some(w => w.id === id) || g.EN.some(w => w.id === id)) return false; const ex = g.PACKS.flatMap(p => p.exercises || []).filter(e => (e.items || [])[0] === id); return new Set(ex.map(e => e.form)).size <= 1; };   // alleen één vorm in de lesstof: een tekort aan lesstof
 const zag = (id, vorm, goed, d, r) => { const rij = vormRij[id] = vormRij[id] || []; if (rij.length && rij[rij.length - 1] === vorm && grind.zelfdeVorm.length < 400) (eenVorm(id) ? grind.stof : grind.zelfdeVorm).push('dag ' + d + ' ronde ' + r + ': ' + id + ' weer ' + vorm); rij.push(vorm);
-  if (rust.has(id)) grind.rustTerug.push('dag ' + d + ' ronde ' + r + ': ' + id);
+  if (rust.has(id) && !(S.items[id] && S.items[id].due <= c.NOW)) grind.rustTerug.push('dag ' + d + ' ronde ' + r + ': ' + id);
   const k = reeks[id] = reeks[id] || []; k.push([d, vorm, goed]); const L = k.slice(-3);   // rust: drie keer op rij goed, drie vormen, drie dagen, zeven dagen ertussen (H3, MOTOR.restDays en restSpan)
   if (L.length === 3 && L.every(x => x[2]) && new Set(L.map(x => x[1])).size >= 3 && new Set(L.map(x => x[0])).size >= 3 && L[2][0] - L[0][0] >= 7) rust.add(id); };
 let opDag = null;
@@ -36,7 +36,8 @@ for (let d = 0; d < 7; d++) for (let r = 0; r < RONDES; r++) {
   const ty = q.filter(x => !['card', 'conf', 'end', 'explain'].includes(x.type)).map(x => x.type);
   for (let i = 2; i < ty.length; i++) if (ty[i] === ty[i - 1] && ty[i] === ty[i - 2] && !['learn'].includes(ty[i])) { probleem.vorm.push('dag ' + d + ' ronde ' + r + ': ' + ty[i] + ' 3x [' + q.map(x => x.type + (x._probe ? '?' : x._ifUnknown ? '*' : '')).join(' ') + ']'); break; }
   const verschillend = Object.keys(per).length;
-  if (verschillend < 8 && woordenOver >= 4 && budget > 1) probleem.klein.push('dag ' + d + ' ronde ' + r + ': ' + verschillend + ' [' + q.map(x => x.type + (x.w ? ':' + x.w.id : x.exid ? ':' + x.exid.split('#')[0] : '')).join(' ') + '] budget ' + budget + ' woorden over ' + woordenOver);
+  const nieuwHier = q.filter(x => x._new && x.type === 'learn').length, dueOver = Object.keys(S.items).filter(id => S.items[id].reps > 0 && S.items[id].due <= c.NOW && !per[id]).length;   // uitleg bij de eisen 9: kort mag als er niets zinnigs meer was
+  if (verschillend < 8 && ((woordenOver >= 4 && budget - nieuwHier > 1) || dueOver > 0)) probleem.klein.push('dag ' + d + ' ronde ' + r + ': ' + verschillend + ' [' + q.map(x => x.type + (x.w ? ':' + x.w.id : x.exid ? ':' + x.exid.split('#')[0] : '')).join(' ') + '] budget ' + budget + ' woorden over ' + woordenOver);
   rondes.push({ d, r, n: ty.length, verschillend });
   // spelen als de leerder
   const KNOWN = new Set();
@@ -68,8 +69,8 @@ else if (!stofOk) console.log('LET OP de lesstof is op dag ' + opDag + ' op: nl-
 // die vormen over dagen bijhoudt en wat rust niet meer losse oefent; H4 een melding als de nieuwe lesstof op is. Tot dat gebouwd is: LET OP, met --streng FOUT.
 const Hs = [   // H2 tot H4 gelden nu (antwoord ontwerpsessie 14 nov 2026): FOUT. H1 komt met masterplan stap 5: tot dan LET OP
   ['H2 een onderdeel nooit twee keer achter elkaar in dezelfde vorm, ook niet over dagen', !grind.zelfdeVorm.length, grind.zelfdeVorm.length + ' keer, bijvoorbeeld ' + grind.zelfdeVorm.slice(0, 3).join('; ')],
-  ['H3 wat drie keer op rij goed ging in drie vormen komt niet meer losse terug', !grind.rustTerug.length, grind.rustTerug.length + ' keer (' + rust.size + ' onderdelen in rust), bijvoorbeeld ' + grind.rustTerug.slice(0, 3).join('; ')],
-  ['H4 is de nieuwe lesstof op, dan zegt de app dat en vult niet op met sommen die niet aan de beurt zijn', html.includes('"stock.out"') && html.includes('${stockOut()?') && html.includes('MOTOR.roundMin&&!stockOut()'), 'melding of rem ontbreekt'],
+  ['H3 wat rust komt alleen terug als het volgens zijn wachttijd aan de beurt is (niet als opvulling), en telt niet als dorst', !grind.rustTerug.length && vm.runInContext(fnBlock('dorst') + ';Object.keys(S.items).filter(id=>rests(id)&&dorst(id)).length===0', c), grind.rustTerug.length + ' keer (' + rust.size + ' onderdelen in rust), bijvoorbeeld ' + grind.rustTerug.slice(0, 3).join('; ')],
+  ['H4 is de nieuwe lesstof op, dan zegt de app dat en vult niet op met sommen die niet aan de beurt zijn', html.includes('"stock.out"') && html.includes('${stockOut()?') && html.includes('round.shortStock'), 'melding of rem ontbreekt'],
 ];
 for (const [n, v, extra] of Hs) ok(n, v, extra);
 if (grind.stof.length) console.log('LET OP H2 bij onderdelen met maar één vorm in de lesstof: ' + grind.stof.length + ' keer (meer werkvormen nodig, redactielijn), bijvoorbeeld ' + grind.stof.slice(0, 3).join('; '));
