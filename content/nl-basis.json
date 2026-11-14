@@ -22,9 +22,9 @@
     "th": "วัน",
     "en": "day"
    },
-   "def": "Vierentwintig uur, van de ochtend tot de nacht.",
+   "def": "Vierentwintig uur: van de ene ochtend tot de volgende.",
    "ex": "Het was een mooie dag.",
-   "gap": "De ___ was lang en druk."
+   "gap": "Maandag is de eerste ___ van de week."
   },
   {
    "id": "nlb.tijd",
@@ -48,7 +48,7 @@
     "th": "ปี",
     "en": "year"
    },
-   "def": "Twaalf maanden.",
+   "def": "Een tijd van twaalf maanden.",
    "ex": "Ik woon hier al tien jaar.",
    "gap": "Het ___ heeft twaalf maanden."
   },
@@ -61,9 +61,9 @@
     "th": "ชั่วโมง",
     "en": "hour"
    },
-   "def": "Zestig minuten.",
+   "def": "Een tijd van zestig minuten.",
    "ex": "De les duurt een uur.",
-   "gap": "Het ___ is bijna voorbij."
+   "gap": "Het ___ heeft zestig minuten."
   },
   {
    "id": "nlb.minuut",
@@ -74,9 +74,9 @@
     "th": "นาที",
     "en": "minute"
    },
-   "def": "Zestig seconden.",
+   "def": "Een tijd van zestig seconden.",
    "ex": "Wacht een minuut, alsjeblieft.",
-   "gap": "De laatste ___ duurt altijd lang."
+   "gap": "De ___ heeft zestig seconden."
   },
   {
    "id": "nlb.ochtend",
@@ -89,7 +89,8 @@
    },
    "def": "Het begin van de dag, voor twaalf uur.",
    "ex": "Ik drink koffie in de ochtend.",
-   "gap": "In de ___ ben ik nog moe."
+   "gap": "Wij zeggen \"goedemorgen\" in de ___.",
+   "also": ["nlb.morgen"]
   },
   {
    "id": "nlb.avond",
@@ -100,9 +101,9 @@
     "th": "ตอนเย็น",
     "en": "evening"
    },
-   "def": "Het einde van de dag, na het avondeten.",
-   "ex": "Wij eten om zes uur in de avond.",
-   "gap": "In de ___ kijk ik televisie."
+   "def": "Het einde van de dag, na de middag en voor de nacht.",
+   "ex": "Wij eten om zes uur 's avonds.",
+   "gap": "Na de middag komt de ___, en daarna de nacht."
   },
   {
    "id": "nlb.nacht",
@@ -115,7 +116,7 @@
    },
    "def": "Als het donker is en mensen slapen.",
    "ex": "Ik slaap acht uur per nacht.",
-   "gap": "In de ___ is het stil op straat."
+   "gap": "Het is donker en iedereen slaapt: dit is de ___."
   },
   {
    "id": "nlb.maand",
@@ -141,7 +142,7 @@
    },
    "def": "Wat je drinkt als je dorst hebt; het is helder.",
    "ex": "Ik drink veel water.",
-   "gap": "Het ___ is koud."
+   "gap": "Het ___ uit de kraan is helder."
   },
   {
    "id": "nlb.eten",
@@ -152,9 +153,9 @@
     "th": "อาหาร",
     "en": "food"
    },
-   "def": "Wat je eet, zoals brood, rijst of groente.",
+   "def": "Wat je in je mond doet als je honger hebt, zoals brood, rijst of groente.",
    "ex": "Het eten staat op tafel.",
-   "gap": "Het ___ is klaar."
+   "gap": "Het ___ van vanavond is rijst met groente."
   },
   {
    "id": "nlb.brood",
@@ -167,7 +168,7 @@
    },
    "def": "Eten van meel dat je bij de bakker koopt.",
    "ex": "Ik eet brood met kaas.",
-   "gap": "Het ___ is vers."
+   "gap": "Ik snijd het ___ in plakken."
   },
   {
    "id": "nlb.koffie",
@@ -180,7 +181,10 @@
    },
    "def": "Een warme, bruine drank.",
    "ex": "Wil je een kop koffie?",
-   "gap": "De ___ is te heet."
+   "gap": "De ___ is zwart; ik doe er melk in.",
+   "also": [
+    "nlb.thee"
+   ]
   },
   {
    "id": "nlb.thee",
@@ -193,7 +197,10 @@
    },
    "def": "Een warme drank van gedroogde blaadjes.",
    "ex": "Ik drink thee met honing.",
-   "gap": "De ___ is nog warm."
+   "gap": "De ___ zit in een zakje; ik giet er heet water op.",
+   "also": [
+    "nlb.koffie"
+   ]
   },
   {
    "id": "nlb.melk",
@@ -206,7 +213,7 @@
    },
    "def": "Een witte drank van de koe.",
    "ex": "Er is geen melk meer.",
-   "gap": "De ___ staat in de koelkast."
+   "gap": "De ___ van de koe is wit."
   },
   {
    "id": "nlb.kind",
@@ -230,9 +237,12 @@
     "th": "ผู้หญิง",
     "en": "woman"
    },
-   "def": "Een volwassen mens die geen man is.",
+   "def": "Een volwassen mens zoals je moeder; geen man.",
    "ex": "De vrouw werkt in een winkel.",
-   "gap": "De ___ belt haar moeder."
+   "gap": "De man en de ___ krijgen samen een baby.",
+   "also": [
+    "nlb.moeder"
+   ]
   },
   {
    "id": "nlb.mens",
@@ -245,7 +255,7 @@
    },
    "def": "Iemand: een man, een vrouw of een kind.",
    "ex": "Er lopen veel mensen op straat.",
-   "gap": "De ___ heeft twee handen."
+   "gap": "Alleen de ___ kan praten en schrijven; een hond kan dat niet."
   },
   {
    "id": "nlb.vriend",
@@ -258,7 +268,7 @@
    },
    "def": "Iemand die je graag mag en vertrouwt.",
    "ex": "Mijn vriend helpt mij verhuizen.",
-   "gap": "De ___ komt vanavond eten."
+   "gap": "Wij zijn samen opgegroeid: voor mij ben jij de beste ___."
   },
   {
    "id": "nlb.familie",
@@ -271,7 +281,7 @@
    },
    "def": "Je ouders, kinderen, broers, zussen en andere mensen die bij je horen.",
    "ex": "Mijn familie woont ver weg.",
-   "gap": "De ___ komt zondag op bezoek."
+   "gap": "Ik heb de hele ___ uitgenodigd: mijn ouders, broers, zussen en oma's."
   },
   {
    "id": "nlb.moeder",
@@ -284,7 +294,7 @@
    },
    "def": "Een vrouw die een kind heeft.",
    "ex": "Mijn moeder kookt lekker.",
-   "gap": "De ___ brengt het kind naar school."
+   "gap": "Zij is de ___ van drie kinderen."
   },
   {
    "id": "nlb.vader",
@@ -297,7 +307,7 @@
    },
    "def": "Een man die een kind heeft.",
    "ex": "Mijn vader repareert fietsen.",
-   "gap": "De ___ leest een verhaal voor."
+   "gap": "Hij is de ___ van drie kinderen."
   },
   {
    "id": "nlb.school",
@@ -310,7 +320,7 @@
    },
    "def": "Een gebouw waar kinderen les krijgen.",
    "ex": "De school begint om half negen.",
-   "gap": "De ___ is vandaag dicht."
+   "gap": "De kinderen krijgen les op de ___."
   },
   {
    "id": "nlb.straat",
@@ -323,7 +333,7 @@
    },
    "def": "Een weg in een stad of dorp, met huizen ernaast.",
    "ex": "Ik woon in een rustige straat.",
-   "gap": "De ___ is nat van de regen."
+   "gap": "Ik steek de ___ over bij het stoplicht."
   },
   {
    "id": "nlb.stad",
@@ -336,7 +346,7 @@
    },
    "def": "Een grote plaats met veel huizen, winkels en mensen.",
    "ex": "De stad is groot.",
-   "gap": "De ___ is druk op zaterdag."
+   "gap": "In de ___ wonen heel veel mensen en zijn er grote winkels."
   },
   {
    "id": "nlb.auto",
@@ -349,7 +359,7 @@
    },
    "def": "Een voertuig met vier wielen en een motor.",
    "ex": "Ik ga met de auto naar mijn werk.",
-   "gap": "De ___ staat voor het huis."
+   "gap": "De ___ staat in de garage naast de fiets."
   },
   {
    "id": "nlb.bus",
@@ -362,7 +372,7 @@
    },
    "def": "Een groot voertuig dat veel mensen vervoert.",
    "ex": "De bus is te laat.",
-   "gap": "De ___ stopt hier."
+   "gap": "De ___ stopt bij elke halte langs de straat."
   },
   {
    "id": "nlb.trein",
@@ -375,7 +385,7 @@
    },
    "def": "Een lang voertuig dat over rails rijdt.",
    "ex": "De trein vertrekt om acht uur.",
-   "gap": "De ___ is vol."
+   "gap": "De ___ vertrekt van spoor drie op het station."
   },
   {
    "id": "nlb.deur",
@@ -388,7 +398,7 @@
    },
    "def": "Hierdoor ga je een kamer of een huis in.",
    "ex": "Doe de deur dicht, alsjeblieft.",
-   "gap": "De ___ is open."
+   "gap": "Ik klop op de ___ en stap daarna binnen."
   },
   {
    "id": "nlb.raam",
@@ -401,7 +411,7 @@
    },
    "def": "Glas in de muur; je kijkt erdoor naar buiten.",
    "ex": "Het raam staat open.",
-   "gap": "Het ___ is vies."
+   "gap": "Ik kijk door het ___ naar buiten."
   },
   {
    "id": "nlb.kamer",
@@ -414,7 +424,7 @@
    },
    "def": "Een ruimte in een huis of gebouw.",
    "ex": "Mijn kamer is klein.",
-   "gap": "De ___ is netjes."
+   "gap": "In de ___ staan mijn bed en mijn bureau."
   },
   {
    "id": "nlb.tafel",
@@ -426,8 +436,8 @@
     "en": "table"
    },
    "def": "Een meubel waaraan je eet of werkt.",
-   "ex": "Het eten staat op tafel.",
-   "gap": "De ___ is van hout."
+   "ex": "Wij eten aan een grote tafel.",
+   "gap": "Wij zitten aan de ___ en eten."
   },
   {
    "id": "nlb.stoel",
@@ -440,7 +450,7 @@
    },
    "def": "Een meubel om op te zitten.",
    "ex": "Pak een stoel en ga zitten.",
-   "gap": "De ___ is kapot."
+   "gap": "De ___ heeft vier poten en een leuning."
   },
   {
    "id": "nlb.bed",
@@ -453,7 +463,7 @@
    },
    "def": "Een meubel om in te slapen.",
    "ex": "Ik ga om tien uur naar bed.",
-   "gap": "Het ___ is groot."
+   "gap": "Het ___ heeft een matras en een kussen."
   },
   {
    "id": "nlb.keuken",
@@ -466,7 +476,7 @@
    },
    "def": "De kamer waar je kookt.",
    "ex": "De keuken is schoon.",
-   "gap": "De ___ ruikt lekker."
+   "gap": "In de ___ staan het fornuis en de koelkast."
   },
   {
    "id": "nlb.telefoon",
@@ -492,7 +502,7 @@
    },
    "def": "Veel bladzijden met tekst om te lezen.",
    "ex": "Ik lees een boek.",
-   "gap": "Het ___ ligt op tafel."
+   "gap": "Het ___ heeft honderd bladzijden."
   },
   {
    "id": "nlb.brief",
@@ -505,7 +515,7 @@
    },
    "def": "Een bericht op papier, vaak met de post.",
    "ex": "Ik krijg een brief van de gemeente.",
-   "gap": "De ___ ligt in de brievenbus."
+   "gap": "De postbode brengt de ___ naar mijn huis."
   },
   {
    "id": "nlb.dokter",
@@ -518,7 +528,7 @@
    },
    "def": "Iemand die zieke mensen onderzoekt en helpt.",
    "ex": "Ik ga morgen naar de dokter.",
-   "gap": "De ___ kijkt naar mijn arm."
+   "gap": "De ___ in het ziekenhuis opereert mijn knie."
   },
   {
    "id": "nlb.hand",
@@ -531,7 +541,7 @@
    },
    "def": "Aan het eind van je arm, met vijf vingers.",
    "ex": "Was je handen voor het eten.",
-   "gap": "De ___ doet pijn."
+   "gap": "Ik schud de ___ van mijn buurman."
   },
   {
    "id": "nlb.hoofd",
@@ -544,7 +554,7 @@
    },
    "def": "Het bovenste deel van je lichaam, met je gezicht.",
    "ex": "Ik heb pijn in mijn hoofd.",
-   "gap": "Het ___ is warm van de koorts."
+   "gap": "Ik draag een muts op het ___ tegen de kou."
   },
   {
    "id": "nlb.weer",
@@ -557,7 +567,7 @@
    },
    "def": "Of er zon, regen of wind is.",
    "ex": "Het weer is mooi vandaag.",
-   "gap": "Het ___ is slecht."
+   "gap": "Het ___ is vandaag slecht: regen en wind."
   },
   {
    "id": "nlb.regen",
@@ -570,7 +580,7 @@
    },
    "def": "Water dat uit de lucht valt.",
    "ex": "Er komt vanmiddag regen.",
-   "gap": "De ___ stopt over een uur."
+   "gap": "De ___ valt uit de wolken; ik pak mijn paraplu."
   },
   {
    "id": "nlb.zon",
@@ -583,7 +593,7 @@
    },
    "def": "Geeft overdag licht en warmte.",
    "ex": "De zon schijnt.",
-   "gap": "De ___ is fel."
+   "gap": "De ___ komt op in de ochtend en gaat onder in de avond."
   },
   {
    "id": "nlb.kleur",
@@ -609,7 +619,7 @@
    },
    "def": "Wat je zegt als je iets wilt weten.",
    "ex": "Ik heb een vraag over het rooster.",
-   "gap": "De ___ is moeilijk."
+   "gap": "Ik weet het antwoord niet op de ___ van de leraar."
   },
   {
    "id": "nlb.antwoord",
@@ -622,7 +632,7 @@
    },
    "def": "Wat je zegt op een vraag.",
    "ex": "Het antwoord is ja.",
-   "gap": "Het ___ is goed."
+   "gap": "Op de vraag volgt het ___ van de leraar."
   },
   {
    "id": "nlb.probleem",
@@ -635,7 +645,7 @@
    },
    "def": "Iets wat niet goed gaat en moeite kost.",
    "ex": "Geen probleem, ik help je.",
-   "gap": "Het ___ is opgelost."
+   "gap": "Het ___ is dat mijn auto niet start."
   },
   {
    "id": "nlb.naam",
@@ -648,7 +658,7 @@
    },
    "def": "Hoe iemand of iets heet.",
    "ex": "Wat is je naam?",
-   "gap": "De ___ staat op de deur."
+   "gap": "Ik vraag hoe je heet en schrijf de ___ op."
   },
   {
    "id": "nlb.adres",
@@ -661,7 +671,7 @@
    },
    "def": "De straat, het huisnummer en de plaats waar je woont.",
    "ex": "Wat is je nieuwe adres?",
-   "gap": "Het ___ staat op de brief."
+   "gap": "Ik schrijf op waar je woont: het ___ met straat en huisnummer."
   },
   {
    "id": "nlb.zijn",
@@ -671,9 +681,9 @@
     "th": "เป็น, อยู่",
     "en": "to be"
    },
-   "def": "Bestaan of op een plek zijn: ik ben, jij bent, hij is.",
+   "def": "Het werkwoord om te zeggen hoe iemand of iets heet, waar het staat of hoe het eruitziet: ik ben, jij bent, hij is.",
    "ex": "Wij zijn vandaag thuis.",
-   "gap": "Ik wil op tijd ___."
+   "gap": "Ik wil morgen niet moe ___."
   },
   {
    "id": "nlb.hebben",
@@ -683,9 +693,9 @@
     "th": "มี",
     "en": "to have"
    },
-   "def": "Iets bezitten of krijgen: ik heb, hij heeft.",
+   "def": "Iets is van jou, of je draagt het bij je.",
    "ex": "Ik heb twee broers.",
-   "gap": "Wij willen een tuin ___."
+   "gap": "Wij willen later twee kinderen ___."
   },
   {
    "id": "nlb.gaan",
@@ -697,7 +707,7 @@
    },
    "def": "Naar een andere plek bewegen.",
    "ex": "Ik ga naar de markt.",
-   "gap": "Ik wil naar huis ___."
+   "gap": "Wij willen volgende week met het vliegtuig naar het buitenland ___."
   },
   {
    "id": "nlb.komen",
@@ -709,7 +719,7 @@
    },
    "def": "Naar hier bewegen.",
    "ex": "Mijn zus komt morgen.",
-   "gap": "Kun je morgen ___?"
+   "gap": "Kun je morgen bij mij op bezoek ___?"
   },
   {
    "id": "nlb.doen",
@@ -721,31 +731,31 @@
    },
    "def": "Bezig zijn met iets.",
    "ex": "Wat doe je vanavond?",
-   "gap": "Wat ga je vandaag ___?"
+   "gap": "Na het eten moet ik de afwas ___."
   },
   {
    "id": "nlb.maken",
    "kind": "word",
    "w": "maken",
    "tr": {
-    "th": "ทำ, สร้าง",
+    "th": "สร้าง, ทำขึ้น",
     "en": "to make"
    },
    "def": "Iets laten ontstaan, zoals eten of een tekening.",
    "ex": "Ik maak soep.",
-   "gap": "Ik ga een salade ___."
+   "gap": "Ik ga met hout en spijkers een tafel ___."
   },
   {
    "id": "nlb.zeggen",
    "kind": "word",
    "w": "zeggen",
    "tr": {
-    "th": "พูด, บอก",
-    "en": "to say"
+    "th": "บอก",
+    "en": "to say, to tell"
    },
    "def": "Woorden uitspreken tegen iemand.",
    "ex": "Wat zeg je?",
-   "gap": "Wat wil je ___?"
+   "gap": "Als je binnenkomt, moet je \"goedemorgen\" ___."
   },
   {
    "id": "nlb.zien",
@@ -755,7 +765,7 @@
     "th": "เห็น",
     "en": "to see"
    },
-   "def": "Met je ogen waarnemen.",
+   "def": "Iets met je ogen opmerken.",
    "ex": "Ik zie de bus al.",
    "gap": "Kun je de bus al ___?"
   },
@@ -769,7 +779,7 @@
    },
    "def": "Informatie in je hoofd hebben.",
    "ex": "Ik weet het antwoord.",
-   "gap": "Ik wil het antwoord ___."
+   "gap": "Ik wil het zeker ___ voordat ik antwoord geef."
   },
   {
    "id": "nlb.drinken",
@@ -779,9 +789,9 @@
     "th": "ดื่ม",
     "en": "to drink"
    },
-   "def": "Iets vloeibaars doorslikken.",
+   "def": "Water, melk of thee in je mond nemen en doorslikken.",
    "ex": "Ik drink elke dag thee.",
-   "gap": "Ik wil een glas water ___."
+   "gap": "Het glas is vol, maar ik heb dorst en ga het helemaal ___."
   },
   {
    "id": "nlb.slapen",
@@ -793,7 +803,7 @@
    },
    "def": "Rusten met je ogen dicht, meestal in bed.",
    "ex": "Het kind slaapt.",
-   "gap": "Ik wil vroeg ___."
+   "gap": "Ik ben moe en ga naar bed om te ___."
   },
   {
    "id": "nlb.lopen",
@@ -805,7 +815,7 @@
    },
    "def": "Op je benen vooruitgaan.",
    "ex": "Ik loop naar de bushalte.",
-   "gap": "We gaan naar de winkel ___."
+   "gap": "De bus rijdt niet; ik ga te voet en moet drie kilometer ___."
   },
   {
    "id": "nlb.werken",
@@ -817,7 +827,7 @@
    },
    "def": "Een baan hebben en daarvoor iets doen.",
    "ex": "Ik werk vier dagen per week.",
-   "gap": "Ik moet morgen ___."
+   "gap": "Ik heb een baan: van negen tot vijf moet ik ___."
   },
   {
    "id": "nlb.wonen",
@@ -829,7 +839,7 @@
    },
    "def": "Ergens je huis hebben.",
    "ex": "Wij wonen in een flat.",
-   "gap": "Ik wil in een rustige straat ___."
+   "gap": "Ik ga hier met mijn gezin ___; dit is ons nieuwe huis."
   },
   {
    "id": "nlb.kopen",
@@ -841,7 +851,7 @@
    },
    "def": "Iets krijgen in ruil voor geld.",
    "ex": "Ik koop een nieuwe jas.",
-   "gap": "Ik ga brood ___."
+   "gap": "Ik heb geen brood meer, dus ik ga naar de winkel om brood te ___."
   },
   {
    "id": "nlb.betalen",
@@ -853,7 +863,7 @@
    },
    "def": "Geld geven voor iets.",
    "ex": "Ik betaal met mijn pinpas.",
-   "gap": "Kan ik met mijn telefoon ___?"
+   "gap": "Aan de kassa moet ik met mijn pas ___."
   },
   {
    "id": "nlb.helpen",
@@ -865,7 +875,7 @@
    },
    "def": "Iets doen zodat het voor een ander makkelijker is.",
    "ex": "Mijn buurman helpt mij.",
-   "gap": "Kun je mij even ___?"
+   "gap": "Kun je mij even ___ met die zware tas?"
   },
   {
    "id": "nlb.vragen",
@@ -875,9 +885,9 @@
     "th": "ถาม",
     "en": "to ask"
    },
-   "def": "Een vraag stellen.",
+   "def": "Iets willen weten en het aan iemand zeggen.",
    "ex": "Ik vraag de weg.",
-   "gap": "Mag ik iets ___?"
+   "gap": "Ik weet het niet. Ik ga het aan de buurman ___."
   },
   {
    "id": "nlb.leren",
@@ -887,9 +897,12 @@
     "th": "เรียน",
     "en": "to learn"
    },
-   "def": "Nieuwe kennis of vaardigheden krijgen.",
+   "def": "Iets nieuws gaan kennen of kunnen.",
    "ex": "Ik leer Nederlands.",
-   "gap": "Ik wil elke dag iets nieuws ___."
+   "gap": "Ik ken de regels nog niet, maar ik ga ze ___ en oefenen.",
+   "also": [
+    "nlb.lezen"
+   ]
   },
   {
    "id": "nlb.lezen",
@@ -901,7 +914,10 @@
    },
    "def": "Tekst bekijken en begrijpen.",
    "ex": "Ik lees de krant.",
-   "gap": "Ik ga een boek ___."
+   "gap": "Ik zet mijn bril op om de kleine letters te ___.",
+   "also": [
+    "nlb.zien"
+   ]
   },
   {
    "id": "nlb.schrijven",
@@ -913,7 +929,7 @@
    },
    "def": "Woorden op papier of op een scherm zetten.",
    "ex": "Ik schrijf een bericht.",
-   "gap": "Ik moet een brief ___."
+   "gap": "Ik pak een pen en ga een brief ___."
   },
   {
    "id": "nlb.spreken",
@@ -925,7 +941,7 @@
    },
    "def": "Een taal gebruiken met je stem.",
    "ex": "Zij spreekt drie talen.",
-   "gap": "Ik wil beter Nederlands ___."
+   "gap": "Aan de telefoon moet ik langzaam en duidelijk ___."
   },
   {
    "id": "nlb.luisteren",
@@ -937,7 +953,7 @@
    },
    "def": "Goed horen wat iemand zegt.",
    "ex": "Ik luister naar de radio.",
-   "gap": "Je moet goed ___."
+   "gap": "Je moet goed ___ naar wat de leraar zegt."
   },
   {
    "id": "nlb.bellen",
@@ -949,7 +965,7 @@
    },
    "def": "Met de telefoon iemand spreken.",
    "ex": "Ik bel mijn moeder.",
-   "gap": "Ik ga de dokter ___."
+   "gap": "Ik tik het nummer in en ga de dokter ___."
   },
   {
    "id": "nlb.wachten",
@@ -973,7 +989,7 @@
    },
    "def": "Het eerste deel van iets doen.",
    "ex": "De les begint om negen uur.",
-   "gap": "Wanneer gaan we ___?"
+   "gap": "De leraar is er nog niet, dus de les kan nog niet ___."
   },
   {
    "id": "nlb.stoppen",
@@ -985,7 +1001,7 @@
    },
    "def": "Niet verder gaan.",
    "ex": "De trein stopt in elk dorp.",
-   "gap": "De bus gaat hier ___."
+   "gap": "De dokter zegt: je moet ___ met roken."
   },
   {
    "id": "nlb.koken",
@@ -997,7 +1013,7 @@
    },
    "def": "Eten klaarmaken met warmte.",
    "ex": "Ik kook rijst.",
-   "gap": "Ik ga vanavond ___."
+   "gap": "Het water moet eerst ___ voordat de pasta erin gaat."
   },
   {
    "id": "nlb.denken",
@@ -1007,9 +1023,9 @@
     "th": "คิด",
     "en": "to think"
    },
-   "def": "Iets in je hoofd overwegen.",
+   "def": "Iets in je hoofd doen, zonder te praten.",
    "ex": "Ik denk aan mijn familie.",
-   "gap": "Ik moet daar even over ___."
+   "gap": "Ik zeg niets, maar in mijn hoofd ga ik even ___."
   },
   {
    "id": "nlb.zitten",
@@ -1021,7 +1037,7 @@
    },
    "def": "Op een stoel of bank rusten.",
    "ex": "Ik zit in de trein.",
-   "gap": "Je mag hier ___."
+   "gap": "Neem een stoel en ga lekker ___ aan tafel."
   },
   {
    "id": "nlb.groot",
@@ -1031,9 +1047,9 @@
     "th": "ใหญ่",
     "en": "big"
    },
-   "def": "Van flinke omvang; het tegenovergestelde van klein.",
+   "def": "Niet klein; zoals een olifant of een berg.",
    "ex": "Wij hebben een grote tuin.",
-   "gap": "Het huis is ___."
+   "gap": "Een olifant is niet klein maar heel ___."
   },
   {
    "id": "nlb.klein",
@@ -1043,9 +1059,9 @@
     "th": "เล็ก",
     "en": "small"
    },
-   "def": "Niet groot.",
+   "def": "Niet groot, zoals een muis.",
    "ex": "Mijn kamer is klein.",
-   "gap": "De kamer is ___."
+   "gap": "Een muis is niet groot maar heel ___."
   },
   {
    "id": "nlb.goed",
@@ -1057,7 +1073,7 @@
    },
    "def": "Zoals het hoort; het tegenovergestelde van slecht.",
    "ex": "Dat is een goed idee.",
-   "gap": "Het antwoord is ___."
+   "gap": "Ik heb geen fouten gemaakt: het antwoord is ___."
   },
   {
    "id": "nlb.slecht",
@@ -1067,9 +1083,9 @@
     "th": "แย่",
     "en": "bad"
    },
-   "def": "Niet goed.",
+   "def": "Niet goed, zoals eten dat al te oud is.",
    "ex": "Ik heb slecht geslapen.",
-   "gap": "Het weer is ___."
+   "gap": "Ik heb vijf fouten gemaakt: mijn toets is ___."
   },
   {
    "id": "nlb.nieuw",
@@ -1081,7 +1097,7 @@
    },
    "def": "Net gemaakt of gekocht; niet oud.",
    "ex": "Ik heb nieuwe schoenen.",
-   "gap": "Mijn telefoon is ___."
+   "gap": "Mijn jas is net uit de winkel; hij is helemaal ___."
   },
   {
    "id": "nlb.oud",
@@ -1093,7 +1109,7 @@
    },
    "def": "Al lang gebruikt of al lang geleden geboren.",
    "ex": "Mijn fiets is oud.",
-   "gap": "De auto is al ___."
+   "gap": "De auto is twintig jaar ___."
   },
   {
    "id": "nlb.mooi",
@@ -1105,7 +1121,10 @@
    },
    "def": "Prettig om naar te kijken of te luisteren.",
    "ex": "Wat een mooie bloemen!",
-   "gap": "De stad is ___."
+   "gap": "Ik vind de bloemen ___; ik kijk er graag naar.",
+   "also": [
+    "nlb.goed"
+   ]
   },
   {
    "id": "nlb.warm",
@@ -1117,7 +1136,7 @@
    },
    "def": "Met een hoge temperatuur, maar niet heet.",
    "ex": "Het is warm vandaag.",
-   "gap": "De thee is nog ___."
+   "gap": "Trek een dikke jas aan, dan blijf je ___."
   },
   {
    "id": "nlb.koud",
@@ -1129,7 +1148,7 @@
    },
    "def": "Met een lage temperatuur.",
    "ex": "Het is koud buiten.",
-   "gap": "Het water is ___."
+   "gap": "Het is min tien graden, dus het is heel ___."
   },
   {
    "id": "nlb.moe",
@@ -1141,7 +1160,7 @@
    },
    "def": "Als je rust of slaap nodig hebt.",
    "ex": "Ik ben moe na de dienst.",
-   "gap": "Na het werk ben ik ___."
+   "gap": "Ik heb weinig geslapen en wil naar bed: ik ben ___."
   },
   {
    "id": "nlb.ziek",
@@ -1151,9 +1170,9 @@
     "th": "ป่วย",
     "en": "ill"
    },
-   "def": "Niet gezond.",
+   "def": "Niet gezond: je hebt bijvoorbeeld koorts of pijn.",
    "ex": "Ik ben ziek en blijf thuis.",
-   "gap": "Mijn kind is ___."
+   "gap": "Ik heb koorts en moet naar de dokter: ik ben ___."
   },
   {
    "id": "nlb.blij",
@@ -1177,7 +1196,10 @@
    },
    "def": "Met een goede smaak.",
    "ex": "Deze soep is lekker.",
-   "gap": "De soep is ___."
+   "gap": "Ik neem nog een bord; de soep smaakt zo ___.",
+   "also": [
+    "nlb.goed"
+   ]
   },
   {
    "id": "nlb.duur",
@@ -1189,19 +1211,19 @@
    },
    "def": "Het kost veel geld.",
    "ex": "Die jas is duur.",
-   "gap": "Deze jas is te ___."
+   "gap": "Vijfhonderd euro voor een jas? Dat is te ___!"
   },
   {
    "id": "nlb.goedkoop",
    "kind": "word",
    "w": "goedkoop",
    "tr": {
-    "th": "ถูก",
+    "th": "ราคาถูก",
     "en": "cheap"
    },
    "def": "Het kost weinig geld.",
    "ex": "De markt is goedkoop.",
-   "gap": "Het brood is ___."
+   "gap": "Het kost maar één euro; het brood is ___."
   },
   {
    "id": "nlb.snel",
@@ -1211,9 +1233,9 @@
     "th": "เร็ว",
     "en": "fast"
    },
-   "def": "Met hoge snelheid; niet langzaam.",
+   "def": "Je gaat hard en bent vlug klaar; niet langzaam.",
    "ex": "De trein rijdt snel.",
-   "gap": "De trein is ___."
+   "gap": "Ik ben laat, dus ik loop heel ___."
   },
   {
    "id": "nlb.vandaag",
@@ -1225,7 +1247,7 @@
    },
    "def": "Op deze dag.",
    "ex": "Vandaag werk ik niet.",
-   "gap": "Ik werk ___ tot vijf uur."
+   "gap": "Gisteren was het zondag, ___ is het maandag."
   },
   {
    "id": "nlb.morgen",
@@ -1237,7 +1259,7 @@
    },
    "def": "De dag na vandaag.",
    "ex": "Morgen ga ik naar de dokter.",
-   "gap": "Ik bel je ___ terug."
+   "gap": "Het is zondag; ___ is het maandag, dan begint de week."
   },
   {
    "id": "nlb.gisteren",
@@ -1249,7 +1271,7 @@
    },
    "def": "De dag voor vandaag.",
    "ex": "Gisteren regende het.",
-   "gap": "Ik was ___ ziek."
+   "gap": "Vandaag is het dinsdag; ___ was het maandag."
   },
   {
    "id": "nlb.altijd",
@@ -1261,7 +1283,7 @@
    },
    "def": "Elke keer, zonder uitzondering.",
    "ex": "Ik drink altijd thee bij het ontbijt.",
-   "gap": "Ik drink ___ koffie."
+   "gap": "De zon komt elke dag op: dat gebeurt ___."
   }
  ]
 }

@@ -50,7 +50,7 @@
     "en": "colleague"
    },
    "ex": "Mijn collega helpt me.",
-   "gap": "In de pauze eet ik samen met een ___ van mijn afdeling.",
+   "gap": "Een andere medewerker van de afdeling noem je een ___.",
    "askArt": true,
    "also": [
     "leidinggevende"
@@ -78,7 +78,7 @@
     "en": "break"
    },
    "ex": "In de pauze drink ik thee.",
-   "gap": "Om tien uur hebben we een kwartier ___. Dan drink ik koffie.",
+   "gap": "Om tien uur stoppen we even met werken en drinken we koffie. Dat noemen we ___.",
    "askArt": true
   },
   {
@@ -116,7 +116,7 @@
     "en": "supervisor"
    },
    "ex": "Mijn leidinggevende maakt het rooster.",
-   "gap": "Ben je ziek? Bel dan meteen je ___.",
+   "gap": "Wie maakt op mijn werk het rooster? Dat doet mijn ___.",
    "askArt": true,
    "also": [
     "collega",
@@ -235,7 +235,7 @@
     "en": "week"
    },
    "ex": "Ik werk vijf dagen per week.",
-   "gap": "Ik werk vier dagen per ___ in de fabriek.",
+   "gap": "Een ___ heeft zeven dagen: van maandag tot en met zondag.",
    "askArt": true
   },
   {
