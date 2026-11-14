@@ -5,7 +5,7 @@ let fails = 0; const ok = (n, v) => { if (!v) fails++; console.log((v ? 'OK  ' :
 function run(voices, S = {}, ua = 'Mozilla/5.0 (Windows NT 10.0)') {
   const spoken = [], toasts = [];
   const L = {};
-  const ctx = { QUIET: false, S, toast: m => toasts.push(m), tab: 'vandaag', route: null, app: { classList: { contains: () => false } }, vMe() {}, setTimeout, clearTimeout, navigator: { userAgent: ua, platform: 'Win32', maxTouchPoints: 0 },
+  const ctx = { PC: null, STORE: 'ok', PACKS: [], PACK_TIMEOUT: 300, QUIET: false, S, toast: m => toasts.push(m), tab: 'vandaag', route: null, app: { classList: { contains: () => false } }, vMe() {}, setTimeout, clearTimeout, navigator: { userAgent: ua, platform: 'Win32', maxTouchPoints: 0 },
     SpeechSynthesisUtterance: function (t) { this.text = t; },
     speechSynthesis: { getVoices: () => voices, cancel() {}, speak: u => spoken.push(u),
       addEventListener: (n, f) => { (L[n] = L[n] || []).push(f) }, removeEventListener: (n, f) => { L[n] = (L[n] || []).filter(x => x !== f) },
@@ -54,5 +54,32 @@ ok('iPhone, lege lijst: meteen voorlezen met lang nl-NL, zonder wachten', r.spok
 // j) iPhone mét lijst: gewoon de beste Nederlandse stem
 r = run([V('Xander', 'nl-NL'), V('Samantha', 'en-US')], {}, 'Mozilla/5.0 (iPhone)'); r.ctx.say('Hallo');
 ok('iPhone met lijst: Nederlandse stem gekozen', r.spoken[0].voice.name === 'Xander');
-ok('geen proeven meer met stille geluidjes of de audiosessie (stilteschakelaar vraagt geluidsbestanden, zie STATUS)', !/silentWav|audioSession|iosPrime|VOICETEST|KEEP=/.test(h) && h.includes('function speakNow(t,slow,lang,v){speechSynthesis.cancel();'));
+ok('geen proeven meer met stille geluidjes of de audiosessie (stilteschakelaar vraagt geluidsbestanden, zie STATUS)', !/silentWav|audioSession|iosPrime|VOICETEST|KEEP=/.test(h) && h.includes('function speakNow(t,slow,lang,v){audioStop();speechSynthesis.cancel();'));
+{ // geluidsbestanden (docs/geluid.md): bestand als het er is, zinnen na elkaar, anders de stem van het toestel en op de lijst
+  const PCm = (await import('node:module')).createRequire(import.meta.url)('../pakketcheck.js');
+  const played = [], spoken = [], saves = [];
+  function FakeAudio() { this.listeners = {}; this.setAttribute = () => {}; this.pause = () => {}; this.play = () => { played.push(this.src + '@' + this.playbackRate); return Promise.resolve(); }; this.addEventListener = (n, f) => { this.listeners[n] = f; }; }
+  const S = {};
+  const ctx = { PC: PCm, STORE: 'ok', PACKS: [], PACK_TIMEOUT: 300, QUIET: false, S, save: () => saves.push(1), toast() {}, tab: 'vandaag', route: null, app: { classList: { contains: () => false } }, vMe() {}, setTimeout, clearTimeout,
+    navigator: { userAgent: 'Mozilla/5.0 (Windows NT 10.0)', platform: 'Win32' }, Audio: FakeAudio,
+    SpeechSynthesisUtterance: function (t) { this.text = t; },
+    speechSynthesis: { getVoices: () => [V('Xander', 'nl-NL')], cancel() {}, speak: u => spoken.push(u.text), addEventListener() {}, removeEventListener() {} } };
+  vm.createContext(ctx); vm.runInContext(block, ctx);
+  const H = t => PCm.audioHash(t, 'pim');
+  vm.runInContext(`AUD=new Set(${JSON.stringify([H('de afspraak'), H('Ik heb een afspraak morgen.')])})`, ctx);
+  ctx.say('de afspraak.');
+  ok('geluid: een tekst met een bestand speelt het bestand, niet de stem van het toestel', played.length === 1 && played[0].includes('audio/nl/pim/' + H('de afspraak') + '.m4a') && !spoken.length);
+  ctx.say('de afspraak. Ik heb een afspraak morgen.', true);
+  ok('geluid: twee zinnen met elk een bestand spelen na elkaar, langzaam op 0,8', played.length === 2 && played[1].endsWith('@0.8'));
+  vm.runInContext("AEL.listeners.ended()", ctx);
+  ok('geluid: na het einde van de eerste zin volgt de tweede', played.length === 3 && played[2].includes(H('Ik heb een afspraak morgen.')));
+  ctx.say('Een zin zonder bestand.');
+  ok('geluid: geen bestand → de stem van het toestel, en de tekst op de lijst', spoken.includes('Een zin zonder bestand.') && S.audioMiss && S.audioMiss[0] === 'Een zin zonder bestand');
+  ctx.say('Een zin zonder bestand.');
+  ok('geluid: dezelfde tekst niet twee keer op de lijst', S.audioMiss.length === 1);
+  ctx.say('the appointment', false, 'en');
+  ok('geluid: Engels gaat via de stem van het toestel en niet op de lijst', S.audioMiss.length === 1);
+  vm.runInContext("AEL.listeners.error()", ctx);
+  ok('geluid: een bestand dat niet laadt (offline) valt terug op de stem van het toestel', spoken.length >= 2);
+}
 console.log(fails ? fails + ' FOUT' : 'alles OK');

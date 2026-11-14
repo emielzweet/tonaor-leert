@@ -620,6 +620,7 @@ en:{
  "voice.deviceChooses":"This device chooses the Dutch voice itself.",
  "voice.notLoaded":"No voices have been loaded (yet). Tap Try the voice. If you hear nothing, use Chrome or Edge.",
  "voice.try":"Try the voice",
+ "voice.supSilent":"Dutch also sounds with the silent switch on. The {sup} line is read by the device itself, and stays silent while the switch is on.",
  "voice.install":"Install a (better) Dutch voice",
  "voice.reopen":"Then open the app again.",
  "onb.welcome":"Welcome",
@@ -1057,6 +1058,7 @@ nl:{
  "voice.deviceChooses":"Dit toestel kiest zelf de Nederlandse stem.",
  "voice.notLoaded":"Er zijn (nog) geen stemmen geladen. Tik op <b>Probeer de stem</b>. Hoor je niets, gebruik dan Chrome of Edge.",
  "voice.try":"Probeer de stem",
+ "voice.supSilent":"Het Nederlands klinkt ook met de stilteschakelaar aan. De regel in het {sup} leest het toestel zelf voor; die blijft stil zolang de schakelaar aan staat.",
  "voice.install":"Een (betere) Nederlandse stem installeren",
  "voice.reopen":"Open de app daarna opnieuw.",
  "onb.welcome":"<h1>Welkom</h1>",
@@ -1492,6 +1494,7 @@ th:{
  "voice.deviceChooses":"เครื่องนี้เลือกเสียงภาษาดัตช์เอง",
  "voice.notLoaded":"ยังไม่มีเสียงที่โหลด แตะ ลองฟังเสียง ถ้าไม่ได้ยิน ให้ใช้ Chrome หรือ Edge",
  "voice.try":"ลองฟังเสียง",
+ "voice.supSilent":"ภาษาดัตช์มีเสียงแม้เปิดโหมดเงียบ ส่วนบรรทัดภาษา{sup} เครื่องอ่านเอง และจะไม่มีเสียงขณะเปิดโหมดเงียบ",
  "voice.install":"ติดตั้งเสียงภาษาดัตช์",
  "voice.reopen":"จากนั้นเปิดแอปใหม่",
  "onb.welcome":"ยินดีต้อนรับ",
@@ -2050,7 +2053,7 @@ function openExplain(id){const e=EXPL[id];if(!e||!UV)return;closeExplain();
   UX={e,i:0,c:-1,answered:false,start:now()};
   const L=document.createElement('div');L.id='ulayer';L.className='ulayer';L.setAttribute('role','dialog');L.setAttribute('aria-modal','true');L.setAttribute('aria-label',plainX(e.x.title,e.learn));
   L.addEventListener('click',ev=>{if(ev.target===L)closeExplain()});document.body.appendChild(L);document.body.classList.add('u-open');drawExplain(true)}
-function closeExplain(){if(!UX)return;try{speechSynthesis.cancel()}catch(e){}const L=document.getElementById('ulayer');if(L)L.remove();document.body.classList.remove('u-open');UX=null}
+function closeExplain(){if(!UX)return;audioStop();try{speechSynthesis.cancel()}catch(e){}const L=document.getElementById('ulayer');if(L)L.remove();document.body.classList.remove('u-open');UX=null}
 function sayX(x){if(!UX||S.explainVoice===false)return;const t=plainX(x,UX.e.learn).replace(/<[^>]*>/g,'');if(t)say(t,false,UX.e.learn==='en'?'en':'nl')}
 function drawExplain(speak){const L=document.getElementById('ulayer');if(!L||!UX)return;const {e,i,c}=UX,x=e.x,n=x.steps.length,ch=x.check||[],lang=e.learn==='en'?'en':'nl';
   const head=`<div class="u-head"><div>${TKx(x.title,e.learn)}</div><div class="u-tools"><button id="uvoice" aria-pressed="${S.explainVoice!==false}" aria-label="${esc(t('explain.voice'))}" title="${esc(t('explain.voice'))}">${icon.speaker}</button><button class="close" id="uclose" aria-label="${esc(t('explain.close'))}">×</button></div></div>`;
@@ -2064,7 +2067,7 @@ function drawExplain(speak){const L=document.getElementById('ulayer');if(!L||!UX
     <div class="choices one">${q.o.map((o,k)=>`<button class="choice" data-uo="${k}">${TKx(o,e.learn)}</button>`).join('')}</div><div id="ufb"></div>`}
   L.innerHTML=`<div class="u-panel">${head}${body}</div>`;
   $('#uclose').onclick=closeExplain;
-  $('#uvoice').onclick=()=>{S.explainVoice=S.explainVoice===false;save();if(S.explainVoice===false){try{speechSynthesis.cancel()}catch(e){}}drawExplain(false)};
+  $('#uvoice').onclick=()=>{S.explainVoice=S.explainVoice===false;save();if(S.explainVoice===false){audioStop();try{speechSynthesis.cancel()}catch(e){}}drawExplain(false)};
   if(c<0){const st=x.steps[i];
     $('#uprev').onclick=()=>{if(UX.i>0){UX.i--;drawExplain(true)}};
     $('#uagain').onclick=()=>{$('#ustage').innerHTML=UV.render(st.visual,SAFE,{lang});sayX(st.text)};
@@ -2087,6 +2090,7 @@ function vExplain(){const groups=[['nl','rekenen'],['nl','grammatica'],['nl','le
   sub('page.explain',`<p class="muted">${T('explain.intro')}</p>${groups.map(([l,s])=>{const list=EXPL_LIST.filter(o=>o.learn===l&&o.x.subject===s);if(!list.length)return '';
     return `<section class="card stack">${T(l==='en'?'explain.subj.en.'+s:'explain.subj.'+s)}<div class="u-list">${list.map(o=>`<button class="u-item${S.explained[o.x.id]?' done':''}" data-uopen="${esc(o.x.id)}"><span>${TKx(o.x.title,o.learn)}</span>${S.explained[o.x.id]?`<span class="pill pill-mint" aria-label="${esc(t('explain.again'))}">✓</span>`:''}</button>`).join('')}</div></section>`}).join('')}`)}
 await loadPacks();
+loadAudioLists();   // geluidsbestanden per pakket (docs/geluid.md); wacht er niet op
 
 /* ============ staat ============ */
 function item(){return {s:0,due:today(),reps:0,lapses:0,forms:[],exs:[]}}
@@ -2225,8 +2229,29 @@ try{speechSynthesis.onvoiceschanged=()=>{loadVoices();try{if(tab==='ik'&&!route&
    meelopend geluid (drie pogingen op 15 nov 2026, op de telefoon getest: alle vier de aanpakken stil). Geluid dat door de schakelaar
    heen speelt, vraagt echte geluidsbestanden; dat hoort bij de bredere ontwikkeling (docs/STATUS.md), niet bij een snelle lap. */
 let voiceWait=null,voicePend=null;
-function speakNow(t,slow,lang,v){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=LANGS[lang].tag;if(v)u.voice=v;u.rate=slow?.68:.9;speechSynthesis.speak(u)}
-function say(t,slow,lang,waited){if(QUIET)return;lang=LANGS[lang]?lang:'nl';const L=LANGS[lang];t=String(t==null?'':t).replace(/<[^>]*>/g,'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&');
+function speakNow(t,slow,lang,v){audioStop();speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=LANGS[lang].tag;if(v)u.voice=v;u.rate=slow?.68:.9;speechSynthesis.speak(u)}
+/* Voorlezen uit geluidsbestanden (docs/geluid.md, eis F7): een bestand speelt ook met de stilteschakelaar van de iPhone aan.
+   Per tekst één bestand audio/nl/<stem>/<hash>.m4a (sleutel: pakketcheck.audioHash); welke er zijn, staat per pakket in
+   audio/<pakket>.json. Geen bestand voor de hele tekst, wel voor elke zin: die na elkaar. Anders de stem van het toestel,
+   en de tekst gaat op S.audioMiss (hooguit AUDIOMISSMAX) zodat de redactielijn hem maakt. Engels: de stem van het toestel. */
+const AUDIOSTEM='pim',AUDIOMISSMAX=200;
+let AUD=new Set(),AEL=null,AQ=[],ACUR='';
+async function loadAudioLists(){try{const lim=(p,ms)=>Promise.race([p,new Promise(r=>setTimeout(()=>r(null),ms))]);
+  const ls=await Promise.all(PACKS.filter(p=>p.learn!=='en').map(p=>lim(fetch('audio/'+encodeURIComponent(p.id)+'.json').then(r=>r&&r.ok?r.json():null).catch(()=>null),PACK_TIMEOUT)));
+  ls.forEach(l=>{if(l&&l.stem===AUDIOSTEM&&Array.isArray(l.h))l.h.forEach(h=>{if(typeof h==='string'&&/^[0-9a-f]{14}$/.test(h))AUD.add(h)})})}catch(e){}}
+function audioEl(){if(!AEL){AEL=new Audio();AEL.setAttribute('playsinline','');AEL.preload='auto';
+  AEL.addEventListener('ended',()=>{if(AQ.length)audioNext()});
+  AEL.addEventListener('error',()=>{const t=ACUR;AQ=[];if(t)speakDevice(t,AEL.playbackRate<1,'nl')})}return AEL}
+function audioNext(){const x=AQ.shift();if(!x)return;const a=audioEl();ACUR=x.t;a.src='audio/nl/'+AUDIOSTEM+'/'+x.h+'.m4a';a.defaultPlaybackRate=a.playbackRate=x.slow?.8:1;const p=a.play();if(p&&p.catch)p.catch(()=>{})}
+function playAudio(t,slow){if(!PC||!PC.audioHash||!AUD.size)return false;const h=PC.audioHash(t,AUDIOSTEM);let list=null;
+  if(AUD.has(h))list=[{h,t}];else{const parts=PC.audioParts(t);if(parts.length>1){const hs=parts.map(x=>({h:PC.audioHash(x,AUDIOSTEM),t:x}));if(hs.every(x=>AUD.has(x.h)))list=hs}}
+  if(!list)return false;try{if(typeof speechSynthesis!=='undefined')speechSynthesis.cancel()}catch(e){}try{audioEl().pause()}catch(e){}AQ=list.map(x=>({...x,slow}));audioNext();return true}
+function noteNoAudio(t){if(!AUD.size||STORE!=='ok')return;const k=PC&&PC.audioKey?PC.audioKey(t):t;if(!k)return;const L=Array.isArray(S.audioMiss)?S.audioMiss:[];if(L.includes(k))return;S.audioMiss=L.concat([k.slice(0,200)]).slice(-AUDIOMISSMAX);save()}
+function audioStop(){AQ=[];try{if(AEL)AEL.pause()}catch(e){}}
+function say(t,slow,lang,waited){if(QUIET)return;lang=LANGS[lang]?lang:'nl';
+  if(lang==='nl'&&!waited){const tt=String(t==null?'':t);if(playAudio(tt,slow))return;noteNoAudio(tt)}
+  speakDevice(t,slow,lang,waited)}
+function speakDevice(t,slow,lang,waited){if(QUIET)return;lang=LANGS[lang]?lang:'nl';const L=LANGS[lang];t=String(t==null?'':t).replace(/<[^>]*>/g,'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&');
   if(typeof speechSynthesis==='undefined'||typeof SpeechSynthesisUtterance==='undefined'){if(!voiceWarned.api){voiceWarned.api=1;toast('Voorlezen werkt niet in deze browser.')}return}
   try{
   if(!loadVoices().length){
@@ -2242,7 +2267,7 @@ function voiceCard(){const vs=voicesFor('nl'),cur=voiceFor('nl');
   ${vs.length?`<label class="small muted" for="vsel">${T('voice.dutchVoice')}</label><select id="vsel" class="input">${vs.map(v=>`<option value="${esc(v.voiceURI||v.name)}"${v===cur?' selected':''}>${esc(v.name)} · ${esc(v.lang)}</option>`).join('')}</select>`
    :noVoice('nl')?`<div class="note">${T('voice.none')}</div>`
    :isIOS()?`<p class="small muted">${T('voice.deviceChooses')}</p>`:`<p class="small muted">${T('voice.notLoaded')}</p>`}
-  <button class="btn btn-ghost" id="vtest">${T('voice.try')}</button>
+  <button class="btn btn-ghost" id="vtest">${T('voice.try')}</button><p class="small muted">${T('voice.supSilent')}</p>
   <details${noVoice('nl')?' open':''}><summary class="small muted">${T('voice.install')}</summary>
    <ul class="small" style="margin:8px 0 0;padding-left:18px;display:grid;gap:6px">
     <li><b>iPhone:</b> Instellingen → Toegankelijkheid → Gesproken materiaal → Stemmen → Nederlands. Kies een stem (bijvoorbeeld Xander of Claire), liefst de versie <i>Verbeterd</i>, en download die.</li>
@@ -2997,7 +3022,7 @@ function vMe(){
   app.querySelectorAll('[data-wg]').forEach(b=>b.onclick=()=>{S.weekGoal=+b.dataset.wg;S.weekGoalSet=true;save();vMe()});
   app.querySelectorAll('[data-npd]').forEach(b=>b.onclick=()=>{S.newPerDay=+b.dataset.npd;save();vMe()});
   app.querySelectorAll('[data-len]').forEach(b=>b.onclick=()=>{S.roundLen=b.dataset.len;save();vMe()});
-  app.querySelectorAll('[data-quiet]').forEach(b=>b.onclick=()=>{QUIET=b.dataset.quiet==='1';if(QUIET){try{speechSynthesis.cancel()}catch(e){}}vMe()});
+  app.querySelectorAll('[data-quiet]').forEach(b=>b.onclick=()=>{QUIET=b.dataset.quiet==='1';if(QUIET){audioStop();try{speechSynthesis.cancel()}catch(e){}}vMe()});
   app.querySelectorAll('[data-trial]').forEach(b=>b.onclick=()=>{S.trial=b.dataset.trial==='1';save();vMe()});   /* Proefonderdelen (aanbeveling 10.25) */
   if($('#steerReset'))$('#steerReset').onclick=()=>{S.newPerDay=16;S.roundLen='normaal';QUIET=false;save();vMe()};
   if($('#vsel'))$('#vsel').onchange=e=>{S.voice=Object.assign({},S.voice,{nl:e.target.value});save();say('Zo klinkt deze stem. Goedemorgen, hoe gaat het met je?')};

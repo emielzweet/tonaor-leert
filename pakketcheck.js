@@ -505,6 +505,44 @@
     if (!has.reken) err(id + ': rekenen in de situatie ontbreekt');
     return { errors: errors, forms: Object.keys(all) };
   }
-  var api = { safeText: safeText, checkPack: checkPack, checkChapter: checkChapter, sceneForms: sceneForms, FORMS: FORMS, SUBJECTS: SUBJECTS };
+  /* Geluid (docs/geluid.md): dezelfde sleutel in de app en in de redactielijn. De tekst zonder opmaak en met gewone spaties;
+     de sleutel zonder slotteken, zodat "de afspraak" en "de afspraak." hetzelfde bestand zijn. Hash: cyrb53 van stem|sleutel. */
+  function audioText(s) {
+    return String(s == null ? '' : s).replace(/<[^>]*>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+  }
+  function audioKey(s) { return audioText(s).replace(/[.!?…:;,]+$/, '').trim(); }
+  function audioHash(s, stem) {
+    var str = String(stem) + '|' + audioKey(s), h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+    for (var i = 0; i < str.length; i++) { var c = str.charCodeAt(i); h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677); }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    return ((h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0')).slice(-14);
+  }
+  /* zinnen los (zonder lookbehind: oude iOS kent dat niet) */
+  function audioParts(s) { return (audioText(s).match(/[^.!?]+[.!?]*/g) || []).map(function (x) { return x.trim(); }).filter(function (x) { return audioKey(x); }); }
+  /* alle Nederlandse teksten die de app uit een pakket kan voorlezen: woord (met lidwoord), voorbeeld, gatzin ingevuld,
+     wat er gezegd of gehoord wordt, keuzes, teksten, vragen, en de Nederlandse kant van elke Tekst (nl, nl@…) */
+  var AUDIOKEYS = { w: 1, ex: 1, gap: 1, say: 1, t: 1, text: 1, model: 1, them: 1, q: 1, ask: 1, a: 1, s: 1, lines: 1 };
+  function audioTexts(p) {
+    var out = [], seen = {};
+    var add = function (s) { var k = audioKey(s); if (k && !/___/.test(k) && /[A-Za-zÀ-ÿ0-9]/.test(k) && !/[฀-๿]/.test(k) && !seen[k]) { seen[k] = 1; out.push(audioText(s)); } };
+    if (!p || p.learn === 'en') return out;
+    (p.items || []).forEach(function (x) {
+      if (!x || typeof x.w !== 'string') return;
+      if (x.art) add(x.art + ' ' + x.w);
+      if (typeof x.gap === 'string' && x.gap.indexOf('___') >= 0) add(x.gap.replace('___', x.w));
+    });
+    (function walk(o, k) {
+      if (typeof o === 'string') { if (AUDIOKEYS[k] || k === 'nl' || /^nl@/.test(k)) add(o); return; }
+      if (Array.isArray(o)) { o.forEach(function (v) { walk(v, k); }); return; }
+      if (o && typeof o === 'object') {
+        if (Array.isArray(o.parts) && o.parts.every(function (x) { return typeof x === 'string'; })) add(o.parts.join(' '));   // zin bouwen: de app leest de hele zin voor
+        if (typeof o.s === 'string' && o.s.indexOf('___') >= 0 && typeof o.a === 'string') add(o.s.replace('___', o.a));   // gatzin met het antwoord
+      }
+      if (o && typeof o === 'object') for (var kk in o) { if (kk === 'th' || kk === 'en' || /@en$|@th$|Th$|En$/.test(kk) && kk.indexOf('nl@') !== 0) continue; walk(o[kk], kk); }
+    })(p, '');
+    return out;
+  }
+  var api = { safeText: safeText, checkPack: checkPack, checkChapter: checkChapter, sceneForms: sceneForms, FORMS: FORMS, SUBJECTS: SUBJECTS, audioText: audioText, audioKey: audioKey, audioHash: audioHash, audioParts: audioParts, audioTexts: audioTexts };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.PakketCheck = api;
 })(this);
