@@ -53,7 +53,7 @@ const question = (q, w, sid, nosup) => {
 if (p.format !== 1) E('pakket', 'format moet 1 zijn');
 if (!ID.test(p.id || '')) E('pakket', 'id ontbreekt of heeft verboden tekens');
 txt(p.title, 'pakket.title');
-if (!ID.test(p.place || '')) E('pakket', 'place ontbreekt');
+if (p.type !== 'les' && !ID.test(p.place || '')) E('pakket', 'place ontbreekt');
 
 // ---- items ----
 const items = Array.isArray(p.items) ? p.items : [], itemIds = new Set();
@@ -77,17 +77,18 @@ for (const it of items) {
   } else { txt(it.title, w + '.title'); }
 }
 const words = items.filter(i => i.kind === 'word' || i.kind === 'phrase');
-if (words.length < 20 || words.length > 32) E('items', 'verwacht 20 tot 32 woorden en zinnen, gevonden ' + words.length);
+const LES = p.type === 'les';   // een losse les: geen hoofdstukeisen (docs/algemene-ontwikkeling.md, Formaat van een losse les)
+if (!LES && (words.length < 20 || words.length > 32)) E('items', 'verwacht 20 tot 32 woorden en zinnen, gevonden ' + words.length);
 
 // ---- scenes ----
 const scenes = Array.isArray(p.scenes) ? p.scenes : [], seen = new Map(), sceneIds = new Set();
 const use = (id, sc) => { if (!seen.has(id)) seen.set(id, new Set()); seen.get(id).add(sc); };
 itemIdsRef = known; useRef = use;
 const nlScenes = scenes.filter(s => s && s.subject === 'nl');
-if (nlScenes.length !== 5) E('scenes', 'verwacht vijf scènes Nederlands, gevonden ' + nlScenes.length);
-if (!scenes.some(s => s && s.subject === 'rk')) E('scenes', 'rekenscène ontbreekt');
+if (!LES && nlScenes.length !== 5) E('scenes', 'verwacht vijf scènes Nederlands, gevonden ' + nlScenes.length);
+if (!LES && !scenes.some(s => s && s.subject === 'rk')) E('scenes', 'rekenscène ontbreekt');
 if (!scenes.some(s => s && s.subject === 'kn')) E('scenes', 'kennisles ontbreekt');
-if (nlScenes.map(s => s.n).sort().join() !== '1,2,3,4,5') E('scenes', 'n van de scènes Nederlands moet 1 tot 5 zijn');
+if (!LES && nlScenes.map(s => s.n).sort().join() !== '1,2,3,4,5') E('scenes', 'n van de scènes Nederlands moet 1 tot 5 zijn');
 
 for (const s of scenes) {
   const w = 'scène ' + (s && s.id);
@@ -159,13 +160,13 @@ for (const s of scenes) {
     if (!st.some(x => x.type === 'rule')) E(w, 'stap rule (taal uit de tekst) ontbreekt');
     if (!st.some(x => x.type === 'extra')) E(w, 'stap extra (bij een herhaalde fout) ontbreekt');
   } else {
-    if (moments < 8) E(w, 'te dun: ' + moments + ' antwoordmomenten, minstens 8 nodig');
-    if (!roles.has('controle')) E(w, 'quiz met role controle ontbreekt');
+    if (!LES && moments < 8) E(w, 'te dun: ' + moments + ' antwoordmomenten, minstens 8 nodig');
+    if (!LES && !roles.has('controle')) E(w, 'quiz met role controle ontbreekt');   // een les: geen vast aantal vragen en geen verplichte controle
   }
 }
 
 // ---- dekking: elk woord in minstens twee scènes; elk woord minstens één keer ----
-for (const it of words) { const n = seen.has(it.id) ? seen.get(it.id).size : 0; if (n === 0) E('dekking', it.id + ' komt in geen enkele scène voor'); else if (n === 1) Wn('dekking', it.id + ' komt maar in één scène voor'); }
+if (!LES) for (const it of words) { const n = seen.has(it.id) ? seen.get(it.id).size : 0; if (n === 0) E('dekking', it.id + ' komt in geen enkele scène voor'); else if (n === 1) Wn('dekking', it.id + ' komt maar in één scène voor'); }
 const s5 = nlScenes.find(s => s.n === 5);
 if (s5) { const in5 = words.filter(it => seen.has(it.id) && seen.get(it.id).has(s5.id)).length; if (in5 < Math.ceil(words.length * 0.7)) E('dekking', 'scène 5 raakt ' + in5 + ' van de ' + words.length + ' woorden; 70 procent is nodig'); }
 

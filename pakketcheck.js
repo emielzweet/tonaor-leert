@@ -8,7 +8,7 @@
   var LEARN = ['nl', 'en'];
   var FORMS = ['learn', 'recog', 'recall', 'build', 'gap', 'listen', 'dictee', 'mc', 'clock', 'money', 'discount'];
   var RESERVED = ['hear-type', 'complete', 'own', 'write', 'situation', 'match', 'spot'];
-  var TOP = ['format', 'id', 'type', 'version', 'scenes', 'place', 'goals', 'purpose', 'review', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests'];
+  var TOP = ['format', 'id', 'type', 'version', 'scenes', 'place', 'goals', 'purpose', 'review', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests', 'gebied', 'vorm', 'draden', 'sources'];   // de laatste vier: een losse les algemene ontwikkeling
   var TAGS = /<\/?(b|i|u)>/g;
   // id's (pakket, item, tekst, kaart, oefening, groep): alleen letters, cijfers, punt, streepje, onderstreepje
   var ID = /^[A-Za-z0-9._-]+$/;
@@ -320,7 +320,7 @@
     });
     // kwaliteit per thema (alleen voor een Nederlands thema met woorden; een woordenlijst is geen thema)
     if (p.purpose != null) tekst(p.purpose, id + '.purpose');   /* masterplan G5: waar het hoofdstuk voor dient */
-    if (p.type != null && ['thema', 'woordenlijst', 'hoofdstuk'].indexOf(p.type) < 0) err(id + ': type kent alleen thema, woordenlijst en hoofdstuk');
+    if (p.type != null && ['thema', 'woordenlijst', 'hoofdstuk', 'les'].indexOf(p.type) < 0) err(id + ': type kent alleen thema, woordenlijst, hoofdstuk en les');
     // scènes (docs/scenes.md): vaste stappen, gesprekken met één goede keuze en een reden bij elke keuze, de tekening uit de catalogus
     if (p.scenes != null) {
       var SV = root.SceneVis || null; if (!SV && typeof require === 'function') { try { SV = require('./scene.js'); } catch (e) { SV = null; } }
@@ -408,7 +408,7 @@
         if (sc.steps[sc.steps.length - 1].type !== 'end') err(w + ': de laatste stap is end');
       });
     }
-    if (p.learn === 'nl' && words.length && p.type !== 'woordenlijst' && p.type !== 'hoofdstuk') {
+    if (p.learn === 'nl' && words.length && p.type !== 'woordenlijst' && p.type !== 'hoofdstuk' && p.type !== 'les') {
       var texts = p.texts || [];
       if (words.length < 40 || words.length > 60) q(id + ': ' + words.length + ' doelwoorden (eis: 40 tot 60)');
       if (texts.length < 3) q(id + ': ' + texts.length + ' tekst(en) (eis: minstens drie)');
