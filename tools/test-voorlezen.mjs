@@ -59,16 +59,10 @@ ok('iPhone met lijst: Nederlandse stem gekozen', r.spoken[0].voice.name === 'Xan
   const sw = m && new Function(m[0] + ';return silentWav')();
   const buf = sw && Buffer.from(sw().split(',')[1], 'base64');
   ok('stilteschakelaar: een geldig stil geluidje (wav, 8000 Hz, alleen stilte)', !!buf && buf.toString('ascii', 0, 4) === 'RIFF' && buf.toString('ascii', 8, 12) === 'WAVE' && buf.readUInt32LE(24) === 8000 && buf.length === 844 && buf.subarray(44).every(x => x === 128));
-  ok('stilteschakelaar: een stil geluid loopt mee (start bij tik en voorlezen, stopt na een halve minuut of op de achtergrond), plus playback', h.includes("navigator.audioSession.type='playback'") && h.includes("KEEP.loop=true") && h.includes("['touchend','click'].forEach(ev=>document.addEventListener(ev,keepTap,{capture:true,passive:true}))") && h.includes("if(document.visibilityState!=='visible')keepOff(0)") && h.includes('function speakNow(t,slow,lang,v){keepOn();') && h.includes('u.onend=u.onerror=()=>keepOff(KEEPMS)'));
-  { // gedrag van keepOn/keepOff met een nep-Audio
-    const m1 = h.match(/function silentWav\(\)\{[^\n]*\}/)[0], i0 = h.indexOf('const KEEPMS='), i1 = h.indexOf('\n', h.indexOf('function keepTap('));
-    const log = []; let timers = [];
-    const cx = { log, Audio: function () { this.paused = true; this.play = () => { this.paused = false; log.push('play'); return Promise.resolve(); }; this.pause = () => { this.paused = true; log.push('pause'); }; this.setAttribute = () => {}; },
-      setTimeout: (fn, ms) => { timers.push({ fn, ms }); return timers.length; }, clearTimeout: () => {}, navigator: {}, btoa: s => Buffer.from(s, 'binary').toString('base64'), isIOS: () => true };
-    vm.createContext(cx); vm.runInContext('function audioPlayback(){}' + m1 + ';' + h.slice(i0, i1) + ';this.keepTap=keepTap;this.keepOff=keepOff;', cx);
-    cx.keepTap(); cx.keepTap();
-    const t = timers[timers.length - 1]; t.fn();
-    ok('stilteschakelaar: tik start het stille geluid één keer, stopt na 30 s', log.join(',') === 'play,pause' && t.ms === 30000);
-  }
+  ok('stilteschakelaar: bij elke tik en vlak vóór elk voorlezen een nieuw stil geluidje, plus playback', h.includes("navigator.audioSession.type='playback'") && h.includes("function iosPrime(){if(!isIOS())return;audioPlayback();playClip()}") && h.includes("['touchend','click'].forEach(ev=>document.addEventListener(ev,iosPrime,{capture:true,passive:true}))") && h.includes('function speakNow(t,slow,lang,v,raw){if(!raw)iosPrime();'));
+  ok('voorlezen stopt alleen als er iets loopt (stoppen en starten in één tik geeft op iOS soms stilte)', h.includes('if(speechSynthesis.speaking||speechSynthesis.pending){speechSynthesis.cancel();setTimeout(go,100)}else go()'));
+  ok('geluidstest op Ik: vier aanpakken en de versie', h.includes('function VOICETEST(n)') && h.includes('data-vt="${n}"') && h.includes("app.querySelectorAll('[data-vt]').forEach(b=>b.onclick=()=>VOICETEST(+b.dataset.vt))"));
+  const swTxt = readFileSync(new URL('../sw.js', import.meta.url), 'utf8'), av = /const APPV='([^']+)'/.exec(h);
+  ok('versie bij de geluidstest gelijk aan CACHE in sw.js', !!av && swTxt.includes(`const CACHE='tonaor-leert-${av[1]}'`), av && av[1]);
 }
 console.log(fails ? fails + ' FOUT' : 'alles OK');
