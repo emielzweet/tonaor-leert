@@ -62,8 +62,7 @@ ok('dezelfde oefenvorm hooguit twee keer achter elkaar', !probleem.vorm.length, 
 ok('een ronde heeft minstens 8 verschillende onderdelen zolang er lesstof is', !probleem.klein.length, probleem.klein.slice(0, 5).join('; '));
 ok('elke dag iets nieuws zolang er lesstof is', !probleem.geenNieuw.length, probleem.geenNieuw.join(', '));
 const stofOk = opDag == null;
-if (streng) ok('de lesstof is niet binnen de week op', stofOk, 'nl-t1 heeft te weinig woorden: op dag ' + opDag + ' zijn alle nieuwe woorden aangeboden (meer lesstof nodig: spoor A)');
-else if (!stofOk) console.log('LET OP de lesstof is op dag ' + opDag + ' op: nl-t1 heeft te weinig woorden voor ' + RONDES + ' rondes per dag (spoor A; met --streng telt dit als fout)');
+if (!stofOk) console.log('LET OP de nieuwe lesstof is op dag ' + opDag + ' op bij ' + RONDES + ' rondes per dag: een tekort aan lesstof (redactielijn), geen fout in de code');   // ontwerpsessie: FOUT alleen voor echte fouten, ook met --streng
 // H1: losse herhaling (Onderweg) hooguit een vijfde van de leertijd. De nagebootste dag bestaat nu alleen uit Onderweg-rondes:
 // scènes, algemene ontwikkeling en spel staan nog niet in de dagindeling (masterplan stap 5 en 11). H2 en H3 vragen een samensteller
 // die vormen over dagen bijhoudt en wat rust niet meer losse oefent; H4 een melding als de nieuwe lesstof op is. Tot dat gebouwd is: LET OP, met --streng FOUT.
