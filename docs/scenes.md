@@ -96,6 +96,15 @@ Drie soorten stappen naast die in de tabel hierboven. Een **vraag** heeft overal
 
 Ook de keuzes in een gesprek (`talk`) krijgen bij `near` en `no` een `err`. Een scène kan `"nosup": true` hebben: de steuntaal verschijnt dan pas na de eerste poging (scène 5). Rekenen gebruikt `quiz` met `form: "number"` voor uitrekenen, en `do` voor het handelen (geld leggen, de klok zetten). Een rekenscène en een kennisles hebben geen `n`.
 
+### Werkvormen, hints en de zwaardere vorm (masterplan C2, C3, A6, B2, B4)
+
+- **Elke werkvorm uit de catalogus mag een vraag zijn.** Naast `choose`, `hear`, `type` en `number` kan `form` elke oefenvorm uit `docs/pakketformaat.md` zijn (`build`, `gap`, `dictee`, `mc`, `clock`, `money`, `discount`, `hear-type`, `complete`, `own`, `match`, `spot`), met de `data` van die vorm. Zo blijft alles wat al gebouwd is bruikbaar in een scène, en komt een nieuwe werkvorm er op één plek bij.
+- **Spreken:** stap `speak` met `items`, `ask` (de situatie), `model` (wat je kunt zeggen, tekst en klank) en `checklist`. De leerder neemt op en luistert terug naast het voorbeeld; de opname blijft op het toestel. Tot opnemen gebouwd is, toont de speler het voorbeeld en de checklist.
+- **Hint in twee stappen:** een vraag waarbij de leerder zelf typt (`type`, `hear-type`, `complete`, `dictee`) heeft `hint`: twee Teksten, eerst een kleine, dan een grotere aanwijzing. Een antwoord na een hint telt als `'retry'`.
+- **Spel:** stap `game` met `kind` (uit de catalogus van het masterplan) en `items`; de speler kiest de onderdelen die erbij horen en die aan de beurt zijn.
+- **Zwaardere vorm:** een scène die af is, is opnieuw te spelen als `replay`: zonder steuntaal, met typen waar eerst kiezen stond, en op eigen record. Het pakket hoeft daar niets voor te bevatten behalve vragen met zowel `opts` als `answer`.
+- **Per hoofdstuk** (de vijf scènes samen): minstens één leestekst met vijf tot tien vragen in tekstvolgorde (geheel, detail, waarom, toepassen of woord), één luistertekst met de vragen vooraf, één stap `speak`, één stap `game`, en minstens twaalf verschillende werkvormen. Per scène minstens zes verschillende werkvormen, en nooit dezelfde vorm meer dan twee keer achter elkaar.
+
 ### Extra eisen voor de scènetest
 
 - Een scène Nederlands heeft minstens 18 momenten waarop de leerder antwoordt (zonder de open plekken).

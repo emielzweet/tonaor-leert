@@ -46,6 +46,10 @@ Wat er is, naast wat het kwaliteitskader en de leerroute vragen. Bepaalt de volg
 
 De ervaringstest (`node tools/test-ervaring.mjs --streng`): met thema 1 en de 100 basiswoorden is de nieuwe lesstof bij 16 per dag na 6 dagen op; gemiddeld 8,4 verschillende onderdelen per ronde.
 
+## Leidend plan
+
+docs/masterplan.md (14 november 2026): de eisen die onverminderd gelden, de catalogus van werkvormen, de stappen 1 tot 13 met wie bouwt en wanneer iets klaar is, en de ijkmomenten G1 tot G5 van de ontwerpsessie. De volgorde daar vervangt de volgorde hieronder en die in docs/bouwplan.md en docs/plan-herzien.md.
+
 ## Open besluiten voor de eigenaar
 
 - Nieuw concept (kaart, scènes, album): docs/concept-leerwereld.md. Richting goedgekeurd op 14 november 2026; vier besluiten staan onderaan dat ontwerp. Akkoord op alle vier (14 november 2026): stap 1 en 2 mogen gebouwd worden; formaat en tekencatalogus in docs/scenes.md, `scene.js` en docs/voorbeeld-scene.json. Pushen en stap 4 blijven een apart akkoord.

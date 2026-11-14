@@ -67,6 +67,7 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | 41 | Altijd een fout kunnen melden (de leerder of iemand anders), met punten; meldingen worden volledig automatisch opgepakt, geduid en in een update verwerkt | 14 nov | plan (hoeft niet direct) | `docs/automatische-redactie.md`, Fouten melden | bouw | na de redactielijn; ontvangen via een eigen meekijker (#5) |
 | 42 | Rekening houden met wat het sterkste model moet doen en wat een ander model kan | 14 nov | deels | `docs/automatische-redactie.md`, Wie doet wat | ontwerp | toegepast in de proef: schrijven en reviewen door andere modellen |
 | 43 | Diepte per onderwerp: veel meer vragen en opdrachten per scène, met een diagnostisch didactisch model erachter | 14 nov | plan | `docs/scenes.md`, Diepte en diagnose | ontwerp, dan bouw | proefhoofdstuk verdiepen volgens de nieuwe opbouw; herhaalmodel bestaat, de drie andere lagen zijn nieuw |
+| 44 | Niets van het eerdere werk vervalt: de eisen aan variatie, diepgang, verscheidenheid aan werkvormen, uitdaging en onderbouwing blijven onverminderd gelden; de ontwerpsessie stuurt met een masterplan, de bouwsessie voert uit | 14 nov | deels | docs/masterplan.md | ontwerp stuurt, bouw voert uit | ijkmoment G1 na de scènespeler |
 
 ## Eigen voorstellen van de ontwerpsessie (goedgekeurd op 13 november)
 
