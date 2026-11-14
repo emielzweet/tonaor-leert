@@ -1,0 +1,448 @@
+{
+ "format": 1,
+ "id": "ao-aardappel",
+ "type": "les",
+ "version": 1,
+ "order": 8,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "geschiedenis",
+ "vorm": "een tijdlijn om zelf te leggen",
+ "draden": [
+  "ao-zijderoute",
+  "ao-holland",
+  "ao-zout"
+ ],
+ "title": {
+  "nl": "Hoe kwam de aardappel in Europa?",
+  "th": "มันฝรั่งเข้ามาในยุโรปได้อย่างไร",
+  "en": "How did the potato come to Europe?"
+ },
+ "sources": [
+  {
+   "url": "https://nl.wikipedia.org/wiki/Aardappel",
+   "title": "Wikipedia: Aardappel"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Potato",
+   "title": "Wikipedia: Potato"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Great_Famine_(Ireland)",
+   "title": "Wikipedia: Great Famine (Ireland)"
+  },
+  {
+   "url": "https://cipotato.org/potato/potato-facts/",
+   "title": "Internationaal Aardappelcentrum (CIP): Potato facts"
+  }
+ ],
+ "items": [
+  {
+   "id": "aard.aardappel",
+   "kind": "word",
+   "w": "aardappel",
+   "art": "de",
+   "tr": {
+    "th": "มันฝรั่ง",
+    "en": "potato"
+   },
+   "def": "Een eetbare knol die onder de grond groeit.",
+   "ex": "Ik eet vanavond aardappels met groente.",
+   "gap": "De ___ groeit onder de grond.",
+   "wrong": [
+    "tomaat",
+    "peer",
+    "druif"
+   ]
+  },
+  {
+   "id": "aard.zeevaarder",
+   "kind": "word",
+   "w": "zeevaarder",
+   "art": "de",
+   "tr": {
+    "th": "นักเดินเรือ",
+    "en": "seafarer"
+   },
+   "def": "Iemand die met een schip over de zee reist.",
+   "ex": "De zeevaarder kwam na een jaar terug.",
+   "gap": "De ___ reist met een schip over de zee.",
+   "wrong": [
+    "bakker",
+    "dokter",
+    "leraar"
+   ]
+  },
+  {
+   "id": "aard.gewas",
+   "kind": "word",
+   "w": "gewas",
+   "art": "het",
+   "tr": {
+    "th": "พืชผล",
+    "en": "crop"
+   },
+   "def": "Een plant die mensen telen om te eten.",
+   "ex": "Tarwe is een belangrijk gewas.",
+   "gap": "Op het land groeit het ___ van de boer.",
+   "wrong": [
+    "lied",
+    "dak",
+    "bed"
+   ]
+  },
+  {
+   "id": "aard.ziekte",
+   "kind": "word",
+   "w": "ziekte",
+   "art": "de",
+   "tr": {
+    "th": "โรค",
+    "en": "disease"
+   },
+   "def": "Als een mens, dier of plant niet gezond is.",
+   "ex": "Een ziekte maakte de bladeren bruin.",
+   "gap": "Door de ___ werd de plant bruin en ging dood.",
+   "wrong": [
+    "markt",
+    "trap",
+    "jas"
+   ]
+  },
+  {
+   "id": "aard.hongersnood",
+   "kind": "word",
+   "w": "hongersnood",
+   "art": "de",
+   "tr": {
+    "th": "ความอดอยาก",
+    "en": "famine"
+   },
+   "def": "Een tijd waarin heel veel mensen niets te eten hebben.",
+   "ex": "Na de slechte oogst kwam er een hongersnood.",
+   "gap": "Door de mislukte oogst kwam de ___.",
+   "wrong": [
+    "feest",
+    "vakantie",
+    "markt"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-aardappel-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Hoe kwam de aardappel in Europa?",
+    "th": "มันฝรั่งเข้ามาในยุโรปได้อย่างไร",
+    "en": "How did the potato come to Europe?"
+   },
+   "intro": {
+    "nl": "Leg eerst zelf de tijdlijn. Dan lees je hoe het echt ging.",
+    "th": "ลองเรียงเส้นเวลาเองก่อน แล้วอ่านว่าจริง ๆ เป็นอย่างไร",
+    "en": "Lay out the timeline yourself first. Then you read how it really went."
+   },
+   "can": {
+    "nl": "Vertellen hoe de aardappel naar Europa kwam",
+    "th": "เล่าได้ว่ามันฝรั่งมายังยุโรปได้อย่างไร",
+    "en": "Tell how the potato came to Europe"
+   },
+   "targets": [
+    "aard.aardappel",
+    "aard.zeevaarder",
+    "aard.gewas",
+    "aard.ziekte",
+    "aard.hongersnood"
+   ],
+   "goals": [
+    "nt2-I-lezen-2",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "market",
+    "tone": "apricot",
+    "alt": {
+     "nl": "Een markt met een kraam vol aardappels.",
+     "th": "ตลาดที่มีแผงเต็มไปด้วยมันฝรั่ง",
+     "en": "A market with a stall full of potatoes."
+    },
+    "things": [
+     {
+      "kind": "window",
+      "x": 290,
+      "y": 56
+     },
+     {
+      "kind": "stall",
+      "x": 170,
+      "y": 156
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "do",
+     "items": [
+      "aard.aardappel",
+      "aard.zeevaarder"
+     ],
+     "ask": {
+      "nl": "Leg eerst zelf: wat gebeurde er eerst? Zet de gebeurtenissen in de volgorde die jij denkt.",
+      "th": "ลองเรียงเองก่อน อะไรเกิดขึ้นก่อน เรียงเหตุการณ์ตามที่คุณคิด",
+      "en": "First lay it out yourself: what happened first? Put the events in the order you think."
+     },
+     "form": "build",
+     "answer": "Andes: boeren telen de aardappel Spaanse zeevaarders brengen hem naar Europa Eind 1600: boeren telen hem als eten 1845: een ziekte treft de aardappels",
+     "data": {
+      "parts": [
+       "Andes: boeren telen de aardappel",
+       "Spaanse zeevaarders brengen hem naar Europa",
+       "Eind 1600: boeren telen hem als eten",
+       "1845: een ziekte treft de aardappels"
+      ],
+      "tr": {
+       "th": "ชาวนาแอนดีสปลูก นักเดินเรือสเปนนำมายุโรป เกษตรกรเริ่มปลูกเป็นอาหาร ปี 1845 โรคระบาดมันฝรั่ง",
+       "en": "Andean farmers grow it. Spanish seafarers bring it to Europe. Farmers start growing it as food. 1845: a disease hits the potatoes."
+      }
+     },
+     "why": {
+      "nl": "Dit is de goede volgorde: eerst de Andes, dan Spaanse zeevaarders, dan eind 1600 de teelt als eten, en in 1845 de ziekte. Nu lees je er meer over.",
+      "th": "นี่คือลำดับที่ถูกต้อง ก่อนอื่นแอนดีส แล้วนักเดินเรือสเปน แล้วการปลูกเป็นอาหารปลายศตวรรษที่ 17 และปี 1845 โรคระบาด ต่อไปคุณจะอ่านรายละเอียด",
+      "en": "This is the right order: first the Andes, then Spanish seafarers, then growing it as food in the late 1600s, and in 1845 the disease. Now you read more about it."
+     },
+     "err": "tijd",
+     "help": 0
+    },
+    {
+     "type": "read",
+     "items": [
+      "aard.aardappel",
+      "aard.zeevaarder",
+      "aard.gewas"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Aardappel",
+       "title": "Wikipedia: Aardappel"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Potato",
+       "title": "Wikipedia: Potato"
+      },
+      {
+       "url": "https://cipotato.org/potato/potato-facts/",
+       "title": "Internationaal Aardappelcentrum (CIP): Potato facts"
+      }
+     ],
+     "text": {
+      "nl": "De aardappel komt uit Zuid-Amerika. Boeren in de Andes, een groot bergland, teelden hem al ongeveer 7000 jaar geleden of nog eerder.\n\nSpaanse zeevaarders brachten de aardappel in de tweede helft van de zestiende eeuw naar Europa. De oudste vermelding buiten Zuid-Amerika is van het jaar 1567.\n\nIn Nederland groeide de aardappel eerst in botanische tuinen: in Leiden, sinds 1640 in Groningen en sinds 1689 in Amsterdam. Als eten telen boeren hem pas vanaf het eind van de zeventiende eeuw, eerst onder andere in Ierland. Na 1750 werd hij in Europa een belangrijk voedsel.",
+      "th": "มันฝรั่งมาจากอเมริกาใต้ ชาวนาในเทือกเขาแอนดีส (Andes) ซึ่งเป็นแดนภูเขาใหญ่ ปลูกมันฝรั่งมาประมาณ 7,000 ปีแล้ว หรือนานกว่านั้น\n\nนักเดินเรือ (zeevaarder) ชาวสเปนนำมันฝรั่งมายังยุโรปในครึ่งหลังของศตวรรษที่สิบหก บันทึกเก่าแก่ที่สุดนอกอเมริกาใต้คือปี ค.ศ. 1567\n\nในเนเธอร์แลนด์ ตอนแรกมันฝรั่งปลูกในสวนพฤกษศาสตร์ ที่ไลเดิน ที่โกรนิงเงนตั้งแต่ปี 1640 และที่อัมสเตอร์ดัมตั้งแต่ปี 1689 เกษตรกรเริ่มปลูกเป็นอาหารเมื่อใกล้สิ้นศตวรรษที่สิบเจ็ด เริ่มที่ไอร์แลนด์เป็นต้น หลังปี 1750 มันฝรั่งกลายเป็นอาหารสำคัญในยุโรป",
+      "en": "The potato comes from South America. Farmers in the Andes, a big mountain region, grew it about 7000 years ago or even earlier.\n\nSpanish seafarers (zeevaarder) brought the potato to Europe in the second half of the sixteenth century. The oldest mention outside South America is from the year 1567.\n\nIn the Netherlands the potato first grew in botanical gardens: in Leiden, since 1640 in Groningen and since 1689 in Amsterdam. Farmers grew it as food only from the end of the seventeenth century, first in Ireland among other places. After 1750 it became an important food in Europe."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "aard.zeevaarder"
+       ],
+       "ask": {
+        "nl": "Wie brachten de aardappel naar Europa?",
+        "th": "ใครนำมันฝรั่งมายังยุโรป",
+        "en": "Who brought the potato to Europe?"
+       },
+       "opts": [
+        {
+         "t": "Spaanse zeevaarders",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Spaanse zeevaarders brachten hem in de zestiende eeuw mee.",
+          "th": "ถูกต้อง นักเดินเรือชาวสเปนนำมาในศตวรรษที่สิบหก",
+          "en": "Right. Spanish seafarers brought it in the sixteenth century."
+         }
+        },
+        {
+         "t": "Chinese handelaren",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst. Het waren Spaanse zeevaarders.",
+          "th": "ข้อความไม่ได้บอก เป็นนักเดินเรือชาวสเปน",
+          "en": "That is not in the text. It was Spanish seafarers."
+         }
+        },
+        {
+         "t": "Nederlandse boeren",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nederlandse boeren kwamen later: in Nederland groeit de aardappel pas sinds 1640.",
+          "th": "เกษตรกรชาวดัตช์มาทีหลัง ในเนเธอร์แลนด์ปลูกมันฝรั่งตั้งแต่ปี 1640 เท่านั้น",
+          "en": "Dutch farmers came later: in the Netherlands the potato has only grown since 1640."
+         }
+        }
+       ],
+       "answer": "Spaanse zeevaarders",
+       "why": {
+        "nl": "Spaanse zeevaarders brachten de aardappel in de tweede helft van de zestiende eeuw naar Europa.",
+        "th": "นักเดินเรือชาวสเปนนำมันฝรั่งมายังยุโรปในครึ่งหลังของศตวรรษที่สิบหก",
+        "en": "Spanish seafarers brought the potato to Europe in the second half of the sixteenth century."
+       }
+      },
+      {
+       "form": "type",
+       "items": [
+        "aard.aardappel"
+       ],
+       "ask": {
+        "nl": "Uit welk werelddeel komt de aardappel? Typ het werelddeel.",
+        "th": "มันฝรั่งมาจากทวีปใด พิมพ์ชื่อทวีป",
+        "en": "From which continent does the potato come? Type the continent."
+       },
+       "answer": "Zuid-Amerika",
+       "accept": [
+        "zuid amerika",
+        "zuidamerika"
+       ],
+       "err": "spelling",
+       "hint": [
+        {
+         "nl": "Het staat in de eerste zin.",
+         "th": "อยู่ในประโยคแรก",
+         "en": "It is in the first sentence."
+        },
+        {
+         "nl": "Begin zo: Zuid-…",
+         "th": "ขึ้นต้นแบบนี้: Zuid-…",
+         "en": "Start like this: Zuid-…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. De aardappel komt uit Zuid-Amerika, uit de Andes.",
+        "th": "ถูกต้อง มันฝรั่งมาจากอเมริกาใต้ จากเทือกเขาแอนดีส",
+        "en": "Right. The potato comes from South America, from the Andes."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "aard.ziekte",
+      "aard.hongersnood",
+      "aard.gewas"
+     ],
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Great_Famine_(Ireland)",
+       "title": "Wikipedia: Great Famine (Ireland)"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Aardappel",
+       "title": "Wikipedia: Aardappel"
+      }
+     ],
+     "text": {
+      "nl": "In de zomer van 1845 kreeg de aardappel in Europa een plantenziekte. De oogsten mislukten op veel plaatsen. In Ierland waren ruim drie miljoen mensen bijna helemaal van aardappels afhankelijk. Daar kwam een grote hongersnood.\n\nOngeveer een miljoen mensen stierven. Meer dan een miljoen anderen verlieten het land. De ramp liet zien hoe gevaarlijk het is als veel mensen van één gewas leven.",
+      "th": "ในฤดูร้อนปี ค.ศ. 1845 มันฝรั่งในยุโรปเป็นโรคพืช (ziekte) การเก็บเกี่ยวล้มเหลวในหลายแห่ง ในไอร์แลนด์ มีผู้คนมากกว่าสามล้านคนพึ่งพามันฝรั่งแทบทั้งหมด ที่นั่นเกิดความอดอยาก (hongersnood) ครั้งใหญ่\n\nประมาณหนึ่งล้านคนเสียชีวิต อีกมากกว่าหนึ่งล้านคนออกจากประเทศ ภัยพิบัตินี้แสดงให้เห็นว่าอันตรายเพียงใดเมื่อคนจำนวนมากพึ่งพืชผล (gewas) ชนิดเดียว",
+      "en": "In the summer of 1845 the potato in Europe got a plant disease (ziekte). Harvests failed in many places. In Ireland more than three million people depended almost entirely on potatoes. A great famine (hongersnood) came there.\n\nAbout a million people died. More than a million others left the country. The disaster showed how dangerous it is when many people live from one crop (gewas)."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "aard.hongersnood"
+       ],
+       "ask": {
+        "nl": "Waarom was de ramp in Ierland zo groot?",
+        "th": "ทำไมภัยพิบัติในไอร์แลนด์จึงใหญ่ขนาดนั้น",
+        "en": "Why was the disaster in Ireland so big?"
+       },
+       "opts": [
+        {
+         "t": "Veel mensen leefden bijna alleen van aardappels",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Ruim drie miljoen mensen hadden bijna niets anders te eten.",
+          "th": "ถูกต้อง มากกว่าสามล้านคนแทบไม่มีอะไรอื่นกิน",
+          "en": "Right. More than three million people had almost nothing else to eat."
+         }
+        },
+        {
+         "t": "Er waren geen boeren meer",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst. De aardappels werden ziek.",
+          "th": "ข้อความไม่ได้บอก มันฝรั่งเป็นโรค",
+          "en": "That is not in the text. The potatoes got a disease."
+         }
+        },
+        {
+         "t": "De winter was te warm",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst. De oorzaak was een plantenziekte.",
+          "th": "ข้อความไม่ได้บอก สาเหตุคือโรคพืช",
+          "en": "That is not in the text. The cause was a plant disease."
+         }
+        }
+       ],
+       "answer": "Veel mensen leefden bijna alleen van aardappels",
+       "why": {
+        "nl": "Veel mensen waren bijna helemaal van aardappels afhankelijk toen de ziekte kwam.",
+        "th": "หลายคนพึ่งพามันฝรั่งเกือบทั้งหมดเมื่อโรคระบาดมา",
+        "en": "Many people depended almost entirely on potatoes when the disease came."
+       }
+      },
+      {
+       "form": "number",
+       "items": [
+        "aard.hongersnood"
+       ],
+       "ask": {
+        "nl": "Ongeveer hoeveel miljoen mensen stierven in de hongersnood? Typ een getal.",
+        "th": "ประมาณกี่ล้านคนเสียชีวิตในความอดอยาก พิมพ์ตัวเลข",
+        "en": "About how many million people died in the famine? Type a number."
+       },
+       "answer": "1",
+       "tol": 0.5,
+       "accept": [
+        "een"
+       ],
+       "err": "lezen",
+       "why": {
+        "nl": "Ongeveer een miljoen. Nog eens meer dan een miljoen mensen verlieten het land.",
+        "th": "ประมาณหนึ่งล้านคน และมากกว่าหนึ่งล้านคนออกจากประเทศ",
+        "en": "About a million. Another more than a million people left the country."
+       }
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu vertellen: de aardappel komt uit de Andes, kwam met Spaanse zeevaarders naar Europa, en in 1845 liet een ziekte zien hoe gevaarlijk één gewas kan zijn.",
+      "th": "ตอนนี้คุณเล่าได้ว่า มันฝรั่งมาจากแอนดีส มายังยุโรปกับนักเดินเรือสเปน และในปี 1845 โรคพืชแสดงให้เห็นว่าการพึ่งพืชชนิดเดียวอันตรายเพียงใด",
+      "en": "You can now tell someone: the potato comes from the Andes, came to Europe with Spanish seafarers, and in 1845 a disease showed how dangerous one crop can be."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

@@ -1,0 +1,446 @@
+{
+ "format": 1,
+ "id": "ao-kamer150",
+ "type": "les",
+ "version": 1,
+ "order": 6,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "politiek",
+ "vorm": "eerst raden",
+ "draden": [
+  "ao-wet",
+  "ao-koning",
+  "ao-links-rechts"
+ ],
+ "title": {
+  "nl": "Waarom zitten er 150 mensen in de Tweede Kamer?",
+  "th": "ทำไมในสภาผู้แทนราษฎรจึงมีสมาชิก 150 คน",
+  "en": "Why are there 150 people in the Tweede Kamer?"
+ },
+ "sources": [
+  {
+   "url": "https://nl.wikipedia.org/wiki/Tweede_Kamer_der_Staten-Generaal",
+   "title": "Wikipedia: Tweede Kamer der Staten-Generaal"
+  },
+  {
+   "url": "https://www.denederlandsegrondwet.nl/column/202309/waarom-de-kamer-1956-van-100-naar-150-leden-ging",
+   "title": "De Nederlandse Grondwet: Waarom de Kamer in 1956 van 100 naar 150 leden ging"
+  },
+  {
+   "url": "https://www.montesquieu-instituut.nl/id/vjcectd6t4rp/waarom_heeft_de_nederlandse_staten",
+   "title": "Montesquieu Instituut: Waarom heeft de Nederlandse Staten-Generaal 225 leden?"
+  }
+ ],
+ "items": [
+  {
+   "id": "kam.kamerlid",
+   "kind": "word",
+   "w": "kamerlid",
+   "art": "het",
+   "tr": {
+    "th": "สมาชิกสภาผู้แทนราษฎร",
+    "en": "member of parliament"
+   },
+   "def": "Iemand die in de Tweede Kamer zit.",
+   "ex": "Het kamerlid stelt een vraag aan de regering.",
+   "gap": "Het ___ zit in de Tweede Kamer.",
+   "wrong": [
+    "bakker",
+    "dokter",
+    "taxi"
+   ]
+  },
+  {
+   "id": "kam.zetel",
+   "kind": "word",
+   "w": "zetel",
+   "art": "de",
+   "tr": {
+    "th": "ที่นั่งในสภา",
+    "en": "seat (in parliament)"
+   },
+   "def": "Een plek voor een lid in de Kamer.",
+   "ex": "Die partij heeft acht zetels.",
+   "gap": "Het kamerlid neemt de ___ in de Kamer in.",
+   "wrong": [
+    "fiets",
+    "wet",
+    "jas"
+   ]
+  },
+  {
+   "id": "kam.wet",
+   "kind": "word",
+   "w": "wet",
+   "art": "de",
+   "tr": {
+    "th": "กฎหมาย",
+    "en": "law"
+   },
+   "def": "Een regel voor iedereen in het land.",
+   "ex": "Een nieuwe wet geldt voor iedereen in het land.",
+   "gap": "In het land geldt de ___ voor iedereen.",
+   "wrong": [
+    "lied",
+    "zolder",
+    "taart"
+   ]
+  },
+  {
+   "id": "kam.bevolking",
+   "kind": "word",
+   "w": "bevolking",
+   "art": "de",
+   "tr": {
+    "th": "ประชากร",
+    "en": "population"
+   },
+   "def": "Alle mensen die in een land wonen.",
+   "ex": "De bevolking van een stad kan groeien.",
+   "gap": "De ___ is de groep van alle mensen in een land.",
+   "wrong": [
+    "grens",
+    "hoofdstad",
+    "tuin"
+   ]
+  },
+  {
+   "id": "kam.controleren",
+   "kind": "word",
+   "w": "controleren",
+   "art": "",
+   "tr": {
+    "th": "ตรวจสอบ",
+    "en": "to check, to oversee"
+   },
+   "def": "Kijken of iets goed gaat en klopt.",
+   "ex": "De dokter wil mijn bloeddruk controleren.",
+   "gap": "De Kamer moet de regering ___.",
+   "wrong": [
+    "bakken",
+    "fietsen",
+    "tekenen"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-kamer150-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Waarom zitten er 150 mensen in de Tweede Kamer?",
+    "th": "ทำไมในสภาผู้แทนราษฎรจึงมีสมาชิก 150 คน",
+    "en": "Why are there 150 people in the Tweede Kamer?"
+   },
+   "intro": {
+    "nl": "Eerst raden. Dan lees je hoe het aantal 150 ontstond.",
+    "th": "ลองเดาก่อน แล้วอ่านว่าจำนวน 150 เกิดขึ้นได้อย่างไร",
+    "en": "Guess first. Then you read how the number 150 came about."
+   },
+   "can": {
+    "nl": "Uitleggen waarom de Tweede Kamer 150 leden heeft",
+    "th": "อธิบายได้ว่าทำไมสภาผู้แทนราษฎรจึงมีสมาชิก 150 คน",
+    "en": "Explain why the Tweede Kamer has 150 members"
+   },
+   "targets": [
+    "kam.kamerlid",
+    "kam.zetel",
+    "kam.wet",
+    "kam.bevolking",
+    "kam.controleren"
+   ],
+   "goals": [
+    "kennis-nederland",
+    "nt2-I-lezen-2"
+   ],
+   "art": {
+    "bg": "street",
+    "tone": "lilac",
+    "alt": {
+     "nl": "Een straat met een bord: 150.",
+     "th": "ถนนที่มีป้ายเขียนว่า 150",
+     "en": "A street with a sign that says 150."
+    },
+    "things": [
+     {
+      "kind": "window",
+      "x": 280,
+      "y": 56
+     },
+     {
+      "kind": "sign",
+      "x": 100,
+      "y": 70,
+      "text": "150"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "quiz",
+     "role": "instap",
+     "q": [
+      {
+       "items": [
+        "kam.zetel"
+       ],
+       "form": "number",
+       "ask": {
+        "nl": "Raad eens: hoeveel leden had de Tweede Kamer vóór 1956? Typ een getal.",
+        "th": "ลองเดา: ก่อนปี 1956 สภาผู้แทนราษฎรมีสมาชิกกี่คน พิมพ์ตัวเลข",
+        "en": "Guess: how many members did the Tweede Kamer have before 1956? Type a number."
+       },
+       "answer": "100",
+       "tol": 25,
+       "accept": [
+        "100"
+       ],
+       "err": "getal",
+       "why": {
+        "nl": "Het waren er 100. Zat je er dichtbij? Mooi. Zat je er ver naast? Dan weet je nu meer. Daarna werden het er 150.",
+        "th": "มี 100 คน ถ้าเดาใกล้เคียงก็ยอดเยี่ยม ถ้าห่าง ตอนนี้คุณก็รู้มากขึ้นแล้ว หลังจากนั้นเพิ่มเป็น 150",
+        "en": "There were 100. Was your guess close? Nice. Far off? Now you know more. After that it became 150."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "kam.kamerlid",
+      "kam.wet",
+      "kam.controleren",
+      "kam.bevolking"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Tweede_Kamer_der_Staten-Generaal",
+       "title": "Wikipedia: Tweede Kamer der Staten-Generaal"
+      },
+      {
+       "url": "https://www.denederlandsegrondwet.nl/column/202309/waarom-de-kamer-1956-van-100-naar-150-leden-ging",
+       "title": "De Nederlandse Grondwet: Waarom de Kamer in 1956 van 100 naar 150 leden ging"
+      },
+      {
+       "url": "https://www.montesquieu-instituut.nl/id/vjcectd6t4rp/waarom_heeft_de_nederlandse_staten",
+       "title": "Montesquieu Instituut: Waarom heeft de Nederlandse Staten-Generaal 225 leden?"
+      }
+     ],
+     "text": {
+      "nl": "De Tweede Kamer heeft 150 leden: de kamerleden. Ze maken met de regering de wetten en ze controleren de regering. Elk kamerlid heeft één zetel.\n\nDat aantal is er sinds 1956. Van 1888 tot 1956 waren er 100. Waarom kwamen er meer? Na de oorlog deed de overheid steeds meer, en wetten werden ingewikkelder. De Kamer had dus meer werk. Kamerleden kregen ook meer internationaal werk.\n\nOok de bevolking was gegroeid: in 1947 woonden er 9,5 miljoen mensen in Nederland. En de wetgever vond dat Nederland een klein parlement had, vergeleken met andere landen.",
+      "th": "สภาผู้แทนราษฎร (Tweede Kamer) มีสมาชิก 150 คน คือ kamerlid สมาชิกสภาร่วมกับรัฐบาลออกกฎหมาย (wet) และตรวจสอบ (controleren) รัฐบาล สมาชิกแต่ละคนมีหนึ่งที่นั่ง (zetel)\n\nจำนวนนี้มีมาตั้งแต่ปี ค.ศ. 1956 ตั้งแต่ปี 1888 ถึง 1956 มี 100 คน ทำไมจึงเพิ่ม หลังสงคราม รัฐทำมากขึ้นเรื่อย ๆ และกฎหมายซับซ้อนขึ้น สภาจึงมีงานมากขึ้น สมาชิกสภายังมีงานระหว่างประเทศมากขึ้นด้วย\n\nประชากร (bevolking) ก็เพิ่มขึ้น ในปี 1947 มีผู้คน 9.5 ล้านคนอาศัยอยู่ในเนเธอร์แลนด์ และผู้ออกกฎหมายเห็นว่าเนเธอร์แลนด์มีรัฐสภาขนาดเล็กเมื่อเทียบกับประเทศอื่น",
+      "en": "The Tweede Kamer (House of Representatives) has 150 members: the kamerleden. Together with the government they make the laws (wet) and they check (controleren) the government. Each member has one seat (zetel).\n\nThat number has existed since 1956. From 1888 to 1956 there were 100. Why more? After the war the government did more and more, and laws became more complicated. So the Kamer had more work. Members also got more international work.\n\nThe population (bevolking) had also grown: in 1947, 9.5 million people lived in the Netherlands. And the legislator thought the Netherlands had a small parliament compared with other countries."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "kam.kamerlid"
+       ],
+       "ask": {
+        "nl": "Wat is één reden voor meer kamerleden?",
+        "th": "เหตุผลหนึ่งที่มีสมาชิกสภามากขึ้นคืออะไร",
+        "en": "What is one reason for more members?"
+       },
+       "opts": [
+        {
+         "t": "De Kamer had meer werk",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Na de oorlog deed de overheid meer en werden wetten ingewikkelder, dus de Kamer had meer werk.",
+          "th": "ถูกต้อง หลังสงครามรัฐทำมากขึ้นและกฎหมายซับซ้อนขึ้น สภาจึงมีงานมากขึ้น",
+          "en": "Right. After the war the government did more and laws became more complicated, so the Kamer had more work."
+         }
+        },
+        {
+         "t": "Er woonden minder mensen in Nederland",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Het is andersom: de bevolking was gegroeid.",
+          "th": "กลับกัน ประชากรเพิ่มขึ้น",
+          "en": "It is the other way round: the population had grown."
+         }
+        },
+        {
+         "t": "De Kamer wilde meer vakantie",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de bronnen. De reden was meer werk.",
+          "th": "ไม่มีในแหล่งข้อมูล เหตุผลคือมีงานมากขึ้น",
+          "en": "That is not in the sources. The reason was more work."
+         }
+        }
+       ],
+       "answer": "De Kamer had meer werk",
+       "why": {
+        "nl": "Een reden was meer werk. Andere redenen: internationaal werk en een groeiende bevolking.",
+        "th": "เหตุผลหนึ่งคืองานมากขึ้น เหตุผลอื่น คืองานระหว่างประเทศและประชากรที่เพิ่มขึ้น",
+        "en": "One reason was more work. Other reasons: international work and a growing population."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "kam.zetel",
+      "kam.kamerlid"
+     ],
+     "ask": {
+      "nl": "De Tweede Kamer heeft 150 zetels. De Eerste Kamer heeft de helft. Hoeveel zetels is dat?",
+      "th": "สภาผู้แทนราษฎรมี 150 ที่นั่ง วุฒิสภามีครึ่งหนึ่ง นั่นคือกี่ที่นั่ง",
+      "en": "The Tweede Kamer has 150 seats. The Eerste Kamer has half. How many seats is that?"
+     },
+     "opts": [
+      {
+       "t": "50",
+       "r": "no",
+       "err": "getal",
+       "why": {
+        "nl": "Dat is een derde, niet de helft. De helft van 150 is 75.",
+        "th": "นั่นคือหนึ่งในสาม ไม่ใช่ครึ่ง ครึ่งของ 150 คือ 75",
+        "en": "That is a third, not a half. Half of 150 is 75."
+       }
+      },
+      {
+       "t": "75",
+       "r": "ok",
+       "why": {
+        "nl": "Goed. In 1956 werden de twee Kamers samen groter: 150 en 75, een verhouding van 2 op 1.",
+        "th": "ถูกต้อง ในปี 1956 ทั้งสองสภาขยายพร้อมกัน เป็น 150 และ 75 สัดส่วน 2 ต่อ 1",
+        "en": "Right. In 1956 both Kamers grew together: 150 and 75, a ratio of 2 to 1."
+       }
+      },
+      {
+       "t": "100",
+       "r": "no",
+       "err": "getal",
+       "why": {
+        "nl": "Dat is het oude aantal van de Tweede Kamer. De helft van 150 is 75.",
+        "th": "นั่นคือจำนวนเดิมของสภาผู้แทนราษฎร ครึ่งของ 150 คือ 75",
+        "en": "That is the old number of the Tweede Kamer. Half of 150 is 75."
+       }
+      }
+     ],
+     "answer": "75",
+     "why": {
+      "nl": "De helft van 150 is 75. Zo is de verhouding tussen de twee Kamers 2 op 1.",
+      "th": "ครึ่งของ 150 คือ 75 สัดส่วนของสองสภาจึงเป็น 2 ต่อ 1",
+      "en": "Half of 150 is 75. So the ratio of the two Kamers is 2 to 1."
+     }
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "kam.zetel"
+     ],
+     "sources": [
+      {
+       "url": "https://www.denederlandsegrondwet.nl/column/202309/waarom-de-kamer-1956-van-100-naar-150-leden-ging",
+       "title": "De Nederlandse Grondwet: Waarom de Kamer in 1956 van 100 naar 150 leden ging"
+      }
+     ],
+     "text": {
+      "nl": "Het ging niet snel. In februari 1952 stemde de Tweede Kamer voor 150 zetels. In mei 1952 stemde de Eerste Kamer tegen. Sommige leden vonden meer leden niet nodig. Ze wilden eerst efficiënter werken.\n\nIn november 1955 kwam een nieuw voorstel. In april 1956 stemde de Eerste Kamer voor. Op 6 november 1956 werd de Grondwet veranderd. Er was wel een probleem: in het gebouw was te weinig plaats voor de nieuwe leden.",
+      "th": "เรื่องนี้ไม่ได้เร็ว ในเดือนกุมภาพันธ์ ค.ศ. 1952 สภาผู้แทนราษฎรลงมติเห็นชอบ 150 ที่นั่ง ในเดือนพฤษภาคม 1952 วุฒิสภา (Eerste Kamer) ลงมติไม่เห็นชอบ สมาชิกบางคนเห็นว่าไม่จำเป็นต้องมีสมาชิกมากขึ้น พวกเขาอยากให้ทำงานอย่างมีประสิทธิภาพก่อน\n\nในเดือนพฤศจิกายน 1955 มีข้อเสนอใหม่ ในเดือนเมษายน 1956 วุฒิสภาลงมติเห็นชอบ วันที่ 6 พฤศจิกายน 1956 มีการแก้รัฐธรรมนูญ แต่ก็มีปัญหาเรื่องที่ทำงาน คืออาคารมีที่ไม่พอสำหรับสมาชิกใหม่",
+      "en": "It did not go fast. In February 1952 the Tweede Kamer voted for 150 seats. In May 1952 the Eerste Kamer (Senate) voted against. Some members did not think more members were needed. They wanted to work more efficiently first.\n\nIn November 1955 a new proposal came. In April 1956 the Eerste Kamer voted in favour. On 6 November 1956 the Constitution was changed. There was a problem, though: there was too little room in the building for the new members."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "kam.zetel"
+       ],
+       "ask": {
+        "nl": "Waarom stemde de Eerste Kamer in 1952 tegen?",
+        "th": "ทำไมวุฒิสภาจึงลงมติไม่เห็นชอบในปี 1952",
+        "en": "Why did the Eerste Kamer vote against in 1952?"
+       },
+       "opts": [
+        {
+         "t": "Sommige leden vonden meer leden niet nodig",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Ze wilden eerst efficiënter werken.",
+          "th": "ถูกต้อง พวกเขาอยากให้ทำงานอย่างมีประสิทธิภาพก่อน",
+          "en": "Right. They wanted to work more efficiently first."
+         }
+        },
+        {
+         "t": "De Tweede Kamer was zelf tegen",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "De Tweede Kamer stemde in 1952 juist voor 150 zetels.",
+          "th": "สภาผู้แทนราษฎรลงมติเห็นชอบ 150 ที่นั่งในปี 1952",
+          "en": "The Tweede Kamer actually voted for 150 seats in 1952."
+         }
+        },
+        {
+         "t": "Er was geen geld voor een nieuw gebouw",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst als reden voor het nee.",
+          "th": "ข้อความไม่ได้ให้เหตุผลนี้สำหรับการลงมติไม่เห็นชอบ",
+          "en": "The text does not give that as the reason for the no."
+         }
+        }
+       ],
+       "answer": "Sommige leden vonden meer leden niet nodig",
+       "why": {
+        "nl": "Sommige leden vonden meer leden niet nodig en wilden eerst efficiënter werken.",
+        "th": "สมาชิกบางคนเห็นว่าไม่จำเป็นและอยากทำงานให้มีประสิทธิภาพก่อน",
+        "en": "Some members saw no need for more members and wanted to work more efficiently first."
+       }
+      },
+      {
+       "form": "number",
+       "items": [
+        "kam.zetel"
+       ],
+       "ask": {
+        "nl": "In welk jaar stemde de Eerste Kamer voor? Typ het jaar.",
+        "th": "วุฒิสภาลงมติเห็นชอบในปีใด พิมพ์ปี",
+        "en": "In which year did the Eerste Kamer vote in favour? Type the year."
+       },
+       "answer": "1956",
+       "err": "lezen",
+       "why": {
+        "nl": "In april 1956. Op 6 november 1956 werd de Grondwet veranderd.",
+        "th": "ในเดือนเมษายน 1956 วันที่ 6 พฤศจิกายน 1956 รัฐธรรมนูญถูกแก้ไข",
+        "en": "In April 1956. On 6 November 1956 the Constitution was changed."
+       }
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu vertellen: de Tweede Kamer kreeg in 1956 150 zetels in plaats van 100, vooral door meer werk, internationaal werk en een groeiende bevolking.",
+      "th": "ตอนนี้คุณเล่าได้ว่า ในปี 1956 สภาผู้แทนราษฎรมี 150 ที่นั่งแทน 100 ส่วนใหญ่เพราะงานมากขึ้น งานระหว่างประเทศ และประชากรที่เพิ่มขึ้น",
+      "en": "You can now tell someone: in 1956 the Tweede Kamer got 150 seats instead of 100, mainly because of more work, international work and a growing population."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

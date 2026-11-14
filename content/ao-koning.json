@@ -1,0 +1,821 @@
+{
+ "format": 1,
+ "id": "ao-koning",
+ "type": "les",
+ "version": 1,
+ "order": 12,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "politiek",
+ "vorm": "twee dingen naast elkaar",
+ "draden": [
+  "ao-kamer150",
+  "ao-wet",
+  "ao-holland"
+ ],
+ "title": {
+  "nl": "Waarom heeft Nederland een koning en geen president?",
+  "th": "ทำไมเนเธอร์แลนด์จึงมีกษัตริย์ ไม่มีประธานาธิบดี",
+  "en": "Why does the Netherlands have a king and not a president?"
+ },
+ "sources": [
+  {
+   "url": "https://npokennis.nl/story/719/wat-doet-de-koning",
+   "title": "NPO Kennis: Wat doet de koning?"
+  },
+  {
+   "url": "https://www.ru.nl/onderzoek/hulp-bij-profielwerkstuk/onderwerpen/de-koning",
+   "title": "Radboud Universiteit: Het koningshuis en de rol van de koning"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Nederlandse_monarchie",
+   "title": "Wikipedia: Nederlandse monarchie"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Constitutionele_monarchie",
+   "title": "Wikipedia: Constitutionele monarchie"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Republiek",
+   "title": "Wikipedia: Republiek"
+  }
+ ],
+ "items": [
+  {
+   "id": "kon.koning",
+   "kind": "word",
+   "w": "koning",
+   "art": "de",
+   "tr": {
+    "th": "กษัตริย์",
+    "en": "king"
+   },
+   "def": "Het staatshoofd van een land met een koninklijke familie.",
+   "ex": "De koning leest elk jaar de troonrede voor.",
+   "gap": "In Nederland ondertekent de ___ de wetten samen met een minister.",
+   "wrong": [
+    "bakker",
+    "kok",
+    "trein"
+   ]
+  },
+  {
+   "id": "kon.staatshoofd",
+   "kind": "word",
+   "w": "staatshoofd",
+   "art": "het",
+   "tr": {
+    "th": "ประมุขของรัฐ",
+    "en": "head of state"
+   },
+   "def": "De belangrijkste persoon die een land vertegenwoordigt.",
+   "ex": "In Nederland is de koning het staatshoofd.",
+   "gap": "Het ___ van een land is een koning of een president.",
+   "wrong": [
+    "huis",
+    "brood",
+    "glas"
+   ]
+  },
+  {
+   "id": "kon.president",
+   "kind": "word",
+   "w": "president",
+   "art": "de",
+   "tr": {
+    "th": "ประธานาธิบดี",
+    "en": "president"
+   },
+   "def": "Het staatshoofd van een land dat geen koning heeft.",
+   "ex": "In een republiek is meestal een president het staatshoofd.",
+   "gap": "In een republiek is de ___ meestal het staatshoofd.",
+   "wrong": [
+    "bakker",
+    "stoel",
+    "bus"
+   ]
+  },
+  {
+   "id": "kon.regering",
+   "kind": "word",
+   "w": "regering",
+   "art": "de",
+   "tr": {
+    "th": "รัฐบาล",
+    "en": "government"
+   },
+   "def": "De koning en de ministers samen, die het land besturen.",
+   "ex": "De regering bestaat uit de koning en de ministers.",
+   "gap": "De ___ bestaat uit de koning en de ministers.",
+   "wrong": [
+    "school",
+    "markt",
+    "winkel"
+   ]
+  },
+  {
+   "id": "kon.minister",
+   "kind": "word",
+   "w": "minister",
+   "art": "de",
+   "tr": {
+    "th": "รัฐมนตรี",
+    "en": "minister"
+   },
+   "def": "Iemand die bij de regering hoort en verantwoording aflegt.",
+   "ex": "De minister legt verantwoording af aan het parlement.",
+   "gap": "De ___ hoort bij het kabinet en leidt een ministerie.",
+   "wrong": [
+    "bakker",
+    "fiets",
+    "tafel"
+   ]
+  },
+  {
+   "id": "kon.grondwet",
+   "kind": "word",
+   "w": "grondwet",
+   "art": "de",
+   "tr": {
+    "th": "รัฐธรรมนูญ",
+    "en": "constitution"
+   },
+   "def": "De belangrijkste wet van een land, met regels over het bestuur.",
+   "ex": "In de grondwet staat wat de koning mag doen.",
+   "gap": "De ___ is de belangrijkste wet van Nederland.",
+   "wrong": [
+    "fiets",
+    "tas",
+    "soep"
+   ]
+  },
+  {
+   "id": "kon.verantwoordelijk",
+   "kind": "word",
+   "w": "verantwoordelijk",
+   "art": "",
+   "tr": {
+    "th": "รับผิดชอบ",
+    "en": "responsible"
+   },
+   "def": "Je moet uitleggen of goedmaken wat er gebeurt.",
+   "ex": "De ministers zijn verantwoordelijk voor wat de koning zegt.",
+   "gap": "Een minister is ___ voor het beleid van de regering.",
+   "wrong": [
+    "groen",
+    "koud",
+    "ziek"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-koning-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Waarom heeft Nederland een koning en geen president?",
+    "th": "ทำไมเนเธอร์แลนด์จึงมีกษัตริย์ ไม่มีประธานาธิบดี",
+    "en": "Why does the Netherlands have a king and not a president?"
+   },
+   "intro": {
+    "nl": "Je zet twee dingen naast elkaar: wat de koning doet en wat de ministers doen. Je leest wat de grondwet en de regering zeggen, zonder mening.",
+    "th": "คุณจะวางสองสิ่งไว้เคียงกัน คือสิ่งที่กษัตริย์ทำและสิ่งที่รัฐมนตรีทำ คุณจะอ่านสิ่งที่รัฐธรรมนูญและรัฐบาลกล่าวไว้ โดยไม่มีความเห็น",
+    "en": "You put two things side by side: what the king does and what the ministers do. You read what the constitution and the government say, without an opinion."
+   },
+   "can": {
+    "nl": "Uitleggen wat de koning en wat de ministers doen, en waarom Nederland een koning heeft",
+    "th": "อธิบายได้ว่ากษัตริย์และรัฐมนตรีทำอะไร และทำไมเนเธอร์แลนด์จึงมีกษัตริย์",
+    "en": "Explain what the king and what the ministers do, and why the Netherlands has a king"
+   },
+   "targets": [
+    "kon.koning",
+    "kon.staatshoofd",
+    "kon.president",
+    "kon.regering",
+    "kon.minister",
+    "kon.grondwet",
+    "kon.verantwoordelijk"
+   ],
+   "goals": [
+    "kennis-nederland",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "room",
+    "tone": "lilac",
+    "alt": {
+     "nl": "Een kamer met een tafel, een klok en een plant. Aan de ene kant staat de koning, aan de andere kant staat een minister.",
+     "th": "ห้องที่มีโต๊ะ นาฬิกา และต้นไม้ ด้านหนึ่งมีกษัตริย์ยืนอยู่ อีกด้านหนึ่งมีรัฐมนตรียืนอยู่",
+     "en": "A room with a table, a clock and a plant. On one side stands the king, on the other side stands a minister."
+    },
+    "things": [
+     {
+      "kind": "window",
+      "x": 258,
+      "y": 62
+     },
+     {
+      "kind": "clock",
+      "x": 150,
+      "y": 54,
+      "value": "2:00"
+     },
+     {
+      "kind": "plant",
+      "x": 44,
+      "y": 198
+     },
+     {
+      "kind": "table",
+      "x": 168,
+      "y": 190,
+      "s": 1.05
+     },
+     {
+      "kind": "person",
+      "x": 100,
+      "y": 204,
+      "s": 1.7,
+      "who": "koning",
+      "look": "neutral",
+      "tone": "apricot",
+      "hair": "short",
+      "hairTone": "grey",
+      "skin": "a"
+     },
+     {
+      "kind": "person",
+      "x": 250,
+      "y": 204,
+      "s": 1.7,
+      "who": "minister",
+      "look": "think",
+      "tone": "sky",
+      "hair": "bun",
+      "hairTone": "brown",
+      "skin": "b"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "do",
+     "items": [
+      "kon.koning",
+      "kon.regering"
+     ],
+     "ask": {
+      "nl": "Raad eens: wie bepaalt in Nederland het beleid van het land?",
+      "th": "ลองเดา: ใครเป็นผู้กำหนดนโยบายของประเทศในเนเธอร์แลนด์",
+      "en": "Guess: who decides the policy of the country in the Netherlands?"
+     },
+     "opts": [
+      {
+       "t": "De koning, alleen",
+       "r": "no",
+       "err": "model",
+       "why": {
+        "nl": "Nee. De koning besluit nooit alleen. Je leest zo wie wat doet.",
+        "th": "ไม่ใช่ กษัตริย์ไม่เคยตัดสินใจคนเดียว อีกสักครู่คุณจะได้อ่านว่าใครทำอะไร",
+        "en": "No. The king never decides alone. You will read in a moment who does what."
+       }
+      },
+      {
+       "t": "Het kabinet en de Kamers samen",
+       "r": "ok",
+       "why": {
+        "nl": "Dat klopt. Het kabinet en de Eerste en Tweede Kamer bepalen samen het beleid.",
+        "th": "ถูกต้อง คณะรัฐมนตรี (kabinet) กับสภาสูงและสภาล่าง (Eerste en Tweede Kamer) กำหนดนโยบายร่วมกัน",
+        "en": "That is right. The cabinet and the Eerste and Tweede Kamer (the two houses of parliament) decide the policy together."
+       }
+      },
+      {
+       "t": "Een president",
+       "r": "no",
+       "err": "model",
+       "why": {
+        "nl": "Nee. Nederland heeft geen president. Je leest zo waarom.",
+        "th": "ไม่ใช่ เนเธอร์แลนด์ไม่มีประธานาธิบดี อีกสักครู่คุณจะได้อ่านว่าทำไม",
+        "en": "No. The Netherlands has no president. You will read why in a moment."
+       }
+      }
+     ],
+     "answer": "Het kabinet en de Kamers samen",
+     "why": {
+      "nl": "De koning heeft in de politiek niet veel macht. Wat de koning dan wel doet, zie je nu naast wat de ministers doen.",
+      "th": "กษัตริย์ไม่ได้มีอำนาจมากในทางการเมือง สิ่งที่กษัตริย์ทำจริง ๆ คุณจะได้ดูเทียบกับสิ่งที่รัฐมนตรีทำ",
+      "en": "The king does not have much power in politics. What the king does do, you now see next to what the ministers do."
+     }
+    },
+    {
+     "type": "read",
+     "items": [
+      "kon.koning",
+      "kon.minister",
+      "kon.verantwoordelijk",
+      "kon.regering"
+     ],
+     "sources": [
+      {
+       "url": "https://npokennis.nl/story/719/wat-doet-de-koning",
+       "title": "NPO Kennis: Wat doet de koning?"
+      },
+      {
+       "url": "https://www.ru.nl/onderzoek/hulp-bij-profielwerkstuk/onderwerpen/de-koning",
+       "title": "Radboud Universiteit: Het koningshuis en de rol van de koning"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Nederlandse_monarchie",
+       "title": "Wikipedia: Nederlandse monarchie"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Constitutionele_monarchie",
+       "title": "Wikipedia: Constitutionele monarchie"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Republiek",
+       "title": "Wikipedia: Republiek"
+      }
+     ],
+     "text": {
+      "nl": "De koning\nDe koning is het staatshoofd. De koning leest elk jaar de troonrede voor, ontvangt buitenlandse staatshoofden, opent scholen en tentoonstellingen en houdt de kersttoespraak. De koning beëdigt ook de ministers.\n\nDe ministers\nDe koning en de ministers vormen samen de regering. De ministers zijn verantwoordelijk voor alles wat de koning doet en zegt. Zij leggen verantwoording af aan het parlement. De koning is onschendbaar: de koning zelf staat dus niet ter verantwoording.\n\nSamen\nEen wet krijgt de handtekening van de koning én van een minister. De koning beslist dus nooit alleen.",
+      "th": "กษัตริย์\nกษัตริย์เป็นประมุขของรัฐ ทุกปีกษัตริย์อ่านพระราชดำรัสเปิดสมัยประชุม (troonrede) ต้อนรับประมุขของรัฐต่างประเทศ เปิดโรงเรียนและนิทรรศการ และมีพระราชดำรัสวันคริสต์มาส กษัตริย์ยังเป็นผู้ให้รัฐมนตรีสาบานตนด้วย\n\nรัฐมนตรี\nกษัตริย์และรัฐมนตรีร่วมกันเป็นรัฐบาล รัฐมนตรีรับผิดชอบทุกสิ่งที่กษัตริย์ทำและพูด รัฐมนตรีต้องชี้แจงต่อรัฐสภา กษัตริย์ล่วงละเมิดไม่ได้ (onschendbaar) ตัวกษัตริย์เองจึงไม่ต้องรับผิดชอบต่อสภา\n\nร่วมกัน\nกฎหมายต้องมีลายเซ็นของทั้งกษัตริย์และรัฐมนตรี กษัตริย์จึงไม่เคยตัดสินใจคนเดียว",
+      "en": "The king\nThe king is the head of state. Every year the king reads the troonrede (speech from the throne), receives foreign heads of state, opens schools and exhibitions and gives the Christmas speech. The king also swears in the ministers.\n\nThe ministers\nThe king and the ministers together form the government. The ministers are responsible for everything the king does and says. They answer to parliament. The king is inviolable (onschendbaar): the king personally is not held to account.\n\nTogether\nA law gets the signature of the king and of a minister. So the king never decides alone."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "kon.minister"
+       ],
+       "ask": {
+        "nl": "Wie legt verantwoording af aan het parlement?",
+        "th": "ใครต้องชี้แจงต่อรัฐสภา",
+        "en": "Who answers to parliament?"
+       },
+       "opts": [
+        {
+         "t": "De koning",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De koning is onschendbaar. De ministers leggen verantwoording af.",
+          "th": "ไม่ใช่ กษัตริย์ล่วงละเมิดไม่ได้ รัฐมนตรีเป็นผู้ชี้แจง",
+          "en": "No. The king is inviolable. The ministers answer to parliament."
+         }
+        },
+        {
+         "t": "De ministers",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. De ministers zijn verantwoordelijk, ook voor wat de koning doet en zegt.",
+          "th": "ถูกต้อง รัฐมนตรีรับผิดชอบ รวมถึงสิ่งที่กษัตริย์ทำและพูด",
+          "en": "Right. The ministers are responsible, also for what the king does and says."
+         }
+        },
+        {
+         "t": "Niemand",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De ministers leggen verantwoording af aan het parlement.",
+          "th": "ไม่ใช่ รัฐมนตรีชี้แจงต่อรัฐสภา",
+          "en": "No. The ministers answer to parliament."
+         }
+        }
+       ],
+       "answer": "De ministers"
+      },
+      {
+       "form": "complete",
+       "items": [
+        "kon.verantwoordelijk"
+       ],
+       "ask": {
+        "nl": "Maak af: De koning is onschendbaar. De ministers zijn ___.",
+        "th": "เติมคำ: De koning is onschendbaar. De ministers zijn ___.",
+        "en": "Complete: De koning is onschendbaar. De ministers zijn ___."
+       },
+       "answer": "verantwoordelijk",
+       "hint": [
+        {
+         "nl": "Het woord begint met ver…",
+         "th": "คำนี้ขึ้นต้นด้วย ver…",
+         "en": "The word starts with ver…"
+        },
+        {
+         "nl": "Begin zo: verantw…",
+         "th": "ขึ้นต้นแบบนี้: verantw…",
+         "en": "Start like this: verantw…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. De ministers zijn verantwoordelijk voor wat de koning doet en zegt.",
+        "th": "ถูกต้อง รัฐมนตรีรับผิดชอบสิ่งที่กษัตริย์ทำและพูด",
+        "en": "Right. The ministers are responsible for what the king does and says."
+       }
+      }
+     ]
+    },
+    {
+     "type": "quiz",
+     "role": "ophalen",
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "kon.koning"
+       ],
+       "ask": {
+        "nl": "Wie leest elk jaar de troonrede voor?",
+        "th": "ใครอ่านพระราชดำรัสเปิดสมัยประชุมทุกปี",
+        "en": "Who reads the troonrede every year?"
+       },
+       "opts": [
+        {
+         "t": "De ministers",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De koning leest de troonrede voor.",
+          "th": "ไม่ใช่ กษัตริย์เป็นผู้อ่านพระราชดำรัส",
+          "en": "No. The king reads the troonrede."
+         }
+        },
+        {
+         "t": "De koning",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Het voorlezen van de troonrede hoort bij de taken van de koning.",
+          "th": "ถูกต้อง การอ่านพระราชดำรัสเป็นหน้าที่หนึ่งของกษัตริย์",
+          "en": "Right. Reading the troonrede is one of the tasks of the king."
+         }
+        },
+        {
+         "t": "Allebei",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Alleen de koning leest hem voor.",
+          "th": "ไม่ใช่ กษัตริย์เป็นผู้อ่านเพียงผู้เดียว",
+          "en": "No. Only the king reads it."
+         }
+        }
+       ],
+       "answer": "De koning"
+      },
+      {
+       "form": "choose",
+       "items": [
+        "kon.minister"
+       ],
+       "ask": {
+        "nl": "Wie ondertekent een wet?",
+        "th": "ใครลงนามในกฎหมาย",
+        "en": "Who signs a law?"
+       },
+       "opts": [
+        {
+         "t": "Alleen de koning",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Ook een minister zet zijn of haar handtekening.",
+          "th": "ไม่ใช่ รัฐมนตรีก็ลงนามด้วย",
+          "en": "No. A minister signs too."
+         }
+        },
+        {
+         "t": "Alleen een minister",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Ook de koning zet een handtekening.",
+          "th": "ไม่ใช่ กษัตริย์ก็ลงนามด้วย",
+          "en": "No. The king signs too."
+         }
+        },
+        {
+         "t": "De koning én een minister",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Een wet krijgt twee handtekeningen: van de koning en van een minister.",
+          "th": "ถูกต้อง กฎหมายมีลายเซ็นสองรายการ คือของกษัตริย์และของรัฐมนตรี",
+          "en": "Right. A law gets two signatures: of the king and of a minister."
+         }
+        }
+       ],
+       "answer": "De koning én een minister"
+      },
+      {
+       "form": "choose",
+       "items": [
+        "kon.verantwoordelijk"
+       ],
+       "ask": {
+        "nl": "Wie is verantwoordelijk voor wat de koning zegt?",
+        "th": "ใครรับผิดชอบสิ่งที่กษัตริย์พูด",
+        "en": "Who is responsible for what the king says?"
+       },
+       "opts": [
+        {
+         "t": "De ministers",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Dat is de ministeriële verantwoordelijkheid.",
+          "th": "ถูกต้อง นี่คือความรับผิดชอบของรัฐมนตรี (ministeriële verantwoordelijkheid)",
+          "en": "Right. That is ministerial responsibility."
+         }
+        },
+        {
+         "t": "De koning zelf",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De koning is onschendbaar.",
+          "th": "ไม่ใช่ กษัตริย์ล่วงละเมิดไม่ได้",
+          "en": "No. The king is inviolable."
+         }
+        },
+        {
+         "t": "Het volk",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Dat staat nergens. De ministers zijn verantwoordelijk.",
+          "th": "ไม่ใช่ ไม่มีที่ใดกล่าวไว้ รัฐมนตรีเป็นผู้รับผิดชอบ",
+          "en": "No. That is not stated anywhere. The ministers are responsible."
+         }
+        }
+       ],
+       "answer": "De ministers"
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "kon.koning",
+      "kon.grondwet",
+      "kon.staatshoofd"
+     ],
+     "sources": [
+      {
+       "url": "https://npokennis.nl/story/719/wat-doet-de-koning",
+       "title": "NPO Kennis: Wat doet de koning?"
+      },
+      {
+       "url": "https://www.ru.nl/onderzoek/hulp-bij-profielwerkstuk/onderwerpen/de-koning",
+       "title": "Radboud Universiteit: Het koningshuis en de rol van de koning"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Nederlandse_monarchie",
+       "title": "Wikipedia: Nederlandse monarchie"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Constitutionele_monarchie",
+       "title": "Wikipedia: Constitutionele monarchie"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Republiek",
+       "title": "Wikipedia: Republiek"
+      }
+     ],
+     "text": {
+      "nl": "Waarom een koning? Dat komt door de geschiedenis.\n\nNa 1581 was het gebied dat nu Nederland is, een republiek: er was geen koning. Vanaf 1795 heette het land de Bataafse Republiek, maar er was nog steeds geen koning. In 1806 kreeg het land voor het eerst een koning, aangesteld door de Franse keizer Napoleon. In 1810 werd het land Frans.\n\nIn 1813 werd Willem, de zoon van de laatste stadhouder (een soort bestuurder, geen koning), soeverein vorst (de hoogste baas, nog zonder de titel koning). Op 16 maart 1815 maakte hij zichzelf koning: Willem I.\n\nIn 1848 veranderde de grondwet. De macht van de koning werd kleiner: de koning is onschendbaar en de ministers zijn verantwoordelijk. Sindsdien is Nederland een constitutionele monarchie: de positie van de koning staat in de grondwet. Sinds 30 april 2013 is Willem-Alexander koning. De troon gaat over op de nakomelingen, het oudste kind eerst.",
+      "th": "ทำไมต้องมีกษัตริย์ เหตุผลอยู่ที่ประวัติศาสตร์\n\nหลังปี 1581 ดินแดนที่เป็นเนเธอร์แลนด์ในปัจจุบันเป็นสาธารณรัฐ ไม่มีกษัตริย์ และตั้งแต่ปี 1795 ประเทศมีชื่อว่าสาธารณรัฐบาตาเวีย (Bataafse Republiek) แต่ยังคงไม่มีกษัตริย์ ในปี 1806 ประเทศมีกษัตริย์เป็นครั้งแรก โดยจักรพรรดิฝรั่งเศสนโปเลียนทรงแต่งตั้ง ในปี 1810 ประเทศถูกผนวกเข้ากับฝรั่งเศส\n\nในปี 1813 วิลเลม (Willem) โอรสของสตัดเฮาเดอร์ (ผู้ปกครองประเภทหนึ่ง ไม่ใช่กษัตริย์) คนสุดท้าย ได้เป็นเจ้าผู้ครองรัฐ (ผู้นำสูงสุดที่ยังไม่มีตำแหน่งกษัตริย์) เมื่อวันที่ 16 มีนาคม 1815 พระองค์ทรงสถาปนาตนเป็นกษัตริย์ คือวิลเลมที่ 1\n\nในปี 1848 มีการเปลี่ยนแปลงรัฐธรรมนูญ อำนาจของกษัตริย์ลดลง กษัตริย์ล่วงละเมิดไม่ได้และรัฐมนตรีเป็นผู้รับผิดชอบ นับแต่นั้นเนเธอร์แลนด์เป็นราชาธิปไตยภายใต้รัฐธรรมนูญ ตำแหน่งของกษัตริย์ระบุไว้ในรัฐธรรมนูญ ตั้งแต่วันที่ 30 เมษายน 2013 วิลเลม-อเล็กซานเดอร์ (Willem-Alexander) เป็นกษัตริย์ บัลลังก์สืบทอดไปยังทายาท โดยบุตรคนโตก่อน",
+      "en": "Why a king? That comes from history.\n\nAfter 1581 the area that is now the Netherlands was a republic: there was no king. From 1795 the country was called the Bataafse Republiek (Batavian Republic), but there was still no king. In 1806 the country got a king for the first time, appointed by the French emperor Napoleon. In 1810 the country became French.\n\nIn 1813 Willem, the son of the last stadholder (a kind of ruler, not a king), became sovereign prince (the highest leader, still without the title of king). On 16 March 1815 he made himself king: Willem I.\n\nIn 1848 the constitution changed. The power of the king became smaller: the king is inviolable and the ministers are responsible. Since then the Netherlands has been a constitutional monarchy: the position of the king is in the constitution. Since 30 April 2013 Willem-Alexander has been king. The throne passes to the descendants, the eldest child first."
+     },
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "kon.koning"
+       ],
+       "ask": {
+        "nl": "In welk jaar maakte Willem zichzelf koning? Typ het jaar.",
+        "th": "วิลเลมสถาปนาตนเป็นกษัตริย์ในปีใด พิมพ์ปี",
+        "en": "In which year did Willem make himself king? Type the year."
+       },
+       "answer": "1815",
+       "err": "getal",
+       "why": {
+        "nl": "Goed. Op 16 maart 1815 werd Willem koning Willem I.",
+        "th": "ถูกต้อง เมื่อวันที่ 16 มีนาคม 1815 วิลเลมเป็นกษัตริย์วิลเลมที่ 1",
+        "en": "Right. On 16 March 1815 Willem became King Willem I."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "kon.grondwet"
+       ],
+       "ask": {
+        "nl": "Wat gebeurde er in 1848 met de macht van de koning?",
+        "th": "เกิดอะไรขึ้นกับอำนาจของกษัตริย์ในปี 1848",
+        "en": "What happened to the power of the king in 1848?"
+       },
+       "opts": [
+        {
+         "t": "Die werd groter",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De grondwet van 1848 maakte de macht van de koning juist kleiner.",
+          "th": "ไม่ใช่ รัฐธรรมนูญปี 1848 ทำให้อำนาจของกษัตริย์ลดลง",
+          "en": "No. The constitution of 1848 made the power of the king smaller."
+         }
+        },
+        {
+         "t": "Die werd kleiner",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Sindsdien zijn de ministers verantwoordelijk.",
+          "th": "ถูกต้อง ตั้งแต่นั้นรัฐมนตรีเป็นผู้รับผิดชอบ",
+          "en": "Right. Since then the ministers are responsible."
+         }
+        },
+        {
+         "t": "Er veranderde niets",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De grondwet veranderde in 1848.",
+          "th": "ไม่ใช่ รัฐธรรมนูญเปลี่ยนในปี 1848",
+          "en": "No. The constitution changed in 1848."
+         }
+        }
+       ],
+       "answer": "Die werd kleiner"
+      }
+     ]
+    },
+    {
+     "type": "quiz",
+     "role": "ophalen",
+     "q": [
+      {
+       "form": "build",
+       "items": [
+        "kon.koning"
+       ],
+       "ask": {
+        "nl": "Leg de tijdlijn in de goede volgorde.",
+        "th": "เรียงเส้นเวลาให้ถูกต้อง",
+        "en": "Put the timeline in the right order."
+       },
+       "data": {
+        "parts": [
+         "republiek, nog geen koning",
+         "eerste koning, van Napoleon",
+         "Willem I wordt koning",
+         "ministers worden verantwoordelijk"
+        ],
+        "tr": {
+         "th": "สาธารณรัฐ ยังไม่มีกษัตริย์ กษัตริย์องค์แรกจากนโปเลียน วิลเลมที่ 1 ขึ้นเป็นกษัตริย์ รัฐมนตรีเป็นผู้รับผิดชอบ",
+         "en": "republic, no king yet; first king, from Napoleon; Willem I becomes king; ministers become responsible"
+        }
+       },
+       "why": {
+        "nl": "Zo volgen de gebeurtenissen elkaar op: 1581 republiek, 1806 eerste koning, 1815 Willem I, 1848 verantwoordelijke ministers.",
+        "th": "เหตุการณ์เรียงตามลำดับดังนี้ ปี 1581 สาธารณรัฐ ปี 1806 กษัตริย์องค์แรก ปี 1815 วิลเลมที่ 1 ปี 1848 รัฐมนตรีรับผิดชอบ",
+        "en": "This is the order of events: 1581 republic, 1806 first king, 1815 Willem I, 1848 responsible ministers."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "kon.president",
+      "kon.staatshoofd"
+     ],
+     "sources": [
+      {
+       "url": "https://npokennis.nl/story/719/wat-doet-de-koning",
+       "title": "NPO Kennis: Wat doet de koning?"
+      },
+      {
+       "url": "https://www.ru.nl/onderzoek/hulp-bij-profielwerkstuk/onderwerpen/de-koning",
+       "title": "Radboud Universiteit: Het koningshuis en de rol van de koning"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Nederlandse_monarchie",
+       "title": "Wikipedia: Nederlandse monarchie"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Constitutionele_monarchie",
+       "title": "Wikipedia: Constitutionele monarchie"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Republiek",
+       "title": "Wikipedia: Republiek"
+      }
+     ],
+     "text": {
+      "nl": "En een president? Een republiek is een staat waarvan het staatshoofd niet wordt aangewezen door erfopvolging (het kind volgt de ouder op), maar op een of andere manier wordt gekozen. Een republiek heeft daarom meestal een president als staatshoofd. Voorbeelden van republieken zijn Zwitserland, Italië en Frankrijk. Ook Nederland was vroeger een republiek, tot 1806.\n\nEen koning wordt dus door erfopvolging staatshoofd, een president door een keuze. Ook andere landen hebben een koning, zoals België en Spanje. Ook daar staat de rol van de koning in de grondwet.\n\nDeze les beschrijft wat de grondwet en de regering zeggen. Of een land een koning of een president moet hebben, is een vraag waarop de les geen antwoord geeft.",
+      "th": "แล้วประธานาธิบดีล่ะ สาธารณรัฐคือรัฐที่ประมุขของรัฐไม่ได้มาจากการสืบทอด แต่ได้รับเลือกด้วยวิธีใดวิธีหนึ่ง ดังนั้นสาธารณรัฐส่วนใหญ่จึงมีประธานาธิบดีเป็นประมุขของรัฐ ตัวอย่างสาธารณรัฐ เช่น สวิตเซอร์แลนด์ อิตาลี และฝรั่งเศส เนเธอร์แลนด์เองก็เคยเป็นสาธารณรัฐจนถึงปี 1806\n\nกษัตริย์จึงเป็นประมุขของรัฐโดยการสืบทอด ส่วนประธานาธิบดีมาจากการเลือก ยังมีประเทศที่มีทั้งกษัตริย์และรัฐสภา เช่น เบลเยียมและสเปน ในประเทศเหล่านั้นบทบาทของกษัตริย์ก็ระบุไว้ในรัฐธรรมนูญ เช่นเดียวกับเนเธอร์แลนด์\n\nบทเรียนนี้อธิบายสิ่งที่รัฐธรรมนูญและรัฐบาลกล่าวไว้ ส่วนคำถามว่าประเทศควรมีกษัตริย์หรือประธานาธิบดี บทเรียนนี้ไม่ได้ให้คำตอบ",
+      "en": "And a president? A republic is a state whose head of state is not appointed by inheritance but is chosen in some way. So a republic usually has a president as head of state. Examples of republics are Switzerland, Italy and France. The Netherlands was also a republic in the past, until 1806.\n\nSo a king becomes head of state by inheritance, a president by a choice. There are also countries with a king and a parliament, such as Belgium and Spain. In those countries the role of the king is, as in the Netherlands, in the constitution.\n\nThis lesson describes what the constitution and the government say. Whether a country should have a king or a president is a question this lesson does not answer."
+     },
+     "q": [
+      {
+       "form": "type",
+       "items": [
+        "kon.president"
+       ],
+       "ask": {
+        "nl": "Hoe heet het staatshoofd van een republiek meestal? Typ één woord.",
+        "th": "ประมุขของสาธารณรัฐมักเรียกว่าอะไร พิมพ์หนึ่งคำ",
+        "en": "What is the head of state of a republic usually called? Type one word."
+       },
+       "answer": "president",
+       "hint": [
+        {
+         "nl": "Het woord begint met pre…",
+         "th": "คำนี้ขึ้นต้นด้วย pre…",
+         "en": "The word starts with pre…"
+        },
+        {
+         "nl": "Begin zo: presid…",
+         "th": "ขึ้นต้นแบบนี้: presid…",
+         "en": "Start like this: presid…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. Een republiek heeft meestal een president als staatshoofd.",
+        "th": "ถูกต้อง สาธารณรัฐมักมีประธานาธิบดีเป็นประมุขของรัฐ",
+        "en": "Right. A republic usually has a president as head of state."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "kon.staatshoofd"
+       ],
+       "ask": {
+        "nl": "Wat is het verschil tussen een koning en een president?",
+        "th": "กษัตริย์กับประธานาธิบดีต่างกันอย่างไร",
+        "en": "What is the difference between a king and a president?"
+       },
+       "opts": [
+        {
+         "t": "Een koning is staatshoofd door erfopvolging, een president door een keuze",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Zo omschrijft de bron het verschil tussen een monarchie en een republiek.",
+          "th": "ถูกต้อง แหล่งข้อมูลอธิบายความต่างระหว่างราชาธิปไตยกับสาธารณรัฐไว้เช่นนี้",
+          "en": "Right. This is how the source describes the difference between a monarchy and a republic."
+         }
+        },
+        {
+         "t": "Een president heeft altijd meer macht dan een koning",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Dat staat er niet. Het verschil gaat over hoe iemand staatshoofd wordt.",
+          "th": "ไม่ใช่ ไม่ได้เขียนไว้เช่นนั้น ความต่างอยู่ที่วิธีที่คนหนึ่งได้เป็นประมุขของรัฐ",
+          "en": "No. That is not what it says. The difference is about how someone becomes head of state."
+         }
+        },
+        {
+         "t": "Een president woont in een ander land",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Dat is niet het verschil.",
+          "th": "ไม่ใช่ นั่นไม่ใช่ความต่าง",
+          "en": "No. That is not the difference."
+         }
+        }
+       ],
+       "answer": "Een koning is staatshoofd door erfopvolging, een president door een keuze"
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu uitleggen: Nederland heeft een koning door zijn geschiedenis (1815), en de ministers zijn verantwoordelijk voor wat de koning doet en zegt.",
+      "th": "ตอนนี้คุณอธิบายได้ว่า เนเธอร์แลนด์มีกษัตริย์เพราะประวัติศาสตร์ (ปี 1815) และรัฐมนตรีรับผิดชอบสิ่งที่กษัตริย์ทำและพูด",
+      "en": "You can now explain: the Netherlands has a king because of its history (1815), and the ministers are responsible for what the king does and says."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

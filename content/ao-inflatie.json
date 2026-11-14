@@ -1,0 +1,543 @@
+{
+ "format": 1,
+ "id": "ao-inflatie",
+ "type": "les",
+ "version": 1,
+ "order": 2,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "economie",
+ "vorm": "één getal en wat erachter zit",
+ "draden": [
+  "ao-btw",
+  "ao-zijderoute",
+  "ao-koning"
+ ],
+ "title": {
+  "nl": "Wat is inflatie, en wie heeft er last van?",
+  "th": "เงินเฟ้อคืออะไร และใครได้รับผลกระทบ",
+  "en": "What is inflation, and who suffers from it?"
+ },
+ "sources": [
+  {
+   "url": "https://www.dnb.nl/de-euro-en-europa/inflatie/",
+   "title": "De Nederlandsche Bank: Inflatie"
+  },
+  {
+   "url": "https://www.ecb.europa.eu/mopo/strategy/pricestab/html/index.nl.html",
+   "title": "Europese Centrale Bank: Two per cent inflation target"
+  },
+  {
+   "url": "https://www.dnb.nl/algemeen-nieuws/achtergrond-2025/hoe-inflatie-huishoudens-verschillend-raakt-in-de-portemonnee/",
+   "title": "De Nederlandsche Bank: Hoe inflatie huishoudens verschillend raakt in de portemonnee"
+  }
+ ],
+ "items": [
+  {
+   "id": "inf.inflatie",
+   "kind": "word",
+   "w": "inflatie",
+   "art": "de",
+   "tr": {
+    "th": "เงินเฟ้อ",
+    "en": "inflation"
+   },
+   "def": "Het stijgen van de prijzen van veel producten en diensten.",
+   "ex": "Bij inflatie wordt alles langzaam duurder.",
+   "gap": "Door de ___ betaal je dit jaar meer voor dezelfde boodschappen.",
+   "wrong": [
+    "regen",
+    "trap",
+    "muziek"
+   ]
+  },
+  {
+   "id": "inf.prijs",
+   "kind": "word",
+   "w": "prijs",
+   "art": "de",
+   "tr": {
+    "th": "ราคา",
+    "en": "price"
+   },
+   "def": "Het geld dat je betaalt voor iets.",
+   "ex": "De prijs van de koffie is twee euro.",
+   "gap": "De ___ van een brood is twee euro.",
+   "wrong": [
+    "kleur",
+    "vorm",
+    "hoek"
+   ]
+  },
+  {
+   "id": "inf.mandje",
+   "kind": "word",
+   "w": "mandje",
+   "art": "het",
+   "tr": {
+    "th": "ตะกร้า (ชุดสินค้าที่ใช้วัดราคา)",
+    "en": "basket (of goods used to measure prices)"
+   },
+   "def": "Een lijst met producten waarvan men elke maand de prijs bekijkt.",
+   "ex": "In het mandje zitten koffie, kleding en een telefoonabonnement.",
+   "gap": "Het ___ met producten laat zien hoe de prijzen veranderen.",
+   "wrong": [
+    "oor",
+    "bed",
+    "dak"
+   ]
+  },
+  {
+   "id": "inf.koopkracht",
+   "kind": "word",
+   "w": "koopkracht",
+   "art": "de",
+   "tr": {
+    "th": "กำลังซื้อ",
+    "en": "purchasing power"
+   },
+   "def": "Hoeveel je met je geld kunt kopen.",
+   "ex": "Door inflatie wordt je koopkracht kleiner.",
+   "gap": "De ___ van je geld wordt kleiner als de prijzen stijgen.",
+   "wrong": [
+    "tafel",
+    "trap",
+    "straat"
+   ]
+  },
+  {
+   "id": "inf.loon",
+   "kind": "word",
+   "w": "loon",
+   "art": "het",
+   "tr": {
+    "th": "ค่าจ้าง",
+    "en": "wage, pay"
+   },
+   "def": "Het geld dat je krijgt voor je werk.",
+   "ex": "Mijn loon staat elke maand op mijn rekening.",
+   "gap": "Het ___ krijg je voor je werk.",
+   "wrong": [
+    "dak",
+    "raam",
+    "kleed"
+   ]
+  },
+  {
+   "id": "inf.rente",
+   "kind": "word",
+   "w": "rente",
+   "art": "de",
+   "tr": {
+    "th": "ดอกเบี้ย",
+    "en": "interest"
+   },
+   "def": "Geld dat je krijgt voor spaargeld, of betaalt als je geld leent.",
+   "ex": "De bank geeft rente over mijn spaargeld.",
+   "gap": "De ___ op je spaargeld is laag, dus sparen levert weinig op.",
+   "wrong": [
+    "wolk",
+    "ruzie",
+    "boot"
+   ]
+  },
+  {
+   "id": "inf.sparen",
+   "kind": "word",
+   "w": "sparen",
+   "art": "",
+   "tr": {
+    "th": "ออมเงิน",
+    "en": "to save (money)"
+   },
+   "def": "Geld bewaren voor later.",
+   "ex": "Ik wil elke maand tien euro sparen.",
+   "gap": "Wil je geld bewaren voor later? Dan ga je ___.",
+   "wrong": [
+    "dansen",
+    "bakken",
+    "lachen"
+   ]
+  },
+  {
+   "id": "inf.kosten",
+   "kind": "word",
+   "w": "kosten",
+   "art": "de",
+   "tr": {
+    "th": "ต้นทุน, ค่าใช้จ่าย",
+    "en": "costs"
+   },
+   "def": "Het geld dat je moet betalen om iets te doen of te maken.",
+   "ex": "De kosten voor het bedrijf worden hoger.",
+   "gap": "De ___ van het bedrijf worden hoger als het loon stijgt.",
+   "wrong": [
+    "tassen",
+    "stoelen",
+    "buren"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-inflatie-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Wat is inflatie, en wie heeft er last van?",
+    "th": "เงินเฟ้อคืออะไร และใครได้รับผลกระทบ",
+    "en": "What is inflation, and who suffers from it?"
+   },
+   "intro": {
+    "nl": "Eén getal staat bijna elke maand in het nieuws: de inflatie. Schat eerst wat het met je geld doet, lees dan wat erachter zit.",
+    "th": "มีตัวเลขหนึ่งที่อยู่ในข่าวเกือบทุกเดือน คือเงินเฟ้อ ลองประมาณก่อนว่ามันทำอะไรกับเงินของคุณ แล้วค่อยอ่านว่าเบื้องหลังคืออะไร",
+    "en": "One number is in the news almost every month: inflation. First estimate what it does to your money, then read what is behind it."
+   },
+   "can": {
+    "nl": "Uitleggen wat inflatie is en wie er last van heeft",
+    "th": "อธิบายได้ว่าเงินเฟ้อคืออะไรและใครได้รับผลกระทบ",
+    "en": "Explain what inflation is and who suffers from it"
+   },
+   "targets": [
+    "inf.inflatie",
+    "inf.prijs",
+    "inf.mandje",
+    "inf.koopkracht",
+    "inf.loon",
+    "inf.rente",
+    "inf.sparen",
+    "inf.kosten"
+   ],
+   "goals": [
+    "kennis-nederland",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "shop",
+    "tone": "apricot",
+    "alt": {
+     "nl": "Een winkel met een bord Prijs, een mand met brood en een kraam met appels.",
+     "th": "ร้านค้าที่มีป้ายราคา ตะกร้าขนมปัง และแผงขายแอปเปิล",
+     "en": "A shop with a sign Prijs, a basket of bread and a stall with apples."
+    },
+    "things": [
+     {
+      "kind": "sign",
+      "x": 90,
+      "y": 60,
+      "text": "Prijs"
+     },
+     {
+      "kind": "stall",
+      "x": 230,
+      "y": 156
+     },
+     {
+      "kind": "apples",
+      "x": 230,
+      "y": 140
+     },
+     {
+      "kind": "bread",
+      "x": 130,
+      "y": 150
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "quiz",
+     "role": "instap",
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "inf.inflatie",
+        "inf.prijs"
+       ],
+       "ask": {
+        "nl": "Schat: een brood kost nu 2 euro. De prijzen stijgen elk jaar met 2 procent. Hoeveel kost het brood over 10 jaar? Typ een bedrag in euro’s.",
+        "th": "ลองประมาณ: ขนมปังหนึ่งก้อนราคา 2 ยูโร ราคาขึ้น 2 เปอร์เซ็นต์ทุกปี อีก 10 ปี ขนมปังจะราคาเท่าไร พิมพ์จำนวนเงินเป็นยูโร",
+        "en": "Estimate: a loaf of bread costs 2 euros now. Prices rise 2 percent every year. How much does the bread cost in 10 years? Type an amount in euros."
+       },
+       "answer": "2,44",
+       "tol": 0.3,
+       "accept": [
+        "2.44",
+        "€ 2,44",
+        "€2,44"
+       ],
+       "err": "getal",
+       "why": {
+        "nl": "Het is ongeveer 2,44 euro. Elk jaar 2 procent erbij lijkt weinig, maar na 10 jaar kost het brood bijna een kwart meer. Een gok hoeft niet precies te zijn.",
+        "th": "ประมาณ 2.44 ยูโร เพิ่ม 2 เปอร์เซ็นต์ทุกปีดูเหมือนน้อย แต่ผ่านไป 10 ปี ขนมปังจะแพงขึ้นเกือบหนึ่งในสี่ การเดาไม่ต้องเป๊ะ",
+        "en": "It is about 2.44 euros. Adding 2 percent every year seems small, but after 10 years the bread costs almost a quarter more. A guess does not have to be exact."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "inf.inflatie",
+      "inf.prijs",
+      "inf.mandje",
+      "inf.koopkracht"
+     ],
+     "sources": [
+      {
+       "url": "https://www.dnb.nl/de-euro-en-europa/inflatie/",
+       "title": "De Nederlandsche Bank: Inflatie"
+      },
+      {
+       "url": "https://www.ecb.europa.eu/mopo/strategy/pricestab/html/index.nl.html",
+       "title": "Europese Centrale Bank: Two per cent inflation target"
+      }
+     ],
+     "text": {
+      "nl": "Eén getal: 2 procent. Wat zit erachter?\n\nInflatie is het stijgen van de prijzen van veel producten en diensten. Je betaalt dan voor dezelfde dingen meer dan een jaar eerder. Je koopkracht wordt kleiner: je kunt in de winkel met je geld minder kopen. Bij 2 procent inflatie kost een brood van 2 euro na een jaar 2,04 euro. Na 10 jaar is dat ongeveer 2,44 euro.\n\nHoe meten ze dat? Elke maand kijken onderzoekers naar de prijzen in een mandje met producten en diensten. Er zit van alles in, van koffie tot kleding en een telefoonabonnement.\n\nDe Europese Centrale Bank (ECB) wil een inflatie van ongeveer 2 procent. Niet 0 procent. Als prijzen gaan dalen, heet dat deflatie, en dat wil de ECB ook niet. Met 2 procent is er meer ruimte om dat te voorkomen.",
+      "th": "ตัวเลขหนึ่ง: 2 เปอร์เซ็นต์ เบื้องหลังคืออะไร\n\nเงินเฟ้อ (inflatie) คือการที่ราคาสินค้าและบริการจำนวนมากสูงขึ้น คุณต้องจ่ายสำหรับของอย่างเดิมมากกว่าเมื่อปีก่อน กำลังซื้อ (koopkracht) ของคุณลดลง คือเงินเท่าเดิมซื้อของที่ร้านได้น้อยลง ถ้าเงินเฟ้อ 2 เปอร์เซ็นต์ ขนมปังราคา 2 ยูโร อีกหนึ่งปีต่อมาจะราคา 2.04 ยูโร ผ่านไป 10 ปีจะประมาณ 2.44 ยูโร\n\nวัดอย่างไร ทุกเดือนนักวิจัยดูราคาในตะกร้า (mandje) ที่มีสินค้าและบริการ มีทุกอย่าง ตั้งแต่กาแฟ เสื้อผ้า ไปจนถึงค่าบริการโทรศัพท์\n\nธนาคารกลางยุโรป (ECB) ต้องการเงินเฟ้อประมาณ 2 เปอร์เซ็นต์ ไม่ใช่ 0 เปอร์เซ็นต์ ถ้าราคาลดลง เรียกว่า deflatie และ ECB ก็ไม่ต้องการเช่นกัน ที่ 2 เปอร์เซ็นต์ จึงมีที่ว่างมากกว่าที่จะป้องกันเรื่องนั้น",
+      "en": "One number: 2 percent. What is behind it?\n\nInflation (inflatie) is the rise of the prices of many products and services. You pay more for the same things than a year earlier. Your purchasing power (koopkracht) gets smaller: you can buy less in the shop with your money. At 2 percent inflation, a loaf of bread of 2 euros costs 2.04 euros after a year. After 10 years that is about 2.44 euros.\n\nHow do they measure it? Every month, researchers look at the prices in a basket (mandje) of products and services. It holds all kinds of things, from coffee to clothes and a phone subscription.\n\nThe European Central Bank (ECB) wants inflation of about 2 percent. Not 0 percent. When prices fall, it is called deflation (deflatie), and the ECB does not want that either. With 2 percent there is more room to prevent it."
+     },
+     "q": [
+      {
+       "form": "complete",
+       "items": [
+        "inf.koopkracht",
+        "inf.inflatie"
+       ],
+       "ask": {
+        "nl": "Maak af: Bij inflatie kun je in de winkel met je geld minder ___.",
+        "th": "เติมคำ: Bij inflatie kun je in de winkel met je geld minder ___.",
+        "en": "Complete: Bij inflatie kun je in de winkel met je geld minder ___."
+       },
+       "answer": "kopen",
+       "hint": [
+        {
+         "nl": "Je gaat naar de winkel en je ... iets.",
+         "th": "คุณไปร้านค้าและคุณ ... ของ",
+         "en": "You go to the shop and you ... something."
+        },
+        {
+         "nl": "Begin zo: kop…",
+         "th": "ขึ้นต้นแบบนี้: kop…",
+         "en": "Start like this: kop…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. Je koopkracht wordt kleiner: je kunt minder kopen.",
+        "th": "ถูกต้อง กำลังซื้อของคุณลดลง คุณซื้อของได้น้อยลง",
+        "en": "Right. Your purchasing power gets smaller: you can buy less."
+       }
+      },
+      {
+       "form": "number",
+       "items": [
+        "inf.inflatie",
+        "inf.prijs"
+       ],
+       "ask": {
+        "nl": "Een brood kost 2 euro. De inflatie is 5 procent. Hoeveel euro kost het brood na een jaar? Typ het bedrag.",
+        "th": "ขนมปังราคา 2 ยูโร เงินเฟ้อ 5 เปอร์เซ็นต์ หลังหนึ่งปีขนมปังราคากี่ยูโร พิมพ์จำนวนเงิน",
+        "en": "A loaf of bread costs 2 euros. Inflation is 5 percent. How many euros does the bread cost after a year? Type the amount."
+       },
+       "answer": "2,10",
+       "accept": [
+        "2.10",
+        "2,1",
+        "2.1",
+        "€ 2,10",
+        "€2,10"
+       ],
+       "err": "rekenstap",
+       "why": {
+        "nl": "Goed. 5 procent van 2 euro is 10 cent. Dus 2,00 + 0,10 = 2,10 euro.",
+        "th": "ถูกต้อง 5 เปอร์เซ็นต์ของ 2 ยูโรคือ 10 เซนต์ ดังนั้น 2.00 + 0.10 = 2.10 ยูโร",
+        "en": "Right. 5 percent of 2 euros is 10 cents. So 2.00 + 0.10 = 2.10 euros."
+       }
+      }
+     ]
+    },
+    {
+     "type": "make",
+     "items": [
+      "inf.inflatie",
+      "inf.koopkracht"
+     ],
+     "ask": {
+      "nl": "Een vriend vraagt: Wat is inflatie? Schrijf twee of drie korte zinnen in je eigen woorden.",
+      "th": "เพื่อนถามว่า เงินเฟ้อคืออะไร เขียนสองหรือสามประโยคสั้น ๆ ด้วยคำพูดของคุณเอง",
+      "en": "A friend asks: What is inflation? Write two or three short sentences in your own words."
+     },
+     "frame": "Inflatie is …. Daardoor kun je met je geld …. De ECB wil ongeveer ….",
+     "model": "Inflatie is het stijgen van de prijzen. Daardoor kun je met je geld minder kopen. De ECB wil ongeveer 2 procent per jaar.",
+     "checklist": [
+      {
+       "nl": "Ik leg uit wat inflatie is.",
+       "th": "ฉันอธิบายว่าเงินเฟ้อคืออะไร",
+       "en": "I explain what inflation is."
+      },
+      {
+       "nl": "Ik noem wat het met je geld doet.",
+       "th": "ฉันบอกว่ามันส่งผลต่อเงินของเราอย่างไร",
+       "en": "I say what it does to your money."
+      },
+      {
+       "nl": "Ik noem het getal van de ECB.",
+       "th": "ฉันพูดถึงตัวเลขของ ECB",
+       "en": "I mention the ECB number."
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "inf.rente",
+      "inf.sparen",
+      "inf.loon",
+      "inf.kosten"
+     ],
+     "sources": [
+      {
+       "url": "https://www.dnb.nl/de-euro-en-europa/inflatie/",
+       "title": "De Nederlandsche Bank: Inflatie"
+      },
+      {
+       "url": "https://www.ecb.europa.eu/mopo/strategy/pricestab/html/index.nl.html",
+       "title": "Europese Centrale Bank: Two per cent inflation target"
+      },
+      {
+       "url": "https://www.dnb.nl/algemeen-nieuws/achtergrond-2025/hoe-inflatie-huishoudens-verschillend-raakt-in-de-portemonnee/",
+       "title": "De Nederlandsche Bank: Hoe inflatie huishoudens verschillend raakt in de portemonnee"
+      }
+     ],
+     "text": {
+      "nl": "Wie heeft er last van inflatie? Het inflatiecijfer is een gemiddelde. Niet iedereen merkt hetzelfde.\n\nHuishoudens met een lager inkomen geven een groter deel van hun geld uit aan vaste kosten, zoals huur. Daardoor kunnen ze minder goed uitwijken. DNB vroeg mensen naar stress door hogere prijzen. Bijna één op de drie huishoudens met het laagste inkomen zei die stress te hebben. Bij het hoogste inkomen was dat één op de zeven. Ook wie weinig spaargeld heeft, merkt het meer: hoe kleiner het spaargeld, hoe harder de klap.\n\nHoe probeert de ECB de inflatie omlaag te krijgen? Met de rente. Is de inflatie te hoog, dan verhoogt de ECB de rente. Dan is sparen beter en lenen duurder. Is de rente laag, dan levert sparen weinig op.\n\nEn bedrijven? Als alles duurder wordt, willen werknemers meer loon. Hogere lonen betekenen hogere kosten voor bedrijven.",
+      "th": "ใครได้รับผลกระทบจากเงินเฟ้อ ตัวเลขเงินเฟ้อเป็นค่าเฉลี่ย ไม่ใช่ทุกคนรู้สึกเหมือนกัน\n\nครัวเรือนที่มีรายได้ต่ำใช้เงินส่วนที่ใหญ่กว่าไปกับค่าใช้จ่ายประจำ เช่น ค่าเช่า จึงปรับตัวได้ยากกว่า DNB เคยถามผู้คนเรื่องความเครียดจากราคาที่สูงขึ้น เกือบหนึ่งในสามของครัวเรือนที่มีรายได้ต่ำสุดบอกว่ามีความเครียดนั้น ส่วนกลุ่มรายได้สูงสุดมีหนึ่งในเจ็ด คนที่มีเงินออมน้อยก็รู้สึกมากกว่าเช่นกัน เงินออมยิ่งน้อย ผลกระทบยิ่งหนัก\n\nECB พยายามลดเงินเฟ้ออย่างไร ด้วยดอกเบี้ย (rente) ถ้าเงินเฟ้อสูงเกินไป ECB ก็ขึ้นดอกเบี้ย แล้วการออมเงิน (sparen) ก็ดีขึ้น และการกู้ยืมก็แพงขึ้น ถ้าดอกเบี้ยต่ำ การออมให้ผลตอบแทนน้อย\n\nแล้วบริษัทล่ะ ถ้าทุกอย่างแพงขึ้น ลูกจ้างก็อยากได้ค่าจ้าง (loon) มากขึ้น ค่าจ้างที่สูงขึ้นหมายถึงต้นทุน (kosten) ที่สูงขึ้นสำหรับบริษัท",
+      "en": "Who suffers from inflation? The inflation figure is an average. Not everyone notices the same.\n\nHouseholds with a lower income spend a larger part of their money on fixed costs, such as rent. That makes it harder for them to cut back. DNB asked people about stress because of higher prices. Almost one in three households with the lowest income said they had that stress. For the highest income it was one in seven. Anyone with little savings also notices it more: the smaller the savings, the harder the blow.\n\nHow does the ECB try to bring inflation down? With the interest rate (rente). If inflation is too high, the ECB raises the interest rate. Then saving (sparen) is better and borrowing is more expensive. When the interest rate is low, saving earns little.\n\nAnd companies? When everything gets more expensive, employees want higher wages (loon). Higher wages mean higher costs (kosten) for companies."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "inf.inflatie"
+       ],
+       "ask": {
+        "nl": "Wie merkt inflatie volgens de tekst meer?",
+        "th": "ตามข้อความ ใครรู้สึกถึงเงินเฟ้อมากกว่า",
+        "en": "According to the text, who notices inflation more?"
+       },
+       "opts": [
+        {
+         "t": "Huishoudens met een laag inkomen",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Zij geven een groter deel van hun geld uit aan vaste kosten en kunnen minder goed uitwijken.",
+          "th": "ถูกต้อง พวกเขาใช้เงินส่วนที่ใหญ่กว่าไปกับค่าใช้จ่ายประจำ และปรับตัวได้ยากกว่า",
+          "en": "Right. They spend a larger part of their money on fixed costs and find it harder to cut back."
+         }
+        },
+        {
+         "t": "Huishoudens met een hoog inkomen",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Bij het hoogste inkomen heeft maar één op de zeven huishoudens stress door prijzen.",
+          "th": "ไม่ใช่ ในกลุ่มรายได้สูงสุด มีเพียงหนึ่งในเจ็ดครัวเรือนที่เครียดเรื่องราคา",
+          "en": "No. Among the highest incomes, only one in seven households has stress about prices."
+         }
+        },
+        {
+         "t": "Alleen bedrijven",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De tekst gaat vooral over huishoudens; bedrijven komen daarna.",
+          "th": "ไม่ใช่ ข้อความพูดถึงครัวเรือนเป็นหลัก บริษัทมาทีหลัง",
+          "en": "No. The text is mainly about households; companies come afterwards."
+         }
+        }
+       ],
+       "answer": "Huishoudens met een laag inkomen",
+       "why": {
+        "nl": "Goed. Volgens DNB merken huishoudens met een laag inkomen het meer.",
+        "th": "ถูกต้อง ตาม DNB ครัวเรือนที่มีรายได้ต่ำรู้สึกมากกว่า",
+        "en": "Right. According to DNB, households with a low income notice it more."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "inf.rente"
+       ],
+       "ask": {
+        "nl": "Wat doet de ECB met de rente als de inflatie te hoog is?",
+        "th": "ECB ทำอะไรกับดอกเบี้ยเมื่อเงินเฟ้อสูงเกินไป",
+        "en": "What does the ECB do with the interest rate when inflation is too high?"
+       },
+       "opts": [
+        {
+         "t": "De ECB verhoogt de rente",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Dan is lenen duurder en sparen beter.",
+          "th": "ถูกต้อง แล้วการกู้ยืมจะแพงขึ้นและการออมจะดีขึ้น",
+          "en": "Right. Then borrowing is more expensive and saving is better."
+         }
+        },
+        {
+         "t": "De ECB verlaagt de rente",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Het is andersom. Bij een hoge inflatie gaat de rente omhoog.",
+          "th": "กลับกัน เมื่อเงินเฟ้อสูง ดอกเบี้ยจะขึ้น",
+          "en": "It is the other way round. With high inflation the interest rate goes up."
+         }
+        },
+        {
+         "t": "De ECB doet niets met de rente",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Wel. De rente is het middel van de ECB tegen een te hoge inflatie.",
+          "th": "ทำ ดอกเบี้ยคือเครื่องมือของ ECB เพื่อสู้กับเงินเฟ้อที่สูงเกินไป",
+          "en": "It does. The interest rate is the ECB’s tool against inflation that is too high."
+         }
+        }
+       ],
+       "answer": "De ECB verhoogt de rente",
+       "why": {
+        "nl": "Goed. Is de inflatie te hoog, dan verhoogt de ECB de rente.",
+        "th": "ถูกต้อง ถ้าเงินเฟ้อสูงเกินไป ECB จะขึ้นดอกเบี้ย",
+        "en": "Right. If inflation is too high, the ECB raises the interest rate."
+       }
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu uitleggen: inflatie is een percentage dat laat zien hoeveel duurder de dingen zijn dan een jaar eerder, en de ECB wil ongeveer 2 procent.",
+      "th": "ตอนนี้คุณอธิบายได้ว่า เงินเฟ้อคือเปอร์เซ็นต์ที่บอกว่าสิ่งต่าง ๆ แพงขึ้นเท่าไรเมื่อเทียบกับปีก่อน และ ECB ต้องการประมาณ 2 เปอร์เซ็นต์",
+      "en": "You can now explain: inflation is a percentage that shows how much more expensive things are than a year earlier, and the ECB wants about 2 percent."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

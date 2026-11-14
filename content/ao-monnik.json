@@ -1,0 +1,514 @@
+{
+ "format": 1,
+ "id": "ao-monnik",
+ "type": "les",
+ "version": 1,
+ "order": 3,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "geloof",
+ "vorm": "een voorwerp en zijn verhaal",
+ "draden": [
+  "ao-ramadan",
+  "ao-atheisme",
+  "ao-gezellig"
+ ],
+ "title": {
+  "nl": "Waarom scheert een monnik zijn hoofd?",
+  "th": "ทำไมพระ/นักบวชจึงโกนศีรษะ",
+  "en": "Why do monks shave their heads?"
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Tonsure",
+   "title": "Wikipedia: Tonsure"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Tonsuur",
+   "title": "Wikipedia: Tonsuur"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Pabbajja",
+   "title": "Wikipedia: Pabbajja (Buddhist ordination)"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Boeddhistische_monnik",
+   "title": "Wikipedia: Boeddhistische monnik"
+  }
+ ],
+ "items": [
+  {
+   "id": "mon.monnik",
+   "kind": "word",
+   "w": "monnik",
+   "art": "de",
+   "tr": {
+    "th": "พระ / นักบวช",
+    "en": "monk"
+   },
+   "def": "Iemand die voor het geloof leeft en daarvoor veel dingen opgeeft.",
+   "ex": "De monnik loopt langzaam door de tuin.",
+   "gap": "De ___ leeft voor het geloof.",
+   "wrong": [
+    "bakker",
+    "dokter",
+    "leraar"
+   ]
+  },
+  {
+   "id": "mon.scheren",
+   "kind": "word",
+   "w": "scheren",
+   "art": "",
+   "tr": {
+    "th": "โกน",
+    "en": "to shave"
+   },
+   "def": "Haar van je hoofd of gezicht weghalen met een scheermes.",
+   "ex": "Met een scheermes kun je je baard scheren.",
+   "gap": "Met een scheermes kun je je hoofd kaal ___.",
+   "wrong": [
+    "bakken",
+    "lezen",
+    "tellen"
+   ]
+  },
+  {
+   "id": "mon.kaal",
+   "kind": "word",
+   "w": "kaal",
+   "art": "",
+   "tr": {
+    "th": "โล้น / ล้าน / ไม่มีผม",
+    "en": "bald"
+   },
+   "def": "Zonder haar op het hoofd.",
+   "ex": "De berg is kaal: er staan geen bomen.",
+   "gap": "Het hoofd is helemaal ___: er zit geen haar op.",
+   "wrong": [
+    "druk",
+    "zacht",
+    "luid"
+   ]
+  },
+  {
+   "id": "mon.gewaad",
+   "kind": "word",
+   "w": "gewaad",
+   "art": "het",
+   "tr": {
+    "th": "จีวร (ผ้าคลุมยาวกว้าง)",
+    "en": "robe"
+   },
+   "def": "Een lange, wijde kleding, bijvoorbeeld van een monnik.",
+   "ex": "Het gewaad hangt tot op de grond.",
+   "gap": "Het ___ van de monnik is oranjebruin.",
+   "wrong": [
+    "lied",
+    "woord",
+    "gesprek"
+   ]
+  },
+  {
+   "id": "mon.teken",
+   "kind": "word",
+   "w": "teken",
+   "art": "het",
+   "tr": {
+    "th": "สัญลักษณ์ / เครื่องหมาย",
+    "en": "sign"
+   },
+   "def": "Iets wat je ziet en wat je iets vertelt, zoals een bord.",
+   "ex": "Een rood licht is een teken: je moet stoppen.",
+   "gap": "Een rood licht geeft het ___ om te stoppen.",
+   "wrong": [
+    "verhaal",
+    "feest",
+    "lied"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-monnik-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Waarom scheert een monnik zijn hoofd?",
+    "th": "ทำไมพระ/นักบวชจึงโกนศีรษะ",
+    "en": "Why do monks shave their heads?"
+   },
+   "intro": {
+    "nl": "Kijk eerst naar het kale hoofd en het gewaad. Wat vertellen ze?",
+    "th": "ดูศีรษะโล้นและจีวรก่อน สองอย่างนี้บอกอะไร",
+    "en": "First look at the bald head and the robe. What do they tell you?"
+   },
+   "can": {
+    "nl": "Uitleggen waarom monniken het hoofd scheren",
+    "th": "อธิบายได้ว่าทำไมพระและนักบวชจึงโกนศีรษะ",
+    "en": "Explain why monks shave the head"
+   },
+   "targets": [
+    "mon.monnik",
+    "mon.scheren",
+    "mon.kaal",
+    "mon.gewaad",
+    "mon.teken"
+   ],
+   "goals": [
+    "kennis-nederland",
+    "nt2-I-lezen-2"
+   ],
+   "art": {
+    "bg": "room",
+    "tone": "apricot",
+    "alt": {
+     "nl": "Een monnik met een kaal hoofd en een lang gewaad zit rustig in een kamer.",
+     "th": "พระนั่งสงบในห้อง ศีรษะโล้นและห่มจีวรยาว",
+     "en": "A monk with a bald head and a long robe sits quietly in a room."
+    },
+    "things": [
+     {
+      "kind": "window",
+      "x": 280,
+      "y": 56
+     },
+     {
+      "kind": "plant",
+      "x": 40,
+      "y": 156
+     },
+     {
+      "kind": "person",
+      "x": 170,
+      "y": 156,
+      "who": "monnik",
+      "look": "neutral",
+      "hair": "none",
+      "skin": "b",
+      "hot": true,
+      "label": {
+       "nl": "de monnik",
+       "th": "พระ / นักบวช",
+       "en": "the monk"
+      },
+      "item": "mon.monnik"
+     },
+     {
+      "kind": "spot",
+      "x": 170,
+      "y": 70,
+      "r": 22,
+      "hot": true,
+      "label": {
+       "nl": "kaal hoofd",
+       "th": "ศีรษะโล้น",
+       "en": "bald head"
+      },
+      "item": "mon.kaal"
+     },
+     {
+      "kind": "spot",
+      "x": 170,
+      "y": 125,
+      "r": 26,
+      "hot": true,
+      "label": {
+       "nl": "het gewaad",
+       "th": "จีวร",
+       "en": "the robe"
+      },
+      "item": "mon.gewaad"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "look",
+     "min": 2,
+     "items": [
+      "mon.monnik",
+      "mon.kaal",
+      "mon.gewaad"
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "mon.teken",
+      "mon.scheren",
+      "mon.gewaad",
+      "mon.kaal"
+     ],
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Tonsure",
+       "title": "Wikipedia: Tonsure"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Pabbajja",
+       "title": "Wikipedia: Pabbajja (Buddhist ordination)"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Boeddhistische_monnik",
+       "title": "Wikipedia: Boeddhistische monnik"
+      }
+     ],
+     "text": {
+      "nl": "Veel boeddhistische monniken scheren het hoofd kaal. Ook in het christendom scheerden monniken vroeger een deel van het hoofd.\n\nHet kale hoofd is een teken van toewijding: je geeft je helemaal aan je geloof. Het laat ook zien dat mode en status voor je niet meer belangrijk zijn.\n\nBij een boeddhistische monnik hoort het scheren bij de wijding. Dat is de dag dat je monnik wordt. Het hoofd en het gezicht gaan kaal. Daarna draagt de monnik een gewaad. In Thailand is dat gewaad vaak oranjebruin.",
+      "th": "พระในพุทธศาสนาหลายรูปโกนศีรษะจนโล้น ในคริสต์ศาสนา นักบวชในอดีตก็โกนผมบางส่วนบนศีรษะเช่นกัน\n\nศีรษะโล้นเป็นสัญลักษณ์ของการอุทิศตน (toewijding) คือมอบตนเองให้ศรัทธาอย่างเต็มที่ และยังแสดงว่าแฟชั่นและสถานะทางสังคมไม่สำคัญอีกต่อไป\n\nสำหรับพระในพุทธศาสนา การโกนผมเป็นส่วนหนึ่งของพิธีบวช (wijding) ซึ่งเป็นวันที่ได้เป็นพระ โกนทั้งศีรษะและใบหน้า หลังจากนั้นพระจะห่มจีวร (gewaad) ในประเทศไทย จีวรมักเป็นสีเหลืองส้มน้ำตาล",
+      "en": "Many Buddhist monks shave their heads bald. In Christianity, too, monks used to shave part of the head.\n\nA bald head is a sign of devotion (toewijding): you give yourself fully to your faith. It also shows that fashion and status are no longer important to you.\n\nFor a Buddhist monk, shaving is part of the ordination (wijding), the day you become a monk. The head and the face are shaved. After that, the monk wears a robe (gewaad). In Thailand, the robe is often orange-brown."
+     },
+     "gloss": [],
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "mon.teken"
+       ],
+       "ask": {
+        "nl": "Wat is het kale hoofd van een monnik?",
+        "th": "ศีรษะโล้นของพระ/นักบวชคืออะไร",
+        "en": "What is the bald head of a monk?"
+       },
+       "opts": [
+        {
+         "t": "Een teken van toewijding aan het geloof",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Het is een teken dat je je helemaal aan je geloof geeft.",
+          "th": "ถูกต้อง เป็นสัญลักษณ์ว่ามอบตนเองให้ศรัทธาอย่างเต็มที่",
+          "en": "Right. It is a sign that you give yourself fully to your faith."
+         }
+        },
+        {
+         "t": "Een teken dat je ziek bent",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst. Het kale hoofd is een teken van toewijding.",
+          "th": "ข้อความไม่ได้เขียนไว้ ศีรษะโล้นเป็นสัญลักษณ์ของการอุทิศตน",
+          "en": "That is not in the text. The bald head is a sign of devotion."
+         }
+        },
+        {
+         "t": "Een mode die nu populair is",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "De tekst zegt het tegenovergestelde: voor monniken is mode niet belangrijk.",
+          "th": "ข้อความบอกตรงข้าม สำหรับพระและนักบวช แฟชั่นไม่สำคัญ",
+          "en": "The text says the opposite: for monks fashion is not important."
+         }
+        }
+       ],
+       "answer": "Een teken van toewijding aan het geloof",
+       "why": {
+        "nl": "Het kale hoofd is een teken van toewijding. Mode en status zijn niet belangrijk.",
+        "th": "ศีรษะโล้นเป็นสัญลักษณ์ของการอุทิศตน แฟชั่นและสถานะไม่สำคัญ",
+        "en": "The bald head is a sign of devotion. Fashion and status are not important."
+       }
+      },
+      {
+       "form": "type",
+       "items": [
+        "mon.gewaad"
+       ],
+       "ask": {
+        "nl": "Hoe heet de lange, wijde kleding van een monnik? Typ één woord.",
+        "th": "เสื้อผ้ายาวกว้างของพระ/นักบวชเรียกว่าอะไร พิมพ์คำเดียว",
+        "en": "What is the long, wide clothing of a monk called? Type one word."
+       },
+       "answer": "gewaad",
+       "accept": [
+        "gewaden"
+       ],
+       "err": "spelling",
+       "hint": [
+        {
+         "nl": "Het staat in de derde alinea.",
+         "th": "อยู่ในย่อหน้าที่สาม",
+         "en": "It is in the third paragraph."
+        },
+        {
+         "nl": "Begin zo: gew…",
+         "th": "ขึ้นต้นแบบนี้: gew…",
+         "en": "Start like this: gew…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. Een monnik draagt een gewaad. In Thailand is het vaak oranjebruin.",
+        "th": "ถูกต้อง พระห่มจีวร ในประเทศไทยมักเป็นสีเหลืองส้มน้ำตาล",
+        "en": "Right. A monk wears a robe. In Thailand it is often orange-brown."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "mon.scheren",
+      "mon.teken"
+     ],
+     "ask": {
+      "nl": "Boeddhistische monniken scheren het hoofd. Christelijke monniken scheerden vroeger een deel van het hoofd. Wat is hetzelfde?",
+      "th": "พระในพุทธศาสนาโกนศีรษะ นักบวชคริสต์ในอดีตโกนผมบางส่วน สิ่งใดเหมือนกัน",
+      "en": "Buddhist monks shave the head. Christian monks used to shave part of the head. What is the same?"
+     },
+     "opts": [
+      {
+       "t": "Het is een teken van toewijding aan het geloof",
+       "r": "ok",
+       "why": {
+        "nl": "Goed. In beide godsdiensten laat het kale hoofd zien dat je je aan je geloof geeft.",
+        "th": "ถูกต้อง ในทั้งสองศาสนา ศีรษะโล้นแสดงว่าอุทิศตนให้ศรัทธา",
+        "en": "Right. In both religions the bald head shows that you give yourself to your faith."
+       }
+      },
+      {
+       "t": "Het is een manier om mooi te zijn",
+       "r": "no",
+       "err": "lezen",
+       "why": {
+        "nl": "Het is juist andersom: voor de monnik zijn mode en status niet belangrijk.",
+        "th": "กลับกัน สำหรับพระ/นักบวช แฟชั่นและสถานะไม่สำคัญ",
+        "en": "It is the other way round: for the monk fashion and status are not important."
+       }
+      },
+      {
+       "t": "Het mag alleen in de winter",
+       "r": "no",
+       "err": "lezen",
+       "why": {
+        "nl": "Daar staat niets over in de bronnen. Het gaat om toewijding, niet om het seizoen.",
+        "th": "ในแหล่งข้อมูลไม่มีเรื่องนี้ เป็นเรื่องของการอุทิศตน ไม่เกี่ยวกับฤดู",
+        "en": "The sources say nothing about that. It is about devotion, not the season."
+       }
+      }
+     ],
+     "answer": "Het is een teken van toewijding aan het geloof",
+     "why": {
+      "nl": "Bij beide is het scheren een teken van toewijding. Wat een monnik er zelf bij voelt en denkt, kan verschillen.",
+      "th": "ในทั้งสองกรณี การโกนผมเป็นสัญลักษณ์ของการอุทิศตน ส่วนความรู้สึกและความคิดของแต่ละท่านอาจต่างกัน",
+      "en": "In both, shaving is a sign of devotion. What a monk feels and thinks about it can differ."
+     }
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "mon.scheren",
+      "mon.kaal"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Tonsuur",
+       "title": "Wikipedia: Tonsuur"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Tonsure",
+       "title": "Wikipedia: Tonsure"
+      }
+     ],
+     "text": {
+      "nl": "In het christendom heet het scheren van het hoofd de tonsuur. Dat is het gedeeltelijk kaalscheren van de bovenkant van het hoofd. Er blijft een rand haar over. Er zijn twee vormen: een kleine kale cirkel op de kruin en een grotere kale plek. De grotere droegen leden van orden, zoals de benedictijnen.\n\nIn de eerste tijd van het christendom deden mensen dit nog niet. Uit de tijd vóór de zesde eeuw is er geen voorbeeld bekend. De tonsuur van de katholieke kerk komt uit de Middeleeuwen. In 1972 bepaalde de paus dat de eerste tonsuur niet meer wordt gegeven.\n\nBoeddhistische monniken in de Theravada-traditie hebben een regel over het haar: scheer het elke twee maanden, of eerder als het twee vingerbreedtes lang is.",
+      "th": "ในศาสนาคริสต์ การโกนผมเรียกว่า tonsuur คือการโกนผมส่วนบนของศีรษะบางส่วน โดยเหลือผมเป็นวงรอบ มีสองแบบ คือวงกลมเล็ก ๆ ตรงกลางกระหม่อม (kruin) และพื้นที่ล้านที่ใหญ่กว่า แบบที่ใหญ่กว่านักบวชในคณะต่าง ๆ ไว้ เช่น คณะเบเนดิกต์\n\nในช่วงแรกของศาสนาคริสต์ ผู้คนยังไม่ทำเช่นนี้ ก่อนศตวรรษที่หกไม่มีตัวอย่างที่เป็นที่รู้จัก tonsuur ของคริสตจักรคาทอลิกมาจากยุคกลาง ในปี ค.ศ. 1972 พระสันตะปาปาทรงกำหนดว่าจะไม่มีการให้ tonsuur ครั้งแรกอีกต่อไป\n\nพระในพุทธศาสนาเถรวาทมีกฎเรื่องผม คือให้โกนทุกสองเดือน หรือเร็วกว่านั้นถ้าผมยาวสององคุลี (ความกว้างสองนิ้วมือ)",
+      "en": "In Christianity, shaving the head is called the tonsuur (tonsure). It means partly shaving the top of the head. A rim of hair stays. There are two forms: a small bald circle on the crown (kruin) and a bigger bald area. Members of orders, such as the Benedictines, wore the bigger one.\n\nIn the early days of Christianity, people did not do this yet. There is no known example from before the sixth century. The tonsure of the Catholic Church comes from the Middle Ages. In 1972 the pope decided that the first tonsure is no longer given.\n\nBuddhist monks in the Theravada tradition have a rule about hair: shave every two months, or sooner if it is two finger-widths long."
+     },
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "mon.scheren"
+       ],
+       "ask": {
+        "nl": "Om de hoeveel maanden scheert een Theravada-monnik volgens de regel? Typ een getal.",
+        "th": "พระเถรวาทต้องโกนผมทุกกี่เดือนตามกฎ พิมพ์ตัวเลข",
+        "en": "How many months apart does a Theravada monk shave, according to the rule? Type a number."
+       },
+       "answer": "2",
+       "accept": [
+        "twee"
+       ],
+       "err": "lezen",
+       "why": {
+        "nl": "Elke twee maanden, of eerder als het haar twee vingerbreedtes lang is.",
+        "th": "ทุกสองเดือน หรือเร็วกว่านั้นถ้าผมยาวสององคุลี (ความกว้างสองนิ้วมือ)",
+        "en": "Every two months, or sooner if the hair is two finger-widths long."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "mon.kaal"
+       ],
+       "ask": {
+        "nl": "Vanaf welke eeuw kennen we de tonsuur bij christenen?",
+        "th": "เรารู้จัก tonsuur ในหมู่คริสต์ชนตั้งแต่ศตวรรษที่เท่าไร",
+        "en": "From which century do we know the tonsure among Christians?"
+       },
+       "opts": [
+        {
+         "t": "De eerste eeuw",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "In de eerste tijd deden christenen dit nog niet.",
+          "th": "ในช่วงแรกคริสต์ชนยังไม่ทำเช่นนี้",
+          "en": "In the early days Christians did not do this yet."
+         }
+        },
+        {
+         "t": "De zesde eeuw",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Vóór de zesde eeuw is er geen voorbeeld bekend.",
+          "th": "ถูกต้อง ก่อนศตวรรษที่หกไม่มีตัวอย่างที่เป็นที่รู้จัก",
+          "en": "Right. There is no known example from before the sixth century."
+         }
+        },
+        {
+         "t": "De twintigste eeuw",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Veel eerder. In de twintigste eeuw verdween de tonsuur juist.",
+          "th": "เร็วกว่านั้นมาก ในศตวรรษที่ยี่สิบ tonsuur กลับหายไป",
+          "en": "Much earlier. In the twentieth century the tonsure actually disappeared."
+         }
+        }
+       ],
+       "answer": "De zesde eeuw",
+       "why": {
+        "nl": "Vanaf de zesde eeuw. Daarvoor is er geen voorbeeld bekend.",
+        "th": "ตั้งแต่ศตวรรษที่หก ก่อนหน้านั้นไม่มีตัวอย่าง",
+        "en": "From the sixth century. Before that there is no known example."
+       }
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu aan iemand vertellen: monniken scheren het hoofd als teken van toewijding, bij boeddhisten bij de wijding, bij christenen als tonsuur.",
+      "th": "ตอนนี้คุณเล่าให้ใครสักคนฟังได้ว่า พระและนักบวชโกนศีรษะเป็นสัญลักษณ์ของการอุทิศตน ในพุทธศาสนาโกนตอนบวช ในคริสต์ศาสนาเรียกว่า tonsuur",
+      "en": "You can now tell someone: monks shave the head as a sign of devotion, Buddhists at the ordination, Christians as the tonsure."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

@@ -1,0 +1,479 @@
+{
+ "format": 1,
+ "id": "ao-1953",
+ "type": "les",
+ "version": 1,
+ "order": 4,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "geschiedenis",
+ "vorm": "een verhaal",
+ "draden": [
+  "ao-zeespiegel",
+  "ao-zout",
+  "ao-kamer150"
+ ],
+ "title": {
+  "nl": "Wat gebeurde er in de nacht van 1 februari 1953?",
+  "th": "เกิดอะไรขึ้นในคืนวันที่ 1 กุมภาพันธ์ ค.ศ. 1953",
+  "en": "What happened in the night of 1 February 1953?"
+ },
+ "sources": [
+  {
+   "url": "https://nl.wikipedia.org/wiki/Watersnoodramp_van_1953",
+   "title": "Wikipedia: Watersnoodramp van 1953"
+  },
+  {
+   "url": "https://www.watersnoodmuseum.nl/de-ramp/",
+   "title": "Watersnoodmuseum: De ramp"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Deltawerken",
+   "title": "Wikipedia: Deltawerken"
+  }
+ ],
+ "items": [
+  {
+   "id": "w53.storm",
+   "kind": "word",
+   "w": "storm",
+   "art": "de",
+   "tr": {
+    "th": "พายุ",
+    "en": "storm"
+   },
+   "def": "Zeer harde wind, vaak met regen.",
+   "ex": "Door de storm vielen er bomen om.",
+   "gap": "Door de ___ waaien er bomen om.",
+   "wrong": [
+    "bakker",
+    "taart",
+    "kamer"
+   ]
+  },
+  {
+   "id": "w53.dijk",
+   "kind": "word",
+   "w": "dijk",
+   "art": "de",
+   "tr": {
+    "th": "คันดิน",
+    "en": "dike"
+   },
+   "def": "Een hoge rand van aarde langs het water die het land droog houdt.",
+   "ex": "Wij fietsen over de dijk.",
+   "gap": "Langs de zee ligt de ___ die het land droog houdt.",
+   "wrong": [
+    "zon",
+    "taart",
+    "stoel"
+   ]
+  },
+  {
+   "id": "w53.springvloed",
+   "kind": "word",
+   "w": "springvloed",
+   "art": "de",
+   "tr": {
+    "th": "น้ำขึ้นสูงพิเศษ (springvloed)",
+    "en": "spring tide"
+   },
+   "def": "Een vloed waarbij het water van de zee extra hoog komt.",
+   "ex": "Bij een springvloed staat het water hoger dan anders.",
+   "gap": "Bij de ___ komt het zeewater extra hoog.",
+   "wrong": [
+    "zonsopgang",
+    "winterslaap",
+    "boterham"
+   ]
+  },
+  {
+   "id": "w53.zolder",
+   "kind": "word",
+   "w": "zolder",
+   "art": "de",
+   "tr": {
+    "th": "ห้องใต้หลังคา",
+    "en": "attic"
+   },
+   "def": "De ruimte onder het dak van een huis.",
+   "ex": "Op de zolder staan oude dozen.",
+   "gap": "De ___ is de ruimte onder het dak.",
+   "wrong": [
+    "keuken",
+    "kelder",
+    "gang"
+   ]
+  },
+  {
+   "id": "w53.evacueren",
+   "kind": "word",
+   "w": "evacueren",
+   "art": "",
+   "tr": {
+    "th": "อพยพ",
+    "en": "to evacuate"
+   },
+   "def": "Mensen uit een gevaarlijk gebied naar een veilige plek brengen.",
+   "ex": "De politie moet de straat evacueren.",
+   "gap": "Bij een ramp moet de politie mensen ___.",
+   "wrong": [
+    "lezen",
+    "leren",
+    "tekenen"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-1953-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Wat gebeurde er in de nacht van 1 februari 1953?",
+    "th": "เกิดอะไรขึ้นในคืนวันที่ 1 กุมภาพันธ์ ค.ศ. 1953",
+    "en": "What happened in the night of 1 February 1953?"
+   },
+   "intro": {
+    "nl": "Een verhaal over één nacht en wat daarna veranderde.",
+    "th": "เรื่องราวของคืนหนึ่ง และสิ่งที่เปลี่ยนไปหลังจากนั้น",
+    "en": "A story about one night and what changed after it."
+   },
+   "can": {
+    "nl": "Vertellen wat er in 1953 gebeurde en waarom er daarna grote werken aan de dijken kwamen",
+    "th": "เล่าได้ว่าเกิดอะไรขึ้นในปี 1953 และทำไมจึงมีงานใหญ่เกี่ยวกับคันดินตามมา",
+    "en": "Tell what happened in 1953 and why big works on the dikes followed"
+   },
+   "targets": [
+    "w53.storm",
+    "w53.dijk",
+    "w53.springvloed",
+    "w53.zolder",
+    "w53.evacueren"
+   ],
+   "goals": [
+    "kennis-nederland",
+    "nt2-I-lezen-2"
+   ],
+   "art": {
+    "bg": "street",
+    "tone": "sky",
+    "alt": {
+     "nl": "Een straat met een raam en een bord met 1953.",
+     "th": "ถนนที่มีหน้าต่างและป้ายเขียนว่า 1953",
+     "en": "A street with a window and a sign that says 1953."
+    },
+    "things": [
+     {
+      "kind": "window",
+      "x": 280,
+      "y": 56
+     },
+     {
+      "kind": "sign",
+      "x": 100,
+      "y": 70,
+      "text": "1953"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "read",
+     "items": [
+      "w53.storm",
+      "w53.springvloed",
+      "w53.dijk"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Watersnoodramp_van_1953",
+       "title": "Wikipedia: Watersnoodramp van 1953"
+      },
+      {
+       "url": "https://www.watersnoodmuseum.nl/de-ramp/",
+       "title": "Watersnoodmuseum: De ramp"
+      }
+     ],
+     "text": {
+      "nl": "Zaterdag 31 januari 1953. Er is een zware storm uit het noordwesten. De wind drukt het water van de Noordzee omhoog. En het is springvloed: het water komt al extra hoog.\n\nOp de radio is er een waarschuwing, maar veel mensen in het rampgebied horen die niet of begrijpen die verkeerd. Na middernacht is de radio uit.\n\nVanaf drie uur 's nachts breken de dijken, op meer dan 150 plaatsen. Het water stroomt over het land. Het is zondag 1 februari.",
+      "th": "วันเสาร์ที่ 31 มกราคม ค.ศ. 1953 มีพายุ (storm) แรงจากทางตะวันตกเฉียงเหนือ ลมดันน้ำทะเลเหนือให้สูงขึ้น และเป็นช่วงน้ำขึ้นสูงพิเศษ (springvloed) น้ำจึงสูงกว่าปกติอยู่แล้ว\n\nทางวิทยุมีคำเตือน แต่คนจำนวนมากในพื้นที่ภัยพิบัติไม่ได้ยินหรือเข้าใจผิด หลังเที่ยงคืนวิทยุก็ปิด\n\nตั้งแต่ตีสามคันดิน (dijk) พังทลายในมากกว่า 150 แห่ง น้ำไหลท่วมแผ่นดิน เป็นวันอาทิตย์ที่ 1 กุมภาพันธ์",
+      "en": "Saturday, 31 January 1953. There is a heavy storm (storm) from the northwest. The wind pushes the water of the North Sea up. And it is a spring tide (springvloed): the water is already extra high.\n\nThere is a warning on the radio, but many people in the disaster area do not hear it or misunderstand it. After midnight the radio is off.\n\nFrom three o'clock in the night the dikes (dijk) break, in more than 150 places. The water flows over the land. It is Sunday, 1 February."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "w53.springvloed",
+        "w53.storm"
+       ],
+       "ask": {
+        "nl": "Wat maakte het water zo hoog?",
+        "th": "อะไรทำให้น้ำสูงขนาดนั้น",
+        "en": "What made the water so high?"
+       },
+       "opts": [
+        {
+         "t": "Een storm en een springvloed",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. De wind drukte het water omhoog, en het was al extra hoog door de springvloed.",
+          "th": "ถูกต้อง ลมดันน้ำให้สูงขึ้น และน้ำสูงพิเศษอยู่แล้วเพราะ springvloed",
+          "en": "Right. The wind pushed the water up, and it was already extra high because of the spring tide."
+         }
+        },
+        {
+         "t": "Een storm en een droge zomer",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Het verhaal gaat over januari, in de winter. Een droge zomer staat er niet in.",
+          "th": "เรื่องเกิดในเดือนมกราคม ฤดูหนาว ไม่มีเรื่องฤดูร้อนที่แห้งแล้ง",
+          "en": "The story is about January, in winter. A dry summer is not in it."
+         }
+        },
+        {
+         "t": "Een springvloed en veel regen",
+         "r": "near",
+         "err": "lezen",
+         "why": {
+          "nl": "Een springvloed klopt. Maar de tekst noemt een zware storm, geen regen.",
+          "th": "springvloed ถูกต้อง แต่ข้อความพูดถึงพายุแรง ไม่ใช่ฝน",
+          "en": "A spring tide is right. But the text mentions a heavy storm, not rain."
+         }
+        }
+       ],
+       "answer": "Een storm en een springvloed",
+       "why": {
+        "nl": "De storm drukte de zee omhoog, en de springvloed maakte het water extra hoog.",
+        "th": "พายุดันทะเลให้สูงขึ้น และ springvloed ทำให้น้ำสูงเป็นพิเศษ",
+        "en": "The storm pushed the sea up, and the spring tide made the water extra high."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "w53.dijk"
+       ],
+       "ask": {
+        "nl": "Waarom waren er zoveel slachtoffers? Wat zegt de tekst?",
+        "th": "ทำไมจึงมีผู้เสียชีวิตมากมาย ข้อความบอกว่าอย่างไร",
+        "en": "Why were there so many victims? What does the text say?"
+       },
+       "opts": [
+        {
+         "t": "Veel mensen hoorden de waarschuwing niet of begrepen die verkeerd",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Dat staat in de tekst, en de dijken braken in de nacht.",
+          "th": "ถูกต้อง ข้อความเขียนไว้ และคันดินพังในเวลากลางคืน",
+          "en": "Right. That is in the text, and the dikes broke in the night."
+         }
+        },
+        {
+         "t": "Er was geen waarschuwing",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Er was wel een waarschuwing. Maar veel mensen hoorden haar niet of begrepen haar verkeerd.",
+          "th": "มีคำเตือน แต่หลายคนไม่ได้ยินหรือเข้าใจผิด",
+          "en": "There was a warning. But many people did not hear it or misunderstood it."
+         }
+        },
+        {
+         "t": "De dijken waren nieuw",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat zegt de tekst niet. De dijken braken op meer dan 150 plaatsen.",
+          "th": "ข้อความไม่ได้บอก คันดินพังในมากกว่า 150 แห่ง",
+          "en": "The text does not say that. The dikes broke in more than 150 places."
+         }
+        }
+       ],
+       "answer": "Veel mensen hoorden de waarschuwing niet of begrepen die verkeerd",
+       "why": {
+        "nl": "De waarschuwing werd door velen niet gehoord of verkeerd begrepen.",
+        "th": "หลายคนไม่ได้ยินหรือเข้าใจคำเตือนผิด",
+        "en": "Many people did not hear the warning or misunderstood it."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "w53.zolder",
+      "w53.evacueren"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Watersnoodramp_van_1953",
+       "title": "Wikipedia: Watersnoodramp van 1953"
+      },
+      {
+       "url": "https://www.watersnoodmuseum.nl/de-ramp/",
+       "title": "Watersnoodmuseum: De ramp"
+      }
+     ],
+     "text": {
+      "nl": "Het water staat in de straten en in de huizen. Mensen vluchten naar de zolder of naar het dak. Om één uur 's middags komt er opnieuw hoog water. Daardoor storten nog veel huizen in.\n\nReddingsboten en vissersschepen komen meteen helpen. Soldaten helpen mensen uit het water en uit de huizen. Ook andere landen sturen hulp. Het Nederlandse leger heeft maar één helikopter.\n\nIn totaal verdrinken 1836 mensen en tienduizenden dieren. Ongeveer 72.000 mensen moeten lange tijd hun huis verlaten. Ze worden geëvacueerd.",
+      "th": "น้ำท่วมถนนและบ้านเรือน ผู้คนหนีขึ้นห้องใต้หลังคา (zolder) หรือขึ้นไปบนหลังคา ตอนบ่ายโมงน้ำขึ้นสูงอีกครั้ง บ้านเรือนจำนวนมากจึงพังถล่ม\n\nเรือกู้ภัยและเรือประมงมาช่วยทันที ทหารช่วยพาผู้คนออกจากน้ำและจากบ้าน ประเทศอื่นก็ส่งความช่วยเหลือมาด้วย กองทัพเนเธอร์แลนด์มีเฮลิคอปเตอร์เพียงลำเดียว\n\nโดยรวมแล้วมีผู้จมน้ำเสียชีวิต 1,836 คน และสัตว์อีกหลายหมื่นตัว ประชาชนราว 72,000 คนต้องออกจากบ้านเป็นเวลานาน พวกเขาถูกอพยพ (geëvacueerd)",
+      "en": "The water is in the streets and in the houses. People flee to the attic (zolder) or onto the roof. At one o'clock in the afternoon the water comes high again. Because of that, many more houses collapse.\n\nRescue boats and fishing boats come to help at once. Soldiers help people out of the water and out of the houses. Other countries also send help. The Dutch army has only one helicopter.\n\nIn total 1,836 people and tens of thousands of animals drown. About 72,000 people have to leave their homes for a long time. They are evacuated (geëvacueerd)."
+     },
+     "q": [
+      {
+       "form": "complete",
+       "items": [
+        "w53.zolder"
+       ],
+       "ask": {
+        "nl": "Maak af: Mensen vluchten naar de zolder of naar het ___.",
+        "th": "เติมคำ: Mensen vluchten naar de zolder of naar het ___.",
+        "en": "Complete: Mensen vluchten naar de zolder of naar het ___."
+       },
+       "answer": "dak",
+       "err": "spelling",
+       "hint": [
+        {
+         "nl": "Boven in een huis, buiten.",
+         "th": "ด้านบนสุดของบ้าน ด้านนอก",
+         "en": "At the top of a house, outside."
+        },
+        {
+         "nl": "Begin zo: da…",
+         "th": "ขึ้นต้นแบบนี้: da…",
+         "en": "Start like this: da…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. Op de zolder of op het dak zat je boven het water.",
+        "th": "ถูกต้อง บนห้องใต้หลังคาหรือบนหลังคาอยู่เหนือน้ำ",
+        "en": "Right. In the attic or on the roof you were above the water."
+       }
+      },
+      {
+       "form": "number",
+       "items": [
+        "w53.evacueren"
+       ],
+       "ask": {
+        "nl": "Ongeveer hoeveel mensen moesten lange tijd hun huis verlaten? Typ een getal.",
+        "th": "ประมาณกี่คนที่ต้องออกจากบ้านเป็นเวลานาน พิมพ์ตัวเลข",
+        "en": "About how many people had to leave their homes for a long time? Type a number."
+       },
+       "answer": "72000",
+       "tol": 3000,
+       "accept": [
+        "72.000",
+        "72000"
+       ],
+       "err": "lezen",
+       "why": {
+        "nl": "Ongeveer 72.000 mensen werden geëvacueerd.",
+        "th": "ประชาชนราว 72,000 คนถูกอพยพ",
+        "en": "About 72,000 people were evacuated."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "w53.dijk",
+      "w53.zolder"
+     ],
+     "ask": {
+      "nl": "Zet de nacht in de goede volgorde.",
+      "th": "เรียงเหตุการณ์ของคืนนั้นให้ถูกลำดับ",
+      "en": "Put the night in the right order."
+     },
+     "form": "build",
+     "answer": "Storm en springvloed De dijken breken Mensen vluchten omhoog Hulp komt",
+     "data": {
+      "parts": [
+       "Storm en springvloed",
+       "De dijken breken",
+       "Mensen vluchten omhoog",
+       "Hulp komt"
+      ],
+      "tr": {
+       "th": "พายุและน้ำขึ้นสูง คันดินพัง ผู้คนหนีขึ้นที่สูง ความช่วยเหลือมาถึง",
+       "en": "Storm and spring tide. The dikes break. People flee upwards. Help comes."
+      }
+     },
+     "why": {
+      "nl": "Eerst storm en springvloed, dan breken de dijken, dan vluchten mensen naar zolder of dak, en dan komt de hulp.",
+      "th": "ก่อนอื่นพายุและน้ำขึ้นสูง แล้วคันดินพัง แล้วผู้คนหนีขึ้นห้องใต้หลังคาหรือหลังคา แล้วความช่วยเหลือจึงมา",
+      "en": "First storm and spring tide, then the dikes break, then people flee to the attic or roof, and then help comes."
+     },
+     "err": "woordvolgorde",
+     "help": 0
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "w53.dijk"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Deltawerken",
+       "title": "Wikipedia: Deltawerken"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Watersnoodramp_van_1953",
+       "title": "Wikipedia: Watersnoodramp van 1953"
+      }
+     ],
+     "text": {
+      "nl": "Op 21 februari 1953, drie weken later, begon de Deltacommissie. De commissie maakte een plan om het land veilig te maken: dijken hoger en sterker maken, en zeearmen afsluiten zodat de kust korter wordt.\n\nDe dijken waren binnen ongeveer driekwart jaar hersteld. In 1958 werd de Deltawet getekend. In 1986 was de Oosterscheldekering klaar, een groot werk uit het plan. Het laatste grote werk, de Maeslantkering, volgde in 1997.",
+      "th": "วันที่ 21 กุมภาพันธ์ ค.ศ. 1953 สามสัปดาห์ต่อมา คณะกรรมการเดลตา (Deltacommissie) เริ่มทำงาน คณะกรรมการทำแผนเพื่อให้ประเทศปลอดภัย คือทำให้คันดินสูงและแข็งแรงขึ้น และปิดอ่าวทะเลเพื่อให้แนวชายฝั่งสั้นลง\n\nคันดินได้รับการซ่อมแซมภายในราวเก้าเดือน ในปี ค.ศ. 1958 มีการลงนามในกฎหมายเดลตา (Deltawet) ในปี ค.ศ. 1986 เขื่อนกั้นพายุที่ปากอ่าวออสเตอร์สเกลเดอ (Oosterscheldekering) สร้างเสร็จ ส่วนเขื่อนมาสลันต์ (Maeslantkering) ซึ่งเป็นงานใหญ่ชิ้นสุดท้าย ตามมาในปี ค.ศ. 1997",
+      "en": "On 21 February 1953, three weeks later, the Delta Committee (Deltacommissie) began. The committee made a plan to make the country safe: make the dikes higher and stronger, and close sea inlets so that the coast becomes shorter.\n\nThe dikes were repaired within about nine months. In 1958 the Delta Act (Deltawet) was signed. In 1986 the Eastern Scheldt barrier (Oosterscheldekering) was finished, a big work of the plan. The Maeslant barrier (Maeslantkering), the last big work, followed in 1997."
+     },
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "w53.dijk"
+       ],
+       "ask": {
+        "nl": "In welk jaar was de Oosterscheldekering klaar? Typ het jaar.",
+        "th": "เขื่อนกั้นพายุ Oosterscheldekering สร้างเสร็จในปีใด พิมพ์ปี",
+        "en": "In which year was the Oosterscheldekering finished? Type the year."
+       },
+       "answer": "1986",
+       "err": "lezen",
+       "why": {
+        "nl": "In 1986. Het laatste grote werk, de Maeslantkering, kwam in 1997.",
+        "th": "ในปี 1986 งานใหญ่ชิ้นสุดท้าย คือเขื่อนมาสลันต์ เสร็จในปี 1997",
+        "en": "In 1986. The last big work, the Maeslantkering, came in 1997."
+       }
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu vertellen: in de nacht van 31 januari op 1 februari 1953 braken door storm en springvloed de dijken, 1836 mensen verdronken, en daarna kwamen de Deltawerken.",
+      "th": "ตอนนี้คุณเล่าได้ว่า ในคืนวันที่ 31 มกราคมถึง 1 กุมภาพันธ์ ค.ศ. 1953 พายุและน้ำขึ้นสูงพิเศษทำให้คันดินพัง มีผู้จมน้ำเสียชีวิต 1,836 คน และหลังจากนั้นมีโครงการเดลตา",
+      "en": "You can now tell: in the night of 31 January to 1 February 1953 the dikes broke because of the storm and spring tide, 1836 people drowned, and after that came the Delta Works."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

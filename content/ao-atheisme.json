@@ -1,0 +1,680 @@
+{
+ "format": 1,
+ "id": "ao-atheisme",
+ "type": "les",
+ "version": 1,
+ "order": 18,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "levensbeschouwing",
+ "vorm": "twee meningen naast elkaar",
+ "draden": [
+  "ao-monnik",
+  "ao-ramadan",
+  "ao-archeoloog"
+ ],
+ "title": {
+  "nl": "Wat gelooft iemand die niet gelooft?",
+  "th": "คนที่ไม่เชื่อในพระเจ้าเชื่ออะไร",
+  "en": "What does someone who does not believe, believe?"
+ },
+ "sources": [
+  {
+   "url": "https://nl.wikipedia.org/wiki/Atheïsme",
+   "title": "Wikipedia (nl): Atheïsme"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Atheism",
+   "title": "Wikipedia: Atheism"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Humanisme",
+   "title": "Wikipedia (nl): Humanisme"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Religie",
+   "title": "Wikipedia (nl): Religie"
+  },
+  {
+   "url": "https://www.cbs.nl/nl-nl/corporate/2024/13/kerkelijke-gezindten-langs-de-meetlat-1849-2023",
+   "title": "CBS: Kerkelijke gezindten langs de meetlat, 1849-2023"
+  },
+  {
+   "url": "https://www.cbs.nl/nl-nl/longread/statistische-trends/2023/religieuze-betrokkenheid-in-nederland?onepage=true",
+   "title": "CBS: Religieuze betrokkenheid in Nederland"
+  }
+ ],
+ "items": [
+  {
+   "id": "ath.geloof",
+   "kind": "word",
+   "w": "geloof",
+   "art": "het",
+   "tr": {
+    "th": "ความเชื่อ (ศาสนา)",
+    "en": "faith, belief"
+   },
+   "def": "Wat iemand vast vertrouwt over een god, goden of het leven, zonder het te kunnen bewijzen.",
+   "ex": "Voor veel mensen is geloof belangrijk in hun leven.",
+   "gap": "Het ___ geeft veel mensen houvast.",
+   "wrong": [
+    "brood",
+    "glas",
+    "dak"
+   ]
+  },
+  {
+   "id": "ath.god",
+   "kind": "word",
+   "w": "god",
+   "art": "de",
+   "tr": {
+    "th": "พระเจ้า",
+    "en": "god"
+   },
+   "def": "Een macht waar gelovigen in geloven en tot wie ze bidden.",
+   "ex": "Veel mensen bidden tot hun god.",
+   "gap": "Veel mensen bidden tot de ___ in wie ze geloven.",
+   "wrong": [
+    "fiets",
+    "soep",
+    "kast"
+   ]
+  },
+  {
+   "id": "ath.zingeving",
+   "kind": "word",
+   "w": "zingeving",
+   "art": "de",
+   "tr": {
+    "th": "การให้ความหมายแก่ชีวิต",
+    "en": "finding meaning"
+   },
+   "def": "Zoeken naar wat belangrijk is in je leven en waarom je er bent.",
+   "ex": "Voor iedereen is zingeving iets anders.",
+   "gap": "Waarom ben ik hier? Daar gaat de ___ over.",
+   "wrong": [
+    "trein",
+    "jas",
+    "lamp"
+   ]
+  },
+  {
+   "id": "ath.twijfelen",
+   "kind": "word",
+   "w": "twijfelen",
+   "art": "",
+   "tr": {
+    "th": "สงสัย ลังเล",
+    "en": "to doubt"
+   },
+   "def": "Niet zeker weten wat waar is of wat je moet kiezen.",
+   "ex": "Ik twijfel of ik naar het feest ga.",
+   "gap": "Veel mensen ___ of er een god is.",
+   "wrong": [
+    "eten",
+    "fietsen",
+    "slapen"
+   ]
+  },
+  {
+   "id": "ath.mening",
+   "kind": "word",
+   "w": "mening",
+   "art": "de",
+   "tr": {
+    "th": "ความคิดเห็น",
+    "en": "opinion"
+   },
+   "def": "Wat iemand ergens van vindt.",
+   "ex": "Iedereen mag zijn eigen mening hebben.",
+   "gap": "De ___ van iemand is wat die persoon ergens van vindt.",
+   "wrong": [
+    "fiets",
+    "soep",
+    "kamer"
+   ]
+  },
+  {
+   "id": "ath.respect",
+   "kind": "word",
+   "w": "respect",
+   "art": "het",
+   "tr": {
+    "th": "ความเคารพ",
+    "en": "respect"
+   },
+   "def": "Je laat zien dat je iemand of iets belangrijk vindt.",
+   "ex": "Respect voor anderen is belangrijk.",
+   "gap": "Het ___ voor anderen betekent: je behandelt ze goed.",
+   "wrong": [
+    "brood",
+    "dak",
+    "bed"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-atheisme-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Wat gelooft iemand die niet gelooft?",
+    "th": "คนที่ไม่เชื่อในพระเจ้าเชื่ออะไร",
+    "en": "What does someone who does not believe, believe?"
+   },
+   "intro": {
+    "nl": "Twee mensen zoeken antwoorden op grote vragen. Ze vinden die op een andere manier. Eerst kies jij, dan lees je allebei de kanten.",
+    "th": "คนสองคนมองหาคำตอบของคำถามใหญ่ ๆ แต่ได้คำตอบด้วยวิธีที่ต่างกัน ก่อนอื่นคุณเลือกเอง แล้วอ่านทั้งสองฝ่าย",
+    "en": "Two people look for answers to big questions. They find them in different ways. First you choose, then you read both sides."
+   },
+   "can": {
+    "nl": "Vertellen wat atheïsme is en hoe mensen met en zonder geloof zin zoeken",
+    "th": "เล่าได้ว่าอเทวนิยมคืออะไร และคนที่มีและไม่มีศาสนาแสวงหาความหมายของชีวิตอย่างไร",
+    "en": "Tell what atheism is and how people with and without faith look for meaning"
+   },
+   "targets": [
+    "ath.geloof",
+    "ath.god",
+    "ath.zingeving",
+    "ath.twijfelen",
+    "ath.mening",
+    "ath.respect"
+   ],
+   "goals": [
+    "kennis-maatschappij",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "room",
+    "tone": "mint",
+    "alt": {
+     "nl": "Een kamer met twee stoelen en een tafel.",
+     "th": "ห้องที่มีเก้าอี้สองตัวและโต๊ะ",
+     "en": "A room with two chairs and a table."
+    },
+    "things": [
+     {
+      "kind": "chair",
+      "x": 110,
+      "y": 156
+     },
+     {
+      "kind": "chair",
+      "x": 230,
+      "y": 156,
+      "flip": true
+     },
+     {
+      "kind": "table",
+      "x": 170,
+      "y": 156
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "quiz",
+     "role": "instap",
+     "q": [
+      {
+       "form": "choose",
+       "standpunt": true,
+       "items": [
+        "ath.zingeving",
+        "ath.mening"
+       ],
+       "ask": {
+        "nl": "Eerst jij. Mensen zoeken op verschillende manieren zin en richting in hun leven. Wat past het best bij jou?",
+        "th": "ก่อนอื่นคุณ ผู้คนมองหาความหมายและทิศทางของชีวิตด้วยวิธีที่ต่างกัน อะไรเหมาะกับคุณที่สุด",
+        "en": "You first. People look for meaning and direction in their lives in different ways. What fits you best?"
+       },
+       "opts": [
+        {
+         "t": "Ik geef zelf zin aan mijn leven",
+         "r": "ok",
+         "why": {
+          "nl": "Zo denken veel humanisten: waarden zoals waardigheid en vrijheid zijn belangrijk, en geluk zoek je in het leven hier en nu.",
+          "th": "นักมนุษยนิยมจำนวนมากคิดอย่างนี้ คุณค่าอย่างศักดิ์ศรีและเสรีภาพสำคัญ และแสวงหาความสุขในชีวิตที่นี่และตอนนี้",
+          "en": "Many humanists think this way: values such as dignity and freedom are important, and you look for happiness in life here and now."
+         }
+        },
+        {
+         "t": "Mijn geloof geeft mij zin en houvast",
+         "r": "ok",
+         "why": {
+          "nl": "Zo beschrijven veel gelovigen hun geloof: houvast en troost, antwoorden op vragen over de dood, en een groep met dezelfde gebruiken.",
+          "th": "ผู้ศรัทธาจำนวนมากบรรยายความเชื่อของตนอย่างนี้ ที่ยึดเหนี่ยวและการปลอบใจ คำตอบเรื่องความตาย และกลุ่มที่มีขนบธรรมเนียมเดียวกัน",
+          "en": "This is how many believers describe their faith: support and comfort, answers to questions about death, and a group with the same customs."
+         }
+        },
+        {
+         "t": "Ik weet het nog niet",
+         "r": "ok",
+         "why": {
+          "nl": "Zo denken ook veel mensen: je weet het niet zeker, en dat mag. Een agnost zegt: je kunt het niet bewijzen. Lees hoe de twee andere kanten het zeggen.",
+          "th": "คนจำนวนมากก็คิดอย่างนี้ คือไม่แน่ใจ และก็ไม่เป็นไร agnost พูดว่า พิสูจน์ไม่ได้ อ่านว่าอีกสองฝ่ายพูดอย่างไร",
+          "en": "Many people think so too: you are not sure, and that is allowed. An agnostic says: you cannot prove it. Read how the two other sides put it."
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "ath.geloof",
+      "ath.god",
+      "ath.twijfelen"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Atheïsme",
+       "title": "Wikipedia (nl): Atheïsme"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Atheism",
+       "title": "Wikipedia: Atheism"
+      },
+      {
+       "url": "https://www.cbs.nl/nl-nl/corporate/2024/13/kerkelijke-gezindten-langs-de-meetlat-1849-2023",
+       "title": "CBS: Kerkelijke gezindten langs de meetlat, 1849-2023"
+      },
+      {
+       "url": "https://www.cbs.nl/nl-nl/longread/statistische-trends/2023/religieuze-betrokkenheid-in-nederland?onepage=true",
+       "title": "CBS: Religieuze betrokkenheid in Nederland"
+      }
+     ],
+     "text": {
+      "nl": "Wat is atheïsme?\n\nAtheïsme betekent: niet geloven in een god of in goden. Het woord komt uit het Grieks: a- is 'zonder' en theos is 'god'.\n\nEen agnost zegt iets anders: 'Het is niet mogelijk om te bewijzen of er een god is.' Atheïsme gaat dus over geloof, agnosticisme over weten.\n\nIn 2023 rekende 58 procent van de mensen van 15 jaar of ouder in Nederland zich niet tot een geloofsgroep. Dat is niet hetzelfde als niet geloven. Een CBS-onderzoek uit 2021 laat zien: ongeveer één op de drie gelooft niet in God. De anderen geloven in God of in een hogere macht, of ze twijfelen.",
+      "th": "อเทวนิยมคืออะไร\n\nอเทวนิยม (atheïsme) หมายถึง ไม่เชื่อในพระเจ้าหรือเทพเจ้า คำนี้มาจากภาษากรีก a- แปลว่า ‘ไม่มี’ และ theos แปลว่า ‘พระเจ้า’\n\nคนที่เป็น agnost พูดอีกอย่างหนึ่งว่า ‘ไม่สามารถพิสูจน์ได้ว่ามีพระเจ้าหรือไม่’ ดังนั้นอเทวนิยมเกี่ยวกับความเชื่อ ส่วน agnosticisme เกี่ยวกับการรู้\n\nในปี 2023 คนในเนเธอร์แลนด์อายุ 15 ปีขึ้นไป 58 เปอร์เซ็นต์ไม่ได้นับถือหรือสังกัดกลุ่มศาสนาใด ซึ่งไม่เหมือนกับการไม่เชื่อ การสำรวจของ CBS ปี 2021 พบว่า ประมาณหนึ่งในสามไม่เชื่อในพระเจ้า ที่เหลือเชื่อในพระเจ้าหรือพลังที่สูงกว่า หรือยังลังเลอยู่",
+      "en": "What is atheism?\n\nAtheism means: not believing in a god or in gods. The word comes from Greek: a- is 'without' and theos is 'god'.\n\nAn agnostic says something different: 'It is not possible to prove whether there is a god.' So atheism is about belief, agnosticism is about knowing.\n\nIn 2023, 58 percent of people aged 15 or older in the Netherlands did not belong to any religious group. That is not the same as not believing. A CBS study from 2021 shows: about one in three does not believe in God. The others believe in God or in a higher power, or they doubt."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "ath.god",
+        "ath.geloof"
+       ],
+       "ask": {
+        "nl": "Wat betekent atheïsme?",
+        "th": "อเทวนิยมหมายความว่าอะไร",
+        "en": "What does atheism mean?"
+       },
+       "opts": [
+        {
+         "t": "Niet geloven in een god of in goden",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. A- is zonder, theos is god: zonder god.",
+          "th": "ถูกต้อง a- คือ ไม่มี theos คือ พระเจ้า: ไม่มีพระเจ้า",
+          "en": "Right. A- is without, theos is god: without god."
+         }
+        },
+        {
+         "t": "Boos zijn op gelovigen",
+         "r": "no",
+         "err": "betekenis",
+         "why": {
+          "nl": "Nee. Atheïsme gaat over wat iemand gelooft, niet over wat iemand van anderen vindt.",
+          "th": "ไม่ใช่ อเทวนิยมเกี่ยวกับสิ่งที่คนเชื่อ ไม่ใช่สิ่งที่คนรู้สึกต่อผู้อื่น",
+          "en": "No. Atheism is about what someone believes, not about what someone thinks of others."
+         }
+        },
+        {
+         "t": "Geloven dat een god bestaat",
+         "r": "no",
+         "err": "betekenis",
+         "why": {
+          "nl": "Dat is het omgekeerde: een gelovige gelooft dat er een god is.",
+          "th": "นั่นตรงกันข้าม ผู้ศรัทธาเชื่อว่ามีพระเจ้า",
+          "en": "That is the opposite: a believer believes that there is a god."
+         }
+        }
+       ],
+       "answer": "Niet geloven in een god of in goden",
+       "why": {
+        "nl": "Goed. A- is zonder, theos is god: zonder god.",
+        "th": "ถูกต้อง a- คือ ไม่มี theos คือ พระเจ้า: ไม่มีพระเจ้า",
+        "en": "Right. A- is without, theos is god: without god."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "ath.twijfelen"
+       ],
+       "ask": {
+        "nl": "Wat zegt een agnost?",
+        "th": "agnost พูดว่าอย่างไร",
+        "en": "What does an agnostic say?"
+       },
+       "opts": [
+        {
+         "t": "Er is zeker een god",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Dat zegt iemand die zeker is van een god. Een agnost zegt: dat is niet te bewijzen.",
+          "th": "ไม่ใช่ นั่นคือคำพูดของคนที่มั่นใจว่ามีพระเจ้า agnost พูดว่า พิสูจน์ไม่ได้",
+          "en": "No. That is what someone who is sure of a god says. An agnostic says: that cannot be proved."
+         }
+        },
+        {
+         "t": "Je kunt niet bewijzen of er een god is",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Het gaat om weten, niet om geloven.",
+          "th": "ถูกต้อง เป็นเรื่องการรู้ ไม่ใช่การเชื่อ",
+          "en": "Right. It is about knowing, not about believing."
+         }
+        },
+        {
+         "t": "Er is zeker geen god",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat zegt iemand die het zeker weet. Een agnost zegt juist dat je het niet kunt bewijzen.",
+          "th": "นั่นคือคำพูดของคนที่มั่นใจ agnost กลับบอกว่าพิสูจน์ไม่ได้",
+          "en": "That is what someone who is sure says. An agnostic says that you cannot prove it."
+         }
+        }
+       ],
+       "answer": "Je kunt niet bewijzen of er een god is",
+       "why": {
+        "nl": "Goed. Het gaat om weten, niet om geloven.",
+        "th": "ถูกต้อง เป็นเรื่องการรู้ ไม่ใช่การเชื่อ",
+        "en": "Right. It is about knowing, not about believing."
+       }
+      },
+      {
+       "form": "number",
+       "items": [
+        "ath.geloof"
+       ],
+       "ask": {
+        "nl": "Hoeveel van de 100 mensen van 15 jaar of ouder in Nederland rekenden zich in 2023 niet tot een geloofsgroep?",
+        "th": "ในปี 2023 จาก 100 คนในเนเธอร์แลนด์ที่อายุ 15 ปีขึ้นไป มีกี่คนที่ไม่ได้นับถือหรือสังกัดกลุ่มศาสนาใด",
+        "en": "Out of 100 people aged 15 or older in the Netherlands, how many did not belong to any religious group in 2023?"
+       },
+       "answer": "58",
+       "err": "getal",
+       "why": {
+        "nl": "Het waren er 58 van de 100. Dat zegt niet hoeveel mensen niet geloven.",
+        "th": "มี 58 จาก 100 คน นี่ไม่ได้บอกว่ามีกี่คนที่ไม่เชื่อ",
+        "en": "It was 58 out of 100. That does not say how many people do not believe."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "ath.zingeving",
+      "ath.geloof",
+      "ath.respect"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Humanisme",
+       "title": "Wikipedia (nl): Humanisme"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Religie",
+       "title": "Wikipedia (nl): Religie"
+      }
+     ],
+     "text": {
+      "nl": "Twee kanten\n\nMensen stellen grote vragen: waarom ben ik hier, wat is belangrijk, wat gebeurt er als iemand doodgaat? Er zijn verschillende antwoorden.\n\nDe eerste mens zegt: 'Ik geloof niet in een god. Ik geef zelf zin aan mijn leven. Waarden zoals waardigheid en vrijheid zijn belangrijk voor mij. Ik zoek geluk in het leven hier en nu.' Zo denken veel humanisten.\n\nDe tweede mens zegt: 'Ik heb een geloof. Mijn geloof geeft mij houvast en troost in een chaotische wereld. Het geeft antwoorden op vragen over de dood. En ik hoor bij een groep met dezelfde gebruiken.' Zo beschrijven veel gelovigen hun geloof.\n\nBeide mensen zoeken zin en richting. Ze vinden die op een eigen manier.",
+      "th": "สองฝ่าย\n\nผู้คนตั้งคำถามใหญ่ ๆ: ฉันอยู่ที่นี่ทำไม อะไรสำคัญ เกิดอะไรขึ้นเมื่อมีคนตาย มีหลายคำตอบ\n\nคนที่หนึ่งพูดว่า ‘ฉันไม่เชื่อในพระเจ้า ฉันให้ความหมายแก่ชีวิตของฉันเอง คุณค่าอย่างศักดิ์ศรีและเสรีภาพสำคัญสำหรับฉัน ฉันมองหาความสุขในชีวิตที่นี่และตอนนี้’ คนจำนวนมากที่เป็นนักมนุษยนิยมคิดอย่างนี้\n\nคนที่สองพูดว่า ‘ฉันมีศรัทธา ศรัทธาให้ที่ยึดเหนี่ยวและการปลอบใจในโลกที่วุ่นวาย ให้คำตอบเรื่องความตาย และฉันอยู่ในกลุ่มที่มีขนบธรรมเนียมเดียวกัน’ ผู้ศรัทธาจำนวนมากบรรยายความเชื่อของตนอย่างนี้\n\nทั้งสองคนมองหาความหมายและทิศทางชีวิต และพบมันในแบบของตนเอง",
+      "en": "Two sides\n\nPeople ask big questions: why am I here, what is important, what happens when someone dies? There are different answers.\n\nThe first person says: 'I do not believe in a god. I give meaning to my life myself. Values such as dignity and freedom are important to me. I look for happiness in life here and now.' Many humanists think this way.\n\nThe second person says: 'I have a faith. My faith gives me support and comfort in a chaotic world. It gives answers to questions about death. And I belong to a group with the same customs.' This is how many believers describe their faith.\n\nBoth people look for meaning and direction. They find it in their own way."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "ath.zingeving"
+       ],
+       "ask": {
+        "nl": "Wie zegt: \"Ik geef zelf zin aan mijn leven\"?",
+        "th": "ใครพูดว่า “ฉันให้ความหมายแก่ชีวิตเอง”",
+        "en": "Who says: \"I give meaning to my life myself\"?"
+       },
+       "opts": [
+        {
+         "t": "De eerste mens",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. De eerste mens geeft zelf zin aan het eigen leven.",
+          "th": "ถูกต้อง คนที่หนึ่งให้ความหมายแก่ชีวิตของตนเอง",
+          "en": "Right. The first person gives meaning to their own life."
+         }
+        },
+        {
+         "t": "De tweede mens",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De tweede mens zoekt houvast en troost in het eigen geloof.",
+          "th": "ไม่ใช่ คนที่สองหาที่ยึดเหนี่ยวและการปลอบใจในศรัทธา",
+          "en": "No. The second person looks for support and comfort in their faith."
+         }
+        },
+        {
+         "t": "Geen van beiden",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Het staat in de tekst: de eerste mens zegt het.",
+          "th": "อยู่ในข้อความ: คนที่หนึ่งพูดอย่างนั้น",
+          "en": "It is in the text: the first person says it."
+         }
+        }
+       ],
+       "answer": "De eerste mens",
+       "why": {
+        "nl": "Goed. De eerste mens geeft zelf zin aan het eigen leven.",
+        "th": "ถูกต้อง คนที่หนึ่งให้ความหมายแก่ชีวิตของตนเอง",
+        "en": "Right. The first person gives meaning to their own life."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "ath.geloof"
+       ],
+       "ask": {
+        "nl": "Wie zegt dat geloof houvast en troost geeft?",
+        "th": "ใครพูดว่าศรัทธาให้ที่ยึดเหนี่ยวและการปลอบใจ",
+        "en": "Who says that faith gives support and comfort?"
+       },
+       "opts": [
+        {
+         "t": "De eerste mens",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Dat zegt de tweede mens.",
+          "th": "ไม่ใช่ คนที่สองพูดอย่างนั้น",
+          "en": "No. The second person says that."
+         }
+        },
+        {
+         "t": "Allebei in dezelfde woorden",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Ze zeggen het verschillend.",
+          "th": "ไม่ใช่ ทั้งสองพูดต่างกัน",
+          "en": "No. They say it differently."
+         }
+        },
+        {
+         "t": "De tweede mens",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Voor de tweede mens is het geloof een steun.",
+          "th": "ถูกต้อง สำหรับคนที่สอง ศรัทธาเป็นที่พึ่ง",
+          "en": "Right. For the second person faith is a support."
+         }
+        }
+       ],
+       "answer": "De tweede mens",
+       "why": {
+        "nl": "Goed. Voor de tweede mens is het geloof een steun.",
+        "th": "ถูกต้อง สำหรับคนที่สอง ศรัทธาเป็นที่พึ่ง",
+        "en": "Right. For the second person faith is a support."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "ath.mening",
+      "ath.twijfelen"
+     ],
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Atheism",
+       "title": "Wikipedia: Atheism"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Humanisme",
+       "title": "Wikipedia (nl): Humanisme"
+      }
+     ],
+     "text": {
+      "nl": "Dieper: meer dan één mening\n\nHet woord atheïsme wordt op meer manieren gebruikt. Sommige atheïsten zeggen alleen: 'ik geloof niet in een god'. Anderen zeggen: 'er is geen god'.\n\nHumanisme is een levensbeschouwing zonder god. Ze vertrouwt erop dat mensen zelf zin aan hun leven kunnen geven.",
+      "th": "ลึกขึ้น: มากกว่าหนึ่งความเห็น\n\nคำว่าอเทวนิยมใช้ได้หลายความหมาย ผู้เป็นอเทวนิยมบางคนพูดเพียงว่า ‘ฉันไม่เชื่อในพระเจ้า’ คนอื่นพูดว่า ‘ไม่มีพระเจ้า’\n\nมนุษยนิยมเป็นปรัชญาชีวิตที่ไม่มีพระเจ้า เชื่อมั่นว่าคนเราให้ความหมายแก่ชีวิตของตนเองได้",
+      "en": "Deeper: more than one opinion\n\nThe word atheism is used in more than one way. Some atheists say only: 'I do not believe in a god'. Others say: 'there is no god'.\n\nHumanism is a life stance without a god. It trusts that people can give meaning to their own lives."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "ath.mening"
+       ],
+       "ask": {
+        "nl": "Zeggen alle atheïsten precies hetzelfde?",
+        "th": "ผู้เป็นอเทวนิยมทุกคนพูดเหมือนกันทุกประการหรือไม่",
+        "en": "Do all atheists say exactly the same?"
+       },
+       "opts": [
+        {
+         "t": "Ja, ze zeggen allemaal hetzelfde",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De tekst zegt: sommigen zeggen alleen dat ze niet geloven, anderen zeggen dat er geen god is.",
+          "th": "ไม่ใช่ ข้อความบอกว่า บางคนพูดเพียงว่าไม่เชื่อ บางคนพูดว่าไม่มีพระเจ้า",
+          "en": "No. The text says: some say only that they do not believe, others say there is no god."
+         }
+        },
+        {
+         "t": "Nee: sommigen zeggen \"ik geloof niet\", anderen \"er is geen god\"",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Het woord atheïsme wordt op meer manieren gebruikt.",
+          "th": "ถูกต้อง คำว่าอเทวนิยมใช้ได้หลายความหมาย",
+          "en": "Right. The word atheism is used in more than one way."
+         }
+        },
+        {
+         "t": "Ze zeggen niets",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "De tekst zegt wel iets: er zijn twee manieren.",
+          "th": "ข้อความบอกไว้: มีสองแบบ",
+          "en": "The text does say something: there are two ways."
+         }
+        }
+       ],
+       "answer": "Nee: sommigen zeggen \"ik geloof niet\", anderen \"er is geen god\"",
+       "why": {
+        "nl": "Goed. Het woord atheïsme wordt op meer manieren gebruikt.",
+        "th": "ถูกต้อง คำว่าอเทวนิยมใช้ได้หลายความหมาย",
+        "en": "Right. The word atheism is used in more than one way."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "ath.respect",
+      "ath.mening"
+     ],
+     "ask": {
+      "nl": "Welke zin beschrijft de twee kanten eerlijk?",
+      "th": "ประโยคใดบรรยายทั้งสองฝ่ายอย่างเป็นธรรม",
+      "en": "Which sentence describes the two sides fairly?"
+     },
+     "opts": [
+      {
+       "t": "Een van de twee heeft gewoon ongelijk",
+       "r": "no",
+       "err": "lezen",
+       "why": {
+        "nl": "Deze les kiest geen kant. Ze beschrijft hoe twee mensen zin zoeken.",
+        "th": "บทเรียนนี้ไม่เลือกข้าง แต่บรรยายว่าคนสองคนแสวงหาความหมายอย่างไร",
+        "en": "This lesson takes no side. It describes how two people look for meaning."
+       }
+      },
+      {
+       "t": "Het zijn twee antwoorden op dezelfde grote vragen",
+       "r": "ok",
+       "why": {
+        "nl": "Goed. Dat beschrijft de les: allebei zoeken zin en richting, op een eigen manier.",
+        "th": "ถูกต้อง นี่คือสิ่งที่บทเรียนบรรยาย ทั้งสองมองหาความหมายและทิศทางในแบบของตน",
+        "en": "Right. That is what the lesson describes: both look for meaning and direction, in their own way."
+       }
+      },
+      {
+       "t": "Zij kunnen nooit naast elkaar leven",
+       "r": "no",
+       "err": "lezen",
+       "why": {
+        "nl": "Dat staat nergens in de tekst.",
+        "th": "ไม่มีที่ใดในข้อความ",
+        "en": "That is nowhere in the text."
+       }
+      }
+     ],
+     "answer": "Het zijn twee antwoorden op dezelfde grote vragen",
+     "why": {
+      "nl": "Goed. Dat beschrijft de les: allebei zoeken zin en richting, op een eigen manier.",
+      "th": "ถูกต้อง นี่คือสิ่งที่บทเรียนบรรยาย ทั้งสองมองหาความหมายและทิศทางในแบบของตน",
+      "en": "Right. That is what the lesson describes: both look for meaning and direction, in their own way."
+     }
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu aan iemand vertellen: atheïsme is niet geloven in een god, en mensen met en zonder geloof zoeken allebei zin en richting, op een eigen manier.",
+      "th": "ตอนนี้คุณเล่าให้ใครสักคนฟังได้ว่า อเทวนิยมคือการไม่เชื่อในพระเจ้า และคนที่มีและไม่มีศาสนาต่างก็มองหาความหมายและทิศทางชีวิตในแบบของตน",
+      "en": "You can now tell someone: atheism is not believing in a god, and people with and without faith both look for meaning and direction, in their own way."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

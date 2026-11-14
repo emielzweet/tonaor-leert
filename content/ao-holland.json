@@ -1,0 +1,499 @@
+{
+ "format": 1,
+ "id": "ao-holland",
+ "type": "les",
+ "version": 1,
+ "order": 10,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "aardrijkskunde",
+ "vorm": "een misverstand (klopt het dat…?)",
+ "draden": [
+  "ao-zeespiegel",
+  "ao-koning",
+  "ao-aardappel"
+ ],
+ "title": {
+  "nl": "Wat is het verschil tussen Holland en Nederland?",
+  "th": "ฮอลแลนด์กับเนเธอร์แลนด์ต่างกันอย่างไร",
+  "en": "What is the difference between Holland and the Netherlands?"
+ },
+ "sources": [
+  {
+   "url": "https://nl.wikipedia.org/wiki/Holland",
+   "title": "Wikipedia: Holland"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Nederland",
+   "title": "Wikipedia: Nederland"
+  },
+  {
+   "url": "https://holland.com/global/tourism/getting-around/information/netherlands-vs-holland",
+   "title": "Holland.com: What is the difference between the Netherlands and Holland?"
+  }
+ ],
+ "items": [
+  {
+   "id": "hol.provincie",
+   "kind": "word",
+   "w": "provincie",
+   "art": "de",
+   "tr": {
+    "th": "จังหวัด (ส่วนหนึ่งของประเทศที่มีการปกครองของตนเอง)",
+    "en": "province"
+   },
+   "def": "Een deel van een land met een eigen bestuur.",
+   "ex": "Nederland heeft twaalf provincies.",
+   "gap": "De ___ Noord-Holland ligt aan de zee.",
+   "wrong": [
+    "straat",
+    "trein",
+    "school"
+   ]
+  },
+  {
+   "id": "hol.land",
+   "kind": "word",
+   "w": "land",
+   "art": "het",
+   "tr": {
+    "th": "ประเทศ",
+    "en": "country"
+   },
+   "def": "Een gebied met een eigen regering en eigen grenzen.",
+   "ex": "Nederland is een klein land aan de zee.",
+   "gap": "Het ___ Nederland ligt aan de zee.",
+   "wrong": [
+    "huis",
+    "bord",
+    "brood"
+   ]
+  },
+  {
+   "id": "hol.streek",
+   "kind": "word",
+   "w": "streek",
+   "art": "de",
+   "tr": {
+    "th": "ภูมิภาค (พื้นที่ส่วนหนึ่งของประเทศที่ไม่มีเส้นแบ่งชัดเจน)",
+    "en": "region"
+   },
+   "def": "Een deel van een land dat bij elkaar hoort, zonder vaste grens.",
+   "ex": "Holland is een streek in het westen van Nederland.",
+   "gap": "De ___ in het westen van Nederland heet Holland.",
+   "wrong": [
+    "trein",
+    "tafel",
+    "jas"
+   ]
+  },
+  {
+   "id": "hol.noemen",
+   "kind": "word",
+   "w": "noemen",
+   "art": "",
+   "tr": {
+    "th": "เรียก",
+    "en": "to call, to name"
+   },
+   "def": "Een naam zeggen of een naam geven aan iets.",
+   "ex": "Veel mensen in het buitenland noemen Nederland Holland.",
+   "gap": "Veel mensen in het buitenland ___ het hele land Holland.",
+   "wrong": [
+    "lopen",
+    "eten",
+    "slapen"
+   ]
+  },
+  {
+   "id": "hol.splitsen",
+   "kind": "word",
+   "w": "splitsen",
+   "art": "",
+   "tr": {
+    "th": "แยก, แบ่งออก",
+    "en": "to split"
+   },
+   "def": "Iets in delen verdelen.",
+   "ex": "In 1840 werd de provincie Holland gesplitst.",
+   "gap": "Je kunt een taart in twee stukken ___.",
+   "wrong": [
+    "zwemmen",
+    "zingen",
+    "vergeten"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-holland-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Wat is het verschil tussen Holland en Nederland?",
+    "th": "ฮอลแลนด์กับเนเธอร์แลนด์ต่างกันอย่างไร",
+    "en": "What is the difference between Holland and the Netherlands?"
+   },
+   "intro": {
+    "nl": "Veel mensen zeggen Holland en bedoelen Nederland. Klopt dat? Je kijkt naar een paar uitspraken en beslist zelf.",
+    "th": "หลายคนพูดว่าฮอลแลนด์แต่หมายถึงเนเธอร์แลนด์ ถูกต้องไหม คุณจะดูข้อความสองสามข้อและตัดสินใจเอง",
+    "en": "Many people say Holland and mean the Netherlands. Is that right? You look at a few statements and decide for yourself."
+   },
+   "can": {
+    "nl": "Uitleggen wat Holland is en wat Nederland is",
+    "th": "อธิบายได้ว่าฮอลแลนด์คืออะไรและเนเธอร์แลนด์คืออะไร",
+    "en": "Explain what Holland is and what the Netherlands is"
+   },
+   "targets": [
+    "hol.provincie",
+    "hol.land",
+    "hol.streek",
+    "hol.noemen",
+    "hol.splitsen"
+   ],
+   "goals": [
+    "kennis-nederland",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "station",
+    "tone": "sky",
+    "alt": {
+     "nl": "Een station met een bord Nederland, een bord Holland met een vraagteken, een trein en een bank.",
+     "th": "สถานีรถไฟที่มีป้ายเนเธอร์แลนด์ ป้ายฮอลแลนด์พร้อมเครื่องหมายคำถาม รถไฟ และม้านั่ง",
+     "en": "A station with a sign Nederland, a sign Holland with a question mark, a train and a bench."
+    },
+    "things": [
+     {
+      "kind": "sign",
+      "x": 90,
+      "y": 54,
+      "text": "Nederland"
+     },
+     {
+      "kind": "sign",
+      "x": 250,
+      "y": 54,
+      "text": "Holland?"
+     },
+     {
+      "kind": "train",
+      "x": 170,
+      "y": 156
+     },
+     {
+      "kind": "bench",
+      "x": 60,
+      "y": 190
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "do",
+     "items": [
+      "hol.land",
+      "hol.streek"
+     ],
+     "ask": {
+      "nl": "Klopt het dat Holland en Nederland hetzelfde zijn?",
+      "th": "จริงหรือไม่ที่ฮอลแลนด์กับเนเธอร์แลนด์คือที่เดียวกัน",
+      "en": "Is it true that Holland and the Netherlands are the same?"
+     },
+     "opts": [
+      {
+       "t": "Ja, allebei zijn de naam van het hele land.",
+       "r": "no",
+       "err": "betekenis",
+       "why": {
+        "nl": "Veel mensen zeggen het, maar het klopt niet. Je leest zo wat Holland wel is.",
+        "th": "หลายคนพูดเช่นนั้น แต่ไม่ถูกต้อง อีกสักครู่คุณจะได้อ่านว่าฮอลแลนด์คืออะไร",
+        "en": "Many people say so, but it is not correct. You will read in a moment what Holland is."
+       }
+      },
+      {
+       "t": "Nee, Holland is maar een deel van Nederland.",
+       "r": "ok",
+       "why": {
+        "nl": "Dat klopt. Holland is een streek in het westen van Nederland.",
+        "th": "ถูกต้อง ฮอลแลนด์เป็นเพียงภูมิภาคหนึ่งทางตะวันตกของเนเธอร์แลนด์",
+        "en": "That is right. Holland is a region in the west of the Netherlands."
+       }
+      },
+      {
+       "t": "Nee, Holland ligt in een ander land.",
+       "r": "no",
+       "err": "betekenis",
+       "why": {
+        "nl": "Nee. Holland ligt in Nederland, in het westen.",
+        "th": "ไม่ใช่ ฮอลแลนด์อยู่ในเนเธอร์แลนด์ ทางตะวันตก",
+        "en": "No. Holland lies in the Netherlands, in the west."
+       }
+      }
+     ],
+     "answer": "Nee, Holland is maar een deel van Nederland.",
+     "why": {
+      "nl": "Misverstand opgelost: Holland is een streek in het westen van Nederland, en geen ander woord voor het hele land.",
+      "th": "ความเข้าใจผิดคลี่คลาย ฮอลแลนด์เป็นภูมิภาคทางตะวันตกของเนเธอร์แลนด์ ไม่ใช่อีกชื่อหนึ่งของทั้งประเทศ",
+      "en": "Misunderstanding cleared up: Holland is a region in the west of the Netherlands, not another word for the whole country."
+     }
+    },
+    {
+     "type": "read",
+     "items": [
+      "hol.splitsen",
+      "hol.provincie",
+      "hol.streek"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Holland",
+       "title": "Wikipedia: Holland"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Nederland",
+       "title": "Wikipedia: Nederland"
+      },
+      {
+       "url": "https://holland.com/global/tourism/getting-around/information/netherlands-vs-holland",
+       "title": "Holland.com: What is the difference between the Netherlands and Holland?"
+      }
+     ],
+     "text": {
+      "nl": "Holland is een streek in het westen van Nederland. Vroeger was Holland één provincie. In 1840 werd die provincie gesplitst in twee: Noord-Holland en Zuid-Holland. Dat deden ze om de macht van Holland kleiner te maken.\n\nNederland heeft twaalf provincies. Noord-Holland en Zuid-Holland zijn er maar twee van. De andere tien zijn bijvoorbeeld Zeeland, Limburg en Friesland.",
+      "th": "ฮอลแลนด์เป็นภูมิภาคทางตะวันตกของเนเธอร์แลนด์ ในอดีตฮอลแลนด์เป็นจังหวัดเดียว ในปี 1840 จังหวัดนั้นถูกแบ่งเป็นสองจังหวัด คือ นอร์ทฮอลแลนด์ (Noord-Holland) และเซาท์ฮอลแลนด์ (Zuid-Holland) เหตุผลคือเพื่อลดอำนาจของฮอลแลนด์\n\nเนเธอร์แลนด์มีสิบสองจังหวัด นอร์ทฮอลแลนด์และเซาท์ฮอลแลนด์เป็นเพียงสองในนั้น อีกสิบจังหวัดเช่น ซีแลนด์ ลิมเบิร์ก และฟรีสแลนด์",
+      "en": "Holland is a region in the west of the Netherlands. In the past Holland was one province. In 1840 that province was split in two: Noord-Holland and Zuid-Holland. They did that to make the power of Holland smaller.\n\nThe Netherlands has twelve provinces. Noord-Holland and Zuid-Holland are only two of them. The other ten include Zeeland, Limburg and Friesland."
+     },
+     "q": [
+      {
+       "form": "complete",
+       "items": [
+        "hol.splitsen"
+       ],
+       "ask": {
+        "nl": "Maak af: In 1840 werd de provincie Holland ___ in twee delen.",
+        "th": "เติมคำ: In 1840 werd de provincie Holland ___ in twee delen.",
+        "en": "Complete: In 1840 werd de provincie Holland ___ in twee delen."
+       },
+       "answer": "gesplitst",
+       "accept": [
+        "verdeeld"
+       ],
+       "hint": [
+        {
+         "nl": "Het is een werkwoord in de verleden tijd, met werd: werd ge…",
+         "th": "เป็นคำกริยาในรูปอดีตหลัง werd: werd ge…",
+         "en": "It is a verb in the past form, with werd: werd ge…"
+        },
+        {
+         "nl": "Begin zo: gesp…",
+         "th": "ขึ้นต้นแบบนี้: gesp…",
+         "en": "Start like this: gesp…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. Holland werd in 1840 gesplitst in Noord-Holland en Zuid-Holland.",
+        "th": "ถูกต้อง ในปี 1840 ฮอลแลนด์ถูกแบ่งเป็นนอร์ทฮอลแลนด์และเซาท์ฮอลแลนด์",
+        "en": "Right. In 1840 Holland was split into Noord-Holland and Zuid-Holland."
+       }
+      },
+      {
+       "form": "number",
+       "items": [
+        "hol.provincie"
+       ],
+       "ask": {
+        "nl": "Hoeveel provincies heeft Nederland? Typ het getal.",
+        "th": "เนเธอร์แลนด์มีกี่จังหวัด พิมพ์ตัวเลข",
+        "en": "How many provinces does the Netherlands have? Type the number."
+       },
+       "answer": "12",
+       "accept": [
+        "twaalf"
+       ],
+       "err": "getal",
+       "why": {
+        "nl": "Goed. Nederland heeft twaalf provincies, en Noord-Holland en Zuid-Holland zijn er twee van.",
+        "th": "ถูกต้อง เนเธอร์แลนด์มีสิบสองจังหวัด และนอร์ทฮอลแลนด์กับเซาท์ฮอลแลนด์เป็นสองในนั้น",
+        "en": "Right. The Netherlands has twelve provinces, and Noord-Holland and Zuid-Holland are two of them."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "hol.noemen",
+      "hol.land"
+     ],
+     "ask": {
+      "nl": "Klopt het dat veel mensen in het buitenland het hele land Holland noemen?",
+      "th": "จริงหรือไม่ที่คนในต่างประเทศจำนวนมากเรียกทั้งประเทศว่าฮอลแลนด์",
+      "en": "Is it true that many people abroad call the whole country Holland?"
+     },
+     "opts": [
+      {
+       "t": "Ja, vooral in het buitenland.",
+       "r": "ok",
+       "why": {
+        "nl": "Dat klopt. Zo zeggen veel mensen buiten Nederland het, en ook sommige mensen in Nederland.",
+        "th": "ถูกต้อง คนนอกเนเธอร์แลนด์จำนวนมากพูดเช่นนั้น และคนในเนเธอร์แลนด์บางคนก็พูดเหมือนกัน",
+        "en": "That is right. Many people outside the Netherlands say so, and some people in the Netherlands too."
+       }
+      },
+      {
+       "t": "Nee, niemand doet dat.",
+       "r": "no",
+       "err": "lezen",
+       "why": {
+        "nl": "Nee, het gebeurt wel vaak. Het is alleen niet de officiële naam van het land.",
+        "th": "ไม่ใช่ เกิดขึ้นบ่อย เพียงแต่ไม่ใช่ชื่อทางการของประเทศ",
+        "en": "No, it does happen often. It is just not the official name of the country."
+       }
+      },
+      {
+       "t": "Nee, dat doen alleen de Nederlanders zelf.",
+       "r": "no",
+       "err": "lezen",
+       "why": {
+        "nl": "Nee. Het gebeurt juist vooral in het buitenland.",
+        "th": "ไม่ใช่ เกิดขึ้นมากในต่างประเทศต่างหาก",
+        "en": "No. It happens mostly abroad."
+       }
+      }
+     ],
+     "answer": "Ja, vooral in het buitenland.",
+     "why": {
+      "nl": "De naam Holland wordt vooral in het buitenland vaak voor heel Nederland gebruikt.",
+      "th": "ชื่อฮอลแลนด์ถูกใช้เรียกทั้งเนเธอร์แลนด์บ่อย โดยเฉพาะในต่างประเทศ",
+      "en": "The name Holland is often used for the whole of the Netherlands, mostly abroad."
+     }
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "hol.noemen",
+      "hol.streek",
+      "hol.land"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Holland",
+       "title": "Wikipedia: Holland"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Nederland",
+       "title": "Wikipedia: Nederland"
+      },
+      {
+       "url": "https://holland.com/global/tourism/getting-around/information/netherlands-vs-holland",
+       "title": "Holland.com: What is the difference between the Netherlands and Holland?"
+      }
+     ],
+     "text": {
+      "nl": "Waarom zeggen mensen dan Holland? Holland was lange tijd economisch en cultureel heel belangrijk. Daarom gebruiken mensen, vooral in het buitenland, die naam voor het hele land. Al in de tijd van de Republiek deden buitenlanders dat steeds meer.\n\nDe naam Holland komt van een oud woord, holtland: houtland.\n\nTot en met 2019 gebruikte de organisatie die Nederland in het buitenland promoot, Holland als merknaam. Na een campagne van de overheid veranderde dat naar Nederland.",
+      "th": "แล้วทำไมคนจึงพูดว่าฮอลแลนด์ ฮอลแลนด์เคยมีความสำคัญมากทั้งด้านเศรษฐกิจและวัฒนธรรมเป็นเวลานาน ดังนั้นผู้คน โดยเฉพาะในต่างประเทศ จึงใช้ชื่อนี้เรียกทั้งประเทศ ตั้งแต่สมัยสาธารณรัฐ ชาวต่างชาติก็เรียกเช่นนี้มากขึ้นเรื่อย ๆ\n\nชื่อฮอลแลนด์มาจากคำเก่า holtland แปลว่าดินแดนป่าไม้\n\nจนถึงปี 2019 องค์กรที่ส่งเสริมภาพลักษณ์เนเธอร์แลนด์ในต่างประเทศใช้ฮอลแลนด์เป็นชื่อแบรนด์ หลังแคมเปญของรัฐบาล ชื่อนั้นเปลี่ยนเป็นเนเธอร์แลนด์",
+      "en": "Why do people say Holland, then? For a long time Holland was very important economically and culturally. That is why people, mostly abroad, use that name for the whole country. Already in the time of the Republic, foreigners did this more and more.\n\nThe name Holland comes from an old word, holtland: woodland.\n\nUp to and including 2019 the organisation that promotes the Netherlands abroad used Holland as its brand name. After a campaign by the government it changed to the Netherlands."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "hol.streek"
+       ],
+       "ask": {
+        "nl": "Waarom gebruiken mensen de naam Holland voor het hele land?",
+        "th": "ทำไมผู้คนจึงใช้ชื่อฮอลแลนด์เรียกทั้งประเทศ",
+        "en": "Why do people use the name Holland for the whole country?"
+       },
+       "opts": [
+        {
+         "t": "Holland was lang economisch en cultureel heel belangrijk",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Een belangrijk deel stond voor het hele land.",
+          "th": "ถูกต้อง ส่วนที่สำคัญส่วนหนึ่งถูกใช้แทนทั้งประเทศ",
+          "en": "Right. An important part stood for the whole country."
+         }
+        },
+        {
+         "t": "Holland is de officiële naam van het land",
+         "r": "no",
+         "err": "betekenis",
+         "why": {
+          "nl": "Nee. Holland is een streek, geen officiële landsnaam.",
+          "th": "ไม่ใช่ ฮอลแลนด์เป็นภูมิภาค ไม่ใช่ชื่อทางการของประเทศ",
+          "en": "No. Holland is a region, not an official country name."
+         }
+        },
+        {
+         "t": "Alle provincies heten Holland",
+         "r": "no",
+         "err": "betekenis",
+         "why": {
+          "nl": "Nee. Alleen Noord-Holland en Zuid-Holland hebben Holland in hun naam.",
+          "th": "ไม่ใช่ มีเพียงนอร์ทฮอลแลนด์และเซาท์ฮอลแลนด์ที่มีคำว่าฮอลแลนด์ในชื่อ",
+          "en": "No. Only Noord-Holland and Zuid-Holland have Holland in their name."
+         }
+        }
+       ],
+       "answer": "Holland was lang economisch en cultureel heel belangrijk"
+      },
+      {
+       "form": "hear-type",
+       "items": [
+        "hol.land"
+       ],
+       "ask": {
+        "nl": "Luister en typ het woord dat je hoort.",
+        "th": "ฟังแล้วพิมพ์คำที่ได้ยิน",
+        "en": "Listen and type the word you hear."
+       },
+       "answer": "land",
+       "say": "land",
+       "hint": [
+        {
+         "nl": "Het is een woord met vier letters.",
+         "th": "เป็นคำที่มีสี่ตัวอักษร",
+         "en": "It is a word with four letters."
+        },
+        {
+         "nl": "Begin zo: la…",
+         "th": "ขึ้นต้นแบบนี้: la…",
+         "en": "Start like this: la…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. Nederland is een land; Holland is een streek.",
+        "th": "ถูกต้อง เนเธอร์แลนด์เป็นประเทศ ส่วนฮอลแลนด์เป็นภูมิภาค",
+        "en": "Right. The Netherlands is a country; Holland is a region."
+       }
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu uitleggen: Holland is een streek in het westen van Nederland, met twee provincies. Nederland is het hele land, met twaalf provincies.",
+      "th": "ตอนนี้คุณอธิบายได้ว่า ฮอลแลนด์เป็นภูมิภาคทางตะวันตกของเนเธอร์แลนด์ มีสองจังหวัด ส่วนเนเธอร์แลนด์คือทั้งประเทศ มีสิบสองจังหวัด",
+      "en": "You can now explain: Holland is a region in the west of the Netherlands, with two provinces. The Netherlands is the whole country, with twelve provinces."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

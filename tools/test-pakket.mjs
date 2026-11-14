@@ -50,13 +50,13 @@ const noCheck = { ...PC, checkPack: () => ({ errors: [], quality: [] }) };
 // regel: elke waarde gaat door precies één van safeText (rauw in de HTML) of esc() (in het scherm)
 const evil2 = clone(nl); evil2.items[0].tr.th = '<script>x</script>'; evil2.texts[0].title.nl = '<img src=x onerror=1>'; evil2.exercises.find(e => e.text === 'nl.verhaal.1').data.q.nl = '<b onclick="x">a</b>'; evil2.items[0].ex = '<i onclick="y">z</i>';
 app = await boot({ override: { 'content/nl-t1.json': evil2 }, pc: noCheck }); g = app.api.get();
-ok('app: velden die rauw in de HTML komen, gaan altijd door safeText, ook zonder controle', g.NL[0].th.startsWith('&lt;script') && g.STORY.title.startsWith('&lt;img') && g.STORY.q[0].q.startsWith('&lt;b onclick'));
-ok('app: velden die platte tekst blijven, toont het scherm met esc()', g.NL[0].ex === '<i onclick="y">z</i>' && ['esc(w.ex)', 'esc(w.w)', 'esc(l[0])', 'esc(p.text)', 'esc(x.s)', 'esc(x.nl)', 'esc(w.nl)', 'full=artFull(w)', '${esc(w.art)}</span> ${esc(w.w)}'].every(s => html.includes(s)));
+ok('app: velden die rauw in de HTML komen, gaan altijd door safeText, ook zonder controle', g.NL.find(w => w.id === evil2.items[0].id).th.startsWith('&lt;script') && g.STORY.title.startsWith('&lt;img') && g.STORY.q[0].q.startsWith('&lt;b onclick'));
+ok('app: velden die platte tekst blijven, toont het scherm met esc()', g.NL.find(w => w.id === evil2.items[0].id).ex === '<i onclick="y">z</i>' && ['esc(w.ex)', 'esc(w.w)', 'esc(l[0])', 'esc(p.text)', 'esc(x.s)', 'esc(x.nl)', 'esc(w.nl)', 'full=artFull(w)', '${esc(w.art)}</span> ${esc(w.w)}'].every(s => html.includes(s)));
 ok('app: opties in klok, Engelse gatzin en geld met esc(), ook in het attribuut', ['c.o.map(o=>`<button class="choice" data-o="${esc(o)}">${esc(o)}', 'x.o.map(o=>`<button class="choice" data-o="${esc(o)}" lang="en">${esc(o)}', 'd.o.map(o=>`<button class="choice num" data-o="${esc(o)}">${esc(o)}'].every(s => html.includes(s)));
 ok('voorlezen spreekt geen tags of tekencodes uit', html.includes("t=String(t==null?'':t).replace(/<[^>]*>/g,'')"));
 app = await boot(); g = app.api.get();
 ok('app: ingebouwde pakketten geladen, niets gemeld', !g.PACK_MISSING.length && g.NL.length === NLWORDS && g.EN.length === 8 && g.REK.length === g.PACKS.flatMap(p => p.items || []).filter(x => x.kind === 'skill').length && g.SENT.length === g.PACKS.filter(p => p.learn === 'nl').flatMap(p => p.exercises || []).filter(e => e.form === 'build').length && g.PAIRS.length === g.PACKS.find(p => p.id === 'nl-t1').exercises.filter(e => e.form === 'listen').length && g.SENT.length >= 4 && g.PAIRS.length >= 3 && g.PLACE.length === 15 && g.STORY.lines.length === 10);
-ok('app: inhoud gelijk aan het pakket na safeText', g.NL[0].w === nl.items[0].w && g.STORY.lines[5][0] === PC.safeText(nl.texts[0].paras[0][5].nl));
+ok('app: inhoud gelijk aan het pakket na safeText', g.NL.find(w => w.id === nl.items[0].id).w === nl.items[0].w && g.STORY.lines[5][0] === PC.safeText(nl.texts[0].paras[0][5].nl));
 
 // 4. ontbrekend pakket: app start, meldt het, opslag ongewijzigd
 const fillLine = html.slice(html.indexOf('[...NL,...EN,...REK].forEach(x=>{if(!S.items[x.id])'), html.indexOf('\n', html.indexOf('[...NL,...EN,...REK].forEach(x=>{if(!S.items[x.id])')));
@@ -91,7 +91,7 @@ ok('geen naambotsing tussen het pakketblok en de rest van de app (' + names.leng
 {
   const amp = clone(nl); amp.items[0].w = 'brood & "melk"'; amp.items[0].ex = 'Ik koop brood & "melk".';
   ok('woord met & en aanhalingstekens is toegestaan', !PC.checkPack(amp, packs.filter(o => o.id !== 'nl-t1')).errors.length);
-  const a2 = await boot({ override: { 'content/nl-t1.json': amp } }); const w0 = a2.api.get().NL[0];
+  const a2 = await boot({ override: { 'content/nl-t1.json': amp } }); const w0 = a2.api.get().NL.find(w => w.id === amp.items[0].id);
   ok('woord met & en aanhalingstekens blijft platte tekst (het scherm escapet één keer)', w0.w === 'brood & "melk"' && w0.ex === 'Ik koop brood & "melk".');
   ok('controle weigert een id met een aanhalingsteken', broken(p => { p.items[0].id = 'werk" onclick="x'; }, 'id mag alleen'));
   ok('controle weigert een groepsnaam met een aanhalingsteken', broken(p => { p.exercises[0].pool = 'zinnen" x="'; }, 'groepsnaam'));

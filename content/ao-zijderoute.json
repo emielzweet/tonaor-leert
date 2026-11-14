@@ -1,0 +1,596 @@
+{
+ "format": 1,
+ "id": "ao-zijderoute",
+ "type": "les",
+ "version": 1,
+ "order": 17,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "geschiedenis",
+ "vorm": "een zoektocht op de kaart",
+ "draden": [
+  "ao-aardappel",
+  "ao-mekong",
+  "ao-monnik"
+ ],
+ "title": {
+  "nl": "Wat was de zijderoute?",
+  "th": "เส้นทางสายไหมคืออะไร",
+  "en": "What was the Silk Road?"
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Silk_Road",
+   "title": "Wikipedia: Silk Road"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Zijderoute",
+   "title": "Wikipedia (nl): Zijderoute"
+  }
+ ],
+ "items": [
+  {
+   "id": "zr.zijde",
+   "kind": "word",
+   "w": "zijde",
+   "art": "de",
+   "tr": {
+    "th": "ผ้าไหม",
+    "en": "silk"
+   },
+   "def": "Een glanzende, zachte stof.",
+   "ex": "Een jurk van zijde was heel duur.",
+   "gap": "De ___ was erg duur en kwam uit China.",
+   "wrong": [
+    "wolk",
+    "jaar",
+    "straat"
+   ]
+  },
+  {
+   "id": "zr.karavaan",
+   "kind": "word",
+   "w": "karavaan",
+   "art": "de",
+   "tr": {
+    "th": "กองคาราวาน",
+    "en": "caravan"
+   },
+   "def": "Een groep handelaren die samen met dieren op reis gaat.",
+   "ex": "De karavaan trok dagenlang door de woestijn.",
+   "gap": "De ___ trok met kamelen door de woestijn.",
+   "wrong": [
+    "school",
+    "tuin",
+    "keuken"
+   ]
+  },
+  {
+   "id": "zr.handelaar",
+   "kind": "word",
+   "w": "handelaar",
+   "art": "de",
+   "tr": {
+    "th": "พ่อค้า",
+    "en": "trader"
+   },
+   "def": "Iemand die spullen koopt en verkoopt.",
+   "ex": "De handelaar neemt zijn spullen mee naar een andere stad.",
+   "gap": "De ___ verkoopt zijn spullen in een andere stad.",
+   "wrong": [
+    "hond",
+    "stoel",
+    "wolk"
+   ]
+  },
+  {
+   "id": "zr.route",
+   "kind": "word",
+   "w": "route",
+   "art": "de",
+   "tr": {
+    "th": "เส้นทาง",
+    "en": "route"
+   },
+   "def": "De weg die je kiest om ergens te komen.",
+   "ex": "De route loopt langs veel steden.",
+   "gap": "De ___ van de trein gaat langs veel steden.",
+   "wrong": [
+    "soep",
+    "jas",
+    "bed"
+   ]
+  },
+  {
+   "id": "zr.papier",
+   "kind": "word",
+   "w": "papier",
+   "art": "het",
+   "tr": {
+    "th": "กระดาษ",
+    "en": "paper"
+   },
+   "def": "Dun, plat materiaal waar je op schrijft.",
+   "ex": "Op papier kun je een brief schrijven.",
+   "gap": "Op het ___ schrijf je een brief.",
+   "wrong": [
+    "zout",
+    "brood",
+    "water"
+   ]
+  },
+  {
+   "id": "zr.handel",
+   "kind": "word",
+   "w": "handel",
+   "art": "de",
+   "tr": {
+    "th": "การค้า",
+    "en": "trade"
+   },
+   "def": "Het kopen en verkopen van spullen.",
+   "ex": "Door de handel kwamen er spullen uit een ander land.",
+   "gap": "Door de ___ komen er spullen uit een ander land.",
+   "wrong": [
+    "slaap",
+    "jas",
+    "lamp"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-zijderoute-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Wat was de zijderoute?",
+    "th": "เส้นทางสายไหมคืออะไร",
+    "en": "What was the Silk Road?"
+   },
+   "intro": {
+    "nl": "Je bent handelaar met een lading zijde. Zoek je weg over de route, van oost naar west.",
+    "th": "คุณเป็นพ่อค้าที่มีผ้าไหมจำนวนมาก ค้นหาทางไปตามเส้นทางจากตะวันออกไปตะวันตก",
+    "en": "You are a trader with a load of silk. Find your way along the route, from east to west."
+   },
+   "can": {
+    "nl": "Vertellen wat de zijderoute was en welke plaatsen eraan lagen",
+    "th": "เล่าได้ว่าเส้นทางสายไหมคืออะไรและมีเมืองใดบ้างอยู่ตามทาง",
+    "en": "Tell what the Silk Road was and which places lay along it"
+   },
+   "targets": [
+    "zr.zijde",
+    "zr.karavaan",
+    "zr.handelaar",
+    "zr.route",
+    "zr.papier",
+    "zr.handel"
+   ],
+   "goals": [
+    "kennis-geschiedenis",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "market",
+    "tone": "apricot",
+    "alt": {
+     "nl": "Een markt met een kraam.",
+     "th": "ตลาดที่มีแผงขายของ",
+     "en": "A market with a stall."
+    },
+    "things": [
+     {
+      "kind": "stall",
+      "x": 170,
+      "y": 156
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "quiz",
+     "role": "instap",
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "zr.route"
+       ],
+       "ask": {
+        "nl": "Raad eens: ongeveer hoeveel jaar werd de zijderoute gebruikt? Typ een getal.",
+        "th": "ลองเดา: เส้นทางสายไหมถูกใช้มานานประมาณกี่ปี พิมพ์ตัวเลข",
+        "en": "Guess: about how many years was the Silk Road used? Type a number."
+       },
+       "answer": "1600",
+       "err": "getal",
+       "why": {
+        "nl": "De route werd gebruikt van de tweede eeuw voor Christus tot ongeveer het midden van de vijftiende eeuw: zo'n 1600 jaar. Zat je dichtbij? Mooi. Zat je er ver naast? Dan weet je nu meer.",
+        "th": "เส้นทางนี้ถูกใช้ตั้งแต่ศตวรรษที่สองก่อนคริสตกาลจนถึงราวกลางศตวรรษที่ 15 คือราว 1600 ปี ถ้าเดาใกล้เคียงก็ยอดเยี่ยม ถ้าเดาห่าง ตอนนี้คุณก็รู้มากขึ้นแล้ว",
+        "en": "The route was used from the second century BC until about the middle of the fifteenth century: some 1600 years. Was your guess close? Nice. Far off? Now you know more."
+       },
+       "tol": 600,
+       "accept": [
+        "1.600",
+        "1 600"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "zr.zijde",
+      "zr.karavaan",
+      "zr.handelaar",
+      "zr.handel"
+     ],
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Silk_Road",
+       "title": "Wikipedia: Silk Road"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Zijderoute",
+       "title": "Wikipedia (nl): Zijderoute"
+      }
+     ],
+     "text": {
+      "nl": "De handelaar in Xi'an\n\nStel je voor: je bent handelaar in de stad Xi'an. Vroeger heette die stad Chang'an. Je hebt zijde. Zijde was het belangrijkste product van de handel. Daarom heet de route zo. De naam is niet oud: een Duitse aardrijkskundige gebruikte hem in 1877.\n\nJe gaat op reis met een karavaan. Het is niet één weg, maar een net van routes door Centraal-Azië. Onderweg kom je steden tegen, zoals Kashgar en Samarkand. Je verkoopt zijde, thee en porselein. Uit het westen kwamen bijvoorbeeld paarden, wijn en glas. Ook papier ging over de route. Aan de westkant ligt Antiochië, een stad dicht bij de Middellandse Zee.\n\nEr reisde meer mee dan spullen. Ook ideeën gingen mee, vooral het boeddhisme. En ziektes: de pest ging misschien ook langs deze routes.",
+      "th": "พ่อค้าในซีอาน\n\nลองนึกภาพว่าคุณเป็นพ่อค้าในเมืองซีอาน สมัยก่อนเมืองนี้ชื่อฉางอัน คุณมีผ้าไหม ผ้าไหมคือสินค้าสำคัญที่สุดของการค้านี้ เส้นทางจึงมีชื่ออย่างนั้น ชื่อนี้ไม่เก่า นักภูมิศาสตร์ชาวเยอรมันเริ่มใช้ในปี 1877\n\nคุณออกเดินทางไปกับกองคาราวาน ไม่ใช่ถนนสายเดียว แต่เป็นเครือข่ายเส้นทางผ่านเอเชียกลาง ระหว่างทางคุณพบเมืองต่าง ๆ เช่น คาชการ์และซามาร์คันด์ คุณขายผ้าไหม ชา และเครื่องลายคราม จากทางตะวันตกมีสินค้าเช่น ม้า ไวน์ และแก้ว กระดาษก็เดินทางไปตามเส้นทางเช่นกัน ทางปลายตะวันตกมีเมืองแอนทิออก ใกล้ทะเลเมดิเตอร์เรเนียน\n\nสิ่งที่เดินทางมาด้วยไม่ได้มีแค่สินค้า แนวคิดก็เดินทางมาด้วย โดยเฉพาะพุทธศาสนา และโรคด้วย กาฬโรคอาจแพร่ไปตามเส้นทางนี้ด้วย",
+      "en": "The trader in Xi'an\n\nImagine you are a trader in the city of Xi'an. In the past that city was called Chang'an. You have silk. Silk was the most important product of the trade. That is why the route has this name. The name is not old: a German geographer used it in 1877.\n\nYou travel with a caravan. It is not one road, but a network of routes through Central Asia. On the way you meet cities such as Kashgar and Samarkand. You sell silk, tea and porcelain. From the west came, for example, horses, wine and glass. Paper also travelled along the route. At the western end lies Antioch, a city near the Mediterranean Sea.\n\nMore than goods travelled along. Ideas went too, above all Buddhism. And diseases: the plague may also have travelled along these routes."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "zr.zijde"
+       ],
+       "ask": {
+        "nl": "Waarom heet het de zijderoute?",
+        "th": "ทำไมจึงเรียกว่าเส้นทางสายไหม",
+        "en": "Why is it called the Silk Road?"
+       },
+       "opts": [
+        {
+         "t": "De weg was van zijde gemaakt",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Het was geen weg van zijde: zijde was het belangrijkste product dat over de route ging.",
+          "th": "ไม่ใช่ ไม่ได้ทำถนนจากไหม ไหมเป็นสินค้าสำคัญที่สุดที่ไปตามเส้นทาง",
+          "en": "No. It was not a road made of silk: silk was the main product that travelled the route."
+         }
+        },
+        {
+         "t": "Zijde was het belangrijkste product van de handel",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Daar komt de naam vandaan.",
+          "th": "ถูกต้อง ชื่อมาจากตรงนี้",
+          "en": "Right. That is where the name comes from."
+         }
+        },
+        {
+         "t": "Een keizer heette zo",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst. De naam komt van het product.",
+          "th": "ไม่มีในข้อความ ชื่อมาจากสินค้า",
+          "en": "That is not in the text. The name comes from the product."
+         }
+        }
+       ],
+       "answer": "Zijde was het belangrijkste product van de handel",
+       "why": {
+        "nl": "Goed. Daar komt de naam vandaan.",
+        "th": "ถูกต้อง ชื่อมาจากตรงนี้",
+        "en": "Right. That is where the name comes from."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "zr.route"
+       ],
+       "ask": {
+        "nl": "Was de zijderoute één weg?",
+        "th": "เส้นทางสายไหมเป็นถนนสายเดียวหรือไม่",
+        "en": "Was the Silk Road one road?"
+       },
+       "opts": [
+        {
+         "t": "Nee, het was een net van routes",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Er waren meer routes, vaak tegelijk in gebruik.",
+          "th": "ถูกต้อง มีหลายเส้นทาง มักใช้พร้อมกัน",
+          "en": "Right. There were several routes, often in use at the same time."
+         }
+        },
+        {
+         "t": "Ja, één rechte weg",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De tekst zegt: een net van routes.",
+          "th": "ไม่ใช่ ข้อความบอกว่า เครือข่ายเส้นทาง",
+          "en": "No. The text says: a network of routes."
+         }
+        },
+        {
+         "t": "Nee, het was een rivier",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Daar gaat de tekst niet over. Het was een net van routes over land.",
+          "th": "ข้อความไม่ได้พูดถึงเรื่องนี้ เป็นเครือข่ายเส้นทางทางบก",
+          "en": "The text does not say that. It was a network of routes over land."
+         }
+        }
+       ],
+       "answer": "Nee, het was een net van routes",
+       "why": {
+        "nl": "Goed. Er waren meer routes, vaak tegelijk in gebruik.",
+        "th": "ถูกต้อง มีหลายเส้นทาง มักใช้พร้อมกัน",
+        "en": "Right. There were several routes, often in use at the same time."
+       }
+      },
+      {
+       "form": "complete",
+       "items": [
+        "zr.karavaan"
+       ],
+       "ask": {
+        "nl": "Maak af: Een ___ is een groep handelaren die samen met dieren op reis gaat.",
+        "th": "เติมคำ: Een ___ is een groep handelaren die samen met dieren op reis gaat.",
+        "en": "Complete: Een ___ is een groep handelaren die samen met dieren op reis gaat."
+       },
+       "answer": "karavaan",
+       "hint": [
+        {
+         "nl": "Ze reizen samen, vaak met kamelen.",
+         "th": "พวกเขาเดินทางด้วยกัน มักมีอูฐ",
+         "en": "They travel together, often with camels."
+        },
+        {
+         "nl": "Begin zo: kara…",
+         "th": "ขึ้นต้นแบบนี้: kara…",
+         "en": "Start like this: kara…"
+        }
+       ],
+       "err": "spelling",
+       "why": {
+        "nl": "Goed. Een karavaan reist samen.",
+        "th": "ถูกต้อง กองคาราวานเดินทางด้วยกัน",
+        "en": "Right. A caravan travels together."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "zr.route",
+      "zr.handel"
+     ],
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Silk_Road",
+       "title": "Wikipedia: Silk Road"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Zijderoute",
+       "title": "Wikipedia (nl): Zijderoute"
+      }
+     ],
+     "text": {
+      "nl": "Dieper: hoe lang was de route?\n\nBronnen noemen niet dezelfde lengte. De ene zegt meer dan 6.400 kilometer over land, de andere 11.265 kilometer. Dat komt doordat er niet één route was: wat je meet, hangt af van welke route je neemt.\n\nHet einde kwam langzaam. In de middeleeuwen nam de handel over land af, want het vervoer ging meer over zee.",
+      "th": "ลึกขึ้น: เส้นทางยาวแค่ไหน\n\nแหล่งข้อมูลบอกความยาวไม่เท่ากัน แหล่งหนึ่งบอกว่าทางบกยาวกว่า 6,400 กิโลเมตร อีกแหล่งบอก 11,265 กิโลเมตร เพราะไม่ได้มีเส้นทางเดียว ที่วัดได้เท่าไรขึ้นอยู่กับว่าคุณเลือกเส้นทางไหน\n\nจุดจบมาอย่างช้า ๆ ในยุคกลาง การค้าทางบกลดลง เพราะการขนส่งไปทางทะเลมากขึ้น",
+      "en": "Deeper: how long was the route?\n\nSources do not give the same length. One says more than 6,400 kilometres over land, another 11,265 kilometres. That is because there was not one route: what you measure depends on which route you take.\n\nThe end came slowly. In the Middle Ages trade over land declined, because transport moved more to the sea."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "zr.route"
+       ],
+       "ask": {
+        "nl": "Waarom noemen bronnen een andere lengte?",
+        "th": "ทำไมแหล่งข้อมูลจึงบอกความยาวไม่เท่ากัน",
+        "en": "Why do sources give a different length?"
+       },
+       "opts": [
+        {
+         "t": "Er was niet één route",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Je meet een andere lengte als je een andere route neemt.",
+          "th": "ถูกต้อง เลือกเส้นทางต่างกัน ความยาวที่วัดได้ก็ต่างกัน",
+          "en": "Right. You measure another length if you take another route."
+         }
+        },
+        {
+         "t": "De aarde werd groter",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Dat staat niet in de tekst.",
+          "th": "ไม่ใช่ ไม่มีในข้อความ",
+          "en": "No. That is not in the text."
+         }
+        },
+        {
+         "t": "Niemand heeft het gemeten",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Er zijn wel getallen. Ze verschillen omdat er meer routes waren.",
+          "th": "มีตัวเลขอยู่ แต่ต่างกันเพราะมีหลายเส้นทาง",
+          "en": "There are numbers. They differ because there were more routes."
+         }
+        }
+       ],
+       "answer": "Er was niet één route",
+       "why": {
+        "nl": "Goed. Je meet een andere lengte als je een andere route neemt.",
+        "th": "ถูกต้อง เลือกเส้นทางต่างกัน ความยาวที่วัดได้ก็ต่างกัน",
+        "en": "Right. You measure another length if you take another route."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "zr.handel"
+       ],
+       "ask": {
+        "nl": "Waarom nam de handel over land af?",
+        "th": "ทำไมการค้าทางบกจึงลดลง",
+        "en": "Why did trade over land decline?"
+       },
+       "opts": [
+        {
+         "t": "Het vervoer ging meer over zee",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. In de middeleeuwen verhuisde het vervoer naar de zee.",
+          "th": "ถูกต้อง ในยุคกลางการขนส่งย้ายไปทางทะเล",
+          "en": "Right. In the Middle Ages transport moved to the sea."
+         }
+        },
+        {
+         "t": "Er was geen zijde meer",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst. Het vervoer verhuisde naar zee.",
+          "th": "ไม่มีในข้อความ การขนส่งย้ายไปทางทะเล",
+          "en": "That is not in the text. Transport moved to the sea."
+         }
+        },
+        {
+         "t": "De kamelen waren op",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Daar gaat de tekst niet over.",
+          "th": "ข้อความไม่ได้พูดถึงเรื่องนี้",
+          "en": "The text does not say that."
+         }
+        }
+       ],
+       "answer": "Het vervoer ging meer over zee",
+       "why": {
+        "nl": "Goed. In de middeleeuwen verhuisde het vervoer naar de zee.",
+        "th": "ถูกต้อง ในยุคกลางการขนส่งย้ายไปทางทะเล",
+        "en": "Right. In the Middle Ages transport moved to the sea."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "form": "build",
+     "items": [
+      "zr.route",
+      "zr.handelaar"
+     ],
+     "ask": {
+      "nl": "Zoek je weg. Leg je reis van oost naar west in de goede volgorde. Bouw de zin.",
+      "th": "ค้นหาทางของคุณ เรียงการเดินทางจากตะวันออกไปตะวันตกให้ถูกลำดับ ต่อประโยค",
+      "en": "Find your way. Put your journey from east to west in the right order. Build the sentence."
+     },
+     "data": {
+      "parts": [
+       "Je begint in Xi'an,",
+       "je komt langs Kashgar,",
+       "je komt langs Samarkand,",
+       "en je eindigt in Antiochië."
+      ],
+      "tr": {
+       "th": "คุณเริ่มที่ซีอาน ผ่านคาชการ์ ผ่านซามาร์คันด์ และไปจบที่แอนทิออก",
+       "en": "You start in Xi'an, you pass Kashgar, you pass Samarkand, and you end in Antioch."
+      }
+     },
+     "answer": "Je begint in Xi'an, je komt langs Kashgar, je komt langs Samarkand, en je eindigt in Antiochië.",
+     "why": {
+      "nl": "<b>Xi'an, Kashgar, Samarkand, Antiochië.</b> Antiochië was een bekende stad aan het westelijke einde, dicht bij de Middellandse Zee. Zo ga je van het oosten naar het westen.",
+      "th": "<b>ซีอาน คาชการ์ ซามาร์คันด์ แอนทิออก</b> แอนทิออกเป็นเมืองที่รู้จักกันดีทางปลายตะวันตก ใกล้ทะเลเมดิเตอร์เรเนียน ดังนั้นคุณจึงไปจากตะวันออกสู่ตะวันตก",
+      "en": "<b>Xi'an, Kashgar, Samarkand, Antioch.</b> Antioch was a well-known city at the western end, near the Mediterranean Sea. So you go from east to west."
+     }
+    },
+    {
+     "type": "do",
+     "items": [
+      "zr.handel",
+      "zr.papier"
+     ],
+     "ask": {
+      "nl": "Wat reisde óók mee over de route, behalve spullen?",
+      "th": "นอกจากสินค้าแล้ว อะไรเดินทางไปตามเส้นทางด้วย",
+      "en": "What also travelled along the route, besides goods?"
+     },
+     "opts": [
+      {
+       "t": "Alleen geld",
+       "r": "no",
+       "err": "lezen",
+       "why": {
+        "nl": "Dat staat niet in de tekst. De tekst noemt ideeën en ziektes.",
+        "th": "ไม่มีในข้อความ ข้อความพูดถึงแนวคิดและโรค",
+        "en": "That is not in the text. The text mentions ideas and diseases."
+       }
+      },
+      {
+       "t": "Ideeën, zoals het boeddhisme",
+       "r": "ok",
+       "why": {
+        "nl": "Goed. Met de handelaren reisden ook ideeën mee.",
+        "th": "ถูกต้อง แนวคิดเดินทางไปกับพ่อค้าด้วย",
+        "en": "Right. Ideas travelled with the traders."
+       }
+      },
+      {
+       "t": "Niets: alleen spullen",
+       "r": "no",
+       "err": "lezen",
+       "why": {
+        "nl": "Nee. Er reisden ook ideeën en ziektes mee.",
+        "th": "ไม่ใช่ แนวคิดและโรคก็เดินทางไปด้วย",
+        "en": "No. Ideas and diseases travelled too."
+       }
+      }
+     ],
+     "answer": "Ideeën, zoals het boeddhisme",
+     "why": {
+      "nl": "Goed. Met de handelaren reisden ook ideeën mee.",
+      "th": "ถูกต้อง แนวคิดเดินทางไปกับพ่อค้าด้วย",
+      "en": "Right. Ideas travelled with the traders."
+     }
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu aan iemand vertellen: de zijderoute was een net van routes van Xi'an naar het westen. Handelaren reisden met karavanen. Er gingen zijde, papier en ideeën over.",
+      "th": "ตอนนี้คุณเล่าให้ใครสักคนฟังได้ว่า เส้นทางสายไหมเป็นเครือข่ายเส้นทางจากซีอานไปทางตะวันตก พ่อค้าเดินทางกับกองคาราวาน มีผ้าไหม กระดาษ และแนวคิดเดินทางไปตามทาง",
+      "en": "You can now tell someone: the Silk Road was a network of routes from Xi'an to the west. Traders travelled with caravans. Silk, paper and ideas went along."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

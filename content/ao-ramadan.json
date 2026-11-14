@@ -1,0 +1,762 @@
+{
+ "format": 1,
+ "id": "ao-ramadan",
+ "type": "les",
+ "version": 1,
+ "order": 9,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "geloof",
+ "vorm": "een dag uit een leven",
+ "draden": [
+  "ao-monnik",
+  "ao-tijdzones",
+  "ao-gezellig"
+ ],
+ "title": {
+  "nl": "Waarom eten moslims overdag niet tijdens de ramadan?",
+  "th": "ทำไมชาวมุสลิมจึงไม่กินอาหารในตอนกลางวันในเดือนรอมฎอน",
+  "en": "Why do Muslims not eat during the day in Ramadan?"
+ },
+ "sources": [
+  {
+   "url": "https://nl.wikipedia.org/wiki/Ramadan",
+   "title": "Wikipedia: Ramadan"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Ramadan",
+   "title": "Wikipedia: Ramadan (English)"
+  }
+ ],
+ "items": [
+  {
+   "id": "ram.ramadan",
+   "kind": "word",
+   "w": "ramadan",
+   "art": "de",
+   "tr": {
+    "th": "เดือนรอมฎอน",
+    "en": "Ramadan"
+   },
+   "def": "De maand waarin moslims overdag vasten.",
+   "ex": "De ramadan duurt negenentwintig of dertig dagen.",
+   "gap": "In de ___ vasten veel moslims overdag.",
+   "wrong": [
+    "winkel",
+    "tuin",
+    "bakker"
+   ]
+  },
+  {
+   "id": "ram.vasten",
+   "kind": "word",
+   "w": "vasten",
+   "art": "",
+   "tr": {
+    "th": "ถือศีลอด",
+    "en": "to fast"
+   },
+   "def": "Een tijd lang niet eten en niet drinken.",
+   "ex": "Veel moslims vasten in de ramadan.",
+   "gap": "Overdag eten en drinken moslims niet: ze ___.",
+   "wrong": [
+    "lachen",
+    "zwemmen",
+    "verhuizen"
+   ]
+  },
+  {
+   "id": "ram.dageraad",
+   "kind": "word",
+   "w": "dageraad",
+   "art": "de",
+   "tr": {
+    "th": "รุ่งอรุณ (ช่วงที่เริ่มสว่างก่อนพระอาทิตย์ขึ้น)",
+    "en": "dawn"
+   },
+   "def": "Het moment waarop het 's ochtends licht begint te worden, vóór zonsopgang.",
+   "ex": "Bij de dageraad begint het vasten.",
+   "gap": "Bij de ___ begint het vasten.",
+   "wrong": [
+    "tafel",
+    "regen",
+    "brief"
+   ]
+  },
+  {
+   "id": "ram.zonsondergang",
+   "kind": "word",
+   "w": "zonsondergang",
+   "art": "de",
+   "tr": {
+    "th": "พระอาทิตย์ตก",
+    "en": "sunset"
+   },
+   "def": "Het moment waarop de zon 's avonds onder de horizon gaat.",
+   "ex": "Na zonsondergang mag iedereen weer eten.",
+   "gap": "Bij de ___ eten moslims weer.",
+   "wrong": [
+    "trein",
+    "winkel",
+    "jas"
+   ]
+  },
+  {
+   "id": "ram.iftar",
+   "kind": "word",
+   "w": "iftar",
+   "art": "de",
+   "tr": {
+    "th": "อิฟตาร์ (มื้อละศีลอด)",
+    "en": "iftar (the meal that ends the fast)"
+   },
+   "def": "De maaltijd na zonsondergang waarmee moslims het vasten van die dag beëindigen.",
+   "ex": "De iftar begint vaak met een paar dadels.",
+   "gap": "De ___ begint met dadels en water.",
+   "wrong": [
+    "bus",
+    "tuin",
+    "les"
+   ]
+  },
+  {
+   "id": "ram.koran",
+   "kind": "word",
+   "w": "Koran",
+   "art": "de",
+   "tr": {
+    "th": "อัลกุรอาน",
+    "en": "the Quran"
+   },
+   "def": "Het heilige boek van de islam.",
+   "ex": "Veel moslims lezen in de ramadan veel in de Koran.",
+   "gap": "De ___ is het heilige boek van de islam.",
+   "wrong": [
+    "fiets",
+    "stoel",
+    "jas"
+   ]
+  },
+  {
+   "id": "ram.suikerfeest",
+   "kind": "word",
+   "w": "suikerfeest",
+   "art": "het",
+   "tr": {
+    "th": "วันอีดิ้ลฟิฏร์ (เทศกาลหลังรอมฎอน)",
+    "en": "Eid al-Fitr (the feast after Ramadan)"
+   },
+   "def": "Het feest aan het einde van de ramadan.",
+   "ex": "Met het suikerfeest vieren mensen samen met familie en vrienden.",
+   "gap": "Na de ramadan vieren moslims het ___.",
+   "wrong": [
+    "kerstfeest",
+    "rapport",
+    "dak"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-ramadan-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Waarom eten moslims overdag niet tijdens de ramadan?",
+    "th": "ทำไมชาวมุสลิมจึงไม่กินอาหารในตอนกลางวันในเดือนรอมฎอน",
+    "en": "Why do Muslims not eat during the day in Ramadan?"
+   },
+   "intro": {
+    "nl": "Je volgt één dag in de ramadan: van de ochtend tot de nacht. Raad eerst waarom moslims overdag niet eten.",
+    "th": "คุณจะติดตามหนึ่งวันในเดือนรอมฎอน ตั้งแต่เช้าจนถึงกลางคืน ลองเดาก่อนว่าทำไมชาวมุสลิมจึงไม่กินในตอนกลางวัน",
+    "en": "You follow one day of Ramadan, from morning to night. First guess why Muslims do not eat during the day."
+   },
+   "can": {
+    "nl": "Uitleggen waarom moslims in de ramadan overdag vasten en hoe zo'n dag eruitziet",
+    "th": "อธิบายได้ว่าทำไมชาวมุสลิมจึงถือศีลอดในเวลากลางวันในเดือนรอมฎอน และวันหนึ่งเป็นอย่างไร",
+    "en": "Explain why Muslims fast during the day in Ramadan and what such a day looks like"
+   },
+   "targets": [
+    "ram.ramadan",
+    "ram.vasten",
+    "ram.dageraad",
+    "ram.zonsondergang",
+    "ram.iftar",
+    "ram.koran",
+    "ram.suikerfeest"
+   ],
+   "goals": [
+    "kennis-nederland",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "room",
+    "tone": "apricot",
+    "alt": {
+     "nl": "Een kamer met een raam, een klok en een tafel. Links staat een collega die vandaag vast, rechts sta jij.",
+     "th": "ห้องที่มีหน้าต่าง นาฬิกา และโต๊ะ ทางซ้ายมีเพื่อนร่วมงานที่วันนี้ถือศีลอดยืนอยู่ ทางขวาคือคุณ",
+     "en": "A room with a window, a clock and a table. A colleague who is fasting today stands on the left, and you stand on the right."
+    },
+    "things": [
+     {
+      "kind": "window",
+      "x": 258,
+      "y": 62
+     },
+     {
+      "kind": "clock",
+      "x": 150,
+      "y": 54,
+      "value": "10:30"
+     },
+     {
+      "kind": "plant",
+      "x": 44,
+      "y": 198
+     },
+     {
+      "kind": "table",
+      "x": 168,
+      "y": 190,
+      "s": 1.05
+     },
+     {
+      "kind": "person",
+      "x": 90,
+      "y": 204,
+      "s": 1.7,
+      "who": "collega",
+      "look": "neutral",
+      "tone": "sky",
+      "hair": "short",
+      "hairTone": "brown",
+      "skin": "b"
+     },
+     {
+      "kind": "person",
+      "x": 280,
+      "y": 204,
+      "s": 1.7,
+      "who": "ik",
+      "look": "happy",
+      "tone": "lilac",
+      "hair": "bun",
+      "hairTone": "dark",
+      "skin": "a"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "do",
+     "items": [
+      "ram.vasten",
+      "ram.ramadan"
+     ],
+     "ask": {
+      "nl": "Raad eens: waarom eten moslims overdag niet in de ramadan?",
+      "th": "ลองเดา: ทำไมชาวมุสลิมจึงไม่กินอาหารตอนกลางวันในเดือนรอมฎอน",
+      "en": "Guess: why do Muslims not eat during the day in Ramadan?"
+     },
+     "opts": [
+      {
+       "t": "Het is goedkoper dan elke dag eten.",
+       "r": "no",
+       "err": "betekenis",
+       "why": {
+        "nl": "Dat is niet de reden. Het vasten gaat niet over geld. Aan het eind van de dag lees je het antwoord.",
+        "th": "นั่นไม่ใช่เหตุผล การถือศีลอดไม่เกี่ยวกับเงิน เมื่อจบวันคุณจะได้อ่านคำตอบ",
+        "en": "That is not the reason. Fasting is not about money. At the end of the day you will read the answer."
+       }
+      },
+      {
+       "t": "Het hoort bij hun geloof.",
+       "r": "ok",
+       "why": {
+        "nl": "Dat klopt in de kern. Wat het precies betekent, lees je aan het eind van de dag.",
+        "th": "ถูกต้องในแก่นสำคัญ ความหมายที่แท้จริงคุณจะได้อ่านเมื่อจบวัน",
+        "en": "That is right in essence. What it means exactly, you will read at the end of the day."
+       }
+      },
+      {
+       "t": "Overdag is er geen eten te koop.",
+       "r": "no",
+       "err": "betekenis",
+       "why": {
+        "nl": "Nee. Er is gewoon eten te koop. Moslims die vasten, kiezen er zelf voor om overdag niet te eten.",
+        "th": "ไม่ใช่ มีอาหารขายตามปกติ ชาวมุสลิมที่ถือศีลอดเลือกเองที่จะไม่กินในตอนกลางวัน",
+        "en": "No. Food is on sale as usual. Muslims who fast choose not to eat during the day."
+       }
+      }
+     ],
+     "answer": "Het hoort bij hun geloof.",
+     "why": {
+      "nl": "Je leest nu een dag uit de ramadan, van het ochtendgloren tot de nacht. Aan het eind van de dag weet je waarom.",
+      "th": "ตอนนี้คุณจะอ่านหนึ่งวันในเดือนรอมฎอน ตั้งแต่เช้ามืดจนถึงกลางคืน เมื่อจบวันคุณจะรู้ว่าทำไม",
+      "en": "Now you read one day of Ramadan, from early morning to night. At the end of the day you will know why."
+     }
+    },
+    {
+     "type": "read",
+     "items": [
+      "ram.dageraad",
+      "ram.vasten"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Ramadan",
+       "title": "Wikipedia: Ramadan"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Ramadan",
+       "title": "Wikipedia: Ramadan (English)"
+      }
+     ],
+     "text": {
+      "nl": "Het is nog donker. Iemand die vast, staat vroeg op en eet een maaltijd: de suhoor. Dat is de maaltijd vóór de dageraad.\n\nBij de dageraad begint het vasten. Dat is het moment waarop het licht begint te worden, nog vóór zonsopgang. Overdag eet en drinkt iemand die vast niets. Dat geldt op school, op het werk en thuis. Voor de meeste mensen duurt het vasten elke dag tussen de 11 en 16 uur. Het hangt af van de plek en van de tijd van het jaar.",
+      "th": "ยังมืดอยู่ คนที่ถือศีลอดตื่นแต่เช้าและกินอาหารมื้อหนึ่ง เรียกว่า สุหูร (suhoor) คือมื้อก่อนรุ่งอรุณ\n\nเมื่อรุ่งอรุณมาถึง การถือศีลอดก็เริ่มต้น ซึ่งเป็นช่วงที่เริ่มสว่าง ก่อนพระอาทิตย์ขึ้น ตอนกลางวันคนที่ถือศีลอดจะไม่กินและไม่ดื่มอะไรเลย ทั้งที่โรงเรียน ที่ทำงาน และที่บ้าน สำหรับคนส่วนใหญ่ การถือศีลอดในแต่ละวันกินเวลา 11 ถึง 16 ชั่วโมง ขึ้นอยู่กับสถานที่และช่วงเวลาของปี",
+      "en": "It is still dark. Someone who fasts gets up early and eats a meal: the suhoor. That is the meal before dawn.\n\nAt dawn the fast begins. That is the moment when it starts to get light, still before sunrise. During the day someone who fasts does not eat or drink anything. That is true at school, at work and at home. For most people the fast lasts between 11 and 16 hours each day. It depends on the place and on the time of year."
+     },
+     "q": [
+      {
+       "form": "complete",
+       "items": [
+        "ram.dageraad"
+       ],
+       "ask": {
+        "nl": "Maak af: Bij de ___ begint het vasten.",
+        "th": "เติมคำ: Bij de ___ begint het vasten.",
+        "en": "Complete: Bij de ___ begint het vasten."
+       },
+       "answer": "dageraad",
+       "accept": [
+        "ochtendgloren"
+       ],
+       "hint": [
+        {
+         "nl": "Het is het moment waarop het 's ochtends licht begint te worden.",
+         "th": "เป็นช่วงที่เริ่มสว่างในตอนเช้า",
+         "en": "It is the moment when it starts to get light in the morning."
+        },
+        {
+         "nl": "Begin zo: dager…",
+         "th": "ขึ้นต้นแบบนี้: dager…",
+         "en": "Start like this: dager…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. Bij de dageraad begint het vasten en overdag eet en drinkt iemand niets.",
+        "th": "ถูกต้อง เมื่อรุ่งอรุณมาถึงการถือศีลอดก็เริ่ม และตอนกลางวันจะไม่กินไม่ดื่ม",
+        "en": "Right. At dawn the fast begins and during the day someone does not eat or drink."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "ram.dageraad"
+       ],
+       "ask": {
+        "nl": "Wat is de suhoor?",
+        "th": "สุหูร (suhoor) คืออะไร",
+        "en": "What is the suhoor?"
+       },
+       "opts": [
+        {
+         "t": "De maaltijd na zonsondergang",
+         "r": "near",
+         "err": "betekenis",
+         "why": {
+          "nl": "Bijna. Dat is de iftar, de maaltijd waarmee het vasten eindigt. De suhoor is de maaltijd vóór de dageraad.",
+          "th": "เกือบถูก นั่นคืออิฟตาร์ มื้อที่ละศีลอด ส่วนสุหูรคือมื้อก่อนพระอาทิตย์ขึ้น",
+          "en": "Almost. That is the iftar, the meal that ends the fast. The suhoor is the meal before sunrise."
+         }
+        },
+        {
+         "t": "De maaltijd vóór de dageraad",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. De suhoor eet iemand vlak voor het vasten begint.",
+          "th": "ถูกต้อง สุหูรกินก่อนการถือศีลอดจะเริ่ม",
+          "en": "Right. Someone eats the suhoor just before the fast begins."
+         }
+        },
+        {
+         "t": "Een gebed in de moskee",
+         "r": "no",
+         "err": "betekenis",
+         "why": {
+          "nl": "Nee. De suhoor is een maaltijd, geen gebed.",
+          "th": "ไม่ใช่ สุหูรเป็นมื้ออาหาร ไม่ใช่การละหมาด",
+          "en": "No. The suhoor is a meal, not a prayer."
+         }
+        }
+       ],
+       "answer": "De maaltijd vóór de dageraad"
+      }
+     ]
+    },
+    {
+     "type": "talk",
+     "who": "collega",
+     "looks": {
+      "ik": "talk"
+     },
+     "turns": [
+      {
+       "them": {
+        "nl": "Ik drink geen koffie, dank je. Ik vast vandaag. Het is ramadan.",
+        "th": "ฉันไม่ดื่มกาแฟ ขอบคุณ วันนี้ฉันถือศีลอด เป็นเดือนรอมฎอน",
+        "en": "No coffee for me, thank you. I am fasting today. It is Ramadan."
+       },
+       "items": [
+        "ram.vasten",
+        "ram.ramadan"
+       ],
+       "opts": [
+        {
+         "t": "Neem toch een koekje. Een klein beetje kan geen kwaad.",
+         "r": "no",
+         "err": "beleefdheid",
+         "why": {
+          "nl": "Dit is niet beleefd. Iemand kiest er zelf voor om overdag niet te eten. Dring dan niet aan.",
+          "th": "ไม่สุภาพ เพราะอีกฝ่ายเลือกเองที่จะไม่กินในตอนกลางวัน อย่าเซ้าซี้",
+          "en": "That is not polite. The other person chooses not to eat during the day. Do not push."
+         }
+        },
+        {
+         "t": "Prima. Dan haal ik alleen voor mezelf koffie.",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Je respecteert de keuze en blijft vriendelijk.",
+          "th": "ถูกต้อง คุณเคารพการตัดสินใจของอีกฝ่ายและยังเป็นมิตร",
+          "en": "Right. You respect the choice and stay friendly."
+         }
+        },
+        {
+         "t": "Wat vervelend voor je. Waarom moet dat?",
+         "r": "near",
+         "err": "beleefdheid",
+         "why": {
+          "nl": "Je bent nieuwsgierig en dat mag. Maar voor veel moslims is het vasten geen last, maar iets wat bij hun geloof hoort. Vraag liever: Wil je er iets over vertellen?",
+          "th": "คุณอยากรู้ ซึ่งไม่ผิด แต่สำหรับชาวมุสลิมหลายคน การถือศีลอดไม่ใช่ภาระ แต่เป็นสิ่งที่อยู่ในความเชื่อของพวกเขา ลองถามว่า Wil je er iets over vertellen? (อยากเล่าให้ฟังไหม)",
+          "en": "You are curious, and that is fine. But for many Muslims fasting is not a burden but something that belongs to their faith. Ask instead: Wil je er iets over vertellen? (Would you like to tell me about it?)"
+         }
+        }
+       ]
+      },
+      {
+       "them": {
+        "nl": "Vanavond, na zonsondergang, eet ik weer. De iftar begint vaak met een paar dadels en water.",
+        "th": "คืนนี้หลังพระอาทิตย์ตก ฉันจะได้กินอีกครั้ง อิฟตาร์มักเริ่มด้วยอินทผลัมสองสามเม็ดและน้ำ",
+        "en": "Tonight, after sunset, I eat again. The iftar often starts with a few dates and water."
+       },
+       "items": [
+        "ram.zonsondergang",
+        "ram.iftar"
+       ],
+       "opts": [
+        {
+         "t": "Dadels? Dat is geen echte maaltijd.",
+         "r": "no",
+         "err": "beleefdheid",
+         "why": {
+          "nl": "Zo oordeel je over de gewoonte van de ander. Zeg liever iets vriendelijks.",
+          "th": "คุณตัดสินธรรมเนียมของอีกฝ่าย ควรพูดอะไรที่เป็นมิตรกว่า",
+          "en": "You judge the other person's custom. Say something friendly instead."
+         }
+        },
+        {
+         "t": "Hoe laat is dat precies?",
+         "r": "near",
+         "err": "beleefdheid",
+         "why": {
+          "nl": "Een goede vraag: het tijdstip van zonsondergang is elke dag anders. Maar zeg eerst iets aardigs, bijvoorbeeld: Eet smakelijk vanavond!",
+          "th": "เป็นคำถามที่ดี เวลาพระอาทิตย์ตกไม่เหมือนกันในแต่ละวัน แต่ควรพูดอะไรดี ๆ ก่อน เช่น Eet smakelijk vanavond! (ทานให้อร่อยนะคืนนี้)",
+          "en": "A good question: the time of sunset is different every day. But first say something kind, for example: Eet smakelijk vanavond! (Enjoy your meal tonight!)"
+         }
+        },
+        {
+         "t": "Eet smakelijk vanavond!",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Een vriendelijke wens past bij het moment: na zonsondergang eindigt het vasten van die dag.",
+          "th": "ถูกต้อง คำอวยพรที่เป็นมิตรเหมาะกับช่วงเวลานี้ หลังพระอาทิตย์ตกการถือศีลอดของวันนั้นก็จบลง",
+          "en": "Right. A friendly wish fits the moment: after sunset the fast of that day ends."
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "quiz",
+     "role": "ophalen",
+     "q": [
+      {
+       "form": "build",
+       "items": [
+        "ram.dageraad",
+        "ram.zonsondergang",
+        "ram.iftar"
+       ],
+       "ask": {
+        "nl": "Zet de dag in de goede volgorde.",
+        "th": "เรียงลำดับของวันให้ถูกต้อง",
+        "en": "Put the day in the right order."
+       },
+       "data": {
+        "parts": [
+         "suhoor",
+         "vasten overdag",
+         "zonsondergang",
+         "iftar",
+         "extra gebeden"
+        ],
+        "tr": {
+         "th": "สุหูร ถือศีลอดตอนกลางวัน พระอาทิตย์ตก อิฟตาร์ ละหมาดเพิ่มเติม",
+         "en": "suhoor, fasting during the day, sunset, iftar, extra prayers"
+        }
+       },
+       "why": {
+        "nl": "Zo gaat een dag: eerst de suhoor, dan overdag vasten, bij zonsondergang de iftar en daarna extra gebeden.",
+        "th": "วันหนึ่งเป็นเช่นนี้ ก่อนอื่นสุหูร จากนั้นถือศีลอดตอนกลางวัน เมื่อพระอาทิตย์ตกอิฟตาร์ แล้วละหมาดเพิ่มเติม",
+        "en": "This is how a day goes: first the suhoor, then fasting during the day, the iftar at sunset and then extra prayers."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "ram.iftar",
+      "ram.zonsondergang",
+      "ram.koran"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Ramadan",
+       "title": "Wikipedia: Ramadan"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Ramadan",
+       "title": "Wikipedia: Ramadan (English)"
+      }
+     ],
+     "text": {
+      "nl": "Bij zonsondergang is het vasten van die dag voorbij. Dan volgt de iftar. Dat is de maaltijd waarmee het vasten eindigt. Vaak begint die met dadels en water.\n\nIn de avond en nacht zijn er extra gebeden. Veel moslims proberen in deze maand de hele Koran te lezen. De ramadan is ook een maand van vrijgevigheid (veel geven aan anderen) en van samen zijn.\n\nDaarna slaapt iemand een paar uur. Voor de dageraad begint de dag opnieuw met de suhoor.",
+      "th": "เมื่อพระอาทิตย์ตก การถือศีลอดของวันนั้นก็จบลง จากนั้นคืออิฟตาร์ ซึ่งเป็นมื้อที่ละศีลอด มักเริ่มด้วยอินทผลัมและน้ำ\n\nในตอนเย็นและกลางคืนมีการละหมาดเพิ่มเติม ชาวมุสลิมหลายคนพยายามอ่านอัลกุรอานให้จบทั้งเล่มในเดือนนี้ เดือนรอมฎอนยังเป็นเดือนแห่งความใจกว้าง (การให้แก่ผู้อื่นมาก ๆ) และการอยู่ร่วมกัน\n\nหลังจากนั้นก็นอนพักสักสองสามชั่วโมง ก่อนรุ่งอรุณวันใหม่ก็เริ่มอีกครั้งด้วยสุหูร",
+      "en": "At sunset the fast of that day is over. Then comes the iftar. That is the meal that ends the fast. It often starts with dates and water.\n\nIn the evening and at night there are extra prayers. Many Muslims try to read the whole Quran in this month. Ramadan is also a month of generosity (giving a lot to others) and of being together.\n\nThen someone sleeps for a few hours. Before dawn the day starts again with the suhoor."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "ram.koran"
+       ],
+       "ask": {
+        "nl": "Wat proberen veel moslims in de ramadan te doen met de Koran?",
+        "th": "ชาวมุสลิมหลายคนพยายามทำอะไรกับอัลกุรอานในเดือนรอมฎอน",
+        "en": "What do many Muslims try to do with the Quran in Ramadan?"
+       },
+       "opts": [
+        {
+         "t": "De hele Koran lezen",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. De Koran is verdeeld in 30 delen, zodat je hem in een maand kunt lezen.",
+          "th": "ถูกต้อง อัลกุรอานแบ่งเป็น 30 ตอน จึงอ่านจบได้ในหนึ่งเดือน",
+          "en": "Right. The Quran is divided into 30 parts, so you can read it in a month."
+         }
+        },
+        {
+         "t": "Alleen de eerste bladzijde lezen",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Veel moslims proberen juist het hele boek te lezen.",
+          "th": "ไม่ใช่ ชาวมุสลิมหลายคนพยายามอ่านทั้งเล่มต่างหาก",
+          "en": "No. Many Muslims try to read the whole book."
+         }
+        },
+        {
+         "t": "De Koran in een kast leggen",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. In deze maand lezen veel moslims juist meer in de Koran.",
+          "th": "ไม่ใช่ ในเดือนนี้ชาวมุสลิมหลายคนอ่านอัลกุรอานมากขึ้น",
+          "en": "No. In this month many Muslims read the Quran more."
+         }
+        }
+       ],
+       "answer": "De hele Koran lezen"
+      },
+      {
+       "form": "type",
+       "items": [
+        "ram.iftar"
+       ],
+       "ask": {
+        "nl": "Hoe heet de maaltijd waarmee het vasten eindigt? Typ één woord.",
+        "th": "มื้ออาหารที่ใช้ละศีลอดเรียกว่าอะไร พิมพ์หนึ่งคำ",
+        "en": "What is the meal that ends the fast called? Type one word."
+       },
+       "answer": "iftar",
+       "hint": [
+        {
+         "nl": "Het begint met de letter i.",
+         "th": "ขึ้นต้นด้วยตัวอักษร i",
+         "en": "It starts with the letter i."
+        },
+        {
+         "nl": "Begin zo: ifta…",
+         "th": "ขึ้นต้นแบบนี้: ifta…",
+         "en": "Start like this: ifta…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. De iftar volgt op zonsondergang.",
+        "th": "ถูกต้อง อิฟตาร์มาหลังพระอาทิตย์ตก",
+        "en": "Right. The iftar follows sunset."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "ram.vasten",
+      "ram.koran",
+      "ram.ramadan",
+      "ram.suikerfeest"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Ramadan",
+       "title": "Wikipedia: Ramadan"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Ramadan",
+       "title": "Wikipedia: Ramadan (English)"
+      }
+     ],
+     "text": {
+      "nl": "Waarom doen moslims dit? Vasten is een van de vijf zuilen van de islam: een plicht (iets wat moet) voor moslims. In de Koran staat dat moslims in deze maand moeten vasten. Veel moslims zien het ook als een manier om zichzelf van binnen schoon te maken, om te doen wat God vraagt, om zichzelf te beheersen en om zich in te leven in mensen die het moeilijk hebben.\n\nNiet iedereen vast. Mensen die ziek zijn, mensen die zwanger zijn, jonge kinderen en mensen die op reis zijn, hoeven niet te vasten. Wie een dag mist, haalt die later in, als dat kan.\n\nDe ramadan volgt de islamitische maankalender. Elke maand begint als mensen de eerste smalle maan weer zien. Daarom duurt de ramadan 29 of 30 dagen. Een jaar op de maankalender is 11 of 12 dagen korter dan een jaar op onze kalender, dus de ramadan begint elk jaar eerder. Na de laatste dag volgt het suikerfeest.",
+      "th": "ทำไมชาวมุสลิมทำเช่นนี้ การถือศีลอดเป็นหนึ่งในห้าเสาหลักของศาสนาอิสลาม เป็นหน้าที่ของชาวมุสลิม ในอัลกุรอานระบุว่าชาวมุสลิมต้องถือศีลอดในเดือนนี้ ชาวมุสลิมหลายคนมองว่าเป็นวิธีชำระจิตใจ เชื่อฟังพระผู้เป็นเจ้า ฝึกควบคุมตนเอง และเข้าใจคนที่ลำบาก\n\nไม่ใช่ทุกคนที่ถือศีลอด คนที่ป่วย คนที่ตั้งครรภ์ เด็กเล็ก และคนที่เดินทาง ไม่จำเป็นต้องถือศีลอด ใครที่ขาดไปหนึ่งวันจะถือชดเชยทีหลัง หากทำได้\n\nเดือนรอมฎอนเป็นไปตามปฏิทินจันทรคติของอิสลาม แต่ละเดือนเริ่มต้นด้วยจันทร์เสี้ยวใหม่ จึงมี 29 หรือ 30 วัน หนึ่งปีตามปฏิทินจันทรคติสั้นกว่าปีตามปฏิทินของเรา 11 หรือ 12 วัน ดังนั้นรอมฎอนจึงเริ่มเร็วขึ้นทุกปี หลังวันสุดท้ายจะเป็นเทศกาลอีดิ้ลฟิฏร์ (suikerfeest)",
+      "en": "Why do Muslims do this? Fasting is one of the five pillars of Islam: a duty for Muslims. The Quran says that Muslims must fast in this month. Many Muslims also see it as a way to purify themselves, to obey God, to practise self-control and to feel for people who have a hard time.\n\nNot everyone fasts. People who are ill, people who are pregnant, young children and people who are travelling do not have to fast. Someone who misses a day makes it up later, if possible.\n\nRamadan follows the Islamic lunar calendar. Every month begins when people see the first thin moon again. That is why Ramadan lasts 29 or 30 days. A year on the lunar calendar is 11 or 12 days shorter than a year on our calendar, so Ramadan starts earlier every year. After the last day comes the suikerfeest (Eid al-Fitr)."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "ram.vasten"
+       ],
+       "ask": {
+        "nl": "Waarom vasten moslims in de ramadan, volgens de tekst?",
+        "th": "ตามข้อความ ทำไมชาวมุสลิมจึงถือศีลอดในเดือนรอมฎอน",
+        "en": "According to the text, why do Muslims fast in Ramadan?"
+       },
+       "opts": [
+        {
+         "t": "Het is een van de vijf zuilen van de islam",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Vasten is een plicht voor moslims, en de Koran noemt het.",
+          "th": "ถูกต้อง การถือศีลอดเป็นหน้าที่ของชาวมุสลิม และอัลกุรอานกล่าวถึงไว้",
+          "en": "Right. Fasting is a duty for Muslims, and the Quran mentions it."
+         }
+        },
+        {
+         "t": "De dokter zegt dat het moet",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Het vasten komt uit het geloof, niet uit een advies van een dokter.",
+          "th": "ไม่ใช่ การถือศีลอดมาจากความเชื่อ ไม่ใช่คำแนะนำของแพทย์",
+          "en": "No. Fasting comes from faith, not from a doctor's advice."
+         }
+        },
+        {
+         "t": "Alle mensen in Nederland doen het",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Alleen moslims vasten in de ramadan, en niet iedereen van hen.",
+          "th": "ไม่ใช่ เฉพาะชาวมุสลิมที่ถือศีลอดในเดือนรอมฎอน และไม่ใช่ทุกคนด้วย",
+          "en": "No. Only Muslims fast in Ramadan, and not all of them."
+         }
+        }
+       ],
+       "answer": "Het is een van de vijf zuilen van de islam"
+      },
+      {
+       "form": "choose",
+       "items": [
+        "ram.ramadan"
+       ],
+       "ask": {
+        "nl": "Wie hoeft volgens de tekst niet te vasten?",
+        "th": "ตามข้อความ ใครไม่จำเป็นต้องถือศีลอด",
+        "en": "According to the text, who does not have to fast?"
+       },
+       "opts": [
+        {
+         "t": "Mensen die op reis zijn",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Ook mensen die ziek of zwanger zijn en jonge kinderen hoeven niet te vasten.",
+          "th": "ถูกต้อง คนที่ป่วยหรือตั้งครรภ์และเด็กเล็กก็ไม่จำเป็นต้องถือศีลอดเช่นกัน",
+          "en": "Right. People who are ill or pregnant and young children do not have to fast either."
+         }
+        },
+        {
+         "t": "Mensen die op school zitten",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Naar school gaan is geen reden om niet te vasten.",
+          "th": "ไม่ใช่ การไปโรงเรียนไม่ใช่เหตุผลที่จะไม่ถือศีลอด",
+          "en": "No. Going to school is not a reason not to fast."
+         }
+        },
+        {
+         "t": "Mensen die in Nederland wonen",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Ook in Nederland vasten moslims in de ramadan.",
+          "th": "ไม่ใช่ ในเนเธอร์แลนด์ชาวมุสลิมก็ถือศีลอดในเดือนรอมฎอนเช่นกัน",
+          "en": "No. Muslims in the Netherlands fast in Ramadan too."
+         }
+        }
+       ],
+       "answer": "Mensen die op reis zijn"
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu uitleggen waarom veel moslims in de ramadan van de dageraad tot zonsondergang niet eten en drinken, en wat er na zonsondergang gebeurt.",
+      "th": "ตอนนี้คุณอธิบายได้ว่าทำไมชาวมุสลิมหลายคนจึงไม่กินไม่ดื่มตั้งแต่รุ่งอรุณจนถึงพระอาทิตย์ตกในเดือนรอมฎอน และเกิดอะไรขึ้นหลังพระอาทิตย์ตก",
+      "en": "You can now explain why many Muslims do not eat or drink from dawn to sunset in Ramadan, and what happens after sunset."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

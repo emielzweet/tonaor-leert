@@ -6,7 +6,7 @@ let fails = 0; const ok = (n, v, extra) => { if (!v) fails++; console.log((v ? '
 const fnBlock = name => { const i = html.indexOf('function ' + name + '('); if (i < 0) throw new Error(name); let d = 0, j = html.indexOf('{', i); for (; j < html.length; j++) { if (html[j] === '{') d++; else if (html[j] === '}') { d--; if (!d) break; } } return html.slice(i, j + 1); };
 const app = await boot(); const g = app.api.get();
 const packs = readdirSync(new URL('content/', ROOT)).filter(f => f.endsWith('.json') && f !== 'index.json').map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8')));   // alle pakketten in content/, ook een hoofdstuk dat de app (nog) verbergt
-const withScenes = packs.filter(p => p.scenes); const scenes = withScenes.flatMap(p => p.scenes.map(sc => ({ sc, p })));
+const withScenes = packs.filter(p => p.scenes && p.type !== 'les');   /* losse lessen hebben eigen tests onderaan */ const scenes = withScenes.flatMap(p => p.scenes.map(sc => ({ sc, p })));
 ok('er is minstens één scène, en de pakketten met scènes zijn goed', scenes.length > 0 && withScenes.every(p => !PC.checkPack(p, packs.filter(o => o !== p)).errors.length), withScenes.map(p => PC.checkPack(p, packs.filter(o => o !== p)).errors.join('; ')).join(' | '));
 
 // eisen uit docs/scenes.md
@@ -19,7 +19,7 @@ ok('alle doelen en items bestaan als herhaalitem', scenes.every(({ sc }) => sc.t
 ok('geen eigen SVG of script in een scène (alleen de catalogus)', !scenes.some(({ sc }) => /<svg|<script|on\w+=/i.test(JSON.stringify(sc.art))));
 
 // de controle weigert wat niet mag
-const base = packs.find(p => p.scenes); const bad = mut => { const p = JSON.parse(JSON.stringify(base)); mut(p.scenes[0]); return PC.checkPack(p, packs.filter(o => o !== base)).errors.join(' | '); };
+const base = packs.find(p => p.scenes && p.type === 'hoofdstuk'); const bad = mut => { const p = JSON.parse(JSON.stringify(base)); mut(p.scenes[0]); return PC.checkPack(p, packs.filter(o => o !== base)).errors.join(' | '); };
 ok('controle: twee goede keuzes in een beurt wordt geweigerd', /precies één keuze/.test(bad(sc => { const t = sc.steps.find(s => s.type === 'talk').turns[0]; t.opts.forEach(o => o.r = 'ok'); })));
 ok('controle: een keuze zonder reden wordt geweigerd', /why ontbreekt/.test(bad(sc => { delete sc.steps.find(s => s.type === 'talk').turns[0].opts[0].why; })));
 ok('controle: onbekend ding in de tekening wordt geweigerd', /onbekend ding/.test(bad(sc => { sc.art.things.push({ kind: 'raket', x: 10, y: 10 }); })));
@@ -39,7 +39,7 @@ ok('het slot bewaart de scène in S.world en telt als ronde', html.includes('S.w
 ok('scene.js staat in SHELL en wordt vóór pakketcheck geladen', readFileSync(new URL('sw.js', ROOT), 'utf8').includes("'./scene.js'") && html.indexOf('<script src="scene.js">') < html.indexOf('<script src="pakketcheck.js">'));
 // diepte en diagnose (docs/scenes.md): instap, ophalen, regel, extra, controle, soort fout
 const T3 = nl => ({ nl, th: 'ก', en: 'x' });
-const w0 = g.NL[0].id, w1 = g.NL[1].id, rl = packs.flatMap(p => p.items || []).find(x => x.kind === 'rule').id;
+const NLT1 = g.NL.filter(w => w.pack === 'nl-t1'), w0 = NLT1[0].id, w1 = NLT1[1].id, rl = packs.flatMap(p => p.items || []).find(x => x.kind === 'rule').id;
 const ch = (id, err, ask) => ({ form: 'choose', items: [id], ask: ask || { nl: 'Vraag?' }, opts: [{ t: 'goed', r: 'ok', why: T3('Goed.') }, { t: 'fout', r: 'no', err, why: T3('Nee.') }] });
 const deep = { id: 'test-diep', place: 'test', subject: 'nl', level: 'A1', n: 1, title: T3('Test'), intro: T3('Test'), can: T3('Test'), targets: [w0, w1],
   art: { bg: 'room', alt: { nl: 'een bord' }, things: [{ kind: 'sign', x: 60, y: 50, text: 'Bord', hot: true, item: w0, label: T3('het bord') }] },
@@ -79,7 +79,7 @@ vm.runInContext("S.errs={oud:{n:9,t:now(),ids:[]},betekenis:{n:4,t:now()-28*DAY,
 ok('foutprofiel: recente fouten wegen zwaarder (halveert in 14 dagen), onbekende soorten tellen niet', app.top().err === 'lidwoord');
 vm.runInContext("S.errs={}", app);
 ok('foutprofiel: onder de drempel van 2 geen sturing', app.top() === null);
-const known = g.NL[2]; vm.runInContext(`S.items[${JSON.stringify(known.id)}].reps=2`, app);
+const known = g.NL.filter(w => w.pack === 'nl-t1')[2]; vm.runInContext(`S.items[${JSON.stringify(known.id)}].reps=2`, app);
 { vm.runInContext(`S.errs={lidwoord:{n:3,t:now(),ids:[${JSON.stringify(known.id)}]}}`, app);
   const sq = app.sq({ ...deep, targets: [w1], steps: [{ type: 'slot', n: 4, kinds: ['word'] }, { type: 'end' }] });
   ok('slot: de open plek begint met het onderdeel van de vaakste soort fout', sq[1] && sq[1].w && sq[1].w.id === known.id && sq[1]._err === 'lidwoord', JSON.stringify(sq[1] && { t: sq[1].type, w: sq[1].w && sq[1].w.id })); }

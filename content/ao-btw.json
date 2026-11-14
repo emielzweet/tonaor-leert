@@ -1,0 +1,536 @@
+{
+ "format": 1,
+ "id": "ao-btw",
+ "type": "les",
+ "version": 1,
+ "order": 14,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "economie",
+ "vorm": "eerst schatten",
+ "draden": [
+  "ao-inflatie",
+  "ao-kamer150",
+  "ao-zeespiegel"
+ ],
+ "title": {
+  "nl": "Wat is btw, en waarom betaal je die?",
+  "th": "ภาษีมูลค่าเพิ่ม (btw) คืออะไร และทำไมคุณต้องจ่าย",
+  "en": "What is VAT (btw), and why do you pay it?"
+ },
+ "sources": [
+  {
+   "url": "https://ondernemersplein.overheid.nl/btw/",
+   "title": "Ondernemersplein (Rijksoverheid): Btw (omzetbelasting)"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Omzetbelasting",
+   "title": "Wikipedia: Omzetbelasting"
+  },
+  {
+   "url": "https://www.rijksoverheid.nl/themas/overheid-en-democratie/prinsjesdag/inkomsten-en-uitgaven-rijksbegroting-2027",
+   "title": "Rijksoverheid: Inkomsten en uitgaven Rijksbegroting 2027"
+  }
+ ],
+ "items": [
+  {
+   "id": "btw.btw",
+   "kind": "word",
+   "w": "btw",
+   "art": "de",
+   "tr": {
+    "th": "ภาษีมูลค่าเพิ่ม (btw)",
+    "en": "VAT (btw)"
+   },
+   "def": "Een belasting die in de prijs zit van de meeste dingen die je koopt.",
+   "ex": "In de prijs van een nieuwe fiets zit btw.",
+   "gap": "De ___ zit al in de prijs van een jas.",
+   "wrong": [
+    "tas",
+    "muziek",
+    "trein"
+   ],
+   "also": [
+    "btw.belasting"
+   ]
+  },
+  {
+   "id": "btw.belasting",
+   "kind": "word",
+   "w": "belasting",
+   "art": "de",
+   "tr": {
+    "th": "ภาษี",
+    "en": "tax"
+   },
+   "def": "Geld dat mensen en bedrijven moeten betalen aan de overheid.",
+   "ex": "Met belasting betaalt de overheid onder meer zorg en onderwijs.",
+   "gap": "De ___ is geld dat je aan de overheid betaalt.",
+   "wrong": [
+    "wolk",
+    "bril",
+    "kaas"
+   ]
+  },
+  {
+   "id": "btw.ondernemer",
+   "kind": "word",
+   "w": "ondernemer",
+   "art": "de",
+   "tr": {
+    "th": "ผู้ประกอบการ",
+    "en": "entrepreneur, business owner"
+   },
+   "def": "Iemand die een eigen bedrijf of winkel heeft.",
+   "ex": "De ondernemer rekent btw aan de klant.",
+   "gap": "De ___ rekent btw aan de klant.",
+   "wrong": [
+    "boom",
+    "bord",
+    "pen"
+   ]
+  },
+  {
+   "id": "btw.consument",
+   "kind": "word",
+   "w": "consument",
+   "art": "de",
+   "tr": {
+    "th": "ผู้บริโภค",
+    "en": "consumer"
+   },
+   "def": "Iemand die iets koopt om het zelf te gebruiken.",
+   "ex": "De consument betaalt uiteindelijk de btw.",
+   "gap": "De ___ betaalt de btw uiteindelijk.",
+   "wrong": [
+    "tafel",
+    "straat",
+    "tas"
+   ]
+  },
+  {
+   "id": "btw.overheid",
+   "kind": "word",
+   "w": "overheid",
+   "art": "de",
+   "tr": {
+    "th": "ภาครัฐ",
+    "en": "government (authorities)"
+   },
+   "def": "De organisatie die het land bestuurt, zoals de regering en de gemeenten.",
+   "ex": "De overheid krijgt geld uit belasting.",
+   "gap": "De ___ gebruikt belasting voor zorg en onderwijs.",
+   "wrong": [
+    "fiets",
+    "bakker",
+    "tuin"
+   ]
+  },
+  {
+   "id": "btw.afdragen",
+   "kind": "word",
+   "w": "afdragen",
+   "art": "",
+   "tr": {
+    "th": "นำส่ง",
+    "en": "to hand over, to pay over"
+   },
+   "def": "Een bedrag dat je hebt ontvangen doorgeven aan een ander.",
+   "ex": "De ondernemer moet de btw afdragen aan de overheid.",
+   "gap": "De ondernemer moet de btw aan de overheid ___.",
+   "wrong": [
+    "eten",
+    "lezen",
+    "wassen"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-btw-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Wat is btw, en waarom betaal je die?",
+    "th": "ภาษีมูลค่าเพิ่ม (btw) คืออะไร และทำไมคุณต้องจ่าย",
+    "en": "What is VAT (btw), and why do you pay it?"
+   },
+   "intro": {
+    "nl": "Op bijna elk prijskaartje zit btw. Schat eerst hoeveel het is, en kijk dan wat er achter dat getal zit.",
+    "th": "btw อยู่ในป้ายราคาเกือบทุกป้าย ลองประมาณก่อนว่าเท่าไร แล้วดูว่าเบื้องหลังตัวเลขนั้นคืออะไร",
+    "en": "Almost every price tag has btw in it. First estimate how much it is, then look at what is behind that number."
+   },
+   "can": {
+    "nl": "Uitleggen wat btw is, hoeveel het is en wie het uiteindelijk betaalt",
+    "th": "อธิบายได้ว่า btw คืออะไร เท่าไร และใครเป็นผู้จ่ายในที่สุด",
+    "en": "Explain what btw is, how much it is and who pays it in the end"
+   },
+   "targets": [
+    "btw.btw",
+    "btw.belasting",
+    "btw.ondernemer",
+    "btw.consument",
+    "btw.overheid",
+    "btw.afdragen"
+   ],
+   "goals": [
+    "kennis-nederland",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "shop",
+    "tone": "apricot",
+    "alt": {
+     "nl": "Een winkel met een bord Btw, een kraam met brood en appels en een persoon in de winkel.",
+     "th": "ร้านค้าที่มีป้าย Btw แผงขายขนมปังและแอปเปิล และคนหนึ่งคนอยู่ในร้าน",
+     "en": "A shop with a sign Btw, a stall with bread and apples and a person in the shop."
+    },
+    "things": [
+     {
+      "kind": "sign",
+      "x": 90,
+      "y": 60,
+      "text": "Btw 21%"
+     },
+     {
+      "kind": "stall",
+      "x": 230,
+      "y": 156
+     },
+     {
+      "kind": "apples",
+      "x": 230,
+      "y": 140
+     },
+     {
+      "kind": "bread",
+      "x": 130,
+      "y": 150
+     },
+     {
+      "kind": "person",
+      "x": 60,
+      "y": 204,
+      "s": 1.7,
+      "who": "klant",
+      "look": "think",
+      "tone": "mint",
+      "hair": "short",
+      "hairTone": "dark",
+      "skin": "c"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "quiz",
+     "role": "instap",
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "btw.btw"
+       ],
+       "ask": {
+        "nl": "Schat: hoeveel procent btw betaal je in Nederland op de meeste dingen die je koopt? Typ een getal.",
+        "th": "ประมาณการ: ในเนเธอร์แลนด์คุณจ่าย btw กี่เปอร์เซ็นต์สำหรับของส่วนใหญ่ที่ซื้อ พิมพ์ตัวเลข",
+        "en": "Estimate: how many percent btw do you pay in the Netherlands on most things you buy? Type a number."
+       },
+       "answer": "21",
+       "tol": 10,
+       "err": "getal",
+       "why": {
+        "nl": "Het standaardtarief is 21 procent. Je gok hoeft niet precies te zijn: je ziet nu wat dat getal betekent.",
+        "th": "อัตรามาตรฐานคือ 21 เปอร์เซ็นต์ การเดาไม่ต้องตรงเป๊ะ ตอนนี้คุณจะเห็นว่าตัวเลขนี้หมายถึงอะไร",
+        "en": "The standard rate is 21 percent. Your guess does not have to be exact: now you see what that number means."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "btw.btw",
+      "btw.ondernemer",
+      "btw.consument"
+     ],
+     "sources": [
+      {
+       "url": "https://ondernemersplein.overheid.nl/btw/",
+       "title": "Ondernemersplein (Rijksoverheid): Btw (omzetbelasting)"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Omzetbelasting",
+       "title": "Wikipedia: Omzetbelasting"
+      },
+      {
+       "url": "https://www.rijksoverheid.nl/themas/overheid-en-democratie/prinsjesdag/inkomsten-en-uitgaven-rijksbegroting-2027",
+       "title": "Rijksoverheid: Inkomsten en uitgaven Rijksbegroting 2027"
+      }
+     ],
+     "text": {
+      "nl": "Btw is de omzetbelasting. Het standaardtarief is 21 procent. Soms is het 9 procent, 0 procent of is er een vrijstelling. Voor voedingsmiddelen is het tarief 9 procent.\n\nEen voorbeeld. Een fiets kost zonder btw 100 euro. De ondernemer rekent 21 procent btw: dat is 21 euro. Jij betaalt dus 121 euro. De ondernemer houdt die 21 euro niet zelf.",
+      "th": "Btw คือภาษีจากยอดขาย (omzetbelasting) อัตรามาตรฐานคือ 21 เปอร์เซ็นต์ บางครั้งเป็น 9 เปอร์เซ็นต์ 0 เปอร์เซ็นต์ หรือได้รับการยกเว้น สำหรับอาหารอัตราคือ 9 เปอร์เซ็นต์\n\nตัวอย่าง จักรยานคันหนึ่งราคา 100 ยูโรไม่รวม btw ผู้ประกอบการคิด btw 21 เปอร์เซ็นต์ คือ 21 ยูโร คุณจึงจ่าย 121 ยูโร ผู้ประกอบการไม่ได้เก็บ 21 ยูโรนั้นไว้เอง",
+      "en": "Btw is the turnover tax (omzetbelasting). The standard rate is 21 percent. Sometimes it is 9 percent, 0 percent or there is an exemption. For food the rate is 9 percent.\n\nAn example. A bicycle costs 100 euros without btw. The business owner charges 21 percent btw: that is 21 euros. So you pay 121 euros. The business owner does not keep those 21 euros."
+     },
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "btw.btw"
+       ],
+       "ask": {
+        "nl": "Een fiets kost 100 euro zonder btw. Het tarief is 21 procent. Hoeveel kost de fiets met btw? Typ het getal.",
+        "th": "จักรยานราคา 100 ยูโรไม่รวม btw อัตราคือ 21 เปอร์เซ็นต์ จักรยานรวม btw ราคาเท่าไร พิมพ์ตัวเลข",
+        "en": "A bicycle costs 100 euros without btw. The rate is 21 percent. How much does the bicycle cost with btw? Type the number."
+       },
+       "answer": "121",
+       "accept": [
+        "121,00",
+        "121.00",
+        "€ 121",
+        "€121",
+        "121 euro"
+       ],
+       "err": "rekenstap",
+       "why": {
+        "nl": "Goed. 21 procent van 100 euro is 21 euro, dus 100 + 21 = 121 euro.",
+        "th": "ถูกต้อง 21 เปอร์เซ็นต์ของ 100 ยูโรคือ 21 ยูโร ดังนั้น 100 + 21 = 121 ยูโร",
+        "en": "Right. 21 percent of 100 euros is 21 euros, so 100 + 21 = 121 euros."
+       }
+      },
+      {
+       "form": "number",
+       "items": [
+        "btw.btw",
+        "btw.belasting"
+       ],
+       "ask": {
+        "nl": "Een jas kost 200 euro zonder btw. Hoeveel euro btw is dat bij 21 procent? Typ het getal.",
+        "th": "เสื้อโค้ทราคา 200 ยูโรไม่รวม btw btw ที่ 21 เปอร์เซ็นต์เป็นกี่ยูโร พิมพ์ตัวเลข",
+        "en": "A coat costs 200 euros without btw. How many euros of btw is that at 21 percent? Type the number."
+       },
+       "answer": "42",
+       "accept": [
+        "42,00",
+        "42.00",
+        "€ 42",
+        "€42",
+        "42 euro"
+       ],
+       "err": "rekenstap",
+       "why": {
+        "nl": "Goed. 21 procent van 200 euro is 42 euro.",
+        "th": "ถูกต้อง 21 เปอร์เซ็นต์ของ 200 ยูโรคือ 42 ยูโร",
+        "en": "Right. 21 percent of 200 euros is 42 euros."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "btw.consument",
+      "btw.ondernemer"
+     ],
+     "ask": {
+      "nl": "Wie betaalt de btw uiteindelijk?",
+      "th": "ใครเป็นผู้จ่าย btw ในที่สุด",
+      "en": "Who ends up paying the btw?"
+     },
+     "opts": [
+      {
+       "t": "De ondernemer",
+       "r": "near",
+       "err": "model",
+       "why": {
+        "nl": "Bijna. De ondernemer rekent btw aan en draagt hem af. Maar de btw zit in de prijs, dus de klant betaalt hem.",
+        "th": "เกือบถูก ผู้ประกอบการคิด btw และนำส่ง แต่ btw อยู่ในราคา ดังนั้นลูกค้าเป็นผู้จ่าย",
+        "en": "Almost. The business owner charges the btw and hands it over. But it is in the price, so the customer pays it."
+       }
+      },
+      {
+       "t": "De overheid",
+       "r": "no",
+       "err": "model",
+       "why": {
+        "nl": "Nee. De overheid ontvangt de btw, ze betaalt hem niet.",
+        "th": "ไม่ใช่ รัฐเป็นผู้รับ btw ไม่ได้เป็นผู้จ่าย",
+        "en": "No. The government receives the btw, it does not pay it."
+       }
+      },
+      {
+       "t": "De consument",
+       "r": "ok",
+       "why": {
+        "nl": "Goed. Uiteindelijk betaalt de consument de btw, via de prijs van wat je koopt.",
+        "th": "ถูกต้อง ในที่สุดผู้บริโภคเป็นผู้จ่าย btw ผ่านราคาสิ่งที่ซื้อ",
+        "en": "Right. In the end the consumer pays the btw, through the price of what is bought."
+       }
+      }
+     ],
+     "answer": "De consument",
+     "why": {
+      "nl": "De ondernemer rekent de btw aan en draagt hem af. De consument betaalt hem uiteindelijk.",
+      "th": "ผู้ประกอบการคิดและนำส่ง btw ในที่สุดผู้บริโภคเป็นผู้จ่าย",
+      "en": "The business owner charges the btw and hands it over. The consumer pays it in the end."
+     }
+    },
+    {
+     "type": "quiz",
+     "role": "ophalen",
+     "q": [
+      {
+       "form": "build",
+       "items": [
+        "btw.afdragen",
+        "btw.overheid"
+       ],
+       "ask": {
+        "nl": "Zet de reis van de btw in de goede volgorde.",
+        "th": "เรียงเส้นทางของ btw ให้ถูกต้อง",
+        "en": "Put the journey of the btw in the right order."
+       },
+       "data": {
+        "parts": [
+         "De ondernemer rekent btw aan de klant.",
+         "De klant betaalt de prijs met btw.",
+         "De ondernemer draagt de btw af.",
+         "De overheid ontvangt het geld."
+        ],
+        "tr": {
+         "th": "ผู้ประกอบการคิด btw จากลูกค้า ลูกค้าจ่ายราคารวม btw ผู้ประกอบการนำส่ง btw รัฐรับเงิน",
+         "en": "The business owner charges the customer btw. The customer pays the price with btw. The business owner hands over the btw. The government receives the money."
+        }
+       },
+       "why": {
+        "nl": "Zo reist de btw: van de klant, via de ondernemer, naar de overheid.",
+        "th": "btw เดินทางเช่นนี้ จากลูกค้า ผ่านผู้ประกอบการ ไปยังรัฐ",
+        "en": "This is how the btw travels: from the customer, through the business owner, to the government."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "btw.belasting",
+      "btw.overheid",
+      "btw.afdragen"
+     ],
+     "sources": [
+      {
+       "url": "https://ondernemersplein.overheid.nl/btw/",
+       "title": "Ondernemersplein (Rijksoverheid): Btw (omzetbelasting)"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Omzetbelasting",
+       "title": "Wikipedia: Omzetbelasting"
+      },
+      {
+       "url": "https://www.rijksoverheid.nl/themas/overheid-en-democratie/prinsjesdag/inkomsten-en-uitgaven-rijksbegroting-2027",
+       "title": "Rijksoverheid: Inkomsten en uitgaven Rijksbegroting 2027"
+      }
+     ],
+     "text": {
+      "nl": "Waarom bestaat btw? De overheid heeft geld nodig. Belasting en premies zijn de grote inkomsten van de overheid. In de Rijksbegroting voor 2027 verwacht de overheid 481,2 miljard euro aan inkomsten. Daarvan komt 93,5 miljard euro uit btw. Alleen de loon- en inkomstenbelasting is groter: 116,4 miljard euro.\n\nMet dat geld betaalt de overheid onder meer sociale zekerheid, zorg en onderwijs, cultuur en wetenschap.\n\nEen ondernemer betaalt zelf ook btw als de ondernemer iets inkoopt. Die btw mag de ondernemer aftrekken van de btw die klanten betalen. Over het verschil draagt de ondernemer btw af. Een voorbeeld: een winkel koopt een fiets in voor 100 euro plus 21 euro btw. De winkel verkoopt de fiets voor 200 euro plus 42 euro btw. De winkel ontvangt 42 euro btw, trekt de 21 euro af en draagt 21 euro af.",
+      "th": "ทำไมจึงมี btw รัฐต้องการเงิน ภาษีและเงินสมทบ (เบี้ยประกันสังคม) เป็นรายได้หลักของรัฐ ในงบประมาณแผ่นดินปี 2027 รัฐคาดว่าจะมีรายได้ 481.2 พันล้านยูโร ในจำนวนนี้ 93.5 พันล้านยูโรมาจาก btw มีเพียงภาษีเงินเดือนและเงินได้ที่มากกว่า คือ 116.4 พันล้านยูโร\n\nรัฐนำเงินนี้ไปจ่ายสิ่งต่าง ๆ เช่น ประกันสังคม การดูแลสุขภาพ และการศึกษา วัฒนธรรมและวิทยาศาสตร์\n\nผู้ประกอบการเองก็จ่าย btw เมื่อซื้อของเข้ามา btw นั้นหักออกจาก btw ที่ลูกค้าจ่ายได้ ผู้ประกอบการนำส่ง btw ตามส่วนต่าง ตัวอย่าง ร้านซื้อจักรยานมาในราคา 100 ยูโรบวก btw 21 ยูโร ร้านขายจักรยานในราคา 200 ยูโรบวก btw 42 ยูโร ร้านได้รับ btw 42 ยูโร หัก 21 ยูโร และนำส่ง 21 ยูโร",
+      "en": "Why does btw exist? The government needs money. Taxes and premiums are the main sources of income of the government. In the national budget for 2027 the government expects 481.2 billion euros in income. Of that, 93.5 billion euros comes from btw. Only the wage and income tax is bigger: 116.4 billion euros.\n\nWith that money the government pays for social security, healthcare, and education, culture and science, among other things.\n\nA business owner also pays btw when buying something in. The business owner may deduct that btw from the btw that customers pay. The business owner hands over btw on the difference. An example: a shop buys a bicycle for 100 euros plus 21 euros btw. The shop sells the bicycle for 200 euros plus 42 euros btw. The shop receives 42 euros btw, subtracts the 21 euros and hands over 21 euros."
+     },
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "btw.afdragen"
+       ],
+       "ask": {
+        "nl": "Een winkel ontvangt 42 euro btw van klanten en heeft 21 euro btw betaald bij het inkopen. Hoeveel euro btw draagt de winkel af? Typ het getal.",
+        "th": "ร้านได้รับ btw 42 ยูโรจากลูกค้า และจ่าย btw 21 ยูโรตอนซื้อของเข้า ร้านนำส่ง btw กี่ยูโร พิมพ์ตัวเลข",
+        "en": "A shop receives 42 euros btw from customers and paid 21 euros btw when buying in. How many euros of btw does the shop hand over? Type the number."
+       },
+       "answer": "21",
+       "accept": [
+        "21,00",
+        "21.00",
+        "€ 21",
+        "€21",
+        "21 euro"
+       ],
+       "err": "rekenstap",
+       "why": {
+        "nl": "Goed. 42 min 21 is 21 euro.",
+        "th": "ถูกต้อง 42 ลบ 21 เท่ากับ 21 ยูโร",
+        "en": "Right. 42 minus 21 is 21 euros."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "btw.belasting"
+       ],
+       "ask": {
+        "nl": "Hoeveel btw komt er volgens de tekst in 2027 binnen, ongeveer?",
+        "th": "ตามข้อความ ในปี 2027 จะมี btw เข้ามาประมาณเท่าไร",
+        "en": "According to the text, about how much btw comes in during 2027?"
+       },
+       "opts": [
+        {
+         "t": "Ongeveer 93,5 miljard euro",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Dat is een raming uit de Rijksbegroting voor 2027.",
+          "th": "ถูกต้อง นี่คือค่าประมาณจากงบประมาณแผ่นดินปี 2027",
+          "en": "Right. That is an estimate from the national budget for 2027."
+         }
+        },
+        {
+         "t": "Ongeveer 9,35 miljard euro",
+         "r": "no",
+         "err": "getal",
+         "why": {
+          "nl": "Nee. Dat is tien keer te weinig. Het is 93,5 miljard.",
+          "th": "ไม่ใช่ น้อยกว่าสิบเท่า ที่ถูกคือ 93.5 พันล้าน",
+          "en": "No. That is ten times too little. It is 93.5 billion."
+         }
+        },
+        {
+         "t": "Ongeveer 481,2 miljard euro",
+         "r": "no",
+         "err": "getal",
+         "why": {
+          "nl": "Nee. Dat zijn alle inkomsten samen. De btw is een deel daarvan.",
+          "th": "ไม่ใช่ นั่นคือรายได้ทั้งหมดรวมกัน btw เป็นเพียงส่วนหนึ่ง",
+          "en": "No. That is all income together. The btw is a part of it."
+         }
+        }
+       ],
+       "answer": "Ongeveer 93,5 miljard euro"
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu uitleggen: btw zit in de prijs, de ondernemer draagt hem af aan de overheid en de consument betaalt hem uiteindelijk. De overheid betaalt er onder meer zorg en onderwijs van.",
+      "th": "ตอนนี้คุณอธิบายได้ว่า btw อยู่ในราคา ผู้ประกอบการนำส่งให้รัฐ และผู้บริโภคเป็นผู้จ่ายในที่สุด รัฐนำเงินนี้ไปจ่ายสิ่งต่าง ๆ เช่น การดูแลสุขภาพและการศึกษา",
+      "en": "You can now explain: btw is in the price, the business owner hands it over to the government and the consumer pays it in the end. The government pays for healthcare and education, among other things, with it."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

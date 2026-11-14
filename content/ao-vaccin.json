@@ -1,0 +1,642 @@
+{
+ "format": 1,
+ "id": "ao-vaccin",
+ "type": "les",
+ "version": 1,
+ "order": 11,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "wetenschap",
+ "vorm": "een tekening om te ontleden",
+ "draden": [
+  "ao-zout",
+  "ao-archeoloog",
+  "ao-1953"
+ ],
+ "title": {
+  "nl": "Hoe werkt een vaccin?",
+  "th": "วัคซีนทำงานอย่างไร",
+  "en": "How does a vaccine work?"
+ },
+ "sources": [
+  {
+   "url": "https://www.rivm.nl/animatie-hoe-werkt-inenting",
+   "title": "RIVM: Animatie: Hoe werkt een inenting?"
+  },
+  {
+   "url": "https://www.rivm.nl/corona/coronaprik/werking-vaccins",
+   "title": "RIVM: Werking van de coronavaccins"
+  },
+  {
+   "url": "https://www.who.int/news-room/questions-and-answers/item/vaccines-and-immunization-what-is-vaccination",
+   "title": "WHO: Vaccines and immunization: What is vaccination?"
+  }
+ ],
+ "items": [
+  {
+   "id": "vac.vaccin",
+   "kind": "word",
+   "w": "vaccin",
+   "art": "het",
+   "tr": {
+    "th": "วัคซีน",
+    "en": "vaccine"
+   },
+   "def": "Een middel dat je lichaam leert een ziekte te herkennen.",
+   "ex": "Het vaccin zit in een kleine spuit.",
+   "gap": "Het ___ leert je afweer een ziekte kennen.",
+   "wrong": [
+    "raam",
+    "dak",
+    "bord"
+   ]
+  },
+  {
+   "id": "vac.afweer",
+   "kind": "word",
+   "w": "afweer",
+   "art": "de",
+   "tr": {
+    "th": "ระบบภูมิคุ้มกัน",
+    "en": "immune system, defence"
+   },
+   "def": "Het deel van je lichaam dat virussen en bacteriën bestrijdt.",
+   "ex": "Je afweer bestrijdt virussen en bacteriën.",
+   "gap": "De ___ van je lichaam bestrijdt virussen.",
+   "wrong": [
+    "fiets",
+    "kast",
+    "trap"
+   ]
+  },
+  {
+   "id": "vac.antistof",
+   "kind": "word",
+   "w": "antistof",
+   "art": "de",
+   "tr": {
+    "th": "แอนติบอดี",
+    "en": "antibody"
+   },
+   "def": "Een stofje dat je lichaam maakt om een virus of een bacterie te bestrijden.",
+   "ex": "Je lichaam maakt antistoffen na een inenting.",
+   "gap": "In je lichaam bestrijdt de ___ het virus.",
+   "wrong": [
+    "stoel",
+    "kaart",
+    "jas"
+   ],
+   "also": [
+    "vac.afweer"
+   ]
+  },
+  {
+   "id": "vac.virus",
+   "kind": "word",
+   "w": "virus",
+   "art": "het",
+   "tr": {
+    "th": "ไวรัส",
+    "en": "virus"
+   },
+   "def": "Een heel klein ding dat mensen ziek kan maken.",
+   "ex": "Een virus kan koorts geven.",
+   "gap": "Het ___ kan iemand ziek maken.",
+   "wrong": [
+    "boek",
+    "glas",
+    "bed"
+   ]
+  },
+  {
+   "id": "vac.onthouden",
+   "kind": "word",
+   "w": "onthouden",
+   "art": "",
+   "tr": {
+    "th": "จดจำ",
+    "en": "to remember"
+   },
+   "def": "Iets bewaren in je hoofd, zodat je het later nog weet.",
+   "ex": "Je afweer kan een virus onthouden.",
+   "gap": "Je afweer kan een virus ___ en het later snel herkennen.",
+   "wrong": [
+    "kopen",
+    "dragen",
+    "bakken"
+   ]
+  },
+  {
+   "id": "vac.beschermen",
+   "kind": "word",
+   "w": "beschermen",
+   "art": "",
+   "tr": {
+    "th": "ปกป้อง",
+    "en": "to protect"
+   },
+   "def": "Zorgen dat iemand geen schade krijgt.",
+   "ex": "Een vaccin kan je beschermen tegen een ziekte.",
+   "gap": "Een vaccin kan je ___ tegen een ziekte.",
+   "wrong": [
+    "wassen",
+    "kopen",
+    "bellen"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-vaccin-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Hoe werkt een vaccin?",
+    "th": "วัคซีนทำงานอย่างไร",
+    "en": "How does a vaccine work?"
+   },
+   "intro": {
+    "nl": "Een vaccin is klein, maar het doet veel in je lichaam. Je bekijkt een tekening en haalt de werking stap voor stap uit elkaar.",
+    "th": "วัคซีนมีขนาดเล็ก แต่ทำงานมากมายในร่างกาย คุณจะดูภาพและแยกการทำงานทีละขั้น",
+    "en": "A vaccine is small, but it does a lot in your body. You look at a drawing and take the way it works apart step by step."
+   },
+   "can": {
+    "nl": "Uitleggen hoe een vaccin je afweer helpt",
+    "th": "อธิบายได้ว่าวัคซีนช่วยระบบภูมิคุ้มกันอย่างไร",
+    "en": "Explain how a vaccine helps your immune system"
+   },
+   "targets": [
+    "vac.vaccin",
+    "vac.afweer",
+    "vac.antistof",
+    "vac.virus",
+    "vac.onthouden",
+    "vac.beschermen"
+   ],
+   "goals": [
+    "kennis-nederland",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "clinic",
+    "tone": "mint",
+    "alt": {
+     "nl": "Een spreekkamer met een raam, een tafel, een klok, een persoon en een doosje met een vaccin.",
+     "th": "ห้องตรวจที่มีหน้าต่าง โต๊ะ นาฬิกา คนหนึ่งคน และกล่องวัคซีน",
+     "en": "A consulting room with a window, a table, a clock, a person and a small box with a vaccine."
+    },
+    "things": [
+     {
+      "kind": "window",
+      "x": 258,
+      "y": 62
+     },
+     {
+      "kind": "clock",
+      "x": 132,
+      "y": 54,
+      "value": "9:05",
+      "hot": true,
+      "item": "vac.onthouden",
+      "label": {
+       "nl": "de klok: later herkent mijn afweer het virus meteen",
+       "th": "นาฬิกา: ภายหลังระบบภูมิคุ้มกันของฉันจะจำไวรัสได้ทันที",
+       "en": "the clock: later my immune system recognises the virus right away"
+      }
+     },
+     {
+      "kind": "table",
+      "x": 168,
+      "y": 190,
+      "s": 1.05
+     },
+     {
+      "kind": "medicine",
+      "x": 168,
+      "y": 160,
+      "hot": true,
+      "item": "vac.vaccin",
+      "label": {
+       "nl": "het vaccin: kleine of verzwakte deeltjes van een virus of bacterie",
+       "th": "วัคซีน: ชิ้นส่วนเล็ก ๆ หรืออ่อนแรงของไวรัสหรือแบคทีเรีย",
+       "en": "the vaccine: small or weakened pieces of a virus or bacterium"
+      }
+     },
+     {
+      "kind": "person",
+      "x": 290,
+      "y": 204,
+      "s": 1.7,
+      "who": "ik",
+      "look": "neutral",
+      "tone": "lilac",
+      "hair": "long",
+      "hairTone": "dark",
+      "skin": "a",
+      "hot": true,
+      "item": "vac.afweer",
+      "label": {
+       "nl": "ik: mijn lichaam en mijn afweer",
+       "th": "ฉัน: ร่างกายและระบบภูมิคุ้มกันของฉัน",
+       "en": "me: my body and my immune system"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "do",
+     "items": [
+      "vac.vaccin",
+      "vac.virus"
+     ],
+     "ask": {
+      "nl": "Raad eens: wat zit er in een vaccin?",
+      "th": "ลองเดา: ในวัคซีนมีอะไรอยู่",
+      "en": "Guess: what is in a vaccine?"
+     },
+     "opts": [
+      {
+       "t": "Alleen water met suiker",
+       "r": "no",
+       "err": "betekenis",
+       "why": {
+        "nl": "Nee. Een vaccin bevat iets dat je afweer leert herkennen. Je leest zo wat.",
+        "th": "ไม่ใช่ วัคซีนมีบางอย่างที่ทำให้ระบบภูมิคุ้มกันเรียนรู้ที่จะจำ อีกสักครู่คุณจะได้อ่าน",
+        "en": "No. A vaccine contains something that your immune system learns to recognise. You will read what in a moment."
+       }
+      },
+      {
+       "t": "Kleine of verzwakte deeltjes van een virus of bacterie",
+       "r": "ok",
+       "why": {
+        "nl": "Dat klopt. Bij sommige vaccins is het een instructie in plaats van een deeltje. Je leest dat verderop.",
+        "th": "ถูกต้อง วัคซีนบางชนิดเป็นคำสั่งแทนที่จะเป็นชิ้นส่วน คุณจะได้อ่านต่อไป",
+        "en": "That is right. With some vaccines it is an instruction instead of a piece. You will read that further on."
+       }
+      },
+      {
+       "t": "Een levend virus dat je echt ziek maakt",
+       "r": "no",
+       "err": "betekenis",
+       "why": {
+        "nl": "Nee. De virussen of bacteriën in een vaccin zijn dood of zo zwak dat je de ziekte niet echt krijgt.",
+        "th": "ไม่ใช่ ไวรัสหรือแบคทีเรียในวัคซีนตายแล้วหรืออ่อนมากจนคุณไม่ป่วยจริง",
+        "en": "No. The viruses or bacteria in a vaccine are dead or so weak that you do not really get the disease."
+       }
+      }
+     ],
+     "answer": "Kleine of verzwakte deeltjes van een virus of bacterie",
+     "why": {
+      "nl": "Je gaat zo de tekening bekijken en ontleden: wat doet het vaccin, wat doet je afweer en wat gebeurt er later?",
+      "th": "ต่อไปคุณจะดูภาพและแยกส่วน วัคซีนทำอะไร ระบบภูมิคุ้มกันทำอะไร และภายหลังเกิดอะไรขึ้น",
+      "en": "Next you look at the drawing and take it apart: what does the vaccine do, what does your immune system do and what happens later?"
+     }
+    },
+    {
+     "type": "look",
+     "min": 3
+    },
+    {
+     "type": "do",
+     "form": "point",
+     "items": [
+      "vac.vaccin"
+     ],
+     "ask": {
+      "nl": "Tik in de tekening aan wat je afweer leert een ziekte te herkennen.",
+      "th": "แตะในภาพที่ทำให้ระบบภูมิคุ้มกันของคุณเรียนรู้ที่จะจำโรค",
+      "en": "Tap in the drawing what teaches your immune system to recognise a disease."
+     },
+     "answer": "vac.vaccin",
+     "why": {
+      "nl": "Goed. Het vaccin laat je afweer kennismaken met een virus of bacterie, zonder dat je echt ziek wordt.",
+      "th": "ถูกต้อง วัคซีนทำให้ระบบภูมิคุ้มกันรู้จักไวรัสหรือแบคทีเรียโดยที่คุณไม่ป่วยจริง",
+      "en": "Right. The vaccine lets your immune system get to know a virus or bacterium without you really getting ill."
+     }
+    },
+    {
+     "type": "read",
+     "items": [
+      "vac.antistof",
+      "vac.afweer",
+      "vac.virus"
+     ],
+     "sources": [
+      {
+       "url": "https://www.rivm.nl/animatie-hoe-werkt-inenting",
+       "title": "RIVM: Animatie: Hoe werkt een inenting?"
+      },
+      {
+       "url": "https://www.rivm.nl/corona/coronaprik/werking-vaccins",
+       "title": "RIVM: Werking van de coronavaccins"
+      },
+      {
+       "url": "https://www.who.int/news-room/questions-and-answers/item/vaccines-and-immunization-what-is-vaccination",
+       "title": "WHO: Vaccines and immunization: What is vaccination?"
+      }
+     ],
+     "text": {
+      "nl": "Stap 1. Je krijgt een vaccin. Een vaccin bestaat uit verzwakte of kleine deeltjes van virussen of bacteriën. Ze zijn dood of zo zwak dat je de ziekte niet echt krijgt.\n\nStap 2. Je afweer reageert alsof het de echte ziekte is. Je lichaam maakt antistoffen aan. Antistoffen zijn eiwitten die je lichaam zelf maakt om een ziekte te bestrijden.\n\nStap 3. Je afweer onthoudt het virus of de bacterie. Kom je later in aanraking met het echte virus, dan herkent je lichaam het meteen. Het maakt snel extra antistoffen. Je wordt dan niet of veel minder ziek.",
+      "th": "ขั้นที่ 1 คุณได้รับวัคซีน วัคซีนประกอบด้วยชิ้นส่วนเล็ก ๆ หรืออ่อนแรงของไวรัสหรือแบคทีเรีย ซึ่งตายแล้วหรืออ่อนมากจนคุณไม่ป่วยจริง\n\nขั้นที่ 2 ระบบภูมิคุ้มกันของคุณตอบสนองเหมือนกับเป็นโรคจริง ร่างกายสร้างแอนติบอดี (antistoffen) แอนติบอดีคือโปรตีนที่ร่างกายสร้างขึ้นเองเพื่อต่อสู้กับโรค\n\nขั้นที่ 3 ระบบภูมิคุ้มกันจดจำไวรัสหรือแบคทีเรียนั้น ถ้าภายหลังคุณสัมผัสไวรัสตัวจริง ร่างกายจะจำได้ทันที และสร้างแอนติบอดีเพิ่มได้อย่างรวดเร็ว คุณจะไม่ป่วย หรือป่วยน้อยลงมาก",
+      "en": "Step 1. You get a vaccine. A vaccine is made of weakened or small pieces of viruses or bacteria. They are dead or so weak that you do not really get the disease.\n\nStep 2. Your immune system reacts as if it is the real disease. Your body makes antibodies (antistoffen). Antibodies are proteins that your body makes itself to fight a disease.\n\nStep 3. Your immune system remembers the virus or bacterium. If you later come into contact with the real virus, your body recognises it right away. It quickly makes extra antibodies. Then you do not get ill, or much less ill."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "vac.antistof"
+       ],
+       "ask": {
+        "nl": "Wat maakt je lichaam na het vaccin aan?",
+        "th": "หลังรับวัคซีนร่างกายของคุณสร้างอะไร",
+        "en": "What does your body make after the vaccine?"
+       },
+       "opts": [
+        {
+         "t": "Antistoffen",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Antistoffen zijn eiwitten die je lichaam maakt om de ziekte te bestrijden.",
+          "th": "ถูกต้อง แอนติบอดีคือโปรตีนที่ร่างกายสร้างเพื่อต่อสู้กับโรค",
+          "en": "Right. Antibodies are proteins that your body makes to fight the disease."
+         }
+        },
+        {
+         "t": "Een nieuw virus",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Je lichaam maakt geen virus, maar antistoffen tegen het virus.",
+          "th": "ไม่ใช่ ร่างกายไม่ได้สร้างไวรัส แต่สร้างแอนติบอดีต่อไวรัส",
+          "en": "No. Your body does not make a virus, but antibodies against the virus."
+         }
+        },
+        {
+         "t": "Pijnstillers",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Daar gaat deze tekst niet over.",
+          "th": "ไม่ใช่ ข้อความนี้ไม่ได้พูดถึงเรื่องนั้น",
+          "en": "No. This text is not about that."
+         }
+        }
+       ],
+       "answer": "Antistoffen"
+      },
+      {
+       "form": "complete",
+       "items": [
+        "vac.onthouden"
+       ],
+       "ask": {
+        "nl": "Maak af: Je afweer kan het virus ___.",
+        "th": "เติมคำ: Je afweer kan het virus ___.",
+        "en": "Complete: Je afweer kan het virus ___."
+       },
+       "answer": "onthouden",
+       "hint": [
+        {
+         "nl": "Je bewaart het in je geheugen.",
+         "th": "คุณเก็บไว้ในความทรงจำ",
+         "en": "You keep it in your memory."
+        },
+        {
+         "nl": "Begin zo: onth…",
+         "th": "ขึ้นต้นแบบนี้: onth…",
+         "en": "Start like this: onth…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. Je afweer onthoudt het virus en herkent het later meteen.",
+        "th": "ถูกต้อง ระบบภูมิคุ้มกันจดจำไวรัสและจำได้ทันทีภายหลัง",
+        "en": "Right. Your immune system remembers the virus and recognises it right away later."
+       }
+      }
+     ]
+    },
+    {
+     "type": "quiz",
+     "role": "ophalen",
+     "q": [
+      {
+       "form": "build",
+       "items": [
+        "vac.antistof",
+        "vac.onthouden"
+       ],
+       "ask": {
+        "nl": "Zet de stappen in de goede volgorde.",
+        "th": "เรียงขั้นตอนให้ถูกต้อง",
+        "en": "Put the steps in the right order."
+       },
+       "data": {
+        "parts": [
+         "Je krijgt een vaccin.",
+         "Je lichaam maakt antistoffen.",
+         "Je afweer onthoudt het virus.",
+         "Later herkent je lichaam het virus snel."
+        ],
+        "tr": {
+         "th": "คุณได้รับวัคซีน ร่างกายสร้างแอนติบอดี ระบบภูมิคุ้มกันจดจำไวรัส ภายหลังร่างกายจำไวรัสได้เร็ว",
+         "en": "You get a vaccine. Your body makes antibodies. Your immune system remembers the virus. Later your body recognises the virus quickly."
+        }
+       },
+       "why": {
+        "nl": "Zo gaat het: vaccin, antistoffen, onthouden, later snel herkennen.",
+        "th": "เป็นอย่างนี้ วัคซีน แอนติบอดี จดจำ แล้วภายหลังจำได้เร็ว",
+        "en": "This is how it goes: vaccine, antibodies, remembering, quick recognition later."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "vac.afweer",
+      "vac.onthouden"
+     ],
+     "ask": {
+      "nl": "Denk mee. Iemand heeft een vaccin gehad. Later komt die persoon het echte virus tegen. Wat doet de afweer?",
+      "th": "ลองคิดตาม คนหนึ่งได้รับวัคซีนแล้ว ภายหลังเจอไวรัสตัวจริง ระบบภูมิคุ้มกันทำอะไร",
+      "en": "Think it through. Someone has had a vaccine. Later that person meets the real virus. What does the immune system do?"
+     },
+     "opts": [
+      {
+       "t": "Hij herkent het virus en maakt snel extra antistoffen",
+       "r": "ok",
+       "why": {
+        "nl": "Goed. Door het vaccin onthoudt de afweer het virus en kan hij snel reageren.",
+        "th": "ถูกต้อง เพราะวัคซีน ระบบภูมิคุ้มกันจึงจำไวรัสได้และตอบสนองได้เร็ว",
+        "en": "Right. Because of the vaccine the immune system remembers the virus and can react fast."
+       }
+      },
+      {
+       "t": "Hij is het virus vergeten",
+       "r": "no",
+       "err": "model",
+       "why": {
+        "nl": "Nee. Het geheugen van de afweer is juist het hele idee van een vaccin.",
+        "th": "ไม่ใช่ ความจำของระบบภูมิคุ้มกันคือแนวคิดทั้งหมดของวัคซีน",
+        "en": "No. The memory of the immune system is the whole idea of a vaccine."
+       }
+      },
+      {
+       "t": "Hij maakt het virus zelf aan",
+       "r": "no",
+       "err": "model",
+       "why": {
+        "nl": "Nee. De afweer bestrijdt een virus. Hij maakt het niet.",
+        "th": "ไม่ใช่ ระบบภูมิคุ้มกันต่อสู้กับไวรัส ไม่ได้สร้างมันขึ้น",
+        "en": "No. The immune system fights a virus. It does not make it."
+       }
+      }
+     ],
+     "answer": "Hij herkent het virus en maakt snel extra antistoffen",
+     "why": {
+      "nl": "Zo beschermt een vaccin: de afweer heeft geoefend en herkent het echte virus snel.",
+      "th": "วัคซีนปกป้องแบบนี้ ระบบภูมิคุ้มกันได้ซ้อมแล้วจึงจำไวรัสตัวจริงได้เร็ว",
+      "en": "This is how a vaccine protects: the immune system has practised and quickly recognises the real virus."
+     }
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "vac.vaccin",
+      "vac.beschermen"
+     ],
+     "sources": [
+      {
+       "url": "https://www.rivm.nl/animatie-hoe-werkt-inenting",
+       "title": "RIVM: Animatie: Hoe werkt een inenting?"
+      },
+      {
+       "url": "https://www.rivm.nl/corona/coronaprik/werking-vaccins",
+       "title": "RIVM: Werking van de coronavaccins"
+      },
+      {
+       "url": "https://www.who.int/news-room/questions-and-answers/item/vaccines-and-immunization-what-is-vaccination",
+       "title": "WHO: Vaccines and immunization: What is vaccination?"
+      }
+     ],
+     "text": {
+      "nl": "Niet elk vaccin is hetzelfde. Bij het mRNA-coronavaccin krijgen de cellen in je lichaam de opdracht om tijdelijk een onderdeel van het coronavirus na te maken. Alleen dat onderdeel wordt gemaakt, nooit het hele virus dat ziek maakt.\n\nSoms zijn er meerdere inentingen nodig. Soms kun je na een inenting bijwerkingen krijgen, bijvoorbeeld een pijnlijke arm of koorts. Die klachten verdwijnen meestal binnen een paar dagen. Daarna ben je beter beschermd tegen de ziekte.",
+      "th": "วัคซีนไม่ได้เหมือนกันทุกชนิด วัคซีนโควิดชนิด mRNA (mRNA-coronavaccin) สั่งให้เซลล์ในร่างกายสร้างส่วนหนึ่งของไวรัสโคโรนาขึ้นชั่วคราว สร้างเฉพาะส่วนนั้น ไม่เคยสร้างไวรัสทั้งตัวที่ทำให้ป่วย\n\nบางครั้งต้องฉีดหลายครั้ง บางครั้งหลังฉีดอาจมีผลข้างเคียง เช่น แขนเจ็บหรือมีไข้ อาการเหล่านี้มักหายไปภายในไม่กี่วัน หลังจากนั้นคุณจะได้รับการปกป้องจากโรคดีขึ้น",
+      "en": "Not every vaccine is the same. With the mRNA coronavaccin (mRNA coronavirus vaccine), the cells in your body get the instruction to make a part of the coronavirus for a short time. Only that part is made, never the whole virus that makes people ill.\n\nSometimes you need several shots. Sometimes you get side effects after a shot, for example a sore arm or a fever. These complaints usually go away within a few days. After that you are better protected against the disease."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "vac.vaccin"
+       ],
+       "ask": {
+        "nl": "Wat wordt er bij het mRNA-coronavaccin in je lichaam gemaakt?",
+        "th": "ในวัคซีนโควิดชนิด mRNA ร่างกายของคุณสร้างอะไร",
+        "en": "What is made in your body with the mRNA coronavirus vaccine?"
+       },
+       "opts": [
+        {
+         "t": "Alleen een onderdeel van het virus",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Alleen één onderdeel wordt gemaakt, nooit het hele virus.",
+          "th": "ถูกต้อง สร้างเพียงส่วนเดียว ไม่เคยสร้างไวรัสทั้งตัว",
+          "en": "Right. Only one part is made, never the whole virus."
+         }
+        },
+        {
+         "t": "Het hele virus",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Het hele virus wordt nooit gemaakt.",
+          "th": "ไม่ใช่ ไม่เคยสร้างไวรัสทั้งตัว",
+          "en": "No. The whole virus is never made."
+         }
+        },
+        {
+         "t": "Een nieuwe afweer",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Je eigen afweer leert het onderdeel herkennen.",
+          "th": "ไม่ใช่ ระบบภูมิคุ้มกันของคุณเองเรียนรู้ที่จะจำส่วนนั้น",
+          "en": "No. Your own immune system learns to recognise the part."
+         }
+        }
+       ],
+       "answer": "Alleen een onderdeel van het virus"
+      },
+      {
+       "form": "choose",
+       "items": [
+        "vac.beschermen"
+       ],
+       "ask": {
+        "nl": "Wat kan er volgens het RIVM na een inenting gebeuren?",
+        "th": "ตามข้อมูลของ RIVM หลังฉีดวัคซีนอาจเกิดอะไรขึ้น",
+        "en": "According to the RIVM, what can happen after a shot?"
+       },
+       "opts": [
+        {
+         "t": "Je kunt een pijnlijke arm of koorts krijgen",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Die klachten verdwijnen meestal binnen een paar dagen.",
+          "th": "ถูกต้อง อาการเหล่านี้มักหายไปภายในไม่กี่วัน",
+          "en": "Right. These complaints usually go away within a few days."
+         }
+        },
+        {
+         "t": "Je krijgt de ziekte zelf echt",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De virussen of bacteriën in een vaccin zijn dood of zo zwak dat je de ziekte niet echt krijgt.",
+          "th": "ไม่ใช่ ไวรัสหรือแบคทีเรียในวัคซีนตายแล้วหรืออ่อนมากจนคุณไม่ป่วยจริง",
+          "en": "No. The viruses or bacteria in a vaccine are dead or so weak that you do not really get the disease."
+         }
+        },
+        {
+         "t": "Je afweer wordt voor altijd zwakker",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Dat staat er niet. Daarna ben je juist beter beschermd.",
+          "th": "ไม่ใช่ ไม่ได้เขียนไว้เช่นนั้น หลังจากนั้นคุณกลับได้รับการปกป้องดีขึ้น",
+          "en": "No. That is not what it says. Afterwards you are better protected."
+         }
+        }
+       ],
+       "answer": "Je kunt een pijnlijke arm of koorts krijgen"
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu uitleggen: een vaccin laat je afweer kennismaken met een virus of bacterie zonder dat je echt ziek wordt, zodat je lichaam het later snel herkent.",
+      "th": "ตอนนี้คุณอธิบายได้ว่า วัคซีนทำให้ระบบภูมิคุ้มกันรู้จักไวรัสหรือแบคทีเรียโดยที่คุณไม่ป่วยจริง เพื่อให้ร่างกายจำได้เร็วภายหลัง",
+      "en": "You can now explain: a vaccine lets your immune system get to know a virus or bacterium without you really getting ill, so your body recognises it quickly later."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

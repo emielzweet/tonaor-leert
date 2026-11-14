@@ -1,0 +1,563 @@
+{
+ "format": 1,
+ "id": "ao-zeespiegel",
+ "type": "les",
+ "version": 1,
+ "order": 1,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "aardrijkskunde",
+ "vorm": "eerst schatten",
+ "draden": [
+  "ao-zout",
+  "ao-1953",
+  "ao-holland"
+ ],
+ "title": {
+  "nl": "Waarom ligt een kwart van Nederland onder de zeespiegel?",
+  "th": "ทำไมหนึ่งในสี่ของเนเธอร์แลนด์จึงอยู่ต่ำกว่าระดับน้ำทะเล",
+  "en": "Why does a quarter of the Netherlands lie below sea level?"
+ },
+ "sources": [
+  {
+   "url": "https://themasites.pbl.nl/atlas-regio/themas/water-bodem/",
+   "title": "PBL Atlas van de Regio: Water en bodem"
+  },
+  {
+   "url": "https://www.bestemmingonbekend.nl/leven-onder-zeeniveau-polders-dijken-en-een-maakbaar-land/",
+   "title": "Bestemming Onbekend: Leven onder zeeniveau, polders, dijken en een maakbaar land"
+  },
+  {
+   "url": "https://www.bnnvara.nl/artikelen/welk-deel-van-nederland-ligt-onder-de-zeespiegel",
+   "title": "BNNVARA: Welk deel van Nederland ligt onder de zeespiegel?"
+  },
+  {
+   "url": "https://www.canonvannederland.nl/nl/zuid-holland/zuid-holland/droogmaking-van-de-zuidplas",
+   "title": "Canon van Nederland: De droogmaking van de Zuidplas"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Normaal_Amsterdams_Peil",
+   "title": "Wikipedia: Normaal Amsterdams Peil"
+  }
+ ],
+ "items": [
+  {
+   "id": "zee.zeespiegel",
+   "kind": "word",
+   "w": "zeespiegel",
+   "art": "de",
+   "tr": {
+    "th": "ระดับน้ำทะเล",
+    "en": "sea level"
+   },
+   "def": "De hoogte van het water van de zee.",
+   "ex": "Veel land in Nederland ligt lager dan de zeespiegel.",
+   "gap": "Een kwart van Nederland ligt onder de ___.",
+   "wrong": [
+    "kerk",
+    "taal",
+    "tafel"
+   ]
+  },
+  {
+   "id": "zee.veen",
+   "kind": "word",
+   "w": "veen",
+   "art": "het",
+   "tr": {
+    "th": "พีต (ดินพรุ)",
+    "en": "peat"
+   },
+   "def": "Zachte, natte grond die van oude planten komt.",
+   "ex": "Op zacht veen kun je niet goed bouwen.",
+   "gap": "Het ___ is zachte, natte grond van oude planten.",
+   "wrong": [
+    "brood",
+    "glas",
+    "papier"
+   ]
+  },
+  {
+   "id": "zee.polder",
+   "kind": "word",
+   "w": "polder",
+   "art": "de",
+   "tr": {
+    "th": "โพลเดอร์ (พื้นที่ลุ่มที่มีคันดินล้อม)",
+    "en": "polder (low land protected by dikes)"
+   },
+   "def": "Land dat met een hoge wal van het water is afgesloten.",
+   "ex": "In een polder pompt men het water weg.",
+   "gap": "De ___ ligt lager dan het water buiten de wal.",
+   "wrong": [
+    "berg",
+    "wolk",
+    "zon"
+   ]
+  },
+  {
+   "id": "zee.dijk",
+   "kind": "word",
+   "w": "dijk",
+   "art": "de",
+   "tr": {
+    "th": "คันดิน (เขื่อนดิน)",
+    "en": "dike"
+   },
+   "def": "Een lange, hoge wal van aarde langs het water.",
+   "ex": "De dijk houdt het zeewater tegen.",
+   "gap": "De ___ is een lange, hoge wal van aarde langs het water.",
+   "wrong": [
+    "fiets",
+    "kat",
+    "bakker"
+   ]
+  },
+  {
+   "id": "zee.molen",
+   "kind": "word",
+   "w": "molen",
+   "art": "de",
+   "tr": {
+    "th": "กังหันลม",
+    "en": "windmill"
+   },
+   "def": "Een gebouw met grote wieken die in de wind draaien.",
+   "ex": "Vroeger pompte een molen het water uit het land.",
+   "gap": "De ___ draait in de wind en pompt water weg.",
+   "wrong": [
+    "stoel",
+    "trein",
+    "kast"
+   ]
+  },
+  {
+   "id": "zee.gemaal",
+   "kind": "word",
+   "w": "gemaal",
+   "art": "het",
+   "tr": {
+    "th": "สถานีสูบน้ำ",
+    "en": "pumping station"
+   },
+   "def": "Een gebouw met een grote pomp die water uit het land haalt.",
+   "ex": "Het gemaal pompt het regenwater naar de rivier.",
+   "gap": "Het ___ pompt het water uit het land weg.",
+   "wrong": [
+    "kantoor",
+    "restaurant",
+    "ziekenhuis"
+   ]
+  },
+  {
+   "id": "zee.zakken",
+   "kind": "word",
+   "w": "zakken",
+   "art": "",
+   "tr": {
+    "th": "ทรุดลง, จมลง",
+    "en": "to sink, to go down"
+   },
+   "def": "Steeds lager worden.",
+   "ex": "De grond kan elk jaar een beetje zakken.",
+   "gap": "Droog veen kan langzaam ___.",
+   "wrong": [
+    "lachen",
+    "kopen",
+    "bakken"
+   ]
+  },
+  {
+   "id": "zee.pompen",
+   "kind": "word",
+   "w": "pompen",
+   "art": "",
+   "tr": {
+    "th": "สูบ",
+    "en": "to pump"
+   },
+   "def": "Met een machine water ergens vandaan halen.",
+   "ex": "Een gemaal moet veel water pompen.",
+   "gap": "Je moet het water uit het land ___.",
+   "wrong": [
+    "eten",
+    "lezen",
+    "kiezen"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-zeespiegel-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Waarom ligt een kwart van Nederland onder de zeespiegel?",
+    "th": "ทำไมหนึ่งในสี่ของเนเธอร์แลนด์จึงอยู่ต่ำกว่าระดับน้ำทะเล",
+    "en": "Why does a quarter of the Netherlands lie below sea level?"
+   },
+   "intro": {
+    "nl": "Eerst raden, dan lezen. Hoeveel van Nederland ligt lager dan de zee? En hoe kan dat?",
+    "th": "ลองเดาก่อน แล้วค่อยอ่าน เนเธอร์แลนด์อยู่ต่ำกว่าทะเลกี่ส่วน แล้วเป็นไปได้อย่างไร",
+    "en": "Guess first, then read. How much of the Netherlands lies lower than the sea? And how is that possible?"
+   },
+   "can": {
+    "nl": "Uitleggen waarom een deel van Nederland zo laag ligt",
+    "th": "อธิบายได้ว่าทำไมบางส่วนของเนเธอร์แลนด์จึงอยู่ต่ำ",
+    "en": "Explain why part of the Netherlands lies so low"
+   },
+   "targets": [
+    "zee.zeespiegel",
+    "zee.veen",
+    "zee.polder",
+    "zee.dijk",
+    "zee.molen",
+    "zee.gemaal",
+    "zee.zakken",
+    "zee.pompen"
+   ],
+   "goals": [
+    "kennis-nederland",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "street",
+    "tone": "sky",
+    "alt": {
+     "nl": "Een straat met een bord waarop staat: min 7 meter NAP.",
+     "th": "ถนนที่มีป้ายเขียนว่า ลบ 7 เมตร NAP",
+     "en": "A street with a sign that says: minus 7 metres NAP."
+    },
+    "things": [
+     {
+      "kind": "window",
+      "x": 290,
+      "y": 56
+     },
+     {
+      "kind": "sign",
+      "x": 100,
+      "y": 70,
+      "text": "-7 m NAP"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "quiz",
+     "role": "instap",
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "zee.zeespiegel"
+       ],
+       "ask": {
+        "nl": "Raad eens: stel dat Nederland uit 100 stukjes bestaat. Hoeveel stukjes liggen lager dan de zee? Typ een getal.",
+        "th": "ลองเดา: สมมุติเนเธอร์แลนด์แบ่งเป็น 100 ส่วน มีกี่ส่วนที่อยู่ต่ำกว่าทะเล พิมพ์ตัวเลข",
+        "en": "Guess: suppose the Netherlands is made of 100 pieces. How many pieces lie lower than the sea? Type a number."
+       },
+       "answer": "26",
+       "tol": 10,
+       "err": "getal",
+       "why": {
+        "nl": "Het zijn er ongeveer 26: een kwart. Een gok is geen toets. Zat je dichtbij, mooi. Zat je er ver naast, dan weet je nu meer.",
+        "th": "ประมาณ 26 ส่วน คือหนึ่งในสี่ การเดาไม่ใช่การสอบ ถ้าเดาใกล้เคียงก็ดี ถ้าเดาห่างไกล ตอนนี้คุณก็รู้มากขึ้นแล้ว",
+        "en": "It is about 26: a quarter. A guess is not a test. If you were close, nice. If you were far off, now you know more."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "zee.veen",
+      "zee.zakken"
+     ],
+     "ask": {
+      "nl": "Raad nog een keer. Veen is zachte, natte grond. Wat gebeurt er met veen als het droog wordt?",
+      "th": "เดาอีกครั้ง พีตคือดินนุ่มและเปียก เกิดอะไรขึ้นกับพีตเมื่อมันแห้ง",
+      "en": "Guess once more. Peat is soft, wet ground. What happens to peat when it gets dry?"
+     },
+     "opts": [
+      {
+       "t": "Het wordt kleiner en de grond zakt",
+       "r": "ok",
+       "why": {
+        "nl": "Goed geraden. Droog veen wordt kleiner, en dan zakt de grond. Dat lees je zo.",
+        "th": "เดาได้ดี พีตแห้งจะหดตัว แล้วพื้นดินทรุดลง คุณจะได้อ่านต่อไป",
+        "en": "Good guess. Dry peat shrinks, and then the ground sinks. You read about that next."
+       }
+      },
+      {
+       "t": "Het wordt groter",
+       "r": "no",
+       "err": "model",
+       "why": {
+        "nl": "Het is andersom: droog veen wordt kleiner. Dat lees je zo.",
+        "th": "กลับกัน พีตแห้งจะหดตัว คุณจะได้อ่านต่อไป",
+        "en": "It is the other way round: dry peat shrinks. You read about that next."
+       }
+      },
+      {
+       "t": "Er verandert niets",
+       "r": "no",
+       "err": "model",
+       "why": {
+        "nl": "Er verandert wel iets: droog veen wordt kleiner. Dat lees je zo.",
+        "th": "มีการเปลี่ยนแปลง พีตแห้งจะหดตัว คุณจะได้อ่านต่อไป",
+        "en": "Something does change: dry peat shrinks. You read about that next."
+       }
+      }
+     ],
+     "answer": "Het wordt kleiner en de grond zakt",
+     "why": {
+      "nl": "Droog veen wordt kleiner, en dan zakt de grond.",
+      "th": "พีตแห้งหดตัว แล้วพื้นดินทรุดลง",
+      "en": "Dry peat shrinks, and then the ground sinks."
+     }
+    },
+    {
+     "type": "read",
+     "items": [
+      "zee.veen",
+      "zee.zakken",
+      "zee.molen",
+      "zee.gemaal",
+      "zee.pompen",
+      "zee.zeespiegel"
+     ],
+     "sources": [
+      {
+       "url": "https://www.bestemmingonbekend.nl/leven-onder-zeeniveau-polders-dijken-en-een-maakbaar-land/",
+       "title": "Bestemming Onbekend: Leven onder zeeniveau, polders, dijken en een maakbaar land"
+      },
+      {
+       "url": "https://themasites.pbl.nl/atlas-regio/themas/water-bodem/",
+       "title": "PBL Atlas van de Regio: Water en bodem"
+      }
+     ],
+     "text": {
+      "nl": "Ongeveer een kwart van Nederland ligt onder de zeespiegel. Hoe kan dat?\n\nHeel lang geleden was op veel plaatsen de grond veen. Boeren groeven sloten, zodat het water wegliep. Een molen pompte het water uit het land.\n\nMaar droog veen wordt kleiner. Dan zakt de grond. Het land komt steeds lager te liggen, dus er moet steeds meer water weg. Hoe lager de grond, hoe harder er gepompt moet worden. Nu doen gemalen dat werk. Zonder dijken en gemalen zou ruim de helft van Nederland regelmatig onderlopen.",
+      "th": "ประมาณหนึ่งในสี่ของเนเธอร์แลนด์อยู่ต่ำกว่าระดับน้ำทะเล เป็นไปได้อย่างไร\n\nเมื่อนานมาแล้ว หลายแห่งมีดินเป็นพีต (veen) ชาวนาขุดคูน้ำให้น้ำไหลออกไป กังหันลม (molen) สูบน้ำออกจากผืนดิน\n\nแต่พีตที่แห้งจะหดตัว แล้วพื้นดินก็ทรุดลง ผืนดินจึงต่ำลงเรื่อย ๆ ต้องสูบน้ำออกมากขึ้นเรื่อย ๆ ยิ่งดินต่ำ ก็ยิ่งต้องสูบแรงขึ้น ปัจจุบันสถานีสูบน้ำ (gemaal) ทำงานนี้ ถ้าไม่มีคันดินและสถานีสูบน้ำ มากกว่าครึ่งหนึ่งของเนเธอร์แลนด์จะถูกน้ำท่วมเป็นประจำ",
+      "en": "About a quarter of the Netherlands lies below sea level. How is that possible?\n\nA long time ago, the ground in many places was peat (veen). Farmers dug ditches so the water ran away. A windmill (molen) pumped the water out of the land.\n\nBut dry peat shrinks. Then the ground sinks. The land lies lower and lower, so more and more water has to go. The lower the ground, the harder the pumping. Today pumping stations (gemaal) do that work. Without dikes and pumping stations, more than half of the Netherlands would flood regularly."
+     },
+     "q": [
+      {
+       "form": "complete",
+       "items": [
+        "zee.molen"
+       ],
+       "ask": {
+        "nl": "Maak af: Vroeger pompte een ___ het water uit het land.",
+        "th": "เติมคำ: Vroeger pompte een ___ het water uit het land.",
+        "en": "Complete: Vroeger pompte een ___ het water uit het land."
+       },
+       "answer": "molen",
+       "hint": [
+        {
+         "nl": "Het draait in de wind.",
+         "th": "มันหมุนตามลม",
+         "en": "It turns in the wind."
+        },
+        {
+         "nl": "Begin zo: mol…",
+         "th": "ขึ้นต้นแบบนี้: mol…",
+         "en": "Start like this: mol…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. Vroeger pompte een molen het water weg. Nu doen gemalen dat.",
+        "th": "ถูกต้อง สมัยก่อนกังหันลมสูบน้ำออก ตอนนี้สถานีสูบน้ำทำแทน",
+        "en": "Right. In the past a windmill pumped the water away. Now pumping stations do that."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "zee.gemaal",
+        "zee.pompen"
+       ],
+       "ask": {
+        "nl": "De grond in een polder zakt elk jaar een beetje. Wat moet het gemaal dan doen?",
+        "th": "พื้นดินในโพลเดอร์ทรุดลงเล็กน้อยทุกปี สถานีสูบน้ำต้องทำอะไร",
+        "en": "The ground in a polder sinks a little every year. What does the pumping station have to do then?"
+       },
+       "opts": [
+        {
+         "t": "Steeds meer water wegpompen",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Hoe lager het land, hoe harder er gepompt moet worden.",
+          "th": "ถูกต้อง ยิ่งผืนดินต่ำ ก็ยิ่งต้องสูบแรงขึ้น",
+          "en": "Right. The lower the land, the harder the pumping."
+         }
+        },
+        {
+         "t": "Minder water wegpompen",
+         "r": "no",
+         "err": "model",
+         "why": {
+          "nl": "Het is andersom. Als het land lager wordt, moet er meer water weg.",
+          "th": "กลับกัน เมื่อผืนดินต่ำลง ต้องสูบน้ำออกมากขึ้น",
+          "en": "It is the other way round. When the land gets lower, more water has to go."
+         }
+        },
+        {
+         "t": "Hetzelfde blijven doen",
+         "r": "no",
+         "err": "model",
+         "why": {
+          "nl": "Er verandert wel iets: het land ligt lager, dus het gemaal moet harder pompen.",
+          "th": "มีการเปลี่ยนแปลง ผืนดินต่ำลง สถานีสูบน้ำจึงต้องสูบแรงขึ้น",
+          "en": "Something does change: the land lies lower, so the pumping station has to pump harder."
+         }
+        }
+       ],
+       "answer": "Steeds meer water wegpompen",
+       "why": {
+        "nl": "Goed. Een gemaal moet steeds harder pompen als de grond zakt.",
+        "th": "ถูกต้อง สถานีสูบน้ำต้องสูบแรงขึ้นเรื่อย ๆ เมื่อพื้นดินทรุด",
+        "en": "Right. A pumping station has to pump harder and harder when the ground sinks."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "zee.polder",
+      "zee.dijk",
+      "zee.zeespiegel"
+     ],
+     "sources": [
+      {
+       "url": "https://www.bnnvara.nl/artikelen/welk-deel-van-nederland-ligt-onder-de-zeespiegel",
+       "title": "BNNVARA: Welk deel van Nederland ligt onder de zeespiegel?"
+      },
+      {
+       "url": "https://www.canonvannederland.nl/nl/zuid-holland/zuid-holland/droogmaking-van-de-zuidplas",
+       "title": "Canon van Nederland: De droogmaking van de Zuidplas"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Normaal_Amsterdams_Peil",
+       "title": "Wikipedia: Normaal Amsterdams Peil"
+      },
+      {
+       "url": "https://www.bestemmingonbekend.nl/leven-onder-zeeniveau-polders-dijken-en-een-maakbaar-land/",
+       "title": "Bestemming Onbekend: Leven onder zeeniveau, polders, dijken en een maakbaar land"
+      },
+      {
+       "url": "https://themasites.pbl.nl/atlas-regio/themas/water-bodem/",
+       "title": "PBL Atlas van de Regio: Water en bodem"
+      }
+     ],
+     "text": {
+      "nl": "Land dat met dijken van het water is afgesloten, heet een polder. Een meer dat is drooggemaakt, heet een droogmakerij. De Beemster is zo’n droogmakerij, uit het jaar 1612. De Zuidplas was ook een meer; eind 1839 was het droog. Bij Nieuwerkerk aan den IJssel, in die polder, ligt het laagste punt van Nederland: 6,76 meter onder NAP.\n\nNAP is de hoogte waarmee men in Nederland meet. Het ligt dicht bij de zeespiegel, maar het is niet precies hetzelfde.\n\nIs het nu 26 of 22 procent? Dat hangt af van hoe je meet. Onder zeeniveau (de gemiddelde hoogte van het water bij vloed) ligt ongeveer 26 procent van Nederland. Onder NAP ligt ongeveer 22 procent.",
+      "th": "ที่ดินที่มีคันดินกั้นน้ำไว้เรียกว่า โพลเดอร์ (polder) ทะเลสาบที่ถูกสูบน้ำออกจนแห้งเรียกว่า droogmakerij เบมสเตอร์ (Beemster) เป็น droogmakerij แห่งหนึ่ง สร้างในปี ค.ศ. 1612 ซุยด์พลาส (Zuidplas) ก็เคยเป็นทะเลสาบ ปลายปี ค.ศ. 1839 ก็แห้งแล้ว ใกล้เมืองนีเวอร์แคร์ก อาน เดิน ไอเซิล (Nieuwerkerk aan den IJssel) ในโพลเดอร์นั้น เป็นจุดที่ต่ำที่สุดของเนเธอร์แลนด์ คืออยู่ต่ำกว่า NAP 6.76 เมตร\n\nNAP คือระดับความสูงที่ใช้วัดในเนเธอร์แลนด์ อยู่ใกล้ระดับน้ำทะเล แต่ไม่ใช่ระดับเดียวกันเป๊ะ\n\nแล้วตกลงเป็น 26 หรือ 22 เปอร์เซ็นต์ ขึ้นอยู่กับวิธีวัด ต่ำกว่าระดับน้ำทะเล (ความสูงเฉลี่ยของน้ำตอนน้ำขึ้น) ประมาณ 26 เปอร์เซ็นต์ของเนเธอร์แลนด์ ต่ำกว่า NAP ประมาณ 22 เปอร์เซ็นต์",
+      "en": "Land that is cut off from the water by dikes is called a polder. A lake that has been drained is called a droogmakerij. The Beemster is such a droogmakerij, from the year 1612. The Zuidplas was also a lake; at the end of 1839 it was dry. Near Nieuwerkerk aan den IJssel, in that polder, is the lowest point of the Netherlands: 6.76 metres below NAP.\n\nNAP is the height that people in the Netherlands measure from. It is close to sea level, but it is not exactly the same.\n\nSo is it 26 or 22 percent? That depends on how you measure. About 26 percent of the Netherlands lies below sea level (the average height of the water at high tide). About 22 percent lies below NAP."
+     },
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "zee.zeespiegel"
+       ],
+       "ask": {
+        "nl": "Hoeveel meter onder NAP ligt het laagste punt van Nederland? Kijk in de tekst en typ het getal.",
+        "th": "จุดที่ต่ำที่สุดของเนเธอร์แลนด์อยู่ต่ำกว่า NAP กี่เมตร ดูในข้อความแล้วพิมพ์ตัวเลข",
+        "en": "How many metres below NAP is the lowest point of the Netherlands? Look in the text and type the number."
+       },
+       "answer": "6,76",
+       "tol": 0.3,
+       "accept": [
+        "-6,76",
+        "-7",
+        "7",
+        "6,8",
+        "-6,8",
+        "min 6,76"
+       ],
+       "err": "lezen",
+       "why": {
+        "nl": "Goed. Het laagste punt ligt 6,76 meter onder NAP.",
+        "th": "ถูกต้อง จุดที่ต่ำที่สุดอยู่ต่ำกว่า NAP 6.76 เมตร",
+        "en": "Right. The lowest point is 6.76 metres below NAP."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "zee.zeespiegel"
+       ],
+       "ask": {
+        "nl": "Waarom lees je soms 26 procent en soms 22 procent?",
+        "th": "ทำไมบางครั้งคุณอ่านเจอ 26 เปอร์เซ็นต์ และบางครั้ง 22 เปอร์เซ็นต์",
+        "en": "Why do you sometimes read 26 percent and sometimes 22 percent?"
+       },
+       "opts": [
+        {
+         "t": "Men meet vanaf een andere hoogte",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Zeeniveau en NAP zijn niet precies hetzelfde.",
+          "th": "ถูกต้อง ระดับน้ำทะเลกับ NAP ไม่ได้เหมือนกันเป๊ะ",
+          "en": "Right. Sea level and NAP are not exactly the same."
+         }
+        },
+        {
+         "t": "Een van de twee getallen is fout",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Niet per se. Beide kloppen, als je weet vanaf welke hoogte je meet.",
+          "th": "ไม่จำเป็น ทั้งสองถูก ถ้ารู้ว่าวัดจากความสูงระดับไหน",
+          "en": "Not necessarily. Both are right if you know from which height you measure."
+         }
+        },
+        {
+         "t": "Het land wordt elke dag kleiner",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat er niet. Het gaat om de manier van meten.",
+          "th": "ไม่ได้เขียนไว้ เรื่องนี้เกี่ยวกับวิธีวัด",
+          "en": "That is not what it says. It is about the way of measuring."
+         }
+        }
+       ],
+       "answer": "Men meet vanaf een andere hoogte",
+       "why": {
+        "nl": "Goed. Onder zeeniveau is ongeveer 26 procent, onder NAP ongeveer 22 procent.",
+        "th": "ถูกต้อง ต่ำกว่าระดับน้ำทะเลประมาณ 26 เปอร์เซ็นต์ ต่ำกว่า NAP ประมาณ 22 เปอร์เซ็นต์",
+        "en": "Right. Below sea level is about 26 percent, below NAP about 22 percent."
+       }
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu aan iemand vertellen: het veen werd droog, de grond zakte, en daarom pompen molens en gemalen al eeuwen het water weg.",
+      "th": "ตอนนี้คุณเล่าให้ใครสักคนฟังได้ว่า พีตแห้ง พื้นดินทรุด กังหันลมและสถานีสูบน้ำจึงสูบน้ำออกมาหลายร้อยปีแล้ว",
+      "en": "You can now tell someone: the peat dried out, the ground sank, and that is why windmills and pumping stations have pumped the water away for centuries."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

@@ -1,0 +1,655 @@
+{
+ "format": 1,
+ "id": "ao-tijdzones",
+ "type": "les",
+ "version": 1,
+ "order": 15,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "aardrijkskunde",
+ "vorm": "een raadsel dat pas aan het eind opgelost wordt",
+ "draden": [
+  "ao-ramadan",
+  "ao-mekong",
+  "ao-zout"
+ ],
+ "title": {
+  "nl": "Waarom zijn er tijdzones?",
+  "th": "ทำไมจึงมีเขตเวลา",
+  "en": "Why are there time zones?"
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Time_zone",
+   "title": "Wikipedia: Time zone"
+  },
+  {
+   "url": "https://www.timeanddate.com/time/zone/thailand/bangkok",
+   "title": "timeanddate.com: Bangkok, Thailand"
+  },
+  {
+   "url": "https://www.timeanddate.com/time/zone/netherlands",
+   "title": "timeanddate.com: Netherlands"
+  }
+ ],
+ "items": [
+  {
+   "id": "tz.tijdzone",
+   "kind": "word",
+   "w": "tijdzone",
+   "art": "de",
+   "tr": {
+    "th": "เขตเวลา",
+    "en": "time zone"
+   },
+   "def": "Een gebied waar alle klokken dezelfde tijd laten zien.",
+   "ex": "Nederland ligt in één tijdzone.",
+   "gap": "De ___ bepaalt hoe laat het in een gebied is.",
+   "wrong": [
+    "stoel",
+    "taart",
+    "fiets"
+   ]
+  },
+  {
+   "id": "tz.zon",
+   "kind": "word",
+   "w": "zon",
+   "art": "de",
+   "tr": {
+    "th": "ดวงอาทิตย์",
+    "en": "sun"
+   },
+   "def": "De grote, hete ster die overdag licht geeft.",
+   "ex": "Om twaalf uur staat de zon hoog.",
+   "gap": "Overdag geeft de ___ licht.",
+   "wrong": [
+    "stoel",
+    "brief",
+    "trein"
+   ]
+  },
+  {
+   "id": "tz.klok",
+   "kind": "word",
+   "w": "klok",
+   "art": "de",
+   "tr": {
+    "th": "นาฬิกา",
+    "en": "clock"
+   },
+   "def": "Een ding dat laat zien hoe laat het is.",
+   "ex": "De klok in de hal loopt goed.",
+   "gap": "Op de ___ zie je hoe laat het is.",
+   "wrong": [
+    "lepel",
+    "stoel",
+    "jas"
+   ]
+  },
+  {
+   "id": "tz.verschil",
+   "kind": "word",
+   "w": "verschil",
+   "art": "het",
+   "tr": {
+    "th": "ความต่าง",
+    "en": "difference"
+   },
+   "def": "Wat anders is tussen twee dingen.",
+   "ex": "Het verschil tussen die twee klokken is zes uur.",
+   "gap": "Tussen Nederland en Thailand is het ___ zes uur.",
+   "wrong": [
+    "huis",
+    "brood",
+    "water"
+   ]
+  },
+  {
+   "id": "tz.draaien",
+   "kind": "word",
+   "w": "draaien",
+   "art": "",
+   "tr": {
+    "th": "หมุน",
+    "en": "to turn"
+   },
+   "def": "Rond gaan, zoals een wiel.",
+   "ex": "De aarde draait in een dag helemaal rond.",
+   "gap": "Een wiel kan snel ___.",
+   "wrong": [
+    "eten",
+    "lezen",
+    "slapen"
+   ]
+  },
+  {
+   "id": "tz.zomertijd",
+   "kind": "word",
+   "w": "zomertijd",
+   "art": "de",
+   "tr": {
+    "th": "เวลาออมแสง (ฤดูร้อน)",
+    "en": "summer time"
+   },
+   "def": "De tijd in de zomer, als de klok een uur vooruit staat.",
+   "ex": "In de zomertijd is het later op de klok.",
+   "gap": "In de ___ staat de klok een uur vooruit.",
+   "wrong": [
+    "soep",
+    "lepel",
+    "tafel"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-tijdzones-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Waarom zijn er tijdzones?",
+    "th": "ทำไมจึงมีเขตเวลา",
+    "en": "Why are there time zones?"
+   },
+   "intro": {
+    "nl": "Een raadsel: het is middag in Nederland en avond in Bangkok. Niemand draaide aan een klok. De oplossing komt aan het eind.",
+    "th": "ปริศนา: ที่เนเธอร์แลนด์เป็นเวลาบ่าย แต่ที่กรุงเทพฯ เป็นเวลาเย็น ไม่มีใครหมุนเข็มนาฬิกาเลย คำตอบอยู่ตอนท้าย",
+    "en": "A riddle: it is afternoon in the Netherlands and evening in Bangkok. Nobody turned a clock. The solution comes at the end."
+   },
+   "can": {
+    "nl": "Uitleggen waarom het niet overal tegelijk dezelfde tijd is",
+    "th": "อธิบายได้ว่าทำไมเวลาไม่เท่ากันทุกที่พร้อมกัน",
+    "en": "Explain why it is not the same time everywhere"
+   },
+   "targets": [
+    "tz.tijdzone",
+    "tz.zon",
+    "tz.klok",
+    "tz.verschil",
+    "tz.draaien",
+    "tz.zomertijd"
+   ],
+   "goals": [
+    "kennis-aardrijkskunde",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "station",
+    "tone": "sky",
+    "alt": {
+     "nl": "Een station met twee klokken: de ene staat op 12:00, de andere op 18:00.",
+     "th": "สถานีรถไฟที่มีนาฬิกาสองเรือน เรือนหนึ่งบอก 12:00 อีกเรือนบอก 18:00",
+     "en": "A station with two clocks: one shows 12:00, the other 18:00."
+    },
+    "things": [
+     {
+      "kind": "clock",
+      "x": 100,
+      "y": 60,
+      "value": "12:00",
+      "hot": true,
+      "label": {
+       "nl": "Klok in Nederland",
+       "th": "นาฬิกาในเนเธอร์แลนด์",
+       "en": "Clock in the Netherlands"
+      },
+      "item": "tz.klok"
+     },
+     {
+      "kind": "clock",
+      "x": 240,
+      "y": 60,
+      "value": "18:00",
+      "hot": true,
+      "label": {
+       "nl": "Klok in Bangkok",
+       "th": "นาฬิกาในกรุงเทพฯ",
+       "en": "Clock in Bangkok"
+      },
+      "item": "tz.klok"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "read",
+     "items": [
+      "tz.klok",
+      "tz.zon",
+      "tz.verschil"
+     ],
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Time_zone",
+       "title": "Wikipedia: Time zone"
+      },
+      {
+       "url": "https://www.timeanddate.com/time/zone/thailand/bangkok",
+       "title": "timeanddate.com: Bangkok, Thailand"
+      }
+     ],
+     "text": {
+      "nl": "Het raadsel\n\nHet is 12:00 uur 's middags in Nederland. Je belt een vriend in Bangkok. Daar is het 18:00 uur. Niemand heeft aan een klok gedraaid. Hoe kan dat?\n\nAanwijzing 1. De zon staat niet overal tegelijk het hoogst. Ga je één graad naar het oosten of naar het westen, dan is het verschil vier minuten. Een graad is een klein stukje van de cirkel om de aarde.\n\nAanwijzing 2. Vroeger had elke plaats haar eigen tijd, die bij de zon hoorde. Toen kwamen de treinen. Elke plaats had een andere tijd, en dat was lastig. In 1840 ging een spoorweg in Engeland over op één tijd.",
+      "th": "ปริศนา\n\nที่เนเธอร์แลนด์เป็นเวลา 12:00 น. ตอนบ่าย คุณโทรหาเพื่อนที่กรุงเทพฯ ที่นั่นเป็นเวลา 18:00 น. ไม่มีใครหมุนเข็มนาฬิกาเลย เป็นไปได้อย่างไร\n\nเบาะแสที่ 1 ดวงอาทิตย์ไม่ได้อยู่สูงสุดพร้อมกันทุกที่ ถ้าไปทางตะวันออกหรือตะวันตกหนึ่งองศา เวลาจะต่างกันสี่นาที องศาคือส่วนเล็ก ๆ ของวงกลมรอบโลก\n\nเบาะแสที่ 2 สมัยก่อนแต่ละที่มีเวลาของตัวเองตามดวงอาทิตย์ แล้วรถไฟก็มา แต่ละที่มีเวลาต่างกัน และนั่นสร้างปัญหา ในปี 1840 ทางรถไฟสายหนึ่งในอังกฤษเริ่มใช้เวลาเดียว",
+      "en": "The riddle\n\nIt is 12:00 noon in the Netherlands. You call a friend in Bangkok. There it is 18:00. Nobody turned a clock. How is that possible?\n\nClue 1. The sun is not highest everywhere at the same time. Move one degree east or west, and the difference is four minutes. A degree is a small piece of the circle around the earth.\n\nClue 2. In the past every place had its own time, based on the sun. Then trains came. Every place had a different time, and that was a problem. In 1840 a railway in England switched to one time."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "tz.verschil"
+       ],
+       "ask": {
+        "nl": "Het is 14:00 uur in Nederland. In Bangkok is het zes uur later dan hier. Welke tijd is het dan in Bangkok?",
+        "th": "ที่เนเธอร์แลนด์เป็นเวลา 14:00 น. ที่กรุงเทพฯ เวลาเร็วกว่าที่นี่หกชั่วโมง ที่กรุงเทพฯ เป็นเวลาอะไร",
+        "en": "It is 14:00 in the Netherlands. In Bangkok it is six hours later than here. What time is it in Bangkok?"
+       },
+       "opts": [
+        {
+         "t": "12:00 uur",
+         "r": "no",
+         "err": "getal",
+         "why": {
+          "nl": "Dat is zes uur eerder. Bangkok is zes uur later: tel er zes bij.",
+          "th": "นั่นคือย้อนหลังไปหกชั่วโมง กรุงเทพฯ เร็วกว่าหกชั่วโมง ให้บวกหก",
+          "en": "That is six hours earlier. Bangkok is six hours later: add six."
+         }
+        },
+        {
+         "t": "20:00 uur",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. 14 plus 6 is 20. Het verschil blijft hetzelfde, hoe laat het ook is.",
+          "th": "ถูกต้อง 14 บวก 6 เป็น 20 ส่วนต่างเท่าเดิมเสมอ ไม่ว่าจะกี่โมง",
+          "en": "Right. 14 plus 6 is 20. The difference stays the same, whatever the hour."
+         }
+        },
+        {
+         "t": "8:00 uur",
+         "r": "near",
+         "err": "getal",
+         "why": {
+          "nl": "Bijna: 20:00 uur is hetzelfde als 8 uur, maar dan in de avond. Hier is het middag, dus 20:00 uur.",
+          "th": "เกือบถูก 20:00 น. คือ 8 โมงเหมือนกัน แต่เป็นตอนค่ำ ที่นี่เป็นบ่าย จึงเป็น 20:00 น.",
+          "en": "Close: 20:00 is the same as 8 o'clock, but in the evening. Here it is afternoon, so 20:00."
+         }
+        }
+       ],
+       "answer": "20:00 uur",
+       "why": {
+        "nl": "Goed. 14 plus 6 is 20. Het verschil blijft hetzelfde, hoe laat het ook is.",
+        "th": "ถูกต้อง 14 บวก 6 เป็น 20 ส่วนต่างเท่าเดิมเสมอ ไม่ว่าจะกี่โมง",
+        "en": "Right. 14 plus 6 is 20. The difference stays the same, whatever the hour."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "tz.tijdzone"
+       ],
+       "ask": {
+        "nl": "Waarom was een eigen tijd voor elke plaats lastig voor de trein?",
+        "th": "ทำไมการที่แต่ละที่มีเวลาของตัวเองจึงเป็นปัญหาสำหรับรถไฟ",
+        "en": "Why was a separate time for each place a problem for the train?"
+       },
+       "opts": [
+        {
+         "t": "Elke plaats had een andere tijd, dus het rooster klopte niet",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Een trein reed door veel plaatsen. Met veel verschillende tijden was het rooster moeilijk.",
+          "th": "ถูกต้อง รถไฟวิ่งผ่านหลายที่ เมื่อมีเวลาต่างกันมาก ตารางเวลาก็ทำยาก",
+          "en": "Right. A train went through many places. With many different times, the timetable was hard."
+         }
+        },
+        {
+         "t": "De trein reed te langzaam",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst. Het probleem was de tijd, niet de snelheid.",
+          "th": "ไม่มีในข้อความ ปัญหาคือเวลา ไม่ใช่ความเร็ว",
+          "en": "That is not in the text. The problem was the time, not the speed."
+         }
+        },
+        {
+         "t": "Er waren te weinig klokken",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Daar gaat de tekst niet over. Het ging om verschillende tijden in verschillende plaatsen.",
+          "th": "ข้อความไม่ได้พูดถึงเรื่องนี้ ปัญหาคือแต่ละที่เวลาต่างกัน",
+          "en": "The text does not say that. It was about different times in different places."
+         }
+        }
+       ],
+       "answer": "Elke plaats had een andere tijd, dus het rooster klopte niet",
+       "why": {
+        "nl": "Goed. Een trein reed door veel plaatsen. Met veel verschillende tijden was het rooster moeilijk.",
+        "th": "ถูกต้อง รถไฟวิ่งผ่านหลายที่ เมื่อมีเวลาต่างกันมาก ตารางเวลาก็ทำยาก",
+        "en": "Right. A train went through many places. With many different times, the timetable was hard."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "tz.zon",
+      "tz.klok"
+     ],
+     "ask": {
+      "nl": "Wat is jouw gok? Hoe kan het 12:00 zijn in Nederland en 18:00 in Bangkok, zonder dat iemand aan een klok draait?",
+      "th": "คุณเดาว่าอย่างไร ทำไมที่เนเธอร์แลนด์เป็น 12:00 น. และที่กรุงเทพฯ เป็น 18:00 น. โดยไม่มีใครหมุนเข็มนาฬิกา",
+      "en": "What is your guess? How can it be 12:00 in the Netherlands and 18:00 in Bangkok, without anyone turning a clock?"
+     },
+     "opts": [
+      {
+       "t": "De klokken in Bangkok lopen sneller",
+       "r": "no",
+       "err": "betekenis",
+       "why": {
+        "nl": "Dat zou kunnen lijken, maar een klok loopt overal even snel. Lees verder: de oplossing komt.",
+        "th": "อาจดูเป็นอย่างนั้น แต่นาฬิกาเดินเร็วเท่ากันทุกที่ อ่านต่อ เฉลยกำลังมา",
+        "en": "It might seem so, but a clock runs equally fast everywhere. Read on: the solution is coming."
+       }
+      },
+      {
+       "t": "De zon staat niet overal tegelijk op dezelfde plek",
+       "r": "ok",
+       "why": {
+        "nl": "Dat past bij de aanwijzingen. Straks zie je precies hoe dat werkt.",
+        "th": "ตรงกับเบาะแส อีกเดี๋ยวคุณจะเห็นว่าเป็นอย่างไรแน่ ๆ",
+        "en": "That fits the clues. Soon you will see exactly how it works."
+       }
+      },
+      {
+       "t": "In Bangkok duurt een uur langer",
+       "r": "no",
+       "err": "betekenis",
+       "why": {
+        "nl": "Een uur is overal even lang. Lees verder voor de oplossing.",
+        "th": "หนึ่งชั่วโมงยาวเท่ากันทุกที่ อ่านต่อเพื่อดูเฉลย",
+        "en": "An hour is equally long everywhere. Read on for the solution."
+       }
+      }
+     ],
+     "answer": "De zon staat niet overal tegelijk op dezelfde plek",
+     "why": {
+      "nl": "Dat past bij de aanwijzingen. Straks zie je precies hoe dat werkt.",
+      "th": "ตรงกับเบาะแส อีกเดี๋ยวคุณจะเห็นว่าเป็นอย่างไรแน่ ๆ",
+      "en": "That fits the clues. Soon you will see exactly how it works."
+     }
+    },
+    {
+     "type": "read",
+     "items": [
+      "tz.tijdzone",
+      "tz.draaien",
+      "tz.verschil"
+     ],
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Time_zone",
+       "title": "Wikipedia: Time zone"
+      },
+      {
+       "url": "https://www.timeanddate.com/time/zone/thailand/bangkok",
+       "title": "timeanddate.com: Bangkok, Thailand"
+      },
+      {
+       "url": "https://www.timeanddate.com/time/zone/netherlands",
+       "title": "timeanddate.com: Netherlands"
+      }
+     ],
+     "text": {
+      "nl": "De oplossing\n\nDe zon staat niet overal tegelijk het hoogst. Vier minuten voor elke graad, en een cirkel heeft 360 graden: 360 keer 4 is 1440 minuten. Dat zijn precies 24 uur.\n\nDaarom kwam in 1876 het voorstel om de wereld in 24 tijdzones te delen. In dat voorstel was elke tijdzone 15 graden breed. Een tijdzone is een gebied waar alle klokken dezelfde tijd laten zien.\n\nElke tijdzone heeft een verschil met UTC, de wereldtijd. In de winter heeft Nederland UTC+1. Thailand heeft het hele jaar UTC+7. Het verschil is dus zes uur. Is het 12:00 uur in Nederland, dan is het 18:00 uur in Bangkok. Niemand draait aan een klok: het is gewoon een andere tijdzone.",
+      "th": "เฉลย\n\nดวงอาทิตย์ไม่ได้อยู่สูงสุดพร้อมกันทุกที่ สี่นาทีต่อหนึ่งองศา และวงกลมมี 360 องศา: 360 คูณ 4 ได้ 1440 นาที นั่นคือ 24 ชั่วโมงพอดี\n\nเพราะอย่างนี้ ในปี 1876 จึงมีข้อเสนอให้แบ่งโลกเป็น 24 เขตเวลา ในข้อเสนอนั้นแต่ละเขตกว้าง 15 องศา เขตเวลาคือพื้นที่ที่นาฬิกาทุกเรือนบอกเวลาเดียวกัน\n\nทุกเขตเวลามีส่วนต่างจาก UTC ซึ่งเป็นเวลามาตรฐานโลก ในฤดูหนาว เนเธอร์แลนด์ใช้ UTC+1 ประเทศไทยใช้ UTC+7 ตลอดปี ส่วนต่างจึงเป็นหกชั่วโมง เมื่อเนเธอร์แลนด์เป็น 12:00 น. กรุงเทพฯ จะเป็น 18:00 น. ไม่มีใครหมุนนาฬิกา แค่เป็นคนละเขตเวลาเท่านั้นเอง",
+      "en": "The solution\n\nThe sun is not highest everywhere at the same time. Four minutes for every degree, and a circle has 360 degrees: 360 times 4 is 1440 minutes. That is exactly 24 hours.\n\nThat is why in 1876 a plan came to divide the world into 24 time zones. In that plan each time zone was 15 degrees wide. A time zone is an area where all clocks show the same time.\n\nEvery time zone has a difference from UTC, the world time. In winter the Netherlands has UTC+1. Thailand has UTC+7 all year. So the difference is six hours. When it is 12:00 in the Netherlands, it is 18:00 in Bangkok. Nobody turns a clock: it is simply a different time zone."
+     },
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "tz.tijdzone"
+       ],
+       "ask": {
+        "nl": "Hoeveel graden breed is één tijdzone in dat voorstel?",
+        "th": "ในข้อเสนอนั้น เขตเวลาหนึ่งเขตกว้างกี่องศา",
+        "en": "How many degrees wide is one time zone in that plan?"
+       },
+       "answer": "15",
+       "err": "getal",
+       "why": {
+        "nl": "Elke tijdzone is 15 graden breed. 24 keer 15 is 360: de hele cirkel.",
+        "th": "แต่ละเขตเวลากว้าง 15 องศา 24 คูณ 15 ได้ 360 เต็มวงกลม",
+        "en": "Each time zone is 15 degrees wide. 24 times 15 is 360: the whole circle."
+       }
+      },
+      {
+       "form": "number",
+       "items": [
+        "tz.verschil",
+        "tz.klok"
+       ],
+       "ask": {
+        "nl": "In de winter is het 8:00 uur in Nederland. Hoe laat is het dan in Bangkok? Typ het uur.",
+        "th": "ในฤดูหนาวที่เนเธอร์แลนด์เป็นเวลา 8:00 น. ที่กรุงเทพฯ เป็นกี่โมง พิมพ์เป็นชั่วโมง",
+        "en": "In winter it is 8:00 in the Netherlands. What time is it in Bangkok? Type the hour."
+       },
+       "answer": "14",
+       "err": "getal",
+       "why": {
+        "nl": "Het verschil is zes uur: 8 plus 6 is 14. Dus 14:00 uur.",
+        "th": "ส่วนต่างคือหกชั่วโมง 8 บวก 6 ได้ 14 จึงเป็น 14:00 น.",
+        "en": "The difference is six hours: 8 plus 6 is 14. So 14:00."
+       },
+       "accept": [
+        "14:00",
+        "14.00"
+       ]
+      },
+      {
+       "form": "build",
+       "items": [
+        "tz.verschil"
+       ],
+       "data": {
+        "parts": [
+         "In Bangkok",
+         "is",
+         "het",
+         "zes uur",
+         "later."
+        ],
+        "verb": "is",
+        "tr": {
+         "th": "ที่กรุงเทพฯ เวลาเร็วกว่าหกชั่วโมง",
+         "en": "In Bangkok it is six hours later."
+        }
+       },
+       "why": {
+        "nl": "<b>In Bangkok is het zes uur later.</b> Zo zeg je het verschil in tijd.",
+        "th": "<b>In Bangkok is het zes uur later.</b> แบบนี้ใช้บอกความต่างของเวลา",
+        "en": "<b>In Bangkok is het zes uur later.</b> This is how you say the time difference."
+       },
+       "err": "woordvolgorde",
+       "help": 0
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "tz.tijdzone",
+      "tz.klok"
+     ],
+     "ask": {
+      "nl": "Nu de oplossing. Hoe kon het 12:00 zijn in Nederland en 18:00 in Bangkok?",
+      "th": "ตอนนี้ถึงเฉลย ทำไมที่เนเธอร์แลนด์เป็น 12:00 น. และที่กรุงเทพฯ เป็น 18:00 น.",
+      "en": "Now the solution. How could it be 12:00 in the Netherlands and 18:00 in Bangkok?"
+     },
+     "opts": [
+      {
+       "t": "Iemand heeft de klok verzet",
+       "r": "no",
+       "err": "betekenis",
+       "why": {
+        "nl": "Nee. Niemand verzette iets. De twee plaatsen liggen in verschillende tijdzones.",
+        "th": "ไม่ใช่ ไม่มีใครเปลี่ยนอะไร สองที่นี้อยู่คนละเขตเวลา",
+        "en": "No. Nobody changed anything. The two places lie in different time zones."
+       }
+      },
+      {
+       "t": "De twee plaatsen liggen in verschillende tijdzones, zes uur uit elkaar",
+       "r": "ok",
+       "why": {
+        "nl": "Goed. Dat is de oplossing van het raadsel.",
+        "th": "ถูกต้อง นี่คือเฉลยของปริศนา",
+        "en": "Right. That is the solution to the riddle."
+       }
+      },
+      {
+       "t": "De klok in Bangkok loopt sneller",
+       "r": "no",
+       "err": "betekenis",
+       "why": {
+        "nl": "Nee. Alle klokken lopen even snel. Het verschil komt door de tijdzones.",
+        "th": "ไม่ใช่ นาฬิกาทุกเรือนเดินเร็วเท่ากัน ความต่างมาจากเขตเวลา",
+        "en": "No. All clocks run equally fast. The difference comes from the time zones."
+       }
+      }
+     ],
+     "answer": "De twee plaatsen liggen in verschillende tijdzones, zes uur uit elkaar",
+     "why": {
+      "nl": "Goed. Dat is de oplossing van het raadsel.",
+      "th": "ถูกต้อง นี่คือเฉลยของปริศนา",
+      "en": "Right. That is the solution to the riddle."
+     }
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "tz.zomertijd",
+      "tz.verschil"
+     ],
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Time_zone",
+       "title": "Wikipedia: Time zone"
+      },
+      {
+       "url": "https://www.timeanddate.com/time/zone/thailand/bangkok",
+       "title": "timeanddate.com: Bangkok, Thailand"
+      },
+      {
+       "url": "https://www.timeanddate.com/time/zone/netherlands",
+       "title": "timeanddate.com: Netherlands"
+      }
+     ],
+     "text": {
+      "nl": "Dieper: het verschil verandert\n\nThailand verzet de klok niet. In Nederland gaat de klok in de zomer een uur vooruit: dan is het UTC+2. Daarom is het verschil in de zomer vijf uur en in de winter zes uur.\n\nTijdzones volgen ook niet precies de lijnen van 15 graden. Ze lopen vaak langs de grenzen van landen.",
+      "th": "ลึกขึ้น: ส่วนต่างเปลี่ยนได้\n\nประเทศไทยไม่ปรับนาฬิกา ส่วนเนเธอร์แลนด์ในฤดูร้อนจะปรับนาฬิกาเร็วขึ้นหนึ่งชั่วโมง คือเป็น UTC+2 ดังนั้นส่วนต่างในฤดูร้อนคือห้าชั่วโมง และในฤดูหนาวคือหกชั่วโมง\n\nเขตเวลาไม่ได้ตามเส้น 15 องศาเป๊ะ ๆ มักตามแนวพรมแดนของประเทศ",
+      "en": "Deeper: the difference changes\n\nThailand does not change the clock. In the Netherlands the clock goes one hour forward in summer: then it is UTC+2. That is why the difference is five hours in summer and six hours in winter.\n\nTime zones also do not follow the 15-degree lines exactly. They often follow the borders of countries."
+     },
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "tz.zomertijd",
+        "tz.verschil"
+       ],
+       "ask": {
+        "nl": "Het is zomer en 14:00 uur in Nederland. Hoe laat is het in Bangkok? Typ het uur.",
+        "th": "เป็นฤดูร้อนและที่เนเธอร์แลนด์เป็นเวลา 14:00 น. ที่กรุงเทพฯ เป็นกี่โมง พิมพ์เป็นชั่วโมง",
+        "en": "It is summer and 14:00 in the Netherlands. What time is it in Bangkok? Type the hour."
+       },
+       "answer": "19",
+       "err": "getal",
+       "why": {
+        "nl": "In de zomer is het verschil vijf uur: 14 plus 5 is 19.",
+        "th": "ในฤดูร้อนส่วนต่างคือห้าชั่วโมง 14 บวก 5 ได้ 19",
+        "en": "In summer the difference is five hours: 14 plus 5 is 19."
+       },
+       "accept": [
+        "19:00",
+        "19.00"
+       ]
+      },
+      {
+       "form": "choose",
+       "items": [
+        "tz.zomertijd"
+       ],
+       "ask": {
+        "nl": "Waarom is het verschil met Bangkok in de zomer kleiner?",
+        "th": "ทำไมส่วนต่างกับกรุงเทพฯ ในฤดูร้อนจึงน้อยลง",
+        "en": "Why is the difference with Bangkok smaller in summer?"
+       },
+       "opts": [
+        {
+         "t": "Nederland zet de klok vooruit, Thailand niet",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Nederland gaat naar UTC+2, Thailand blijft UTC+7: vijf uur verschil.",
+          "th": "ถูกต้อง เนเธอร์แลนด์เปลี่ยนเป็น UTC+2 ไทยยังเป็น UTC+7 ต่างกันห้าชั่วโมง",
+          "en": "Right. The Netherlands goes to UTC+2, Thailand stays UTC+7: five hours difference."
+         }
+        },
+        {
+         "t": "Thailand zet de klok vooruit",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Andersom: Thailand verzet de klok niet.",
+          "th": "กลับกัน ประเทศไทยไม่ปรับนาฬิกา",
+          "en": "The other way round: Thailand does not change the clock."
+         }
+        },
+        {
+         "t": "De aarde draait in de zomer sneller",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst. De klok verandert, de aarde niet.",
+          "th": "ไม่มีในข้อความ นาฬิกาเปลี่ยน โลกไม่ได้เปลี่ยน",
+          "en": "That is not in the text. The clock changes, not the earth."
+         }
+        }
+       ],
+       "answer": "Nederland zet de klok vooruit, Thailand niet",
+       "why": {
+        "nl": "Goed. Nederland gaat naar UTC+2, Thailand blijft UTC+7: vijf uur verschil.",
+        "th": "ถูกต้อง เนเธอร์แลนด์เปลี่ยนเป็น UTC+2 ไทยยังเป็น UTC+7 ต่างกันห้าชั่วโมง",
+        "en": "Right. The Netherlands goes to UTC+2, Thailand stays UTC+7: five hours difference."
+       }
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu aan iemand vertellen: de zon staat niet overal tegelijk hoog, daarom heeft de wereld 24 tijdzones, en daarom is het in Bangkok al avond als het in Nederland middag is.",
+      "th": "ตอนนี้คุณเล่าให้ใครสักคนฟังได้ว่า ดวงอาทิตย์ไม่ได้อยู่สูงพร้อมกันทุกที่ โลกจึงมี 24 เขตเวลา และเมื่อที่เนเธอร์แลนด์เป็นบ่าย ที่กรุงเทพฯ ก็เป็นเย็นแล้ว",
+      "en": "You can now tell someone: the sun is not high everywhere at the same time, so the world has 24 time zones, and so it is already evening in Bangkok when it is afternoon in the Netherlands."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

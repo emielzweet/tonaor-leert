@@ -1,0 +1,655 @@
+{
+ "format": 1,
+ "id": "ao-archeoloog",
+ "type": "les",
+ "version": 1,
+ "order": 19,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "archeologie",
+ "vorm": "eerst raden",
+ "draden": [
+  "ao-1953",
+  "ao-aardappel",
+  "ao-zijderoute"
+ ],
+ "title": {
+  "nl": "Hoe weet een archeoloog hoe oud iets is?",
+  "th": "นักโบราณคดีรู้ได้อย่างไรว่าสิ่งของมีอายุเท่าไร",
+  "en": "How does an archaeologist know how old something is?"
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Radiocarbon_dating",
+   "title": "Wikipedia: Radiocarbon dating"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Koolstofdatering",
+   "title": "Wikipedia (nl): Koolstofdatering"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Dendrochronology",
+   "title": "Wikipedia: Dendrochronology"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Stratigraphy_(archaeology)",
+   "title": "Wikipedia: Stratigraphy (archaeology)"
+  }
+ ],
+ "items": [
+  {
+   "id": "arc.archeoloog",
+   "kind": "word",
+   "w": "archeoloog",
+   "art": "de",
+   "tr": {
+    "th": "นักโบราณคดี",
+    "en": "archaeologist"
+   },
+   "def": "Iemand die in de grond zoekt naar spullen van lang geleden.",
+   "ex": "De archeoloog vindt een oude scherf.",
+   "gap": "De ___ zoekt in de grond naar oude spullen.",
+   "wrong": [
+    "bakker",
+    "piloot",
+    "kapper"
+   ]
+  },
+  {
+   "id": "arc.laag",
+   "kind": "word",
+   "w": "laag",
+   "art": "de",
+   "tr": {
+    "th": "ชั้น",
+    "en": "layer"
+   },
+   "def": "Een stuk grond dat boven of onder een ander stuk ligt.",
+   "ex": "Onder de bovenste laag ligt oudere grond.",
+   "gap": "De ___ onder een andere is meestal ouder.",
+   "wrong": [
+    "pen",
+    "jas",
+    "taart"
+   ]
+  },
+  {
+   "id": "arc.jaarring",
+   "kind": "word",
+   "w": "jaarring",
+   "art": "de",
+   "tr": {
+    "th": "วงปีของต้นไม้",
+    "en": "tree ring"
+   },
+   "def": "Een ring in het hout van een boom. Er komt er elk jaar een bij.",
+   "ex": "Elke jaarring in de stam is één jaar.",
+   "gap": "De ___ in een boomstam laat zien dat er een jaar voorbij is.",
+   "wrong": [
+    "lamp",
+    "trein",
+    "soep"
+   ]
+  },
+  {
+   "id": "arc.vondst",
+   "kind": "word",
+   "w": "vondst",
+   "art": "de",
+   "tr": {
+    "th": "สิ่งที่ค้นพบ",
+    "en": "find"
+   },
+   "def": "Iets wat je vindt, bijvoorbeeld in de grond.",
+   "ex": "De vondst ligt nu in een museum.",
+   "gap": "De archeoloog is blij met de ___ in de grond.",
+   "wrong": [
+    "regen",
+    "maand",
+    "dorst"
+   ]
+  },
+  {
+   "id": "arc.hout",
+   "kind": "word",
+   "w": "hout",
+   "art": "het",
+   "tr": {
+    "th": "ไม้",
+    "en": "wood"
+   },
+   "def": "Het harde materiaal van een boom.",
+   "ex": "Van hout kun je een tafel maken.",
+   "gap": "Het ___ van een boom is hard.",
+   "wrong": [
+    "glas",
+    "ijzer",
+    "zand"
+   ]
+  },
+  {
+   "id": "arc.meten",
+   "kind": "word",
+   "w": "meten",
+   "art": "",
+   "tr": {
+    "th": "วัด",
+    "en": "to measure"
+   },
+   "def": "Uitzoeken hoe groot of hoe oud iets is.",
+   "ex": "Met een liniaal kun je de lengte meten.",
+   "gap": "Met een liniaal kun je een tafel ___.",
+   "wrong": [
+    "eten",
+    "slapen",
+    "lopen"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-archeoloog-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Hoe weet een archeoloog hoe oud iets is?",
+    "th": "นักโบราณคดีรู้ได้อย่างไรว่าสิ่งของมีอายุเท่าไร",
+    "en": "How does an archaeologist know how old something is?"
+   },
+   "intro": {
+    "nl": "Eerst raden, dan lezen: hoe ver terug kun je meten, en wat lukt niet?",
+    "th": "ลองเดาก่อน แล้วค่อยอ่าน: วัดย้อนหลังได้ไกลแค่ไหน และอะไรที่วัดไม่ได้",
+    "en": "Guess first, then read: how far back can you measure, and what does not work?"
+   },
+   "can": {
+    "nl": "Drie manieren uitleggen om te zien hoe oud een vondst is",
+    "th": "อธิบายสามวิธีในการหาอายุของสิ่งที่ค้นพบได้",
+    "en": "Explain three ways to find the age of a find"
+   },
+   "targets": [
+    "arc.archeoloog",
+    "arc.laag",
+    "arc.jaarring",
+    "arc.vondst",
+    "arc.hout",
+    "arc.meten"
+   ],
+   "goals": [
+    "kennis-geschiedenis",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "street",
+    "tone": "apricot",
+    "alt": {
+     "nl": "Een straat met een bord.",
+     "th": "ถนนที่มีป้าย",
+     "en": "A street with a sign."
+    },
+    "things": [
+     {
+      "kind": "sign",
+      "x": 170,
+      "y": 70,
+      "text": "oud?"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "quiz",
+     "role": "instap",
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "arc.meten"
+       ],
+       "ask": {
+        "nl": "Raad eens: ongeveer hoeveel jaar terug kun je met de koolstofmethode meten? Typ een getal zonder punt.",
+        "th": "ลองเดา: วิธีคาร์บอนวัดย้อนหลังได้ราวกี่ปี พิมพ์ตัวเลขโดยไม่ใส่จุด",
+        "en": "Guess: about how many years back can you measure with the carbon method? Type a number without a dot."
+       },
+       "answer": "50000",
+       "err": "getal",
+       "why": {
+        "nl": "Ongeveer 50.000 jaar. Zat je dichtbij? Mooi. Zat je er ver naast? Dan weet je nu meer.",
+        "th": "ประมาณ 50,000 ปี ถ้าเดาใกล้เคียงก็ยอดเยี่ยม ถ้าเดาห่าง ตอนนี้คุณก็รู้มากขึ้นแล้ว",
+        "en": "About 50,000 years. Was your guess close? Nice. Far off? Now you know more."
+       },
+       "tol": 20000,
+       "accept": [
+        "50.000",
+        "50 000"
+       ]
+      },
+      {
+       "form": "choose",
+       "items": [
+        "arc.hout",
+        "arc.vondst"
+       ],
+       "ask": {
+        "nl": "Raad eens: welke vondst kun je niet met de koolstofmethode dateren?",
+        "th": "ลองเดา: สิ่งที่พบอย่างไหนที่วัดอายุด้วยวิธีคาร์บอนไม่ได้",
+        "en": "Guess: which find can you not date with the carbon method?"
+       },
+       "opts": [
+        {
+         "t": "Een houten balk",
+         "r": "no",
+         "err": "betekenis",
+         "why": {
+          "nl": "Dat lukt wel: hout heeft geleefd. Een ijzeren zwaard lukt niet.",
+          "th": "วัดได้ เพราะไม้เคยมีชีวิต ดาบเหล็กวัดไม่ได้",
+          "en": "That does work: wood has lived. An iron sword does not."
+         }
+        },
+        {
+         "t": "Een ijzeren zwaard",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Metaal kun je niet met koolstof dateren. Straks lees je waarom.",
+          "th": "ถูกต้อง โลหะวัดอายุด้วยคาร์บอนไม่ได้ เดี๋ยวคุณจะอ่านว่าทำไม",
+          "en": "Right. You cannot date metal with carbon. Soon you will read why."
+         }
+        },
+        {
+         "t": "Een bot",
+         "r": "no",
+         "err": "betekenis",
+         "why": {
+          "nl": "Dat lukt wel: bot kun je testen. Een ijzeren zwaard lukt niet.",
+          "th": "วัดได้ กระดูกทดสอบได้ ดาบเหล็กวัดไม่ได้",
+          "en": "That does work: bone can be tested. An iron sword does not."
+         }
+        }
+       ],
+       "answer": "Een ijzeren zwaard",
+       "why": {
+        "nl": "Goed. Metaal kun je niet met koolstof dateren. Straks lees je waarom.",
+        "th": "ถูกต้อง โลหะวัดอายุด้วยคาร์บอนไม่ได้ เดี๋ยวคุณจะอ่านว่าทำไม",
+        "en": "Right. You cannot date metal with carbon. Soon you will read why."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "arc.archeoloog",
+      "arc.laag",
+      "arc.jaarring",
+      "arc.hout"
+     ],
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Radiocarbon_dating",
+       "title": "Wikipedia: Radiocarbon dating"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Koolstofdatering",
+       "title": "Wikipedia (nl): Koolstofdatering"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Dendrochronology",
+       "title": "Wikipedia: Dendrochronology"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Stratigraphy_(archaeology)",
+       "title": "Wikipedia: Stratigraphy (archaeology)"
+      }
+     ],
+     "text": {
+      "nl": "Drie manieren om te zien hoe oud iets is\n\nEen archeoloog zoekt in de grond naar oude spullen. Maar hoe oud is een vondst? Er zijn drie manieren.\n\nEen: de lagen. De grond ligt in lagen. De bovenste laag is jonger en de onderste is ouder. Ligt een scherf onderin en een munt bovenin, dan is de scherf meestal ouder.\n\nTwee: jaarringen. Een boom krijgt elk jaar een nieuwe ring. De archeoloog telt de ringen van een houten balk en weet dan hoe oud de boom was. Bomen uit dezelfde streek hebben vaak dezelfde patronen. Zo kun je balken met elkaar vergelijken en het jaar precies vinden.\n\nDrie: koolstof. Alles wat leeft, neemt koolstof-14 op. Gaat een plant of dier dood, dan stopt dat, en er blijft steeds minder koolstof-14 over. Na ongeveer 5.700 jaar is de helft weg. Zo meet de archeoloog hoe lang geleden iets doodging. Het werkt alleen voor dingen die geleefd hebben, zoals hout, houtskool en bot.",
+      "th": "สามวิธีหาอายุ\n\nนักโบราณคดีค้นหาสิ่งของเก่าในดิน แต่สิ่งที่ค้นพบมีอายุเท่าไร มีสามวิธี\n\nหนึ่ง: ชั้นดิน ดินเรียงเป็นชั้น ๆ ชั้นบนอายุน้อยกว่า ชั้นล่างอายุมากกว่า ถ้าเศษภาชนะอยู่ล่างและเหรียญอยู่บน เศษภาชนะมักเก่ากว่า\n\nสอง: วงปี ต้นไม้ได้วงใหม่ทุกปี นักโบราณคดีนับวงปีของคานไม้ แล้วรู้ว่าต้นไม้อายุเท่าไร ต้นไม้ในภูมิภาคเดียวกันมักมีลวดลายเหมือนกัน จึงเทียบคานไม้กันและหาปีได้อย่างแม่นยำ\n\nสาม: คาร์บอน ทุกสิ่งที่มีชีวิตรับคาร์บอน-14 เข้าไป เมื่อพืชหรือสัตว์ตาย การรับนี้หยุด และคาร์บอน-14 ก็เหลือน้อยลงเรื่อย ๆ หลังประมาณ 5,700 ปี เหลือครึ่งเดียว นักโบราณคดีจึงวัดได้ว่าตายมานานเท่าไร วิธีนี้ใช้ได้เฉพาะสิ่งที่เคยมีชีวิต เช่น ไม้ ถ่านไม้ และกระดูก",
+      "en": "Three ways to find the age\n\nAn archaeologist looks in the ground for old things. But how old is a find? There are three ways.\n\nOne: the layers. The ground lies in layers. The upper layer is younger and the lower layer is older. If a shard lies at the bottom and a coin at the top, the shard is usually older.\n\nTwo: tree rings. A tree gets a new ring every year. The archaeologist counts the rings of a wooden beam and then knows how old the tree was. Trees from the same region often have the same patterns. That way you can compare beams and find the year exactly.\n\nThree: carbon. Everything that lives takes in carbon-14. When a plant or animal dies, that stops, and less and less carbon-14 is left. After about 5,700 years half is gone. That is how the archaeologist measures how long ago something died. It only works for things that have lived, such as wood, charcoal and bone."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "arc.jaarring"
+       ],
+       "ask": {
+        "nl": "Hoe vaak krijgt een boom een nieuwe ring?",
+        "th": "ต้นไม้ได้วงปีใหม่บ่อยแค่ไหน",
+        "en": "How often does a tree get a new ring?"
+       },
+       "opts": [
+        {
+         "t": "Elke maand",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Een boom krijgt één ring per jaar.",
+          "th": "ไม่ใช่ ต้นไม้ได้หนึ่งวงต่อปี",
+          "en": "No. A tree gets one ring per year."
+         }
+        },
+        {
+         "t": "Elk jaar",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Eén ring is één jaar.",
+          "th": "ถูกต้อง หนึ่งวงคือหนึ่งปี",
+          "en": "Right. One ring is one year."
+         }
+        },
+        {
+         "t": "Elke honderd jaar",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Dan kon je de ringen niet gebruiken om jaren te tellen.",
+          "th": "ไม่ใช่ ถ้าเป็นอย่างนั้น คุณก็ใช้นับปีไม่ได้",
+          "en": "No. Then you could not use the rings to count years."
+         }
+        }
+       ],
+       "answer": "Elk jaar",
+       "why": {
+        "nl": "Goed. Eén ring is één jaar.",
+        "th": "ถูกต้อง หนึ่งวงคือหนึ่งปี",
+        "en": "Right. One ring is one year."
+       }
+      },
+      {
+       "form": "number",
+       "items": [
+        "arc.meten"
+       ],
+       "ask": {
+        "nl": "Na ongeveer hoeveel jaar is de helft van het koolstof-14 weg?",
+        "th": "หลังประมาณกี่ปี คาร์บอน-14 เหลือครึ่งเดียว",
+        "en": "After about how many years is half of the carbon-14 gone?"
+       },
+       "answer": "5700",
+       "err": "getal",
+       "why": {
+        "nl": "Na ongeveer 5.700 jaar. Zo kun je rekenen hoe lang geleden iets doodging.",
+        "th": "หลังประมาณ 5,700 ปี จึงคำนวณได้ว่าตายมานานเท่าไร",
+        "en": "After about 5,700 years. That way you can work out how long ago something died."
+       },
+       "tol": 200,
+       "accept": [
+        "5.700"
+       ]
+      },
+      {
+       "form": "choose",
+       "items": [
+        "arc.vondst"
+       ],
+       "ask": {
+        "nl": "Waarom kun je een ijzeren zwaard niet met koolstof dateren?",
+        "th": "ทำไมจึงวัดอายุดาบเหล็กด้วยคาร์บอนไม่ได้",
+        "en": "Why can you not date an iron sword with carbon?"
+       },
+       "opts": [
+        {
+         "t": "Een zwaard van ijzer heeft nooit geleefd",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. De methode werkt alleen voor dingen die geleefd hebben.",
+          "th": "ถูกต้อง วิธีนี้ใช้ได้เฉพาะสิ่งที่เคยมีชีวิต",
+          "en": "Right. The method only works for things that have lived."
+         }
+        },
+        {
+         "t": "IJzer is te zwaar",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Het gewicht doet er niet toe. Het gaat om koolstof uit iets wat geleefd heeft.",
+          "th": "น้ำหนักไม่เกี่ยว เรื่องคือคาร์บอนจากสิ่งที่เคยมีชีวิต",
+          "en": "Weight does not matter. It is about carbon from something that has lived."
+         }
+        },
+        {
+         "t": "Een zwaard is te nieuw",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De leeftijd is niet het probleem.",
+          "th": "ไม่ใช่ อายุไม่ใช่ปัญหา",
+          "en": "No. Age is not the problem."
+         }
+        }
+       ],
+       "answer": "Een zwaard van ijzer heeft nooit geleefd",
+       "why": {
+        "nl": "Goed. De methode werkt alleen voor dingen die geleefd hebben.",
+        "th": "ถูกต้อง วิธีนี้ใช้ได้เฉพาะสิ่งที่เคยมีชีวิต",
+        "en": "Right. The method only works for things that have lived."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "arc.laag",
+      "arc.vondst"
+     ],
+     "ask": {
+      "nl": "Een archeoloog vindt onderin de grond een scherf en bovenin een munt. Wat is meestal waar?",
+      "th": "นักโบราณคดีพบเศษภาชนะที่ก้นหลุมและเหรียญที่ด้านบน โดยมากข้อใดจริง",
+      "en": "An archaeologist finds a shard deep in the ground and a coin near the surface. What is usually true?"
+     },
+     "opts": [
+      {
+       "t": "De munt is ouder",
+       "r": "no",
+       "err": "lezen",
+       "why": {
+        "nl": "Andersom. De bovenste laag is jonger, dus de munt is meestal jonger.",
+        "th": "กลับกัน ชั้นบนอายุน้อยกว่า เหรียญจึงมักอายุน้อยกว่า",
+        "en": "The other way round. The upper layer is younger, so the coin is usually younger."
+       }
+      },
+      {
+       "t": "De scherf is meestal ouder",
+       "r": "ok",
+       "why": {
+        "nl": "Goed. De onderste laag is ouder dan de bovenste.",
+        "th": "ถูกต้อง ชั้นล่างเก่ากว่าชั้นบน",
+        "en": "Right. The lower layer is older than the upper one."
+       }
+      },
+      {
+       "t": "Ze zijn even oud",
+       "r": "no",
+       "err": "lezen",
+       "why": {
+        "nl": "Nee. Verschillende lagen komen uit verschillende tijden.",
+        "th": "ไม่ใช่ ชั้นที่ต่างกันมาจากช่วงเวลาที่ต่างกัน",
+        "en": "No. Different layers come from different times."
+       }
+      }
+     ],
+     "answer": "De scherf is meestal ouder",
+     "why": {
+      "nl": "Goed. De onderste laag is ouder dan de bovenste.",
+      "th": "ถูกต้อง ชั้นล่างเก่ากว่าชั้นบน",
+      "en": "Right. The lower layer is older than the upper one."
+     }
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "arc.hout",
+      "arc.meten"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Koolstofdatering",
+       "title": "Wikipedia (nl): Koolstofdatering"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Dendrochronology",
+       "title": "Wikipedia: Dendrochronology"
+      }
+     ],
+     "text": {
+      "nl": "Dieper: wat zegt een datum?\n\nDe jaarringen van een balk zeggen wanneer de boom is gekapt. Dat is niet altijd het jaar dat het huis is gebouwd: de balk kan eerst zijn bewaard of later opnieuw zijn gebruikt.\n\nOok een koolstofmeting kan fout zijn, bijvoorbeeld door vervuiling met jong, levend materiaal.",
+      "th": "ลึกขึ้น: วันที่บอกอะไร\n\nวงปีของคานบอกว่าต้นไม้ถูกโค่นเมื่อไร ซึ่งไม่ใช่ปีที่สร้างบ้านเสมอไป คานอาจถูกเก็บไว้ก่อน หรือนำกลับมาใช้ใหม่ภายหลัง\n\nการวัดด้วยคาร์บอนก็อาจผิดได้ เช่น เพราะปนเปื้อนวัสดุสดใหม่ที่ยังมีชีวิต",
+      "en": "Deeper: what does a date say?\n\nThe tree rings of a beam say when the tree was cut down. That is not always the year the house was built: the beam may first have been stored or may have been used again later.\n\nA carbon measurement can also be wrong, for example because of contamination with young, living material."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "arc.hout"
+       ],
+       "ask": {
+        "nl": "Wat zegt de datum van een houten balk precies?",
+        "th": "วันที่ของคานไม้บอกอะไรแน่ ๆ",
+        "en": "What exactly does the date of a wooden beam say?"
+       },
+       "opts": [
+        {
+         "t": "Wanneer de boom is gekapt",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Wanneer het huis is gebouwd, is een andere vraag.",
+          "th": "ถูกต้อง ส่วนบ้านสร้างเมื่อไรเป็นอีกคำถามหนึ่ง",
+          "en": "Right. When the house was built is another question."
+         }
+        },
+        {
+         "t": "Altijd wanneer het huis is gebouwd",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Niet altijd. De balk kon eerder bewaard of later hergebruikt zijn.",
+          "th": "ไม่เสมอไป คานอาจถูกเก็บไว้ก่อนหรือนำกลับมาใช้ใหม่",
+          "en": "Not always. The beam could have been stored earlier or reused later."
+         }
+        },
+        {
+         "t": "Wanneer de balk is geschilderd",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Daar gaat de tekst niet over.",
+          "th": "ข้อความไม่ได้พูดถึงเรื่องนี้",
+          "en": "The text does not say that."
+         }
+        }
+       ],
+       "answer": "Wanneer de boom is gekapt",
+       "why": {
+        "nl": "Goed. Wanneer het huis is gebouwd, is een andere vraag.",
+        "th": "ถูกต้อง ส่วนบ้านสร้างเมื่อไรเป็นอีกคำถามหนึ่ง",
+        "en": "Right. When the house was built is another question."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "arc.meten"
+       ],
+       "ask": {
+        "nl": "Waarom kan een koolstofmeting fout zijn?",
+        "th": "ทำไมการวัดด้วยคาร์บอนจึงอาจผิดได้",
+        "en": "Why can a carbon measurement be wrong?"
+       },
+       "opts": [
+        {
+         "t": "Door vervuiling met jong, levend materiaal",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Dan klopt de uitkomst niet.",
+          "th": "ถูกต้อง ถ้าเป็นอย่างนั้น ผลก็ไม่ถูกต้อง",
+          "en": "Right. Then the result is not correct."
+         }
+        },
+        {
+         "t": "Omdat de maan verandert",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst.",
+          "th": "ไม่มีในข้อความ",
+          "en": "That is not in the text."
+         }
+        },
+        {
+         "t": "Omdat de archeoloog te snel loopt",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Daar gaat de tekst niet over.",
+          "th": "ข้อความไม่ได้พูดถึงเรื่องนี้",
+          "en": "The text does not say that."
+         }
+        }
+       ],
+       "answer": "Door vervuiling met jong, levend materiaal",
+       "why": {
+        "nl": "Goed. Dan klopt de uitkomst niet.",
+        "th": "ถูกต้อง ถ้าเป็นอย่างนั้น ผลก็ไม่ถูกต้อง",
+        "en": "Right. Then the result is not correct."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "form": "build",
+     "items": [
+      "arc.archeoloog",
+      "arc.jaarring"
+     ],
+     "ask": {
+      "nl": "Bouw de zin.",
+      "th": "ต่อประโยค",
+      "en": "Build the sentence."
+     },
+     "data": {
+      "parts": [
+       "De archeoloog",
+       "telt",
+       "de jaarringen",
+       "van de balk."
+      ],
+      "verb": "telt",
+      "tr": {
+       "th": "นักโบราณคดีนับวงปีของคานไม้",
+       "en": "The archaeologist counts the tree rings of the beam."
+      }
+     },
+     "answer": "De archeoloog telt de jaarringen van de balk.",
+     "why": {
+      "nl": "<b>De archeoloog telt de jaarringen van de balk.</b> Het werkwoord staat op plek twee.",
+      "th": "<b>De archeoloog telt de jaarringen van de balk.</b> กริยาอยู่ตำแหน่งที่สอง",
+      "en": "<b>De archeoloog telt de jaarringen van de balk.</b> The verb is in second place."
+     }
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu aan iemand vertellen: een archeoloog kijkt naar de lagen in de grond, telt jaarringen in hout en meet koolstof-14 in dingen die geleefd hebben.",
+      "th": "ตอนนี้คุณเล่าให้ใครสักคนฟังได้ว่า นักโบราณคดีดูชั้นดิน นับวงปีในไม้ และวัดคาร์บอน-14 ในสิ่งที่เคยมีชีวิต",
+      "en": "You can now tell someone: an archaeologist looks at the layers in the ground, counts tree rings in wood and measures carbon-14 in things that have lived."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

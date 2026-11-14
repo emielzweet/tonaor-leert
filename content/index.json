@@ -3,6 +3,27 @@
  "packs": [
   "content/nl-thuis.json",
   "content/nl-werk.json",
-  "content/nl-dokter.json"
+  "content/nl-dokter.json",
+  "content/nl-markt.json",
+  "content/ao-zeespiegel.json",
+  "content/ao-inflatie.json",
+  "content/ao-monnik.json",
+  "content/ao-1953.json",
+  "content/ao-gezellig.json",
+  "content/ao-kamer150.json",
+  "content/ao-zout.json",
+  "content/ao-aardappel.json",
+  "content/ao-ramadan.json",
+  "content/ao-holland.json",
+  "content/ao-vaccin.json",
+  "content/ao-koning.json",
+  "content/ao-mekong.json",
+  "content/ao-btw.json",
+  "content/ao-tijdzones.json",
+  "content/ao-wet.json",
+  "content/ao-zijderoute.json",
+  "content/ao-atheisme.json",
+  "content/ao-archeoloog.json",
+  "content/ao-links-rechts.json"
  ]
 }

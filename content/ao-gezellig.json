@@ -1,0 +1,428 @@
+{
+ "format": 1,
+ "id": "ao-gezellig",
+ "type": "les",
+ "version": 1,
+ "order": 5,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "taal",
+ "vorm": "een woord en zijn herkomst",
+ "draden": [
+  "ao-holland",
+  "ao-monnik",
+  "ao-koning"
+ ],
+ "title": {
+  "nl": "Waar komt het woord gezellig vandaan?",
+  "th": "คำว่า gezellig มาจากไหน",
+  "en": "Where does the word gezellig come from?"
+ },
+ "sources": [
+  {
+   "url": "https://www.etymologiebank.nl/trefwoord/gezellig",
+   "title": "Etymologiebank: gezellig"
+  },
+  {
+   "url": "https://www.etymologiebank.nl/trefwoord/gezel",
+   "title": "Etymologiebank: gezel"
+  },
+  {
+   "url": "https://nl.wikipedia.org/wiki/Gezelligheid",
+   "title": "Wikipedia: Gezelligheid"
+  }
+ ],
+ "items": [
+  {
+   "id": "gez.gezellig",
+   "kind": "word",
+   "w": "gezellig",
+   "art": "",
+   "tr": {
+    "th": "อบอุ่นสบายใจ (น่าอยู่)",
+    "en": "cosy, pleasant to be together"
+   },
+   "def": "Prettig en warm, vooral als je met anderen bent.",
+   "ex": "Het café is klein en gezellig.",
+   "gap": "Het was heel ___ bij ons thuis.",
+   "wrong": [
+    "gisteren",
+    "tafel",
+    "lopen"
+   ]
+  },
+  {
+   "id": "gez.gezel",
+   "kind": "word",
+   "w": "gezel",
+   "art": "de",
+   "tr": {
+    "th": "สหาย / เพื่อนร่วมทาง",
+    "en": "companion"
+   },
+   "def": "Iemand die bij je is: een maat om mee te zijn.",
+   "ex": "Op de weg had de wandelaar een gezel bij zich.",
+   "gap": "De ___ is iemand om mee te zijn.",
+   "wrong": [
+    "gewaad",
+    "zout",
+    "tak"
+   ]
+  },
+  {
+   "id": "gez.zaal",
+   "kind": "word",
+   "w": "zaal",
+   "art": "de",
+   "tr": {
+    "th": "ห้องโถง",
+    "en": "hall"
+   },
+   "def": "Een grote kamer in een gebouw voor veel mensen.",
+   "ex": "In de zaal zitten honderd mensen.",
+   "gap": "In de grote ___ kunnen veel mensen zitten.",
+   "wrong": [
+    "vloed",
+    "tekst",
+    "dijk"
+   ]
+  },
+  {
+   "id": "gez.betekenis",
+   "kind": "word",
+   "w": "betekenis",
+   "art": "de",
+   "tr": {
+    "th": "ความหมาย",
+    "en": "meaning"
+   },
+   "def": "Wat een woord zegt of wil zeggen.",
+   "ex": "Wat is de betekenis van dit woord?",
+   "gap": "Je zoekt de ___ van een woord op in het woordenboek.",
+   "wrong": [
+    "kleur",
+    "prijs",
+    "smaak"
+   ]
+  },
+  {
+   "id": "gez.herkomst",
+   "kind": "word",
+   "w": "herkomst",
+   "art": "de",
+   "tr": {
+    "th": "ที่มา",
+    "en": "origin"
+   },
+   "def": "Waar iets vandaan komt.",
+   "ex": "Wat is de herkomst van deze appel?",
+   "gap": "Bij de ___ van een woord vraag je: waar komt het vandaan?",
+   "wrong": [
+    "prijs",
+    "kleur",
+    "smaak"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-gezellig-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Waar komt het woord gezellig vandaan?",
+    "th": "คำว่า gezellig มาจากไหน",
+    "en": "Where does the word gezellig come from?"
+   },
+   "intro": {
+    "nl": "Eerst raden. Dan kijken we hoe een woord door de eeuwen groeit.",
+    "th": "ลองเดาก่อน แล้วดูว่าคำคำหนึ่งเติบโตผ่านหลายศตวรรษอย่างไร",
+    "en": "Guess first. Then we see how a word grows over the centuries."
+   },
+   "can": {
+    "nl": "Uitleggen waar gezellig vandaan komt",
+    "th": "อธิบายได้ว่า gezellig มาจากไหน",
+    "en": "Explain where gezellig comes from"
+   },
+   "targets": [
+    "gez.gezellig",
+    "gez.gezel",
+    "gez.zaal",
+    "gez.betekenis",
+    "gez.herkomst"
+   ],
+   "goals": [
+    "nt2-I-lezen-2",
+    "nt2-I-lezen-3"
+   ],
+   "art": {
+    "bg": "room",
+    "tone": "apricot",
+    "alt": {
+     "nl": "Een gezellige kamer met een tafel, stoelen en een plant.",
+     "th": "ห้องอบอุ่นที่มีโต๊ะ เก้าอี้ และต้นไม้",
+     "en": "A cosy room with a table, chairs and a plant."
+    },
+    "things": [
+     {
+      "kind": "window",
+      "x": 280,
+      "y": 56
+     },
+     {
+      "kind": "table",
+      "x": 170,
+      "y": 156
+     },
+     {
+      "kind": "chair",
+      "x": 110,
+      "y": 156
+     },
+     {
+      "kind": "chair",
+      "x": 230,
+      "y": 156
+     },
+     {
+      "kind": "plant",
+      "x": 40,
+      "y": 156
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "do",
+     "items": [
+      "gez.gezel",
+      "gez.gezellig"
+     ],
+     "ask": {
+      "nl": "Raad eens: welk woord zit in gezellig?",
+      "th": "ลองเดา: คำใดซ่อนอยู่ในคำว่า gezellig",
+      "en": "Guess: which word is hidden in gezellig?"
+     },
+     "opts": [
+      {
+       "t": "gezel",
+       "r": "ok",
+       "why": {
+        "nl": "Goed. Gezellig is afgeleid van gezel: een maat om mee te zijn.",
+        "th": "ถูกต้อง gezellig มาจาก gezel คือสหายที่อยู่ด้วยกัน",
+        "en": "Right. Gezellig comes from gezel: a mate to be with."
+       }
+      },
+      {
+       "t": "gezin",
+       "r": "no",
+       "err": "betekenis",
+       "why": {
+        "nl": "Gezin klinkt bijna zo, maar het is een ander woord. Gezellig komt van gezel.",
+        "th": "gezin ฟังดูคล้าย แต่เป็นอีกคำหนึ่ง gezellig มาจาก gezel",
+        "en": "Gezin sounds almost the same, but it is another word. Gezellig comes from gezel."
+       }
+      },
+      {
+       "t": "gezicht",
+       "r": "no",
+       "err": "betekenis",
+       "why": {
+        "nl": "Gezicht is een ander woord. Gezellig komt van gezel.",
+        "th": "gezicht เป็นอีกคำหนึ่ง gezellig มาจาก gezel",
+        "en": "Gezicht is another word. Gezellig comes from gezel."
+       }
+      }
+     ],
+     "answer": "gezel",
+     "why": {
+      "nl": "Je raadt vaak goed als je kijkt naar het begin van een woord. Nu lezen we hoe gezel gezellig werd.",
+      "th": "การเดามักได้ผลดีถ้าดูส่วนต้นของคำ ต่อไปเราจะอ่านว่า gezel กลายเป็น gezellig ได้อย่างไร",
+      "en": "You often guess well by looking at the start of a word. Now we read how gezel became gezellig."
+     }
+    },
+    {
+     "type": "read",
+     "items": [
+      "gez.gezel",
+      "gez.betekenis",
+      "gez.herkomst"
+     ],
+     "sources": [
+      {
+       "url": "https://www.etymologiebank.nl/trefwoord/gezellig",
+       "title": "Etymologiebank: gezellig"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Gezelligheid",
+       "title": "Wikipedia: Gezelligheid"
+      }
+     ],
+     "text": {
+      "nl": "Gezellig komt van het woord gezel. Een gezel is een maat, iemand om bij te zijn. Dat woord is heel oud. In het Middelnederlands, rond het jaar 1300, betekende gezellig 'vriendelijk' en 'omgaand met anderen'.\n\nDe betekenis groeide. Rond 1400 werd het 'vertrouwd'. Vanaf 1708 zei je het van mensen: prettig in de omgang. En vanaf 1847 zeg je het ook van een plek of een situatie: prettig en knus. Zo kreeg het woord de betekenis die het nu heeft.",
+      "th": "คำว่า gezellig มาจากคำว่า gezel คือสหาย เพื่อนที่อยู่ด้วยกัน คำนี้เก่าแก่มาก ในภาษาดัตช์ยุคกลาง ราวปี ค.ศ. 1300 gezellig หมายถึง 'เป็นมิตร' และ 'คบหากับผู้อื่น'\n\nความหมายขยายออก ราวปี 1400 กลายเป็น 'คุ้นเคย ไว้ใจได้' ตั้งแต่ปี 1708 ใช้กับคนว่า อยู่ด้วยแล้วสบายใจ และตั้งแต่ปี 1847 ใช้กับสถานที่หรือสถานการณ์ด้วย คือ น่าอยู่และอบอุ่น คำนี้จึงได้ความหมายอย่างที่ใช้ทุกวันนี้",
+      "en": "Gezellig comes from the word gezel. A gezel is a mate, someone to be with. That word is very old. In Middle Dutch, around the year 1300, gezellig meant 'friendly' and 'keeping company with others'.\n\nThe meaning grew. Around 1400 it became 'familiar'. From 1708 you said it of people: pleasant to be with. And from 1847 you also say it of a place or a situation: pleasant and cosy. That is how the word got the meaning it has now."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "gez.gezellig"
+       ],
+       "ask": {
+        "nl": "Wat kun je sinds 1847 ook gezellig noemen?",
+        "th": "ตั้งแต่ปี 1847 คุณเรียกอะไรอีกได้ว่า gezellig",
+        "en": "What can you also call gezellig since 1847?"
+       },
+       "opts": [
+        {
+         "t": "Een plek of een situatie",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Eerst zei je het van mensen, daarna ook van plekken en situaties.",
+          "th": "ถูกต้อง แรก ๆ ใช้กับคน ต่อมาใช้กับสถานที่และสถานการณ์ด้วย",
+          "en": "Right. First you said it of people, later also of places and situations."
+         }
+        },
+        {
+         "t": "Alleen mensen",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat was vanaf 1708. Vanaf 1847 ook een plek of situatie.",
+          "th": "นั่นคือตั้งแต่ปี 1708 ตั้งแต่ 1847 รวมถึงสถานที่และสถานการณ์",
+          "en": "That was from 1708. From 1847 also a place or situation."
+         }
+        },
+        {
+         "t": "Alleen een zaal",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Het gaat om elke plek, niet alleen een zaal.",
+          "th": "เป็นสถานที่ใดก็ได้ ไม่ใช่เฉพาะห้องโถง",
+          "en": "It is about any place, not only a hall."
+         }
+        }
+       ],
+       "answer": "Een plek of een situatie",
+       "why": {
+        "nl": "Vanaf 1847 gebruik je gezellig ook voor plekken en situaties.",
+        "th": "ตั้งแต่ปี 1847 ใช้ gezellig กับสถานที่และสถานการณ์ด้วย",
+        "en": "From 1847 you use gezellig for places and situations too."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "gez.betekenis"
+     ],
+     "ask": {
+      "nl": "Zet de betekenissen van oud naar nieuw.",
+      "th": "เรียงความหมายจากเก่าไปใหม่",
+      "en": "Put the meanings from old to new."
+     },
+     "form": "build",
+     "answer": "vriendelijk (1300) vertrouwd (1400) prettig voor mensen (1708) knus voor plekken (1847)",
+     "data": {
+      "parts": [
+       "vriendelijk (1300)",
+       "vertrouwd (1400)",
+       "prettig voor mensen (1708)",
+       "knus voor plekken (1847)"
+      ],
+      "tr": {
+       "th": "เป็นมิตร คุ้นเคย อยู่ด้วยแล้วสบายใจ น่าอยู่",
+       "en": "friendly, familiar, pleasant for people, cosy for places"
+      }
+     },
+     "why": {
+      "nl": "Eerst 'vriendelijk' (rond 1300), dan 'vertrouwd' (rond 1400), vanaf 1708 'prettig' voor mensen en vanaf 1847 'knus' voor plekken.",
+      "th": "ก่อนอื่น 'เป็นมิตร' (ราว 1300) แล้ว 'คุ้นเคย' (ราว 1400) ตั้งแต่ 1708 'สบายใจ' สำหรับคน และตั้งแต่ 1847 'อบอุ่น' สำหรับสถานที่",
+      "en": "First 'friendly' (around 1300), then 'familiar' (around 1400), from 1708 'pleasant' for people and from 1847 'cosy' for places."
+     },
+     "err": "woordvolgorde",
+     "help": 0
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "gez.zaal",
+      "gez.gezel"
+     ],
+     "sources": [
+      {
+       "url": "https://www.etymologiebank.nl/trefwoord/gezel",
+       "title": "Etymologiebank: gezel"
+      },
+      {
+       "url": "https://nl.wikipedia.org/wiki/Gezelligheid",
+       "title": "Wikipedia: Gezelligheid"
+      }
+     ],
+     "text": {
+      "nl": "Het woord gezel zelf heeft ook een herkomst. Veel woordenboeken zeggen: een gezel was oorspronkelijk iemand die in dezelfde zaal zat. Een ander zegt: iemand die onder één dak woont, een huisgenoot. Het eerste stukje, ge-, betekent 'samen'.\n\nVeel mensen zeggen dat gezellig niet te vertalen is. Andere talen hebben wel woorden die in de buurt komen: in het Duits Gemütlichkeit, in het Deens hyggelig, in het Engels cosy en in het Frans convivialité. Geen van die woorden is precies hetzelfde. In het Engels staat bij cosy het gezelschap minder centraal.",
+      "th": "คำว่า gezel เองก็มีที่มา พจนานุกรมหลายเล่มบอกว่า gezel เดิมหมายถึงคนที่นั่งอยู่ในห้องโถง (zaal) เดียวกัน อีกเล่มบอกว่า คนที่อยู่ใต้หลังคาเดียวกัน คือเพื่อนร่วมบ้าน ส่วนต้นของคำ ge- แปลว่า 'ด้วยกัน'\n\nหลายคนบอกว่า gezellig แปลไม่ได้ ภาษาอื่นมีคำที่ใกล้เคียง ภาษาเยอรมัน Gemütlichkeit ภาษาเดนมาร์ก hyggelig ภาษาอังกฤษ cosy และภาษาฝรั่งเศส convivialité แต่ไม่มีคำใดเหมือนเป๊ะ ใน cosy ของภาษาอังกฤษ การอยู่ร่วมกับผู้อื่นเป็นแกนกลางน้อยกว่า",
+      "en": "The word gezel itself also has an origin. Many dictionaries say: a gezel was originally someone who sat in the same hall (zaal). Another says: someone who lives under one roof, a housemate. The first part, ge-, means 'together'.\n\nMany people say gezellig cannot be translated. Other languages do have words that come close: in German Gemütlichkeit, in Danish hyggelig, in English cosy and in French convivialité. None of them is exactly the same. In English, with cosy, company is less central."
+     },
+     "q": [
+      {
+       "form": "complete",
+       "items": [
+        "gez.zaal"
+       ],
+       "ask": {
+        "nl": "Maak af: Een gezel was oorspronkelijk iemand die in dezelfde ___ zat.",
+        "th": "เติมคำ: Een gezel was oorspronkelijk iemand die in dezelfde ___ zat.",
+        "en": "Complete: Een gezel was oorspronkelijk iemand die in dezelfde ___ zat."
+       },
+       "answer": "zaal",
+       "err": "spelling",
+       "hint": [
+        {
+         "nl": "Een grote kamer voor veel mensen.",
+         "th": "ห้องใหญ่สำหรับคนหลายคน",
+         "en": "A big room for many people."
+        },
+        {
+         "nl": "Begin zo: za…",
+         "th": "ขึ้นต้นแบบนี้: za…",
+         "en": "Start like this: za…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. Volgens veel woordenboeken zat een gezel in dezelfde zaal.",
+        "th": "ถูกต้อง ตามพจนานุกรมหลายเล่ม gezel นั่งอยู่ในห้องโถงเดียวกัน",
+        "en": "Right. According to many dictionaries a gezel sat in the same hall."
+       }
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu vertellen: gezellig komt van gezel, een maat om bij te zijn. Eerst zei je het van mensen, later ook van plekken.",
+      "th": "ตอนนี้คุณเล่าได้ว่า gezellig มาจาก gezel คือเพื่อนที่อยู่ด้วยกัน แรก ๆ ใช้กับคน ต่อมาใช้กับสถานที่ด้วย",
+      "en": "You can now tell someone: gezellig comes from gezel, a mate to be with. First you said it of people, later also of places."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

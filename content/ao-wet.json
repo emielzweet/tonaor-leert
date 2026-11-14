@@ -1,0 +1,650 @@
+{
+ "format": 1,
+ "id": "ao-wet",
+ "type": "les",
+ "version": 1,
+ "order": 16,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "politiek",
+ "vorm": "een tijdlijn om zelf te leggen",
+ "draden": [
+  "ao-kamer150",
+  "ao-koning",
+  "ao-btw"
+ ],
+ "title": {
+  "nl": "Hoe wordt een wet gemaakt?",
+  "th": "กฎหมายถูกทำขึ้นมาอย่างไร",
+  "en": "How is a law made?"
+ },
+ "sources": [
+  {
+   "url": "https://www.rijksoverheid.nl/onderwerpen/wetgeving/hoe-komt-een-wet-tot-stand",
+   "title": "Rijksoverheid: Hoe komt een wet tot stand?"
+  },
+  {
+   "url": "https://www.parlement.com/de-weg-van-een-wetsvoorstel",
+   "title": "Parlement.com: De weg van een wetsvoorstel"
+  },
+  {
+   "url": "https://www.eerstekamer.nl/begrip/taken_en_positie_eerste_kamer",
+   "title": "Eerste Kamer: Taken en positie Eerste Kamer"
+  }
+ ],
+ "items": [
+  {
+   "id": "wet.wet",
+   "kind": "word",
+   "w": "wet",
+   "art": "de",
+   "tr": {
+    "th": "กฎหมาย",
+    "en": "law"
+   },
+   "def": "Een regel van het land die voor iedereen geldt.",
+   "ex": "Iedereen moet zich aan de wet houden.",
+   "gap": "De ___ is een regel van het land.",
+   "wrong": [
+    "pen",
+    "kast",
+    "wolk"
+   ]
+  },
+  {
+   "id": "wet.voorstel",
+   "kind": "word",
+   "w": "voorstel",
+   "art": "het",
+   "tr": {
+    "th": "ข้อเสนอ",
+    "en": "proposal"
+   },
+   "def": "Een plan dat iemand laat zien, zodat anderen erover kunnen beslissen.",
+   "ex": "Het voorstel gaat eerst naar de ministers.",
+   "gap": "Het ___ is een plan en nog geen wet.",
+   "wrong": [
+    "dak",
+    "brood",
+    "raam"
+   ]
+  },
+  {
+   "id": "wet.advies",
+   "kind": "word",
+   "w": "advies",
+   "art": "het",
+   "tr": {
+    "th": "คำแนะนำ",
+    "en": "advice"
+   },
+   "def": "Wat iemand zegt dat je het beste kunt doen.",
+   "ex": "De minister krijgt een advies en hoeft het niet over te nemen.",
+   "gap": "De Raad van State geeft het ___, maar de minister hoeft het niet over te nemen.",
+   "wrong": [
+    "water",
+    "lied",
+    "bed"
+   ]
+  },
+  {
+   "id": "wet.debat",
+   "kind": "word",
+   "w": "debat",
+   "art": "het",
+   "tr": {
+    "th": "การอภิปราย",
+    "en": "debate"
+   },
+   "def": "Een gesprek waarin mensen met elkaar van mening verschillen en elkaar antwoorden.",
+   "ex": "Na het debat volgt de stemming.",
+   "gap": "Na het ___ over het voorstel volgt de stemming.",
+   "wrong": [
+    "eten",
+    "jaar",
+    "bord"
+   ]
+  },
+  {
+   "id": "wet.stemmen",
+   "kind": "word",
+   "w": "stemmen",
+   "art": "",
+   "tr": {
+    "th": "ลงคะแนน",
+    "en": "to vote"
+   },
+   "def": "Met een keuze laten weten wat je vindt.",
+   "ex": "De leden stemmen over het voorstel.",
+   "gap": "Aan het eind gaan de Kamerleden ___.",
+   "wrong": [
+    "bakken",
+    "lopen",
+    "schilderen"
+   ]
+  },
+  {
+   "id": "wet.wijzigen",
+   "kind": "word",
+   "w": "wijzigen",
+   "art": "",
+   "tr": {
+    "th": "เปลี่ยนแปลง",
+    "en": "to change"
+   },
+   "def": "Iets anders maken.",
+   "ex": "De leden mogen een voorstel wijzigen.",
+   "gap": "De Eerste Kamer kan een voorstel niet ___.",
+   "wrong": [
+    "eten",
+    "zingen",
+    "kopen"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-wet-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Hoe wordt een wet gemaakt?",
+    "th": "กฎหมายถูกทำขึ้นมาอย่างไร",
+    "en": "How is a law made?"
+   },
+   "intro": {
+    "nl": "Een nieuwe wet maak je niet in één dag. Leg de stappen zelf in de goede volgorde.",
+    "th": "กฎหมายใหม่ไม่ได้ทำเสร็จในวันเดียว ลองเรียงขั้นตอนให้ถูกลำดับด้วยตัวเอง",
+    "en": "A new law is not made in one day. Put the steps in the right order yourself."
+   },
+   "can": {
+    "nl": "De weg van een wet in Nederland in volgorde vertellen",
+    "th": "เล่าเส้นทางของกฎหมายในเนเธอร์แลนด์ตามลำดับได้",
+    "en": "Tell the route of a law in the Netherlands in order"
+   },
+   "targets": [
+    "wet.wet",
+    "wet.voorstel",
+    "wet.advies",
+    "wet.debat",
+    "wet.stemmen",
+    "wet.wijzigen"
+   ],
+   "goals": [
+    "kennis-nederland",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "room",
+    "tone": "lilac",
+    "alt": {
+     "nl": "Een kamer met een tafel en een brief.",
+     "th": "ห้องที่มีโต๊ะและจดหมาย",
+     "en": "A room with a table and a letter."
+    },
+    "things": [
+     {
+      "kind": "table",
+      "x": 170,
+      "y": 156
+     },
+     {
+      "kind": "letter",
+      "x": 170,
+      "y": 120
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "read",
+     "items": [
+      "wet.voorstel",
+      "wet.wet"
+     ],
+     "sources": [
+      {
+       "url": "https://www.rijksoverheid.nl/onderwerpen/wetgeving/hoe-komt-een-wet-tot-stand",
+       "title": "Rijksoverheid: Hoe komt een wet tot stand?"
+      },
+      {
+       "url": "https://www.parlement.com/de-weg-van-een-wetsvoorstel",
+       "title": "Parlement.com: De weg van een wetsvoorstel"
+      }
+     ],
+     "text": {
+      "nl": "Een wet begint als een voorstel\n\nEen nieuwe wet gaat niet meteen gelden. Eerst is er een voorstel. In Nederland maakt meestal de regering dat voorstel: de koning en de ministers. Ambtenaren op een ministerie schrijven het uit.\n\nOok leden van de Tweede Kamer mogen een voorstel maken. Dat heet een initiatiefvoorstel.",
+      "th": "กฎหมายเริ่มจากข้อเสนอ\n\nกฎหมายใหม่ไม่ได้มีผลบังคับใช้ทันที ก่อนอื่นต้องมีข้อเสนอ ในเนเธอร์แลนด์ส่วนใหญ่รัฐบาลเป็นผู้เสนอ คือพระมหากษัตริย์และรัฐมนตรี เจ้าหน้าที่ในกระทรวงเป็นผู้เขียนข้อเสนอ\n\nสมาชิกสภาผู้แทนราษฎรก็เสนอได้เช่นกัน เรียกว่า initiatiefvoorstel",
+      "en": "A law starts as a proposal\n\nA new law does not apply straight away. First there is a proposal. In the Netherlands the government usually makes that proposal: the king and the ministers. Civil servants at a ministry write it out.\n\nMembers of the Tweede Kamer (the House of Representatives) may also make a proposal. That is called an initiatiefvoorstel."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "wet.voorstel"
+       ],
+       "ask": {
+        "nl": "Wie maakt meestal een wetsvoorstel?",
+        "th": "ส่วนใหญ่ใครเป็นผู้ทำข้อเสนอกฎหมาย",
+        "en": "Who usually makes a bill?"
+       },
+       "opts": [
+        {
+         "t": "De regering",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Meestal komt een voorstel van de koning en de ministers.",
+          "th": "ถูกต้อง ส่วนใหญ่ข้อเสนอมาจากพระมหากษัตริย์และรัฐมนตรี",
+          "en": "Right. Usually a proposal comes from the king and the ministers."
+         }
+        },
+        {
+         "t": "De rechter",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst. Een rechter past wetten toe, maakt ze niet.",
+          "th": "ไม่มีในข้อความ ผู้พิพากษาใช้กฎหมาย ไม่ได้ทำกฎหมาย",
+          "en": "That is not in the text. A judge applies laws; he or she does not make them."
+         }
+        },
+        {
+         "t": "De burgemeester",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Daar gaat de tekst niet over. Het voorstel komt van de regering.",
+          "th": "ข้อความไม่ได้พูดถึงเรื่องนี้ ข้อเสนอมาจากรัฐบาล",
+          "en": "The text does not say that. The proposal comes from the government."
+         }
+        }
+       ],
+       "answer": "De regering",
+       "why": {
+        "nl": "Goed. Meestal komt een voorstel van de koning en de ministers.",
+        "th": "ถูกต้อง ส่วนใหญ่ข้อเสนอมาจากพระมหากษัตริย์และรัฐมนตรี",
+        "en": "Right. Usually a proposal comes from the king and the ministers."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "wet.voorstel"
+       ],
+       "ask": {
+        "nl": "Wie mag ook een voorstel maken?",
+        "th": "ใครอีกที่เสนอได้",
+        "en": "Who may also make a proposal?"
+       },
+       "opts": [
+        {
+         "t": "Alleen de koning",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Ook leden van de Tweede Kamer mogen dat.",
+          "th": "ไม่ใช่ สมาชิกสภาผู้แทนราษฎรก็เสนอได้",
+          "en": "No. Members of the Tweede Kamer may do that too."
+         }
+        },
+        {
+         "t": "Leden van de Tweede Kamer",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Zo'n voorstel heet een initiatiefvoorstel.",
+          "th": "ถูกต้อง ข้อเสนอแบบนี้เรียกว่า initiatiefvoorstel",
+          "en": "Right. Such a proposal is called an initiatiefvoorstel."
+         }
+        },
+        {
+         "t": "Alleen een rechter",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Dat staat niet in de tekst.",
+          "th": "ไม่ใช่ ไม่มีในข้อความ",
+          "en": "No. That is not in the text."
+         }
+        }
+       ],
+       "answer": "Leden van de Tweede Kamer",
+       "why": {
+        "nl": "Goed. Zo'n voorstel heet een initiatiefvoorstel.",
+        "th": "ถูกต้อง ข้อเสนอแบบนี้เรียกว่า initiatiefvoorstel",
+        "en": "Right. Such a proposal is called an initiatiefvoorstel."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "form": "build",
+     "items": [
+      "wet.voorstel",
+      "wet.advies"
+     ],
+     "ask": {
+      "nl": "Wat denk je? Leg de eerste stappen in de goede volgorde. Bouw de zin.",
+      "th": "คุณคิดว่าอย่างไร เรียงขั้นตอนแรก ๆ ให้ถูกลำดับ ต่อประโยค",
+      "en": "What do you think? Put the first steps in the right order. Build the sentence."
+     },
+     "data": {
+      "parts": [
+       "Eerst schrijft het ministerie het voorstel,",
+       "dan bespreekt de ministerraad het,",
+       "dan geeft de Raad van State advies."
+      ],
+      "tr": {
+       "th": "ก่อนอื่นกระทรวงเขียนข้อเสนอ แล้วคณะรัฐมนตรีหารือ แล้วสภาแห่งรัฐให้คำแนะนำ",
+       "en": "First the ministry writes the proposal, then the council of ministers discusses it, then the Raad van State gives advice."
+      }
+     },
+     "answer": "Eerst schrijft het ministerie het voorstel, dan bespreekt de ministerraad het, dan geeft de Raad van State advies.",
+     "why": {
+      "nl": "<b>Eerst het ministerie, dan de ministerraad, dan de Raad van State.</b> Het advies van de Raad van State is niet bindend: de minister legt uit wat hij of zij ermee doet.",
+      "th": "<b>ก่อนกระทรวง แล้วคณะรัฐมนตรี แล้วสภาแห่งรัฐ</b> คำแนะนำของสภาแห่งรัฐไม่ผูกมัด รัฐมนตรีอธิบายว่าจะทำอะไรกับคำแนะนำนั้น",
+      "en": "<b>First the ministry, then the council of ministers, then the Raad van State.</b> The advice of the Raad van State is not binding: the minister explains what is done with it."
+     }
+    },
+    {
+     "type": "read",
+     "items": [
+      "wet.debat",
+      "wet.stemmen",
+      "wet.wijzigen"
+     ],
+     "sources": [
+      {
+       "url": "https://www.rijksoverheid.nl/onderwerpen/wetgeving/hoe-komt-een-wet-tot-stand",
+       "title": "Rijksoverheid: Hoe komt een wet tot stand?"
+      },
+      {
+       "url": "https://www.parlement.com/de-weg-van-een-wetsvoorstel",
+       "title": "Parlement.com: De weg van een wetsvoorstel"
+      },
+      {
+       "url": "https://www.eerstekamer.nl/begrip/taken_en_positie_eerste_kamer",
+       "title": "Eerste Kamer: Taken en positie Eerste Kamer"
+      }
+     ],
+     "text": {
+      "nl": "De twee Kamers\n\nDaarna gaat het voorstel naar de Tweede Kamer. Eerst stellen Kamerleden vragen op papier. Dan volgt een debat. In dat debat mogen Kamerleden het voorstel wijzigen. Daarna stemmen ze: eerst over de wijzigingen, dan over het hele voorstel.\n\nDan gaat het voorstel naar de Eerste Kamer. Ook daar is er een debat en een stemming. Maar de Eerste Kamer kan het voorstel niet wijzigen. Zij kan het alleen aannemen of niet aannemen.",
+      "th": "สองสภา\n\nจากนั้นข้อเสนอจะไปที่สภาผู้แทนราษฎร (Tweede Kamer) ก่อนอื่นสมาชิกถามคำถามเป็นลายลักษณ์อักษร แล้วจึงมีการอภิปราย ในการอภิปรายนั้น สมาชิกแก้ไขข้อเสนอได้ จากนั้นลงคะแนน โดยลงคะแนนเรื่องการแก้ไขก่อน แล้วจึงลงคะแนนทั้งข้อเสนอ\n\nต่อจากนั้นข้อเสนอไปที่วุฒิสภา (Eerste Kamer) ที่นั่นก็มีการอภิปรายและลงคะแนน แต่วุฒิสภาแก้ไขข้อเสนอไม่ได้ ทำได้เพียงรับหรือไม่รับ",
+      "en": "The two Houses\n\nThen the proposal goes to the Tweede Kamer. First Kamer members ask questions on paper. Then there is a debate. In that debate members may change the proposal. After that they vote: first on the changes, then on the whole proposal.\n\nThen the proposal goes to the Eerste Kamer (the Senate). There too is a debate and a vote. But the Eerste Kamer cannot change the proposal. It can only accept it or not accept it."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "wet.wijzigen"
+       ],
+       "ask": {
+        "nl": "Welke Kamer behandelt een voorstel als eerste?",
+        "th": "สภาใดพิจารณาข้อเสนอก่อน",
+        "en": "Which House handles a proposal first?"
+       },
+       "opts": [
+        {
+         "t": "De Tweede Kamer",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Eerst de Tweede Kamer, daarna de Eerste Kamer.",
+          "th": "ถูกต้อง สภาผู้แทนราษฎรก่อน แล้วจึงวุฒิสภา",
+          "en": "Right. First the Tweede Kamer, then the Eerste Kamer."
+         }
+        },
+        {
+         "t": "De Eerste Kamer",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Andersom. De Eerste Kamer komt daarna.",
+          "th": "กลับกัน วุฒิสภามาทีหลัง",
+          "en": "The other way round. The Eerste Kamer comes after."
+         }
+        },
+        {
+         "t": "Allebei tegelijk",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Het gaat na elkaar: eerst de ene, dan de andere.",
+          "th": "ไม่ใช่ ทำทีละสภา สภาหนึ่งก่อน แล้วอีกสภา",
+          "en": "No. They go one after the other."
+         }
+        }
+       ],
+       "answer": "De Tweede Kamer",
+       "why": {
+        "nl": "Goed. Eerst de Tweede Kamer, daarna de Eerste Kamer.",
+        "th": "ถูกต้อง สภาผู้แทนราษฎรก่อน แล้วจึงวุฒิสภา",
+        "en": "Right. First the Tweede Kamer, then the Eerste Kamer."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "wet.wijzigen"
+       ],
+       "ask": {
+        "nl": "Wat kan de Eerste Kamer wel en niet doen met een voorstel?",
+        "th": "วุฒิสภาทำอะไรกับข้อเสนอได้และไม่ได้",
+        "en": "What can the Eerste Kamer and what can it not do with a proposal?"
+       },
+       "opts": [
+        {
+         "t": "Het alleen aannemen of niet aannemen",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. De Eerste Kamer stemt alleen over het voorstel zoals het is.",
+          "th": "ถูกต้อง วุฒิสภาลงคะแนนเฉพาะข้อเสนอตามที่เป็นอยู่",
+          "en": "Right. The Eerste Kamer only votes on the proposal as it is."
+         }
+        },
+        {
+         "t": "Het wijzigen en dan aannemen",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De Eerste Kamer kan het voorstel niet wijzigen.",
+          "th": "ไม่ใช่ วุฒิสภาแก้ไขข้อเสนอไม่ได้",
+          "en": "No. The Eerste Kamer cannot change the proposal."
+         }
+        },
+        {
+         "t": "Alleen vragen stellen",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Ze kan ook stemmen. Vragen stellen is niet het enige.",
+          "th": "วุฒิสภาลงคะแนนได้ด้วย ไม่ได้ถามได้อย่างเดียว",
+          "en": "It can vote too. Asking questions is not the only thing."
+         }
+        }
+       ],
+       "answer": "Het alleen aannemen of niet aannemen",
+       "why": {
+        "nl": "Goed. De Eerste Kamer stemt alleen over het voorstel zoals het is.",
+        "th": "ถูกต้อง วุฒิสภาลงคะแนนเฉพาะข้อเสนอตามที่เป็นอยู่",
+        "en": "Right. The Eerste Kamer only votes on the proposal as it is."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "wet.stemmen"
+       ],
+       "ask": {
+        "nl": "Waarover stemt de Tweede Kamer eerst?",
+        "th": "สภาผู้แทนราษฎรลงคะแนนเรื่องอะไรก่อน",
+        "en": "What does the Tweede Kamer vote on first?"
+       },
+       "opts": [
+        {
+         "t": "Over de wijzigingen",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Eerst de wijzigingen, dan het hele voorstel.",
+          "th": "ถูกต้อง การแก้ไขก่อน แล้วจึงทั้งข้อเสนอ",
+          "en": "Right. First the changes, then the whole proposal."
+         }
+        },
+        {
+         "t": "Over het hele voorstel",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat komt daarna. Eerst stemmen ze over de wijzigingen.",
+          "th": "นั่นมาทีหลัง ลงคะแนนเรื่องการแก้ไขก่อน",
+          "en": "That comes after. First they vote on the changes."
+         }
+        },
+        {
+         "t": "Over de koning",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Daar gaat de tekst niet over.",
+          "th": "ข้อความไม่ได้พูดถึงเรื่องนี้",
+          "en": "The text does not say that."
+         }
+        }
+       ],
+       "answer": "Over de wijzigingen",
+       "why": {
+        "nl": "Goed. Eerst de wijzigingen, dan het hele voorstel.",
+        "th": "ถูกต้อง การแก้ไขก่อน แล้วจึงทั้งข้อเสนอ",
+        "en": "Right. First the changes, then the whole proposal."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "wet.wijzigen",
+      "wet.voorstel"
+     ],
+     "sources": [
+      {
+       "url": "https://www.parlement.com/de-weg-van-een-wetsvoorstel",
+       "title": "Parlement.com: De weg van een wetsvoorstel"
+      },
+      {
+       "url": "https://www.eerstekamer.nl/begrip/taken_en_positie_eerste_kamer",
+       "title": "Eerste Kamer: Taken en positie Eerste Kamer"
+      }
+     ],
+     "text": {
+      "nl": "Dieper: een novelle\n\nDe Eerste Kamer kan een voorstel niet wijzigen. Vindt zij toch iets niet goed, dan kan een minister een apart voorstel maken om het eerste voorstel te verbeteren. Zo'n apart voorstel heet een novelle.",
+      "th": "ลึกขึ้น: novelle\n\nวุฒิสภาแก้ไขข้อเสนอไม่ได้ ถ้าวุฒิสภาเห็นว่าบางอย่างยังไม่ดี รัฐมนตรีสามารถทำข้อเสนอแยกต่างหากเพื่อปรับปรุงข้อเสนอแรกได้ ข้อเสนอแยกแบบนี้เรียกว่า novelle",
+      "en": "Deeper: a novelle\n\nThe Eerste Kamer cannot change a proposal. If it still finds something not good, a minister can make a separate proposal to improve the first one. Such a separate proposal is called a novelle."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "wet.wijzigen"
+       ],
+       "ask": {
+        "nl": "Wat is een novelle?",
+        "th": "novelle คืออะไร",
+        "en": "What is a novelle?"
+       },
+       "opts": [
+        {
+         "t": "Een apart voorstel dat een eerder voorstel verbetert",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Zo kan een voorstel toch veranderen, terwijl de Eerste Kamer het zelf niet wijzigt.",
+          "th": "ถูกต้อง ข้อเสนอจึงเปลี่ยนได้ แม้วุฒิสภาจะแก้เองไม่ได้",
+          "en": "Right. That way a proposal can still change, while the Eerste Kamer does not change it itself."
+         }
+        },
+        {
+         "t": "Een debat in de Tweede Kamer",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Een novelle is een voorstel, geen debat.",
+          "th": "ไม่ใช่ novelle เป็นข้อเสนอ ไม่ใช่การอภิปราย",
+          "en": "No. A novelle is a proposal, not a debate."
+         }
+        },
+        {
+         "t": "Een stemming over de koning",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Daar gaat de tekst niet over.",
+          "th": "ข้อความไม่ได้พูดถึงเรื่องนี้",
+          "en": "The text does not say that."
+         }
+        }
+       ],
+       "answer": "Een apart voorstel dat een eerder voorstel verbetert",
+       "why": {
+        "nl": "Goed. Zo kan een voorstel toch veranderen, terwijl de Eerste Kamer het zelf niet wijzigt.",
+        "th": "ถูกต้อง ข้อเสนอจึงเปลี่ยนได้ แม้วุฒิสภาจะแก้เองไม่ได้",
+        "en": "Right. That way a proposal can still change, while the Eerste Kamer does not change it itself."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "form": "build",
+     "items": [
+      "wet.wet",
+      "wet.stemmen"
+     ],
+     "ask": {
+      "nl": "Nu de rest van de weg. Leg de stappen in de goede volgorde. Bouw de zin.",
+      "th": "ตอนนี้ส่วนที่เหลือของเส้นทาง เรียงขั้นตอนให้ถูกลำดับ ต่อประโยค",
+      "en": "Now the rest of the route. Put the steps in the right order. Build the sentence."
+     },
+     "data": {
+      "parts": [
+       "Eerst stemt de Tweede Kamer,",
+       "dan stemt de Eerste Kamer,",
+       "dan tekenen de koning en een minister de wet,",
+       "dan staat de wet in het Staatsblad."
+      ],
+      "tr": {
+       "th": "ก่อนอื่นสภาผู้แทนราษฎรลงคะแนน แล้ววุฒิสภา แล้วพระมหากษัตริย์และรัฐมนตรีลงนาม แล้วกฎหมายอยู่ในราชกิจจานุเบกษา",
+       "en": "First the Tweede Kamer votes, then the Eerste Kamer, then the king and a minister sign the law, then the law is in the Staatsblad."
+      }
+     },
+     "answer": "Eerst stemt de Tweede Kamer, dan stemt de Eerste Kamer, dan tekenen de koning en een minister de wet, dan staat de wet in het Staatsblad.",
+     "why": {
+      "nl": "<b>Tweede Kamer, Eerste Kamer, koning en minister, Staatsblad.</b> In het Staatsblad staat de wet voor iedereen te lezen. Daarna gaat hij in op een vaste datum. Die staat in de wet of in een apart besluit.",
+      "th": "<b>สภาผู้แทนราษฎร วุฒิสภา พระมหากษัตริย์และรัฐมนตรี ราชกิจจานุเบกษา</b> ในราชกิจจานุเบกษา ทุกคนอ่านกฎหมายได้ จากนั้นกฎหมายมีผลในวันที่กำหนด ซึ่งระบุไว้ในกฎหมายหรือในคำสั่งแยกต่างหาก",
+      "en": "<b>Tweede Kamer, Eerste Kamer, king and minister, Staatsblad.</b> In the Staatsblad everyone can read the law. After that it takes effect on a fixed date. That date is in the law or in a separate decree."
+     }
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu aan iemand vertellen: een wet begint als voorstel, gaat langs het ministerie, de ministerraad, de Raad van State en twee Kamers, en komt dan in het Staatsblad.",
+      "th": "ตอนนี้คุณเล่าให้ใครสักคนฟังได้ว่า กฎหมายเริ่มจากข้อเสนอ ผ่านกระทรวง คณะรัฐมนตรี สภาแห่งรัฐ และสองสภา แล้วลงในราชกิจจานุเบกษา",
+      "en": "You can now tell someone: a law starts as a proposal, goes through the ministry, the council of ministers, the Raad van State and two Houses, and then goes in the Staatsblad."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

@@ -1,0 +1,630 @@
+{
+ "format": 1,
+ "id": "ao-links-rechts",
+ "type": "les",
+ "version": 1,
+ "order": 20,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "politiek",
+ "vorm": "een dilemma (wat zou jij doen?)",
+ "draden": [
+  "ao-kamer150",
+  "ao-koning",
+  "ao-inflatie"
+ ],
+ "title": {
+  "nl": "Wat is het verschil tussen links en rechts in de politiek?",
+  "th": "“ซ้าย” กับ “ขวา” ในการเมืองต่างกันอย่างไร",
+  "en": "What is the difference between left and right in politics?"
+ },
+ "sources": [
+  {
+   "url": "https://nl.wikipedia.org/wiki/Politiek_spectrum",
+   "title": "Wikipedia (nl): Politiek spectrum"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Left%E2%80%93right_political_spectrum",
+   "title": "Wikipedia: Left-right political spectrum"
+  }
+ ],
+ "items": [
+  {
+   "id": "lr.overheid",
+   "kind": "word",
+   "w": "overheid",
+   "art": "de",
+   "tr": {
+    "th": "รัฐบาล หน่วยงานรัฐ",
+    "en": "government"
+   },
+   "def": "De organisatie die het land of de gemeente bestuurt en regels maakt.",
+   "ex": "De overheid maakt regels voor het land.",
+   "gap": "De ___ bouwt wegen en betaalt scholen.",
+   "wrong": [
+    "bakker",
+    "taxi",
+    "buurman"
+   ]
+  },
+  {
+   "id": "lr.belasting",
+   "kind": "word",
+   "w": "belasting",
+   "art": "de",
+   "tr": {
+    "th": "ภาษี",
+    "en": "tax"
+   },
+   "def": "Geld dat mensen en bedrijven aan de overheid betalen.",
+   "ex": "Met belasting betaalt de overheid wegen en scholen.",
+   "gap": "Je betaalt de ___ aan de overheid.",
+   "wrong": [
+    "tafel",
+    "wolk",
+    "taart"
+   ]
+  },
+  {
+   "id": "lr.keuze",
+   "kind": "word",
+   "w": "keuze",
+   "art": "de",
+   "tr": {
+    "th": "ทางเลือก",
+    "en": "choice"
+   },
+   "def": "Het kiezen tussen twee of meer dingen.",
+   "ex": "Het is een moeilijke keuze.",
+   "gap": "De ___ is aan jou: A of B.",
+   "wrong": [
+    "trein",
+    "jas",
+    "stad"
+   ]
+  },
+  {
+   "id": "lr.regel",
+   "kind": "word",
+   "w": "regel",
+   "art": "de",
+   "tr": {
+    "th": "กฎ ข้อบังคับ",
+    "en": "rule"
+   },
+   "def": "Iets wat zegt wat je wel en niet mag doen.",
+   "ex": "Elke regel heeft een reden.",
+   "gap": "De ___ zegt wat je wel en niet mag doen.",
+   "wrong": [
+    "peer",
+    "tas",
+    "bank"
+   ]
+  },
+  {
+   "id": "lr.markt",
+   "kind": "word",
+   "w": "markt",
+   "art": "de",
+   "tr": {
+    "th": "ตลาด",
+    "en": "market"
+   },
+   "def": "Een plek of systeem waar mensen spullen kopen en verkopen.",
+   "ex": "Op de markt koop je groente.",
+   "gap": "Op de ___ kopen en verkopen mensen spullen.",
+   "wrong": [
+    "slaap",
+    "regen",
+    "taal"
+   ]
+  },
+  {
+   "id": "lr.zorg",
+   "kind": "word",
+   "w": "zorg",
+   "art": "de",
+   "tr": {
+    "th": "การดูแลสุขภาพ",
+    "en": "care"
+   },
+   "def": "Hulp voor mensen die ziek zijn.",
+   "ex": "De zorg voor zieke mensen kost veel geld.",
+   "gap": "De ___ helpt mensen die ziek zijn.",
+   "wrong": [
+    "fiets",
+    "soep",
+    "jas"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-links-rechts-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Wat is het verschil tussen links en rechts in de politiek?",
+    "th": "“ซ้าย” กับ “ขวา” ในการเมืองต่างกันอย่างไร",
+    "en": "What is the difference between left and right in politics?"
+   },
+   "intro": {
+    "nl": "Een dilemma. Eerst kies jij, dan lees je wat mensen bedoelen met links en rechts. Beide kanten komen aan het woord.",
+    "th": "สถานการณ์ที่ต้องเลือก ก่อนอื่นคุณเลือกเอง แล้วอ่านว่าคนหมายถึงอะไรด้วยคำว่า ซ้าย และ ขวา ทั้งสองฝ่ายได้พูด",
+    "en": "A dilemma. First you choose, then you read what people mean by left and right. Both sides have their say."
+   },
+   "can": {
+    "nl": "Uitleggen wat mensen bedoelen met links en rechts in de politiek",
+    "th": "อธิบายได้ว่าคนหมายถึงอะไรด้วยคำว่า ซ้าย และ ขวา ในการเมือง",
+    "en": "Explain what people mean by left and right in politics"
+   },
+   "targets": [
+    "lr.overheid",
+    "lr.belasting",
+    "lr.keuze",
+    "lr.regel",
+    "lr.markt",
+    "lr.zorg"
+   ],
+   "goals": [
+    "kennis-maatschappij",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "street",
+    "tone": "lilac",
+    "alt": {
+     "nl": "Een straat met een bord met twee pijlen.",
+     "th": "ถนนที่มีป้ายลูกศรสองอัน",
+     "en": "A street with a sign with two arrows."
+    },
+    "things": [
+     {
+      "kind": "sign",
+      "x": 170,
+      "y": 70,
+      "text": "A  B"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "quiz",
+     "role": "instap",
+     "q": [
+      {
+       "form": "choose",
+       "standpunt": true,
+       "items": [
+        "lr.keuze",
+        "lr.belasting"
+       ],
+       "ask": {
+        "nl": "Een gemeente heeft extra geld. Idee A: het geld gaat naar dingen voor iedereen samen, zoals zorg en scholen. Idee B: de belasting gaat omlaag, en mensen kiezen zelf wat ze met hun geld doen. Wat zou jij doen?",
+        "th": "เทศบาลมีเงินเพิ่ม ความคิด A: เงินไปใช้กับสิ่งที่ทุกคนใช้ร่วมกัน เช่น การดูแลสุขภาพและโรงเรียน ความคิด B: ลดภาษี และผู้คนเลือกเองว่าจะใช้เงินของตนอย่างไร คุณจะทำอย่างไร",
+        "en": "A municipality has extra money. Idea A: the money goes to things for everyone together, such as care and schools. Idea B: taxes go down, and people choose for themselves what to do with their money. What would you do?"
+       },
+       "opts": [
+        {
+         "t": "Idee A: het geld gaat naar dingen voor iedereen samen",
+         "r": "ok",
+         "why": {
+          "nl": "Je vindt dingen die we samen hebben en gelijke kansen belangrijk: zorg en scholen zijn er dan voor iedereen.",
+          "th": "คุณเห็นว่าสิ่งที่เรามีร่วมกันและโอกาสที่เท่าเทียมสำคัญ การดูแลสุขภาพและโรงเรียนจึงมีไว้สำหรับทุกคน",
+          "en": "You find things we have together and equal chances important: care and schools are then there for everyone."
+         }
+        },
+        {
+         "t": "Idee B: lagere belasting, mensen kiezen zelf",
+         "r": "ok",
+         "why": {
+          "nl": "Je vindt eigen keuze en eigen verantwoordelijkheid belangrijk: mensen beslissen zelf wat ze met hun geld doen.",
+          "th": "คุณเห็นว่าการเลือกเองและความรับผิดชอบของตนเองสำคัญ ผู้คนตัดสินใจเองว่าจะใช้เงินของตนอย่างไร",
+          "en": "You find personal choice and personal responsibility important: people decide for themselves what to do with their money."
+         }
+        },
+        {
+         "t": "Ik weet het nog niet",
+         "r": "ok",
+         "why": {
+          "nl": "Dat mag. Veel mensen vinden beide dingen belangrijk. Lees wat beide kanten belangrijk vinden.",
+          "th": "ไม่เป็นไร หลายคนเห็นว่าทั้งสองอย่างสำคัญ อ่านว่าทั้งสองฝ่ายเห็นว่าอะไรสำคัญ",
+          "en": "That is allowed. Many people find both things important. Read what both sides find important."
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "lr.overheid",
+      "lr.regel",
+      "lr.markt",
+      "lr.belasting"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Politiek_spectrum",
+       "title": "Wikipedia (nl): Politiek spectrum"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Left%E2%80%93right_political_spectrum",
+       "title": "Wikipedia: Left-right political spectrum"
+      }
+     ],
+     "text": {
+      "nl": "Links en rechts\n\nIn de politiek hoor je de woorden 'links' en 'rechts'. Ze gaan vooral over de vraag: wat doet de overheid, en wat doen mensen en bedrijven zelf?\n\nLinks wil over het algemeen een sterkere overheid die meer regelt, met hogere belasting. Links vindt gelijke kansen en een gelijkere verdeling van de welvaart belangrijk.\n\nRechts wil over het algemeen een kleinere overheid met lagere belasting en minder regels. Rechts vindt eigen verantwoordelijkheid en een vrije markt belangrijk.\n\nIdee A uit het dilemma past bij de eerste manier van denken, idee B bij de tweede. Beide kanten hebben hun eigen redenen.",
+      "th": "ซ้ายและขวา\n\nในการเมืองคุณจะได้ยินคำว่า ‘ซ้าย’ และ ‘ขวา’ คำเหล่านี้เกี่ยวกับคำถามหลักว่า รัฐทำอะไร และประชาชนกับบริษัททำอะไรเอง\n\nฝ่ายซ้ายโดยทั่วไปต้องการรัฐที่เข้มแข็งกว่าและจัดการมากกว่า พร้อมภาษีที่สูงกว่า ฝ่ายซ้ายเห็นว่าโอกาสที่เท่าเทียมและการกระจายความมั่งคั่งอย่างเท่าเทียมกว่าเป็นเรื่องสำคัญ\n\nฝ่ายขวาโดยทั่วไปต้องการรัฐที่เล็กกว่า ภาษีต่ำกว่า และกฎน้อยกว่า ฝ่ายขวาเห็นว่าความรับผิดชอบของตนเองและตลาดเสรีเป็นเรื่องสำคัญ\n\nความคิด A ในสถานการณ์เมื่อครู่ตรงกับวิธีคิดแบบแรก ความคิด B ตรงกับแบบที่สอง ทั้งสองฝ่ายมีเหตุผลของตนเอง",
+      "en": "Left and right\n\nIn politics you hear the words 'left' and 'right'. They are mainly about the question: what does the government do, and what do people and companies do themselves?\n\nThe left generally wants a stronger government that arranges more, with higher taxes. The left finds equal chances and a more equal sharing of wealth important.\n\nThe right generally wants a smaller government with lower taxes and fewer rules. The right finds personal responsibility and a free market important.\n\nIdea A from the dilemma fits the first way of thinking, idea B the second. Both sides have their own reasons."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "lr.overheid",
+        "lr.belasting"
+       ],
+       "ask": {
+        "nl": "Welke kant wil over het algemeen een kleinere overheid met lagere belasting?",
+        "th": "โดยทั่วไปฝ่ายใดต้องการรัฐที่เล็กกว่าและภาษีต่ำกว่า",
+        "en": "Which side generally wants a smaller government with lower taxes?"
+       },
+       "opts": [
+        {
+         "t": "Links",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Dat is wat de tekst bij rechts zegt. Links wil over het algemeen een sterkere overheid.",
+          "th": "ไม่ใช่ นั่นคือสิ่งที่ข้อความบอกเกี่ยวกับฝ่ายขวา ฝ่ายซ้ายต้องการรัฐที่เข้มแข็งกว่า",
+          "en": "No. That is what the text says about the right. The left generally wants a stronger government."
+         }
+        },
+        {
+         "t": "Rechts",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Dat zegt de tekst over rechts.",
+          "th": "ถูกต้อง ข้อความบอกอย่างนี้เกี่ยวกับฝ่ายขวา",
+          "en": "Right. That is what the text says about the right."
+         }
+        },
+        {
+         "t": "Geen van beide",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "De tekst noemt het bij rechts.",
+          "th": "ข้อความพูดถึงเรื่องนี้ในส่วนของฝ่ายขวา",
+          "en": "The text mentions it for the right."
+         }
+        }
+       ],
+       "answer": "Rechts",
+       "why": {
+        "nl": "Goed. Dat zegt de tekst over rechts.",
+        "th": "ถูกต้อง ข้อความบอกอย่างนี้เกี่ยวกับฝ่ายขวา",
+        "en": "Right. That is what the text says about the right."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "lr.regel"
+       ],
+       "ask": {
+        "nl": "Welke kant vindt gelijke kansen voor iedereen erg belangrijk?",
+        "th": "ฝ่ายใดเห็นว่าโอกาสที่เท่าเทียมสำหรับทุกคนสำคัญมาก",
+        "en": "Which side finds equal chances for everyone very important?"
+       },
+       "opts": [
+        {
+         "t": "Rechts",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De tekst noemt bij rechts eigen verantwoordelijkheid en de vrije markt.",
+          "th": "ไม่ใช่ ข้อความพูดถึงความรับผิดชอบของตนเองและตลาดเสรีในส่วนของฝ่ายขวา",
+          "en": "No. For the right the text mentions personal responsibility and the free market."
+         }
+        },
+        {
+         "t": "Links",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Dat zegt de tekst over links.",
+          "th": "ถูกต้อง ข้อความบอกอย่างนี้เกี่ยวกับฝ่ายซ้าย",
+          "en": "Right. That is what the text says about the left."
+         }
+        },
+        {
+         "t": "Allebei precies hetzelfde",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De tekst beschrijft twee verschillende accenten.",
+          "th": "ไม่ใช่ ข้อความบรรยายจุดเน้นที่ต่างกันสองอย่าง",
+          "en": "No. The text describes two different emphases."
+         }
+        }
+       ],
+       "answer": "Links",
+       "why": {
+        "nl": "Goed. Dat zegt de tekst over links.",
+        "th": "ถูกต้อง ข้อความบอกอย่างนี้เกี่ยวกับฝ่ายซ้าย",
+        "en": "Right. That is what the text says about the left."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "lr.markt"
+       ],
+       "ask": {
+        "nl": "Waar gaan links en rechts vooral over?",
+        "th": "ซ้ายและขวาเกี่ยวกับอะไรเป็นหลัก",
+        "en": "What are left and right mainly about?"
+       },
+       "opts": [
+        {
+         "t": "Wat de overheid doet en wat mensen zelf doen",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Dat is de vraag achter de woorden.",
+          "th": "ถูกต้อง นี่คือคำถามที่อยู่เบื้องหลังคำเหล่านี้",
+          "en": "Right. That is the question behind the words."
+         }
+        },
+        {
+         "t": "Hoe oud mensen zijn",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Daar gaat de tekst niet over.",
+          "th": "ข้อความไม่ได้พูดถึงเรื่องนี้",
+          "en": "The text does not say that."
+         }
+        },
+        {
+         "t": "Welke kleur iemand mooi vindt",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Daar gaat de tekst niet over.",
+          "th": "ข้อความไม่ได้พูดถึงเรื่องนี้",
+          "en": "The text does not say that."
+         }
+        }
+       ],
+       "answer": "Wat de overheid doet en wat mensen zelf doen",
+       "why": {
+        "nl": "Goed. Dat is de vraag achter de woorden.",
+        "th": "ถูกต้อง นี่คือคำถามที่อยู่เบื้องหลังคำเหล่านี้",
+        "en": "Right. That is the question behind the words."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "lr.markt",
+      "lr.overheid"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Politiek_spectrum",
+       "title": "Wikipedia (nl): Politiek spectrum"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Left%E2%80%93right_political_spectrum",
+       "title": "Wikipedia: Left-right political spectrum"
+      }
+     ],
+     "text": {
+      "nl": "Dieper: waar komen de woorden vandaan?\n\nDe woorden komen uit Frankrijk, uit de tijd van de Franse Revolutie. In het parlement zaten mensen links of rechts van de voorzitter. Rechts zaten mensen die de oude orde wilden houden. Links zaten mensen die haar wilden veranderen.\n\nLinks en rechts zeggen niet alles. Daarom spreekt men ook over een tweede lijn, van progressief naar conservatief. Die gaat over onderwerpen als migratie, klimaat en samenwerking in Europa. De betekenis van links en rechts verschilt ook per land.",
+      "th": "ลึกขึ้น: คำเหล่านี้มาจากไหน\n\nคำเหล่านี้มาจากฝรั่งเศส ในสมัยการปฏิวัติฝรั่งเศส ในรัฐสภา ผู้คนนั่งทางซ้ายหรือขวาของประธาน ทางขวานั่งคนที่ต้องการรักษาระเบียบเก่า ทางซ้ายนั่งคนที่ต้องการเปลี่ยนแปลง\n\nซ้ายและขวาไม่ได้บอกทุกอย่าง จึงมีการพูดถึงแกนที่สองด้วย จากก้าวหน้าไปอนุรักษ์นิยม ซึ่งเกี่ยวกับเรื่องอย่างการย้ายถิ่น ภูมิอากาศ และความร่วมมือในยุโรป ความหมายของซ้ายและขวายังต่างกันไปในแต่ละประเทศ",
+      "en": "Deeper: where do the words come from?\n\nThe words come from France, from the time of the French Revolution. In parliament people sat on the left or right of the chairperson. On the right sat people who wanted to keep the old order. On the left sat people who wanted to change it.\n\nLeft and right do not say everything. That is why people also speak of a second line, from progressive to conservative. It is about subjects such as migration, climate and cooperation in Europe. The meaning of left and right also differs per country."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "lr.markt"
+       ],
+       "ask": {
+        "nl": "Waar komen de woorden links en rechts vandaan?",
+        "th": "คำว่า ซ้าย และ ขวา มาจากไหน",
+        "en": "Where do the words left and right come from?"
+       },
+       "opts": [
+        {
+         "t": "Van de zitplaatsen in een parlement in Frankrijk",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Mensen zaten links of rechts van de voorzitter.",
+          "th": "ถูกต้อง ผู้คนนั่งทางซ้ายหรือขวาของประธาน",
+          "en": "Right. People sat left or right of the chairperson."
+         }
+        },
+        {
+         "t": "Van de kant waarmee je schrijft",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst.",
+          "th": "ไม่มีในข้อความ",
+          "en": "That is not in the text."
+         }
+        },
+        {
+         "t": "Van de rijrichting op de weg",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Daar gaat de tekst niet over.",
+          "th": "ข้อความไม่ได้พูดถึงเรื่องนี้",
+          "en": "The text does not say that."
+         }
+        }
+       ],
+       "answer": "Van de zitplaatsen in een parlement in Frankrijk",
+       "why": {
+        "nl": "Goed. Mensen zaten links of rechts van de voorzitter.",
+        "th": "ถูกต้อง ผู้คนนั่งทางซ้ายหรือขวาของประธาน",
+        "en": "Right. People sat left or right of the chairperson."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "lr.overheid"
+       ],
+       "ask": {
+        "nl": "Zeggen links en rechts alles over wat iemand vindt?",
+        "th": "ซ้ายและขวาบอกทุกอย่างเกี่ยวกับสิ่งที่คนคิดหรือไม่",
+        "en": "Do left and right say everything about what someone thinks?"
+       },
+       "opts": [
+        {
+         "t": "Ja, over alle onderwerpen",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De tekst noemt ook een tweede lijn voor onderwerpen als migratie en klimaat.",
+          "th": "ไม่ใช่ ข้อความพูดถึงแกนที่สองสำหรับเรื่องอย่างการย้ายถิ่นและภูมิอากาศด้วย",
+          "en": "No. The text also mentions a second line for subjects such as migration and climate."
+         }
+        },
+        {
+         "t": "Nee, er is ook een tweede lijn, bijvoorbeeld over migratie en klimaat",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Daarom passen mensen en partijen niet altijd in één vak.",
+          "th": "ถูกต้อง ผู้คนและพรรคจึงไม่ได้เข้ากับช่องเดียวเสมอไป",
+          "en": "Right. That is why people and parties do not always fit in one box."
+         }
+        },
+        {
+         "t": "Nee, ze zeggen niets",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Ze zeggen wel iets: vooral over wat de overheid doet.",
+          "th": "พูดถึงอยู่บ้าง: โดยหลักเรื่องสิ่งที่รัฐทำ",
+          "en": "They do say something: mainly about what the government does."
+         }
+        }
+       ],
+       "answer": "Nee, er is ook een tweede lijn, bijvoorbeeld over migratie en klimaat",
+       "why": {
+        "nl": "Goed. Daarom passen mensen en partijen niet altijd in één vak.",
+        "th": "ถูกต้อง ผู้คนและพรรคจึงไม่ได้เข้ากับช่องเดียวเสมอไป",
+        "en": "Right. That is why people and parties do not always fit in one box."
+       }
+      }
+     ]
+    },
+    {
+     "type": "make",
+     "items": [
+      "lr.keuze",
+      "lr.zorg"
+     ],
+     "ask": {
+      "nl": "Lees je eerste keuze terug. Leg nu in één zin uit waarom de andere kant haar idee goed vindt.",
+      "th": "อ่านสิ่งที่คุณเลือกครั้งแรกอีกครั้ง แล้วอธิบายในหนึ่งประโยคว่า ทำไมอีกฝ่ายจึงเห็นว่าความคิดของตนดี",
+      "en": "Read your first choice again. Now explain in one sentence why the other side thinks its idea is good."
+     },
+     "frame": "De andere kant vindt ... goed, omdat ...",
+     "model": "De andere kant vindt dit idee goed, omdat ...",
+     "checklist": [
+      {
+       "nl": "Ik heb de andere kant uitgelegd, niet mijn eigen kant.",
+       "th": "ฉันอธิบายฝ่ายอื่น ไม่ใช่ฝ่ายของตัวเอง",
+       "en": "I explained the other side, not my own side."
+      },
+      {
+       "nl": "Ik heb een reden gegeven.",
+       "th": "ฉันให้เหตุผลแล้ว",
+       "en": "I gave a reason."
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "lr.regel",
+      "lr.zorg"
+     ],
+     "ask": {
+      "nl": "Iemand zegt: \"Over de zorg denk ik links, over belasting denk ik rechts.\" Kan dat?",
+      "th": "มีคนพูดว่า “เรื่องการดูแลสุขภาพ ฉันคิดแบบซ้าย เรื่องภาษี ฉันคิดแบบขวา” เป็นไปได้ไหม",
+      "en": "Someone says: \"On care I think left, on taxes I think right.\" Is that possible?"
+     },
+     "opts": [
+      {
+       "t": "Nee, je moet altijd één van de twee zijn",
+       "r": "no",
+       "err": "lezen",
+       "why": {
+        "nl": "Nee. Een persoon kan op het ene onderwerp links denken en op een ander rechts.",
+        "th": "ไม่ใช่ คนคนหนึ่งอาจคิดแบบซ้ายในเรื่องหนึ่ง และแบบขวาในอีกเรื่องหนึ่ง",
+        "en": "No. A person can think left on one subject and right on another."
+       }
+      },
+      {
+       "t": "Ja, mensen kunnen per onderwerp verschillen",
+       "r": "ok",
+       "why": {
+        "nl": "Goed. Links en rechts zijn een vereenvoudiging: veel mensen en partijen zijn niet bij elk onderwerp links of rechts.",
+        "th": "ถูกต้อง ซ้ายและขวาเป็นการทำให้ง่ายขึ้น คนและพรรคจำนวนมากไม่ได้เป็นซ้ายหรือขวาในทุกเรื่อง",
+        "en": "Right. Left and right are a simplification: many people and parties are not left or right on every subject."
+       }
+      },
+      {
+       "t": "Nee, dan heb je geen mening",
+       "r": "no",
+       "err": "lezen",
+       "why": {
+        "nl": "Nee. Dat staat nergens in de tekst.",
+        "th": "ไม่ใช่ ไม่มีที่ใดในข้อความ",
+        "en": "No. That is nowhere in the text."
+       }
+      }
+     ],
+     "answer": "Ja, mensen kunnen per onderwerp verschillen",
+     "why": {
+      "nl": "Goed. Links en rechts zijn een vereenvoudiging: veel mensen en partijen zijn niet bij elk onderwerp links of rechts.",
+      "th": "ถูกต้อง ซ้ายและขวาเป็นการทำให้ง่ายขึ้น คนและพรรคจำนวนมากไม่ได้เป็นซ้ายหรือขวาในทุกเรื่อง",
+      "en": "Right. Left and right are a simplification: many people and parties are not left or right on every subject."
+     }
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu aan iemand vertellen: links en rechts gaan vooral over wat de overheid doet en wat mensen zelf doen. Beide kanten hebben hun eigen redenen.",
+      "th": "ตอนนี้คุณเล่าให้ใครสักคนฟังได้ว่า ซ้ายและขวาเกี่ยวกับสิ่งที่รัฐทำและสิ่งที่ผู้คนทำเองเป็นหลัก ทั้งสองฝ่ายมีเหตุผลของตนเอง",
+      "en": "You can now tell someone: left and right are mainly about what the government does and what people do themselves. Both sides have their own reasons."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

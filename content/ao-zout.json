@@ -1,0 +1,453 @@
+{
+ "format": 1,
+ "id": "ao-zout",
+ "type": "les",
+ "version": 1,
+ "order": 7,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "natuur",
+ "vorm": "een keten van oorzaak en gevolg",
+ "draden": [
+  "ao-zeespiegel",
+  "ao-tijdzones",
+  "ao-vaccin"
+ ],
+ "title": {
+  "nl": "Waarom is de zee zout?",
+  "th": "ทำไมทะเลจึงเค็ม",
+  "en": "Why is the sea salty?"
+ },
+ "sources": [
+  {
+   "url": "https://oceanservice.noaa.gov/facts/whysalty.html",
+   "title": "NOAA: Why is the ocean salty?"
+  },
+  {
+   "url": "https://www.usgs.gov/water-science-school/science/why-ocean-salty",
+   "title": "USGS: Why is the ocean salty?"
+  },
+  {
+   "url": "https://www.usgs.gov/water-science-school/science/saline-water-and-salinity",
+   "title": "USGS: Saline water and salinity"
+  }
+ ],
+ "items": [
+  {
+   "id": "zout.zout",
+   "kind": "word",
+   "w": "zout",
+   "art": "het",
+   "tr": {
+    "th": "เกลือ",
+    "en": "salt"
+   },
+   "def": "Wit spul dat je in eten doet en dat in zeewater zit.",
+   "ex": "Er zit zout in de soep.",
+   "gap": "Het ___ in de soep maakt hem zout.",
+   "wrong": [
+    "brood",
+    "glas",
+    "papier"
+   ]
+  },
+  {
+   "id": "zout.regen",
+   "kind": "word",
+   "w": "regen",
+   "art": "de",
+   "tr": {
+    "th": "ฝน",
+    "en": "rain"
+   },
+   "def": "Water dat uit de wolken valt.",
+   "ex": "Vandaag valt er veel regen.",
+   "gap": "Uit de grijze wolken valt de ___.",
+   "wrong": [
+    "zon",
+    "stoel",
+    "hond"
+   ]
+  },
+  {
+   "id": "zout.rots",
+   "kind": "word",
+   "w": "rots",
+   "art": "de",
+   "tr": {
+    "th": "หิน (ก้อนใหญ่)",
+    "en": "rock"
+   },
+   "def": "Een heel groot, hard stuk steen.",
+   "ex": "De berg bestaat uit rots.",
+   "gap": "In de berg zit de harde ___.",
+   "wrong": [
+    "water",
+    "wol",
+    "melk"
+   ]
+  },
+  {
+   "id": "zout.rivier",
+   "kind": "word",
+   "w": "rivier",
+   "art": "de",
+   "tr": {
+    "th": "แม่น้ำ",
+    "en": "river"
+   },
+   "def": "Water dat door het land naar de zee stroomt.",
+   "ex": "Wij varen op de rivier.",
+   "gap": "De ___ stroomt door het land naar de zee.",
+   "wrong": [
+    "berg",
+    "wolk",
+    "bank"
+   ]
+  },
+  {
+   "id": "zout.oplossen",
+   "kind": "word",
+   "w": "oplossen",
+   "art": "",
+   "tr": {
+    "th": "ละลาย",
+    "en": "to dissolve"
+   },
+   "def": "In water gaan zodat je het niet meer ziet, zoals suiker in thee.",
+   "ex": "Suiker kan oplossen in warme thee.",
+   "gap": "Zout kan in water ___.",
+   "wrong": [
+    "rennen",
+    "bakken",
+    "slapen"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-zout-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Waarom is de zee zout?",
+    "th": "ทำไมทะเลจึงเค็ม",
+    "en": "Why is the sea salty?"
+   },
+   "intro": {
+    "nl": "Een lange reis in een paar stappen: van regen tot zout in zee.",
+    "th": "การเดินทางยาวในไม่กี่ขั้น ตั้งแต่ฝนจนถึงเกลือในทะเล",
+    "en": "A long journey in a few steps: from rain to salt in the sea."
+   },
+   "can": {
+    "nl": "Uitleggen waarom de zee zout is",
+    "th": "อธิบายได้ว่าทำไมทะเลจึงเค็ม",
+    "en": "Explain why the sea is salty"
+   },
+   "targets": [
+    "zout.zout",
+    "zout.regen",
+    "zout.rots",
+    "zout.rivier",
+    "zout.oplossen"
+   ],
+   "goals": [
+    "nt2-I-lezen-2",
+    "nt2-I-lezen-3"
+   ],
+   "art": {
+    "bg": "street",
+    "tone": "sky",
+    "alt": {
+     "nl": "Een straat met een bord: zout.",
+     "th": "ถนนที่มีป้ายเขียนว่า เกลือ",
+     "en": "A street with a sign that says: salt."
+    },
+    "things": [
+     {
+      "kind": "window",
+      "x": 280,
+      "y": 56
+     },
+     {
+      "kind": "sign",
+      "x": 100,
+      "y": 70,
+      "text": "zout"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "do",
+     "items": [
+      "zout.zout",
+      "zout.rots"
+     ],
+     "ask": {
+      "nl": "Raad eens: waar komt het meeste zout van de zee vandaan?",
+      "th": "ลองเดา: เกลือส่วนใหญ่ในทะเลมาจากไหน",
+      "en": "Guess: where does most of the salt in the sea come from?"
+     },
+     "opts": [
+      {
+       "t": "Uit rotsen op het land",
+       "r": "ok",
+       "why": {
+        "nl": "Goed. Rotsen op het land zijn de grootste bron van het zout in zee.",
+        "th": "ถูกต้อง หินบนบกเป็นแหล่งเกลือที่ใหญ่ที่สุดในทะเล",
+        "en": "Right. Rocks on land are the biggest source of the salt in the sea."
+       }
+      },
+      {
+       "t": "Uit de zon",
+       "r": "no",
+       "err": "model",
+       "why": {
+        "nl": "De zon maakt geen zout. Het zout komt uit rotsen.",
+        "th": "ดวงอาทิตย์ไม่ได้สร้างเกลือ เกลือมาจากหิน",
+        "en": "The sun does not make salt. The salt comes from rocks."
+       }
+      },
+      {
+       "t": "Uit zout dat mensen in zee gooien",
+       "r": "no",
+       "err": "model",
+       "why": {
+        "nl": "Dat staat niet in de bronnen. Het meeste zout komt uit rotsen.",
+        "th": "ไม่มีในแหล่งข้อมูล เกลือส่วนใหญ่มาจากหิน",
+        "en": "That is not in the sources. Most of the salt comes from rocks."
+       }
+      }
+     ],
+     "answer": "Uit rotsen op het land",
+     "why": {
+      "nl": "Rotsen op het land zijn de grootste bron. Nu lezen we hoe het zout van de rots in zee komt.",
+      "th": "หินบนบกเป็นแหล่งที่ใหญ่ที่สุด ต่อไปเราอ่านว่าเกลือจากหินไปถึงทะเลได้อย่างไร",
+      "en": "Rocks on land are the biggest source. Now we read how the salt gets from the rock to the sea."
+     }
+    },
+    {
+     "type": "read",
+     "items": [
+      "zout.regen",
+      "zout.oplossen",
+      "zout.rivier"
+     ],
+     "sources": [
+      {
+       "url": "https://oceanservice.noaa.gov/facts/whysalty.html",
+       "title": "NOAA: Why is the ocean salty?"
+      },
+      {
+       "url": "https://www.usgs.gov/water-science-school/science/why-ocean-salty",
+       "title": "USGS: Why is the ocean salty?"
+      }
+     ],
+     "text": {
+      "nl": "Het zout in de zee komt vooral uit rotsen op het land. Hoe komt dat zout in zee?\n\nIn de lucht zit een gas, en dat gas lost op in de regen. Daardoor is regen een klein beetje zuur. Dat zuur breekt de rotsen een beetje af. Delen van de rots, onder andere zouten, lossen op in het water.\n\nHet water stroomt door beken en rivieren naar de zee. Een deel van die stoffen blijft heel lang in de zee. Zo wordt het zout in de zee steeds meer.",
+      "th": "เกลือในทะเลส่วนใหญ่มาจากหิน (rots) บนบก เกลือเข้ามาในทะเลได้อย่างไร\n\nในอากาศมีก๊าซชนิดหนึ่ง ซึ่งละลาย (oplossen) ในฝน (regen) ฝนจึงเป็นกรดเล็กน้อย กรดนี้ทำให้หินสึกกร่อนเล็กน้อย ส่วนหนึ่งของหิน รวมทั้งเกลือแร่ ละลายในน้ำ\n\nน้ำไหลผ่านลำธารและแม่น้ำ (rivier) ไปสู่ทะเล สารเหล่านั้นส่วนหนึ่งอยู่ในทะเลนานมาก ทะเลจึงมีเกลือ (zout) มากขึ้นเรื่อย ๆ",
+      "en": "The salt in the sea comes mostly from rocks (rots) on land. How does that salt get into the sea?\n\nThere is a gas in the air, and that gas dissolves (oplossen) in rain (regen). That makes rain slightly acidic. That acid breaks down rocks a little. Parts of the rock, among them salts, dissolve in the water.\n\nThe water flows through streams and rivers (rivier) to the sea. Part of those substances stays in the sea for a very long time. So the salt (zout) in the sea keeps building up."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "zout.regen"
+       ],
+       "ask": {
+        "nl": "Wat maakt regen een klein beetje zuur?",
+        "th": "อะไรทำให้ฝนเป็นกรดเล็กน้อย",
+        "en": "What makes rain slightly acidic?"
+       },
+       "opts": [
+        {
+         "t": "Een gas uit de lucht dat oplost in de regen",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Dat gas lost op in de regen, en dan wordt de regen een klein beetje zuur.",
+          "th": "ถูกต้อง ก๊าซนั้นละลายในฝน ฝนจึงเป็นกรดเล็กน้อย",
+          "en": "Right. That gas dissolves in the rain, and then the rain becomes slightly acidic."
+         }
+        },
+        {
+         "t": "Zout uit de zee",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Het zout komt juist ná de regen, via de rotsen.",
+          "th": "เกลือมาทีหลังฝน ผ่านหิน",
+          "en": "The salt comes after the rain, via the rocks."
+         }
+        },
+        {
+         "t": "Het zonlicht",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Dat staat niet in de tekst. Het is een gas uit de lucht.",
+          "th": "ข้อความไม่ได้บอก เป็นก๊าซจากอากาศ",
+          "en": "That is not in the text. It is a gas from the air."
+         }
+        }
+       ],
+       "answer": "Een gas uit de lucht dat oplost in de regen",
+       "why": {
+        "nl": "Een gas uit de lucht lost op in de regen. Daardoor is regen een klein beetje zuur.",
+        "th": "ก๊าซจากอากาศละลายในฝน ฝนจึงเป็นกรดเล็กน้อย",
+        "en": "A gas from the air dissolves in the rain. That makes rain slightly acidic."
+       }
+      }
+     ]
+    },
+    {
+     "type": "do",
+     "items": [
+      "zout.regen",
+      "zout.rots",
+      "zout.rivier",
+      "zout.zout"
+     ],
+     "ask": {
+      "nl": "Zet de reis van het zout in de goede volgorde.",
+      "th": "เรียงการเดินทางของเกลือให้ถูกลำดับ",
+      "en": "Put the journey of the salt in the right order."
+     },
+     "form": "build",
+     "answer": "Regen valt op rotsen Zout uit de rots lost op De rivier stroomt naar zee Zout blijft in zee",
+     "data": {
+      "parts": [
+       "Regen valt op rotsen",
+       "Zout uit de rots lost op",
+       "De rivier stroomt naar zee",
+       "Zout blijft in zee"
+      ],
+      "tr": {
+       "th": "ฝนตกบนหิน เกลือจากหินละลาย แม่น้ำไหลลงทะเล เกลืออยู่ในทะเล",
+       "en": "Rain falls on rocks. Salt from the rock dissolves. The river flows to the sea. Salt stays in the sea."
+      }
+     },
+     "why": {
+      "nl": "Eerst valt regen op rotsen, dan lossen delen van de rots op, dan stroomt de rivier naar zee en daar blijft het zout.",
+      "th": "ก่อนอื่นฝนตกบนหิน แล้วส่วนของเกลือจากหินละลาย แล้วแม่น้ำไหลลงทะเล และเกลือก็อยู่ที่นั่น",
+      "en": "First rain falls on rocks, then parts of the rock dissolve, then the river flows to the sea and the salt stays there."
+     },
+     "err": "model",
+     "help": 0
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "zout.zout"
+     ],
+     "sources": [
+      {
+       "url": "https://oceanservice.noaa.gov/facts/whysalty.html",
+       "title": "NOAA: Why is the ocean salty?"
+      },
+      {
+       "url": "https://www.usgs.gov/water-science-school/science/saline-water-and-salinity",
+       "title": "USGS: Saline water and salinity"
+      }
+     ],
+     "text": {
+      "nl": "Hoeveel zout zit er in de zee? Gemiddeld ongeveer 35 gram in 1000 gram zeewater. Dat is ongeveer 3,5 procent. Het is niet overal precies hetzelfde: het hangt af van de temperatuur, van het water dat verdampt en van de regen.\n\nRotsen op het land zijn de grootste bron van zout in zee. Er is nog een bron: de zeebodem. Zeewater sijpelt in scheuren in de bodem en wordt daar warm door gloeiend gesteente. Dan komt het weer omhoog door bronnen op de zeebodem, met opgeloste stoffen erin.",
+      "th": "ในทะเลมีเกลือเท่าไร โดยเฉลี่ยประมาณ 35 กรัมในน้ำทะเล 1,000 กรัม หรือประมาณ 3.5 เปอร์เซ็นต์ ไม่ได้เท่ากันทุกที่ ขึ้นอยู่กับอุณหภูมิ น้ำที่ระเหย และฝน\n\nหินบนบกเป็นแหล่งเกลือในทะเลที่ใหญ่ที่สุด ยังมีอีกแหล่งหนึ่งคือพื้นทะเล น้ำทะเลซึมเข้าไปในรอยแตกของพื้น และถูกทำให้ร้อนด้วยหินร้อนจัด จากนั้นก็ไหลกลับขึ้นมาทางช่องบนพื้นทะเล พร้อมสารที่ละลายอยู่",
+      "en": "How much salt is in the sea? On average about 35 grams in 1000 grams of seawater. That is about 3.5 percent. It is not exactly the same everywhere: it depends on the temperature, on the water that evaporates and on the rain.\n\nRocks on land are the biggest source of salt in the sea. There is another source: the sea floor. Seawater seeps into cracks in the floor and is heated there by hot rock. Then it rises again through vents on the sea floor, with dissolved substances in it."
+     },
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "zout.zout"
+       ],
+       "ask": {
+        "nl": "Hoeveel gram zout zit er gemiddeld in 1000 gram zeewater? Typ een getal.",
+        "th": "ในน้ำทะเล 1,000 กรัม มีเกลือโดยเฉลี่ยกี่กรัม พิมพ์ตัวเลข",
+        "en": "How many grams of salt are in 1000 grams of seawater on average? Type a number."
+       },
+       "answer": "35",
+       "tol": 1,
+       "err": "lezen",
+       "why": {
+        "nl": "Ongeveer 35 gram. Dat is ongeveer 3,5 procent.",
+        "th": "ประมาณ 35 กรัม หรือประมาณ 3.5 เปอร์เซ็นต์",
+        "en": "About 35 grams. That is about 3.5 percent."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "zout.zout"
+       ],
+       "ask": {
+        "nl": "Welke tweede bron van zout noemt de tekst?",
+        "th": "ข้อความกล่าวถึงแหล่งเกลือแหล่งที่สองคืออะไร",
+        "en": "Which second source of salt does the text mention?"
+       },
+       "opts": [
+        {
+         "t": "De zeebodem",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Zeewater wordt warm in de bodem en komt omhoog met opgeloste stoffen.",
+          "th": "ถูกต้อง น้ำทะเลร้อนขึ้นในพื้นทะเลและไหลขึ้นพร้อมสารที่ละลาย",
+          "en": "Right. Seawater is heated in the floor and rises with dissolved substances."
+         }
+        },
+        {
+         "t": "De lucht",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "De lucht geeft alleen het gas in de regen. De tweede bron is de zeebodem.",
+          "th": "อากาศให้เพียงก๊าซในฝน แหล่งที่สองคือพื้นทะเล",
+          "en": "The air only gives the gas in the rain. The second source is the sea floor."
+         }
+        },
+        {
+         "t": "De zon",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "De zon staat niet in de tekst. De tweede bron is de zeebodem.",
+          "th": "ดวงอาทิตย์ไม่อยู่ในข้อความ แหล่งที่สองคือพื้นทะเล",
+          "en": "The sun is not in the text. The second source is the sea floor."
+         }
+        }
+       ],
+       "answer": "De zeebodem",
+       "why": {
+        "nl": "De zeebodem is de tweede bron.",
+        "th": "พื้นทะเลคือแหล่งที่สอง",
+        "en": "The sea floor is the second source."
+       }
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu vertellen: regen breekt rotsen een beetje af, rivieren brengen het zout naar zee, en daar blijft het.",
+      "th": "ตอนนี้คุณเล่าได้ว่า ฝนทำให้หินสึกกร่อนเล็กน้อย แม่น้ำนำเกลือไปสู่ทะเล และเกลืออยู่ที่นั่น",
+      "en": "You can now tell someone: rain breaks down rocks a little, rivers bring the salt to the sea, and it stays there."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}

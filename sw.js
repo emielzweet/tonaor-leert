@@ -1,5 +1,5 @@
 // Offline: de app-schil wordt bewaard, lettertypes worden na de eerste keer gecachet.
-const CACHE='tonaor-leert-v2-61';
+const CACHE='tonaor-leert-v2-62';
 const SHELL=['./','./index.html','./tlsync.js','./pakketcheck.js','./content/rk-1.json','./content/nl-t1.json','./content/nl-basis.json','./content/index.json','./scene.js','./content/en-t1.json','./uitleg.js','./content/uitleg-rk.json','./content/uitleg-nl.json','./content/uitleg-en.json','./manifest.webmanifest','./icons/icon-180.png','./icons/icon-192.png','./icons/icon-512.png'];
 // Eigen bestanden altijd vers bij de server opvragen (cache: 'reload' bij installeren, 'no-cache' daarna), zodat de
 // HTTP-cache van de browser na een release nooit oude pakketten naast nieuwe code legt. Offline blijft de cache werken.

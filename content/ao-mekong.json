@@ -1,0 +1,689 @@
+{
+ "format": 1,
+ "id": "ao-mekong",
+ "type": "les",
+ "version": 1,
+ "order": 13,
+ "place": "ao",
+ "requires": [],
+ "learn": "nl",
+ "level": "A2",
+ "gebied": "Azië",
+ "vorm": "een plek op de kaart",
+ "draden": [
+  "ao-zijderoute",
+  "ao-zout",
+  "ao-tijdzones"
+ ],
+ "title": {
+  "nl": "Waarom is de Mekong zo belangrijk voor zes landen?",
+  "th": "ทำไมแม่น้ำโขงจึงสำคัญต่อหกประเทศ",
+  "en": "Why is the Mekong so important for six countries?"
+ },
+ "sources": [
+  {
+   "url": "https://nl.wikipedia.org/wiki/Mekong",
+   "title": "Wikipedia: Mekong"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Mekong",
+   "title": "Wikipedia: Mekong (English)"
+  }
+ ],
+ "items": [
+  {
+   "id": "mek.rivier",
+   "kind": "word",
+   "w": "rivier",
+   "art": "de",
+   "tr": {
+    "th": "แม่น้ำ",
+    "en": "river"
+   },
+   "def": "Water dat in een lange baan naar de zee stroomt.",
+   "ex": "De Mekong is een lange rivier.",
+   "gap": "De ___ stroomt door zes landen naar de zee.",
+   "wrong": [
+    "trein",
+    "straat",
+    "fiets"
+   ]
+  },
+  {
+   "id": "mek.bron",
+   "kind": "word",
+   "w": "bron",
+   "art": "de",
+   "tr": {
+    "th": "ต้นน้ำ",
+    "en": "source (of a river)"
+   },
+   "def": "De plek waar een rivier begint.",
+   "ex": "De bron van de Mekong ligt op een hoogland.",
+   "gap": "De ___ van een rivier is de plek waar het water begint.",
+   "wrong": [
+    "trap",
+    "bus",
+    "wolk"
+   ]
+  },
+  {
+   "id": "mek.delta",
+   "kind": "word",
+   "w": "delta",
+   "art": "de",
+   "tr": {
+    "th": "ดินดอนสามเหลี่ยมปากแม่น้ำ",
+    "en": "delta"
+   },
+   "def": "Het gebied waar een rivier in veel kleine stromen uit elkaar gaat en in zee eindigt.",
+   "ex": "De delta van de Mekong ligt in Vietnam.",
+   "gap": "De ___ ligt waar de rivier in zee stroomt.",
+   "wrong": [
+    "lucht",
+    "bak",
+    "tas"
+   ]
+  },
+  {
+   "id": "mek.vis",
+   "kind": "word",
+   "w": "vis",
+   "art": "de",
+   "tr": {
+    "th": "ปลา",
+    "en": "fish"
+   },
+   "def": "Een dier dat in het water leeft en dat mensen eten.",
+   "ex": "In de Mekong zwemmen heel veel soorten vis.",
+   "gap": "Mensen langs de rivier vangen de ___ voor het avondeten.",
+   "wrong": [
+    "fiets",
+    "deur",
+    "les"
+   ]
+  },
+  {
+   "id": "mek.dam",
+   "kind": "word",
+   "w": "dam",
+   "art": "de",
+   "tr": {
+    "th": "เขื่อน",
+    "en": "dam"
+   },
+   "def": "Een dikke muur in een rivier die het water tegenhoudt.",
+   "ex": "In 1993 bouwde China een dam in de Mekong.",
+   "gap": "De ___ in de rivier houdt het water tegen.",
+   "wrong": [
+    "wolk",
+    "tuin",
+    "kast"
+   ]
+  },
+  {
+   "id": "mek.meer",
+   "kind": "word",
+   "w": "meer",
+   "art": "het",
+   "tr": {
+    "th": "ทะเลสาบ",
+    "en": "lake"
+   },
+   "def": "Een groot stuk water met land eromheen.",
+   "ex": "Het meer in Cambodja neemt in de natte tijd extra water op.",
+   "gap": "Het ___ is een groot water met land eromheen.",
+   "wrong": [
+    "raam",
+    "bord",
+    "dak"
+   ]
+  },
+  {
+   "id": "mek.rijst",
+   "kind": "word",
+   "w": "rijst",
+   "art": "de",
+   "tr": {
+    "th": "ข้าว",
+    "en": "rice"
+   },
+   "def": "Een graan dat veel mensen in Azië eten.",
+   "ex": "In de delta groeit veel rijst.",
+   "gap": "De ___ groeit goed in de vruchtbare delta.",
+   "wrong": [
+    "fietsen",
+    "regen",
+    "muziek"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ao-mekong-kn",
+   "place": "ao",
+   "subject": "kn",
+   "level": "A2",
+   "title": {
+    "nl": "Waarom is de Mekong zo belangrijk voor zes landen?",
+    "th": "ทำไมแม่น้ำโขงจึงสำคัญต่อหกประเทศ",
+    "en": "Why is the Mekong so important for six countries?"
+   },
+   "intro": {
+    "nl": "Je volgt een rivier over de kaart, van de bron in het noorden tot de zee in het zuiden. Schat eerst hoeveel landen de rivier raakt.",
+    "th": "คุณจะตามแม่น้ำบนแผนที่ จากต้นน้ำทางเหนือไปจนถึงทะเลทางใต้ ลองประมาณก่อนว่าแม่น้ำผ่านกี่ประเทศ",
+    "en": "You follow a river across the map, from the source in the north to the sea in the south. First estimate how many countries the river touches."
+   },
+   "can": {
+    "nl": "Aanwijzen waar de Mekong begint en eindigt, en uitleggen waarom de rivier belangrijk is",
+    "th": "ชี้ได้ว่าแม่น้ำโขงเริ่มและสิ้นสุดที่ไหน และอธิบายได้ว่าทำไมแม่น้ำจึงสำคัญ",
+    "en": "Point out where the Mekong begins and ends, and explain why the river matters"
+   },
+   "targets": [
+    "mek.rivier",
+    "mek.bron",
+    "mek.delta",
+    "mek.vis",
+    "mek.dam",
+    "mek.meer",
+    "mek.rijst"
+   ],
+   "goals": [
+    "kennis-nederland",
+    "nt2-I-lezen-4"
+   ],
+   "art": {
+    "bg": "street",
+    "tone": "sky",
+    "alt": {
+     "nl": "Zes borden, van noord naar zuid langs de rivier, als een eenvoudige kaart: China, Myanmar, Laos, Thailand, Cambodja en Vietnam.",
+     "th": "ป้ายหกป้ายเรียงจากเหนือไปใต้ตามแม่น้ำ เหมือนแผนที่ง่าย ๆ ได้แก่ จีน เมียนมา ลาว ไทย กัมพูชา และเวียดนาม",
+     "en": "Six signs, from north to south along the river, like a simple map: China, Myanmar, Laos, Thailand, Cambodia and Vietnam."
+    },
+    "things": [
+     {
+      "kind": "sign",
+      "x": 175,
+      "y": 30,
+      "text": "China",
+      "hot": true,
+      "item": "mek.bron",
+      "label": {
+       "nl": "China: de bron, op een hoogland in Tibet",
+       "th": "จีน: ต้นน้ำ บนที่ราบสูงทิเบต",
+       "en": "China: the source, on a plateau in Tibet"
+      }
+     },
+     {
+      "kind": "sign",
+      "x": 62,
+      "y": 70,
+      "text": "Myanmar",
+      "hot": true,
+      "item": "mek.rivier",
+      "label": {
+       "nl": "Myanmar: een van de zes landen van de Mekong",
+       "th": "เมียนมา: หนึ่งในหกประเทศของแม่น้ำโขง",
+       "en": "Myanmar: one of the six countries of the Mekong"
+      }
+     },
+     {
+      "kind": "sign",
+      "x": 200,
+      "y": 82,
+      "text": "Laos",
+      "hot": true,
+      "item": "mek.dam",
+      "label": {
+       "nl": "Laos: hier worden nieuwe dammen gebouwd",
+       "th": "ลาว: ที่นี่กำลังสร้างเขื่อนใหม่",
+       "en": "Laos: new dams are being built here"
+      }
+     },
+     {
+      "kind": "sign",
+      "x": 100,
+      "y": 122,
+      "text": "Thailand",
+      "hot": true,
+      "item": "mek.vis",
+      "label": {
+       "nl": "Thailand: ook hier vissen mensen in de Mekong",
+       "th": "ไทย: ที่นี่ก็มีคนหาปลาในแม่น้ำโขง",
+       "en": "Thailand: people fish in the Mekong here too"
+      }
+     },
+     {
+      "kind": "sign",
+      "x": 150,
+      "y": 168,
+      "text": "Cambodja",
+      "hot": true,
+      "item": "mek.meer",
+      "label": {
+       "nl": "Cambodja: het meer Tonlé Sap, dat in de droge tijd water aan de rivier geeft",
+       "th": "กัมพูชา: ทะเลสาบโตนเลสาบ ซึ่งให้น้ำแก่แม่น้ำในฤดูแล้ง",
+       "en": "Cambodia: the lake Tonlé Sap, which gives water to the river in the dry season"
+      }
+     },
+     {
+      "kind": "sign",
+      "x": 280,
+      "y": 130,
+      "text": "Vietnam",
+      "hot": true,
+      "item": "mek.delta",
+      "label": {
+       "nl": "Vietnam: de delta, waar de rivier in zee stroomt",
+       "th": "เวียดนาม: ดินดอนสามเหลี่ยมปากแม่น้ำ ที่แม่น้ำไหลลงทะเล",
+       "en": "Vietnam: the delta, where the river flows into the sea"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "type": "quiz",
+     "role": "instap",
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "mek.rivier"
+       ],
+       "ask": {
+        "nl": "Schat: door hoeveel landen stroomt de Mekong? Typ een getal.",
+        "th": "ประมาณการ: แม่น้ำโขงไหลผ่านกี่ประเทศ พิมพ์ตัวเลข",
+        "en": "Estimate: through how many countries does the Mekong flow? Type a number."
+       },
+       "answer": "6",
+       "tol": 1,
+       "err": "getal",
+       "why": {
+        "nl": "Goed gegokt of niet: het zijn er zes. Je zoekt ze zo op de kaart.",
+        "th": "ไม่ว่าจะเดาถูกหรือไม่ มีหกประเทศ คุณจะหาพวกมันบนแผนที่ต่อไป",
+        "en": "Good guess or not: there are six. You will look for them on the map in a moment."
+       }
+      }
+     ]
+    },
+    {
+     "type": "look",
+     "min": 4
+    },
+    {
+     "type": "do",
+     "form": "point",
+     "items": [
+      "mek.bron"
+     ],
+     "ask": {
+      "nl": "Zoek op de kaart: waar begint de Mekong? Tik het land aan.",
+      "th": "หาบนแผนที่: แม่น้ำโขงเริ่มต้นที่ไหน แตะที่ประเทศ",
+      "en": "Look on the map: where does the Mekong begin? Tap the country."
+     },
+     "answer": "mek.bron",
+     "why": {
+      "nl": "Goed. De Mekong ontspringt op het Tibetaanse Hoogland in China, ver in het noorden.",
+      "th": "ถูกต้อง แม่น้ำโขงเริ่มต้นที่ที่ราบสูงทิเบตในจีน ไกลไปทางเหนือ",
+      "en": "Right. The Mekong rises on the Tibetan Plateau in China, far in the north."
+     }
+    },
+    {
+     "type": "do",
+     "form": "point",
+     "items": [
+      "mek.delta"
+     ],
+     "ask": {
+      "nl": "En waar stroomt de Mekong in zee? Tik het land aan.",
+      "th": "แล้วแม่น้ำโขงไหลลงทะเลที่ไหน แตะที่ประเทศ",
+      "en": "And where does the Mekong flow into the sea? Tap the country."
+     },
+     "answer": "mek.delta",
+     "why": {
+      "nl": "Goed. In Vietnam eindigt de rivier met de delta in de Zuid-Chinese Zee.",
+      "th": "ถูกต้อง ที่เวียดนามแม่น้ำสิ้นสุดด้วยดินดอนสามเหลี่ยมในทะเลจีนใต้",
+      "en": "Right. In Vietnam the river ends with the delta in the South China Sea."
+     }
+    },
+    {
+     "type": "read",
+     "items": [
+      "mek.rivier",
+      "mek.bron",
+      "mek.delta"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Mekong",
+       "title": "Wikipedia: Mekong"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Mekong",
+       "title": "Wikipedia: Mekong (English)"
+      }
+     ],
+     "text": {
+      "nl": "Een rivier van noord naar zuid.\n\nDe Mekong is tussen de 4.350 en 4.909 kilometer lang. Dat verschilt per bron. De rivier begint op het Tibetaanse Hoogland in China, op 5.224 meter hoogte. Dan stroomt ze door China en langs Myanmar, Laos en Thailand, en daarna door Cambodja. In Vietnam eindigt ze met een delta in de Zuid-Chinese Zee.\n\nIn China heet de rivier de Lancang.",
+      "th": "แม่น้ำจากเหนือสู่ใต้\n\nแม่น้ำโขงยาวระหว่าง 4,350 ถึง 4,909 กิโลเมตร ขึ้นอยู่กับแหล่งข้อมูล แม่น้ำเริ่มต้นที่ที่ราบสูงทิเบตในจีน ที่ความสูง 5,224 เมตร จากนั้นไหลผ่านจีน และไหลเลียบเมียนมา ลาว และไทย แล้วผ่านกัมพูชา ในเวียดนามแม่น้ำสิ้นสุดด้วยดินดอนสามเหลี่ยมปากแม่น้ำในทะเลจีนใต้\n\nในประเทศจีนแม่น้ำนี้เรียกว่าหลานชาง (Lancang)",
+      "en": "A river from north to south.\n\nThe Mekong is between 4,350 and 4,909 kilometres long. That differs per source. The river starts on the Tibetan Plateau in China, at 5,224 metres. Then it flows through China and along Myanmar, Laos and Thailand, and then through Cambodia. In Vietnam it ends with a delta in the South China Sea.\n\nIn China the river is called the Lancang."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "mek.bron"
+       ],
+       "ask": {
+        "nl": "Waar ontspringt de Mekong?",
+        "th": "แม่น้ำโขงเริ่มต้นที่ไหน",
+        "en": "Where does the Mekong rise?"
+       },
+       "opts": [
+        {
+         "t": "Op het Tibetaanse Hoogland in China",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Daar ligt de bron, op meer dan vijfduizend meter hoogte.",
+          "th": "ถูกต้อง ต้นน้ำอยู่ที่นั่น สูงกว่าห้าพันเมตร",
+          "en": "Right. The source is there, at more than five thousand metres."
+         }
+        },
+        {
+         "t": "In de delta in Vietnam",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. In de delta eindigt de rivier, daar begint ze niet.",
+          "th": "ไม่ใช่ ที่ดินดอนสามเหลี่ยมคือจุดสิ้นสุดของแม่น้ำ ไม่ใช่จุดเริ่มต้น",
+          "en": "No. In the delta the river ends, it does not begin there."
+         }
+        },
+        {
+         "t": "In Cambodja bij een meer",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De bron ligt in het noorden, in China.",
+          "th": "ไม่ใช่ ต้นน้ำอยู่ทางเหนือ ในประเทศจีน",
+          "en": "No. The source is in the north, in China."
+         }
+        }
+       ],
+       "answer": "Op het Tibetaanse Hoogland in China"
+      },
+      {
+       "form": "type",
+       "items": [
+        "mek.delta"
+       ],
+       "ask": {
+        "nl": "In welk land ligt de delta van de Mekong? Typ één woord.",
+        "th": "ดินดอนสามเหลี่ยมปากแม่น้ำโขงอยู่ในประเทศใด พิมพ์หนึ่งคำ",
+        "en": "In which country is the delta of the Mekong? Type one word."
+       },
+       "answer": "Vietnam",
+       "accept": [
+        "Viet Nam"
+       ],
+       "hint": [
+        {
+         "nl": "Het ligt in het zuidoosten van Azië, aan de zee.",
+         "th": "อยู่ทางตะวันออกเฉียงใต้ของเอเชีย ติดทะเล",
+         "en": "It is in the south-east of Asia, by the sea."
+        },
+        {
+         "nl": "Begin zo: Viet…",
+         "th": "ขึ้นต้นแบบนี้: Viet…",
+         "en": "Start like this: Viet…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. De delta ligt in Vietnam.",
+        "th": "ถูกต้อง ดินดอนสามเหลี่ยมปากแม่น้ำอยู่ในเวียดนาม",
+        "en": "Right. The delta is in Vietnam."
+       }
+      }
+     ]
+    },
+    {
+     "type": "quiz",
+     "role": "ophalen",
+     "q": [
+      {
+       "form": "build",
+       "items": [
+        "mek.rivier"
+       ],
+       "ask": {
+        "nl": "Volg de rivier van de bron naar de zee. Zet deze vier landen in de goede volgorde.",
+        "th": "ตามแม่น้ำจากต้นน้ำไปยังทะเล เรียงประเทศทั้งสี่นี้ให้ถูกต้อง",
+        "en": "Follow the river from the source to the sea. Put these four countries in the right order."
+       },
+       "data": {
+        "parts": [
+         "China",
+         "Laos",
+         "Cambodja",
+         "Vietnam"
+        ],
+        "tr": {
+         "th": "จีน ลาว กัมพูชา เวียดนาม",
+         "en": "China, Laos, Cambodia, Vietnam"
+        }
+       },
+       "why": {
+        "nl": "Zo stroomt de Mekong: eerst China, dan Laos, dan Cambodja en tot slot Vietnam.",
+        "th": "แม่น้ำโขงไหลเช่นนี้ ก่อนอื่นจีน แล้วลาว แล้วกัมพูชา และสุดท้ายเวียดนาม",
+        "en": "This is how the Mekong flows: first China, then Laos, then Cambodia and finally Vietnam."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "items": [
+      "mek.vis",
+      "mek.rijst",
+      "mek.meer"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Mekong",
+       "title": "Wikipedia: Mekong"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Mekong",
+       "title": "Wikipedia: Mekong (English)"
+      }
+     ],
+     "text": {
+      "nl": "En waarom is die rivier zo belangrijk? Voor veel mensen is de Mekong eten en werk.\n\nVis: in de rivier leven ongeveer 850 soorten vis. Alleen in de Amazone leven meer verschillende soorten. Zo'n 40 miljoen mensen op het platteland rond de rivier vissen in het wild. In Cambodja komt ongeveer 80 procent van de eiwitten uit vis van de Mekong.\n\nRijst: de delta is heel vruchtbaar voor rijst.\n\nHet meer: in Cambodja ligt het meer Tonlé Sap. Als de Mekong laag staat, stroomt water uit het meer de rivier in. Bij hoog water draait de stroom om en stroomt water de rivier uit naar het meer.",
+      "th": "แล้วทำไมแม่น้ำสายนี้จึงสำคัญมาก สำหรับคนจำนวนมาก แม่น้ำโขงคืออาหารและอาชีพ\n\nปลา: ในแม่น้ำมีปลาประมาณ 850 ชนิด มีเพียงแม่น้ำอเมซอนที่มีสิ่งมีชีวิตหลากหลายชนิดกว่า ราว 40 ล้านคนในชนบทรอบแม่น้ำหาปลาจากธรรมชาติ ในกัมพูชา ประมาณ 80 เปอร์เซ็นต์ของโปรตีนมาจากปลาของแม่น้ำโขง\n\nข้าว: ดินดอนสามเหลี่ยมปากแม่น้ำอุดมสมบูรณ์มากสำหรับปลูกข้าว\n\nทะเลสาบ: ในกัมพูชามีทะเลสาบโตนเลสาบ (Tonlé Sap) เมื่อแม่น้ำโขงต่ำ น้ำจากทะเลสาบไหลเข้าสู่แม่น้ำ เมื่อน้ำสูง กระแสน้ำกลับทิศ น้ำไหลจากแม่น้ำไปยังทะเลสาบ",
+      "en": "And why is that river so important? For many people the Mekong is food and work.\n\nFish: about 850 kinds of fish live in the river. Only in the Amazon do more different kinds of living things live. About 40 million people in the countryside around the river fish in the wild. In Cambodia about 80 percent of the protein comes from fish from the Mekong.\n\nRice: the delta is very fertile for rice.\n\nThe lake: in Cambodia lies the lake Tonlé Sap. When the Mekong is low, water flows from the lake into the river. At high water the flow turns around and water flows from the river into the lake."
+     },
+     "q": [
+      {
+       "form": "choose",
+       "items": [
+        "mek.vis"
+       ],
+       "ask": {
+        "nl": "Waarom is de Mekong belangrijk voor Cambodja?",
+        "th": "ทำไมแม่น้ำโขงจึงสำคัญต่อกัมพูชา",
+        "en": "Why is the Mekong important for Cambodia?"
+       },
+       "opts": [
+        {
+         "t": "Vis uit de rivier geeft ongeveer 80 procent van de eiwitten",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Veel mensen in Cambodja eten vis uit de Mekong.",
+          "th": "ถูกต้อง ชาวกัมพูชาจำนวนมากกินปลาจากแม่น้ำโขง",
+          "en": "Right. Many people in Cambodia eat fish from the Mekong."
+         }
+        },
+        {
+         "t": "Alle rijst in Azië groeit er",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Dat staat er niet. De tekst noemt rijst in de delta, in Vietnam.",
+          "th": "ไม่ใช่ ไม่ได้เขียนไว้เช่นนั้น ข้อความกล่าวถึงข้าวที่ดินดอนสามเหลี่ยม ในเวียดนาม",
+          "en": "No. That is not what it says. The text mentions rice in the delta, in Vietnam."
+         }
+        },
+        {
+         "t": "De bron van de rivier ligt er",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. De bron ligt in China.",
+          "th": "ไม่ใช่ ต้นน้ำอยู่ในประเทศจีน",
+          "en": "No. The source is in China."
+         }
+        }
+       ],
+       "answer": "Vis uit de rivier geeft ongeveer 80 procent van de eiwitten"
+      },
+      {
+       "form": "complete",
+       "items": [
+        "mek.rijst"
+       ],
+       "ask": {
+        "nl": "Maak af: De delta is vruchtbaar voor ___.",
+        "th": "เติมคำ: De delta is vruchtbaar voor ___.",
+        "en": "Complete: De delta is vruchtbaar voor ___."
+       },
+       "answer": "rijst",
+       "hint": [
+        {
+         "nl": "Het is een graan. Veel mensen in Azië eten het elke dag.",
+         "th": "เป็นธัญพืช คนในเอเชียจำนวนมากกินทุกวัน",
+         "en": "It is a grain. Many people in Asia eat it every day."
+        },
+        {
+         "nl": "Begin zo: rij…",
+         "th": "ขึ้นต้นแบบนี้: rij…",
+         "en": "Start like this: rij…"
+        }
+       ],
+       "why": {
+        "nl": "Goed. In de delta groeit veel rijst.",
+        "th": "ถูกต้อง ในดินดอนสามเหลี่ยมปากแม่น้ำปลูกข้าวได้มาก",
+        "en": "Right. A lot of rice grows in the delta."
+       }
+      }
+     ]
+    },
+    {
+     "type": "read",
+     "dieper": true,
+     "items": [
+      "mek.dam",
+      "mek.vis",
+      "mek.rijst"
+     ],
+     "sources": [
+      {
+       "url": "https://nl.wikipedia.org/wiki/Mekong",
+       "title": "Wikipedia: Mekong"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Mekong",
+       "title": "Wikipedia: Mekong (English)"
+      }
+     ],
+     "text": {
+      "nl": "Zes landen delen één rivier. Dat geeft vragen.\n\nIn China liggen dammen die elektriciteit maken. Van de 15 grote waterkrachtcentrales aan de hoofdrivier staan er 13 in China en 2 in Laos. Begin 2024 werden er in het hele gebied van de rivier, ook aan zijrivieren, nog 18 centrales gebouwd, waarvan 14 in Laos.\n\nEen dam houdt water tegen. Critici zijn bang dat nieuwe dammen slecht zijn voor de vis en voor de vruchtbaarheid van de rijstvelden. Wat een land doet met het water in zijn deel van de rivier, merken de landen verderop.",
+      "th": "หกประเทศใช้แม่น้ำสายเดียวร่วมกัน ซึ่งทำให้เกิดคำถาม\n\nในประเทศจีนมีเขื่อนที่ผลิตไฟฟ้า จากโรงไฟฟ้าพลังน้ำขนาดใหญ่ 15 แห่งบนแม่น้ำสายหลัก มี 13 แห่งอยู่ในจีนและ 2 แห่งอยู่ในลาว ต้นปี 2024 ทั่วทั้งลุ่มแม่น้ำ รวมถึงแม่น้ำสาขา มีโรงไฟฟ้ากำลังก่อสร้างอีก 18 แห่ง ในจำนวนนี้ 14 แห่งอยู่ในลาว\n\nเขื่อนกั้นน้ำไว้ ผู้วิจารณ์กลัวว่าเขื่อนใหม่จะไม่ดีต่อปลาและต่อความอุดมสมบูรณ์ของนาข้าว สิ่งที่ประเทศหนึ่งทำกับน้ำในส่วนของแม่น้ำของตน ประเทศที่อยู่ปลายน้ำก็รู้สึกได้",
+      "en": "Six countries share one river. That raises questions.\n\nIn China there are dams that make electricity. Of the 15 large hydropower plants on the main river, 13 are in China and 2 are in Laos. In early 2024, across the whole river basin, including side rivers, 18 more plants were being built, 14 of them in Laos.\n\nA dam holds back water. Critics fear that new dams are bad for the fish and for the fertility of the rice fields. What one country does with the water in its part of the river is felt by the countries further down."
+     },
+     "q": [
+      {
+       "form": "number",
+       "items": [
+        "mek.dam"
+       ],
+       "ask": {
+        "nl": "Hoeveel van de 15 grote waterkrachtcentrales aan de hoofdrivier staan in China? Typ het getal.",
+        "th": "โรงไฟฟ้าพลังน้ำขนาดใหญ่ 15 แห่งบนแม่น้ำสายหลัก มีกี่แห่งในจีน พิมพ์ตัวเลข",
+        "en": "How many of the 15 large hydropower plants on the main river are in China? Type the number."
+       },
+       "answer": "13",
+       "err": "getal",
+       "why": {
+        "nl": "Goed. 13 van de 15 staan in China.",
+        "th": "ถูกต้อง 13 จาก 15 อยู่ในจีน",
+        "en": "Right. 13 of the 15 are in China."
+       }
+      },
+      {
+       "form": "choose",
+       "items": [
+        "mek.dam"
+       ],
+       "ask": {
+        "nl": "Waar zijn critici bang voor bij nieuwe dammen?",
+        "th": "ผู้วิจารณ์กลัวอะไรเกี่ยวกับเขื่อนใหม่",
+        "en": "What do critics fear about new dams?"
+       },
+       "opts": [
+        {
+         "t": "Voor de vis en voor de vruchtbaarheid van de rijstvelden",
+         "r": "ok",
+         "why": {
+          "nl": "Goed. Dammen kunnen de vis en de rijstvelden verderop raken.",
+          "th": "ถูกต้อง เขื่อนอาจกระทบปลาและนาข้าวที่อยู่ปลายน้ำ",
+          "en": "Right. Dams can affect the fish and the rice fields further down."
+         }
+        },
+        {
+         "t": "Dat de rivier te kort wordt",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Dat staat er niet. Het gaat om vis en rijst.",
+          "th": "ไม่ใช่ ไม่ได้เขียนไว้ เรื่องนี้เกี่ยวกับปลาและข้าว",
+          "en": "No. That is not what it says. It is about fish and rice."
+         }
+        },
+        {
+         "t": "Dat er te veel regen valt",
+         "r": "no",
+         "err": "lezen",
+         "why": {
+          "nl": "Nee. Daar gaat de tekst niet over.",
+          "th": "ไม่ใช่ ข้อความไม่ได้พูดถึงเรื่องนั้น",
+          "en": "No. The text is not about that."
+         }
+        }
+       ],
+       "answer": "Voor de vis en voor de vruchtbaarheid van de rijstvelden"
+      }
+     ]
+    },
+    {
+     "type": "end",
+     "next": {
+      "nl": "Kies een draad om verder te lezen, of ga later verder.",
+      "th": "เลือกเรื่องต่อไปเพื่ออ่านต่อ หรือกลับมาอ่านทีหลังก็ได้",
+      "en": "Pick a thread to read on, or continue later."
+     },
+     "real": {
+      "nl": "Je kunt nu uitleggen: de Mekong stroomt door zes landen en geeft veel mensen vis en rijst. Wat het ene land met het water doet, merken de landen verderop.",
+      "th": "ตอนนี้คุณอธิบายได้ว่า แม่น้ำโขงไหลผ่านหกประเทศและให้ปลากับข้าวแก่คนจำนวนมาก สิ่งที่ประเทศหนึ่งทำกับน้ำ ประเทศปลายน้ำก็รู้สึกได้",
+      "en": "You can now explain: the Mekong flows through six countries and gives many people fish and rice. What one country does with the water is felt by the countries further down."
+     }
+    }
+   ]
+  }
+ ],
+ "review": {
+  "model": "claude-opus-5-5",
+  "date": "2026-11-15",
+  "verdict": "goed"
+ }
+}
