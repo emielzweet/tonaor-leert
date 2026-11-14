@@ -1,10 +1,11 @@
 // Scènes (docs/scenes.md, docs/concept-leerwereld.md stap 2): controle van het formaat, de eisen, en de rij schermen die de speler maakt.
 import vm from 'node:vm';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { boot, PC, html, ROOT } from './app-harness.mjs';
 let fails = 0; const ok = (n, v, extra) => { if (!v) fails++; console.log((v ? 'OK  ' : 'FOUT') + ' ' + n + (v || extra == null ? '' : '\n     ' + extra)); };
 const fnBlock = name => { const i = html.indexOf('function ' + name + '('); if (i < 0) throw new Error(name); let d = 0, j = html.indexOf('{', i); for (; j < html.length; j++) { if (html[j] === '{') d++; else if (html[j] === '}') { d--; if (!d) break; } } return html.slice(i, j + 1); };
-const app = await boot(); const g = app.api.get(); const packs = g.PACKS;
+const app = await boot(); const g = app.api.get();
+const packs = readdirSync(new URL('content/', ROOT)).filter(f => f.endsWith('.json')).map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8')));   // alle pakketten in content/, ook een hoofdstuk dat de app (nog) verbergt
 const withScenes = packs.filter(p => p.scenes); const scenes = withScenes.flatMap(p => p.scenes.map(sc => ({ sc, p })));
 ok('er is minstens één scène, en de pakketten met scènes zijn goed', scenes.length > 0 && withScenes.every(p => !PC.checkPack(p, packs.filter(o => o !== p)).errors.length), withScenes.map(p => PC.checkPack(p, packs.filter(o => o !== p)).errors.join('; ')).join(' | '));
 
@@ -41,7 +42,7 @@ const T3 = nl => ({ nl, th: 'ก', en: 'x' });
 const w0 = g.NL[0].id, w1 = g.NL[1].id, rl = packs.flatMap(p => p.items || []).find(x => x.kind === 'rule').id;
 const ch = (id, err, ask) => ({ form: 'choose', items: [id], ask: ask || { nl: 'Vraag?' }, opts: [{ t: 'goed', r: 'ok', why: T3('Goed.') }, { t: 'fout', r: 'no', err, why: T3('Nee.') }] });
 const deep = { id: 'test-diep', place: 'test', subject: 'nl', level: 'A1', n: 1, title: T3('Test'), intro: T3('Test'), can: T3('Test'), targets: [w0, w1],
-  art: { bg: 'room', alt: { nl: 'leeg' }, things: [] },
+  art: { bg: 'room', alt: { nl: 'een bord' }, things: [{ kind: 'sign', x: 60, y: 50, text: 'Bord', hot: true, item: w0, label: T3('het bord') }] },
   steps: [{ type: 'quiz', role: 'instap', q: [ch(w0, 'betekenis')] }, { type: 'quiz', role: 'ophalen', q: [ch(w0, 'betekenis', T3('a')), ch(w1, 'betekenis', T3('b'))] },
     { type: 'rule', items: [rl], example: T3('Voorbeeld.'), q: [2, 1, 0].map(h => Object.assign(ch(rl, 'woordvolgorde', T3('r')), { help: h })) },
     { type: 'extra', err: 'woordvolgorde', explain: T3('Kort.'), q: [ch(rl, 'woordvolgorde', T3('d')), ch(rl, 'woordvolgorde', T3('e'))] },
@@ -102,7 +103,7 @@ ok('rij: gap en build gaan naar het bestaande oefenscherm, met de soort fout en 
 ok('rij: spreken en spel worden eigen schermen', dq2.some(x => x.type === 'sc_speak') && dq2.some(x => x.type === 'sc_game'));
 const hq = app.sq(deep, true);
 ok('zwaardere vorm: elke vraag van de scène weet dat hij zwaarder is', hq.filter(x => x.type === 'sc_q').every(x => x.hard) && hq[0].hard);
-ok('fout in een bestaand oefenscherm telt in het foutprofiel (fbBox)', html.includes("if(!ok&&app.classList.contains('sess')&&Q[qi]&&Q[qi]._sceneErr)scFault(Q[qi],Q[qi]._sceneErr)"));
+ok('fout in een bestaand oefenscherm telt in het foutprofiel, hooguit één keer per vraag (codereview A2)', html.includes('Q[qi]._sceneErr&&!Q[qi]._faulted){Q[qi]._faulted=1;scFault('));
 ok('spel telt niet als vorm voor bloei (C5)', /const NOGROW=\[[^\]]*'spel'/.test(html));
 ok('hint in twee stappen: goed na een hint telt als retry', html.includes('const right=msg=>{done=true;if(hint)first=false;'));
 ok('opslag: eigen record per scène (world.best) in migratie 5', html.includes('s.world.best={}') && html.includes('world:{ok:{},best:{},done:{}'));
@@ -147,9 +148,11 @@ ok('speler: een antwoord binnen de marge (tol) is goed', html.includes("<=(typeo
 // review 2 (aan de bouwsessie)
 ok('controle: een uitleg-id die niet bestaat wordt geweigerd, een bestaande niet', /bestaat niet/.test(chk(sc => { sc.steps.splice(1, 0, { type: 'explain', id: 'klok-half' }); })) && chk(sc => { sc.steps.splice(1, 0, { type: 'explain', id: 'u.rk.klok' }); }) === '');
 ok('hoofdstuk: bij elk grammaticapunt een extra', /hoort een stap extra/.test(cc(p => { p.scenes.forEach(sc => { const r = sc.steps.find(s => s.type === 'rule'); if (r) { r.items = ['nl.regel.heb']; r.q.forEach(q => { q.items = ['nl.regel.heb']; }); } }); })));
-ok('speler: bij een getal tellen euroteken, spaties en cent niet als fout', html.includes('€ 6,60 en 25 cent zijn ook goed'));
-ok('zwaardere vorm: alleen een kort antwoord wordt typen', html.includes('lange antwoorden blijven kiezen'));
-ok('een hoofdstuk verschijnt alleen als het de hoofdstukcontrole haalt', html.includes("SCENES=PACKS.filter(p=>p.type!=='hoofdstuk'||!PC||!PC.checkChapter||!PC.checkChapter(p).errors.length)"));
+{ const cx = {}; vm.createContext(cx); vm.runInContext(fnBlock('scNum') + '\nthis.n=scNum;', cx); const T = [['6,60', 6.6], ['€ 6,60', 6.6], ['6 euro 60', 6.6], ['25 cent', 0.25], ['1.000', 1000], ['€ 1.250,50', 1250.5], ['1250', 1250], ['0,25 euro', 0.25], ['6,-', 6], ['zes', NaN]];
+  const bad = T.filter(([v, w]) => !(Number.isNaN(w) ? Number.isNaN(cx.n(v)) : Math.abs(cx.n(v) - w) < 1e-9));
+  ok('speler: een getal zoals een Nederlander het typt (€, duizendtal met punt, euro 60, cent) wordt goed gelezen (codereview B2)', !bad.length, bad.map(([v]) => v + ' -> ' + cx.n(v)).join('; ')); }
+ok('zwaardere vorm: alleen een kort antwoord (hooguit drie woorden) wordt typen', html.includes('typeIt=q.hard&&qq.answer!=null&&String(qq.answer).trim().split(/\\s+/).length<=3'));
+ok('een hoofdstuk dat de hoofdstukcontrole niet haalt, staat helemaal buiten de app (scènes, woorden, regels)', packs.filter(p => p.type === 'hoofdstuk' && PC.checkChapter(p).errors.length).every(p => !g.PACKS.some(o => o.id === p.id) && !(p.items || []).some(x => g.NL.some(w => w.id === x.id))));
 ok('hoofdstuk G5: een hoofdstuk met goals heeft purpose', /purpose/.test(cc(p => { delete p.purpose; })));
 ok('purpose staat bij het begin en op het slot van de laatste scène (scPurpose)', html.includes("scPurpose(sc,'first')") && html.includes("scPurpose(sc,'last')"));
 ok('H3 rust pas over tijd: drie dagen en zeven dagen ertussen (MOTOR.restDays, restSpan)', html.includes('h[h.length-1][0]-h[0][0]>=MOTOR.restSpan') && html.includes('.size>=MOTOR.restDays'));

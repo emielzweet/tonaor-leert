@@ -315,7 +315,7 @@
     // scènes (docs/scenes.md): vaste stappen, gesprekken met één goede keuze en een reden bij elke keuze, de tekening uit de catalogus
     if (p.scenes != null) {
       var SV = root.SceneVis || null; if (!SV && typeof require === 'function') { try { SV = require('./scene.js'); } catch (e) { SV = null; } }
-      var GAMES = ['dehet'], STEP = ['look', 'talk', 'read', 'listen', 'slot', 'explain', 'do', 'make', 'end', 'quiz', 'rule', 'extra', 'speak', 'game'], ERRS = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen', 'model'], DOFORM = ['setclock', 'change', 'point', 'money', 'clock', 'discount', 'gap', 'build', 'listen'];
+      var GAMES = ['dehet'], STEP = ['look', 'talk', 'read', 'listen', 'slot', 'explain', 'do', 'make', 'end', 'quiz', 'rule', 'extra', 'speak', 'game'], ERRS = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen', 'model'], DOFORM = ['setclock', 'point', 'money', 'clock', 'discount', 'gap', 'build', 'listen'];
       var allItems = {}; [p].concat(others || []).forEach(function (o) { (o.items || []).forEach(function (x) { allItems[x.id] = 1; }); });
       var allExpl = {}; [p].concat(others || []).forEach(function (o) { (o.explain || []).forEach(function (x) { if (x && x.id) allExpl[x.id] = 1; }); });
       var errOk = function (o, u) { if (o.err != null && ERRS.indexOf(o.err) < 0) err(u + ': err ' + o.err + ' staat niet in de lijst'); else if (o.r !== 'ok' && o.err == null) q(u + ': soort fout (err) ontbreekt bij een foute keuze'); };
@@ -327,7 +327,7 @@
         if (qq.hint != null && (!Array.isArray(qq.hint) || qq.hint.length !== 2)) err(u + ': hint moet twee stappen hebben'); else if (qq.hint) qq.hint.forEach(function (h, i) { tekst(h, u + '.hint[' + i + ']'); });
         if (EXF.indexOf(qq.form) >= 0) { itemsOk(qq.items, u); if (qq.ask != null) tekst(qq.ask, u + '.ask'); if (!qq.why) err(u + ': why ontbreekt'); else tekst(qq.why, u + '.why'); if (qq.err != null && ERRS.indexOf(qq.err) < 0) err(u + ': err ' + qq.err + ' staat niet in de lijst');
           if (qq.gen) { if (['money', 'clock', 'discount'].indexOf(qq.form) < 0) err(u + ': gen kan alleen bij geld, klok en korting'); else genCheck({ form: qq.form, gen: qq.gen }, u, true); } else if (!qq.data) err(u + ': data of gen ontbreekt'); else exData({ form: qq.form, data: qq.data }, u, qq.data); return; }
-        itemsOk(qq.items, u); if (nlOnly && qq.ask && typeof qq.ask === 'object') str(qq.ask.nl, u + '.ask.nl'); else tekst(qq.ask, u + '.ask');   // instap en controle: de vraag mag alleen in het Nederlands if (qq.say != null) str(qq.say, u + '.say');
+        itemsOk(qq.items, u); if (nlOnly && qq.ask && typeof qq.ask === 'object') str(qq.ask.nl, u + '.ask.nl'); else tekst(qq.ask, u + '.ask');   /* instap en controle: de vraag mag alleen in het Nederlands */ if (qq.say != null) str(qq.say, u + '.say');
         if (qq.help != null && [0, 1, 2].indexOf(qq.help) < 0) err(u + ': help moet 0, 1 of 2 zijn');
         if (qq.form === 'choose' || qq.form === 'hear') {
           if (!Array.isArray(qq.opts) || qq.opts.length < 2 || qq.opts.length > 4) err(u + ': twee tot vier keuzes');
@@ -371,6 +371,7 @@
             if (!Array.isArray(st.q) || !st.q.length) err(v + ': vragen (q) ontbreken');
             else st.q.forEach(function (qq, qi) { var u = v + '.q[' + qi + ']'; if (qq && qq.form) { vraag(qq, u); return; } tekst(qq.q, u + '.q'); itemsOk(qq.items, u); if (!Array.isArray(qq.o) || qq.o.length < 2) err(u + ': minstens twee keuzes'); else qq.o.forEach(function (o, oi) { tekst(o, u + '.o[' + oi + ']'); }); if (!(Number.isInteger(qq.a) && qq.a >= 0 && qq.a < (qq.o || []).length)) err(u + ': goed antwoord (a) valt buiten de keuzes'); if (!qq.why) err(u + ': why ontbreekt'); else tekst(qq.why, u + '.why'); });
           }
+          if (st.type === 'look') { var hot = ((sc.art && sc.art.things) || []).filter(function (t) { return t && t.hot; }).length, mn = st.min == null ? 1 : st.min; if (!Number.isInteger(mn) || mn < 1 || mn > hot) err(v + ': kijken vraagt ' + mn + ' aantikbare dingen, de tekening heeft er ' + hot); }
           if (st.type === 'slot') { if (!(Number.isInteger(st.n) && st.n >= 1 && st.n <= 4)) err(v + ': n moet 1 tot 4 zijn'); if (!Array.isArray(st.kinds) || !st.kinds.length) err(v + ': kinds ontbreekt'); }
           if (st.type === 'explain' && (typeof st.id !== 'string' || !ID.test(st.id))) err(v + ': id van de uitleg ontbreekt');
           else if (st.type === 'explain' && !allExpl[st.id]) err(v + ': uitleg ' + st.id + ' bestaat niet (zie content/uitleg-*.json); de speler zou hem stil overslaan');
@@ -378,7 +379,9 @@
           else if (st.type === 'do') { doen = true; if (DOFORM.indexOf(st.form) < 0) err(v + ': onbekende vorm ' + st.form); itemsOk(st.items, v); if (st.ask) tekst(st.ask, v + '.ask'); if (st.why) tekst(st.why, v + '.why');
             if (st.form === 'setclock' && !/^\d{1,2}:\d{2}$/.test(String(st.answer))) err(v + ': answer als u:mm');
             if (st.form === 'point' && (!sc.art || !(sc.art.things || []).some(function (t) { return t && t.hot && t.item === st.answer; }))) err(v + ': answer moet het item van een aantikbaar ding zijn');
-            if (['money', 'clock', 'discount'].indexOf(st.form) >= 0 && !st.gen) err(v + ': een som in een scène heeft gen nodig'); }
+            if (['money', 'clock', 'discount'].indexOf(st.form) >= 0 && !st.gen) err(v + ': een som in een scène heeft gen nodig');
+            if (st.gen) genCheck({ form: st.form, gen: st.gen }, v, true); else if (['gap', 'build', 'listen'].indexOf(st.form) >= 0) { if (!st.data) err(v + ': data ontbreekt'); else exData({ form: st.form, data: st.data }, v, st.data); }
+            if (st.form === 'setclock' && /^\d{1,2}:\d{2}$/.test(String(st.answer)) && +String(st.answer).split(':')[1] % 5) err(v + ': de klok gaat per 5 minuten; answer moet een veelvoud van 5 minuten zijn'); }
           if (st.type === 'make') { doen = true; tekstOf(st.frame, v + '.frame'); tekst(st.model, v + '.model'); if (st.ask != null) tekst(st.ask, v + '.ask'); itemsOk(st.items, v); if (!Array.isArray(st.checklist) || !st.checklist.length) err(v + ': checklist ontbreekt'); else st.checklist.forEach(function (c, ci) { tekst(c, v + '.checklist[' + ci + ']'); }); }
           if (st.type === 'speak') { doen = true; itemsOk(st.items, v); tekst(st.ask, v + '.ask'); tekst(st.model, v + '.model'); if (!Array.isArray(st.checklist) || !st.checklist.length) err(v + ': checklist ontbreekt'); else st.checklist.forEach(function (c, ci) { tekst(c, v + '.checklist[' + ci + ']'); }); }
           if (st.type === 'game') { doen = true; itemsOk(st.items, v); if (GAMES.indexOf(st.kind) < 0) err(v + ': spel ' + st.kind + (st.kind ? ' is nog niet in de app (stap 6); nu: ' + GAMES.join(', ') : ' ontbreekt')); }

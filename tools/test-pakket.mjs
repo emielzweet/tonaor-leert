@@ -3,7 +3,8 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { boot, builtin, PC, html, ROOT } from './app-harness.mjs';
 let fails = 0; const ok = (n, v, extra) => { if (!v) fails++; console.log((v ? 'OK  ' : 'FOUT') + ' ' + n + (v || !extra ? '' : '\n     ' + extra)); };
 const files = readdirSync(new URL('content/', ROOT)).filter(f => f.endsWith('.json'));
-const NLWORDS = files.map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8'))).filter(p => p.learn === 'nl').reduce((a, p) => a + (p.items || []).filter(x => x.kind === 'word').length, 0);
+const HIDDEN = files.map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8'))).filter(p => p.type === 'hoofdstuk' && PC.checkChapter(p).errors.length).map(p => p.id);   // haalt de hoofdstukcontrole niet: niet in de app (codereview B3)
+const NLWORDS = files.map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8'))).filter(p => p.learn === 'nl' && !HIDDEN.includes(p.id)).reduce((a, p) => a + (p.items || []).filter(x => x.kind === 'word').length, 0);
 const packs = files.map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8')));
 const clone = o => JSON.parse(JSON.stringify(o));
 
@@ -70,7 +71,7 @@ let q = null; app.runSession = (n, x) => { q = x; }; app.api.startLesson(false);
 ok('zonder rekenpakket: Nederlands laadt nog (ook het hoofdstuk, met meldingen), les zonder rekenoefeningen', g.NL.length === NLWORDS && !q.some(x => ['money', 'clock', 'discount'].includes(x.type)) && q.some(x => x.type === 'build'));
 app = await boot({ missing: ['content/nl-t1.json', 'content/en-t1.json', 'content/rk-1.json'] }); g = app.api.get();
 q = null; app.runSession = (n, x) => { q = x; }; app.api.startLesson(false);
-ok('geen enkel pakket: app start, meldt het bij een tik op de les en start geen lege les', g.PACK_MISSING.length === 3 && g.PACKS.length === builtin().length - 3 && q === null && app.toasts.includes('pack.none'));
+ok('geen enkel pakket: app start, meldt het bij een tik op de les en start geen lege les', g.PACK_MISSING.length === 3 && g.PACKS.length === builtin().length - 3 - HIDDEN.length && q === null && app.toasts.includes('pack.none'));
 ok('melding op Vandaag als een pakket ontbreekt', /PACK_MISSING\.length\?`<div class="note" role="status">\$\{T\('pack\.missing'/.test(html));
 
 // geen naambotsing: een functie of variabele uit het pakketblok mag elders in de app niet nog eens gedefinieerd worden
