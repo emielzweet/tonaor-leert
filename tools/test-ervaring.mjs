@@ -16,6 +16,11 @@ vm.runInContext(line('const NOGROW=') + '\n' + fnBlock('canBloom') + '\n' + fnBl
 const FORM = { recall: 'typen', hear: 'luisteren', recog: 'herkennen', build: 'build', gap: 'gap', dictee: 'dictee', money: 'geld', clock: 'klok', discount: 'korting' };
 const P_GOED = 0.85, P_AL_GEKEND = 0.3, RONDES = 6;   // aannames: 85% goed (doel 80-90%), 30% van de nieuwe woorden kent de leerder al, 6 rondes per dag (10 uur per week)
 const rondes = [], probleem = { herhaling: [], vorm: [], klein: [], geenNieuw: [] };
+// nooit een grind (masterplan H1 tot H4): per onderdeel de rij vormen over de hele week, en de reeks goed in verschillende vormen
+const vormRij = {}, reeks = {}, rust = new Set(), grind = { zelfdeVorm: [], rustTerug: [] };
+const zag = (id, vorm, goed, d, r) => { const rij = vormRij[id] = vormRij[id] || []; if (rij.length && rij[rij.length - 1] === vorm && grind.zelfdeVorm.length < 400) grind.zelfdeVorm.push('dag ' + d + ' ronde ' + r + ': ' + id + ' weer ' + vorm); rij.push(vorm);
+  if (rust.has(id)) grind.rustTerug.push('dag ' + d + ' ronde ' + r + ': ' + id);
+  const k = reeks[id] = goed ? (reeks[id] || { n: 0, v: new Set() }) : { n: 0, v: new Set() }; if (goed) { k.n++; k.v.add(vorm); if (k.n >= 3 && k.v.size >= 3) rust.add(id); } };
 let opDag = null;
 for (let d = 0; d < 7; d++) for (let r = 0; r < RONDES; r++) {
   c.NOW = BASE + d * DAY + r * 2 * 3600e3; const td = Math.floor(c.NOW / DAY) * DAY; S.days[td] = 1;
@@ -39,8 +44,9 @@ for (let d = 0; d < 7; d++) for (let r = 0; r < RONDES; r++) {
     if (x._probe) { const k = rnd() < P_AL_GEKEND; c.sim.probeDone(x.w, k); if (k) KNOWN.add(x.w.id); continue; }
     if (x.type === 'learn') { const it = S.items[x.w.id]; it.reps = Math.max(1, it.reps); it.due = c.NOW; continue; }
     const goed = rnd() < P_GOED;
-    if (x.w) { c.sim.review(x.w.id, goed, FORM[x.type] || 'typen'); continue; }
+    if (x.w) { zag(x.w.id, FORM[x.type] || 'typen', goed, d, r); c.sim.review(x.w.id, goed, FORM[x.type] || 'typen'); continue; }
     if (x.type === 'discount' && x.k === 'worked') { c.sim.introduce(x.items[0], 'voorbeeld'); continue; }
+    if (x.items && x.items.length) zag(x.items[0], x.type, goed, d, r);
     if (x.items && x.items.length) c.sim.practiced(x, goed, x.type === 'listen' && x.p && x.p.mode === 'type' ? 'luisteren' : FORM[x.type] || 'gap');
   }
   S.rounds[td] = (S.rounds[td] || 0) + 1; S.conf.unshift({ c: 'goed', fun: 'leuk' });
@@ -55,6 +61,16 @@ ok('elke dag iets nieuws zolang er lesstof is', !probleem.geenNieuw.length, prob
 const stofOk = opDag == null;
 if (streng) ok('de lesstof is niet binnen de week op', stofOk, 'nl-t1 heeft te weinig woorden: op dag ' + opDag + ' zijn alle nieuwe woorden aangeboden (meer lesstof nodig: spoor A)');
 else if (!stofOk) console.log('LET OP de lesstof is op dag ' + opDag + ' op: nl-t1 heeft te weinig woorden voor ' + RONDES + ' rondes per dag (spoor A; met --streng telt dit als fout)');
+// H1: losse herhaling (Onderweg) hooguit een vijfde van de leertijd. De nagebootste dag bestaat nu alleen uit Onderweg-rondes:
+// scènes, algemene ontwikkeling en spel staan nog niet in de dagindeling (masterplan stap 5 en 11). H2 en H3 vragen een samensteller
+// die vormen over dagen bijhoudt en wat rust niet meer losse oefent; H4 een melding als de nieuwe lesstof op is. Tot dat gebouwd is: LET OP, met --streng FOUT.
+const H = [
+  ['H1 losse herhaling hooguit een vijfde van de leertijd', false, 'de nagebootste week is ' + rondes.length + ' Onderweg-rondes en niets anders (100%); de dagindeling met scènes en algemene ontwikkeling bestaat nog niet'],
+  ['H2 een onderdeel nooit twee keer achter elkaar in dezelfde vorm, ook niet over dagen', !grind.zelfdeVorm.length, grind.zelfdeVorm.length + ' keer, bijvoorbeeld ' + grind.zelfdeVorm.slice(0, 3).join('; ')],
+  ['H3 wat drie keer op rij goed ging in drie vormen komt niet meer losse terug', !grind.rustTerug.length, grind.rustTerug.length + ' keer (' + rust.size + ' onderdelen in rust), bijvoorbeeld ' + grind.rustTerug.slice(0, 3).join('; ')],
+  ['H4 is de nieuwe lesstof op, dan zegt de app dat (en vult niet op met herhaling)', /lesstof is op|nieuwe lesstof op/i.test(html), 'er is geen melding voor als de nieuwe lesstof op is'],
+];
+for (const [n, v, extra] of H) { if (streng) ok(n, v, extra); else console.log((v ? 'OK  ' : 'LET OP') + ' ' + n + (v ? '' : '\n     ' + extra)); }
 const gem = rondes.reduce((a, x) => a + x.verschillend, 0) / rondes.length;
 console.log('     ' + rondes.length + ' rondes; gemiddeld ' + gem.toFixed(1) + ' verschillende onderdelen per ronde; nieuwe woorden per dag: ' + Array.from({ length: 7 }, (_, d) => S.newLog[Math.floor((BASE + d * DAY) / DAY) * DAY] || 0).join(', '));
 console.log(fails ? fails + ' FOUT' : 'alles OK');

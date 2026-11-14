@@ -12,14 +12,17 @@ Je schrijft één hoofdstuk lesstof voor een leer-app Nederlands voor volwassen 
 ## Het bestand
 
 ```json
-{ "format": 1, "id": "…", "place": "…", "learn": "nl", "level": "…",
+{ "format": 1, "id": "…", "type": "hoofdstuk", "version": 1, "order": 30, "requires": ["nl-t1", "nl-basis", "rk-1"],
+  "place": "…", "learn": "nl", "level": "…", "goals": ["…"],
   "title": { "nl": "…", "th": "…", "en": "…" },
   "items": [ … ], "scenes": [ … ] }
 ```
 
+- `order`, `requires`, `type` en `version` zijn nodig om het pakket in de app te laden. `requires` noemt de pakketten in `content/` waarvan je items gebruikt.
+- `goals` (bij het pakket en bij elke scène Nederlands): de eindtermen die het dient. Zolang `docs/eindtermen.md` er niet is, kies uit deze voorlopige lijst: `nt2-I-lezen`, `nt2-I-luisteren`, `nt2-I-spreken`, `nt2-I-schrijven`, `nt2-I-woorden`, `nt2-I-taal` (grammatica), `rekenen-2F-getallen`, `rekenen-2F-verhoudingen`, `rekenen-2F-meten`, `rekenen-2F-verbanden`, `kennis-nederland`.
 - `items`: 20 tot 32 woorden en vaste zinnen, plus de regels en vaardigheden van het hoofdstuk.
-  - Woord: `{ "id", "kind": "word", "w", "art": "de" | "het" | "", "tr": { "th", "en" }, "def", "ex" }`. `def` is een omschrijving in eenvoudig Nederlands die het woord zelf niet gebruikt. `ex` is een nieuwe voorbeeldzin met het woord, een andere dan in de scènes.
-  - Vaste zin: zelfde velden, `"kind": "phrase"`, zonder `art`.
+  - Woord: `{ "id", "kind": "word", "w", "art": "de" | "het", "tr": { "th", "en" }, "def", "ex", "gap" }`. Zonder lidwoord (werkwoord, bijvoeglijk naamwoord): laat `art` weg. `def` is een omschrijving in eenvoudig Nederlands die het woord zelf niet gebruikt. `ex` is een nieuwe voorbeeldzin met het woord, een andere dan in de scènes. `gap` is weer een andere zin met precies één `___` op de plek van het woord, die niet met `___` begint en met een leesteken eindigt; bij een woord met lidwoord staat het lidwoord zichtbaar vlak voor het gat (`De ___ is vol.`).
+  - Vaste zin: zelfde velden, `"kind": "phrase"`, zonder `art`, ook met `gap`.
   - Regel of vaardigheid: `{ "id", "kind": "rule" | "skill", "title": Tekst }`.
 - `scenes`: vijf scènes Nederlands (`n` 1 tot 5), één rekenscène (`subject: "rk"`) en één kennisles (`subject: "kn"`), volgens de productielijst.
 
@@ -38,6 +41,12 @@ Je schrijft één hoofdstuk lesstof voor een leer-app Nederlands voor volwassen 
 - **Tekeningen:** alleen achtergronden en dingen uit de catalogus; plekken binnen 340 bij 214; elk aantikbaar ding heeft een `label` in drie talen en een `item`.
 - **De kennisles leert één specifiek ding,** geen overzicht: de titel is een vraag die nieuwsgierig maakt, de tekst gaat de diepte in en eindigt met iets om na te vertellen. Geen vast rijtje onderdelen, en de vorm mag per les anders zijn (zie `docs/algemene-ontwikkeling.md`: het enige wat vastligt, en de voorraad vormen).
 - **De kennisles** bevat alleen feiten die je met een bron kunt staven. Zet de bronnen (adres en titel) in `sources` bij de stap `read`. Weet je iets niet zeker, laat het weg.
+- **Werkvormen (masterplan C2, C3; `docs/scenes.md`, "Werkvormen, hints en de zwaardere vorm"):** een vraag kan `choose`, `hear` (met `say`), `type`, `number`, `hear-type` (met `say`), `complete` (zin afmaken, met `answer`) zijn, of een bestaande oefenvorm met `data` zoals in `docs/pakketformaat.md`: `build`, `gap`, `listen`, `money`, `clock`, `discount` (geld, klok en korting ook met `gen`). Zo'n oefenvorm heeft ook `items`, `why` en bij voorkeur `err`. Nog niet in een scène: `own`, `match`, `spot`, `dictee`, `mc`. Per scène minstens zes verschillende werkvormen; nooit drie keer achter elkaar dezelfde vorm (een gesprek en een lees- of luistertekst tellen als één blok). Per hoofdstuk minstens twaalf werkvormen.
+- **Per hoofdstuk verplicht:** een leestekst (`read`) met vijf tot tien vragen in tekstvolgorde (geheel, detail, waarom, toepassen of woord); een luistertekst (`listen`, met `say` en de vragen); een spreekopdracht (`speak` met `items`, `ask`, `model` en `checklist`); een spel (`game` met `"kind": "dehet"` en `items`: woorden met de of het); schrijven (`make`); rekenen in de situatie (de rekenscène met `number`, `money`, `clock` of `discount`).
+- **Hint in twee stappen (A6):** elke vraag waarin de leerder zelf typt (`type`, `hear-type`, `complete`) heeft `hint`: twee Teksten, eerst een kleine, dan een grotere aanwijzing. Niet in de instap en niet in de controle.
+- **Elke vraag bij een lees- of luistertekst heeft `why`.** Een stap `explain` noemt alleen een uitleg die bestaat in `content/uitleg-*.json`.
+- **Zwaardere vorm (B4):** geef een keuzevraag waar het kan ook `answer` (het goede antwoord als tekst om te typen); in de zwaardere vorm wordt het dan een typvraag.
+- **Bronnen** bij de kennisles: `sources: [{ "url": "https://…", "title": "…" }]`.
 - **Thais:** natuurlijk, beleefd en in Thais schrift. Vertaal de betekenis, niet woord voor woord. Nederlandse voorbeeldwoorden in een Thaise uitleg blijven Nederlands.
 
 ## Klaar
