@@ -31,6 +31,8 @@ Oude onderwerpen blijven. Er komt steeds iets bij.
 
 Al het andere is vrij.
 
+Twee dingen komen uit het onderzoek (`onderbouwing-motivatie-en-kennis.md`) en gelden daarom als gewone opening en voorkeur, niet als mal: een les **begint met raden of schatten** vóór het antwoord komt, en is **waar het kan een verhaal** (iemand, een plek, een gebeurtenis) in plaats van een opsomming. Een opvallend detail hoort erin als het de kern draagt, niet als versiering.
+
 ## Vormen, als voorraad en niet als mal
 
 De vorm volgt de vraag. Deze lijst is om uit te putten en mag groeien; geen les hoeft erop te lijken.
