@@ -16,6 +16,7 @@ Bijgewerkt: 14 november 2026.
 - Uitleg (speler, drie ingangen, 32 uitleggen) en het weekdoel (standaard 10 uur, merktekens op 3,5, 7 en 10 uur).
 - Fase 3, het herhaalmodel (docs/herhaalmodel.md), inclusief de verwerkte review: live sinds 13 november 2026.
 - Na gebruik: herhaling met tijd ertussen, dagbudget voor nieuwe woorden (eerst als vraag), Bijsturen op Ik, na de ronde te makkelijk/goed/te moeilijk en leuk/saai, vertaling melden, ervaringstest: live sinds 14 november 2026, cache v2-34 (t/m bad647d).
+- Release A+B (stap 2 en 2b: motor, compacte geschiedenis, rust, aanvullen, scènespeler achter Proefonderdelen, Wat is nieuw, reservekopie vóór nieuwe vorm, opslag blijvend, de/het met vorm, 100 basiswoorden na review door een groter model): live sinds 15 november 2026, cache v2-50 (a489e40), gepusht door de ontwerpsessie na eigen controle (overgang vorm 4 naar 6 met gelijke voortgang). Het proefhoofdstuk is in deze stand onzichtbaar.
 
 ## Klaar, lokaal gecommit, nog niet gepusht
 
@@ -62,6 +63,8 @@ Deze twee zijn nog niet aan de ontwerpsessie gemeld als releasestand; ze kunnen 
 **Release A nog niet uit (ontwerpsessie):** de onafhankelijke review van content/nl-basis.json (100 woorden) zei "verbeteren": twaalf gatzinnen lieten ook een ander woord uit de lijst toe, vier omschrijvingen gebruikten het woord zelf, zeggen en spreken hadden dezelfde Thaise vertaling. Hersteld door de schrijver; review 2 door een groter model loopt. App: herkennen kiest geen afleider meer met dezelfde vertaling of uit also (63699fc). De opdracht voor de reviewer vraagt nu uitdrukkelijk naar meer dan één goed antwoord.
 
 **Review 2 van nl-basis (groter model): verbeteren**, 18 gatzinnen met een tweede goed antwoord, ook met woorden uit nl-t1 en nl-dokter. Besloten door de bouwsessie: `also` mag naar een woord uit een ander pakket verwijzen (8fd9f27, test bd1a49b); de app telde het al zo, alleen de controle hield het tegen. Herstelronde 3 door de schrijver loopt, daarna review door een groter model.
+
+**Live: release A+B = a489e40 (cache v2-50), gepusht door de ontwerpsessie.** Daarna lokaal: a605423 (review dokter 5: also ook bij typen vanuit de steuntaal, de vraag van de stap boven een rekenoefening in een scène, in de zwaardere vorm telt keel voor de keel en 45 voor 45 minuten). Proefonderdelen: de keuze op Ik blijft na herladen bewaard (gecontroleerd in de browser); wie de opslag met de hand wijzigt terwijl de app open is, ziet die wijziging overschreven door de app zodra de pagina verborgen wordt (bewust: de app bewaart haar eigen stand).
 
 **nl-basis goed (cb96368, cache v2-50):** ronde 3 door de schrijver, review 3 (3 blokkerend) hersteld, review 4 door een groter model: goed, 0 blokkerend, 3 klein (gatzinnen nacht, drinken, hoofd; volgende ronde). Alle tests groen, app laadt op 375 px zonder fouten. **Klaar om uit te brengen: release A+B = cb96368**, gemeld aan de ontwerpsessie. Bij de dokter staat in deze stand nog onzichtbaar (geen review); ronde 7 is geschreven, review 5 door een groter model loopt.
 
