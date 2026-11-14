@@ -54,15 +54,5 @@ ok('iPhone, lege lijst: meteen voorlezen met lang nl-NL, zonder wachten', r.spok
 // j) iPhone mét lijst: gewoon de beste Nederlandse stem
 r = run([V('Xander', 'nl-NL'), V('Samantha', 'en-US')], {}, 'Mozilla/5.0 (iPhone)'); r.ctx.say('Hallo');
 ok('iPhone met lijst: Nederlandse stem gekozen', r.spoken[0].voice.name === 'Xander');
-{ // geluid ook met de stilteschakelaar van de iPhone (wens eigenaar, 15 nov 2026)
-  const m = h.match(/function silentWav\(\)\{[^\n]*\}/);
-  const sw = m && new Function(m[0] + ';return silentWav')();
-  const buf = sw && Buffer.from(sw().split(',')[1], 'base64');
-  ok('stilteschakelaar: een geldig stil geluidje (wav, 8000 Hz, alleen stilte)', !!buf && buf.toString('ascii', 0, 4) === 'RIFF' && buf.toString('ascii', 8, 12) === 'WAVE' && buf.readUInt32LE(24) === 8000 && buf.length === 844 && buf.subarray(44).every(x => x === 128));
-  ok('stilteschakelaar: bij elke tik en vlak vóór elk voorlezen een nieuw stil geluidje, plus playback', h.includes("navigator.audioSession.type='playback'") && h.includes("function iosPrime(){if(!isIOS())return;audioPlayback();playClip()}") && h.includes("['touchend','click'].forEach(ev=>document.addEventListener(ev,iosPrime,{capture:true,passive:true}))") && h.includes('function speakNow(t,slow,lang,v,raw){if(!raw)iosPrime();'));
-  ok('voorlezen stopt alleen als er iets loopt (stoppen en starten in één tik geeft op iOS soms stilte)', h.includes('if(speechSynthesis.speaking||speechSynthesis.pending){speechSynthesis.cancel();setTimeout(go,100)}else go()'));
-  ok('geluidstest op Ik: vier aanpakken en de versie', h.includes('function VOICETEST(n)') && h.includes('data-vt="${n}"') && h.includes("app.querySelectorAll('[data-vt]').forEach(b=>b.onclick=()=>VOICETEST(+b.dataset.vt))"));
-  const swTxt = readFileSync(new URL('../sw.js', import.meta.url), 'utf8'), av = /const APPV='([^']+)'/.exec(h);
-  ok('versie bij de geluidstest gelijk aan CACHE in sw.js', !!av && swTxt.includes(`const CACHE='tonaor-leert-${av[1]}'`), av && av[1]);
-}
+ok('geen proeven meer met stille geluidjes of de audiosessie (stilteschakelaar vraagt geluidsbestanden, zie STATUS)', !/silentWav|audioSession|iosPrime|VOICETEST|KEEP=/.test(h) && h.includes('function speakNow(t,slow,lang,v){speechSynthesis.cancel();'));
 console.log(fails ? fails + ' FOUT' : 'alles OK');

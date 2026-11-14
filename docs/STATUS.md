@@ -16,9 +16,20 @@ Bijgewerkt: 14 november 2026.
 - Uitleg (speler, drie ingangen, 32 uitleggen) en het weekdoel (standaard 10 uur, merktekens op 3,5, 7 en 10 uur).
 - Fase 3, het herhaalmodel (docs/herhaalmodel.md), inclusief de verwerkte review: live sinds 13 november 2026.
 - Na gebruik: herhaling met tijd ertussen, dagbudget voor nieuwe woorden (eerst als vraag), Bijsturen op Ik, na de ronde te makkelijk/goed/te moeilijk en leuk/saai, vertaling melden, ervaringstest: live sinds 14 november 2026, cache v2-34 (t/m bad647d).
+- Geluidspogingen weggehaald, voorlezen weer zoals vóór 15 november: live, cache v2-55. Geluid met de stilteschakelaar aan is een open eis (zie hieronder).
 - Proefhoofdstuk bij de dokter achter Proefonderdelen, knop Mijn antwoord is ook goed, standreview verwerkt: live sinds 15 november 2026, cache v2-53 (b1e209e), gepusht met akkoord van de eigenaar (in de testfase zo vaak als nodig).
 - Herstel geluid met de stilteschakelaar aan: live sinds 15 november 2026, cache v2-51 (c6f67db) werkte niet; tweede poging (stil geluid loopt mee) live als cache v2-52 (9791c0e), te testen op de iPhone.
 - Release A+B (stap 2 en 2b: motor, compacte geschiedenis, rust, aanvullen, scènespeler achter Proefonderdelen, Wat is nieuw, reservekopie vóór nieuwe vorm, opslag blijvend, de/het met vorm, 100 basiswoorden na review door een groter model): live sinds 15 november 2026, cache v2-50 (a489e40), gepusht door de ontwerpsessie na eigen controle (overgang vorm 4 naar 6 met gelijke voortgang). Het proefhoofdstuk is in deze stand onzichtbaar.
+
+## Open eis: geluid met de stilteschakelaar aan (eigenaar, 15 november 2026)
+
+**De eis, in de woorden van de eigenaar:** "Silent is echt voor telefoon en bericht notificaties. Niet voor geluid in een app." Geluid moet werken met de stilteschakelaar aan. Niet als snelle lap: "Fix het op de juiste manier. Neem dit mee in de breedere ontwikkeling."
+
+**Wat vaststaat (getest op de iPhone van de leerder, iOS met Audio Session API):** het voorlezen van de browser (speechSynthesis) volgt de stilteschakelaar. Drie pogingen (v2-51 geluidje bij de eerste tik; v2-52 stil geluid in een lus; v2-54 geluidje vóór elk voorlezen, plus audiosessie op afspelen) en een test met vier aanpakken op de telefoon: allemaal stil met de schakelaar aan, allemaal hoorbaar zonder. Ook de oude manier (alleen voorlezen) is nu stil; dat het eerder werkte, komt vermoedelijk door iOS. De pogingen zijn weer weggehaald (v2-55): ze hielpen niet en lieten wel muziek uit andere apps pauzeren.
+
+**Wat wel door de schakelaar heen speelt:** een echt geluidsbestand via een audio-element (zoals een video op een website). De goede oplossing is dus voorlezen uit geluidsbestanden, met het voorlezen van de browser alleen als terugval. Omvang nu: ongeveer 1.800 unieke Nederlandse teksten, 75.000 tekens. Sommen met wisselende getallen vragen een eigen oplossing (losse getallen en vaste zinsdelen aan elkaar).
+
+**Voor de ontwerpsessie:** inpassen in het plan (masterplan, werkvormen: opnamen staan al in IndexedDB-ontwerp; redactielijn: bestanden maken bij nieuwe lesstof; offline-cache; grootte; welke stem en snelheid; Thaise steunregel). **Voor de eigenaar:** de keuze voor een spraakdienst (Google, Microsoft, OpenAI) of zelf inspreken, en een sleutel; kosten naar schatting enkele euro's of binnen een gratis laag. Een sleutel komt nooit in de repo of de app.
 
 ## Klaar, lokaal gecommit, nog niet gepusht
 

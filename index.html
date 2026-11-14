@@ -479,10 +479,6 @@ en:{
  "bk.last":"Last backed up: {when}",
  "bk.load":"Restore progress",
  "bk.save":"Back up progress",
- "voice.silentTitle":"Test the sound with the silent switch",
- "voice.silentTip":"Set the iPhone to silent and tap the tests one by one. Which test do you hear? Pass on the number.",
- "voice.testN":"Test {n}",
- "voice.version":"Version {v} · audio session: {s}",
  "claim.btn":"My answer is right too",
  "claim.thanks":"Thank you. Your answer goes on the list to be checked. It does not count as a mistake.",
  "claim.title":"Answers to check ({n})",
@@ -924,10 +920,6 @@ nl:{
  "bk.last":"Laatst bewaard: {when}",
  "bk.load":"Voortgang terugzetten",
  "bk.save":"Voortgang bewaren",
- "voice.silentTitle":"Geluid testen met de stilteschakelaar",
- "voice.silentTip":"Zet de iPhone op stil en tik de tests een voor een. Welke test hoor je? Geef het nummer door.",
- "voice.testN":"Test {n}",
- "voice.version":"Versie {v} · audiosessie: {s}",
  "claim.btn":"Mijn antwoord is ook goed",
  "claim.thanks":"Dank je. Je antwoord gaat naar de lijst om na te kijken. Het telt niet als fout.",
  "claim.title":"Antwoorden om na te kijken ({n})",
@@ -1365,10 +1357,6 @@ th:{
  "bk.last":"บันทึกล่าสุด: {when}",
  "bk.load":"กู้คืนความก้าวหน้า",
  "bk.save":"บันทึกความก้าวหน้า",
- "voice.silentTitle":"ทดสอบเสียงเมื่อเปิดโหมดเงียบ",
- "voice.silentTip":"ตั้ง iPhone เป็นโหมดเงียบ แล้วแตะทดสอบทีละปุ่ม ได้ยินปุ่มไหน บอกหมายเลขนั้น",
- "voice.testN":"ทดสอบ {n}",
- "voice.version":"เวอร์ชัน {v} · audio session: {s}",
  "claim.btn":"คำตอบของฉันก็ถูกเหมือนกัน",
  "claim.thanks":"ขอบคุณ คำตอบของคุณจะถูกส่งไปตรวจ และไม่นับเป็นคำตอบผิด",
  "claim.title":"คำตอบที่รอตรวจ ({n})",
@@ -2230,28 +2218,11 @@ function voicesFor(lang){const L=LANGS[lang]||LANGS.nl;return loadVoices().filte
 function voiceFor(lang){const vs=voicesFor(lang),want=S.voice&&S.voice[lang];return (want&&vs.find(v=>(v.voiceURI||v.name)===want))||vs[0]||null}
 function noVoice(lang){return loadVoices().length>0&&!voicesFor(lang).length}
 try{speechSynthesis.onvoiceschanged=()=>{loadVoices();try{if(tab==='ik'&&!route&&!app.classList.contains('sess'))vMe()}catch(e){}};loadVoices()}catch(e){}
-/* Geluid ook als de stilteschakelaar van de iPhone aan staat (wens van de eigenaar, 15 nov 2026): de stilteschakelaar is voor bellen en
-   meldingen, niet voor geluid in een app. iOS laat voorlezen alleen door de schakelaar heen als de pagina zelf geluid afspeelt.
-   Poging 1 (v2-51: één geluidje bij de eerste tik) en poging 2 (v2-52: een stil geluid in een lus) werkten niet op de telefoon.
-   Poging 3 volgt de enige aanpak die elders op een echte iPhone op stil bevestigd is: bij elke tik én vlak vóór elk voorlezen een
-   nieuw stil geluidje (0,1 s) afspelen, in dezelfde tik; daarnaast de Audio Session API (iOS 16.4+) op afspelen; en het voorlezen
-   alleen stoppen als er iets loopt (stoppen en meteen starten in één tik geeft op iOS soms stilte). Op Ik → Voorlezen staat een test
-   met vier aanpakken, zodat op de telefoon te zien is welke werkt (VOICETEST). */
-const APPV='v2-54';   // gelijk aan CACHE in sw.js (test-voorlezen), getoond bij de geluidstest
-function audioPlayback(){try{if(navigator.audioSession&&navigator.audioSession.type!=='playback')navigator.audioSession.type='playback'}catch(e){}}
-function silentWav(){const n=800,u32=x=>String.fromCharCode(x&255,x>>8&255,x>>16&255,x>>>24&255),u16=x=>String.fromCharCode(x&255,x>>8&255);return 'data:audio/wav;base64,'+btoa('RIFF'+u32(36+n)+'WAVEfmt '+u32(16)+u16(1)+u16(1)+u32(8000)+u32(8000)+u16(1)+u16(8)+'data'+u32(n)+String.fromCharCode(128).repeat(n))}
-let CLIP=null;
-function clipUrl(){if(!CLIP){try{const b=atob(silentWav().split(',')[1]),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);CLIP=URL.createObjectURL(new Blob([u],{type:'audio/wav'}))}catch(e){CLIP=silentWav()}}return CLIP}
-function playClip(){try{const a=new Audio(clipUrl());a.setAttribute('playsinline','');a.preload='auto';const p=a.play();if(p&&p.catch)p.catch(()=>{})}catch(e){}}
-function iosPrime(){if(!isIOS())return;audioPlayback();playClip()}
-if(isIOS()){audioPlayback();try{['touchend','click'].forEach(ev=>document.addEventListener(ev,iosPrime,{capture:true,passive:true}))}catch(e){}}
-/* alleen voor de geluidstest op Ik: een stil geluid in een lus (poging 2) en een Web Audio-sample */
-let KEEP=null;
-function keepLoop(){try{if(!KEEP){KEEP=new Audio(clipUrl());KEEP.loop=true;KEEP.setAttribute('playsinline','')}if(KEEP.paused){const p=KEEP.play();if(p&&p.catch)p.catch(()=>{})}setTimeout(()=>{try{KEEP.pause()}catch(e){}},8000)}catch(e){}}
-let ACTX=null;
-function webAudioTick(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;if(!ACTX)ACTX=new C();if(ACTX.state==='suspended')ACTX.resume();const src=ACTX.createBufferSource();src.buffer=ACTX.createBuffer(1,1,22050);src.connect(ACTX.destination);src.start(0)}catch(e){}}
+/* Stilteschakelaar (iPhone): het voorlezen van de browser volgt op iOS de stilteschakelaar, ook met de Audio Session API en een
+   meelopend geluid (drie pogingen op 15 nov 2026, op de telefoon getest: alle vier de aanpakken stil). Geluid dat door de schakelaar
+   heen speelt, vraagt echte geluidsbestanden; dat hoort bij de bredere ontwikkeling (docs/STATUS.md), niet bij een snelle lap. */
 let voiceWait=null,voicePend=null;
-function speakNow(t,slow,lang,v,raw){if(!raw)iosPrime();const go=()=>{const u=new SpeechSynthesisUtterance(t);u.lang=LANGS[lang].tag;if(v)u.voice=v;u.rate=slow?.68:.9;speechSynthesis.speak(u)};if(speechSynthesis.speaking||speechSynthesis.pending){speechSynthesis.cancel();setTimeout(go,100)}else go()}
+function speakNow(t,slow,lang,v){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=LANGS[lang].tag;if(v)u.voice=v;u.rate=slow?.68:.9;speechSynthesis.speak(u)}
 function say(t,slow,lang,waited){if(QUIET)return;lang=LANGS[lang]?lang:'nl';const L=LANGS[lang];t=String(t==null?'':t).replace(/<[^>]*>/g,'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&');
   if(typeof speechSynthesis==='undefined'||typeof SpeechSynthesisUtterance==='undefined'){if(!voiceWarned.api){voiceWarned.api=1;toast('Voorlezen werkt niet in deze browser.')}return}
   try{
@@ -2263,17 +2234,12 @@ function say(t,slow,lang,waited){if(QUIET)return;lang=LANGS[lang]?lang:'nl';cons
     if(!voiceWarned.none){voiceWarned.none=1;toast(tx('voice.noneHere'))}return}
   if(noVoice(lang)){if(!voiceWarned[lang]){voiceWarned[lang]=1;toast(`Geen ${L.adj} stem op dit toestel. Zie Ik → Voorlezen.`)}return}
   speakNow(t,slow,lang,voiceFor(lang))}catch(e){toast('Voorlezen werkt niet in deze browser.')}}
-function VOICETEST(n){   /* geluidstest bij de stilteschakelaar: 1 alleen voorlezen, 2 standaard (geluidje vlak ervoor), 3 stil geluid in een lus, 4 Web Audio */
-  const t=`Test ${n}. Hoor je mij?`,v=voiceFor('nl');try{if(n===1){speakNow(t,false,'nl',v,true);return}if(n===3){audioPlayback();keepLoop();speakNow(t,false,'nl',v,true);return}if(n===4){audioPlayback();webAudioTick();speakNow(t,false,'nl',v,true);return}speakNow(t,false,'nl',v)}catch(e){toast('Voorlezen werkt niet in deze browser.')}}
 function voiceCard(){const vs=voicesFor('nl'),cur=voiceFor('nl');
   return `<section class="card stack">${T('voice.title')}
   ${vs.length?`<label class="small muted" for="vsel">${T('voice.dutchVoice')}</label><select id="vsel" class="input">${vs.map(v=>`<option value="${esc(v.voiceURI||v.name)}"${v===cur?' selected':''}>${esc(v.name)} · ${esc(v.lang)}</option>`).join('')}</select>`
    :noVoice('nl')?`<div class="note">${T('voice.none')}</div>`
    :isIOS()?`<p class="small muted">${T('voice.deviceChooses')}</p>`:`<p class="small muted">${T('voice.notLoaded')}</p>`}
   <button class="btn btn-ghost" id="vtest">${T('voice.try')}</button>
-  <details><summary class="small muted">${T('voice.silentTitle')}</summary><p class="small">${T('voice.silentTip')}</p>
-   <div class="btn-row" style="flex-wrap:wrap">${[1,2,3,4].map(n=>`<button class="btn btn-ghost" style="width:auto" data-vt="${n}">${TB('voice.testN',{n})}</button>`).join('')}</div>
-   <p class="small muted">${T('voice.version',{v:APPV,s:typeof navigator!=='undefined'&&navigator.audioSession?'ja':'nee'})}</p></details>
   <details${noVoice('nl')?' open':''}><summary class="small muted">${T('voice.install')}</summary>
    <ul class="small" style="margin:8px 0 0;padding-left:18px;display:grid;gap:6px">
     <li><b>iPhone:</b> Instellingen → Toegankelijkheid → Gesproken materiaal → Stemmen → Nederlands. Kies een stem (bijvoorbeeld Xander of Claire), liefst de versie <i>Verbeterd</i>, en download die.</li>
@@ -3033,7 +2999,6 @@ function vMe(){
   if($('#steerReset'))$('#steerReset').onclick=()=>{S.newPerDay=16;S.roundLen='normaal';QUIET=false;save();vMe()};
   if($('#vsel'))$('#vsel').onchange=e=>{S.voice=Object.assign({},S.voice,{nl:e.target.value});save();say('Zo klinkt deze stem. Goedemorgen, hoe gaat het met je?')};
   $('#vtest').onclick=()=>say('Zo klinkt deze stem. Goedemorgen, hoe gaat het met je?');
-  app.querySelectorAll('[data-vt]').forEach(b=>b.onclick=()=>VOICETEST(+b.dataset.vt));
   app.querySelectorAll('[data-ex]').forEach(b=>b.onclick=()=>{S.extras[b.dataset.ex]=!S.extras[b.dataset.ex];save();vMe()});
   app.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{S.moment=b.dataset.m;save();vMe()});
   $('#emiel').onclick=()=>{tab='emiel';rerender();window.scrollTo(0,0)};
