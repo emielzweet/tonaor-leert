@@ -18,6 +18,11 @@ ok('bestandsnaam = pakket-id', packs.every((p, i) => files[i] === p.id + '.json'
 const nl = packs.find(p => p.id === 'nl-t1');
 // de controle vangt echte fouten (een paar opzettelijk kapotte pakketten)
 const broken = (f, m) => { const p = clone(nl); f(p); const r = PC.checkPack(p, packs.filter(o => o.id !== 'nl-t1')); return r.errors.some(e => e.includes(m)); };
+{ const W = p => p.items.find(x => x.kind === 'word'); const other = packs.find(o => o.id !== 'nl-t1' && (o.items || []).some(x => x.kind === 'word'));
+  const oid = other.items.find(x => x.kind === 'word').id;
+  ok('controle: also mag naar een woord uit een ander pakket', !broken(p => { W(p).also = [oid]; }, 'also verwijst'));
+  ok('controle: also naar een onbekend id blijft fout', broken(p => { W(p).also = ['bestaat.niet']; }, 'also verwijst'));
+  ok('controle: also naar zichzelf blijft fout', broken(p => { W(p).also = [W(p).id]; }, 'also verwijst')); }
 ok('controle: dubbel id', broken(p => p.items.push(clone(p.items[0])), 'dubbel id'));
 ok('controle: verwijzing naar onbekende oefening', broken(p => p.lesson.push({ step: 3, ex: 'bestaat.niet' }), 'bestaat niet'));
 ok('controle: ontbrekende vertaling', broken(p => { delete p.items[0].tr.en; }, 'tr.en ontbreekt'));
