@@ -63,6 +63,8 @@ Deze twee zijn nog niet aan de ontwerpsessie gemeld als releasestand; ze kunnen 
 
 **Review 2 van nl-basis (groter model): verbeteren**, 18 gatzinnen met een tweede goed antwoord, ook met woorden uit nl-t1 en nl-dokter. Besloten door de bouwsessie: `also` mag naar een woord uit een ander pakket verwijzen (8fd9f27, test bd1a49b); de app telde het al zo, alleen de controle hield het tegen. Herstelronde 3 door de schrijver loopt, daarna review door een groter model.
 
+**nl-basis goed (cb96368, cache v2-50):** ronde 3 door de schrijver, review 3 (3 blokkerend) hersteld, review 4 door een groter model: goed, 0 blokkerend, 3 klein (gatzinnen nacht, drinken, hoofd; volgende ronde). Alle tests groen, app laadt op 375 px zonder fouten. **Klaar om uit te brengen: release A+B = cb96368**, gemeld aan de ontwerpsessie. Bij de dokter staat in deze stand nog onzichtbaar (geen review); ronde 7 is geschreven, review 5 door een groter model loopt.
+
 **G1-punt opgelost (2dcb693):** de voortgang in een scène telt en noemt alleen de delen die de scène heeft ("Stap 1 van 4 · Kijken" tijdens de instap was fout); de instap heet "Wat ken je al?". Getest; in de browser te bekijken zodra een hoofdstuk de poort haalt.
 
 **De ervaring van vannacht:** de poort ving de vorm, de review ving de inhoud; zonder review van een groter model gaat lesstof niet uit.
