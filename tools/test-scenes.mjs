@@ -251,4 +251,5 @@ ok('standreview: knop weg na de tik, controle niet gehaald na de knop, lidwoord 
 }
 ok('zin bouwen zonder werkwoord: dingen in volgorde leggen, zonder oranje blok en zonder werkwoordtekst', html.includes("T(s.verb?'build.tip':'build.tipOrder')") && html.includes("vp<0?'build.again':") && /d.verb != null && d.parts.indexOf\(d.verb\) < 0/.test(readFileSync(new URL('pakketcheck.js', ROOT), 'utf8')));
 ok('standpunt: een keuzevraag waarin elke keuze ok is, alleen in een losse les', /qq.standpunt === true/.test(readFileSync(new URL('pakketcheck.js', ROOT), 'utf8')) && /standpunt kan alleen in een losse les/.test(readFileSync(new URL('pakketcheck.js', ROOT), 'utf8')));
+ok('les: de steuntaal blijft zichtbaar bij instap en controle (er wordt niets gemeten)', html.includes("nos=!!(q.hard||sc.nosup||(!(typeof LES!=='undefined'&&LES)&&(q.role==='instap'||q.role==='controle')))"));
 console.log(fails ? fails + ' FOUT' : 'alles OK');
