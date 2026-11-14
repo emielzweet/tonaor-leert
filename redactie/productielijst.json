@@ -682,6 +682,480 @@
           "kunnen": "weten hoe het mbo werkt"
         }
       ]
+    },
+    {
+      "blok": "N1",
+      "thema": 2,
+      "stand": "gepland",
+      "id": "nl-buren",
+      "place": "buren",
+      "volgorde": 70,
+      "level": "A2",
+      "titel": "Contact met de buren",
+      "purpose": "Hiermee kun je iets vragen, sorry zeggen en netjes klagen; dat vraagt het examen bij spreken (verzoek, excuses, klagen).",
+      "grammatica": [
+        "werkwoord met te + infinitief na proberen, vergeten, beginnen, durven (Ik vergat de deur dicht te doen)",
+        "het verschil met modale werkwoorden zonder te (Ik moet de deur dichtdoen)"
+      ],
+      "woordvelden": [
+        "de buren en het gebouw",
+        "geluid en overlast",
+        "iets lenen",
+        "sorry zeggen"
+      ],
+      "doelen": [
+        "nt2-I-spreken-2",
+        "nt2-I-luisteren-1",
+        "nt2-I-lezen-1",
+        "rekenen-2-verhoudingen",
+        "kennis-nederland"
+      ],
+      "scenes": [
+        {
+          "n": 1,
+          "titel": "Mag ik iets lenen?",
+          "meemaken": "een buur aanbellen voor een ladder",
+          "doen": "een beleefd verzoek kiezen en bouwen",
+          "kunnen": "iets beleefd vragen"
+        },
+        {
+          "n": 2,
+          "titel": "Het spijt me",
+          "meemaken": "de fiets van de buur omgegooid",
+          "doen": "excuses kiezen die passen bij hoe erg het is",
+          "kunnen": "sorry zeggen en iets goedmaken"
+        },
+        {
+          "n": 3,
+          "titel": "Te hard",
+          "meemaken": "muziek om middernacht",
+          "doen": "klagen zonder boos te worden: zin bouwen met te + infinitief (Ik probeer te slapen)",
+          "kunnen": "netjes klagen"
+        },
+        {
+          "n": 4,
+          "titel": "Een briefje in de hal",
+          "meemaken": "briefje van de vereniging van eigenaren lezen",
+          "doen": "lezen met vragen; zelf een kort briefje maken met een kader",
+          "kunnen": "een mededeling lezen en beantwoorden"
+        },
+        {
+          "n": 5,
+          "titel": "Een praatje bij de lift",
+          "meemaken": "gesprek zonder steuntaal bij de eerste poging",
+          "doen": "mix van het hoofdstuk; spreekopdracht van 30 seconden: vraag iets aan je buur",
+          "kunnen": "een kort gesprek met een buur voeren"
+        },
+        {
+          "subject": "rk",
+          "titel": "Samen betalen",
+          "meemaken": "de kosten van een buurtfeest delen",
+          "doen": "verdelen naar verhouding (per huishouden, per persoon); schatten voor rekenen",
+          "kunnen": "kosten eerlijk verdelen"
+        },
+        {
+          "subject": "kn",
+          "titel": "Wat is buurtbemiddeling?",
+          "meemaken": "leestekst met bron",
+          "doen": "eerst raden wat je doet bij ruzie met de buren, dan lezen",
+          "kunnen": "weten waar je hulp krijgt bij ruzie met buren"
+        }
+      ]
+    },
+    {
+      "blok": "N1",
+      "thema": 2,
+      "stand": "gepland",
+      "id": "nl-verjaardag",
+      "place": "verjaardag",
+      "volgorde": 80,
+      "level": "A2",
+      "titel": "Een verjaardag",
+      "purpose": "Hiermee kun je feliciteren, een compliment geven en een uitnodiging aannemen of afslaan; dat vraagt het examen bij spreken.",
+      "grammatica": [
+        "nevenschikkende voegwoorden: en, maar, of, want, dus (de zinsvolgorde blijft gewoon)",
+        "want tegenover omdat: de plek van het werkwoord (want ik ben moe / omdat ik moe ben)"
+      ],
+      "woordvelden": [
+        "feest en cadeau",
+        "felicitaties",
+        "eten en drinken op een feest",
+        "een uitnodiging"
+      ],
+      "doelen": [
+        "nt2-I-spreken-1",
+        "nt2-I-spreken-2",
+        "nt2-I-lezen-2",
+        "nt2-I-schrijven-1",
+        "rekenen-2-verhoudingen"
+      ],
+      "scenes": [
+        {
+          "n": 1,
+          "titel": "Een uitnodiging",
+          "meemaken": "een kaartje of appje met een uitnodiging lezen",
+          "doen": "de tijd, de plek en wat je meeneemt opzoeken; kort ja of nee zeggen met een reden",
+          "kunnen": "een uitnodiging lezen en beantwoorden"
+        },
+        {
+          "n": 2,
+          "titel": "Gefeliciteerd!",
+          "meemaken": "binnenkomen op een verjaardag",
+          "doen": "de goede felicitatie kiezen (ook voor de familie van de jarige)",
+          "kunnen": "feliciteren zoals het in Nederland gaat"
+        },
+        {
+          "n": 3,
+          "titel": "Wat lekker!",
+          "meemaken": "eten en een nieuw huis bekijken",
+          "doen": "een compliment kiezen en zelf maken; zinnen verbinden met en, maar, want",
+          "kunnen": "een compliment geven"
+        },
+        {
+          "n": 4,
+          "titel": "Ik kan helaas niet",
+          "meemaken": "een tweede uitnodiging die je moet afslaan",
+          "doen": "afslaan met een reden: want of omdat, met de goede zinsvolgorde",
+          "kunnen": "beleefd nee zeggen"
+        },
+        {
+          "n": 5,
+          "titel": "In de kring",
+          "meemaken": "gesprek zonder steuntaal bij de eerste poging",
+          "doen": "mix van het hoofdstuk; spreekopdracht van 30 seconden over een feest",
+          "kunnen": "een praatje op een feest voeren"
+        },
+        {
+          "subject": "rk",
+          "titel": "Een taart voor twaalf",
+          "meemaken": "recept voor zes personen, er komen er twaalf",
+          "doen": "hoeveelheden omrekenen met de verhoudingstabel; gram en kilo",
+          "kunnen": "een recept aanpassen"
+        },
+        {
+          "subject": "kn",
+          "titel": "Waarom zit iedereen in een kring?",
+          "meemaken": "leestekst met bron over Nederlandse verjaardagen en hun gewoonten",
+          "doen": "eerst raden, dan lezen; twee gewoonten vergelijken met een land dat je kent",
+          "kunnen": "gewoonten bij een verjaardag begrijpen"
+        }
+      ]
+    },
+    {
+      "blok": "N1",
+      "thema": 2,
+      "stand": "gepland",
+      "id": "nl-medeleven",
+      "place": "medeleven",
+      "volgorde": 90,
+      "level": "A2",
+      "titel": "Medeleven tonen",
+      "purpose": "Hiermee kun je zeggen hoe je je voelt en medeleven tonen als iemand ziek is of iemand verloren heeft; dat vraagt het examen bij spreken en schrijven.",
+      "grammatica": [
+        "onderschikkende voegwoorden: dat, omdat, als, toen; het werkwoord achteraan in de bijzin",
+        "de bijzin vooraan: dan komt het werkwoord van de hoofdzin direct erna (Toen ik het hoorde, schrok ik)"
+      ],
+      "woordvelden": [
+        "gevoelens",
+        "ziek zijn en beter worden",
+        "een kaart schrijven",
+        "afscheid"
+      ],
+      "doelen": [
+        "nt2-I-spreken-2",
+        "nt2-I-schrijven-2",
+        "nt2-I-luisteren-2",
+        "nt2-I-lezen-3",
+        "rekenen-2-informatie"
+      ],
+      "scenes": [
+        {
+          "n": 1,
+          "titel": "Hoe gaat het met je?",
+          "meemaken": "een collega ziet er moe uit",
+          "doen": "gevoelens herkennen in een tekening en een gesprek; het woord kiezen",
+          "kunnen": "zeggen en vragen hoe iemand zich voelt"
+        },
+        {
+          "n": 2,
+          "titel": "Beterschap",
+          "meemaken": "een buur ligt in het ziekenhuis",
+          "doen": "een kaart lezen; zelf een korte kaart maken met een kader",
+          "kunnen": "beterschap wensen"
+        },
+        {
+          "n": 3,
+          "titel": "Toen ik het hoorde",
+          "meemaken": "iemand vertelt over iets verdrietigs",
+          "doen": "luistertekst; bijzinnen bouwen met toen, omdat, dat",
+          "kunnen": "vertellen wat er gebeurde en wat je voelde"
+        },
+        {
+          "n": 4,
+          "titel": "Gecondoleerd",
+          "meemaken": "een rouwkaart en een condoleanceregister",
+          "doen": "lezen wat er op een rouwkaart staat; de passende zin kiezen",
+          "kunnen": "medeleven tonen bij een overlijden"
+        },
+        {
+          "n": 5,
+          "titel": "Er zijn voor iemand",
+          "meemaken": "gesprek zonder steuntaal bij de eerste poging",
+          "doen": "mix van het hoofdstuk; spreekopdracht van 30 seconden: troost iemand",
+          "kunnen": "medeleven tonen in een gesprek"
+        },
+        {
+          "subject": "rk",
+          "titel": "Bezoektijden",
+          "meemaken": "een rooster met bezoektijden en een dienstregeling van de bus",
+          "doen": "tijdsduur uitrekenen en aflezen uit twee tabellen",
+          "kunnen": "plannen met twee tijdschema's"
+        },
+        {
+          "subject": "kn",
+          "titel": "Waarom zwart, of wit?",
+          "meemaken": "leestekst met bron over rouw in verschillende culturen en geloven",
+          "doen": "eerst raden, dan lezen; beschrijven, niet oordelen",
+          "kunnen": "gewoonten rond afscheid in verschillende culturen kennen"
+        }
+      ]
+    },
+    {
+      "blok": "N1",
+      "thema": 2,
+      "stand": "gepland",
+      "id": "nl-klacht",
+      "place": "klacht",
+      "volgorde": 100,
+      "level": "A2",
+      "titel": "Iets klopt niet",
+      "purpose": "Hiermee kun je een klacht indienen in een winkel of bij de verhuurder, mondeling en in een brief; dat vraagt het examen bij spreken en schrijven (brief aanvullen).",
+      "grammatica": [
+        "de bijzin met twee werkwoorden: de werkwoorden samen achteraan (dat ik het heb betaald, dat het moet worden gemaakt)",
+        "voegwoorden van reden en gevolg: omdat, doordat, zodat"
+      ],
+      "woordvelden": [
+        "kopen en ruilen",
+        "kapot en garantie",
+        "de verhuurder en reparaties",
+        "een formele brief"
+      ],
+      "doelen": [
+        "nt2-I-spreken-2",
+        "nt2-I-schrijven-2",
+        "nt2-I-lezen-4",
+        "rekenen-2-procenten",
+        "kennis-nederland"
+      ],
+      "scenes": [
+        {
+          "n": 1,
+          "titel": "Hij doet het niet",
+          "meemaken": "terug naar de winkel met een kapotte waterkoker",
+          "doen": "het probleem uitleggen; kiezen wat je wilt: ruilen, repareren of geld terug",
+          "kunnen": "een klacht in een winkel uitleggen"
+        },
+        {
+          "n": 2,
+          "titel": "De bon",
+          "meemaken": "bon en garantiebewijs lezen",
+          "doen": "gegevens opzoeken: datum, bedrag, hoe lang garantie",
+          "kunnen": "een bon en garantie lezen"
+        },
+        {
+          "n": 3,
+          "titel": "De verwarming",
+          "meemaken": "de verwarming in huis doet het niet",
+          "doen": "telefoongesprek met de verhuurder; bijzinnen met twee werkwoorden bouwen",
+          "kunnen": "een reparatie aanvragen"
+        },
+        {
+          "n": 4,
+          "titel": "Een brief aan de verhuurder",
+          "meemaken": "een klachtbrief die half af is",
+          "doen": "de brief aanvullen: aanhef, het probleem, wat je wilt, afsluiting",
+          "kunnen": "een formele klachtbrief aanvullen"
+        },
+        {
+          "n": 5,
+          "titel": "Toch geholpen",
+          "meemaken": "gesprek zonder steuntaal bij de eerste poging",
+          "doen": "mix van het hoofdstuk; spreekopdracht van 30 seconden: leg een probleem uit",
+          "kunnen": "een klachtgesprek voeren"
+        },
+        {
+          "subject": "rk",
+          "titel": "Klopt de korting?",
+          "meemaken": "een kassabon met een korting die niet klopt",
+          "doen": "procenten narekenen; het verschil uitrekenen; schatten voor rekenen",
+          "kunnen": "een bon controleren"
+        },
+        {
+          "subject": "kn",
+          "titel": "Wat zijn je rechten als iets kapot is?",
+          "meemaken": "leestekst met bron over wettelijke garantie en de Geschillencommissie",
+          "doen": "eerst raden (waar of niet waar), dan lezen",
+          "kunnen": "weten wat je mag vragen als iets stuk gaat"
+        }
+      ]
+    },
+    {
+      "blok": "N1",
+      "thema": 2,
+      "stand": "gepland",
+      "id": "nl-afspraak",
+      "place": "afspraak",
+      "volgorde": 110,
+      "level": "A2",
+      "titel": "Een afspraak maken en verzetten",
+      "purpose": "Hiermee kun je een afspraak maken, verzetten en afzeggen, en een verzoek doen; dat vraagt het examen bij spreken en luisteren.",
+      "grammatica": [
+        "te + infinitief na hoeven, proberen, van plan zijn (Je hoeft niet te komen); niet hoeven tegenover niet mogen",
+        "de bijzin met of en als na een vraag of twijfel (Ik weet niet of ik kan komen)"
+      ],
+      "woordvelden": [
+        "de agenda en de week",
+        "de telefoon en berichtjes",
+        "te laat komen",
+        "een afspraak bij een instantie"
+      ],
+      "doelen": [
+        "nt2-I-spreken-1",
+        "nt2-I-luisteren-1",
+        "nt2-I-luisteren-2",
+        "nt2-I-lezen-2",
+        "rekenen-2-grootheden"
+      ],
+      "scenes": [
+        {
+          "n": 1,
+          "titel": "Wanneer kan je?",
+          "meemaken": "een afspraak met een vriend of vriendin plannen",
+          "doen": "data en tijden kiezen in een gesprek; een agenda aflezen",
+          "kunnen": "een afspraak maken"
+        },
+        {
+          "n": 2,
+          "titel": "Ik moet de afspraak verzetten",
+          "meemaken": "een bericht dat je later moet komen",
+          "doen": "een bericht kiezen en bouwen; reden geven",
+          "kunnen": "een afspraak verzetten"
+        },
+        {
+          "n": 3,
+          "titel": "Ingesproken bericht",
+          "meemaken": "voicemail van een instantie over een nieuwe datum",
+          "doen": "luistertekst eenmaal, in examenvorm; gegevens noteren",
+          "kunnen": "een gesproken bericht begrijpen"
+        },
+        {
+          "n": 4,
+          "titel": "Te laat",
+          "meemaken": "de bus heeft vertraging",
+          "doen": "excuses en een verzoek: kiezen wat past; niet hoeven en niet mogen",
+          "kunnen": "laten weten dat je te laat bent"
+        },
+        {
+          "n": 5,
+          "titel": "Nog even bellen",
+          "meemaken": "gesprek zonder steuntaal bij de eerste poging",
+          "doen": "mix van het hoofdstuk; spreekopdracht van 30 seconden: maak een afspraak",
+          "kunnen": "een afspraak telefonisch regelen"
+        },
+        {
+          "subject": "rk",
+          "titel": "Hoe lang duurt het?",
+          "meemaken": "een week vol afspraken met reistijd",
+          "doen": "tijdsduur optellen in uren en minuten; de 24-uursnotatie",
+          "kunnen": "een dag plannen met tijd"
+        },
+        {
+          "subject": "kn",
+          "titel": "Waarom is op tijd komen zo belangrijk?",
+          "meemaken": "leestekst met bron over tijd en afspraken in verschillende culturen",
+          "doen": "eerst raden, dan lezen; twee kanten beschrijven",
+          "kunnen": "begrijpen hoe men in Nederland met tijd omgaat"
+        }
+      ]
+    },
+    {
+      "blok": "N1",
+      "thema": 2,
+      "stand": "gepland",
+      "id": "nl-mening",
+      "place": "mening",
+      "volgorde": 120,
+      "level": "A2",
+      "titel": "Wat vind jij?",
+      "purpose": "Hiermee kun je reageren op een stelling en je mening geven met een reden; dat vraagt het examen bij spreken en schrijven (reactie op stellingen, beschouwende tekst).",
+      "grammatica": [
+        "voegwoorden die een mening opbouwen: omdat, hoewel, terwijl, zodat; de bijzin vooraan en achteraan",
+        "herhaling van thema 2: te + infinitief in een mening (Het is belangrijk ... te ...)"
+      ],
+      "woordvelden": [
+        "mening geven",
+        "eens en oneens",
+        "nieuws en media",
+        "de buurt en de stad"
+      ],
+      "doelen": [
+        "nt2-I-spreken-2",
+        "nt2-I-schrijven-2",
+        "nt2-I-lezen-5",
+        "nt2-I-luisteren-2",
+        "rekenen-2-informatie"
+      ],
+      "scenes": [
+        {
+          "n": 1,
+          "titel": "Eens of oneens?",
+          "meemaken": "een stelling in een buurtkrant",
+          "doen": "een mening kiezen; de reden erbij kiezen",
+          "kunnen": "zeggen of je het eens bent en waarom"
+        },
+        {
+          "n": 2,
+          "titel": "Twee kanten",
+          "meemaken": "twee buren over een nieuwe speeltuin",
+          "doen": "lezen met vragen; voor en tegen sorteren",
+          "kunnen": "argumenten herkennen"
+        },
+        {
+          "n": 3,
+          "titel": "Hoewel het duur is",
+          "meemaken": "meningen met een maar",
+          "doen": "bijzinnen bouwen met hoewel en terwijl",
+          "kunnen": "een mening met een tegenargument geven"
+        },
+        {
+          "n": 4,
+          "titel": "Mijn reactie",
+          "meemaken": "een stelling op een website",
+          "doen": "een korte reactie maken met een kader (mening, reden, voorbeeld)",
+          "kunnen": "een reactie op een stelling schrijven"
+        },
+        {
+          "n": 5,
+          "titel": "In gesprek",
+          "meemaken": "gesprek zonder steuntaal bij de eerste poging",
+          "doen": "mix van het thema; spreekopdracht van 30 seconden: geef je mening met een reden",
+          "kunnen": "je mening geven in een gesprek"
+        },
+        {
+          "subject": "rk",
+          "titel": "Wat zegt de grafiek?",
+          "meemaken": "een enquête in de buurt als staafdiagram",
+          "doen": "aflezen; percentages vergelijken; kloppen de woorden bij de grafiek?",
+          "kunnen": "een grafiek lezen en controleren"
+        },
+        {
+          "subject": "kn",
+          "titel": "Nieuws of mening?",
+          "meemaken": "leestekst met bron over het verschil tussen een nieuwsbericht en een column",
+          "doen": "eerst raden bij drie korte stukjes, dan lezen",
+          "kunnen": "nieuws en mening uit elkaar houden"
+        }
+      ]
     }
   ]
 }
