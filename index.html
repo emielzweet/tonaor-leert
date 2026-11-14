@@ -325,6 +325,13 @@ en:{
  "scene.check":"Check whether your text has this:",
  "scene.model":"This is one way:",
  "scene.ruleTitle":"Language from the scene",
+ "news.title":"What is new",
+ "news.ok":"Got it",
+ "news.1":"An exercise no longer comes back twice in a row in the same form.",
+ "news.2":"What you know well rests for a while and comes back later.",
+ "news.3":"Every day there is something new to learn.",
+ "news.4":"When typing, capital letters and accents no longer count as mistakes.",
+ "news.5":"On Me: Trial parts. New parts of the app that are still being tried out. They are off unless you switch them on.",
  "round.short":"A short round today: not much is due.",
  "round.shortStock":"A short round today: you have seen all the new material and not much is due.",
  "store.nobak":"The phone storage is almost full, so the update cannot make a safety copy of your progress. Your progress stays as it was, but today's answers are not saved. Free up some space, or save your progress via Me.",
@@ -744,6 +751,13 @@ nl:{
  "scene.check":"Kijk of jouw tekst dit heeft:",
  "scene.model":"Zo kan het ook:",
  "scene.ruleTitle":"Taal uit de scène",
+ "news.title":"<p><b>Wat is nieuw</b></p>",
+ "news.ok":"Begrepen",
+ "news.1":"Een oefening komt niet meer twee keer achter elkaar in dezelfde vorm terug.",
+ "news.2":"Wat je goed kent, rust een tijd en komt later terug.",
+ "news.3":"Elke dag is er iets nieuws om te leren.",
+ "news.4":"Bij typen tellen hoofdletters en accenten niet meer als fout.",
+ "news.5":"Op Ik: Proefonderdelen. Nieuwe onderdelen die nog uitgeprobeerd worden. Ze staan uit, tenzij je ze aanzet.",
  "round.short":"Vandaag een korte ronde: er is weinig aan de beurt.",
  "round.shortStock":"Vandaag een korte ronde: je hebt alle nieuwe lesstof gezien en er is weinig aan de beurt.",
  "store.nobak":"De opslag van de telefoon is bijna vol, daardoor kan de update geen reservekopie van je voortgang maken. Je voortgang blijft zoals hij was, maar de antwoorden van nu worden niet bewaard. Maak wat ruimte vrij, of bewaar je voortgang via Ik.",
@@ -1159,6 +1173,13 @@ th:{
  "scene.check":"ดูว่าข้อความของคุณมีสิ่งเหล่านี้หรือไม่",
  "scene.model":"ตัวอย่างคำตอบ",
  "scene.ruleTitle":"ภาษาจากฉากนี้",
+ "news.title":"มีอะไรใหม่",
+ "news.ok":"เข้าใจแล้ว",
+ "news.1":"แบบฝึกหัดจะไม่กลับมาในรูปแบบเดิมติดกันสองครั้งอีกแล้ว",
+ "news.2":"สิ่งที่คุณรู้ดีแล้วจะพักไว้สักระยะ แล้วค่อยกลับมาทีหลัง",
+ "news.3":"ทุกวันจะมีสิ่งใหม่ให้เรียน",
+ "news.4":"เวลาพิมพ์ ตัวพิมพ์ใหญ่และเครื่องหมายเหนือตัวอักษรไม่นับเป็นข้อผิดอีกแล้ว",
+ "news.5":"ในหน้า ฉัน: ส่วนทดลอง คือส่วนใหม่ของแอปที่ยังอยู่ระหว่างทดลอง ปิดไว้ เว้นแต่คุณจะเปิดเอง",
  "round.short":"วันนี้รอบสั้น มีสิ่งที่ต้องทบทวนไม่มาก",
  "round.shortStock":"วันนี้รอบสั้น คุณเห็นบทเรียนใหม่ครบแล้ว และมีสิ่งที่ต้องทบทวนไม่มาก",
  "store.nobak":"พื้นที่เก็บข้อมูลในโทรศัพท์เกือบเต็ม การอัปเดตจึงทำสำเนาสำรองความคืบหน้าไม่ได้ ความคืบหน้าเดิมยังอยู่ แต่คำตอบตอนนี้จะไม่ถูกบันทึก ลองลบข้อมูลบางอย่าง หรือบันทึกความคืบหน้าผ่านหน้า ฉัน",
@@ -1704,6 +1725,8 @@ function noSameForm(q,learn){let speak=false;try{speak=typeof window!=='undefine
     else if(x.exid){const L=(PACKS.find(p=>(p.exercises||[]).some(e=>e.id===String(x.exid).split('#')[0]))||{}).learn||learn,e=shuffle(exsFor(id,L).filter(e=>QFORM[e.form==='listen'?'listen':e.form]!==lf&&!(QUIET&&(e.form==='listen'||e.form==='dictee'))))[0],n=e&&exQ(e,x.step,L==='en'?'en':learn,id);if(n){if(x._new)n._new=1;if(x._easy)n._easy=1;out.push(n);continue}}
     out.push(x)}   /* geen andere vorm beschikbaar: dan toch (een tekort aan lesstof, geen reden om het onderdeel over te slaan) */
   return out}
+/* Wat is nieuw (aanbeveling 1.3): verhoog NEWS bij een release die de leerder merkt, en zet de punten in I18N (news.1 …). Een nieuwe installatie ziet het niet. */
+const NEWS='2026-11-15',NEWS_N=5;
 let QUIET=false;   // stille stand: zonder voorlezen en luisteroefeningen, alleen voor deze sessie (Bijsturen op Ik)
 let SCENES=[];   // scènes uit de pakketten: {sc, learn}
 let PACKS=[],PACK_MISSING=[],NL=[],EN=[],REK=[],SENT=[],PAIRS=[],DICTEE=null,STORY=null,PLACE=[];
@@ -2013,7 +2036,7 @@ function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
     points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
-    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,trial:false,weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},roundLen:'normaal',errs:{},world:{ok:{},best:{},done:{},at:null},schema:SCHEMA};
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,trial:false,seenNews:NEWS,weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},roundLen:'normaal',errs:{},world:{ok:{},best:{},done:{},at:null},schema:SCHEMA};
 }
 /* ============ opslag veilig laden (#30) ============
    S.v blijft 2. S.schema telt de vorm van de opslag (zonder veld = 1). Elke stap n -> n+1 staat in MIGRATE en mag vaker draaien.
@@ -2027,7 +2050,7 @@ const MIGRATE={
  2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s},   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
  3:s=>{for(const it of Object.values(s.items||{})){if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];if(it&&typeof it==='object'&&it.t==null&&typeof it.s==='number'&&it.s>0&&typeof it.due==='number')it.t=it.due-it.s*864e5}if(Object.keys(s.days||{}).length&&s.f3pending==null)s.f3pending=1;return s},
  4:s=>{if(!s.world||typeof s.world!=='object'||Array.isArray(s.world))s.world={done:{},at:null};if(!s.world.done||typeof s.world.done!=='object')s.world.done={};return s},
- 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};if(s.world&&typeof s.world==='object'&&(!s.world.best||typeof s.world.best!=='object'))s.world.best={};for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&typeof it.h!=='string')it.h='';if(typeof s.trial!=='boolean')s.trial=false;return s}   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
+ 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};if(s.world&&typeof s.world==='object'&&(!s.world.best||typeof s.world.best!=='object'))s.world.best={};for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&typeof it.h!=='string')it.h='';if(typeof s.trial!=='boolean')s.trial=false;if(typeof s.seenNews!=='string')s.seenNews='';return s}   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
 };
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
@@ -2266,7 +2289,7 @@ function vToday(){
       <li><span class="dot">4</span>${T('lesson.step.maths')}<span class="min">5 min</span></li>
       <li><span class="dot">5</span>${T('lesson.step.end')}<span class="min">1 min</span></li>
     </ol>
-    ${stockOut()?`<p class="note sky small">${T('stock.out')}</p>`:''}<button class="btn btn-main" id="start">${T(done?'today.again':'today.begin')}</button>
+    ${S.seenNews!==NEWS?`<div class="note sky stack-sm" id="news">${T('news.title')}<ul>${Array.from({length:NEWS_N},(_,i)=>`<li>${T('news.'+(i+1))}</li>`).join('')}</ul><button class="btn btn-ghost" id="newsOk">${TB('news.ok')}</button></div>`:''}${stockOut()?`<p class="note sky small">${T('stock.out')}</p>`:''}<button class="btn btn-main" id="start">${T(done?'today.again':'today.begin')}</button>
     <button class="linkish" id="short">${T('today.short')}</button>
   </section>
   ${enDay?`<button class="tile wide" id="en"><span class="ic" style="background:var(--sky);color:var(--sky-ink)">${icon.globe}</span><span>${T('today.english')}<span class="small muted">${T('today.english.sub')}</span></span></button>`:''}
@@ -2284,6 +2307,7 @@ function vToday(){
     ${!enDay?`<button class="tile sky" id="video"><span class="ic">${icon.tv}</span>${T('extra.watch')}<span class="small muted">${T('extra.watch.sub')}</span></button>`:''}
   </div>`);
   $('#start').onclick=()=>startLesson(false);
+  if($('#newsOk'))$('#newsOk').onclick=()=>{S.seenNews=NEWS;save();const n=$('#news');if(n)n.remove()};   /* Wat is nieuw: één keer */
   $('#short').onclick=()=>startLesson(true);
   $('#en').onclick=startEnglish;
   $('#story').onclick=startStory;
