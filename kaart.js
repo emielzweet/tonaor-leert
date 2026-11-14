@@ -69,12 +69,15 @@
     if (spec.line && Array.isArray(spec.line.pts)) {
       var pts = spec.line.pts.map(function (ll) { return project(data.proj, ll).map(function (n) { return n.toFixed(2); }).join(' '); });
       out += '<polyline class="k-line' + (spec.line.draw ? ' k-draw' : '') + '" points="' + pts.join(' ') + '" stroke-width="' + (2.2 * sw).toFixed(3) + '"/>';
-      if (spec.line.label && !o.hide) { var e = project(data.proj, spec.line.pts[spec.line.pts.length - 1]); out += '<text class="k-txt" x="' + e[0].toFixed(1) + '" y="' + (e[1] - 4 * sw).toFixed(1) + '" font-size="' + (9 * sw).toFixed(2) + '">' + attr(lab(spec.line.label)) + '</text>'; }
+      if (spec.line.label) { var e = project(data.proj, spec.line.pts[spec.line.pts.length - 1]); out += '<text class="k-txt" x="' + e[0].toFixed(1) + '" y="' + (e[1] - 4 * sw).toFixed(1) + '" font-size="' + (9 * sw).toFixed(2) + '">' + attr(lab(spec.line.label)) + '</text>'; }
     }
+    /* bij de vraag (o.hide) alleen de naam van het antwoord weg: een speld op de gevraagde plek verdwijnt helemaal; andere namen geven houvast (ontwerp, bijgesteld) */
+    var isAns = function (p) { return o.hide && Array.isArray(spec.answer) && distKm(p.at, spec.answer) <= Math.max(spec.tol || 0, 1); };
     (spec.pins || []).forEach(function (p) {
+      if (isAns(p)) return;
       var q = project(data.proj, p.at);
       out += '<circle class="k-pin" cx="' + q[0].toFixed(1) + '" cy="' + q[1].toFixed(1) + '" r="' + (3.2 * sw).toFixed(2) + '"/>';
-      if (p.label && !o.hide) out += '<text class="k-txt" x="' + (q[0] + 5 * sw).toFixed(1) + '" y="' + (q[1] + 3 * sw).toFixed(1) + '" font-size="' + (9 * sw).toFixed(2) + '" text-anchor="start">' + attr(lab(p.label)) + '</text>';
+      if (p.label) out += '<text class="k-txt" x="' + (q[0] + 5 * sw).toFixed(1) + '" y="' + (q[1] + 3 * sw).toFixed(1) + '" font-size="' + (9 * sw).toFixed(2) + '" text-anchor="start">' + attr(lab(p.label)) + '</text>';
     });
     if (o.dot) { var d = project(data.proj, o.dot); out += '<circle class="k-dot" cx="' + d[0].toFixed(1) + '" cy="' + d[1].toFixed(1) + '" r="' + (4 * sw).toFixed(2) + '"/>'; }
     if (o.dot2) { var d2 = project(data.proj, o.dot2); out += '<circle class="k-dot2" cx="' + d2[0].toFixed(1) + '" cy="' + d2[1].toFixed(1) + '" r="' + (4 * sw).toFixed(2) + '"/>'; }

@@ -58,7 +58,8 @@ ok(K.yearText(-500) === '500 v.Chr.', 'jaartal voor Christus');
 const svg = K.renderMap(nl, { map: 'nederland', pins: [{ at: [4.9, 52.37], label: '<b>x</b>' }] }, { tap: true });
 ok(/data-id="utrecht"/.test(svg) && /role="button"/.test(svg), 'aantikbaar gebied');
 ok(!/<b>/.test(svg), 'label geescapet');
-ok(!/k-txt/.test(K.renderMap(nl, { map: 'nederland', pins: [{ at: [4.9, 52.37], label: 'A' }] }, { hide: true })), 'labels verborgen bij de vraag');
+{ const h = K.renderMap(nl, { map: 'nederland', answer: [4.9, 52.37], tol: 20, pins: [{ at: [4.9, 52.37], label: 'Antwoord' }, { at: [6.57, 53.22], label: 'Houvast' }] }, { hide: true });
+  ok(!/Antwoord/.test(h) && /Houvast/.test(h), 'bij de vraag alleen de naam van het antwoord verborgen'); }
 ok(/t-hit/.test(K.renderTimeline(tl, { cards: [c(1600, 1610)], real: true })), 'tijdlijn met aantikvlak');
 
 /* 7. de poort in pakketcheck: do map en do timeline */
