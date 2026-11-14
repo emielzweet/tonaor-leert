@@ -2,6 +2,10 @@
 
 Stand: 14 november 2026. **Dit is het leidende document.** Het zegt wat er geëist wordt, in welke volgorde er gebouwd wordt, wie wat doet en wanneer iets klaar is. De andere documenten in `docs/` werken onderdelen uit; waar ze dit plan tegenspreken, geldt dit plan.
 
+## Hoe er gewerkt wordt
+
+`docs/werkorder.md` (14 november 2026): de eigenaar heeft gevraagd het hele plan uit te werken zonder per keuze op hem te wachten. Daar staan de standaardkeuzes bij elk open besluit, de volgorde van het werk, wat bij de eigenaar blijft, en de procedure om een nieuwe versie uit te brengen.
+
 ## Het fundament
 
 `docs/didactisch-plan.md` is het fundament onder dit plan: de leeruitkomsten per jaar en per vak, de leerweg (vier strengen), de wetenschappelijke onderbouwing per facet met bronnen, wat de drie leergangen toevoegen, en twaalf eisen aan de motor (M1 tot M12). Een eis hieronder zonder onderbouwing daar is een aanname en wordt zo genoemd. Code die bepaalt wat de leerder krijgt, wanneer en hoe moeilijk, verwijst naar een M-eis.
@@ -198,6 +202,7 @@ Vragen van de bouwsessie die een eis raken, met het antwoord. Dit hoofdstuk groe
 | Document | Waarvoor leidend |
 |---|---|
 | `masterplan.md` | eisen, volgorde, rollen |
+| `werkorder.md` | doorwerken zonder te wachten: standaardkeuzes, volgorde van het werk, uitbrengen |
 | `didactisch-plan.md` | het fundament: leeruitkomsten, leerweg, onderbouwing met bronnen, eisen aan de motor |
 | `onderbouwing-nederlands.md` | Nederlands uitgediept: het Staatsexamen per onderdeel, de niveaus, het onderzoek, en de eisen N-M1 tot N-M9 aan de motor |
 | `onderbouwing-engels.md` | Engels uitgediept: het examen lezen en luisteren op B1, een derde taal naast een tweede, en de eisen E-M1 tot E-M6 aan de motor |
