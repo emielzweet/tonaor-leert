@@ -66,6 +66,18 @@ Los, met drie zachte verbindingen:
 - woorden die de leerder bewaart, komen terug in de gewone herhaling;
 - vanaf A2 Engels is er ook een deel van de bibliotheek in het Engels: het centrale examen Engels gaat over algemene maatschappelijke onderwerpen, in teksten van 800 tot 1.200 woorden (`onderbouwing-engels.md`).
 
+## Formaat van een losse les, tot het scherm Ontdek er is
+
+Besluit van de ontwerpsessie, 15 november 2026, op voorstel van de bouwsessie.
+
+- **Per les een pakket** `content/ao-<naam>.json`: `type: "les"`, `learn: "nl"`, `order`, `gebied`, `vorm` (uit de voorraad hierboven of nieuw), `draden` (twee of drie id's van andere lessen, ook uit een ander gebied), `sources` (per feit te herleiden), en één scène met `subject: "kn"`. Uitbrengen via de index.
+- **Geen vaste opbouw.** De scène volgt de vorm: een tijdlijn is leggen, een plek is zoeken op de kaart, een dilemma is een standpunt kiezen en dan de kanten lezen, een raadsel lost pas aan het eind op. Er is geen vast aantal vragen en geen verplichte controle aan het eind. Vast is alleen wat onder "Het enige wat vastligt" staat. Raden of schatten vooraf is de gewone opening, geen eis.
+- **In lagen:** de kern kort; een stap *dieper* die de leerder mag overslaan.
+- **Geen grind:** antwoorden gaan niet naar het herhaalmodel en niet naar het foutprofiel; er is geen goed of fout dat telt, alleen terugkoppeling. Alleen een woord dat de leerder zelf bewaart, gaat naar de herhaling. De leestijd telt mee voor het weekdoel.
+- **Aan het eind de draden:** de leerder kiest een draad of gaat later verder; zonder keuze komt de volgende les uit `order`.
+- **De poort:** de regels van de kennisles, een bron per feit, en over de lijst: nooit twee keer achter elkaar dezelfde `vorm`, hooguit twee achter elkaar uit hetzelfde `gebied` (behalve via een draad), elke draad bestaat. Review op het grotere model, met extra aandacht voor feiten en voor de toon bij geloof en politiek. Geen foto's, alleen tekeningen uit de catalogus.
+- **In de app:** achter Proefonderdelen een tegel *Ontdek* die de volgende les aanbiedt, tot het scherm Ontdek (stap 11) er is.
+
 ## Wat ervoor nodig is
 
 - **Bouwstenen om te tekenen:** een kaart (wereld, Europa, Azië, Nederland met provincies) waarop je plekken kunt aantikken, en een tijdlijn waarop je dingen kunt leggen. De ontwerpsessie ontwerpt die, naar het voorbeeld van `scene.js`; foto's niet (rechten), wel tekeningen uit de catalogus.
