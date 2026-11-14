@@ -203,6 +203,14 @@ Vragen van de bouwsessie die een eis raken, met het antwoord. Dit hoofdstuk groe
 9. **H4, aanvullen als de nieuwe woorden op zijn.** De rem geldt voor herhaling. Een som met nieuwe getallen is nieuwe oefening en mag aanvullen, met twee grenzen: alleen voor vaardigheden die niet in rust zijn, en hooguit een derde van de ronde (anders wordt het een rekenronde, en dezelfde som steeds opnieuw is ook een grind). Een ronde mag korter zijn dan acht onderdelen als er niets zinnigs meer is om aan te vullen: liever kort dan opgevuld. De app zegt dan dat de ronde kort is en waarom.
 10. **De redactielijn na drie rondes zonder "goed".** Volgens de werkorder gaat dit naar de ontwerpsessie, niet naar de eigenaar. De ontwerpsessie kijkt waar het aan ligt: aan de schrijver, aan de opdracht, of aan een poort die tijdens het schrijven veranderde. In het laatste geval telt de ronde niet mee. Daarna hooguit twee rondes; lukt het dan nog niet, dan leest de ontwerpsessie de review zelf en beslist of het hoofdstuk wordt herschreven of de opdracht wordt aangepast.
 
+**15 november 2026, na ijkmoment G1 en de reviews door een groter model**
+
+11. **Een onderdeel met twee vormen is geen woord.** Het besluit van 14 november om "pijn aan" en "pijn in" tot één woordonderdeel te maken was fout: de app plakt het woord in een gatzin, met schuine streep en al. Zo'n punt is een regel (`rule`, zonder `w`) of twee losse woorden met elk een eigen zin. Algemeen: `w` van een woord of vaste zin bevat nooit een schuine streep, en een vaste zin staat aan het begin van zijn gatzin of heeft geen hoofdletter en punt.
+12. **Review van lesstof door een groter model dan de schrijver, altijd.** Twee reviews op het goedkopere model gaven "goed" waar een groter model één blokkerende en zestien kleine fouten vond, en twaalf blokkerende in de basiswoorden. Lesstof wordt pas zichtbaar als het pakket een veld heeft dat zegt welke review "goed" gaf; de poort controleert dat het er staat.
+13. **Wat de poort erbij moet vangen** (C1, C4, A7): binnen een scène geen twee vragen met dezelfde vraag, vorm en antwoord; een lees- of luistertekst met meer dan drie vragen heeft minstens één vraag waarbij de leerder zelf typt of bouwt; minstens een derde van de antwoordmomenten in een scène Nederlands is zelf maken (typen, horen en typen, afmaken, zin bouwen, maken, spreken); een rekenscène en een kennisles hebben minstens vijf werkvormen; een vraag naar een woord komt niet vóór de stap waarin dat woord wordt aangeboden, behalve in de instap.
+14. **Een rekenscène begint met voordoen:** een uitgewerkt voorbeeld (stap `rule` met `example`) vóór het zelf rekenen, zoals de leerlijn in `onderbouwing-rekenen.md` vraagt.
+15. **De voortgang bovenaan een scène** telt de delen die de leerder werkelijk doorloopt (instap, kijken, ophalen, gesprek, taal, doen, maken, controle) en noemt het deel waar hij is.
+
 ## Kaart van de documenten
 
 | Document | Waarvoor leidend |
