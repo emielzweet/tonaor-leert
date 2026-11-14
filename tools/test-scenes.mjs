@@ -195,4 +195,5 @@ ok('poort (uitleg bij de eisen 16): een typvraag met een zin als antwoord is een
   ok('de lijst houdt de laatste vijftig, zonder html', cx.S.claims.length === 50 && cx.S.claims[49].id === 'x59' && cx.S.claims[49].q === 'q');
   ok('alle getypte schermen hebben de knop (ophalen, gatzin, luisteren, Engels, scène)', (html.match(/bindClaim\(/g) || []).length >= 9 && html.includes('function next(){flushPend();') && html.includes("$('#quit').onclick=()=>{flushPend();"));
 }
+ok('zin bouwen: de plek van het werkwoord volgt uit de goede zin (vraag: werkwoord vooraan), en de scènevraag staat erboven', html.includes("const vp=s.parts.indexOf(s.verb),okK=vp===1?'build.ok':vp===0?'build.okFirst':'build.okPlain';") && html.includes("vi===vp?'build.rest':vp===1?'build.verbPos':vp===0?'build.verbFirst':'build.again'") && html.includes('...(qq.ask?{_ask:qq.ask}:{})'));
 console.log(fails ? fails + ' FOUT' : 'alles OK');

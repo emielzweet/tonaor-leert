@@ -569,6 +569,10 @@ en:{
  "build.rest":"The verb is in the right place. Look at the rest again.",
  "build.verbPos":"Put the orange verb in position 2. Try again!",
  "build.ok":"The verb {verb} is in position 2.",
+ "build.again":"Look at the order again. Try again!",
+ "build.okFirst":"The verb {verb} comes first: that makes it a question.",
+ "build.okPlain":"Well done.",
+ "build.verbFirst":"In a question the orange verb comes first. Try again!",
  "try.again":"Try again, or take a hint.",
  "recall.answer":"The answer is {full}.",
  "recall.wrongArt":"This is a {art} word: {full}.",
@@ -1003,6 +1007,10 @@ nl:{
  "build.rest":"Het werkwoord staat goed. Kijk nog eens naar de rest.",
  "build.verbPos":"Zet het oranje werkwoord op <b>plek 2</b>. Nieuwe kans!",
  "build.ok":"Het werkwoord <b>{verb}</b> staat op plek 2.",
+ "build.again":"Kijk nog eens naar de volgorde. Nieuwe kans!",
+ "build.okFirst":"Het werkwoord <b>{verb}</b> staat vooraan: zo maak je een vraag.",
+ "build.okPlain":"Goed zo.",
+ "build.verbFirst":"In een vraag staat het oranje werkwoord <b>vooraan</b>. Nieuwe kans!",
  "try.again":"Probeer het nog een keer, of neem een hulpje.",
  "recall.answer":"Het is <b>{full}</b>.",
  "recall.wrongArt":"Dit is een <b>{art}</b>-woord: <b>{full}</b>.",
@@ -1438,6 +1446,10 @@ th:{
  "build.rest":"กริยาถูกที่แล้ว ดูส่วนอื่นอีกครั้ง",
  "build.verbPos":"วางกริยาสีส้มไว้ตำแหน่งที่ 2 ลองใหม่",
  "build.ok":"กริยา {verb} อยู่ตำแหน่งที่ 2",
+ "build.again":"ดูลำดับอีกครั้ง ลองใหม่",
+ "build.okFirst":"กริยา {verb} อยู่หน้าสุด แบบนี้เป็นประโยคคำถาม",
+ "build.okPlain":"เก่งมาก",
+ "build.verbFirst":"ในประโยคคำถาม กริยาสีส้มอยู่หน้าสุด ลองใหม่",
  "try.again":"ลองอีกครั้ง หรือใช้ตัวช่วย",
  "recall.answer":"คำตอบคือ {full}",
  "recall.wrongArt":"คำนี้ใช้ {art}",
@@ -2492,7 +2504,7 @@ function sceneQ(sc,hard){const q=[],vak=sc.subject||'nl',ph={look:1,talk:2,read:
   const EXF=['build','gap','listen','money','clock','discount'];
   const ask=(base,qq,exid,o)=>{if(!EXF.includes(qq.form))return {...base,type:'sc_q',qq,items:qq.items.slice(),exid,hard:!!hard,...o};   // een vraag (docs/scenes.md, diepte en diagnose)
     const e={id:exid,form:qq.form,items:qq.items.slice(),...(qq.gen?{gen:qq.gen}:{data:qq.data}),fb:{ok:qq.why},hint:qq.hint},x=exQ(e,base.step,'nl',qq.items[0]);   // een bestaande oefenvorm: hetzelfde scherm als in de les
-    if(!x)return null;return {...x,sc,st:base.st,vak,_sceneErr:qq.err||null,...o}};
+    if(!x)return null;return {...x,sc,st:base.st,vak,_sceneErr:qq.err||null,...(qq.ask?{_ask:qq.ask}:{}),...o}};   // review dokter 7: de vraag van de scène staat boven de oefening
   const push=x=>{if(x)q.push(x)};
   sc.steps.forEach((st,k)=>{try{const step=ph[st.type]||3,base={sc,st,step,vak};   /* codereview B5: een kapotte stap valt weg, de scène niet */
     if(st.type==='look')q.push({...base,type:'sc_look'});
@@ -2676,8 +2688,9 @@ H.build=q=>{const s=q.s;let pool=shuffle(s.parts);if(pool.join()===s.parts.join(
     app.querySelectorAll('[data-take]').forEach(b=>b.onclick=()=>{chosen.push(pool.splice(+b.dataset.take,1)[0]);draw()});
     app.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>{pool.push(chosen.splice(+b.dataset.back,1)[0]);draw()});
     $('#chk').onclick=()=>{if(pool.length)return;const right=s.parts.join(' ');
-      if(chosen.join(' ')===right){score(first,15);practiced(q,first,'build');say(right,false,q.lang||'nl');$('#fb').innerHTML=fbBox(true,`<b>${esc(right)}</b> ${t('build.ok',{verb:esc(s.verb)})}`,ts('build.ok',{verb:esc(s.verb)}));$('#chk').outerHTML=nextBtn();$('#nx').onclick=next}
-      else{first=false;const vi=chosen.indexOf(s.verb);pool=shuffle(s.parts);chosen=[];draw(fbK(false,vi!==1?'build.verbPos':'build.rest'))}}};
+      const vp=s.parts.indexOf(s.verb),okK=vp===1?'build.ok':vp===0?'build.okFirst':'build.okPlain';   /* review dokter 7: de plek van het werkwoord volgt uit de goede zin (een vraag begint met het werkwoord) */
+      if(chosen.join(' ')===right){score(first,15);practiced(q,first,'build');say(right,false,q.lang||'nl');$('#fb').innerHTML=fbBox(true,`<b>${esc(right)}</b> ${t(okK,{verb:esc(s.verb)})}`,ts(okK,{verb:esc(s.verb)}));$('#chk').outerHTML=nextBtn();$('#nx').onclick=next}
+      else{first=false;const vi=chosen.indexOf(s.verb);pool=shuffle(s.parts);chosen=[];draw(fbK(false,vi===vp?'build.rest':vp===1?'build.verbPos':vp===0?'build.verbFirst':'build.again'))}}};
   draw()};
 H.gap=q=>{let first=true;
   frame(`<div class="card stack">${T('gap.title')}<p class="prompt">${q.s.replace('___','<span class="slot s2">___</span>')}</p>${supSpan(L_(q))}
