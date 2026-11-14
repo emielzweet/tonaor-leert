@@ -148,7 +148,7 @@ ok('speler: een antwoord binnen de marge (tol) is goed', html.includes("<=(typeo
 // review 2 (aan de bouwsessie)
 ok('controle: een uitleg-id die niet bestaat wordt geweigerd, een bestaande niet', /bestaat niet/.test(chk(sc => { sc.steps.splice(1, 0, { type: 'explain', id: 'klok-half' }); })) && chk(sc => { sc.steps.splice(1, 0, { type: 'explain', id: 'u.rk.klok' }); }) === '');
 ok('hoofdstuk: bij elk grammaticapunt een extra', /hoort een stap extra/.test(cc(p => { p.scenes.forEach(sc => { const r = sc.steps.find(s => s.type === 'rule'); if (r) { r.items = ['nl.regel.heb']; r.q.forEach(q => { q.items = ['nl.regel.heb']; }); } }); })));
-{ const cx = {}; vm.createContext(cx); vm.runInContext(fnBlock('scNum') + '\nthis.n=scNum;', cx); const T = [['6,60', 6.6], ['€ 6,60', 6.6], ['6 euro 60', 6.6], ['25 cent', 0.25], ['1.000', 1000], ['€ 1.250,50', 1250.5], ['1250', 1250], ['0,25 euro', 0.25], ['6,-', 6], ['zes', NaN]];
+{ const cx = {}; vm.createContext(cx); vm.runInContext(fnBlock('scNum') + '\nthis.n=scNum;', cx); const T = [['6,60', 6.6], ['€ 6,60', 6.6], ['6 euro 60', 6.6], ['25 cent', 0.25], ['1.000', 1000], ['€ 1.250,50', 1250.5], ['1250', 1250], ['0,25 euro', 0.25], ['6,-', 6], ['zes', NaN], ['0.125', 0.125], ['0.500', 0.5]];
   const bad = T.filter(([v, w]) => !(Number.isNaN(w) ? Number.isNaN(cx.n(v)) : Math.abs(cx.n(v) - w) < 1e-9));
   ok('speler: een getal zoals een Nederlander het typt (€, duizendtal met punt, euro 60, cent) wordt goed gelezen (codereview B2)', !bad.length, bad.map(([v]) => v + ' -> ' + cx.n(v)).join('; ')); }
 ok('zwaardere vorm: alleen een kort antwoord (hooguit drie woorden) wordt typen', html.includes('typeIt=q.hard&&qq.answer!=null&&String(qq.answer).trim().split(/\\s+/).length<=3'));
@@ -159,4 +159,8 @@ ok('H3 rust pas over tijd: drie dagen en zeven dagen ertussen (MOTOR.restDays, r
 { const cx = { NL: [{ id: 'a', also: ['b'] }, { id: 'b' }, { id: 'c' }] }; vm.createContext(cx); vm.runInContext(fnBlock('alsoOf') + '\nthis.f=alsoOf;', cx);
   ok('also werkt in beide richtingen (review 3: pijn aan / pijn in)', JSON.stringify(cx.f(cx.NL[0])) === '["b"]' && JSON.stringify(cx.f(cx.NL[1])) === '["a"]' && cx.f(cx.NL[2]).length === 0); }
 ok('Proefonderdelen: de scènetegel alleen met de schakelaar aan; standaard uit (aanbeveling 10.25)', html.includes('${SCENES.length&&S.trial?') && html.includes('explainVoice:true,trial:false,') && html.includes("if(typeof s.trial!=='boolean')s.trial=false"));
+{ const cx = {}; vm.createContext(cx); vm.runInContext(lineOf('const normS=') + '\n' + lineOf('const norm=') + '\nthis.n=norm;this.s=normS;', cx);
+  ok('tolerant typen (10.29): hoofdletter, spatie, accent en trema geen fout; het dictee blijft streng', cx.n('  Ruïne ') === cx.n('ruine') && cx.n('Café') === 'cafe' && cx.s('ruïne') !== cx.s('ruine')); }
+ok('korte ronde: de melding komt aan (de vlag gaat mee met de rij die compose teruggeeft)', html.includes('if(q._short)out._short=q._short;return out'));
+ok('speltimer stopt als de sessie verlaten is', html.includes("const here=Q[qi]===q&&app.classList.contains('sess')"));
 console.log(fails ? fails + ' FOUT' : 'alles OK');
