@@ -54,6 +54,13 @@ De eigenaar sliep; de ontwerpsessie gaf zijn opdracht door om met de aanbevolen 
 
 **Release B = 76cbd2e (cache v2-46), gemeld aan de ontwerpsessie voor ijkmoment G1:** het proefhoofdstuk "bij de dokter" in de app, achter Proefonderdelen (standaard uit, dus de leerder ziet het pas als die schakelaar aan gaat). Review 4: "goed" (0 blokkerend, 5 klein; redactie/uit/nl-dokter.review4.json). Beslist door de bouwsessie: de gewone les biedt hoofdstukstof niet als nieuw aan, alleen de scènes doen dat (anders kwamen de woorden ook met de schakelaar uit al in de les). Drie scènes gespeeld op 375 px; voortgang en "beheerst" bewaard. Let op: review 3 en 4 zijn door het goedkopere model gedaan (ontwerpsessie: kosten laag houden); docs/automatische-redactie.md vraagt een groter model dan de schrijver; de steekproef bij G1 is de controle daarop.
 
+**Na release B gebouwd en getest (alle tests groen, browser op 375 px):**
+- fc54da3: de browser vragen de opslag blijvend te maken (stil) en één keer per maand een herinnering op Vandaag om een kopie van de voortgang te bewaren (aanbeveling 1.1 a en c). Bestaande leerders: de eerste herinnering na een maand.
+- 51b77de: een vaste kleur met een vorm voor de (rondje) en het (vierkantje), ook in de terugkoppeling bij typen en luisteren (aanbeveling 10.3).
+Deze twee zijn nog niet aan de ontwerpsessie gemeld als releasestand; ze kunnen mee met de volgende.
+
+**Nog te doen uit de kleine voorstellen:** 5, 15 of 30 minuten bij het openen (5.2), de pauzeknop voor het weekdoel (5.3), de steuntaal ook voorgelezen (10.24), een voorstel voor een pauze na een half uur (10.28). Daarna de rest van de werkorder.
+
 **Kleine punten uit review 4, voor een volgende ronde:** een gatzin met meer dan één goed antwoord (dok.morgenniet), drie keuzes als "bijna" die goed Nederlands zijn, de Thaise tijd bij tijd.half, één onnatuurlijke afleider, een onduidelijke reden in de rekenscène.
 
 **Redactielijn:** "bij de dokter" ronde 6 en samenvoegen pijn aan/in klaar (poort 0 fouten); review 4 loopt.
