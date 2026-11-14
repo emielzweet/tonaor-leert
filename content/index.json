@@ -1,6 +1,7 @@
 {
  "v": 1,
  "packs": [
+  "content/nl-thuis.json",
   "content/nl-dokter.json"
  ]
 }

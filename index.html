@@ -366,7 +366,7 @@ en:{
  "scene.do":"Do",
  "scene.live":"Take part",
  "scene.look":"Look",
- "scene.tile":"Story: at the doctor",
+ "scene.tile":"Story",
  "recall.typeWord":"Type the word",
  "vflag.sent":"Thank you! The coach will look at it.",
  "vflag.btn":"Report it",
@@ -809,7 +809,7 @@ nl:{
  "scene.do":"Doen",
  "scene.live":"Meemaken",
  "scene.look":"Kijken",
- "scene.tile":"Verhaal: bij de dokter",
+ "scene.tile":"Verhaal",
  "recall.typeWord":"Typ het woord",
  "vflag.sent":"Dank je! De begeleider kijkt ernaar.",
  "vflag.btn":"Meld het",
@@ -1248,7 +1248,7 @@ th:{
  "scene.do":"ลงมือทำ",
  "scene.live":"ร่วมสถานการณ์",
  "scene.look":"ดู",
- "scene.tile":"เรื่องเล่า: ไปหาหมอ",
+ "scene.tile":"เรื่องเล่า",
  "recall.typeWord":"พิมพ์คำนั้น",
  "vflag.sent":"ขอบคุณ ผู้ดูแลจะตรวจดู",
  "vflag.btn":"แจ้ง",
@@ -1822,7 +1822,7 @@ function buildLists(){
   /* een hoofdstuk verschijnt pas als het de hoofdstukcontrole haalt (masterplan: lesstof door de poort en de review); zo komt een half hoofdstuk nooit bij de leerder */
   HIDDEN=PACKS.filter(p=>p.type==='hoofdstuk'&&(!PC||!PC.checkChapter||PC.checkChapter(p).errors.length)).map(p=>p.id);PACKS=PACKS.filter(p=>!HIDDEN.includes(p.id));   /* codereview B3: ook de woorden niet */
   CHAPTER=new Set(PACKS.filter(p=>p.type==='hoofdstuk').flatMap(p=>(p.items||[]).map(x=>x.id)));
-  SCENES=PACKS.flatMap(p=>(p.scenes||[]).map(sc=>({sc,learn:p.learn,purpose:p.purpose||null,pack:p.id})));
+  SCENES=PACKS.flatMap(p=>(p.scenes||[]).map(sc=>({sc,learn:p.learn,purpose:p.purpose||null,pack:p.id,order:typeof p.order==='number'?p.order:999})));
   const items=k=>PACKS.flatMap(p=>(p.items||[]).filter(x=>x.kind===k||(k==='word'&&x.kind==='phrase')).map(x=>({x,p})));   // phrase: een vaste zin, als woord zonder lidwoord
   // woord, voorbeeldzin, gatzin en lidwoord toont het scherm met esc() of leest het voor: RAW. Vertalingen staan rauw in de HTML: SAFE.
   NL=items('word').filter(o=>o.p.learn==='nl').map(({x})=>{const o={id:x.id,art:x.art?RAW(x.art):'',w:RAW(x.w),th:SAFE(x.tr.th),en:SAFE(x.tr.en),ex:RAW(x.ex),gap:RAW(x.gap)};if(x.askArt)o.askArt=1;if(x.also)o.also=x.also.slice();if(x.def)o.def=RAW(x.def);return o});
@@ -2388,7 +2388,7 @@ function vToday(){
   ${due?`<button class="card row between" id="water" style="background:var(--sky);border-color:var(--sky-fill)"><span>${T('today.thirsty',{n:due})}<span class="small muted">${T('today.water.tip')}</span></span><span class="pill pill-sky" style="background:var(--surface)">${T('today.water')}</span></button>`:''}
   <h3 style="margin-top:4px">${T('today.more')}</h3>
   <div class="tiles2">
-    ${SCENES.length&&S.trial?`<button class="tile mint" id="scene"><span class="ic">${icon.book}</span>${T('scene.tile')}<span class="small muted">${esc(scP((nextScene()||{}).title))} · ${Object.keys((S.world||{}).done||{}).length}/${SCENES.length}</span></button>`:''}
+    ${SCENES.length&&S.trial?`<button class="tile mint" id="scene"><span class="ic">${icon.book}</span>${T('scene.tile')}<span class="small muted">${(ns=>{const pk=ns&&PACKS.find(p=>(p.scenes||[]).includes(ns));return (pk&&pk.title?esc(scP(pk.title))+': ':'')+esc(scP((ns||{}).title))})(nextScene())} · ${SCENES.filter(o=>((S.world||{}).done||{})[o.sc.id]).length}/${SCENES.length}</span></button>`:''}
     ${EXPL_LIST.length?`<button class="tile apricot" id="uitleg"><span class="ic">${icon.bulb}</span>${T('explain.tile')}<span class="small muted">${T('explain.tile.sub',{done:EXPL_LIST.filter(o=>S.explained[o.x.id]).length,n:EXPL_LIST.length})}</span></button>`:''}
     <button class="tile lilac" id="story"><span class="ic">${icon.book}</span>${T('extra.story')}<span class="small muted">${T('extra.story.sub')}</span></button>
     <button class="tile apricot" id="speed"><span class="ic">${icon.bolt}</span>${T('extra.speed')}<span class="small muted num">${T('speed.record',{n:S.speedBest})}</span></button>
@@ -2526,7 +2526,7 @@ let SCN=null;   // de scène die nu loopt: fouten per soort, gebruikte extra's, 
 try{if(SV&&!document.getElementById('scenecss')){const st=document.createElement('style');st.id='scenecss';st.textContent=SV.CSS;document.head.appendChild(st)}}catch(e){}
 const scT=x=>TKx(x,'nl'),scP=x=>plainX(x,'nl');
 function scArt(sc,looks){return SV&&sc.art?SV.render(sc.art,SAFE,{text:scP,looks:looks||{}}):''}
-function nextScene(){const all=SCENES.map(o=>o.sc).sort((a,b)=>(a.place>b.place?1:a.place<b.place?-1:(a.n||6)-(b.n||6))),done=(S.world&&S.world.done)||{};return all.find(s=>!done[s.id])||all[0]||null}
+function nextScene(){const all=SCENES.slice().sort((a,b)=>a.order-b.order||(a.pack<b.pack?-1:a.pack>b.pack?1:0)||(a.sc.n||6)-(b.sc.n||6)).map(o=>o.sc),   /* de volgorde van de route: pakket (order), dan de scène (n) */done=(S.world&&S.world.done)||{};return all.find(s=>!done[s.id])||all[0]||null}
 function sceneQ(sc,hard){const q=[],vak=sc.subject||'nl',ph={look:1,talk:2,read:2,listen:2,slot:3,explain:3,do:3,make:3,rule:3,end:4},qph={instap:1,ophalen:1,controle:4};
   q.push({type:'sc_intro',sc,step:1,vak,hard:!!hard});
   const EXF=['build','gap','listen','money','clock','discount'];

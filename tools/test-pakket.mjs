@@ -123,7 +123,7 @@ ok('elk pakket in content/ staat in BUILTIN of in de index, en de index noemt al
   a = await boot({ override: { 'content/index.json': { v: 1, packs: ['https://elders.example/x.json', 'content/../sw.json', 'content/nl-dokter.json', 'content/nl-dokter.json', 'content/rk-1.json'] } } }); g2 = a.api.get();
   ok('index: vreemde paden en dubbele overgeslagen, het hoofdstuk geladen', g2.PACKS.some(p => p.id === 'nl-dokter') && g2.PACKS.length === bi.length + 1 && !g2.PACK_MISSING.length, g2.PACK_MISSING.join() + ' / ' + g2.PACKS.length);
   a = await boot({ missing: ['content/nl-dokter.json'] }); g2 = a.api.get();
-  ok('index: een pakket uit de index dat niet laadt, wordt gemeld; de basis laadt', g2.PACK_MISSING.includes('nl-dokter') && g2.PACKS.length === bi.length);
+  ok('index: een pakket uit de index dat niet laadt, wordt gemeld; de basis laadt', g2.PACK_MISSING.includes('nl-dokter') && g2.PACKS.length === bi.length + IDX.length - 1 && !g2.PACKS.some(p => p.id === 'nl-dokter'));
   const dok = JSON.parse(readFileSync(new URL('content/nl-dokter.json', ROOT), 'utf8'));
   a = await boot({ override: { 'content/index.json': { v: 1, packs: ['content/nl-dokter.json', 'content/nl-dokter2.json'] }, 'content/nl-dokter2.json': dok } }); g2 = a.api.get();
   ok('index: twee pakketten met dezelfde id: het tweede valt weg en wordt gemeld (review 3a, K5)', g2.PACKS.filter(p => p.id === 'nl-dokter').length === 1 && g2.PACK_MISSING.includes('nl-dokter2'), g2.PACK_MISSING.join());

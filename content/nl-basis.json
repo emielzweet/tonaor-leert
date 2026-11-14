@@ -294,7 +294,7 @@
    },
    "def": "Een vrouw die een kind heeft.",
    "ex": "Mijn moeder kookt lekker.",
-   "gap": "Zij is de ___ van drie kinderen."
+   "gap": "De vader en de ___ van een kind zijn samen de ouders."
   },
   {
    "id": "nlb.vader",
@@ -307,7 +307,7 @@
    },
    "def": "Een man die een kind heeft.",
    "ex": "Mijn vader repareert fietsen.",
-   "gap": "Hij is de ___ van drie kinderen."
+   "gap": "De moeder en de ___ van een kind zijn samen de ouders."
   },
   {
    "id": "nlb.school",
@@ -346,7 +346,7 @@
    },
    "def": "Een grote plaats met veel huizen, winkels en mensen.",
    "ex": "De stad is groot.",
-   "gap": "In de ___ wonen heel veel mensen en zijn er grote winkels."
+   "gap": "Een dorp is klein, maar de ___ is groot en vol mensen."
   },
   {
    "id": "nlb.auto",
@@ -515,7 +515,7 @@
    },
    "def": "Een bericht op papier, vaak met de post.",
    "ex": "Ik krijg een brief van de gemeente.",
-   "gap": "De postbode brengt de ___ naar mijn huis."
+   "gap": "Ik schrijf de ___ met een pen op papier en doe hem in een envelop."
   },
   {
    "id": "nlb.dokter",
@@ -1259,7 +1259,7 @@
    },
    "def": "De dag na vandaag.",
    "ex": "Morgen ga ik naar de dokter.",
-   "gap": "Het is zondag; ___ is het maandag, dan begint de week."
+   "gap": "De dag na vandaag heet ___."
   },
   {
    "id": "nlb.gisteren",

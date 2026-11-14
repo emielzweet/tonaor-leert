@@ -206,4 +206,11 @@ ok('standreview: knop weg na de tik, controle niet gehaald na de knop, lidwoord 
   ok('hoofdstuk: een woord uit een pakket dat niet in requires staat, blijft een fout', /bestaat niet/.test(bad(sc => { sc.targets = sc.targets.concat([nid]); })), nid);
   ok('hoofdstuk: zo\'n woord is hetzelfde item (geen eigen hoofdstukonderdeel, voortgang op het bestaande id)', html.includes("CHAPTER=new Set(PACKS.filter(p=>p.type==='hoofdstuk').flatMap(p=>(p.items||[]).map(x=>x.id)));") && !(base.items || []).some(x => x.id === rid));
 }
+{ const cx = { S: { world: { done: {} } } }; vm.createContext(cx);
+  vm.runInContext('var SCENES=' + JSON.stringify([{ sc: { id: 'dok-1', place: 'dokter', n: 1 }, order: 30 }, { sc: { id: 'thu-2', place: 'thuis', n: 2 }, order: 10 }, { sc: { id: 'thu-1', place: 'thuis', n: 1 }, order: 10 }]) + ';' + fnBlock('nextScene') + ';this.f=nextScene;', cx);
+  ok('volgende scène volgt de route: eerst het pakket met de laagste order, dan de scène met de laagste n', cx.f().id === 'thu-1');
+  cx.S.world.done = { 'thu-1': 1 }; ok('volgende scène: wat af is, slaat hij over', cx.f().id === 'thu-2');
+  cx.S.world.done = { 'thu-1': 1, 'thu-2': 1, 'dok-1': 1 }; ok('volgende scène: alles af → de eerste', cx.f().id === 'thu-1');
+  vm.runInContext('SCENES=' + JSON.stringify([{ sc: { id: 'b-1', n: 1 }, order: 10, pack: 'b' }, { sc: { id: 'a-2', n: 2 }, order: 10, pack: 'a' }, { sc: { id: 'a-1', n: 1 }, order: 10, pack: 'a' }, { sc: { id: 'b-2', n: 2 }, order: 10, pack: 'b' }]), cx); cx.S.world.done = { 'a-1': 1 };
+  ok('volgende scène: twee pakketten met dezelfde order lopen niet door elkaar', cx.f().id === 'a-2'); }
 console.log(fails ? fails + ' FOUT' : 'alles OK');
