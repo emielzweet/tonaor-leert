@@ -160,11 +160,11 @@
     // sommen die niet opraken (docs/herhaalmodel.md sectie 4): een recept met bereiken in plaats van vaste getallen
     var COINS = [1000, 500, 200, 100, 50, 20, 10, 5], MINS = [0, 15, 30, 45], PCTS = [10, 20, 25, 30, 50];
     var rng = function (a) { return Array.isArray(a) && a.length >= 2 && a.every(function (n) { return typeof n === 'number' && isFinite(n); }) && a[0] <= a[1]; };
-    var genCheck = function (e, w) {
+    var genCheck = function (e, w, inScene) {   // inScene: de items controleert de scène zelf (ook uit andere pakketten)
       var g = e.gen;
       if (!g || typeof g !== 'object') { err(w + ': gen moet een object zijn'); return; }
-      if (!Array.isArray(e.items) || !e.items.length) err(w + ': items ontbreekt');
-      else e.items.forEach(function (r) { if (!find('items', r)) err(w + ': item ' + r + ' bestaat niet'); else useCount[r] = (useCount[r] || 0) + 1; });
+      if (!inScene && (!Array.isArray(e.items) || !e.items.length)) err(w + ': items ontbreekt');
+      else if (!inScene) e.items.forEach(function (r) { if (!find('items', r)) err(w + ': item ' + r + ' bestaat niet'); else useCount[r] = (useCount[r] || 0) + 1; });
       if (e.pool != null && (typeof e.pool !== 'string' || !ID.test(e.pool))) err(w + ': ongeldige groepsnaam');
       switch (e.form) {
         case 'money':
@@ -186,21 +186,8 @@
     // oefeningen
     var tested = {};
     ((p.tests && p.tests.placement) || []).forEach(function (e) { tested[e] = 1; if (!find('exercises', e)) err(id + '.tests: oefening ' + e + ' bestaat niet'); });
-    var useCount = {};
-    (p.exercises || []).forEach(function (e) {
-      var w = id + '.' + e.id, d = e.data || {};
-      if (FORMS.indexOf(e.form) < 0) { err(w + ': ' + (RESERVED.indexOf(e.form) >= 0 ? 'vorm ' + e.form + ' is gereserveerd voor een latere fase' : 'onbekende vorm ' + e.form)); return; }
-      if (!Array.isArray(e.items)) err(w + ': items ontbreekt');
-      else e.items.forEach(function (r) { if (!find('items', r)) err(w + ': item ' + r + ' bestaat niet'); else useCount[r] = (useCount[r] || 0) + 1; });
-      if (e.text && !find('texts', e.text)) err(w + ': tekst ' + e.text + ' bestaat niet');
-      if (e.pool != null && (typeof e.pool !== 'string' || !ID.test(e.pool))) err(w + ': ongeldige groepsnaam');
-      if (e.skill != null && SKILLS.indexOf(e.skill) < 0) err(w + ': onbekende vaardigheid ' + e.skill);
-      if (e.qtype != null && QTYPES.indexOf(e.qtype) < 0) err(w + ': onbekend vraagtype ' + e.qtype);
-      if (e.para != null && !(Number.isInteger(e.para) && e.para >= 0)) err(w + ': para moet een getal zijn');
-      if (e.data && e.data.lang != null && e.data.lang !== 'en') err(w + ': data.lang kent alleen "en"');
-      if (!e.data && !e.gen) err(w + ': data of gen ontbreekt');
-      if (e.fade != null && [1, 2, 3].indexOf(e.fade) < 0) err(w + ': fade moet 1 (voorbeeld), 2 (laatste stap zelf) of 3 (helemaal zelf) zijn');
-      if (e.gen) { genCheck(e, w); return; }
+    // de gegevens van een oefenvorm (ook gebruikt voor een vraag in een scène)
+    function exData(e, w, d) {
       var opts = function (o, a, n) { if (!Array.isArray(o) || o.length < 2) { err(w + ': opties ontbreken'); return; } if (n && o.length !== n) err(w + ': precies ' + n + ' opties nodig'); };
       switch (e.form) {
         case 'build':
@@ -233,6 +220,23 @@
           tekst(d.alt, w + '.alt', true); break;
         case 'discount': if (['worked', 'part', 'own'].indexOf(d.mode) < 0) err(w + ': mode moet worked, part of own zijn'); break;
       }
+    }
+    var useCount = {};
+    (p.exercises || []).forEach(function (e) {
+      var w = id + '.' + e.id, d = e.data || {};
+      if (FORMS.indexOf(e.form) < 0) { err(w + ': ' + (RESERVED.indexOf(e.form) >= 0 ? 'vorm ' + e.form + ' is gereserveerd voor een latere fase' : 'onbekende vorm ' + e.form)); return; }
+      if (!Array.isArray(e.items)) err(w + ': items ontbreekt');
+      else e.items.forEach(function (r) { if (!find('items', r)) err(w + ': item ' + r + ' bestaat niet'); else useCount[r] = (useCount[r] || 0) + 1; });
+      if (e.text && !find('texts', e.text)) err(w + ': tekst ' + e.text + ' bestaat niet');
+      if (e.pool != null && (typeof e.pool !== 'string' || !ID.test(e.pool))) err(w + ': ongeldige groepsnaam');
+      if (e.skill != null && SKILLS.indexOf(e.skill) < 0) err(w + ': onbekende vaardigheid ' + e.skill);
+      if (e.qtype != null && QTYPES.indexOf(e.qtype) < 0) err(w + ': onbekend vraagtype ' + e.qtype);
+      if (e.para != null && !(Number.isInteger(e.para) && e.para >= 0)) err(w + ': para moet een getal zijn');
+      if (e.data && e.data.lang != null && e.data.lang !== 'en') err(w + ': data.lang kent alleen "en"');
+      if (!e.data && !e.gen) err(w + ': data of gen ontbreekt');
+      if (e.fade != null && [1, 2, 3].indexOf(e.fade) < 0) err(w + ': fade moet 1 (voorbeeld), 2 (laatste stap zelf) of 3 (helemaal zelf) zijn');
+      if (e.gen) { genCheck(e, w); return; }
+      exData(e, w, d);
       if (e.fb) { tekst(e.fb.ok, w + '.fb.ok', true); tekst(e.fb.no, w + '.fb.no', true); }
       if (e.hint != null) { if (!Array.isArray(e.hint)) err(w + ': hint moet een lijst zijn'); else e.hint.forEach(function (h, i) { tekst(h, w + '.hint[' + i + ']'); }); }
       // kwaliteit (A-eisen uit het kwaliteitskader die per oefening te controleren zijn)
@@ -310,20 +314,24 @@
     // scènes (docs/scenes.md): vaste stappen, gesprekken met één goede keuze en een reden bij elke keuze, de tekening uit de catalogus
     if (p.scenes != null) {
       var SV = root.SceneVis || null; if (!SV && typeof require === 'function') { try { SV = require('./scene.js'); } catch (e) { SV = null; } }
-      var STEP = ['look', 'talk', 'read', 'listen', 'slot', 'explain', 'do', 'make', 'end', 'quiz', 'rule', 'extra'], ERRS = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen'], DOFORM = ['setclock', 'change', 'point', 'money', 'clock', 'discount', 'gap', 'build', 'listen'];
+      var GAMES = ['dehet'], STEP = ['look', 'talk', 'read', 'listen', 'slot', 'explain', 'do', 'make', 'end', 'quiz', 'rule', 'extra', 'speak', 'game'], ERRS = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen'], DOFORM = ['setclock', 'change', 'point', 'money', 'clock', 'discount', 'gap', 'build', 'listen'];
       var allItems = {}; [p].concat(others || []).forEach(function (o) { (o.items || []).forEach(function (x) { allItems[x.id] = 1; }); });
       var errOk = function (o, u) { if (o.err != null && ERRS.indexOf(o.err) < 0) err(u + ': err ' + o.err + ' staat niet in de lijst'); else if (o.r !== 'ok' && o.err == null) q(u + ': soort fout (err) ontbreekt bij een foute keuze'); };
       var tekstOf = function (x, u) { if (Array.isArray(x)) { if (!x.length) err(u + ': leeg'); x.forEach(function (y, i) { tekst(y, u + '[' + i + ']'); }); } else tekst(x, u); };
       // een vraag (quiz, rule, extra, en nieuwe vragen in read en listen): docs/scenes.md, "De stappen voor diepte en diagnose"
       var vraag = function (qq, u, nlOnly) { if (!qq || typeof qq !== 'object') { err(u + ': geen vraag'); return; }
-        if (['choose', 'hear', 'type', 'number'].indexOf(qq.form) < 0) err(u + ': form moet choose, hear, type of number zijn');
+        var EXF = ['build', 'gap', 'listen', 'money', 'clock', 'discount'], TYP = ['type', 'hear-type', 'complete'];
+        if (['choose', 'hear', 'number'].concat(TYP, EXF).indexOf(qq.form) < 0) { err(u + ': vorm ' + qq.form + (['own', 'match', 'spot', 'dictee', 'mc', 'write', 'situation'].indexOf(qq.form) >= 0 ? ' is nog niet in een scène te gebruiken (stap 6)' : ' bestaat niet')); return; }
+        if (qq.hint != null && (!Array.isArray(qq.hint) || qq.hint.length !== 2)) err(u + ': hint moet twee stappen hebben'); else if (qq.hint) qq.hint.forEach(function (h, i) { tekst(h, u + '.hint[' + i + ']'); });
+        if (EXF.indexOf(qq.form) >= 0) { itemsOk(qq.items, u); if (qq.ask != null) tekst(qq.ask, u + '.ask'); if (!qq.why) err(u + ': why ontbreekt'); else tekst(qq.why, u + '.why'); if (qq.err != null && ERRS.indexOf(qq.err) < 0) err(u + ': err ' + qq.err + ' staat niet in de lijst');
+          if (qq.gen) { if (['money', 'clock', 'discount'].indexOf(qq.form) < 0) err(u + ': gen kan alleen bij geld, klok en korting'); else genCheck({ form: qq.form, gen: qq.gen }, u, true); } else if (!qq.data) err(u + ': data of gen ontbreekt'); else exData({ form: qq.form, data: qq.data }, u, qq.data); return; }
         itemsOk(qq.items, u); if (nlOnly && qq.ask && typeof qq.ask === 'object') str(qq.ask.nl, u + '.ask.nl'); else tekst(qq.ask, u + '.ask');   // instap en controle: de vraag mag alleen in het Nederlands if (qq.say != null) str(qq.say, u + '.say');
         if (qq.help != null && [0, 1, 2].indexOf(qq.help) < 0) err(u + ': help moet 0, 1 of 2 zijn');
         if (qq.form === 'choose' || qq.form === 'hear') {
           if (!Array.isArray(qq.opts) || qq.opts.length < 2 || qq.opts.length > 4) err(u + ': twee tot vier keuzes');
           else { if (qq.opts.filter(function (o) { return o && o.r === 'ok'; }).length !== 1) err(u + ': precies één keuze met r = ok');
             qq.opts.forEach(function (o, oi) { var uo = u + '.opts[' + oi + ']'; if (!o || typeof o.t !== 'string' || !o.t) { err(uo + ': t ontbreekt'); return; } str(o.t, uo + '.t'); if (['ok', 'near', 'no'].indexOf(o.r) < 0) err(uo + ': r moet ok, near of no zijn'); if (!o.why) err(uo + ': why ontbreekt (ook bij de goede keuze)'); else tekst(o.why, uo + '.why'); errOk(o, uo); }); }
-        } else if (qq.form === 'type' || qq.form === 'number') {
+        } else if (TYP.indexOf(qq.form) >= 0 || qq.form === 'number') {
           var an = [].concat(qq.answer == null ? [] : qq.answer); if (!an.length || an.some(function (a) { return typeof a !== 'string' && typeof a !== 'number' || String(a).trim() === ''; })) err(u + ': answer ontbreekt');
           if (qq.form === 'number' && an.some(function (a) { return !/^-?\d+([.,]\d+)?$/.test(String(a).trim()); })) err(u + ': answer is geen getal');
           if (!qq.why) err(u + ': why ontbreekt'); else tekst(qq.why, u + '.why'); if (qq.err != null && ERRS.indexOf(qq.err) < 0) err(u + ': err ' + qq.err + ' staat niet in de lijst');
@@ -366,6 +374,8 @@
             if (st.form === 'point' && (!sc.art || !(sc.art.things || []).some(function (t) { return t && t.hot && t.item === st.answer; }))) err(v + ': answer moet het item van een aantikbaar ding zijn');
             if (['money', 'clock', 'discount'].indexOf(st.form) >= 0 && !st.gen) err(v + ': een som in een scène heeft gen nodig'); }
           if (st.type === 'make') { doen = true; tekstOf(st.frame, v + '.frame'); tekst(st.model, v + '.model'); if (st.ask != null) tekst(st.ask, v + '.ask'); itemsOk(st.items, v); if (!Array.isArray(st.checklist) || !st.checklist.length) err(v + ': checklist ontbreekt'); else st.checklist.forEach(function (c, ci) { tekst(c, v + '.checklist[' + ci + ']'); }); }
+          if (st.type === 'speak') { doen = true; itemsOk(st.items, v); tekst(st.ask, v + '.ask'); tekst(st.model, v + '.model'); if (!Array.isArray(st.checklist) || !st.checklist.length) err(v + ': checklist ontbreekt'); else st.checklist.forEach(function (c, ci) { tekst(c, v + '.checklist[' + ci + ']'); }); }
+          if (st.type === 'game') { doen = true; itemsOk(st.items, v); if (GAMES.indexOf(st.kind) < 0) err(v + ': spel ' + st.kind + (st.kind ? ' is nog niet in de app (stap 6); nu: ' + GAMES.join(', ') : ' ontbreekt')); }
           if (st.type === 'quiz') { if (['instap', 'ophalen', 'controle'].indexOf(st.role) < 0) err(v + ': role moet instap, ophalen of controle zijn');
             if (!Array.isArray(st.q) || !st.q.length) err(v + ': vragen (q) ontbreken'); else st.q.forEach(function (qq, qi) { vraag(qq, v + '.q[' + qi + ']', st.role !== 'ophalen'); });
             if (st.role === 'controle' && (st.q || []).length !== 2) err(v + ': de controle heeft precies twee vragen'); }
@@ -398,6 +408,67 @@
     var strict = p.quality === 'strict';
     return { errors: strict ? errors.concat(quality) : errors, quality: quality };
   }
-  var api = { safeText: safeText, checkPack: checkPack, FORMS: FORMS, SUBJECTS: SUBJECTS };
+  /* Hoofdstukcontrole (docs/masterplan.md A6, B1, B2, C1, C2, G2; docs/scenes.md "Werkvormen, hints en de zwaardere vorm").
+     Los van checkPack: de app laadt ook lichtere pakketten; de redactielijn en de scènetest eisen dit van een hoofdstuk.
+     Een werkvorm is de vorm van een vraag of een do, of het soort stap; een gesprek telt als één blok (docs/ontwerp-stap2.md). */
+  var ERRS_ = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen'];
+  function sceneForms(sc) {
+    var seq = [], kinds = {}, moments = 0, turns = 0;   // seq: de rij voor C1 (gesprek, lees- en luistertekst als één blok); kinds: alle werkvormen voor C2
+    (sc.steps || []).forEach(function (st) {
+      var qs = function (list, block) { (list || []).forEach(function (q) { var f = q && q.form ? q.form : 'choose'; kinds[f] = 1; if (!block) seq.push(f); moments++; }); };
+      if (st.type === 'look') seq.push('aantikken');
+      else if (st.type === 'talk') { seq.push('gesprek'); moments += (st.turns || []).length; turns += (st.turns || []).length; }
+      else if (st.type === 'read' || st.type === 'listen') { seq.push(st.type === 'read' ? 'lezen' : 'luisteren'); qs(st.q, true); }
+      else if (st.type === 'quiz' || st.type === 'rule') qs(st.q);
+      else if (st.type === 'do') { seq.push(st.opts ? 'choose' : st.form); moments++; }
+      else if (st.type === 'make') { seq.push('schrijven'); moments++; }
+      else if (st.type === 'speak') { seq.push('spreken'); moments++; }
+      else if (st.type === 'game') { seq.push('spel'); moments++; }
+    });
+    seq.forEach(function (x) { kinds[x] = 1; });
+    return { seq: seq, kinds: Object.keys(kinds), moments: moments, turns: turns };
+  }
+  function checkChapter(p) {
+    var errors = [], err = function (m) { errors.push(m); }, id = (p && p.id) || 'pakket', all = {};
+    var scenes = (p && p.scenes) || [];
+    var goals = function (g, w) { if (!Array.isArray(g) || !g.length || g.some(function (x) { return typeof x !== 'string' || !x; })) err(w + ': goals (de eindtermen die het dient) ontbreekt'); };
+    goals(p && p.goals, id);
+    var has = { read510: false, listen: false, speak: false, game: false, make: false, reken: false };
+    scenes.forEach(function (sc) {
+      var w = id + '.' + sc.id, f = sceneForms(sc), distinct = {};
+      if (sc.subject === 'nl') goals(sc.goals, w);
+      f.kinds.forEach(function (x) { distinct[x] = 1; all[x] = 1; });
+      var nd = Object.keys(distinct).length;
+      if (nd < 6) err(w + ': ' + nd + ' werkvormen, minstens zes nodig (' + Object.keys(distinct).join(', ') + ')');
+      for (var i = 2; i < f.seq.length; i++) if (f.seq[i] === f.seq[i - 1] && f.seq[i] === f.seq[i - 2]) { err(w + ': drie keer achter elkaar ' + f.seq[i]); break; }
+      if (sc.subject === 'nl' && f.moments < 18) err(w + ': ' + f.moments + ' antwoordmomenten, minstens 18');
+      if (sc.subject !== 'nl' && f.moments < 8) err(w + ': ' + f.moments + ' antwoordmomenten, minstens 8');
+      if (sc.subject === 'nl' && f.turns < 4) err(w + ': het gesprek heeft ' + f.turns + ' beurten, minstens vier');
+      var steps = sc.steps || [];
+      if (steps.some(function (s) { return s.type === 'rule'; }) && !steps.some(function (s) { return s.type === 'extra'; })) err(w + ': een grammaticapunt zonder stap extra');
+      steps.forEach(function (st, k) {
+        var v = w + '.steps[' + k + ']', qq = st.q || [];
+        if (st.type === 'read' && qq.length >= 5 && qq.length <= 10) has.read510 = true;
+        if (st.type === 'listen') has.listen = true;
+        if (st.type === 'speak') has.speak = true;
+        if (st.type === 'game') has.game = true;
+        if (st.type === 'make') has.make = true;
+        if (sc.subject === 'rk' && ((st.type === 'do' && ['money', 'clock', 'setclock', 'discount', 'change'].indexOf(st.form) >= 0) || qq.some(function (q) { return q && (q.form === 'number' || ['money', 'clock', 'discount'].indexOf(q.form) >= 0); }))) has.reken = true;
+        var lists = (st.turns || []).map(function (t) { return t.opts || []; }).concat(qq.map(function (q) { return (q && q.opts) || []; }), [st.opts || []]);
+        lists.forEach(function (os) { os.forEach(function (o) { if (o && o.r !== 'ok' && ERRS_.indexOf(o.err) < 0) err(v + ': foute keuze "' + o.t + '" zonder soort fout (err)'); }); });
+        if (st.role !== 'controle' && st.role !== 'instap') qq.forEach(function (q, qi) { if (q && ['type', 'hear-type', 'complete'].indexOf(q.form) >= 0 && !(Array.isArray(q.hint) && q.hint.length === 2)) err(v + '.q[' + qi + ']: zelf typen zonder hint in twee stappen'); });
+      });
+    });
+    var n = Object.keys(all).length;
+    if (n < 12) err(id + ': ' + n + ' werkvormen in het hoofdstuk, minstens twaalf nodig');
+    if (!has.read510) err(id + ': een leestekst met vijf tot tien vragen ontbreekt');
+    if (!has.listen) err(id + ': een luistertekst (stap listen) ontbreekt');
+    if (!has.speak) err(id + ': een spreekopdracht (stap speak) ontbreekt');
+    if (!has.game) err(id + ': een spel (stap game) ontbreekt');
+    if (!has.make) err(id + ': schrijven (stap make) ontbreekt');
+    if (!has.reken) err(id + ': rekenen in de situatie ontbreekt');
+    return { errors: errors, forms: Object.keys(all) };
+  }
+  var api = { safeText: safeText, checkPack: checkPack, checkChapter: checkChapter, sceneForms: sceneForms, FORMS: FORMS, SUBJECTS: SUBJECTS };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.PakketCheck = api;
 })(this);

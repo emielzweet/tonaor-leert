@@ -87,4 +87,56 @@ ok('alle nieuwe schermsoorten bestaan', ['sc_q', 'sc_rule', 'sc_extra'].every(t 
 ok('de controle bepaalt of de scène beheerst is (S.world.ok)', html.includes('S.world.ok[sc.id]=SCN.ctrl'));
 ok('opslag: SCHEMA 6 voegt errs en world.ok toe', /const SCHEMA=6/.test(html) && html.includes('5:s=>{if(!s.errs'));
 ok('gesprek: een foute keuze telt in het foutprofiel', html.includes("scFault(q,o.err);$('#fb').innerHTML=fbBox(false,scT(o.why),'')"));
+// stap 2 afmaken (docs/ontwerp-stap2.md): bestaande oefenvormen als vraag, hint, spreken, spel, zwaardere vorm, hoofdstukcontrole
+const gapQ = { form: 'gap', items: [w0], err: 'lidwoord', why: T3('Zo.'), data: { s: 'Ik zie de ___.', o: ['a', 'b'], a: 'a', tr: { th: 'ก', en: 'x' } } };
+const bq = { form: 'build', items: [rl], err: 'woordvolgorde', why: T3('Zo.'), data: { parts: ['Morgen', 'werk', 'ik.'], verb: 'werk', tr: { th: 'ก', en: 'x' } } };
+const typeQ = { form: 'type', items: [w0], ask: T3('Typ.'), answer: 'x', why: T3('Zo.'), hint: [T3('klein'), T3('groot')] };
+ok('controle: een bestaande oefenvorm (gap, build) mag een vraag zijn; een typvraag met hint in twee stappen ook', chk(sc => { sc.steps[1].q.push(gapQ, bq, typeQ); }) === '', chk(sc => { sc.steps[1].q.push(gapQ, bq, typeQ); }));
+ok('controle: een vorm die nog niet in een scène kan, wordt geweigerd (stap 6)', /nog niet in een scène/.test(chk(sc => { sc.steps[1].q.push({ form: 'match', items: [w0], ask: T3('x') }); })));
+ok('controle: een fout in de gegevens van een oefenvorm wordt gevonden', /parts|verb/.test(chk(sc => { sc.steps[1].q.push({ ...bq, data: { ...bq.data, verb: 'niet' } }); })));
+ok('controle: een hint heeft precies twee stappen', /twee stappen/.test(chk(sc => { sc.steps[1].q.push({ ...typeQ, hint: [T3('één')] }); })));
+ok('controle: spreken en spel (dehet) zijn stappen; een onbekend spel wordt geweigerd',
+  chk(sc => { sc.steps.splice(4, 0, { type: 'speak', items: [w0], ask: T3('Zeg.'), model: T3('Zo.'), checklist: [T3('a')] }, { type: 'game', kind: 'dehet', items: [w0] }); }) === '' && /nog niet in de app/.test(chk(sc => { sc.steps.splice(4, 0, { type: 'game', kind: 'raket', items: [w0] }); })));
+const dq2 = app.sq({ ...deep, steps: [{ type: 'quiz', role: 'ophalen', q: [gapQ, bq, typeQ] }, { type: 'speak', items: [w0], ask: T3('Zeg.'), model: T3('Zo.'), checklist: [T3('a')] }, { type: 'game', kind: 'dehet', items: [w0] }, { type: 'end' }] });
+ok('rij: gap en build gaan naar het bestaande oefenscherm, met de soort fout en de scène erbij', dq2.some(x => x.type === 'gap' && x._sceneErr === 'lidwoord' && x.sc && x.exid.startsWith('test-diep#')) && dq2.some(x => x.type === 'build' && x.s && x.s.verb === 'werk'));
+ok('rij: spreken en spel worden eigen schermen', dq2.some(x => x.type === 'sc_speak') && dq2.some(x => x.type === 'sc_game'));
+const hq = app.sq(deep, true);
+ok('zwaardere vorm: elke vraag van de scène weet dat hij zwaarder is', hq.filter(x => x.type === 'sc_q').every(x => x.hard) && hq[0].hard);
+ok('fout in een bestaand oefenscherm telt in het foutprofiel (fbBox)', html.includes("if(!ok&&app.classList.contains('sess')&&Q[qi]&&Q[qi]._sceneErr)scFault(Q[qi],Q[qi]._sceneErr)"));
+ok('spel telt niet als vorm voor bloei (C5)', /const NOGROW=\[[^\]]*'spel'/.test(html));
+ok('hint in twee stappen: goed na een hint telt als retry', html.includes('const right=msg=>{done=true;if(hint)first=false;'));
+ok('opslag: eigen record per scène (world.best) in migratie 5', html.includes('s.world.best={}') && html.includes('world:{ok:{},best:{},done:{}'));
+ok('alle schermen voor stap 2 bestaan', ['sc_speak', 'sc_game'].every(t => html.includes('H.' + t + '=q=>')));
+// hoofdstukcontrole (masterplan A6, B1, B2, C1, C2, G2): een volledig hoofdstuk haalt hem, en elke eis wordt afzonderlijk bewaakt
+const CH = (() => {
+  const nlScene = n => ({ ...deep, id: 'h-' + n, n, goals: ['nt2-I-lezen'],
+    steps: [{ type: 'look', min: 1 }, { type: 'quiz', role: 'instap', q: [ch(w0, 'betekenis', T3('i1')), { form: 'hear', items: [w0], say: 'goed', ask: { nl: 'Hoor.' }, opts: [{ t: 'goed', r: 'ok', why: T3('Ja.') }, { t: 'fout', r: 'no', err: 'klank', why: T3('Nee.') }] }] },
+      { type: 'quiz', role: 'ophalen', q: [typeQ, { ...typeQ, form: 'hear-type', say: 'x' }] },
+      { type: 'talk', who: 'assistent', turns: [0, 1, 2, 3].map(i => ({ them: T3('Zin ' + i), items: [w0], opts: [{ t: 'ja', r: 'ok', why: T3('Ja.') }, { t: 'nee', r: 'no', err: 'beleefdheid', why: T3('Nee.') }] })) },
+      { type: 'rule', items: [rl], example: T3('Vb.'), q: [Object.assign(ch(rl, 'woordvolgorde', T3('r1')), { help: 2 }), Object.assign({ ...typeQ, form: 'complete', items: [rl] }, { help: 1 }), Object.assign(ch(rl, 'woordvolgorde', T3('r3')), { help: 0 })] },
+      { type: 'extra', err: 'woordvolgorde', explain: T3('Kort.'), q: [ch(rl, 'woordvolgorde', T3('e1')), ch(rl, 'woordvolgorde', T3('e2'))] },
+      { type: 'read', text: T3('Tekst.'), q: [1, 2, 3, 4, 5].map(i => ({ q: T3('v' + i), items: [w0], o: [T3('a'), T3('b')], a: 0, why: T3('Zo.') })) },
+      { type: 'listen', say: 'Hallo.', q: [{ q: T3('v'), items: [w0], o: [T3('a'), T3('b')], a: 0, why: T3('Zo.') }] },
+      { type: 'make', items: [w0], frame: 'Ik ___.', model: T3('Ik ben.'), checklist: [T3('a'), T3('b')] },
+      { type: 'speak', items: [w0], ask: T3('Zeg.'), model: T3('Zo.'), checklist: [T3('a')] }, { type: 'game', kind: 'dehet', items: [w0] },
+      { type: 'quiz', role: 'controle', q: [{ form: 'type', items: [w0], ask: { nl: 'Typ.' }, answer: 'x', why: T3('Zo.') }, { form: 'number', items: [w1], ask: { nl: 'Reken.' }, answer: '42', why: T3('Zo.') }] },
+      { type: 'end' }] });
+  const rk = { ...deep, id: 'h-rk', subject: 'rk', n: undefined, steps: [{ type: 'look' }, { type: 'read', text: T3('Etiket.'), q: [1, 2].map(i => ({ q: T3('v' + i), items: [w1], o: [T3('a'), T3('b')], a: 0, why: T3('Zo.') })) },
+    { type: 'quiz', role: 'ophalen', q: [{ form: 'number', items: [w1], ask: T3('Reken.'), answer: '6', why: T3('Zo.') }, ch(w1, 'getal', T3('k')), { form: 'money', items: [w1], why: T3('Zo.'), gen: { coins: [500, 200, 100, 50], n: [2, 4] } }, { form: 'number', items: [w1], ask: T3('Reken.'), answer: '42', why: T3('Zo.') }, { ...typeQ, items: [w1] }] },
+    { type: 'do', form: 'money', items: [w1], gen: { coins: [500, 200, 100, 50], n: [2, 4] } },
+    { type: 'quiz', role: 'controle', q: [{ form: 'number', items: [w1], ask: { nl: 'R.' }, answer: '1', why: T3('Zo.') }, ch(w1, 'getal', { nl: 'K.' })] }, { type: 'end' }] };
+  return { format: 1, id: 'h', type: 'hoofdstuk', version: 1, learn: 'nl', level: 'A1', order: 99, goals: ['nt2-I-lezen'], title: T3('H'), items: [], scenes: [1, 2, 3, 4, 5].map(nlScene).concat([rk]) };
+})();
+const cc = mut => { const p = JSON.parse(JSON.stringify(CH)); if (mut) mut(p); return PC.checkChapter(p).errors.join(' | '); };
+ok('hoofdstuk: een volledig hoofdstuk haalt de hoofdstukcontrole en de pakketcontrole', cc() === '' && PC.checkPack(CH, packs).errors.length === 0, cc() + ' || ' + PC.checkPack(CH, packs).errors.slice(0, 3).join(' | '));
+ok('hoofdstuk C2: minder dan zes werkvormen in een scène', /minstens zes/.test(cc(p => { p.scenes[0].steps = p.scenes[0].steps.filter(s => ['look', 'talk', 'end'].includes(s.type) || s.role === 'instap'); })));
+ok('hoofdstuk C1: drie keer dezelfde vorm achter elkaar', /drie keer achter elkaar/.test(cc(p => { p.scenes[0].steps[1].q.push(ch(w0, 'betekenis', T3('x')), ch(w0, 'betekenis', T3('y')), ch(w0, 'betekenis', T3('z'))); })));
+ok('hoofdstuk B1: te weinig antwoordmomenten', /antwoordmomenten/.test(cc(p => { p.scenes[0].steps = p.scenes[0].steps.filter(s => s.type !== 'read'); })));
+ok('hoofdstuk B2: leestekst met vijf tot tien vragen, luistertekst, spreken en spel', ['leestekst', 'luistertekst', 'spreekopdracht', 'spel'].every((w, i) => new RegExp(w).test(cc(p => { const t = ['read', 'listen', 'speak', 'game'][i]; p.scenes.forEach(sc => { sc.steps = sc.steps.filter(s => s.type !== t); }); }))));
+ok('hoofdstuk A6: zelf typen zonder hint in twee stappen', /zonder hint/.test(cc(p => { delete p.scenes[0].steps[2].q[0].hint; })));
+ok('hoofdstuk E3: een foute keuze zonder soort fout', /zonder soort fout/.test(cc(p => { delete p.scenes[0].steps[3].turns[0].opts[1].err; })));
+ok('hoofdstuk E2: een grammaticapunt zonder extra', /zonder stap extra/.test(cc(p => { p.scenes[0].steps = p.scenes[0].steps.filter(s => s.type !== 'extra'); })));
+ok('hoofdstuk G2: goals bij hoofdstuk en scène', /goals/.test(cc(p => { delete p.goals; })) && /goals/.test(cc(p => { delete p.scenes[0].goals; })));
+ok('hoofdstuk: rekenen in de situatie is verplicht', /rekenen in de situatie/.test(cc(p => { p.scenes = p.scenes.filter(s => s.subject !== 'rk'); })));
+for (const p of packs.filter(p => p.type === 'hoofdstuk')) { const e = PC.checkChapter(p).errors; console.log((e.length ? 'NOG ' : 'OK  ') + 'hoofdstuk ' + p.id + ' in content/: ' + (e.length ? e.length + ' punten voor de hoofdstukcontrole (wordt streng zodra het hoofdstuk uit de redactielijn erin staat)' : 'haalt de hoofdstukcontrole')); }
 console.log(fails ? fails + ' FOUT' : 'alles OK');

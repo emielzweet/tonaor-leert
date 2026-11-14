@@ -6,9 +6,8 @@ Bijgewerkt: 14 november 2026.
 
 ## Werkverdeling
 
-- Eén sessie ontwerpt, bouwt, test en reviewt, volgens de werkwijze in `CLAUDE.md`: eerst een kort ontwerp in `docs/`, dan akkoord van de eigenaar, dan bouwen, dan een onafhankelijke review.
-- Een aparte ontwerp- of reviewsessie is optioneel en alleen op verzoek van de eigenaar. Niets wacht erop.
-- Pushen, releases en issues sluiten: alleen met akkoord van de eigenaar.
+- Sinds 14 november 2026 (bevestigd door de eigenaar): de ontwerpsessie stuurt via `docs/masterplan.md`; de bouwsessie voert uit (code, tests, releases, de redactielijn) en vraagt de ontwerpsessie bij een vraag over een eis. Zie `CLAUDE.md`, "Werkverdeling".
+- De eigenaar beslist over pushen van code, beveiliging en privacy, geld, wat niet terug te draaien is, en de overgang naar de kaart.
 
 ## Live (GitHub Pages)
 
@@ -26,6 +25,8 @@ Bijgewerkt: 14 november 2026.
 - `phrase` (vaste zin) is een woord zonder lidwoord; `art: ""` geldt als geen lidwoord.
 - De versie van "bij de dokter" uit de redactielijn wordt leidend (besluit eigenaar 14 november 2026); de eigen scènes 2 tot en met 5 van de bouwsessie zijn teruggedraaid. Overnemen zodra de review klaar is.
 - Getest in de browser op 375 px met een tijdelijke kopie van `redactie/uit/nl-dokter.json`: scène 1, 2, de rekenscène en de kennisles spelen door; de extra stap komt na de tweede lidwoordfout; foutprofiel en "beheerst" worden bewaard.
+- Stap 2 van het masterplan, de rest (docs/ontwerp-stap2.md): elke bestaande oefenvorm als vraag in een scène (`build`, `gap`, `listen`, `money`, `clock`, `discount`; hetzelfde scherm als in de les, een fout telt in het foutprofiel); `hear-type` en `complete`; hint in twee stappen (goed na een hint telt als `'retry'`; niet bij instap, controle en de zwaardere vorm); stap `speak` (voorbeeld om te horen, checklist; opnemen volgt in stap 6); stap `game` met `dehet` (60 seconden, woorden van de scène en wat aan de beurt is, vorm `spel` telt niet voor bloei); de zwaardere vorm (een gespeelde scène opnieuw zonder steuntaal, typen waar een vraag ook `answer` heeft, eigen record in `S.world.best`, in dezelfde migratie 5 → 6). Hoofdstukcontrole `PakketCheck.checkChapter` (A6, B1, B2, C1, C2, E2, E3, G2), gebruikt door de poort en de scènetest. Migratie 5 → 6 getest. Getest in de browser op 375 px: spreken, spel, zwaarder met nieuw record.
+- Stap 2 is af als het proefhoofdstuk uit de redactielijn in `content/` staat en de hoofdstukcontrole haalt (de scènetest meldt het nu als "NOG"); dan volgt ijkmoment G1.
 
 ## Afstemming redactielijn en app (voor de schrijversopdracht)
 
@@ -37,6 +38,9 @@ Bijgewerkt: 14 november 2026.
 4. Elke vraag bij een lees- of luistertekst heeft `why`, ook in de oude vorm (`q`, `o`, `a`).
 5. Een stap `explain` verwijst naar een uitleg die bestaat (`content/uitleg-*.json`); anders slaat de speler hem stil over.
 6. Bronnen: `{ "url": "https://…", "title": "…" }`.
+7. De hoofdstukcontrole (`checkChapter`, ook in de poort): per scène minstens zes werkvormen en nooit drie keer dezelfde vorm achter elkaar (een gesprek en een lees- of luistertekst tellen als één blok); per hoofdstuk minstens twaalf werkvormen, een leestekst met vijf tot tien vragen, een luistertekst (stap `listen`), een stap `speak`, een stap `game` (nu alleen `kind: "dehet"`), schrijven (`make`) en rekenen in de situatie; `goals` bij het hoofdstuk en elke scène Nederlands; een hint in twee stappen bij elke typvraag (`type`, `hear-type`, `complete`) behalve in instap en controle; een `err` bij elke foute keuze; een `extra` in elke scène met een `rule`.
+8. Vormen die nog niet in een scène kunnen (stap 6): `own`, `match`, `spot`, `dictee`, `mc`. De controle weigert ze.
+9. Voor de zwaardere vorm (B4): geef een keuzevraag waar dat kan ook een `answer`, dan wordt het in de zwaardere vorm een typvraag.
 
 Opmerking na het spelen: de leestekst van de kennisles is lang en staat bij elke vraag opnieuw boven in beeld; op 375 px moet de leerder ver scrollen. Korter, of in twee delen met elk eigen vragen.
 

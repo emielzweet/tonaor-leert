@@ -124,4 +124,11 @@ ok('opstarten toont herstel- of bijwerkscherm', /if\(STORE==='broken'\)vRecover\
 // review fase 3: de migratie vult het begin van de wachttijd (t) voor bestaande items
 r = run({ [KEY]: raw({ ...CUR, schema: 3, items: { werk: { s: 2, due: 10 * 864e5, reps: 3, lapses: 0, forms: [] }, nieuw: { s: 0, due: 5, reps: 0, lapses: 0, forms: [] } } }) });
 ok('schema 3 → 4: t = due − s voor items met voortgang, niets bij nieuwe items', r.S.items.werk.t === 8 * 864e5 && r.S.items.nieuw.t == null);
+// 8e. stap 5 → 6: foutprofiel (S.errs), beheerste scènes (world.ok) en eigen record (world.best), alleen toegevoegd
+r = run({ [KEY]: raw({ ...CUR, schema: 5, world: { done: { 'dokter-1': 5 }, at: 'dokter-1' } }) });
+ok('schema 5 → 6: errs, world.ok en world.best toegevoegd; world.done en items onaangeroerd', r.S.errs && typeof r.S.errs === 'object' && r.S.world.ok && r.S.world.best && r.S.world.done['dokter-1'] === 5 && r.S.items.werk.s === 3 && r.S.schema === SCH);
+r = run({ [KEY]: raw({ ...CUR, schema: 5, errs: { lidwoord: { n: 2, t: 1, ids: ['werk'] } }, world: { done: {}, at: null, ok: { a: true }, best: { a: 7 } } }) });
+ok('schema 5 → 6 is herhaalbaar: een bestaand foutprofiel en record blijven', r.S.errs.lidwoord.n === 2 && r.S.world.ok.a === true && r.S.world.best.a === 7);
+r = run({ [KEY]: raw({ ...CUR, schema: 5, errs: [1, 2] }) });
+ok('schema 5 → 6: een ongeldig foutprofiel wordt een leeg object', r.S.errs && !Array.isArray(r.S.errs) && Object.keys(r.S.errs).length === 0);
 console.log(fails ? fails + ' FOUT' : 'alles OK');
