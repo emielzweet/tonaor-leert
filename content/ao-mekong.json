@@ -579,6 +579,152 @@
      ]
     },
     {
+     "type": "do",
+     "form": "map",
+     "items": [
+      "mek.delta"
+     ],
+     "map": "azie",
+     "zoom": [
+      92,
+      5,
+      112,
+      30
+     ],
+     "hl": [
+      "CN",
+      "MM",
+      "LA",
+      "TH",
+      "KH",
+      "VN"
+     ],
+     "ask": {
+      "nl": "De zes landen van de Mekong zijn gekleurd. Tik ongeveer aan waar de rivier in zee stroomt, bij de delta.",
+      "th": "ประเทศทั้งหกของแม่น้ำโขงมีสี แตะประมาณตำแหน่งที่แม่น้ำไหลลงทะเล ตรงดินดอนสามเหลี่ยมปากแม่น้ำ",
+      "en": "The six countries of the Mekong are coloured. Tap roughly where the river flows into the sea, at the delta."
+     },
+     "answer": [
+      106.75,
+      10.2
+     ],
+     "tol": 250,
+     "err": "betekenis",
+     "why": {
+      "nl": "De delta ligt in het zuiden van Vietnam, aan de Zuid-Chinese Zee. Kijk naar de afstand die de app noemt: zo leer je een kaart.",
+      "th": "ดินดอนสามเหลี่ยมอยู่ทางใต้ของเวียดนาม ติดทะเลจีนใต้ ดูระยะทางที่แอปบอก นี่คือวิธีเรียนรู้แผนที่",
+      "en": "The delta is in the south of Vietnam, on the South China Sea. Look at the distance the app gives: that is how you learn a map."
+     }
+    },
+    {
+     "type": "do",
+     "form": "map",
+     "items": [
+      "mek.meer"
+     ],
+     "map": "azie",
+     "zoom": [
+      92,
+      5,
+      112,
+      30
+     ],
+     "line": {
+      "pts": [
+       [
+        94.7,
+        33.7
+       ],
+       [
+        97.2,
+        31.1
+       ],
+       [
+        98.8,
+        28.5
+       ],
+       [
+        99.9,
+        25.3
+       ],
+       [
+        100.8,
+        22
+       ],
+       [
+        101.15,
+        21.2
+       ],
+       [
+        100.4,
+        20.5
+       ],
+       [
+        100.1,
+        20.3
+       ],
+       [
+        102.1,
+        19.9
+       ],
+       [
+        102.6,
+        17.9
+       ],
+       [
+        103.7,
+        18.35
+       ],
+       [
+        104.83,
+        17.41
+       ],
+       [
+        104.75,
+        16.56
+       ],
+       [
+        105.5,
+        15.35
+       ],
+       [
+        105.8,
+        15.1
+       ],
+       [
+        105.97,
+        13.5
+       ],
+       [
+        104.9,
+        11.6
+       ],
+       [
+        106.75,
+        10.2
+       ]
+      ],
+      "label": {
+       "nl": "Mekong",
+       "th": "แม่น้ำโขง",
+       "en": "Mekong"
+      },
+      "draw": true
+     },
+     "ask": {
+      "nl": "Je ziet de Mekong op de kaart. In één land ligt het meer Tonlé Sap, dat bij laag water water aan de rivier geeft. Tik dat land aan.",
+      "th": "คุณเห็นแม่น้ำโขงบนแผนที่ ในประเทศหนึ่งมีทะเลสาบโตนเลสาบ ซึ่งให้น้ำแก่แม่น้ำเมื่อน้ำต่ำ แตะที่ประเทศนั้น",
+      "en": "You see the Mekong on the map. In one country lies the lake Tonlé Sap, which gives water to the river at low water. Tap that country."
+     },
+     "answer": "KH",
+     "err": "betekenis",
+     "why": {
+      "nl": "Goed om te weten: het meer Tonlé Sap ligt in Cambodja. Als de rivier laag staat, stroomt er water uit het meer de rivier in.",
+      "th": "ควรรู้: ทะเลสาบโตนเลสาบอยู่ในกัมพูชา เมื่อแม่น้ำต่ำ น้ำจากทะเลสาบไหลเข้าสู่แม่น้ำ",
+      "en": "Good to know: the lake Tonlé Sap is in Cambodia. When the river is low, water flows from the lake into the river."
+     }
+    },
+    {
      "type": "read",
      "dieper": true,
      "items": [
@@ -683,7 +829,7 @@
  ],
  "review": {
   "model": "claude-opus-5-5",
-  "date": "2026-11-15",
+  "date": "2026-11-14",
   "verdict": "goed"
  }
 }

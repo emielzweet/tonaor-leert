@@ -597,6 +597,66 @@
     },
     {
      "type": "do",
+     "form": "timeline",
+     "items": [
+      "wet.wet",
+      "wet.voorstel"
+     ],
+     "from": 1800,
+     "to": 2030,
+     "scale": "lin",
+     "tol": 30,
+     "marks": [
+      {
+       "y": 1830,
+       "label": {
+        "nl": "België scheidt zich af van Nederland",
+        "th": "เบลเยียมแยกตัวจากเนเธอร์แลนด์",
+        "en": "Belgium separates from the Netherlands"
+       },
+       "known": true
+      }
+     ],
+     "cards": [
+      {
+       "y": 1815,
+       "label": {
+        "nl": "De Eerste Kamer komt er: twee Kamers",
+        "th": "มีวุฒิสภาเกิดขึ้น: สองสภา",
+        "en": "The Eerste Kamer is created: two Houses"
+       }
+      },
+      {
+       "y": 1848,
+       "label": {
+        "nl": "Een nieuwe Grondwet",
+        "th": "รัฐธรรมนูญฉบับใหม่",
+        "en": "A new Constitution"
+       }
+      },
+      {
+       "y": 2022,
+       "label": {
+        "nl": "De Raad van State maakt zijn adviezen zelf openbaar",
+        "th": "สภาแห่งรัฐเปิดเผยคำแนะนำด้วยตนเอง",
+        "en": "The Raad van State itself publishes its advice"
+       }
+      }
+     ],
+     "ask": {
+      "nl": "Het Nederlandse stelsel is niet altijd zo geweest. De afscheiding van België (1830) staat al op de lijn. Zet de drie gebeurtenissen erbij. Ongeveer goed is goed genoeg.",
+      "th": "ระบบของเนเธอร์แลนด์ไม่ได้เป็นแบบนี้มาตลอด การแยกตัวของเบลเยียม (1830) อยู่บนเส้นแล้ว วางเหตุการณ์ทั้งสามเพิ่ม ประมาณก็พอ",
+      "en": "The Dutch system has not always been like this. The separation of Belgium (1830) is already on the line. Add the three events. Roughly right is good enough."
+     },
+     "why": {
+      "nl": "In 1815 kwam de Eerste Kamer en dus het stelsel met twee Kamers. In 1848 kwam een nieuwe Grondwet. Pas sinds mei 2022 maakt de Raad van State zijn adviezen zelf openbaar.",
+      "th": "ในปี 1815 มีวุฒิสภา จึงมีระบบสองสภา ในปี 1848 มีรัฐธรรมนูญฉบับใหม่ เพิ่งตั้งแต่เดือนพฤษภาคม 2022 ที่สภาแห่งรัฐเปิดเผยคำแนะนำ",
+      "en": "In 1815 the Eerste Kamer came, and so the system with two Houses. In 1848 a new Constitution came. Only since May 2022 does the Raad van State publish its advice."
+     },
+     "err": "tijd"
+    },
+    {
+     "type": "do",
      "form": "build",
      "items": [
       "wet.wet",
@@ -644,7 +704,7 @@
  ],
  "review": {
   "model": "claude-opus-5-5",
-  "date": "2026-11-15",
+  "date": "2026-11-14",
   "verdict": "goed"
  }
 }

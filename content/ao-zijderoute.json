@@ -28,6 +28,22 @@
   {
    "url": "https://nl.wikipedia.org/wiki/Zijderoute",
    "title": "Wikipedia (nl): Zijderoute"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Xi%27an",
+   "title": "Wikipedia: Xi'an"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Kashgar",
+   "title": "Wikipedia: Kashgar"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Samarkand",
+   "title": "Wikipedia: Samarkand"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Antioch",
+   "title": "Wikipedia: Antioch (Antakya)"
   }
  ],
  "items": [
@@ -174,20 +190,91 @@
     "nt2-I-lezen-4"
    ],
    "art": {
-    "bg": "market",
-    "tone": "apricot",
+    "kind": "map",
+    "map": "azie",
+    "zoom": [
+     30,
+     25,
+     115,
+     48
+    ],
     "alt": {
-     "nl": "Een markt met een kraam.",
-     "th": "ตลาดที่มีแผงขายของ",
-     "en": "A market with a stall."
+     "nl": "Kaart van Azië en het oosten van de Middellandse Zee met de route van Xi'an via Kashgar en Samarkand naar Antiochië.",
+     "th": "แผนที่เอเชียและฝั่งตะวันออกของทะเลเมดิเตอร์เรเนียน แสดงเส้นทางจากซีอานผ่านคาชการ์และซามาร์คันด์ไปแอนทิออก",
+     "en": "Map of Asia and the east of the Mediterranean with the route from Xi'an via Kashgar and Samarkand to Antioch."
     },
-    "things": [
+    "pins": [
      {
-      "kind": "stall",
-      "x": 170,
-      "y": 156
+      "at": [
+       108.95,
+       34.27
+      ],
+      "label": {
+       "nl": "Xi'an",
+       "th": "ซีอาน",
+       "en": "Xi'an"
+      }
+     },
+     {
+      "at": [
+       75.99,
+       39.47
+      ],
+      "label": {
+       "nl": "Kashgar",
+       "th": "คาชการ์",
+       "en": "Kashgar"
+      }
+     },
+     {
+      "at": [
+       66.96,
+       39.65
+      ],
+      "label": {
+       "nl": "Samarkand",
+       "th": "ซามาร์คันด์",
+       "en": "Samarkand"
+      }
+     },
+     {
+      "at": [
+       36.16,
+       36.2
+      ],
+      "label": {
+       "nl": "Antiochië",
+       "th": "แอนทิออก",
+       "en": "Antioch"
+      }
      }
-    ]
+    ],
+    "line": {
+     "pts": [
+      [
+       108.95,
+       34.27
+      ],
+      [
+       75.99,
+       39.47
+      ],
+      [
+       66.96,
+       39.65
+      ],
+      [
+       36.16,
+       36.2
+      ]
+     ],
+     "label": {
+      "nl": "zijderoute (schema)",
+      "th": "เส้นทางสายไหม (แผนผัง)",
+      "en": "Silk Road (sketch)"
+     },
+     "draw": true
+    }
    },
    "steps": [
     {
@@ -494,6 +581,121 @@
     },
     {
      "type": "do",
+     "form": "timeline",
+     "items": [
+      "zr.route",
+      "zr.handel"
+     ],
+     "from": -200,
+     "to": 2000,
+     "scale": "lin",
+     "tol": 200,
+     "cards": [
+      {
+       "y": -114,
+       "label": {
+        "nl": "De handel over de route komt op gang (ongeveer)",
+        "th": "การค้าบนเส้นทางเริ่มต้น (ประมาณ)",
+        "en": "Trade along the route gets going (about)"
+       }
+      },
+      {
+       "y": 1450,
+       "label": {
+        "nl": "Het einde van de route (ongeveer)",
+        "th": "จุดสิ้นสุดของเส้นทาง (ประมาณ)",
+        "en": "The end of the route (about)"
+       }
+      },
+      {
+       "y": 1877,
+       "label": {
+        "nl": "De naam zijderoute wordt voor het eerst gebruikt",
+        "th": "ชื่อ \"เส้นทางสายไหม\" ถูกใช้เป็นครั้งแรก",
+        "en": "The name Silk Road is first used"
+       }
+      }
+     ],
+     "ask": {
+      "nl": "Zet de drie gebeurtenissen op de tijdlijn. Een gok is genoeg: je ziet daarna hoe het echt was.",
+      "th": "วางเหตุการณ์ทั้งสามบนเส้นเวลา เดาก็พอ แล้วคุณจะเห็นว่าจริง ๆ เป็นอย่างไร",
+      "en": "Place the three events on the timeline. A guess is enough: afterwards you see how it really was."
+     },
+     "why": {
+      "nl": "De route kwam ongeveer 114 voor Christus op gang en werd tot ongeveer 1450 gebruikt. De naam is veel jonger: een Duitse aardrijkskundige gebruikte hem in 1877 voor het eerst.",
+      "th": "เส้นทางเริ่มราว 114 ปีก่อนคริสตกาล และใช้จนถึงราว ค.ศ. 1450 ชื่อนี้ใหม่กว่ามาก นักภูมิศาสตร์ชาวเยอรมันใช้เป็นครั้งแรกในปี 1877",
+      "en": "The route got going about 114 BC and was used until about 1450. The name is much younger: a German geographer first used it in 1877."
+     },
+     "err": "tijd"
+    },
+    {
+     "type": "do",
+     "form": "map",
+     "items": [
+      "zr.route",
+      "zr.handelaar"
+     ],
+     "map": "azie",
+     "zoom": [
+      30,
+      25,
+      115,
+      48
+     ],
+     "pins": [
+      {
+       "at": [
+        108.95,
+        34.27
+       ],
+       "label": {
+        "nl": "Xi'an",
+        "th": "ซีอาน",
+        "en": "Xi'an"
+       }
+      },
+      {
+       "at": [
+        75.99,
+        39.47
+       ],
+       "label": {
+        "nl": "Kashgar",
+        "th": "คาชการ์",
+        "en": "Kashgar"
+       }
+      },
+      {
+       "at": [
+        36.16,
+        36.2
+       ],
+       "label": {
+        "nl": "Antiochië",
+        "th": "แอนทิออก",
+        "en": "Antioch"
+       }
+      }
+     ],
+     "ask": {
+      "nl": "Je ziet drie steden van de route: Xi'an in het oosten, Kashgar en Antiochië in het westen. Tik ongeveer aan waar Samarkand ligt, tussen Kashgar en Antiochië.",
+      "th": "คุณเห็นสามเมืองบนเส้นทาง ซีอานทางตะวันออก คาชการ์ และแอนทิออกทางตะวันตก แตะประมาณตำแหน่งของซามาร์คันด์ ระหว่างคาชการ์กับแอนทิออก",
+      "en": "You see three cities of the route: Xi'an in the east, Kashgar and Antioch in the west. Tap roughly where Samarkand is, between Kashgar and Antioch."
+     },
+     "answer": [
+      66.96,
+      39.65
+     ],
+     "tol": 450,
+     "err": "betekenis",
+     "why": {
+      "nl": "Samarkand ligt in Centraal-Azië, ten westen van Kashgar. Handelaren kwamen er langs op weg naar het westen.",
+      "th": "ซามาร์คันด์อยู่ในเอเชียกลาง ทางตะวันตกของคาชการ์ พ่อค้าผ่านที่นี่เมื่อเดินทางไปทางตะวันตก",
+      "en": "Samarkand is in Central Asia, west of Kashgar. Traders passed through on their way west."
+     }
+    },
+    {
+     "type": "do",
      "form": "build",
      "items": [
       "zr.route",
@@ -590,7 +792,7 @@
  ],
  "review": {
   "model": "claude-opus-5-5",
-  "date": "2026-11-15",
+  "date": "2026-11-14",
   "verdict": "goed"
  }
 }

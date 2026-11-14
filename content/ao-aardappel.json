@@ -239,9 +239,9 @@
       }
      ],
      "text": {
-      "nl": "De aardappel komt uit Zuid-Amerika. Boeren in de Andes, een groot bergland, teelden hem al ongeveer 7000 jaar geleden of nog eerder.\n\nSpaanse zeevaarders brachten de aardappel in de tweede helft van de zestiende eeuw naar Europa. De oudste vermelding buiten Zuid-Amerika is van het jaar 1567.\n\nIn Nederland groeide de aardappel eerst in botanische tuinen: in Leiden, sinds 1640 in Groningen en sinds 1689 in Amsterdam. Als eten telen boeren hem pas vanaf het eind van de zeventiende eeuw, eerst onder andere in Ierland. Na 1750 werd hij in Europa een belangrijk voedsel.",
-      "th": "มันฝรั่งมาจากอเมริกาใต้ ชาวนาในเทือกเขาแอนดีส (Andes) ซึ่งเป็นแดนภูเขาใหญ่ ปลูกมันฝรั่งมาประมาณ 7,000 ปีแล้ว หรือนานกว่านั้น\n\nนักเดินเรือ (zeevaarder) ชาวสเปนนำมันฝรั่งมายังยุโรปในครึ่งหลังของศตวรรษที่สิบหก บันทึกเก่าแก่ที่สุดนอกอเมริกาใต้คือปี ค.ศ. 1567\n\nในเนเธอร์แลนด์ ตอนแรกมันฝรั่งปลูกในสวนพฤกษศาสตร์ ที่ไลเดิน ที่โกรนิงเงนตั้งแต่ปี 1640 และที่อัมสเตอร์ดัมตั้งแต่ปี 1689 เกษตรกรเริ่มปลูกเป็นอาหารเมื่อใกล้สิ้นศตวรรษที่สิบเจ็ด เริ่มที่ไอร์แลนด์เป็นต้น หลังปี 1750 มันฝรั่งกลายเป็นอาหารสำคัญในยุโรป",
-      "en": "The potato comes from South America. Farmers in the Andes, a big mountain region, grew it about 7000 years ago or even earlier.\n\nSpanish seafarers (zeevaarder) brought the potato to Europe in the second half of the sixteenth century. The oldest mention outside South America is from the year 1567.\n\nIn the Netherlands the potato first grew in botanical gardens: in Leiden, since 1640 in Groningen and since 1689 in Amsterdam. Farmers grew it as food only from the end of the seventeenth century, first in Ireland among other places. After 1750 it became an important food in Europe."
+      "nl": "De aardappel komt uit Zuid-Amerika. Boeren in de Andes, een groot bergland, teelden hem al ongeveer 7000 jaar geleden of nog eerder. De eerste boeren woonden rond het Titicacameer, in het zuiden van Peru en het noordwesten van Bolivia.\n\nSpaanse zeevaarders brachten de aardappel in de tweede helft van de zestiende eeuw naar Europa. De oudste vermelding buiten Zuid-Amerika is van het jaar 1567.\n\nIn Nederland groeide de aardappel eerst in botanische tuinen: in Leiden, sinds 1640 in Groningen en sinds 1689 in Amsterdam. Als eten telen boeren hem pas vanaf het eind van de zeventiende eeuw, eerst onder andere in Ierland. Na 1750 werd hij in Europa een belangrijk voedsel.",
+      "th": "มันฝรั่งมาจากอเมริกาใต้ ชาวนาในเทือกเขาแอนดีส (Andes) ซึ่งเป็นแดนภูเขาใหญ่ ปลูกมันฝรั่งมาประมาณ 7,000 ปีแล้ว หรือนานกว่านั้น ชาวนากลุ่มแรกอาศัยอยู่รอบทะเลสาบติติกากา ทางใต้ของเปรูและตะวันตกเฉียงเหนือของโบลิเวีย\n\nนักเดินเรือ (zeevaarder) ชาวสเปนนำมันฝรั่งมายังยุโรปในครึ่งหลังของศตวรรษที่สิบหก บันทึกเก่าแก่ที่สุดนอกอเมริกาใต้คือปี ค.ศ. 1567\n\nในเนเธอร์แลนด์ ตอนแรกมันฝรั่งปลูกในสวนพฤกษศาสตร์ ที่ไลเดิน ที่โกรนิงเงนตั้งแต่ปี 1640 และที่อัมสเตอร์ดัมตั้งแต่ปี 1689 เกษตรกรเริ่มปลูกเป็นอาหารเมื่อใกล้สิ้นศตวรรษที่สิบเจ็ด เริ่มที่ไอร์แลนด์เป็นต้น หลังปี 1750 มันฝรั่งกลายเป็นอาหารสำคัญในยุโรป",
+      "en": "The potato comes from South America. Farmers in the Andes, a big mountain region, grew it about 7000 years ago or even earlier. The first farmers lived around Lake Titicaca, in the south of Peru and the north-west of Bolivia.\n\nSpanish seafarers (zeevaarder) brought the potato to Europe in the second half of the sixteenth century. The oldest mention outside South America is from the year 1567.\n\nIn the Netherlands the potato first grew in botanical gardens: in Leiden, since 1640 in Groningen and since 1689 in Amsterdam. Farmers grew it as food only from the end of the seventeenth century, first in Ireland among other places. After 1750 it became an important food in Europe."
      },
      "q": [
       {
@@ -327,6 +327,89 @@
        }
       }
      ]
+    },
+    {
+     "type": "do",
+     "form": "map",
+     "items": [
+      "aard.aardappel"
+     ],
+     "map": "wereld",
+     "zoom": [
+      -85,
+      -25,
+      -35,
+      15
+     ],
+     "hl": [
+      "PE",
+      "BO"
+     ],
+     "ask": {
+      "nl": "De eerste aardappelboeren woonden rond het Titicacameer, hoog in de Andes. Tik ongeveer aan waar dat meer ligt.",
+      "th": "ชาวนามันฝรั่งกลุ่มแรกอาศัยอยู่รอบทะเลสาบติติกากา สูงบนเทือกเขาแอนดีส แตะประมาณตำแหน่งของทะเลสาบนั้น",
+      "en": "The first potato farmers lived around Lake Titicaca, high in the Andes. Tap roughly where that lake is."
+     },
+     "answer": [
+      -69.4,
+      -15.8
+     ],
+     "tol": 300,
+     "err": "betekenis",
+     "why": {
+      "nl": "Het meer ligt op de grens van Peru en Bolivia. Van daar kwam de aardappel, via Spaanse zeevaarders, helemaal naar Europa.",
+      "th": "ทะเลสาบอยู่ตรงพรมแดนเปรูกับโบลิเวีย มันฝรั่งมาจากที่นั่น และนักเดินเรือชาวสเปนนำไปไกลถึงยุโรป",
+      "en": "The lake lies on the border of Peru and Bolivia. From there the potato travelled, with Spanish seafarers, all the way to Europe."
+     }
+    },
+    {
+     "type": "do",
+     "form": "timeline",
+     "items": [
+      "aard.aardappel",
+      "aard.gewas"
+     ],
+     "from": 1500,
+     "to": 1900,
+     "scale": "lin",
+     "tol": 40,
+     "cards": [
+      {
+       "y": 1567,
+       "label": {
+        "nl": "De oudste vermelding buiten Zuid-Amerika",
+        "th": "บันทึกเก่าแก่ที่สุดนอกอเมริกาใต้",
+        "en": "The oldest mention outside South America"
+       }
+      },
+      {
+       "y": 1689,
+       "label": {
+        "nl": "In Amsterdam groeit de aardappel in een botanische tuin",
+        "th": "ในอัมสเตอร์ดัมมีการปลูกมันฝรั่งในสวนพฤกษศาสตร์",
+        "en": "In Amsterdam the potato grows in a botanical garden"
+       }
+      },
+      {
+       "y": 1750,
+       "label": {
+        "nl": "Een belangrijk voedsel in Europa",
+        "th": "อาหารสำคัญในยุโรป",
+        "en": "An important food in Europe"
+       }
+      }
+     ],
+     "ask": {
+      "nl": "Zet de drie gebeurtenissen op de tijdlijn. Je mag raden.",
+      "th": "วางเหตุการณ์ทั้งสามบนเส้นเวลา เดาได้เลย",
+      "en": "Place the three events on the timeline. You may guess."
+     },
+     "why": {
+      "nl": "Het ging langzaam: 1567 de oudste vermelding, 1689 Amsterdam, na 1750 een belangrijk voedsel. Het duurde ruim 180 jaar.",
+      "th": "ค่อยเป็นค่อยไป: ปี 1567 บันทึกเก่าแก่ที่สุด ปี 1689 อัมสเตอร์ดัม หลังปี 1750 เป็นอาหารสำคัญ ใช้เวลานานกว่า 180 ปี",
+      "en": "It went slowly: 1567 the oldest mention, 1689 Amsterdam, after 1750 an important food. It took more than 180 years."
+     },
+     "err": "tijd"
     },
     {
      "type": "read",
@@ -442,7 +525,7 @@
  ],
  "review": {
   "model": "claude-opus-5-5",
-  "date": "2026-11-15",
+  "date": "2026-11-14",
   "verdict": "goed"
  }
 }
