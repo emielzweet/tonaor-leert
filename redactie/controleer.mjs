@@ -1,6 +1,6 @@
 // Poort van de redactielijn: controleert een hoofdstuk (pakket met scenes) tegen docs/scenes.md en docs/kwaliteitskader.md.
 // Gebruik: node redactie/controleer.mjs redactie/uit/<pakket>.json   (fouten = afgekeurd, exit 1; waarschuwingen = voor de reviewer)
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const SceneVis = require('../scene.js');
@@ -10,6 +10,10 @@ if (!file) { console.error('Geef een pakketbestand op.'); process.exit(2); }
 let p; try { p = JSON.parse(readFileSync(file, 'utf8')); } catch (e) { console.error('Geen geldige JSON: ' + e.message); process.exit(1); }
 
 const err = [], warn = [];
+// dezelfde controle als de app (pakketcheck.js), tegen de ingebouwde pakketten: wat de app weigert, keurt de lijn ook af
+{ const PC = require('../pakketcheck.js'), dir = new URL('../content/', import.meta.url);
+  const others = readdirSync(dir).filter(f => f.endsWith('.json')).map(f => { try { return JSON.parse(readFileSync(new URL(f, dir), 'utf8')); } catch (e) { return null; } }).filter(o => o && o.id !== p.id);
+  const r = PC.checkPack(p, others); for (const m of r.errors) err.push('pakketcheck: ' + m); for (const m of r.quality || []) warn.push('pakketcheck: ' + m); }
 const ID = /^[A-Za-z0-9._-]+$/, LANGS = ['nl', 'th', 'en'];
 const E = (w, m) => err.push(w + ': ' + m), Wn = (w, m) => warn.push(w + ': ' + m);
 const txt = (x, w, langs = LANGS) => { if (!x || typeof x !== 'object') return E(w, 'tekst ontbreekt'); for (const l of langs) if (typeof x[l] !== 'string' || !x[l].trim()) E(w, 'taal ' + l + ' ontbreekt'); };

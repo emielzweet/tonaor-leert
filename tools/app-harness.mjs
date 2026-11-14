@@ -12,7 +12,7 @@ const between = (a, b) => { const i = html.indexOf(a), j = html.indexOf(b, i); i
 // het pakketblok tot en met de samensteller, zonder de await aan het eind
 const packCode = between('const BUILTIN=', 'await loadPacks();').replace('const PACK_TIMEOUT=4000;', 'const PACK_TIMEOUT=300;');
 const lineOf = start => { const i = html.indexOf(start); if (i < 0) throw new Error(start); return html.slice(i, html.indexOf('\n', i)); };
-const afterLoad = lineOf('[...NL,...EN,...REK,') + '\n' + lineOf('PACKS.forEach(p=>(p.items||[]).forEach(x=>{if(x&&x.id&&x.kind)KIND[x.id]=x.kind}));') + '\n' + lineOf("if(STORE==='ok'&&S.f3pending)");
+const afterLoad = lineOf('[...NL,...EN,...REK,') + '\n' + lineOf('PACKS.forEach(p=>(p.items||[]).forEach(x=>{if(x&&x.id&&x.kind)KIND[x.id]=') + '\n' + lineOf("if(STORE==='ok'&&S.f3pending)");
 const shuffleCode = html.slice(html.indexOf('const shuffle='), html.indexOf('\n', html.indexOf('const shuffle=')));
 /* opts: S (opslag), englishDay, seed (Math.random), missing: lijst bestanden die niet laden, override: {bestand: inhoud} */
 export async function boot({ S = { v: 2, introduced: [], items: {} }, englishDay = false, random = Math.random, missing = [], override = {}, pc = PC, hang = [] } = {}) {

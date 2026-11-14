@@ -324,6 +324,11 @@ en:{
  "scene.makeOk":"My text has this",
  "scene.check":"Check whether your text has this:",
  "scene.model":"This is one way:",
+ "scene.ruleTitle":"Language from the scene",
+ "scene.extraTitle":"A little extra practice",
+ "scene.again":"Not yet. Try once more.",
+ "scene.answer":"The answer is:",
+ "scene.source":"Source:",
  "scene.makeTitle":"Now yourself",
  "scene.hour":"hour",
  "scene.lookStart":"Tap something to hear the word.",
@@ -724,6 +729,11 @@ nl:{
  "scene.makeOk":"Mijn tekst heeft dit",
  "scene.check":"Kijk of jouw tekst dit heeft:",
  "scene.model":"Zo kan het ook:",
+ "scene.ruleTitle":"Taal uit de scène",
+ "scene.extraTitle":"Even extra oefenen",
+ "scene.again":"Nog niet. Probeer het nog een keer.",
+ "scene.answer":"Het antwoord is:",
+ "scene.source":"Bron:",
  "scene.makeTitle":"<h2>Nu zelf</h2>",
  "scene.hour":"uur",
  "scene.lookStart":"Tik op iets om het woord te horen.",
@@ -1120,6 +1130,11 @@ th:{
  "scene.makeOk":"ข้อความของฉันมีครบ",
  "scene.check":"ดูว่าข้อความของคุณมีสิ่งเหล่านี้หรือไม่",
  "scene.model":"ตัวอย่างคำตอบ",
+ "scene.ruleTitle":"ภาษาจากฉากนี้",
+ "scene.extraTitle":"ฝึกเพิ่มอีกนิด",
+ "scene.again":"ยังไม่ถูก ลองอีกครั้ง",
+ "scene.answer":"คำตอบคือ:",
+ "scene.source":"แหล่งที่มา:",
  "scene.makeTitle":"ลองทำเอง",
  "scene.hour":"ชั่วโมง",
  "scene.lookStart":"แตะเพื่อฟังคำ",
@@ -1596,7 +1611,7 @@ const exList=(learn,pred)=>PACKS.filter(p=>p.learn===learn).flatMap(p=>p.exercis
 const LEGACY={};   // oefening-id -> object in de vorm van vóór fase 2
 function buildLists(){
   SCENES=PACKS.flatMap(p=>(p.scenes||[]).map(sc=>({sc,learn:p.learn})));
-  const items=k=>PACKS.flatMap(p=>(p.items||[]).filter(x=>x.kind===k).map(x=>({x,p})));
+  const items=k=>PACKS.flatMap(p=>(p.items||[]).filter(x=>x.kind===k||(k==='word'&&x.kind==='phrase')).map(x=>({x,p})));   // phrase: een vaste zin, als woord zonder lidwoord
   // woord, voorbeeldzin, gatzin en lidwoord toont het scherm met esc() of leest het voor: RAW. Vertalingen staan rauw in de HTML: SAFE.
   NL=items('word').filter(o=>o.p.learn==='nl').map(({x})=>{const o={id:x.id,art:x.art?RAW(x.art):'',w:RAW(x.w),th:SAFE(x.tr.th),en:SAFE(x.tr.en),ex:RAW(x.ex),gap:RAW(x.gap)};if(x.askArt)o.askArt=1;if(x.also)o.also=x.also.slice();if(x.def)o.def=RAW(x.def);return o});
   EN=items('word').filter(o=>o.p.learn==='en').map(({x})=>({id:x.id,w:RAW(x.w),nl:RAW(x.tr.nl),th:SAFE(x.tr.th),ex:RAW(x.ex)}));
@@ -1862,20 +1877,21 @@ function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
     points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
-    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},roundLen:'normaal',world:{done:{},at:null},schema:SCHEMA};
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},roundLen:'normaal',errs:{},world:{ok:{},done:{},at:null},schema:SCHEMA};
 }
 /* ============ opslag veilig laden (#30) ============
    S.v blijft 2. S.schema telt de vorm van de opslag (zonder veld = 1). Elke stap n -> n+1 staat in MIGRATE en mag vaker draaien.
    Vóór een migratie gaat de ruwe opslag ongewijzigd naar BAK (één generatie); ook vóór Alles wissen en vóór Terugzetten.
    STORE: 'ok' = normaal | 'broken' = onleesbaar of onbekend: herstelscherm, niets wegschrijven | 'newer' = van een nieuwere app: alleen lezen.
    Buiten 'ok' schrijft de app niets weg en verstuurt ze geen voortgang. Onleesbare opslag wordt pas vervangen na een kopie in BROKEN. */
-const SCHEMA=5,BAK=KEY+'.bak',BROKEN=KEY+'.kapot';
+const SCHEMA=6,BAK=KEY+'.bak',BROKEN=KEY+'.kapot';
 const MIGRATE={
  1:s=>{if(!s.profile||typeof s.profile!=='object')s.profile={name:''};if(!LEARN.includes(s.learn))s.learn='nl';if(!SUPPORT.includes(s.sup))s.sup='th';
    if(s.v2ok&&!s.v2seen)s.v2seen=Date.now();delete s.v2ok;if(s.v2seen)s.tl1off=true;return s},
  2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s},   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
  3:s=>{for(const it of Object.values(s.items||{})){if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];if(it&&typeof it==='object'&&it.t==null&&typeof it.s==='number'&&it.s>0&&typeof it.due==='number')it.t=it.due-it.s*864e5}if(Object.keys(s.days||{}).length&&s.f3pending==null)s.f3pending=1;return s},
- 4:s=>{if(!s.world||typeof s.world!=='object'||Array.isArray(s.world))s.world={done:{},at:null};if(!s.world.done||typeof s.world.done!=='object')s.world.done={};return s}   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
+ 4:s=>{if(!s.world||typeof s.world!=='object'||Array.isArray(s.world))s.world={done:{},at:null};if(!s.world.done||typeof s.world.done!=='object')s.world.done={};return s},
+ 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};return s}   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
 };
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
@@ -1895,7 +1911,7 @@ let STORE='ok',S;
   /* Lukt de reservekopie niet, dan is de opslag vol of onbereikbaar: dan lukt wegschrijven ook niet, dus de oude opslag blijft staan. */
   if(schemaOf(o)<SCHEMA){const bakOk=putStore(BAK,raw);let m;try{m=migrate(o)}catch(e){STORE='broken';S=fresh();return}S=fillDefaults(m);if(bakOk)putStore(KEY,JSON.stringify(S))}else S=fillDefaults(o)})();
 [...NL,...EN,...REK,...PACKS.flatMap(p=>p.items||[]).filter(x=>x.kind==='rule'||x.kind==='sound')].forEach(x=>{if(!S.items[x.id])S.items[x.id]=item()});
-PACKS.forEach(p=>(p.items||[]).forEach(x=>{if(x&&x.id&&x.kind)KIND[x.id]=x.kind}));
+PACKS.forEach(p=>(p.items||[]).forEach(x=>{if(x&&x.id&&x.kind)KIND[x.id]=x.kind==='phrase'?'word':x.kind}));
 /* eenmalig bij de overstap op fase 3: wie al lessen deed, heeft de regels en klanken uit de vaste les al gehad. Die tellen als geïntroduceerd en zijn aan de beurt. */
 if(STORE==='ok'&&S.f3pending){Object.keys(KIND).filter(id=>(KIND[id]==='rule'||KIND[id]==='sound')&&S.items[id]&&S.items[id].reps===0).forEach(id=>{S.items[id].reps=1;S.items[id].due=now();if(!S.introduced.includes(id))S.introduced.push(id)});delete S.f3pending;setTimeout(()=>save(),0)}   // opslaan pas na het opstarten (save() gebruikt later gedeclareerde variabelen)
 if(!S.profile||typeof S.profile!=='object')S.profile={name:''};
@@ -2173,7 +2189,7 @@ function easierEx(q){try{const base=q.exid.split('#')[0],P=PACKS.find(p=>(p.exer
   const n=exQ(e,q.step,P.learn==='en'?'en':'nl',id);if(n)n._easy=1;return n}catch(err){return null}}
 function next(){qi++;adapt();window.scrollTo(0,0);step()}
 let KNOWN=new Set(),RETRIED=new Set();
-function step(){voicePend=null;while(Q[qi]&&(Q[qi]._skip||(Q[qi]._ifUnknown&&Q[qi].w&&KNOWN.has(Q[qi].w.id))))qi++;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
+function step(){voicePend=null;while(Q[qi]&&(Q[qi]._skip||(Q[qi]._ifUnknown&&Q[qi].w&&KNOWN.has(Q[qi].w.id))||(Q[qi]._skipKnown&&KNOWN.has(Q[qi]._rule||(Q[qi].items||[])[0]))))qi++;const q=Q[qi];if(!q)return show('vandaag');H[q.type](q)}
 /* na een fout: het onderdeel één keer terug in deze ronde, minstens vijf onderdelen later, in een andere vorm (advies ontwerpsessie B) */
 const OTHER={recall:'recog',recog:'recall',hear:'recog',enrecall:'enrecog',enrecog:'enrecall',enhear:'enrecog'};
 function retryLater(q){if(!q||q._probe||q._retry)return;const id=q.w?q.w.id:q.items&&q.items[0];if(!id||RETRIED.has(id))return;
@@ -2240,18 +2256,28 @@ function probeDone(w,known){const it=S.items[w.id];if(!S.introduced.includes(w.i
    Een scène wordt een rij schermen voor de lesmotor (runSession): kijken, gesprek, open plek, uitleg, doen, maken, slot.
    Elk antwoord gaat langs practiced() of review(); het doelonderdeel staat op de eerste plek van items. */
 const SV=(typeof window!=='undefined'&&window.SceneVis)||null;
+const ERRS=['lidwoord','woordvolgorde','werkwoordsvorm','tijd','voorzetsel','spelling','klank','betekenis','beleefdheid','getal','rekenstap','lezen'];   // soorten fout (docs/scenes.md)
+let SCN=null;   // de scène die nu loopt: fouten per soort, gebruikte extra's, uitkomst van de controle
 try{if(SV&&!document.getElementById('scenecss')){const st=document.createElement('style');st.id='scenecss';st.textContent=SV.CSS;document.head.appendChild(st)}}catch(e){}
 const scT=x=>TKx(x,'nl'),scP=x=>plainX(x,'nl');
 function scArt(sc,looks){return SV&&sc.art?SV.render(sc.art,SAFE,{text:scP,looks:looks||{}}):''}
-function nextScene(){const all=SCENES.map(o=>o.sc).sort((a,b)=>(a.place>b.place?1:a.place<b.place?-1:a.n-b.n)),done=(S.world&&S.world.done)||{};return all.find(s=>!done[s.id])||all[0]||null}
-function sceneQ(sc){const q=[],vak=sc.subject||'nl',ph={look:1,talk:2,read:2,listen:2,slot:3,explain:3,do:3,make:3,end:4};
+function nextScene(){const all=SCENES.map(o=>o.sc).sort((a,b)=>(a.place>b.place?1:a.place<b.place?-1:(a.n||6)-(b.n||6))),done=(S.world&&S.world.done)||{};return all.find(s=>!done[s.id])||all[0]||null}
+function sceneQ(sc){const q=[],vak=sc.subject||'nl',ph={look:1,talk:2,read:2,listen:2,slot:3,explain:3,do:3,make:3,rule:3,end:4},qph={instap:1,ophalen:1,controle:4};
   q.push({type:'sc_intro',sc,step:1,vak});
+  const ask=(base,qq,exid,o)=>({...base,type:'sc_q',qq,items:qq.items.slice(),exid,...o});   // een vraag (docs/scenes.md, diepte en diagnose)
   sc.steps.forEach((st,k)=>{const step=ph[st.type]||3,base={sc,st,step,vak};
     if(st.type==='look')q.push({...base,type:'sc_look'});
+    else if(st.type==='quiz')st.q.forEach((qq,i)=>q.push(ask({...base,step:qph[st.role]||3},qq,sc.id+'#z'+k+'.'+i,{role:st.role,_skipKnown:st.role==='ophalen'})));   // instap goed: ophalen van dat onderdeel valt weg
+    else if(st.type==='rule'){q.push({...base,type:'sc_rule',items:st.items.slice(),_skipKnown:1});st.q.forEach((qq,i)=>q.push(ask(base,qq,sc.id+'#r'+k+'.'+i,{role:'rule',_skipKnown:1,_rule:st.items[0]})))}
+    else if(st.type==='extra'){}   /* alleen na een tweede fout van dezelfde soort: scFault */
+    else if(st.type==='do'&&st.opts)q.push(ask(base,{form:'choose',items:st.items,ask:st.ask,opts:st.opts},sc.id+'#d'+k,{}));
     else if(st.type==='talk')st.turns.forEach((tu,ti)=>q.push({...base,type:'sc_talk',tu,ti,items:tu.items.slice(),exid:sc.id+'#t'+k+'.'+ti}));
-    else if(st.type==='read'||st.type==='listen')st.q.forEach((qq,qi)=>q.push({...base,type:'sc_read',qq,qi,items:qq.items.slice(),exid:sc.id+'#q'+k+'.'+qi}));
-    else if(st.type==='slot'){const due=NL.filter(w=>thirsty(w.id)&&!sc.targets.includes(w.id)).sort((a,b)=>overdue(b.id)-overdue(a.id)).slice(0,st.n);   // open plek: wat aan de beurt is
-      due.forEach(w=>q.push({type:pickForm(w,'nl','recall'),step,w,vak}))}
+    else if(st.type==='read'||st.type==='listen')st.q.forEach((qq,qi)=>q.push(qq.form?ask(base,qq,sc.id+'#q'+k+'.'+qi,{ctx:st.type}):{...base,type:'sc_read',qq,qi,items:qq.items.slice(),exid:sc.id+'#q'+k+'.'+qi}));
+    else if(st.type==='slot'){const used=new Set(sc.targets),out=[],top=errTop();   // open plek: eerst de soort fout die het vaakst voorkomt (hooguit de helft), dan wat aan de beurt is
+      if(top)for(const id of top.ids){if(out.length>=Math.max(1,Math.floor(st.n/2)))break;if(used.has(id)||!S.items[id]||!S.items[id].reps)continue;const w=NL.find(x=>x.id===id);let x=null;
+        if(w)x={type:pickForm(w,'nl','recall'),step,w,vak};else{const e=chooseEx(id,'nl',true);if(e){x=exQ(e,step,'nl',id);if(x)x.vak=vak}}if(x){x._err=top.err;out.push(x);used.add(id)}}
+      NL.filter(w=>thirsty(w.id)&&!used.has(w.id)).sort((a,b)=>overdue(b.id)-overdue(a.id)).slice(0,st.n-out.length).forEach(w=>out.push({type:pickForm(w,'nl','recall'),step,w,vak}));
+      out.forEach(x=>q.push(x))}
     else if(st.type==='explain'){if(EXPL[st.id]&&(st.when!=='first'||!(S.explained||{})[st.id]))q.push({type:'explain',step,x:st.id,lang:'nl',vak})}
     else if(st.type==='do'){if(st.form==='setclock')q.push({...base,type:'sc_clock',items:st.items.slice(),exid:sc.id+'#d'+k});
       else if(st.form==='point')q.push({...base,type:'sc_point',items:st.items.slice(),exid:sc.id+'#d'+k});
@@ -2259,7 +2285,7 @@ function sceneQ(sc){const q=[],vak=sc.subject||'nl',ph={look:1,talk:2,read:2,lis
     else if(st.type==='make')q.push({...base,type:'sc_make',items:st.items.slice(),exid:sc.id+'#m'+k});
     else if(st.type==='end'){q.push({type:'conf',step:4,vak});q.push({...base,type:'sc_end'})}});
   return q}
-function startScene(sc){if(!sc)return toast(tx('pack.none'));S.world=S.world||{done:{},at:null};S.world.at=sc.id;save();runSession(plainX(sc.title,'nl'),sceneQ(sc))}
+function startScene(sc){if(!sc)return toast(tx('pack.none'));S.world=S.world||{done:{},at:null};S.world.at=sc.id;SCN={sc,errs:{},extra:new Set(),ctrl:null};save();runSession(plainX(sc.title,'nl'),sceneQ(sc))}
 const PH=['','scene.look','scene.live','scene.do','scene.can'];
 function scFrame(q,inner){frame(inner,t(PH[q.step]||'scene.do'),q.step,4)}
 H.sc_intro=q=>{const sc=q.sc;scFrame(q,`<div class="card stack">${scArt(sc)}<h2>${scT(sc.title)}</h2><p>${scT(sc.intro)}</p></div>${nextBtn('btn-main')}`);$('#nx').onclick=next};
@@ -2275,9 +2301,9 @@ H.sc_talk=q=>{const sc=q.sc,tu=q.tu;let first=true,done=false;const opts=shuffle
   setTimeout(()=>say(scP(tu.them)),300);
   app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{if(done)return;const o=tu.opts[+b.dataset.o];
     if(o.r==='ok'){done=true;b.classList.add('right');score(first,10);practiced(q,first?true:'retry','talk');say(o.t);$('#fb').innerHTML=fbBox(true,scT(o.why),'')+nextBtn();$('#nx').onclick=next}
-    else{first=false;b.classList.add('wrong');b.disabled=true;$('#fb').innerHTML=fbBox(false,scT(o.why),'')}})};
+    else{first=false;b.classList.add('wrong');b.disabled=true;scFault(q,o.err);$('#fb').innerHTML=fbBox(false,scT(o.why),'')}})};
 H.sc_read=q=>{const st=q.st,qq=q.qq;let first=true;
-  scFrame(q,`<div class="card stack">${st.type==='read'?`<div class="note">${scT(st.text)}</div>`:speakBtns('sp','sps')}<p class="prompt">${scT(qq.q)}</p>
+  scFrame(q,`<div class="card stack">${st.type==='read'?`<div class="note">${scT(st.text)}</div>${scSrc(st)}`:speakBtns('sp','sps')}<p class="prompt">${scT(qq.q)}</p>
    <div class="choices one">${qq.o.map((o,i)=>`<button class="choice" data-o="${i}">${scT(o)}</button>`).join('')}</div><div id="fb"></div></div>`);
   if(st.type==='listen'){setTimeout(()=>say(st.say),300);$('#sp').onclick=()=>say(st.say);$('#sps').onclick=()=>say(st.say,true)}
   app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=+b.dataset.o===qq.a;b.classList.add(ok?'right':'wrong');
@@ -2295,13 +2321,47 @@ H.sc_point=q=>{const sc=q.sc,st=q.st;let first=true,done=false;
   app.querySelectorAll('.s-hot').forEach(g=>g.onclick=()=>{if(done)return;const th=sc.art.things[+g.dataset.i];const ok=th&&th.item===st.answer;g.classList.add('on');
     if(ok){done=true;score(first,10);practiced(q,first?true:'retry','point');say(scP(th.label));$('#fb').innerHTML=fbBox(true,st.why?scT(st.why):scT(th.label),'')+nextBtn();$('#nx').onclick=next}
     else{first=false;$('#fb').innerHTML=fbBox(false,th?scT(th.label):'','')}})};
-H.sc_make=q=>{const st=q.st;
-  scFrame(q,`<div class="card stack">${T('scene.makeTitle')}<p>${scT(st.frame)}</p><textarea id="ans" class="input" rows="3" autocomplete="off" spellcheck="false"></textarea><div id="fb"></div><button class="btn btn-leaf" id="chk">${T('btn.check')}</button></div>`);
-  $('#chk').onclick=()=>{if(!$('#ans').value.trim())return;$('#ans').disabled=true;
+H.sc_make=q=>{const st=q.st,fr=[].concat(st.frame),pre=fr.every(x=>/___/.test(plainX(x,'nl')))?fr.map(x=>plainX(x,'nl')).join('\n'):'';
+  scFrame(q,`<div class="card stack">${T('scene.makeTitle')}${st.ask?`<p class="prompt">${scT(st.ask)}</p>`:''}${fr.map(x=>`<p>${scT(x)}</p>`).join('')}<textarea id="ans" class="input" rows="${Math.max(3,fr.length+1)}" autocomplete="off" spellcheck="false"></textarea><div id="fb"></div><button class="btn btn-leaf" id="chk">${T('btn.check')}</button></div>`);
+  if(pre)$('#ans').value=pre;   // kader met ___: de leerder vult de plekken in
+  $('#chk').onclick=()=>{const v=$('#ans').value.trim();if(!v||v===pre.trim())return;$('#ans').disabled=true;
     $('#fb').innerHTML=`<div class="note sky"><p class="small muted">${T('scene.model')}</p><p>${scT(st.model)}</p><p class="small muted">${T('scene.check')}</p><ul>${st.checklist.map(c=>`<li>${scT(c)}</li>`).join('')}</ul></div>
       <button class="btn btn-leaf" id="mk1">${TB('scene.makeOk')}</button><button class="btn btn-ghost" id="mk2">${TB('scene.makeAlmost')}</button>`;$('#chk').remove();
     $('#mk1').onclick=()=>{score(true,15);practiced(q,true,'make');next()};$('#mk2').onclick=()=>{score(false,15,8);practiced(q,'retry','make');next()}}};
-H.sc_end=q=>{const sc=q.sc,st=q.st;finishTime();S.world=S.world||{done:{},at:null};S.world.done[sc.id]=now();const td=today();S.rounds[td]=(S.rounds[td]||0)+1;pruneWeeks();save();
+/* ---- diepte en diagnose (docs/scenes.md) ----
+   Elke foute keuze heeft een soort fout (err). De app telt per soort, recente fouten wegen zwaarder (halveert in 14 dagen): het foutprofiel S.errs.
+   Tweede fout van dezelfde soort in dezelfde scène: de stap extra van die soort komt direct na deze vraag. */
+function errNote(err,id){if(!ERRS.includes(err))return;S.errs=S.errs||{};const e=S.errs[err]||{n:0,t:0,ids:[]},t0=now();e.n=+((e.n||0)*Math.pow(.5,(t0-(e.t||t0))/(14*DAY))+1).toFixed(3);e.t=t0;if(id)e.ids=[id,...(e.ids||[]).filter(x=>x!==id)].slice(0,8);S.errs[err]=e;save()}
+function errTop(){const t0=now();let best=null;for(const [err,e] of Object.entries(S.errs||{})){if(!e||!ERRS.includes(err))continue;const n=(e.n||0)*Math.pow(.5,(t0-(e.t||t0))/(14*DAY));if(n>=2&&(!best||n>best.n))best={err,n,ids:(e.ids||[]).slice()}}return best}
+function scFault(q,err){if(!err||!ERRS.includes(err))return;errNote(err,q.items&&q.items[0]);if(!SCN||SCN.sc!==q.sc)return;SCN.errs[err]=(SCN.errs[err]||0)+1;
+  if(SCN.errs[err]<2||SCN.extra.has(err))return;const ex=q.sc.steps.filter(st=>st.type==='extra'&&st.err===err);if(!ex.length)return;SCN.extra.add(err);
+  const add=[];ex.forEach(st=>{const k=q.sc.steps.indexOf(st),base={sc:q.sc,st,step:3,vak:q.vak};add.push({...base,type:'sc_extra'});st.q.forEach((qq,i)=>add.push({...base,type:'sc_q',qq,items:qq.items.slice(),exid:q.sc.id+'#x'+k+'.'+i,role:'extra'}))});
+  Q.splice(qi+1,0,...add)}
+/* instap goed bij de eerste poging: een nieuw woord maakt de grote sprong (probeDone), en ophalen van dat onderdeel valt weg */
+function scKnow(q){const id=q.items[0],it=S.items[id],w=NL.find(x=>x.id===id);KNOWN.add(id);if(w&&it&&it.reps===0)probeDone(w,true);else practiced(q,true,SCF[q.qq.form])}
+const SCF={choose:'herkennen',hear:'luisteren',type:'typen',number:'rekenen'};
+const scN=x=>x&&typeof x==='object'?`<span lang="nl">${SAFE(plainX(x,'nl'))}</span>`:TKx(x,'nl');   // zonder steuntaal (nosup, instap, controle)
+const scNorm=a=>String(a).toLowerCase().replace(/[’‘`]/g,"'").replace(/\s+/g,' ').replace(/[.!?]+$/,'').trim();
+function scSrc(st){const b=(st&&st.sources)||[];if(!b.length)return '';return `<p class="small muted">${T('scene.source')} ${b.map(x=>{const ti=typeof x==='string'?x:plainX(x.title!=null?x.title:x.t,'nl'),u=x&&typeof x==='object'&&/^https:\/\/[^\s"'<>]+$/.test(x.url||'')?x.url:'';return u?`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(ti)}</a>`:esc(ti)}).join(' · ')}</p>`}
+H.sc_q=q=>{const sc=q.sc,qq=q.qq,f=qq.form,id=q.items[0],nos=!!(sc.nosup||q.role==='instap'||q.role==='controle'),inst=q.role==='instap'&&S.items[id]&&S.items[id].reps===0;let first=true,done=false;
+  const opts=f==='choose'||f==='hear'?shuffle(qq.opts.map((o,i)=>({...o,i}))):null,heard=f==='hear'?(qq.say||(qq.opts.find(o=>o.r==='ok')||{}).t||''):'';
+  scFrame(q,`<div class="card stack">${q.ctx==='read'?`<div class="note">${scT(q.st.text)}</div>${scSrc(q.st)}`:q.ctx==='listen'?speakBtns('sp','sps'):''}${f==='hear'?speakBtns('hp','hps'):''}<p class="prompt" id="ask">${nos?scN(qq.ask):scT(qq.ask)}</p>
+   ${opts?`<div class="choices one">${opts.map(o=>`<button class="choice" data-o="${o.i}">${esc(o.t)}</button>`).join('')}</div>`:`<input id="ans" class="input" ${f==='number'?'inputmode="decimal"':''} autocomplete="off" autocapitalize="off" spellcheck="false"><button class="btn btn-leaf" id="chk">${T('btn.check')}</button>`}<div id="fb"></div></div>`);
+  if(q.ctx==='listen'){setTimeout(()=>say(q.st.say),300);$('#sp').onclick=()=>say(q.st.say);$('#sps').onclick=()=>say(q.st.say,true)}
+  if(f==='hear'){setTimeout(()=>say(heard),300);$('#hp').onclick=()=>say(heard);$('#hps').onclick=()=>say(heard,true)}
+  const right=msg=>{done=true;score(first,10);if(q.role==='controle'&&SCN)SCN.ctrl=SCN.ctrl!==false&&first;if(q.role==='instap'&&first)scKnow(q);else if(!inst)practiced(q,first?true:'retry',SCF[f]);$('#fb').innerHTML=fbBox(true,msg,'')+nextBtn();$('#nx').onclick=next};
+  const wrong=(msg,err)=>{if(first&&nos)$('#ask').innerHTML=scT(qq.ask);first=false;scFault(q,err);$('#fb').innerHTML=fbBox(false,msg,'')};   // na een poging mag de steuntaal erbij
+  if(opts){app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{if(done)return;const o=qq.opts[+b.dataset.o];if(o.r==='ok'){b.classList.add('right');say(o.t);right(scT(o.why))}else{b.classList.add('wrong');b.disabled=true;wrong(scT(o.why),o.err)}});return}
+  const as=[].concat(qq.answer),num=v=>parseFloat(String(v).replace(',','.')),ok=v=>f==='number'?as.some(a=>Math.abs(num(a)-num(v))<1e-9):as.some(a=>scNorm(a)===scNorm(v));
+  const chk=()=>{const v=$('#ans').value.trim();if(!v||done)return;if(ok(v)){$('#ans').disabled=true;$('#chk').remove();right(scT(qq.why));return}
+    if(first){wrong(T('scene.again'),qq.err);return}
+    done=true;$('#ans').disabled=true;$('#chk').remove();if(q.role==='controle'&&SCN)SCN.ctrl=false;if(!inst)practiced(q,false,SCF[f]);   // tweede keer fout: het antwoord met uitleg, geen dood spoor
+    $('#fb').innerHTML=fbBox(false,`${T('scene.answer')} <b lang="nl">${esc(String(as[0]))}</b><br>${scT(qq.why)}`,'')+nextBtn();$('#nx').onclick=next};
+  $('#chk').onclick=chk;$('#ans').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();chk()}};setTimeout(()=>{try{$('#ans').focus()}catch(e){}},50)};
+H.sc_rule=q=>{const it=PACKS.flatMap(p=>p.items||[]).find(x=>x.id===q.items[0]);if(S.items[q.items[0]])introduce(q.items[0]);
+  scFrame(q,`<div class="card stack">${T('scene.ruleTitle')}${it&&it.title?`<h2>${scT(it.title)}</h2>`:''}<div class="note sky">${scT(q.st.example)}</div></div>${nextBtn('btn-main')}`);$('#nx').onclick=next};
+H.sc_extra=q=>{scFrame(q,`<div class="card stack">${T('scene.extraTitle')}<div class="note sky">${scT(q.st.explain)}</div></div>${nextBtn('btn-main')}`);$('#nx').onclick=next};
+H.sc_end=q=>{const sc=q.sc,st=q.st;finishTime();S.world=S.world||{done:{},at:null};S.world.done[sc.id]=now();if(SCN&&SCN.sc===sc&&SCN.ctrl!=null){S.world.ok=S.world.ok||{};S.world.ok[sc.id]=SCN.ctrl}const td=today();S.rounds[td]=(S.rounds[td]||0)+1;pruneWeeks();save();
   const nx=nextScene(),more=nx&&nx.id!==sc.id&&!(S.world.done[nx.id]);
   paint(`<div class="card celebrate stack">${T('scene.canTitle')}<p class="prompt">${scT(sc.can)}</p>${st.real?`<div class="note">${T('scene.real')}<p>${scT(st.real)}</p></div>`:''}${st.next?`<p class="muted">${scT(st.next)}</p>`:''}</div>
    ${more?`<button class="btn btn-main" id="scNext">${TB('scene.next')}</button>`:''}${contHtml()}<button class="btn btn-ghost" id="home">${T('cont.home')}</button>`);

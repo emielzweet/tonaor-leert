@@ -2,7 +2,7 @@
 
 Kort en feitelijk. De werkende sessie houdt dit bestand bij; een eventuele extra ontwerp- of reviewsessie leest het. Geen privégegevens.
 
-Bijgewerkt: 13 november 2026 (later).
+Bijgewerkt: 14 november 2026.
 
 ## Werkverdeling
 
@@ -20,7 +20,27 @@ Bijgewerkt: 13 november 2026 (later).
 
 ## Klaar, lokaal gecommit, nog niet gepusht
 
-- Niets, behalve deze statusregel.
+- Lesstof: 100 basiswoorden (nl-basis), concept stap 1 (kleur per vak) en stap 2 (scènespeler met scène 1 van "bij de dokter").
+- Scènespeler voor diepte en diagnose (docs/scenes.md), 14 november 2026: stappen `quiz` (instap, ophalen, controle), `rule` (voorbeeld, dan afbouwende oefeningen) en `extra` (alleen na een tweede fout van dezelfde soort, direct erna); vragen `choose`, `hear`, `type`, `number`; `do` met keuzes; `nosup` (instap en controle altijd zonder steuntaal tot de eerste poging); bronnen bij een leestekst (link met `https`, opent apart); `make` met een vraag en een kader met `___` dat in het invulvak klaarstaat; rekenen en kennis zonder `n` (na scène 5).
+- Foutprofiel: elke foute keuze met `err` telt per soort in `S.errs` (recent weegt zwaarder: halveert in 14 dagen; de laatste 8 onderdelen per soort). Een open plek in een scène vult eerst de helft met onderdelen van de vaakste soort fout (vanaf gewicht 2, alleen al geoefende onderdelen), daarna wat aan de beurt is. Instap goed bij de eerste poging: een nieuw woord maakt de grote sprong en het ophalen (en de regel) van dat onderdeel valt weg. De controle bepaalt `S.world.ok[scène]` (beheerst). Opslag: SCHEMA 6 (migratie 5 → 6 voegt `errs` en `world.ok` toe, gooit niets weg).
+- `phrase` (vaste zin) is een woord zonder lidwoord; `art: ""` geldt als geen lidwoord.
+- De versie van "bij de dokter" uit de redactielijn wordt leidend (besluit eigenaar 14 november 2026); de eigen scènes 2 tot en met 5 van de bouwsessie zijn teruggedraaid. Overnemen zodra de review klaar is.
+- Getest in de browser op 375 px met een tijdelijke kopie van `redactie/uit/nl-dokter.json`: scène 1, 2, de rekenscène en de kennisles spelen door; de extra stap komt na de tweede lidwoordfout; foutprofiel en "beheerst" worden bewaard.
+
+## Afstemming redactielijn en app (voor de schrijversopdracht)
+
+`redactie/controleer.mjs` draait nu ook `pakketcheck.js` tegen de ingebouwde pakketten: wat de app weigert, keurt de lijn af. De schrijversopdracht moet daarom overnemen:
+
+1. Bovenaan het pakket: `type: "hoofdstuk"`, `version`, `order` (getal; de dokter: 30) en `requires` (de pakketten waarvan het items gebruikt, bijvoorbeeld `nl-t1`, `nl-basis`, `rk-1`).
+2. Elk woord en elke vaste zin (`phrase`) heeft `gap`: een zin met precies één `___`, die niet met het gat begint en met een leesteken eindigt. Bij een woord met lidwoord staat het lidwoord zichtbaar vóór het gat (`De ___ is vol.`), of `askArt: true` als de leerder het lidwoord moet typen. De app gebruikt `gap` voor de oefening "vul in".
+3. `art` is `de`, `het`, of weglaten (leeg mag ook); een `phrase` heeft geen lidwoord.
+4. Elke vraag bij een lees- of luistertekst heeft `why`, ook in de oude vorm (`q`, `o`, `a`).
+5. Een stap `explain` verwijst naar een uitleg die bestaat (`content/uitleg-*.json`); anders slaat de speler hem stil over.
+6. Bronnen: `{ "url": "https://…", "title": "…" }`.
+
+Opmerking na het spelen: de leestekst van de kennisles is lang en staat bij elke vraag opnieuw boven in beeld; op 375 px moet de leerder ver scrollen. Korter, of in twee delen met elk eigen vragen.
+
+Nog niet gebouwd uit "Diepte en diagnose": de hoofdstuktoets met de uitkomst door, gericht extra of sneller; het foutprofiel op het scherm van de begeleider (hoort bij docs/aanvoer-en-begeleider.md); de schatting van de route bijstellen.
 
 ## Dekking van de lesstof (bijgewerkt 14 november 2026)
 
