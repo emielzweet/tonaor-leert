@@ -50,6 +50,12 @@ De eigenaar sliep; de ontwerpsessie gaf zijn opdracht door om met de aanbevolen 
 
 **Klaar om uit te brengen: release A = 425126f (cache v2-44).** Gemeld aan de ontwerpsessie.
 
+**Daarna gebouwd:** "Wat is nieuw" na de update, één keer, in de steuntaal (caa18ab; release A mag ook op caa18ab).
+
+**Release B = 76cbd2e (cache v2-46), gemeld aan de ontwerpsessie voor ijkmoment G1:** het proefhoofdstuk "bij de dokter" in de app, achter Proefonderdelen (standaard uit, dus de leerder ziet het pas als die schakelaar aan gaat). Review 4: "goed" (0 blokkerend, 5 klein; redactie/uit/nl-dokter.review4.json). Beslist door de bouwsessie: de gewone les biedt hoofdstukstof niet als nieuw aan, alleen de scènes doen dat (anders kwamen de woorden ook met de schakelaar uit al in de les). Drie scènes gespeeld op 375 px; voortgang en "beheerst" bewaard. Let op: review 3 en 4 zijn door het goedkopere model gedaan (ontwerpsessie: kosten laag houden); docs/automatische-redactie.md vraagt een groter model dan de schrijver; de steekproef bij G1 is de controle daarop.
+
+**Kleine punten uit review 4, voor een volgende ronde:** een gatzin met meer dan één goed antwoord (dok.morgenniet), drie keuzes als "bijna" die goed Nederlands zijn, de Thaise tijd bij tijd.half, één onnatuurlijke afleider, een onduidelijke reden in de rekenscène.
+
 **Redactielijn:** "bij de dokter" ronde 6 en samenvoegen pijn aan/in klaar (poort 0 fouten); review 4 loopt.
 
 **Blijft liggen:** de migratie op een kopie van een echte opslag (eigenaar levert eventueel aan); de rest van de werkorder volgt.
