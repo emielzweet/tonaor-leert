@@ -185,7 +185,411 @@
         "level": "A2",
         "stand": "gepland"
       }
-    ]
+    ],
+    "tweede": [
+      {
+        "id": "ao-twaalf-maanden",
+        "volgorde": 21,
+        "vraag": "Waarom heeft een jaar twaalf maanden?",
+        "gebied": "wetenschap",
+        "vorm": "eerst raden",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.knmi.nl/kennis-en-datacentrum/uitleg/de-seizoenen",
+          "title": "KNMI: de seizoenen en het jaar"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-maan",
+          "ao-zijderoute",
+          "ao-zaterdag"
+        ]
+      },
+      {
+        "id": "ao-eerste-wereldoorlog",
+        "volgorde": 22,
+        "vraag": "Waarom begon de Eerste Wereldoorlog?",
+        "gebied": "geschiedenis",
+        "vorm": "een tijdlijn om zelf te leggen",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.rijksoverheid.nl/onderwerpen/tweede-wereldoorlog",
+          "title": "Rijksoverheid/NIOD-bron voor jaartallen (schrijver kiest een passende bron over 1914-1918)"
+        },
+        "kaart": {
+          "soort": "tijdlijn",
+          "plan": "tijdlijn 1900-1920: moord in Sarajevo, oorlogsverklaringen, wapenstilstand; ankerpunt 1945"
+        },
+        "draden": [
+          "ao-zeespiegel",
+          "ao-grondrecht",
+          "ao-geopolitiek"
+        ]
+      },
+      {
+        "id": "ao-karma",
+        "volgorde": 23,
+        "vraag": "Wat is karma, en wat is het niet?",
+        "gebied": "geloof",
+        "vorm": "een misverstand (klopt het dat…?)",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.britannica.com/topic/karma",
+          "title": "Encyclopaedia Britannica: karma"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-monnik",
+          "ao-atheisme",
+          "ao-hypotheek"
+        ]
+      },
+      {
+        "id": "ao-stille-oceaan",
+        "volgorde": 24,
+        "vraag": "Waarom heet het Stille Oceaan?",
+        "gebied": "aardrijkskunde",
+        "vorm": "een plek op de kaart",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.britannica.com/place/Pacific-Ocean",
+          "title": "Encyclopaedia Britannica: Pacific Ocean"
+        },
+        "kaart": {
+          "soort": "kaart",
+          "plan": "kaart wereld, uitsnede Pacific; pins Kaap Hoorn, Filipijnen; lijn van de tocht van Magellaan"
+        },
+        "draden": [
+          "ao-twaalf-maanden",
+          "ao-thailand-links",
+          "ao-zout"
+        ]
+      },
+      {
+        "id": "ao-hypotheek",
+        "volgorde": 25,
+        "vraag": "Hoe werkt een hypotheek?",
+        "gebied": "economie",
+        "vorm": "één getal en wat erachter zit",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.rijksoverheid.nl/onderwerpen/koopwoning/hypotheek",
+          "title": "Rijksoverheid: hypotheek"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-inflatie",
+          "ao-btw",
+          "ao-fietsen"
+        ]
+      },
+      {
+        "id": "ao-belgie-talen",
+        "volgorde": 26,
+        "vraag": "Waarom spreekt België drie talen?",
+        "gebied": "taal",
+        "vorm": "twee dingen naast elkaar",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.belgium.be/nl/over_belgie/land/talen",
+          "title": "Belgium.be: de talen in België"
+        },
+        "kaart": {
+          "soort": "kaart",
+          "plan": "kaart europa, uitsnede België; gebieden BE, NL, FR, DE ingekleurd"
+        },
+        "draden": [
+          "ao-gezellig",
+          "ao-holland",
+          "ao-koning"
+        ]
+      },
+      {
+        "id": "ao-coalitie",
+        "volgorde": 27,
+        "vraag": "Wat is een coalitie, en waarom duurt formeren zo lang?",
+        "gebied": "politiek",
+        "vorm": "een keten van oorzaak en gevolg",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.rijksoverheid.nl/onderwerpen/kabinetsformatie",
+          "title": "Rijksoverheid: kabinetsformatie"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-kamer150",
+          "ao-links-rechts",
+          "ao-grondrecht"
+        ]
+      },
+      {
+        "id": "ao-maan",
+        "volgorde": 28,
+        "vraag": "Hoe ver is de maan?",
+        "gebied": "wetenschap",
+        "vorm": "eerst schatten",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://science.nasa.gov/moon/facts/",
+          "title": "NASA: Moon facts"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-twaalf-maanden",
+          "ao-zout",
+          "ao-vaccin"
+        ]
+      },
+      {
+        "id": "ao-thailand-links",
+        "volgorde": 29,
+        "vraag": "Waarom rijden ze in Thailand links en in Nederland rechts?",
+        "gebied": "aardrijkskunde",
+        "vorm": "een zoektocht op de kaart",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.britannica.com/topic/rule-of-the-road",
+          "title": "Encyclopaedia Britannica: rule of the road"
+        },
+        "kaart": {
+          "soort": "kaart",
+          "plan": "kaart wereld of azie; landen met links verkeer ingekleurd (TH, GB, JP, IN, AU) tegenover NL, FR"
+        },
+        "draden": [
+          "ao-stille-oceaan",
+          "ao-mekong",
+          "ao-1953"
+        ]
+      },
+      {
+        "id": "ao-grondrecht",
+        "volgorde": 30,
+        "vraag": "Wat is een grondrecht?",
+        "gebied": "politiek",
+        "vorm": "een dilemma (wat zou jij doen?)",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.rijksoverheid.nl/onderwerpen/grondrechten",
+          "title": "Rijksoverheid: grondrechten"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-wet",
+          "ao-toga",
+          "ao-eerste-wereldoorlog"
+        ]
+      },
+      {
+        "id": "ao-vrijmetselaar",
+        "volgorde": 31,
+        "vraag": "Wat doet een vrijmetselaar in de loge?",
+        "gebied": "levensbeschouwing",
+        "vorm": "een voorwerp en zijn verhaal",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.vrijmetselarij.nl/",
+          "title": "Orde van Vrijmetselaren onder het Grootoosten der Nederlanden (eigen beschrijving; zet er een onafhankelijke bron naast)"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-monnik",
+          "ao-atheisme",
+          "ao-amsterdam-rijkste"
+        ]
+      },
+      {
+        "id": "ao-amsterdam-rijkste",
+        "volgorde": 32,
+        "vraag": "Waarom was Amsterdam ooit de rijkste stad van de wereld?",
+        "gebied": "geschiedenis",
+        "vorm": "toen en nu",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.rijksmuseum.nl/nl/rijksstudio/kennis/gouden-eeuw",
+          "title": "Rijksmuseum: de Gouden Eeuw"
+        },
+        "kaart": {
+          "soort": "tijdlijn",
+          "plan": "tijdlijn 1550-1800: Opstand, VOC 1602, beurs 1611, hoogtepunt, achteruitgang; ankerpunt 1945"
+        },
+        "draden": [
+          "ao-aardappel",
+          "ao-schilderen-17e",
+          "ao-inflatie"
+        ]
+      },
+      {
+        "id": "ao-kat-uit-de-boom",
+        "volgorde": 33,
+        "vraag": "Wat betekent de kat uit de boom kijken?",
+        "gebied": "taal",
+        "vorm": "een woord en zijn herkomst",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://onzetaal.nl/taaladvies",
+          "title": "Genootschap Onze Taal (schrijver zoekt de pagina over deze uitdrukking)"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-gezellig",
+          "ao-links-rechts",
+          "ao-coalitie"
+        ]
+      },
+      {
+        "id": "ao-fietsen",
+        "volgorde": 34,
+        "vraag": "Waarom zijn er zoveel fietsen in Nederland?",
+        "gebied": "mens en samenleving",
+        "vorm": "waar of niet waar, op tempo",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/fietsen",
+          "title": "CBS: fietsgebruik (schrijver controleert de actuele pagina)"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-zeespiegel",
+          "ao-hypotheek",
+          "ao-1953"
+        ]
+      },
+      {
+        "id": "ao-provincies",
+        "volgorde": 35,
+        "vraag": "Waar ligt welke provincie, en waarom zijn het er twaalf?",
+        "gebied": "aardrijkskunde",
+        "vorm": "een plek op de kaart",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.rijksoverheid.nl/onderwerpen/provincies",
+          "title": "Rijksoverheid: provincies"
+        },
+        "kaart": {
+          "soort": "kaart",
+          "plan": "kaart nederland met provincies; tik de provincie aan, bij elke een verhaal"
+        },
+        "draden": [
+          "ao-holland",
+          "ao-zeespiegel",
+          "ao-kamer150"
+        ]
+      },
+      {
+        "id": "ao-zaterdag",
+        "volgorde": 36,
+        "vraag": "Waarom is zaterdag in het jodendom een rustdag?",
+        "gebied": "geloof",
+        "vorm": "een dag uit een leven",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.britannica.com/topic/Sabbath-Judaism",
+          "title": "Encyclopaedia Britannica: Sabbath"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-ramadan",
+          "ao-twaalf-maanden",
+          "ao-atheisme"
+        ]
+      },
+      {
+        "id": "ao-geopolitiek",
+        "volgorde": 37,
+        "vraag": "Wat is geopolitiek, in één voorbeeld?",
+        "gebied": "politiek",
+        "vorm": "een keten van oorzaak en gevolg",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.britannica.com/place/Strait-of-Malacca",
+          "title": "Encyclopaedia Britannica: Strait of Malacca (plus een bron over scheepvaart/handel)"
+        },
+        "kaart": {
+          "soort": "kaart",
+          "plan": "kaart azie, uitsnede Zuidoost-Azië; Straat van Malakka als lijn, pins Singapore, Maleisië, Indonesië"
+        },
+        "draden": [
+          "ao-zijderoute",
+          "ao-mekong",
+          "ao-stille-oceaan"
+        ]
+      },
+      {
+        "id": "ao-toga",
+        "volgorde": 38,
+        "vraag": "Waarom draagt een rechter een toga?",
+        "gebied": "mens en samenleving",
+        "vorm": "een voorwerp en zijn verhaal",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.rechtspraak.nl/Over-de-rechtspraak/Rechters/Pages/default.aspx",
+          "title": "Rechtspraak.nl: de toga"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-grondrecht",
+          "ao-wet",
+          "ao-monnik"
+        ]
+      },
+      {
+        "id": "ao-schilderen-17e",
+        "volgorde": 39,
+        "vraag": "Waarom schilderde men in de zeventiende eeuw zoveel gewone mensen?",
+        "gebied": "kunst",
+        "vorm": "twee dingen naast elkaar",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://www.rijksmuseum.nl/nl/rijksstudio/kennis/gouden-eeuw",
+          "title": "Rijksmuseum: de Gouden Eeuw en de kunst"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-amsterdam-rijkste",
+          "ao-gezellig",
+          "ao-inflatie"
+        ]
+      },
+      {
+        "id": "ao-eu",
+        "volgorde": 40,
+        "vraag": "Wat is de Europese Unie eigenlijk, en wat niet?",
+        "gebied": "politiek",
+        "vorm": "een misverstand (klopt het dat…?)",
+        "level": "A2",
+        "stand": "gepland",
+        "bron": {
+          "url": "https://european-union.europa.eu/principles-countries-history/eu-countries_nl",
+          "title": "Europese Unie: lidstaten en geschiedenis"
+        },
+        "kaart": null,
+        "draden": [
+          "ao-koning",
+          "ao-belgie-talen",
+          "ao-eerste-wereldoorlog"
+        ]
+      }
+    ],
+    "uitlegTweede": "Tweede reeks (twintig lessen, volgorde 21 tot 40), gekozen door de lijn uit de overige vragen van 'Om de toon te zetten' plus topografie; minstens vijf met kaart of tijdlijn. Bronnen zijn beoogd: de schrijver leest en vervangt waar nodig. Bij geloof, levensbeschouwing en politiek: beschrijven, niet oordelen."
   },
   "hoofdstukken": [
     {
