@@ -2,11 +2,12 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { boot, builtin, PC, html, ROOT } from './app-harness.mjs';
 let fails = 0; const ok = (n, v, extra) => { if (!v) fails++; console.log((v ? 'OK  ' : 'FOUT') + ' ' + n + (v || !extra ? '' : '\n     ' + extra)); };
-const files = readdirSync(new URL('content/', ROOT)).filter(f => f.endsWith('.json'));
+const files = readdirSync(new URL('content/', ROOT)).filter(f => f.endsWith('.json') && f !== 'index.json');
 const HIDDEN = files.map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8'))).filter(p => p.type === 'hoofdstuk' && PC.checkChapter(p).errors.length).map(p => p.id);   // haalt de hoofdstukcontrole niet: niet in de app (codereview B3)
 const NLWORDS = files.map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8'))).filter(p => p.learn === 'nl' && !HIDDEN.includes(p.id)).reduce((a, p) => a + (p.items || []).filter(x => x.kind === 'word' || x.kind === 'phrase').length, 0);
 const packs = files.map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8')));
 const clone = o => JSON.parse(JSON.stringify(o));
+const IDX = JSON.parse(readFileSync(new URL('content/index.json', ROOT), 'utf8')).packs;
 
 // 1. alle pakketten zonder fouten; kwaliteitsmeldingen als lijst
 for (const p of packs) {
@@ -77,7 +78,7 @@ let q = null; app.runSession = (n, x) => { q = x; }; app.api.startLesson(false);
 ok('zonder rekenpakket: Nederlands laadt nog (ook het hoofdstuk, met meldingen), les zonder rekenoefeningen', g.NL.length === NLWORDS && !q.some(x => ['money', 'clock', 'discount'].includes(x.type)) && q.some(x => x.type === 'build'));
 app = await boot({ missing: ['content/nl-t1.json', 'content/en-t1.json', 'content/rk-1.json'] }); g = app.api.get();
 q = null; app.runSession = (n, x) => { q = x; }; app.api.startLesson(false);
-ok('geen enkel pakket: app start, meldt het bij een tik op de les en start geen lege les', g.PACK_MISSING.length === 3 && g.PACKS.length === builtin().length - 3 - HIDDEN.length && q === null && app.toasts.includes('pack.none'));
+ok('geen enkel pakket: app start, meldt het bij een tik op de les en start geen lege les', g.PACK_MISSING.length === 3 && g.PACKS.length === builtin().length + IDX.length - 3 - HIDDEN.length && q === null && app.toasts.includes('pack.none'));
 ok('melding op Vandaag als een pakket ontbreekt', /PACK_MISSING\.length\?`<div class="note" role="status">\$\{T\('pack\.missing'/.test(html));
 
 // geen naambotsing: een functie of variabele uit het pakketblok mag elders in de app niet nog eens gedefinieerd worden
@@ -114,8 +115,16 @@ ok('startmeting heeft zijn tussenstand (PL) nog', /\nlet PL=\{\};\nfunction star
 const sw = readFileSync(new URL('sw.js', ROOT), 'utf8');
 const shell = eval(sw.slice(sw.indexOf('const SHELL=') + 'const SHELL='.length, sw.indexOf(';', sw.indexOf('const SHELL='))));
 const bi = builtin();
-ok('BUILTIN en SHELL noemen dezelfde pakketten', JSON.stringify(bi.slice().sort()) === JSON.stringify(shell.filter(s => s.startsWith('./content/')).map(s => s.slice(2)).sort()), 'BUILTIN ' + bi + ' / SHELL ' + shell);
-ok('elk pakket in content/ staat in BUILTIN', files.every(f => bi.includes('content/' + f)));
+ok('BUILTIN en SHELL noemen dezelfde pakketten, plus de index', JSON.stringify(bi.concat(['content/index.json']).sort()) === JSON.stringify(shell.filter(s => s.startsWith('./content/')).map(s => s.slice(2)).sort()), 'BUILTIN ' + bi + ' / SHELL ' + shell);
+ok('elk pakket in content/ staat in BUILTIN of in de index, en de index noemt alleen bestaande pakketten buiten BUILTIN', files.every(f => bi.includes('content/' + f) || IDX.includes('content/' + f)) && IDX.every(u => files.includes(u.slice(8)) && !bi.includes(u)));
+{ // lesstof los van de code (docs/ontwerp-stap3a.md)
+  let a = await boot({ missing: ['content/index.json'] }), g2 = a.api.get();
+  ok('zonder index: alleen de basis, geen melding over de index', g2.PACKS.length === bi.length && !g2.PACK_MISSING.length, g2.PACK_MISSING.join());
+  a = await boot({ override: { 'content/index.json': { v: 1, packs: ['https://elders.example/x.json', 'content/../sw.json', 'content/nl-dokter.json', 'content/nl-dokter.json', 'content/rk-1.json'] } } }); g2 = a.api.get();
+  ok('index: vreemde paden en dubbele overgeslagen, het hoofdstuk geladen', g2.PACKS.some(p => p.id === 'nl-dokter') && g2.PACKS.length === bi.length + 1 && !g2.PACK_MISSING.length, g2.PACK_MISSING.join() + ' / ' + g2.PACKS.length);
+  a = await boot({ missing: ['content/nl-dokter.json'] }); g2 = a.api.get();
+  ok('index: een pakket uit de index dat niet laadt, wordt gemeld; de basis laadt', g2.PACK_MISSING.includes('nl-dokter') && g2.PACKS.length === bi.length);
+}
 ok('pakketcheck.js staat in SHELL en wordt vóór de app geladen', shell.includes('./pakketcheck.js') && html.indexOf('<script src="pakketcheck.js">') < html.indexOf('(async function(){'));
 ok('service worker vraagt eigen bestanden vers op: geen oud pakket uit de browsercache naast nieuwe code', sw.includes("SHELL.map(u=>new Request(u,{cache:'reload'}))") && sw.includes("fetch(r.url,{cache:'no-cache'") && !/fetch(r).then/.test(sw));
 ok('service worker bewaart alleen geslaagde antwoorden', sw.includes('if(res.ok){const cp=res.clone()'));

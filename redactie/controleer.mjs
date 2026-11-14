@@ -12,7 +12,7 @@ let p; try { p = JSON.parse(readFileSync(file, 'utf8')); } catch (e) { console.e
 const err = [], warn = [];
 // dezelfde controle als de app (pakketcheck.js), tegen de ingebouwde pakketten: wat de app weigert, keurt de lijn ook af
 { const PC = require('../pakketcheck.js'), dir = new URL('../content/', import.meta.url);
-  const others = readdirSync(dir).filter(f => f.endsWith('.json')).map(f => { try { return JSON.parse(readFileSync(new URL(f, dir), 'utf8')); } catch (e) { return null; } }).filter(o => o && o.id !== p.id);
+  const others = readdirSync(dir).filter(f => f.endsWith('.json') && f !== 'index.json').map(f => { try { return JSON.parse(readFileSync(new URL(f, dir), 'utf8')); } catch (e) { return null; } }).filter(o => o && o.id !== p.id);
   const r = PC.checkPack(p, others); for (const m of r.errors) err.push('pakketcheck: ' + m); for (const m of r.quality || []) (/also verwijst naar/.test(m) ? err : warn).push('pakketcheck: ' + m);   // in de redactielijn is een losse also een fout; in de app een melding
   for (const m of PC.checkChapter(p).errors) err.push('hoofdstuk: ' + m); }   // werkvormen, hints, lees- en luistertekst, spreken, spel, goals (masterplan A6, B1, B2, C1, C2, G2)
 const ID = /^[A-Za-z0-9._-]+$/, LANGS = ['nl', 'th', 'en'];

@@ -5,7 +5,7 @@ import { boot, PC, html, ROOT } from './app-harness.mjs';
 let fails = 0; const ok = (n, v, extra) => { if (!v) fails++; console.log((v ? 'OK  ' : 'FOUT') + ' ' + n + (v || extra == null ? '' : '\n     ' + extra)); };
 const fnBlock = name => { const i = html.indexOf('function ' + name + '('); if (i < 0) throw new Error(name); let d = 0, j = html.indexOf('{', i); for (; j < html.length; j++) { if (html[j] === '{') d++; else if (html[j] === '}') { d--; if (!d) break; } } return html.slice(i, j + 1); };
 const app = await boot(); const g = app.api.get();
-const packs = readdirSync(new URL('content/', ROOT)).filter(f => f.endsWith('.json')).map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8')));   // alle pakketten in content/, ook een hoofdstuk dat de app (nog) verbergt
+const packs = readdirSync(new URL('content/', ROOT)).filter(f => f.endsWith('.json') && f !== 'index.json').map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8')));   // alle pakketten in content/, ook een hoofdstuk dat de app (nog) verbergt
 const withScenes = packs.filter(p => p.scenes); const scenes = withScenes.flatMap(p => p.scenes.map(sc => ({ sc, p })));
 ok('er is minstens één scène, en de pakketten met scènes zijn goed', scenes.length > 0 && withScenes.every(p => !PC.checkPack(p, packs.filter(o => o !== p)).errors.length), withScenes.map(p => PC.checkPack(p, packs.filter(o => o !== p)).errors.join('; ')).join(' | '));
 

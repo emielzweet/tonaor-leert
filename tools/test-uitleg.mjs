@@ -2,7 +2,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { boot, PC, UV, html, ROOT } from './app-harness.mjs';
 let fails = 0; const ok = (n, v, extra) => { if (!v) fails++; console.log((v ? 'OK  ' : 'FOUT') + ' ' + n + (v || !extra ? '' : '\n     ' + extra)); };
-const packs = readdirSync(new URL('content/', ROOT)).filter(f => f.endsWith('.json')).map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8')));
+const packs = readdirSync(new URL('content/', ROOT)).filter(f => f.endsWith('.json') && f !== 'index.json').map(f => JSON.parse(readFileSync(new URL('content/' + f, ROOT), 'utf8')));
 const expl = packs.flatMap(p => (p.explain || []).map(x => ({ x, p })));
 const S = PC.safeText;
 
