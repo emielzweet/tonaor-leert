@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proef geluid</title>
+<style>
+  :root{--bg:#f6f4ef;--card:#fff;--ink:#2d3a3a;--leaf:#bfe3cf;--sky:#d6e8f5;--muted:#6b7777}
+  body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.4 system-ui,-apple-system,sans-serif}
+  main{max-width:480px;margin:0 auto;padding:16px}
+  h1{font-size:1.4rem;margin:8px 0}
+  .card{background:var(--card);border-radius:16px;padding:14px;margin:12px 0;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  button{display:block;width:100%;text-align:left;margin:6px 0;padding:12px 14px;border:0;border-radius:12px;background:var(--leaf);color:var(--ink);font:inherit}
+  button.seq{background:var(--sky)}
+  .muted{color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+  <h1>Proef: geluid met de stilteschakelaar aan</h1>
+  <p class="muted">Zet de iPhone op stil en tik op een zin. Hoor je hem? Tik daarna op de blauwe knop: die speelt een bedrag af uit drie losse stukjes, na elkaar. Klinkt dat goed of te hakkerig?</p>
+  <div class="card" id="zinnen"></div>
+  <div class="card"><button class="seq" id="seq">Na elkaar: vijf euro vijftig (uit drie stukjes)</button></div>
+  <p class="muted">Gemaakt met een open Nederlandse stem (Piper, stem pim, CC0). Losse proef, niet de app.</p>
+</main>
+<audio id="a" preload="auto" playsinline></audio>
+<script>
+  const Z = [['z01','Goedemorgen, huisartsenpraktijk. Waarmee kan ik u helpen?'],['z02','Ik wil graag een afspraak maken.'],['z03','Ik heb al drie dagen hoofdpijn.'],['z04','Kunt u vrijdag om half drie komen?'],['z05','de afspraak'],['z06','het recept'],['z07','Morgen kan ik niet.'],['z08','Neem twee keer per dag één pil.'],['z09','Welk woord past in de zin?'],['z10','Goed zo! Dat klopt.']];
+  const a = document.getElementById('a'), box = document.getElementById('zinnen');
+  const url = n => 'audio/proef/' + n + '.m4a';
+  let queue = [];
+  a.addEventListener('ended', () => { if (queue.length) { a.src = url(queue.shift()); a.play().catch(() => {}); } });
+  const play = list => { queue = list.slice(1); a.src = url(list[0]); a.play().catch(e => alert('Afspelen lukt niet: ' + e.name)); };
+  Z.forEach(([n, t]) => { const b = document.createElement('button'); b.textContent = t; b.onclick = () => play([n]); box.appendChild(b); });
+  document.getElementById('seq').onclick = () => play(['n5', 'neuro', 'n50']);
+</script>
+</body>
+</html>
