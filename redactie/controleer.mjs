@@ -37,7 +37,7 @@ let itemIdsRef = null, useRef = null;
 const question = (q, w, sid, nosup) => {
   if (!q || typeof q !== 'object') { E(w, 'vraag ontbreekt'); return 0; }
   if (!['choose', 'hear', 'type', 'number', 'hear-type', 'complete', 'build', 'gap', 'listen', 'money', 'clock', 'discount'].includes(q.form)) E(w, 'vorm ' + q.form + ' kan (nog) niet in een scène');   // de gegevens van build, gap enz. controleert pakketcheck
-  if (!Array.isArray(q.items) || !q.items.length) E(w, 'items ontbreekt'); else for (const t of q.items) { if (!itemIdsRef.has(t)) E(w, 'item bestaat niet: ' + t); else useRef(t, sid); }
+  if (!Array.isArray(q.items) || !q.items.length) E(w, 'items ontbreekt'); else for (const t of q.items) { if (!itemIdsRef(t)) E(w, 'item bestaat niet: ' + t); else useRef(t, sid); }
   if (q.ask != null || !['build', 'gap', 'listen', 'money', 'clock', 'discount'].includes(q.form)) txt(q.ask, w + '.ask', nosup ? ['nl'] : LANGS);   // een bestaande oefenvorm heeft zijn vraag in data
   if (q.form === 'choose' || q.form === 'hear') {
     const o = q.opts || [];
@@ -81,7 +81,7 @@ if (words.length < 20 || words.length > 32) E('items', 'verwacht 20 tot 32 woord
 // ---- scenes ----
 const scenes = Array.isArray(p.scenes) ? p.scenes : [], seen = new Map(), sceneIds = new Set();
 const use = (id, sc) => { if (!seen.has(id)) seen.set(id, new Set()); seen.get(id).add(sc); };
-itemIdsRef = itemIds; useRef = use;
+itemIdsRef = known; useRef = use;
 const nlScenes = scenes.filter(s => s && s.subject === 'nl');
 if (nlScenes.length !== 5) E('scenes', 'verwacht vijf scènes Nederlands, gevonden ' + nlScenes.length);
 if (!scenes.some(s => s && s.subject === 'rk')) E('scenes', 'rekenscène ontbreekt');
