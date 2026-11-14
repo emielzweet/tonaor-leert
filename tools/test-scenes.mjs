@@ -175,4 +175,7 @@ ok('poort (uitleg bij de eisen 13, 14): dubbele vraag, tekst zonder typen, te we
   ok('zwaardere vorm: keel telt voor de keel, 45 voor 45 minuten, maar 45 uur en hals niet', cx.f('de keel', 'keel') && cx.f('45 minuten', '45') && cx.f('de keel', 'De keel.') && !cx.f('45 minuten', '45 uur') && !cx.f('de keel', 'hals') && !cx.f('45 minuten', '50'));
   ok('typen vanuit de steuntaal: een woord uit also is geen fout (pijn in bij pijn aan)', html.includes("if(alsoOf(w).some(id=>{const o=NL.find(x=>x.id===id);return o&&(norm(o.w)===a||norm(fw(o))===a)}))"));
   ok('een do-oefening in een scène toont de vraag van de stap (Heb je genoeg?)', html.includes('if(st.ask)x._ask=st.ask') && html.includes("Q[qi]._ask&&inner.startsWith('<div class=\"card stack\">'))inner='<div class=\"card stack\"><p class=\"prompt\">'+scT(Q[qi]._ask)+'</p>'+inner.slice(24)")); }
+{ const cx = {}; vm.createContext(cx); vm.runInContext(lineOf('const scNorm=') + ';' + fnBlock('scNum') + ';' + fnBlock('scLoose') + ';this.f=scLoose;this.n=scNorm;', cx);
+  ok('zwaardere vorm: 3 x 4 en 3*4 tellen voor 3 × 4, 0,25 voor € 0,25, maar 0,30 niet', cx.n('3 x 4') === cx.n('3 × 4') && cx.n('3*4') === cx.n('3 × 4') && cx.f('€ 0,25', '0,25') && !cx.f('€ 0,25', '0,30'));
+  ok('scènevraag: een woord uit also van het doel is geen fout', html.includes('/* review dokter 6: een woord uit also is in een scènevraag ook geen fout */')); }
 console.log(fails ? fails + ' FOUT' : 'alles OK');
