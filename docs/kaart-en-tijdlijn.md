@@ -36,7 +36,8 @@ Beide zijn **tekeningen** (in de catalogus van `scene.js`) die in elke stap kunn
 
 - **Gebied aantikken:** `"answer": "LA"`; elk gebied binnen de uitsnede is aantikbaar. Fout = een ander gebied; de terugkoppeling kleurt het goede gebied en noemt de naam van wat je aantikte.
 - **Plek aantikken:** `"answer": [100.5, 13.75], "tol": 150` (kilometer). Goed als de tik binnen die afstand ligt. De app rekent de afstand uit en zegt die (*je zat 300 km te ver naar het noorden*): dat is zelf leerzaam.
-- Elk aantikbaar gebied is minstens 24 bij 24 pixels op 375 breed; is een gebied kleiner in de gekozen uitsnede, dan weigert de poort de vraag (dan kiest de schrijver een andere uitsnede).
+- Elk aantikbaar gebied is minstens 24 bij 24 pixels op 375 breed. Een kleiner gebied in de uitsnede is niet aan te tikken; de poort weigert de vraag alleen als het goede antwoord te klein is (bijgesteld 15 november 2026: anders faalt elke uitsnede op een reepje land aan de rand).
+- Bij de vraag is alleen de naam van het antwoord verborgen. Namen die houvast geven (pins en ingekleurde gebieden die niet het antwoord zijn) blijven staan, zodat de leerder zich kan oriënteren.
 
 ## De tijdlijn
 
@@ -50,6 +51,7 @@ Beide zijn **tekeningen** (in de catalogus van `scene.js`) die in elke stap kunn
 
 - Jaartallen als getallen; vóór het jaar 1 negatief. De app schrijft *3000 v.Chr.*
 - `scale`: `lin` of `log` (voor een lijn van de oerknal tot nu: dan is de recente geschiedenis niet één stip). `log` telt terug vanaf `to`.
+- Bij `log` is `tol` verplicht (een vast percentage zegt op een log-lijn niets).
 - `known: true` is een ankerpunt dat de leerder al kent; zo leert iemand plaatsen ten opzichte van wat er al is.
 - Liggend op de telefoon? Nee: de lijn staat **rechtop** (verleden boven, nu onder), zodat hij op 375 breed lang genoeg is en de leerder kan scrollen.
 
