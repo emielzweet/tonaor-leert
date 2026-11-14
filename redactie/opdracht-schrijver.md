@@ -19,7 +19,7 @@ Je schrijft één hoofdstuk lesstof voor een leer-app Nederlands voor volwassen 
 ```
 
 - `order`, `requires`, `type` en `version` zijn nodig om het pakket in de app te laden. `requires` noemt de pakketten in `content/` waarvan je items gebruikt.
-- `goals` (bij het pakket en bij elke scène Nederlands): de eindtermen die het dient. Zolang `docs/eindtermen.md` er niet is, kies uit deze voorlopige lijst: `nt2-I-lezen`, `nt2-I-luisteren`, `nt2-I-spreken`, `nt2-I-schrijven`, `nt2-I-woorden`, `nt2-I-taal` (grammatica), `rekenen-2F-getallen`, `rekenen-2F-verhoudingen`, `rekenen-2F-meten`, `rekenen-2F-verbanden`, `kennis-nederland`.
+- `goals` (bij het pakket en bij elke scène Nederlands): de eindtermen die het dient, met de codes uit `docs/eindtermen.md` (een eindterm zoals `nt2-I-lezen-2`, of een groep zoals `rekenen-2-verhoudingen`). Kies alleen wat de scène echt oefent.
 - `items`: 20 tot 32 woorden en vaste zinnen, plus de regels en vaardigheden van het hoofdstuk.
   - Woord: `{ "id", "kind": "word", "w", "art": "de" | "het", "tr": { "th", "en" }, "def", "ex", "gap" }`. Zonder lidwoord (werkwoord, bijvoeglijk naamwoord): laat `art` weg. `def` is een omschrijving in eenvoudig Nederlands die het woord zelf niet gebruikt. `ex` is een nieuwe voorbeeldzin met het woord, een andere dan in de scènes. `gap` is weer een andere zin met precies één `___` op de plek van het woord, die niet met `___` begint en met een leesteken eindigt; bij een woord met lidwoord staat het lidwoord zichtbaar vlak voor het gat (`De ___ is vol.`).
   - Vaste zin: zelfde velden, `"kind": "phrase"`, zonder `art`, ook met `gap`.
