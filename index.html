@@ -1645,7 +1645,8 @@ const MOTOR={
   histMax:24, histBloom:6,
   histBudget:300000,  // F1: alle reeksen samen hooguit zoveel tekens (localStorage ~5 MB = ~2,5 miljoen tekens, en de reservekopie verdubbelt). Aanname; antwoord ontwerpsessie
   // H3 rust: zoveel keer achter elkaar goed bij de eerste poging, in zoveel verschillende vormen (masterplan H3)
-  restRun:3, restForms:3
+  restRun:3, restForms:3,
+  restDays:3, restSpan:7   // en op minstens zoveel verschillende dagen, met minstens zoveel dagen tussen de eerste en de laatste: gespreid, niet op één dag (§3.2; aanname, antwoord ontwerpsessie)
 };
 /* vormen die niet meetellen voor bloei: bekijken en de controlevraag bij een uitleg */
 const NOGROW=['voorbeeld','check','spel'];   /* spel: wel wachttijd, geen vorm voor bloei (masterplan C5) */
@@ -1671,7 +1672,7 @@ function histTrim(budget){const B=budget||MOTOR.histBudget,ids=Object.keys(S.ite
 /* H2: de vorm van de vorige poging van een onderdeel (uit de reeks), ook van een vorige dag */
 function lastForm(id){const it=S.items[id];if(!it||typeof it.h!=='string'||!it.h)return null;const p=it.h.slice(it.h.lastIndexOf(',')+1);return HFORM[p[p.length-2]]||null}
 /* H3: rust = de laatste MOTOR.restRun pogingen goed bij de eerste poging, in MOTOR.restForms verschillende vormen. Komt dan alleen nog in teksten en scènes voor, niet in Onderweg. */
-function rests(id){const h=histParse(S.items[id]).filter(x=>!NOGROW.includes(x[1])).slice(-MOTOR.restRun);return h.length===MOTOR.restRun&&h.every(x=>x[2]===1)&&new Set(h.map(x=>x[1])).size>=MOTOR.restForms}
+function rests(id){const h=histParse(S.items[id]).filter(x=>!NOGROW.includes(x[1])).slice(-MOTOR.restRun);return h.length===MOTOR.restRun&&h.every(x=>x[2]===1)&&new Set(h.map(x=>x[1])).size>=MOTOR.restForms&&new Set(h.map(x=>x[0])).size>=MOTOR.restDays&&h[h.length-1][0]-h[0][0]>=MOTOR.restSpan}   /* M9: rust pas na ophalen over tijd; gaat het fout in een scène of tekst, dan is het geen rust meer */
 /* de vorm die een scherm in het herhaalmodel schrijft (zie de handlers) */
 const QFORM={recall:'typen',enrecall:'typen',hear:'luisteren',enhear:'luisteren',recog:'herkennen',enrecog:'herkennen',build:'build',gap:'gap',engap:'gap',listen:'listen',dictee:'dictee',money:'geld',clock:'klok',discount:'korting'};
 const ALTW={recall:['recog','hear'],hear:['recall','recog'],recog:['recall','hear'],enrecall:['enrecog','enhear'],enhear:['enrecall','enrecog'],enrecog:['enrecall','enhear']};
@@ -1715,7 +1716,7 @@ const exList=(learn,pred)=>PACKS.filter(p=>p.learn===learn).flatMap(p=>p.exercis
 const LEGACY={};   // oefening-id -> object in de vorm van vóór fase 2
 function buildLists(){
   /* een hoofdstuk verschijnt pas als het de hoofdstukcontrole haalt (masterplan: lesstof door de poort en de review); zo komt een half hoofdstuk nooit bij de leerder */
-  SCENES=PACKS.filter(p=>p.type!=='hoofdstuk'||!PC||!PC.checkChapter||!PC.checkChapter(p).errors.length).flatMap(p=>(p.scenes||[]).map(sc=>({sc,learn:p.learn})));
+  SCENES=PACKS.filter(p=>p.type!=='hoofdstuk'||!PC||!PC.checkChapter||!PC.checkChapter(p).errors.length).flatMap(p=>(p.scenes||[]).map(sc=>({sc,learn:p.learn,purpose:p.purpose||null})));
   const items=k=>PACKS.flatMap(p=>(p.items||[]).filter(x=>x.kind===k||(k==='word'&&x.kind==='phrase')).map(x=>({x,p})));   // phrase: een vaste zin, als woord zonder lidwoord
   // woord, voorbeeldzin, gatzin en lidwoord toont het scherm met esc() of leest het voor: RAW. Vertalingen staan rauw in de HTML: SAFE.
   NL=items('word').filter(o=>o.p.learn==='nl').map(({x})=>{const o={id:x.id,art:x.art?RAW(x.art):'',w:RAW(x.w),th:SAFE(x.tr.th),en:SAFE(x.tr.en),ex:RAW(x.ex),gap:RAW(x.gap)};if(x.askArt)o.askArt=1;if(x.also)o.also=x.also.slice();if(x.def)o.def=RAW(x.def);return o});
@@ -2405,8 +2406,10 @@ function sceneQ(sc,hard){const q=[],vak=sc.subject||'nl',ph={look:1,talk:2,read:
 function startScene(sc,hard){if(!sc)return toast(tx('pack.none'));S.world=S.world||{done:{},at:null};if(hard==null)hard=!!(S.world.done||{})[sc.id];   // een scène die af is: de zwaardere vorm (B4)
   S.world.at=sc.id;SCN={sc,errs:{},extra:new Set(),ctrl:null,hard:!!hard,good:0};save();runSession(plainX(sc.title,'nl'),sceneQ(sc,hard))}
 const PH=['','scene.look','scene.live','scene.do','scene.can'];
+/* masterplan G5: waar het hoofdstuk voor dient, bij het begin (eerste scène) en op het slot van de laatste scène van de plek */
+function scPurpose(sc,where){const o=SCENES.find(x=>x.sc===sc);if(!o||!o.purpose)return null;const same=SCENES.filter(x=>x.sc.place===sc.place).map(x=>x.sc).sort((a,b)=>(a.n||6)-(b.n||6));return (where==='first'?same[0]:same[same.length-1])===sc?o.purpose:null}
 function scFrame(q,inner){frame(inner,t(PH[q.step]||'scene.do'),q.step,4)}
-H.sc_intro=q=>{const sc=q.sc;scFrame(q,`<div class="card stack">${scArt(sc)}<h2>${scT(sc.title)}</h2><p>${scT(sc.intro)}</p>${q.hard?`<p class="note sky">${T('scene.hardTip',{n:(S.world.best||{})[sc.id]||0})}</p>`:''}</div>${nextBtn('btn-main')}`);$('#nx').onclick=next};
+H.sc_intro=q=>{const sc=q.sc,pu=scPurpose(sc,'first');scFrame(q,`<div class="card stack">${scArt(sc)}<h2>${scT(sc.title)}</h2>${pu?`<p class="note sky small">${scT(pu)}</p>`:''}<p>${scT(sc.intro)}</p>${q.hard?`<p class="note sky">${T('scene.hardTip',{n:(S.world.best||{})[sc.id]||0})}</p>`:''}</div>${nextBtn('btn-main')}`);$('#nx').onclick=next};
 H.sc_look=q=>{const sc=q.sc,seen=new Set(),min=q.st.min||1;
   scFrame(q,`<div class="card stack">${T('scene.lookTip')}${scArt(sc)}<div id="lk" class="note sky" aria-live="polite">${T('scene.lookStart')}</div></div><button class="btn btn-leaf" id="nx" disabled>${T('btn.next')}</button>`);
   app.querySelectorAll('.s-hot').forEach(g=>{const go=()=>{const th=sc.art.things[+g.dataset.i];if(!th)return;g.classList.add('on');seen.add(g.dataset.i);
@@ -2502,7 +2505,7 @@ H.sc_rule=q=>{const it=PACKS.flatMap(p=>p.items||[]).find(x=>x.id===q.items[0]);
 H.sc_extra=q=>{scFrame(q,`<div class="card stack">${T('scene.extraTitle')}<div class="note sky">${scT(q.st.explain)}</div></div>${nextBtn('btn-main')}`);$('#nx').onclick=next};
 H.sc_end=q=>{const sc=q.sc,st=q.st;finishTime();S.world=S.world||{done:{},at:null};S.world.done[sc.id]=now();if(SCN&&SCN.sc===sc&&SCN.ctrl!=null){S.world.ok=S.world.ok||{};S.world.ok[sc.id]=SCN.ctrl}let rec=false;if(SCN&&SCN.sc===sc&&SCN.hard){S.world.best=S.world.best||{};rec=SCN.good>(S.world.best[sc.id]||0);if(rec)S.world.best[sc.id]=SCN.good}const td=today();S.rounds[td]=(S.rounds[td]||0)+1;pruneWeeks();save();
   const nx=nextScene(),more=nx&&nx.id!==sc.id&&!(S.world.done[nx.id]);
-  paint(`<div class="card celebrate stack">${T('scene.canTitle')}<p class="prompt">${scT(sc.can)}</p>${st.real?`<div class="note">${T('scene.real')}<p>${scT(st.real)}</p></div>`:''}${st.next?`<p class="muted">${scT(st.next)}</p>`:''}${SCN&&SCN.sc===sc&&SCN.hard?`<p class="num">${T(rec?'scene.newRecord':'scene.record',{n:(S.world.best||{})[sc.id]||0})}</p>`:''}</div>
+  const pu=scPurpose(sc,'last');paint(`<div class="card celebrate stack">${T('scene.canTitle')}<p class="prompt">${scT(sc.can)}</p>${pu?`<p class="note sky small">${scT(pu)}</p>`:''}${st.real?`<div class="note">${T('scene.real')}<p>${scT(st.real)}</p></div>`:''}${st.next?`<p class="muted">${scT(st.next)}</p>`:''}${SCN&&SCN.sc===sc&&SCN.hard?`<p class="num">${T(rec?'scene.newRecord':'scene.record',{n:(S.world.best||{})[sc.id]||0})}</p>`:''}</div>
    ${more?`<button class="btn btn-main" id="scNext">${TB('scene.next')}</button>`:''}<button class="btn btn-ghost" id="scHard">${TB('scene.harder')}</button>${contHtml()}<button class="btn btn-ghost" id="home">${T('cont.home')}</button>`);
   petals();bindCont();if($('#scNext'))$('#scNext').onclick=()=>startScene(nx);$('#scHard').onclick=()=>startScene(sc,true);$('#home').onclick=()=>show('vandaag')};
 H.recall=q=>{const w=q.w;let tries=0,hint=0;const fullT=`${fw(w)}`,full=esc(fullT),g=nlOnly()?gapEx(w):null;

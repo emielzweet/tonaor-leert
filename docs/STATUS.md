@@ -34,7 +34,8 @@ Stand f10d095 (cache v2-41), 14 november 2026. **Nog niet**: eerst de onafhankel
 
 - Klaar: alle tests groen; browsercontrole op 375 px van de les met H2 tot H4 en M12; migratie van schema 4 (zoals live, v2-34) naar 6 in de browser: alle onderdelen, aangeboden woorden en pogingen gelijk, reservekopie gemaakt, geen fouten.
 - Het proefhoofdstuk is niet zichtbaar: een hoofdstuk verschijnt pas als het de hoofdstukcontrole haalt; de versie in `content/` haalt die niet.
-- H3 bij de eerste start: na de migratie is elke reeks leeg, dus niets rust en er verdwijnt niets uit Onderweg. Aandachtspunt (vraag aan de ontwerpsessie): rust kan nu ontstaan na drie goede pogingen binnen één of twee dagen; misschien "verspreid over minstens twee dagen" eisen (M9).
+- H3 bij de eerste start: na de migratie is elke reeks leeg, dus niets rust en er verdwijnt niets uit Onderweg. Rust pas na drie goede pogingen in drie vormen op minstens drie verschillende dagen, met minstens zeven dagen tussen de eerste en de laatste (`MOTOR.restDays`, `restSpan`; antwoord ontwerpsessie). De ervaringstest blijft groen; H1 staat zoals verwacht op 100 procent losse herhaling (er is nog geen dagindeling met scènes).
+- G5: een hoofdstuk met `goals` heeft `purpose` (poort); de app toont die bij het begin van de eerste scène en op het slot van de laatste.
 - H4: de melding komt pas als ook alle 100 basiswoorden zijn aangeboden.
 - Open: de migratie op een kopie van een echte opslag (Ik → Voortgang bewaren), als de eigenaar die wil aanleveren; het bestand bevat de koppelcodes en blijft lokaal, buiten de repo.
 

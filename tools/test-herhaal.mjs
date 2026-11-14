@@ -10,7 +10,7 @@ const DAY = 864e5;
 function model() {
   const ctx = { S: { items: {}, introduced: [], log: [] }, T: 0, DAY, Math, Array, Object };
   vm.createContext(ctx);
-  vm.runInContext(MOTORCODE + '\nconst now=()=>T;const today=()=>Math.floor(T/DAY)*DAY;const save=()=>{};' + line('const NOGROW=') + '\n' + line('const HCODE=') + '\n' + line('const HFORM=') + '\n' + fnBlock('histParse') + '\n' + fnBlock('histSet') + '\n' + 'let HISTN=0;' + '\n' + fnBlock('histTrim') + '\n' + fnBlock('histAdd') + '\n' + line('let KIND=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('item') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\n' + fnBlock('stage') + '\n' + fnBlock('thirsty') + '\nthis.api={histParse,histTrim,review,introduce,practiced,stage,thirsty,item,canBloom,setKind:(id,k)=>{KIND[id]=k}};', ctx);
+  vm.runInContext(MOTORCODE + '\nconst now=()=>T;const today=()=>Math.floor(T/DAY)*DAY;const save=()=>{};' + line('const NOGROW=') + '\n' + line('const HCODE=') + '\n' + line('const HFORM=') + '\n' + fnBlock('histParse') + '\n' + fnBlock('histSet') + '\n' + 'let HISTN=0;' + '\n' + fnBlock('histTrim') + '\n' + fnBlock('histAdd') + '\n' + fnBlock('rests') + '\n' + line('let KIND=') + '\n' + fnBlock('canBloom') + '\n' + fnBlock('item') + '\n' + fnBlock('review') + '\n' + fnBlock('introduce') + '\n' + fnBlock('practiced') + '\n' + fnBlock('stage') + '\n' + fnBlock('thirsty') + '\nthis.api={histParse,histTrim,rests:id=>rests(id),review,introduce,practiced,stage,thirsty,item,canBloom,setKind:(id,k)=>{KIND[id]=k}};', ctx);
   return ctx;
 }
 const at = (c, d) => { c.T = d * DAY; };
@@ -158,6 +158,13 @@ ok('tuin: bed voor regels en klanken, tikken opent de uitleg, lampje bij hardnek
   ok('F1: de opslag na drie jaar met de reservekopie blijft onder 2 miljoen tekens (' + (2 * all) + ')', 2 * all < 2e6);
   ok('F1: inkorten raakt de stand van een onderdeel nooit', Object.values(q.S.items).every(it => typeof it.s === 'number' && typeof it.due === 'number' && it.na > 0));
 }
+// H3/M9: rust pas na drie goede pogingen in drie vormen, op drie dagen, met zeven dagen ertussen
+{ const o = model(); o.S.items.x = o.api.item(); const f = ['typen', 'herkennen', 'luisteren'];
+  [0, 1, 2].forEach((d, i) => { at(o, d); o.api.review('x', true, f[i]); });
+  const kort = o.api.rests('x');
+  const p = model(); p.S.items.x = p.api.item(); [0, 3, 8].forEach((d, i) => { at(p, d); p.api.review('x', true, f[i]); });
+  const lang = p.api.rests('x'); at(p, 9); p.api.review('x', false, 'gap');
+  ok('H3: drie goede pogingen binnen drie dagen geven nog geen rust; over acht dagen wel; een fout daarna haalt de rust weg', !kort && lang && !p.api.rests('x'), kort + ' ' + lang); }
 // didactisch plan hoofdstuk 5: elke waarde van de motor op één plek, met bron of aanname
 {
   const L = MOTORCODE.split('\n'), WHY = /aanname|§|kwaliteitskader|masterplan/i;

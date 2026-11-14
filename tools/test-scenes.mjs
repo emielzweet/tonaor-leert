@@ -125,7 +125,7 @@ const CH = (() => {
     { type: 'quiz', role: 'ophalen', q: [{ form: 'number', items: [w1], ask: T3('Reken.'), answer: '6', why: T3('Zo.') }, ch(w1, 'getal', T3('k')), { form: 'money', items: [w1], why: T3('Zo.'), gen: { coins: [500, 200, 100, 50], n: [2, 4] } }, { form: 'number', items: [w1], ask: T3('Reken.'), answer: '42', why: T3('Zo.') }, { ...typeQ, items: [w1] }] },
     { type: 'do', form: 'money', items: [w1], gen: { coins: [500, 200, 100, 50], n: [2, 4] } },
     { type: 'quiz', role: 'controle', q: [{ form: 'number', items: [w1], ask: { nl: 'R.' }, answer: '1', why: T3('Zo.') }, ch(w1, 'getal', { nl: 'K.' })] }, { type: 'end' }] };
-  return { format: 1, id: 'h', type: 'hoofdstuk', version: 1, learn: 'nl', level: 'A1', order: 99, goals: ['nt2-I-lezen'], title: T3('H'), items: [], scenes: [1, 2, 3, 4, 5].map(nlScene).concat([rk]) };
+  return { format: 1, id: 'h', type: 'hoofdstuk', version: 1, learn: 'nl', level: 'A1', order: 99, goals: ['nt2-I-lezen'], purpose: T3('Dit heb je nodig voor lezen.'), title: T3('H'), items: [], scenes: [1, 2, 3, 4, 5].map(nlScene).concat([rk]) };
 })();
 const cc = mut => { const p = JSON.parse(JSON.stringify(CH)); if (mut) mut(p); return PC.checkChapter(p).errors.join(' | '); };
 ok('hoofdstuk: een volledig hoofdstuk haalt de hoofdstukcontrole en de pakketcontrole', cc() === '' && PC.checkPack(CH, packs).errors.length === 0, cc() + ' || ' + PC.checkPack(CH, packs).errors.slice(0, 3).join(' | '));
@@ -150,4 +150,7 @@ ok('hoofdstuk: bij elk grammaticapunt een extra', /hoort een stap extra/.test(cc
 ok('speler: bij een getal tellen euroteken, spaties en cent niet als fout', html.includes('€ 6,60 en 25 cent zijn ook goed'));
 ok('zwaardere vorm: alleen een kort antwoord wordt typen', html.includes('lange antwoorden blijven kiezen'));
 ok('een hoofdstuk verschijnt alleen als het de hoofdstukcontrole haalt', html.includes("SCENES=PACKS.filter(p=>p.type!=='hoofdstuk'||!PC||!PC.checkChapter||!PC.checkChapter(p).errors.length)"));
+ok('hoofdstuk G5: een hoofdstuk met goals heeft purpose', /purpose/.test(cc(p => { delete p.purpose; })));
+ok('purpose staat bij het begin en op het slot van de laatste scène (scPurpose)', html.includes("scPurpose(sc,'first')") && html.includes("scPurpose(sc,'last')"));
+ok('H3 rust pas over tijd: drie dagen en zeven dagen ertussen (MOTOR.restDays, restSpan)', html.includes('h[h.length-1][0]-h[0][0]>=MOTOR.restSpan') && html.includes('.size>=MOTOR.restDays'));
 console.log(fails ? fails + ' FOUT' : 'alles OK');

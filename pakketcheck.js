@@ -439,6 +439,7 @@
     var scenes = (p && p.scenes) || [];
     var goals = function (g, w) { if (!Array.isArray(g) || !g.length || g.some(function (x) { return typeof x !== 'string' || !x; })) err(w + ': goals (de eindtermen die het dient) ontbreekt'); };
     goals(p && p.goals, id);
+    if (p && Array.isArray(p.goals) && p.goals.length && !p.purpose) err(id + ': purpose (waar het hoofdstuk voor dient, één zin in gewone taal) ontbreekt (masterplan G5)');
     var has = { read510: false, listen: false, speak: false, game: false, make: false, reken: false };
     scenes.forEach(function (sc) {
       var w = id + '.' + sc.id, f = sceneForms(sc), distinct = {};

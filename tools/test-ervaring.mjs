@@ -21,7 +21,8 @@ const vormRij = {}, reeks = {}, rust = new Set(), grind = { zelfdeVorm: [], stof
 const eenVorm = id => { const g = c.api.get(); if (g.NL.some(w => w.id === id) || g.EN.some(w => w.id === id)) return false; const ex = g.PACKS.flatMap(p => p.exercises || []).filter(e => (e.items || [])[0] === id); return new Set(ex.map(e => e.form)).size <= 1; };   // alleen één vorm in de lesstof: een tekort aan lesstof
 const zag = (id, vorm, goed, d, r) => { const rij = vormRij[id] = vormRij[id] || []; if (rij.length && rij[rij.length - 1] === vorm && grind.zelfdeVorm.length < 400) (eenVorm(id) ? grind.stof : grind.zelfdeVorm).push('dag ' + d + ' ronde ' + r + ': ' + id + ' weer ' + vorm); rij.push(vorm);
   if (rust.has(id)) grind.rustTerug.push('dag ' + d + ' ronde ' + r + ': ' + id);
-  const k = reeks[id] = goed ? (reeks[id] || { n: 0, v: new Set() }) : { n: 0, v: new Set() }; if (goed) { k.n++; k.v.add(vorm); if (k.n >= 3 && k.v.size >= 3) rust.add(id); } };
+  const k = reeks[id] = reeks[id] || []; k.push([d, vorm, goed]); const L = k.slice(-3);   // rust: drie keer op rij goed, drie vormen, drie dagen, zeven dagen ertussen (H3, MOTOR.restDays en restSpan)
+  if (L.length === 3 && L.every(x => x[2]) && new Set(L.map(x => x[1])).size >= 3 && new Set(L.map(x => x[0])).size >= 3 && L[2][0] - L[0][0] >= 7) rust.add(id); };
 let opDag = null;
 for (let d = 0; d < 7; d++) for (let r = 0; r < RONDES; r++) {
   c.NOW = BASE + d * DAY + r * 2 * 3600e3; const td = Math.floor(c.NOW / DAY) * DAY; S.days[td] = 1;
