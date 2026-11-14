@@ -103,7 +103,7 @@ ok('rij: gap en build gaan naar het bestaande oefenscherm, met de soort fout en 
 ok('rij: spreken en spel worden eigen schermen', dq2.some(x => x.type === 'sc_speak') && dq2.some(x => x.type === 'sc_game'));
 const hq = app.sq(deep, true);
 ok('zwaardere vorm: elke vraag van de scène weet dat hij zwaarder is', hq.filter(x => x.type === 'sc_q').every(x => x.hard) && hq[0].hard);
-ok('fout in een bestaand oefenscherm telt in het foutprofiel, hooguit één keer per vraag (codereview A2)', html.includes('Q[qi]._sceneErr&&!Q[qi]._faulted){Q[qi]._faulted=1;scFault('));
+ok('fout in een bestaand oefenscherm telt in het foutprofiel, hooguit één keer per vraag, bij Volgende (codereview A2, standreview 1)', html.includes('Q[qi]._sceneErr&&!Q[qi]._faulted){Q[qi]._faulted=1;const fq=Q[qi];later(()=>scFault(fq,fq._sceneErr))}'));
 ok('spel telt niet als vorm voor bloei (C5)', /const NOGROW=\[[^\]]*'spel'/.test(html));
 ok('hint in twee stappen: goed na een hint telt als retry', html.includes('const right=msg=>{done=true;if(hint)first=false;'));
 ok('opslag: eigen record per scène (world.best) in migratie 5', html.includes('s.world.best={}') && html.includes('world:{ok:{},best:{},done:{}'));
@@ -186,14 +186,17 @@ ok('poort (uitleg bij de eisen 16): een typvraag met een zin als antwoord is een
     var EL={};function $(s){return EL[s]||null}this.EL=EL;` + html.slice(i0, i1) + ';this.later=later;this.flushPend=flushPend;this.bindClaim=bindClaim;this.getP=()=>PEND;', cx);
   let counted = 0; cx.later(() => counted++); cx.flushPend();
   ok('een uitgestelde fout telt bij Volgende', counted === 1 && cx.getP().length === 0);
-  const btn = {}, fb = { innerHTML: '' }, inp = { value: 'pijn in', disabled: false };
+  const btn = { remove() {} }, fb = { innerHTML: '' }, inp = { value: 'pijn in', disabled: false };
   Object.assign(cx.EL, { '#claim': btn, '#fb': fb, '#ans': inp, '#nx': { onclick: null, remove() {} } });
   counted = 0; cx.later(() => counted++); cx.bindClaim({ id: 'dok.pijnaan', q: 'Ik heb ___ mijn arm.', want: 'pijn aan' }); btn.onclick(); cx.flushPend();
   const c = cx.S.claims || [];
   ok('de knop neemt de fout weg en zet vraag en antwoord op de lijst', counted === 0 && c.length === 1 && c[0].a === 'pijn in' && c[0].want === 'pijn aan' && inp.disabled && fb.innerHTML.includes('claim.thanks'));
-  for (let k = 0; k < 60; k++) { cx.EL['#claim'] = {}; cx.bindClaim({ id: 'x' + k, q: '<b>q</b>', want: 'w' }); cx.EL['#claim'].onclick(); }
+  for (let k = 0; k < 60; k++) { cx.EL['#claim'] = { remove() {} }; cx.bindClaim({ id: 'x' + k, q: '<b>q</b>', want: 'w' }); cx.EL['#claim'].onclick(); }
   ok('de lijst houdt de laatste vijftig, zonder html', cx.S.claims.length === 50 && cx.S.claims[49].id === 'x59' && cx.S.claims[49].q === 'q');
   ok('alle getypte schermen hebben de knop (ophalen, gatzin, luisteren, Engels, scène)', (html.match(/bindClaim\(/g) || []).length >= 9 && html.includes('function next(){flushPend();') && html.includes("$('#quit').onclick=()=>{flushPend();"));
 }
 ok('zin bouwen: de plek van het werkwoord volgt uit de goede zin (vraag: werkwoord vooraan), en de scènevraag staat erboven', html.includes("const vp=s.parts.indexOf(s.verb),okK=vp===1?'build.ok':vp===0?'build.okFirst':'build.okPlain';") && html.includes("vi===vp?'build.rest':vp===1?'build.verbPos':vp===0?'build.verbFirst':'build.again'") && html.includes('...(qq.ask?{_ask:qq.ask}:{})'));
+{ const cx = {}; vm.createContext(cx); vm.runInContext(lineOf('const scNorm=') + ';' + fnBlock('scNum') + ';' + fnBlock('scLoose') + ';this.f=scLoose;', cx);
+  ok('standreview 3: in de zwaardere vorm telt het keel niet voor de keel, keel en de keel wel', !cx.f('de keel', 'het keel') && cx.f('de keel', 'keel') && cx.f('de keel', 'de keel')); }
+ok('standreview: knop weg na de tik, controle niet gehaald na de knop, lidwoord kiezen is geen typfout, alle fouten bij luisteren krijgen de knop, also alleen bij het doelwoord, tekens niet dubbel', html.includes("b.onclick=()=>{b.remove();PEND=[];if(info.after)") && html.includes("after:()=>{if(q.role==='controle'&&SCN)SCN.ctrl=false}") && html.includes('&&!q._probe&&!picked;') && html.includes("bad=res===false,") && html.includes("na(String(as[0]))===na(w0.w)") && html.includes(".replace(/&amp;/g,'&')"));
 console.log(fails ? fails + ' FOUT' : 'alles OK');
