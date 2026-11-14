@@ -359,6 +359,8 @@ en:{
  "me.quiet.on":"On",
  "me.quiet.tip":"No reading aloud and no listening exercises, for example on the go. Only for now: after closing the app it is off again.",
  "me.quiet":"Quiet mode",
+ "me.trial":"Trial parts",
+ "me.trial.tip":"New parts of the app that are still being tried out, such as the story with scenes. Off: everything stays as you are used to.",
  "len.lang":"Long",
  "len.normaal":"Normal",
  "len.kort":"Short",
@@ -776,6 +778,8 @@ nl:{
  "me.quiet.on":"Aan",
  "me.quiet.tip":"Zonder voorlezen en zonder luisteroefeningen, bijvoorbeeld onderweg. Alleen voor nu: na het sluiten van de app staat het weer uit.",
  "me.quiet":"<p><b>Stille stand</b></p>",
+ "me.trial":"<p><b>Proefonderdelen</b></p>",
+ "me.trial.tip":"Nieuwe onderdelen die nog uitgeprobeerd worden, zoals het verhaal met scènes. Uit: alles blijft zoals je gewend bent.",
  "len.lang":"Lang",
  "len.normaal":"Normaal",
  "len.kort":"Kort",
@@ -1189,6 +1193,8 @@ th:{
  "me.quiet.on":"เปิด",
  "me.quiet.tip":"ไม่มีเสียงอ่านและไม่มีแบบฝึกฟัง เช่น ตอนอยู่ข้างนอก ใช้เฉพาะตอนนี้ ปิดแอปแล้วจะกลับเป็นปกติ",
  "me.quiet":"โหมดเงียบ",
+ "me.trial":"ส่วนทดลอง",
+ "me.trial.tip":"ส่วนใหม่ของแอปที่ยังอยู่ระหว่างทดลอง เช่น เรื่องเล่าที่มีฉาก ปิด: ทุกอย่างเหมือนเดิมที่คุณคุ้นเคย",
  "len.lang":"ยาว",
  "len.normaal":"ปกติ",
  "len.kort":"สั้น",
@@ -2007,7 +2013,7 @@ function fresh(){
   const items={};[...NL,...EN,...REK].forEach(x=>items[x.id]=item());
   return {v:2,onboarded:false,thai:'altijd',size:'normaal',goal:'normaal',moment:null,items,introduced:[],
     points:{},days:{},mins:{},help:[],answers:[],conf:[],sessions:0,talks:0,story:0,speedBest:0,
-    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},roundLen:'normaal',errs:{},world:{ok:{},best:{},done:{},at:null},schema:SCHEMA};
+    placement:null,extras:{boeddhisme:true,liedje:true},log:[],profile:{name:''},learn:'nl',sup:'th',explained:{},explainVoice:true,trial:false,weekGoal:600,weekGoalSet:false,rounds:{},weekSeen:{},newPerDay:16,newLog:{},roundLen:'normaal',errs:{},world:{ok:{},best:{},done:{},at:null},schema:SCHEMA};
 }
 /* ============ opslag veilig laden (#30) ============
    S.v blijft 2. S.schema telt de vorm van de opslag (zonder veld = 1). Elke stap n -> n+1 staat in MIGRATE en mag vaker draaien.
@@ -2021,7 +2027,7 @@ const MIGRATE={
  2:s=>{if(s.weekGoal===420&&!s.weekGoalSet)s.weekGoal=600;return s},   // standaard weekdoel 7 → 10 uur; een eigen keuze op Ik blijft
  3:s=>{for(const it of Object.values(s.items||{})){if(it&&typeof it==='object'&&!Array.isArray(it.exs))it.exs=[];if(it&&typeof it==='object'&&it.t==null&&typeof it.s==='number'&&it.s>0&&typeof it.due==='number')it.t=it.due-it.s*864e5}if(Object.keys(s.days||{}).length&&s.f3pending==null)s.f3pending=1;return s},
  4:s=>{if(!s.world||typeof s.world!=='object'||Array.isArray(s.world))s.world={done:{},at:null};if(!s.world.done||typeof s.world.done!=='object')s.world.done={};return s},
- 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};if(s.world&&typeof s.world==='object'&&(!s.world.best||typeof s.world.best!=='object'))s.world.best={};for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&typeof it.h!=='string')it.h='';return s}   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
+ 5:s=>{if(!s.errs||typeof s.errs!=='object'||Array.isArray(s.errs))s.errs={};if(s.world&&typeof s.world==='object'&&(!s.world.ok||typeof s.world.ok!=='object'))s.world.ok={};if(s.world&&typeof s.world==='object'&&(!s.world.best||typeof s.world.best!=='object'))s.world.best={};for(const it of Object.values(s.items||{}))if(it&&typeof it==='object'&&typeof it.h!=='string')it.h='';if(typeof s.trial!=='boolean')s.trial=false;return s}   // diepte en diagnose: foutprofiel per soort fout, beheerste scènes (alleen toegevoegd)   // concept stap 2: scènes (alleen toegevoegd)   // fase 3: goede oefeningen per item (docs/herhaalmodel.md)
 };
 function schemaOf(o){return o.schema==null?1:o.schema}
 function checkState(o){if(!o||typeof o!=='object'||Array.isArray(o)||o.v!==2||!o.items||typeof o.items!=='object'||Array.isArray(o.items))return 'broken';
@@ -2265,7 +2271,7 @@ function vToday(){
   ${due?`<button class="card row between" id="water" style="background:var(--sky);border-color:var(--sky-fill)"><span>${T('today.thirsty',{n:due})}<span class="small muted">${T('today.water.tip')}</span></span><span class="pill pill-sky" style="background:var(--surface)">${T('today.water')}</span></button>`:''}
   <h3 style="margin-top:4px">${T('today.more')}</h3>
   <div class="tiles2">
-    ${SCENES.length?`<button class="tile mint" id="scene"><span class="ic">${icon.book}</span>${T('scene.tile')}<span class="small muted">${esc(scP((nextScene()||{}).title))} · ${Object.keys((S.world||{}).done||{}).length}/${SCENES.length}</span></button>`:''}
+    ${SCENES.length&&S.trial?`<button class="tile mint" id="scene"><span class="ic">${icon.book}</span>${T('scene.tile')}<span class="small muted">${esc(scP((nextScene()||{}).title))} · ${Object.keys((S.world||{}).done||{}).length}/${SCENES.length}</span></button>`:''}
     ${EXPL_LIST.length?`<button class="tile apricot" id="uitleg"><span class="ic">${icon.bulb}</span>${T('explain.tile')}<span class="small muted">${T('explain.tile.sub',{done:EXPL_LIST.filter(o=>S.explained[o.x.id]).length,n:EXPL_LIST.length})}</span></button>`:''}
     <button class="tile lilac" id="story"><span class="ic">${icon.book}</span>${T('extra.story')}<span class="small muted">${T('extra.story.sub')}</span></button>
     <button class="tile apricot" id="speed"><span class="ic">${icon.bolt}</span>${T('extra.speed')}<span class="small muted num">${T('speed.record',{n:S.speedBest})}</span></button>
@@ -2860,6 +2866,7 @@ function vMe(){
    ${T('me.newPerDay')}<div class="seg" role="group" aria-label="${esc(String(t('me.newPerDay')).replace(/<[^>]*>/g,''))}">${[8,16,24].map(n=>`<button data-npd="${n}" aria-pressed="${dayBudget()===n}">${n}</button>`).join('')}</div><p class="small muted">${T('me.newPerDay.tip')}</p>
    ${T('me.roundLen')}<div class="seg" role="group" aria-label="${esc(String(t('me.roundLen')).replace(/<[^>]*>/g,''))}">${['kort','normaal','lang'].map(k=>`<button data-len="${k}" aria-pressed="${(S.roundLen||'normaal')===k}">${TB('len.'+k)}</button>`).join('')}</div><p class="small muted">${T('me.roundLen.tip')}</p>
    ${T('me.quiet')}<div class="seg" role="group" aria-label="${esc(String(t('me.quiet')).replace(/<[^>]*>/g,''))}"><button data-quiet="1" aria-pressed="${QUIET}">${TB('me.quiet.on')}</button><button data-quiet="0" aria-pressed="${!QUIET}">${TB('me.quiet.off')}</button></div><p class="small muted">${T('me.quiet.tip')}</p>
+   ${T('me.trial')}<div class="seg" role="group" aria-label="${esc(String(t('me.trial')).replace(/<[^>]*>/g,''))}"><button data-trial="1" aria-pressed="${!!S.trial}">${TB('me.quiet.on')}</button><button data-trial="0" aria-pressed="${!S.trial}">${TB('me.quiet.off')}</button></div><p class="small muted">${T('me.trial.tip')}</p>
    <button class="btn btn-ghost" id="steerReset">${TB('me.steer.reset')}</button></section>
   <section class="card stack">${T('me.weekGoal')}<p class="small muted">${T('me.weekGoal.tip')}</p><div class="seg" role="group" aria-label="${esc(t('week.title'))}">${WEEKGOALS.map(m=>`<button data-wg="${m}" aria-pressed="${weekGoal()===m}">${fmtH(m)} ${esc(t('week.hours'))}</button>`).join('')}</div></section>
   <section class="card stack">${T('me.letters')}<div class="seg" role="group" aria-label="Lettergrootte">${['normaal','groot'].map(k=>`<button data-sz="${k}" aria-pressed="${S.size===k}">${TB('size.'+k)}</button>`).join('')}</div></section>
@@ -2886,6 +2893,7 @@ function vMe(){
   app.querySelectorAll('[data-npd]').forEach(b=>b.onclick=()=>{S.newPerDay=+b.dataset.npd;save();vMe()});
   app.querySelectorAll('[data-len]').forEach(b=>b.onclick=()=>{S.roundLen=b.dataset.len;save();vMe()});
   app.querySelectorAll('[data-quiet]').forEach(b=>b.onclick=()=>{QUIET=b.dataset.quiet==='1';if(QUIET){try{speechSynthesis.cancel()}catch(e){}}vMe()});
+  app.querySelectorAll('[data-trial]').forEach(b=>b.onclick=()=>{S.trial=b.dataset.trial==='1';save();vMe()});   /* Proefonderdelen (aanbeveling 10.25) */
   if($('#steerReset'))$('#steerReset').onclick=()=>{S.newPerDay=16;S.roundLen='normaal';QUIET=false;save();vMe()};
   if($('#vsel'))$('#vsel').onchange=e=>{S.voice=Object.assign({},S.voice,{nl:e.target.value});save();say('Zo klinkt deze stem. Goedemorgen, hoe gaat het met je?')};
   $('#vtest').onclick=()=>say('Zo klinkt deze stem. Goedemorgen, hoe gaat het met je?');

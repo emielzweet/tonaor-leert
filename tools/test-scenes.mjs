@@ -158,4 +158,5 @@ ok('purpose staat bij het begin en op het slot van de laatste scène (scPurpose)
 ok('H3 rust pas over tijd: drie dagen en zeven dagen ertussen (MOTOR.restDays, restSpan)', html.includes('h[h.length-1][0]-h[0][0]>=MOTOR.restSpan') && html.includes('.size>=MOTOR.restDays'));
 { const cx = { NL: [{ id: 'a', also: ['b'] }, { id: 'b' }, { id: 'c' }] }; vm.createContext(cx); vm.runInContext(fnBlock('alsoOf') + '\nthis.f=alsoOf;', cx);
   ok('also werkt in beide richtingen (review 3: pijn aan / pijn in)', JSON.stringify(cx.f(cx.NL[0])) === '["b"]' && JSON.stringify(cx.f(cx.NL[1])) === '["a"]' && cx.f(cx.NL[2]).length === 0); }
+ok('Proefonderdelen: de scènetegel alleen met de schakelaar aan; standaard uit (aanbeveling 10.25)', html.includes('${SCENES.length&&S.trial?') && html.includes('explainVoice:true,trial:false,') && html.includes("if(typeof s.trial!=='boolean')s.trial=false"));
 console.log(fails ? fails + ' FOUT' : 'alles OK');
