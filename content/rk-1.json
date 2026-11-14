@@ -84,7 +84,8 @@
     ],
     "a": "€ 9,50",
     "alt": "Een briefje van 5 euro, twee munten van 2 euro en een munt van 50 cent"
-   }
+   },
+   "approach": "money"
   },
   {
    "id": "rk.klok.dienst",
@@ -159,7 +160,8 @@
     "price": 60,
     "pct": 10
    },
-   "fade": 1
+   "fade": 1,
+   "approach": "percent-tenth"
   },
   {
    "id": "rk.korting.deel",
@@ -173,7 +175,8 @@
     "price": 40,
     "pct": 25
    },
-   "fade": 2
+   "fade": 2,
+   "approach": "percent-fraction"
   },
   {
    "id": "rk.korting.zelf",
@@ -187,7 +190,8 @@
     "price": 80,
     "pct": 20
    },
-   "fade": 3
+   "fade": 3,
+   "approach": "percent-tenth"
   },
   {
    "id": "rk.geld.gen",
@@ -210,7 +214,8 @@
      3,
      6
     ]
-   }
+   },
+   "approach": "money"
   },
   {
    "id": "rk.klok.gen",
@@ -256,7 +261,8 @@
      20
     ]
    },
-   "fade": 2
+   "fade": 2,
+   "approach": "percent-fraction"
   },
   {
    "id": "rk.korting.zelf.gen",
@@ -280,7 +286,8 @@
      20
     ]
    },
-   "fade": 3
+   "fade": 3,
+   "approach": "percent-tenth"
   },
   {
    "id": "rk.komma.gen",
@@ -303,7 +310,8 @@
      3,
      5
     ]
-   }
+   },
+   "approach": "decimal"
   }
  ]
 }

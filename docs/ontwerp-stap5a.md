@@ -40,11 +40,11 @@ Bron: `onderbouwing-rekenen.md` 2.5.
 - **Nieuw mag geblokt:** een som die nieuw is (`_new`), mag wel naast een som met dezelfde aanpak staan. Zo leert de leerder de aanpak eerst geblokt.
 - **Mengen van soorten:** de samensteller kiest per les al verschillende vaardigheden die aan de beurt zijn, één oefening per vaardigheid. Zodra een soort is aangeleerd, komt hij dus gemengd terug.
 
-## Vragen aan de ontwerpsessie (voor G2)
+## Besluiten van de ontwerpsessie (Fable, 15 november 2026)
 
-1. **Een nieuw woord aantikken.** Wat moet een goede keuze voor een woord dat nog nieuw is opleveren? Nu levert het niets op. Mogelijk: `introduce` (het woord gaat de herhaling in en slaat de leerkaart over).
-2. **De aanpak van de sommen.** Zonder `approach` vallen r-geld en r-komma samen onder `money`, en r-10 en r-25 onder `discount`. Is dat de bedoelde indeling, of moet rk-1 eigen aanpakken krijgen?
-3. **Steuntaal op "aan".** Dan staat de vertaling van de hele zin al onder de tekst, en is eerst kiezen weinig waard. Moet aantikken dan uit?
+1. **Een nieuw woord aantikken:** zo laten; het levert niets op. De leerkaart en de uitleg bij de introductie zijn meer waard dan het overslaan ervan. Komt terug bij G2.
+2. **Aanpakken:** rk-1 krijgt een expliciete `approach`: r-geld `money`, r-komma `decimal`, r-10 `percent-tenth`, r-25 `percent-fraction`. Wie verschillende aanpakken naast elkaar ziet, leert ze beter uit elkaar houden (`onderbouwing-rekenen.md` 2.5). Hetzelfde label zou ze ten onrechte nooit naast elkaar zetten. Gebouwd: per oefening naar het eerste item. De klok (r-klok) heeft geen `approach` en valt dus terug op de vorm.
+3. **Steuntaal op "altijd":** aantikken blijft, maar toont de betekenis meteen, zonder keuze, en telt niet als ontmoeting. Gebouwd.
 
 ## Wat kan breken
 

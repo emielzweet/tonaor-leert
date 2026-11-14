@@ -16,16 +16,20 @@ Bijgewerkt: 14 november 2026.
 - Uitleg (speler, drie ingangen, 32 uitleggen) en het weekdoel (standaard 10 uur, merktekens op 3,5, 7 en 10 uur).
 - Fase 3, het herhaalmodel (docs/herhaalmodel.md), inclusief de verwerkte review: live sinds 13 november 2026.
 - Na gebruik: herhaling met tijd ertussen, dagbudget voor nieuwe woorden (eerst als vraag), Bijsturen op Ik, na de ronde te makkelijk/goed/te moeilijk en leuk/saai, vertaling melden, ervaringstest: live sinds 14 november 2026, cache v2-34 (t/m bad647d).
-- Werkorder stap 5, eerste deel (docs/ontwerp-stap5a.md), cache v2-66:
+- Werkorder stap 5, eerste deel (docs/ontwerp-stap5a.md), cache v2-66 en v2-67:
   - N-M1: een woord in een lees- of gesprekstekst aantikken geeft eerst drie betekenissen in de steuntaal, daarna het woord met de omschrijving. Een goede keuze is een ontmoeting, alleen voor een woord in de herhaling. Niet zonder steuntaal.
   - R-M3: in de herhaling nooit twee sommen met dezelfde aanpak achter elkaar (veld `approach`, anders de vorm). Nieuw mag geblokt.
   - Tests: tools/test-tik.mjs en test-samensteller.
   - Codereview (Opus): 2 blokkerend (een nieuw woord verweesd, aantikken waar de steuntaal bewust uit staat) en 6 klein, verwerkt.
-  - Drie vragen voor de ontwerpsessie staan in het ontwerp.
+  - Besluiten van de ontwerpsessie (cache v2-67):
+    - een nieuw woord aantikken levert niets op;
+    - rk-1 krijgt een eigen aanpak per som (money, decimal, percent-tenth, percent-fraction);
+    - met de steuntaal op altijd toont aantikken meteen de betekenis.
+  - IJkmoment G2 is uitgesteld tot de eigenaar het vrijgeeft (tokens sparen).
 - Lesstof in redactie/uit (niet in content, wacht op een volgende sessie; gestopt om tokens te sparen, besluit eigenaar 15 november 2026):
   - nl-buren: review 1 verbeteren (3 blokkerend), hersteld, nacontrole nog te doen.
-  - Lessen 21 tot 26 (tweede reeks): review 1 (4 goed, 2 verbeteren), hersteld, nacontrole loopt of nog te doen.
-  - Lessen 27 tot 32: geschreven, review loopt.
+  - Lessen 21 tot 26 (tweede reeks): review 1 (4 goed, 2 verbeteren), hersteld, ronde 2 alle zes goed (<id>.review2.json). Er staan nog kleine punten in de review.
+  - Lessen 27 tot 32: review 1 vijf goed, ao-vrijmetselaar verbeteren (blokkerend: de bron zegt niet dat namen van leden niet bekend worden; een onafhankelijke bron is gewenst). De kleine punten staan in de reviews.
   - Lessen 33 tot 40: nog niet geschreven.
   - Uitbrengen kan pas als alle draden bestaan.
 - Werkorder stap 4, de route met tijd (docs/route-en-prognose.md, bouwontwerp docs/ontwerp-stap4.md), cache v2-65:

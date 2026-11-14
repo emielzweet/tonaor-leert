@@ -13,6 +13,10 @@ ok(/say\(scP\(tu\.them\)\),300\);tikify\(app\.querySelector\('\.card'\),q\)/.tes
 ok(/function tikNoSup\(q\)\{return !!\(q\.hard\|\|\(q\.sc&&q\.sc\.nosup\)\|\|/.test(html) && /nlOnly\(\)\|\|tikNoSup\(q\)/.test(html), 'niet waar de steuntaal bewust uit staat (moeilijk, nosup, instap, controle)');
 ok(!/H\.sc_look=[^\n]*tikify/.test(html), 'in een tekening blijft aantikken tonen en voorlezen (geen keuze)');
 
+ok(html.includes("if(S.thai==='altijd'){panel.innerHTML=") && /S\.thai==='altijd'[^\n]*say\([^\n]*return\}/.test(html), 'steuntaal altijd aan: meteen de betekenis, geen keuze en geen ontmoeting');
+{ const rk = JSON.parse(readFileSync(new URL('../content/rk-1.json', import.meta.url), 'utf8')), M = { 'r-geld': 'money', 'r-komma': 'decimal', 'r-10': 'percent-tenth', 'r-25': 'percent-fraction' };
+  ok(rk.exercises.every(e => !M[e.items[0]] || e.approach === M[e.items[0]]), 'rk-1: elke som heeft de aanpak van de ontwerpsessie (R-M3)'); }
+
 /* 2. regels: geen steuntaal = geen keuze; een juiste keuze is een ontmoeting (passief, vorm tik); tik telt niet voor bloei; in een les en buiten ok niets */
 const tk = cut('function tikify(', 'H.sc_look=');
 ok(/if\(!root\|\|!q\|\|nlOnly\(\)\|\|tikNoSup\(q\)\)return/.test(tk), 'zonder steuntaal (examenvorm) niets aan te tikken');
