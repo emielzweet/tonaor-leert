@@ -16,6 +16,7 @@ Bijgewerkt: 14 november 2026.
 - Uitleg (speler, drie ingangen, 32 uitleggen) en het weekdoel (standaard 10 uur, merktekens op 3,5, 7 en 10 uur).
 - Fase 3, het herhaalmodel (docs/herhaalmodel.md), inclusief de verwerkte review: live sinds 13 november 2026.
 - Na gebruik: herhaling met tijd ertussen, dagbudget voor nieuwe woorden (eerst als vraag), Bijsturen op Ik, na de ronde te makkelijk/goed/te moeilijk en leuk/saai, vertaling melden, ervaringstest: live sinds 14 november 2026, cache v2-34 (t/m bad647d).
+- Proefhoofdstuk bij de dokter achter Proefonderdelen, knop Mijn antwoord is ook goed, standreview verwerkt: live sinds 15 november 2026, cache v2-53 (b1e209e), gepusht met akkoord van de eigenaar (in de testfase zo vaak als nodig).
 - Herstel geluid met de stilteschakelaar aan: live sinds 15 november 2026, cache v2-51 (c6f67db) werkte niet; tweede poging (stil geluid loopt mee) live als cache v2-52 (9791c0e), te testen op de iPhone.
 - Release A+B (stap 2 en 2b: motor, compacte geschiedenis, rust, aanvullen, scènespeler achter Proefonderdelen, Wat is nieuw, reservekopie vóór nieuwe vorm, opslag blijvend, de/het met vorm, 100 basiswoorden na review door een groter model): live sinds 15 november 2026, cache v2-50 (a489e40), gepusht door de ontwerpsessie na eigen controle (overgang vorm 4 naar 6 met gelijke voortgang). Het proefhoofdstuk is in deze stand onzichtbaar.
 
