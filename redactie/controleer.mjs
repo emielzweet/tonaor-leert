@@ -43,7 +43,8 @@ const question = (q, w, sid, nosup) => {
   if (q.form === 'choose' || q.form === 'hear') {
     const o = q.opts || [];
     if (o.length < 2 || o.length > 4) E(w, 'twee tot vier keuzes');
-    if (o.filter(x => x.r === 'ok').length !== 1) E(w, 'precies één keuze moet ok zijn');
+    if (q.standpunt === true) { if (p.type !== 'les') E(w, 'standpunt kan alleen in een losse les'); else if (o.some(x => x.r !== 'ok')) E(w, 'bij een standpunt is elke keuze ok'); }
+    else if (o.filter(x => x.r === 'ok').length !== 1) E(w, 'precies één keuze moet ok zijn');
     o.forEach((x, k) => opt(x, w + '.opts[' + k + ']'));
   } else if (['type', 'number', 'hear-type', 'complete'].includes(q.form)) { if (q.answer == null || String(q.answer).trim() === '') E(w, 'answer ontbreekt'); txt(q.why, w + '.why'); }
   else txt(q.why, w + '.why');

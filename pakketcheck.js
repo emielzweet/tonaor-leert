@@ -340,7 +340,7 @@
         if (qq.help != null && [0, 1, 2].indexOf(qq.help) < 0) err(u + ': help moet 0, 1 of 2 zijn');
         if (qq.form === 'choose' || qq.form === 'hear') {
           if (!Array.isArray(qq.opts) || qq.opts.length < 2 || qq.opts.length > 4) err(u + ': twee tot vier keuzes');
-          else { if (qq.opts.filter(function (o) { return o && o.r === 'ok'; }).length !== 1) err(u + ': precies één keuze met r = ok');
+          else { if (qq.standpunt === true) { if (p.type !== 'les') err(u + ': standpunt kan alleen in een losse les'); else if (qq.opts.some(function (o) { return !o || o.r !== 'ok'; })) err(u + ': bij een standpunt is elke keuze ok (er is geen goed of fout)'); } else if (qq.opts.filter(function (o) { return o && o.r === 'ok'; }).length !== 1) err(u + ': precies één keuze met r = ok');   // standpunt: een kant kiezen in een les (dilemma, twee meningen)
             qq.opts.forEach(function (o, oi) { var uo = u + '.opts[' + oi + ']'; if (!o || typeof o.t !== 'string' || !o.t) { err(uo + ': t ontbreekt'); return; } str(o.t, uo + '.t'); if (['ok', 'near', 'no'].indexOf(o.r) < 0) err(uo + ': r moet ok, near of no zijn'); if (!o.why) err(uo + ': why ontbreekt (ook bij de goede keuze)'); else tekst(o.why, uo + '.why'); errOk(o, uo); }); }
         } else if (TYP.indexOf(qq.form) >= 0 || qq.form === 'number') {
           var an = [].concat(qq.answer == null ? [] : qq.answer); if (!an.length || an.some(function (a) { return typeof a !== 'string' && typeof a !== 'number' || String(a).trim() === ''; })) err(u + ': answer ontbreekt');

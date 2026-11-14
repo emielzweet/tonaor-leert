@@ -250,4 +250,5 @@ ok('standreview: knop weg na de tik, controle niet gehaald na de knop, lidwoord 
   ok('les: zonder gekozen draad de volgende uit order; met een draad die', cx.f().id === 'ao-b' && (cx.set('ao-c'), cx.f().id === 'ao-c'));
 }
 ok('zin bouwen zonder werkwoord: dingen in volgorde leggen, zonder oranje blok en zonder werkwoordtekst', html.includes("T(s.verb?'build.tip':'build.tipOrder')") && html.includes("vp<0?'build.again':") && /d.verb != null && d.parts.indexOf\(d.verb\) < 0/.test(readFileSync(new URL('pakketcheck.js', ROOT), 'utf8')));
+ok('standpunt: een keuzevraag waarin elke keuze ok is, alleen in een losse les', /qq.standpunt === true/.test(readFileSync(new URL('pakketcheck.js', ROOT), 'utf8')) && /standpunt kan alleen in een losse les/.test(readFileSync(new URL('pakketcheck.js', ROOT), 'utf8')));
 console.log(fails ? fails + ' FOUT' : 'alles OK');
