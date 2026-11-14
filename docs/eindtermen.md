@@ -70,7 +70,7 @@ In een code staat N voor het niveau: `rekenen-2-procenten`, `rekenen-4-procenten
 
 ## 3. Engels
 
-**De eis** (mbo 4): lezen en luisteren op B1, schrijven, spreken en gesprekken voeren op A2. Lezen en luisteren worden centraal geëxamineerd; de andere drie toetst de school, met een vorm die landelijk niet vastligt. Het eindcijfer is het gemiddelde van het centrale examen en het schoolexamen. Op mbo 2 en 3 is Engels geen algemene eis. Bron: `docs/onderbouwing-engels.md` hoofdstuk 1 (ontwerpsessie; Examen- en kwalificatiebesluit beroepsopleidingen WEB, Regeling examinering Engels, Staatscourant 2016, 58595, en de syllabus Engels B1 lezen en luisteren). **Gecontroleerd door de bouwsessie: nee**; de A2-doelen in bijlage 2 van het besluit nog in de wet nalezen.
+**De eis** (mbo 4): lezen en luisteren op B1, schrijven, spreken en gesprekken voeren op A2. Lezen en luisteren worden centraal geëxamineerd; de andere drie toetst de school, met een vorm die landelijk niet vastligt. Het eindcijfer is het gemiddelde van het centrale examen en het schoolexamen. Op mbo 2 en 3 is Engels geen algemene eis. Bron: `docs/onderbouwing-engels.md` hoofdstuk 1 (ontwerpsessie; Examen- en kwalificatiebesluit beroepsopleidingen WEB, Regeling examinering Engels, Staatscourant 2016, 58595, en de syllabus Engels B1 lezen en luisteren). **Gecontroleerd door de bouwsessie: deels** (14 november 2026, [EN2]): artikel 17a, vierde lid, noemt voor een kwalificatie op het vierde niveau lezen B1, luisteren B1, gesprekken voeren A2, spreken A2 en schrijven A2, volgens bijlage 2. Engels is een generiek examenonderdeel van de middenkader- en specialistenopleiding (artikel 3, tweede lid, onder d), deels centraal geëxamineerd (artikel 5); bestaat een onderdeel uit beide, dan is het cijfer het gemiddelde (artikel 15, vierde lid). De syllabus van het centrale examen hieronder is niet nagelezen.
 
 **Het centrale examen lezen en luisteren, B1** (voor G4: oefenen in de echte vorm, vanaf module E4):
 
@@ -91,9 +91,9 @@ In een code staat N voor het niveau: `rekenen-2-procenten`, `rekenen-4-procenten
 | en-B1-lezen-4 | Wensen en bedoelingen van de schrijver herkennen | B1 | syllabus |
 | en-B1-luisteren-1 | Hoofdpunten en feiten uit gesprekken, uitleg, aankondigingen, nieuws en documentaires | B1 | syllabus |
 | en-B1-vraagtaal | Engelse vraagtaal begrijpen (according to the text, which statement is true, what is the purpose of) | B1 | syllabus: alle vragen in het Engels |
-| en-A2-spreken | Eenvoudige alledaagse taken en korte gesprekken; familie, werk en omgeving beschrijven | A2 | besluit, bijlage 2 (na te lezen) |
-| en-A2-gesprekken | Korte gesprekken over vertrouwde onderwerpen voeren | A2 | besluit, bijlage 2 (na te lezen) |
-| en-A2-schrijven | Korte notities, berichten en een eenvoudige persoonlijke brief | A2 | besluit, bijlage 2 (na te lezen) |
+| en-A2-spreken | In eenvoudige woorden familie, andere mensen, leefomstandigheden en werk beschrijven | A2 | [EN2] bijlage 2 (tekst nog niet letterlijk gelezen) |
+| en-A2-gesprekken | Communiceren over eenvoudige, alledaagse taken met een directe uitwisseling van informatie over vertrouwde onderwerpen en activiteiten; zeer korte sociale gesprekken | A2 | [EN2] bijlage 2, 1.3 (nagelezen) |
+| en-A2-schrijven | Korte, eenvoudige notities en boodschappen; een eenvoudige persoonlijke brief | A2 | [EN2] bijlage 2 (tekst nog niet letterlijk gelezen) |
 
 **Woorden:** de Cambridge-lijsten (ongeveer 1.600 voor A2, ongeveer 3.000 voor B1) zijn de maat; de app neemt geen lijst over, maar legt de eigen woorden ernaast (E-M6).
 
@@ -115,4 +115,5 @@ In een code staat N voor het niveau: `rekenen-2-procenten`, `rekenen-4-procenten
 - [R1] Besluit referentieniveaus Nederlandse taal en rekenen, geldend vanaf 1 augustus 2022. https://wetten.overheid.nl/BWBR0027879/2022-08-01
 - [R2] Rijksoverheid, Welke niveaus zijn er voor het rekenexamen? https://www.rijksoverheid.nl/vraag-en-antwoord/basisvaardigheden/welke-niveaus-zijn-er-voor-het-rekenexamen
 - [EN1] College voor Toetsen en Examens, Regeling syllabus centraal examen mbo Engels referentieniveau B1, Staatscourant 2017, 31870. https://zoek.officielebekendmakingen.nl/stcrt-2017-31870.pdf
+- [EN2] Examen- en kwalificatiebesluit WEB (BWBR0027963), geldend vanaf 1 augustus 2026, artikelen 3, 5, 15, 17a en bijlage 2. https://wetten.overheid.nl/BWBR0027963
 - [E1] Europass, ERK-zelfbeoordelingsraster (Nederlands). https://europass.europa.eu/system/files/2020-05/CEFR%20self-assessment%20grid%20NL.pdf
