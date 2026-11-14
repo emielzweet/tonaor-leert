@@ -2535,7 +2535,7 @@ try{if(SV&&!document.getElementById('scenecss')){const st=document.createElement
 const scT=x=>TKx(x,'nl'),scP=x=>plainX(x,'nl');
 function scArt(sc,looks){return SV&&sc.art?SV.render(sc.art,SAFE,{text:scP,looks:looks||{}}):''}
 function nextScene(){const all=SCENES.slice().sort((a,b)=>a.order-b.order||(a.pack<b.pack?-1:a.pack>b.pack?1:0)||(a.sc.n||6)-(b.sc.n||6)),done=(S.world&&S.world.done)||{};   /* de volgorde van de route: pakket (order), dan de scène (n) */
-  const started=all.find(o=>!done[o.sc.id]&&all.some(x=>x.pack===o.pack&&done[x.sc.id]));   /* masterplan uitleg 22: een hoofdstuk waarin de leerder al bezig is, gaat voor; eerst afmaken */
+  const last=all.filter(o=>done[o.sc.id]).sort((a,b)=>(+done[b.sc.id]||0)-(+done[a.sc.id]||0))[0],started=last&&all.find(o=>o.pack===last.pack&&!done[o.sc.id]);   /* masterplan uitleg 22: het hoofdstuk waarin de leerder nu zit (dat van de laatst afgemaakte scène) gaat voor; een uitbreiding van een ander hoofdstuk dat al af was, haalt hem daar niet uit en komt daarna in de volgorde van de route */
   return (started||all.find(o=>!done[o.sc.id])||all[0]||{}).sc||null}
 function sceneQ(sc,hard){const q=[],vak=sc.subject||'nl',ph={look:1,talk:2,read:2,listen:2,slot:3,explain:3,do:3,make:3,rule:3,end:4},qph={instap:1,ophalen:1,controle:4};
   q.push({type:'sc_intro',sc,step:1,vak,hard:!!hard});
