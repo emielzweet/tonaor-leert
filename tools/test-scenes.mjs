@@ -49,7 +49,7 @@ const deep = { id: 'test-diep', place: 'test', subject: 'nl', level: 'A1', n: 1,
     { type: 'do', items: [w0], ask: T3('Kies.'), opts: [{ t: 'ja', r: 'ok', why: T3('Ja.') }, { t: 'nee', r: 'no', err: 'betekenis', why: T3('Nee.') }] },
     { type: 'quiz', role: 'controle', q: [{ form: 'type', items: [w0], ask: { nl: 'Typ.' }, answer: 'x', why: T3('Zo.') }, { form: 'number', items: [w1], ask: { nl: 'Reken.' }, answer: '42', why: T3('Zo.') }] },
     { type: 'end', next: T3('Verder.'), real: T3('Echt.') }] };
-const dp = { format: 1, id: 'test-diep', type: 'hoofdstuk', version: 1, learn: 'nl', level: 'A1', order: 99, title: T3('Test'), items: [], scenes: [deep] };
+const dp = { format: 1, id: 'test-diep', type: 'hoofdstuk', version: 1, learn: 'nl', level: 'A1', order: 99, title: T3('Test'), items: [], requires: ['nl-t1', 'en-t1'], scenes: [deep] };
 const chk = mut => { const p = JSON.parse(JSON.stringify(dp)); if (mut) mut(p.scenes[0]); return PC.checkPack(p, packs).errors.join(' | '); };
 ok('controle: een diepe scène (quiz, rule, extra, do met keuzes) is geldig', chk() === '', chk());
 ok('controle: een soort fout buiten de lijst wordt geweigerd', /staat niet in de lijst/.test(chk(sc => { sc.steps[0].q[0].opts[1].err = 'raar'; })));
@@ -126,7 +126,7 @@ const CH = (() => {
     { type: 'quiz', role: 'ophalen', q: [{ form: 'number', items: [w1], ask: T3('Reken.'), answer: '6', why: T3('Zo.') }, ch(w1, 'getal', T3('k')), { form: 'money', items: [w1], why: T3('Zo.'), gen: { coins: [500, 200, 100, 50], n: [2, 4] } }, { form: 'number', items: [w1], ask: T3('Reken.'), answer: '42', why: T3('Zo.') }, { ...typeQ, items: [w1] }] },
     { type: 'do', form: 'money', items: [w1], gen: { coins: [500, 200, 100, 50], n: [2, 4] } },
     { type: 'quiz', role: 'controle', q: [{ form: 'number', items: [w1], ask: { nl: 'R.' }, answer: '1', why: T3('Zo.') }, ch(w1, 'getal', { nl: 'K.' })] }, { type: 'end' }] };
-  return { format: 1, id: 'h', type: 'hoofdstuk', version: 1, learn: 'nl', level: 'A1', order: 99, goals: ['nt2-I-lezen'], purpose: T3('Dit heb je nodig voor lezen.'), review: { model: 'groot', date: '2026-11-15', verdict: 'goed' }, title: T3('H'), items: [], scenes: [1, 2, 3, 4, 5].map(nlScene).concat([rk]) };
+  return { format: 1, id: 'h', type: 'hoofdstuk', version: 1, learn: 'nl', requires: ['nl-t1', 'en-t1'], level: 'A1', order: 99, goals: ['nt2-I-lezen'], purpose: T3('Dit heb je nodig voor lezen.'), review: { model: 'groot', date: '2026-11-15', verdict: 'goed' }, title: T3('H'), items: [], scenes: [1, 2, 3, 4, 5].map(nlScene).concat([rk]) };
 })();
 const cc = mut => { const p = JSON.parse(JSON.stringify(CH)); if (mut) mut(p); return PC.checkChapter(p).errors.join(' | '); };
 ok('hoofdstuk: een volledig hoofdstuk haalt de hoofdstukcontrole en de pakketcontrole', cc() === '' && PC.checkPack(CH, packs).errors.length === 0, cc() + ' || ' + PC.checkPack(CH, packs).errors.slice(0, 3).join(' | '));
@@ -199,4 +199,11 @@ ok('zin bouwen: de plek van het werkwoord volgt uit de goede zin (vraag: werkwoo
 { const cx = {}; vm.createContext(cx); vm.runInContext(lineOf('const scNorm=') + ';' + fnBlock('scNum') + ';' + fnBlock('scLoose') + ';this.f=scLoose;', cx);
   ok('standreview 3: in de zwaardere vorm telt het keel niet voor de keel, keel en de keel wel', !cx.f('de keel', 'het keel') && cx.f('de keel', 'keel') && cx.f('de keel', 'de keel')); }
 ok('standreview: knop weg na de tik, controle niet gehaald na de knop, lidwoord kiezen is geen typfout, alle fouten bij luisteren krijgen de knop, also alleen bij het doelwoord, tekens niet dubbel', html.includes("b.onclick=()=>{b.remove();PEND=[];if(info.after)") && html.includes("after:()=>{if(q.role==='controle'&&SCN)SCN.ctrl=false}") && html.includes('&&!q._probe&&!picked;') && html.includes("bad=res===false,") && html.includes("na(String(as[0]))===na(w0.w)") && html.includes(".replace(/&amp;/g,'&')"));
+{ // masterplan uitleg 19: een bestaand woord als doel, alleen uit een pakket in requires
+  const req = packs.find(p => p.id === (base.requires || [])[0]), notReq = packs.find(p => p.id !== base.id && !(base.requires || []).includes(p.id) && (p.items || []).length);
+  const rid = req.items.find(x => x.kind === 'word').id, nid = notReq.items[0].id;
+  ok('hoofdstuk: een woord uit een pakket in requires mag doel en item van een vraag zijn', !/bestaat niet/.test(bad(sc => { sc.targets = sc.targets.concat([rid]); const q = sc.steps.find(st => Array.isArray(st.q) && st.q.length).q[0]; q.items = q.items.concat([rid]); })), rid);
+  ok('hoofdstuk: een woord uit een pakket dat niet in requires staat, blijft een fout', /bestaat niet/.test(bad(sc => { sc.targets = sc.targets.concat([nid]); })), nid);
+  ok('hoofdstuk: zo\'n woord is hetzelfde item (geen eigen hoofdstukonderdeel, voortgang op het bestaande id)', html.includes("CHAPTER=new Set(PACKS.filter(p=>p.type==='hoofdstuk').flatMap(p=>(p.items||[]).map(x=>x.id)));") && !(base.items || []).some(x => x.id === rid));
+}
 console.log(fails ? fails + ' FOUT' : 'alles OK');

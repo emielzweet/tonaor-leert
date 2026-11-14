@@ -316,7 +316,7 @@
     if (p.scenes != null) {
       var SV = root.SceneVis || null; if (!SV && typeof require === 'function') { try { SV = require('./scene.js'); } catch (e) { SV = null; } }
       var GAMES = ['dehet'], STEP = ['look', 'talk', 'read', 'listen', 'slot', 'explain', 'do', 'make', 'end', 'quiz', 'rule', 'extra', 'speak', 'game'], ERRS = ['lidwoord', 'woordvolgorde', 'werkwoordsvorm', 'tijd', 'voorzetsel', 'spelling', 'klank', 'betekenis', 'beleefdheid', 'getal', 'rekenstap', 'lezen', 'model'], DOFORM = ['setclock', 'point', 'money', 'clock', 'discount', 'gap', 'build', 'listen'];
-      var allItems = {}; [p].concat(others || []).forEach(function (o) { (o.items || []).forEach(function (x) { allItems[x.id] = 1; }); });
+      var allItems = {}; [p].concat(reqPacks).forEach(function (o) { (o.items || []).forEach(function (x) { allItems[x.id] = 1; }); });   // masterplan uitleg 19: een bestaand woord als doel alleen uit een pakket in requires (hetzelfde item, dezelfde voortgang)
       var allExpl = {}; [p].concat(others || []).forEach(function (o) { (o.explain || []).forEach(function (x) { if (x && x.id) allExpl[x.id] = 1; }); });
       var errOk = function (o, u) { if (o.err != null && ERRS.indexOf(o.err) < 0) err(u + ': err ' + o.err + ' staat niet in de lijst'); else if (o.r !== 'ok' && o.err == null) q(u + ': soort fout (err) ontbreekt bij een foute keuze'); };
       var tekstOf = function (x, u) { if (Array.isArray(x)) { if (!x.length) err(u + ': leeg'); x.forEach(function (y, i) { tekst(y, u + '[' + i + ']'); }); } else tekst(x, u); };
