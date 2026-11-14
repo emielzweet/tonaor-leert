@@ -166,4 +166,9 @@ ok('korte ronde: de melding komt aan (de vlag gaat mee met de rij die compose te
 ok('speltimer stopt als de sessie verlaten is', html.includes("const here=Q[qi]===q&&app.classList.contains('sess')"));
 ok('herkennen: geen afleider met dezelfde vertaling of uit also (twee goede antwoorden)', html.includes('!AL.includes(x.id)&&x.th!==w.th&&x.en!==w.en'));
 ok('poort (uitleg bij de eisen 13, 14): dubbele vraag, tekst zonder typen, te weinig zelf maken, rekenscène zonder voorbeeld, schuine streep', /dezelfde vraag/.test(cc(p => { const q = p.scenes[0].steps[1].q; q.push(JSON.parse(JSON.stringify(q[0]))); })) && /zelf typt of bouwt/.test(cc(p => { const r = p.scenes[0].steps.find(s => s.type === 'read'); r.q = r.q.slice(0, 4).concat([ch(w0, 'lezen', T3('v5'))]); })) && /uitgewerkt voorbeeld/.test(cc(p => { const r = p.scenes.find(s => s.subject === 'rk'); r.steps = r.steps.filter(s => s.type !== 'explain'); })) && /schuine streep/.test(cc(p => { p.items = [{ id: 'x', kind: 'phrase', w: 'a / b' }]; })));
+{ const cx = {}; vm.createContext(cx); vm.runInContext('var Q=[];' + fnBlock('scPh') + ';this.f=scPh;this.set=q=>{Q=q};', cx);
+  const A = { id: 'a' }, B = { id: 'b' }; cx.set([{ sc: A, step: 1 }, { sc: A, step: 1 }, { sc: A, step: 3 }, { sc: A, step: 4 }, { sc: B, step: 2 }, { type: 'x' }]);
+  const r1 = cx.f({ sc: A, step: 3 }), r2 = cx.f({ sc: B, step: 2 });
+  ok('voortgang in een scène telt alleen de delen die de scène heeft (G1: geen Stap 1 van 4 bij drie delen)', r1.n === 2 && r1.m === 3 && r2.n === 1 && r2.m === 1, JSON.stringify([r1, r2]));
+  ok('de instap heet niet Kijken', html.includes("PHROLE={instap:'scene.warm'") && html.includes('t(PHROLE[q.role]||PH[q.step]')); }
 console.log(fails ? fails + ' FOUT' : 'alles OK');

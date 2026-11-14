@@ -360,6 +360,9 @@ en:{
  "scene.lookStart":"Tap something to hear the word.",
  "scene.lookTip":"Tap the things in the picture.",
  "scene.can":"Can do",
+ "scene.check":"Show what you can",
+ "scene.recall":"Remember",
+ "scene.warm":"What do you know?",
  "scene.do":"Do",
  "scene.live":"Take part",
  "scene.look":"Look",
@@ -789,6 +792,9 @@ nl:{
  "scene.lookStart":"Tik op iets om het woord te horen.",
  "scene.lookTip":"<p>Tik op de dingen in de tekening.</p>",
  "scene.can":"Kunnen",
+ "scene.check":"Laat zien wat je kunt",
+ "scene.recall":"Ophalen",
+ "scene.warm":"Wat ken je al?",
  "scene.do":"Doen",
  "scene.live":"Meemaken",
  "scene.look":"Kijken",
@@ -1214,6 +1220,9 @@ th:{
  "scene.lookStart":"แตะเพื่อฟังคำ",
  "scene.lookTip":"แตะสิ่งของในภาพ",
  "scene.can":"ทำได้แล้ว",
+ "scene.check":"แสดงสิ่งที่ทำได้",
+ "scene.recall":"ทบทวน",
+ "scene.warm":"รู้อะไรแล้วบ้าง",
  "scene.do":"ลงมือทำ",
  "scene.live":"ร่วมสถานการณ์",
  "scene.look":"ดู",
@@ -2351,7 +2360,8 @@ let SESS=[];   // goed of fout per antwoord in deze ronde (bijsturen)
 let Q=[],qi=0,sp=0,grown=[],sessName='',sessStart=0,sessRight=0,sessTotal=0;
 function runSession(name,queue){Q=queue;qi=0;SESS=[];KNOWN=new Set();RETRIED=new Set();sp=0;grown=[];sessName=name;sessStart=now();sessRight=0;sessTotal=0;$('#nav').hidden=true;app.classList.add('sess');window.scrollTo(0,0);step()}
 function vakOf(q,stepNo){return q&&q.vak?q.vak:stepNo===4||(q&&['money','clock','discount'].includes(q.type))?'rk':(q&&(q.lang==='en'||/^en/.test(q.type)))||sessName==='Engels'?'en':'nl'}
-function frame(inner,label,stepNo,ofN){app.dataset.vak=vakOf(Q[qi],stepNo);
+function scPh(q){const ph=[];Q.forEach(x=>{if(x&&x.sc===q.sc&&x.step&&!ph.includes(x.step))ph.push(x.step)});return {n:ph.indexOf(q.step)+1,m:ph.length}}   /* G1: tel en noem alleen de delen die deze scène echt heeft */
+function frame(inner,label,stepNo,ofN){app.dataset.vak=vakOf(Q[qi],stepNo);if(Q[qi]&&Q[qi].sc&&Q[qi].step){const r=scPh(Q[qi]);if(r.n>0){stepNo=r.n;ofN=r.m}}
   const p=Math.round(qi/Math.max(1,Q.length-1)*100);
   paint(`<div class="sess-top"><button class="close" id="quit" aria-label="Stoppen">×</button><div class="bar" role="progressbar" aria-label="Voortgang" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><i style="width:${p}%"></i></div>${thaiSwitch()}</div>
   <div class="stage-label"><span class="eyebrow">${stepNo?`Stap ${stepNo} van ${ofN||(Q.some(x=>x.type==="sc_end")?4:5)} · `:''}${label}</span>${(x=>x?`<button class="u-btn" data-uopen="${esc(x)}">${TB('explain.open')}</button>`:'')(explFor(Q[qi]))}<span class="pill pill-apricot num">+${sp}</span></div>${inner}`);
@@ -2482,7 +2492,8 @@ function startScene(sc,hard){if(!sc)return toast(tx('pack.none'));S.world=S.worl
 const PH=['','scene.look','scene.live','scene.do','scene.can'];
 /* masterplan G5: waar het hoofdstuk voor dient, bij het begin (eerste scène) en op het slot van de laatste scène van de plek */
 function scPurpose(sc,where){const o=SCENES.find(x=>x.sc===sc);if(!o||!o.purpose)return null;const same=SCENES.filter(x=>x.pack===o.pack).map(x=>x.sc).sort((a,b)=>(a.n||6)-(b.n||6));return (where==='first'?same[0]:same[same.length-1])===sc?o.purpose:null}
-function scFrame(q,inner){frame(inner,t(PH[q.step]||'scene.do'),q.step,4)}
+const PHROLE={instap:'scene.warm',ophalen:'scene.recall',controle:'scene.check'};
+function scFrame(q,inner){frame(inner,t(PHROLE[q.role]||PH[q.step]||'scene.do'),q.step)}
 H.sc_intro=q=>{const sc=q.sc,pu=scPurpose(sc,'first');scFrame(q,`<div class="card stack">${scArt(sc)}<h2>${scT(sc.title)}</h2>${pu?`<p class="note sky small">${scT(pu)}</p>`:''}<p>${scT(sc.intro)}</p>${q.hard?`<p class="note sky">${T('scene.hardTip',{n:(S.world.best||{})[sc.id]||0})}</p>`:''}</div>${nextBtn('btn-main')}`);$('#nx').onclick=next};
 H.sc_look=q=>{const sc=q.sc,seen=new Set(),min=q.st.min||1;
   scFrame(q,`<div class="card stack">${T('scene.lookTip')}${scArt(sc)}<div id="lk" class="note sky" aria-live="polite">${T('scene.lookStart')}</div></div><button class="btn btn-leaf" id="nx" disabled>${T('btn.next')}</button>`);
