@@ -58,7 +58,7 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | # | Wens | Gevraagd | Stand | Waar | Wie | Volgende stap |
 |---|---|---|---|---|---|---|
 | 34 | De route realistisch tonen: blokken met de echte tijd erbij, ook als het drie jaar duurt; korter bij hard werken, langer bij weinig doen | 14 nov | plan | `docs/route-en-prognose.md`; akkoord op de vier besluiten (14 nov) | bouw | bouwen na de scènespeler |
-| 35 | Prominent een verwachte datum voor het eerste Staatsexamen Nt2, die vervroegt en verlaat | 14 nov | plan | idem | idem | idem |
+| 35 | Prominent een verwachte datum voor het eerste Staatsexamen Nt2, die vervroegt en verlaat | 14 nov | plan | `docs/route-en-prognose.md`; bijgesteld: vier data, één per onderdeel, want de onderdelen worden los afgenomen | bouw | bouwen na de scènespeler |
 | 36 | Het scherm van de begeleider (EDGE) meenemen in het nieuwe concept en de route | 14 nov | plan | `docs/aanvoer-en-begeleider.md`, deel 2; akkoord (14 nov): in één keer, na de scènespeler | bouw | protocol beschrijven; eerst de widget, dan de app |
 | 37 | Lesmateriaal dat vanzelf wordt aangevuld en ontwikkeld, met een voorraad | 14 nov | plan | `docs/automatische-redactie.md` | ontwerp, dan bouw | zie wens 38 |
 | 38 | Een automatisch systeem dat nieuwe en geplande lesstof maakt wanneer die nodig is, ook zonder akkoord van de eigenaar per keer | 14 nov | deels | `docs/automatische-redactie.md`, map `redactie/` (opdrachten, controle, wachtrij) | ontwerp, dan bouw | proef met één hoofdstuk loopt; dan lesstof los van de code, uitbrengen, inplannen |
@@ -72,7 +72,7 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | 46 | Voorkom te veel herhaling: het mag nooit saai of een grind worden; progressief, uitdagend, met echte diepgang | 14 nov | plan | `docs/masterplan.md` groep H en B | bouw | de ervaringstest meet losse herhaling (hooguit een vijfde van de tijd) |
 | 47 | Algemene ontwikkeling als vrije encyclopedie van kennis en begrippen: moeilijke woorden, geschiedenis, aardrijkskunde, topografie, archeologie, oorlogen, economie, politiek, Europa, Azië, geopolitiek, geloof, atheïsme en alles wat eronder valt; geen stramien, uitdagend en verdiepend, mag de rest ondersteunen maar hoeft niet | 14 nov | plan | `docs/algemene-ontwikkeling.md` | ontwerp (kaart en tijdlijn), redactielijn (lessen), bouw (scherm Ontdek) | veertig vragen als begin van de wachtrij; stap 11 van het masterplan |
 | 48 | Toetsen en diagnostische checks in de app, voor alle vakken | 14 nov | plan | `docs/masterplan.md` E3, E4, G3; `docs/scenes.md` | bouw | instap en controle komen met de scènespeler; toetsen per thema en in examenvorm in stap 8 |
-| 49 | Eén didactisch plan in het groot, met alle facetten, waar de vier jaar op rust: leeruitkomsten en hoe ze bereikt worden. De motor moet didactisch kloppen: voor Nederlands op de drie boeken en op gedegen wetenschappelijk onderzoek, voor de andere vakken op een wetenschappelijke onderbouwing van methodiek, curriculum, werkvormen, inhoud en didactiek | 14 nov | deels | `docs/didactisch-plan.md` (zeventig bronnen nagezocht; eisen M1 tot M12); rekenen uitgediept in `docs/onderbouwing-rekenen.md` (officiële eisen volledig gelezen, ruim veertig bronnen, eisen R-M1 tot R-M8) | ontwerp (onderbouwing), bouw (motor) | hierna Nederlands uitdiepen, dan Engels; de vorm van het rekenexamen navragen bij de school |
+| 49 | Eén didactisch plan in het groot, met alle facetten, waar de vier jaar op rust: leeruitkomsten en hoe ze bereikt worden. De motor moet didactisch kloppen: voor Nederlands op de drie boeken en op gedegen wetenschappelijk onderzoek, voor de andere vakken op een wetenschappelijke onderbouwing van methodiek, curriculum, werkvormen, inhoud en didactiek | 14 nov | deels | `docs/didactisch-plan.md` (eisen M1 tot M12); uitgediept: `docs/onderbouwing-rekenen.md` (R-M1 tot R-M8) en `docs/onderbouwing-nederlands.md` (N-M1 tot N-M9), met de officiële exameneisen | ontwerp (onderbouwing), bouw (motor) | hierna Engels; daarna de volledige tekst lezen van de zwaarst wegende studies |
 
 ## Eigen voorstellen van de ontwerpsessie (goedgekeurd op 13 november)
 
@@ -91,7 +91,7 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 - De zes besluiten in `docs/plan-herzien.md`, met het advies van de ontwerpsessie.
 - Wat aan de uitleg het meest stoort.
 - Video's kiezen of goedkeuren voor rekenen.
-- Bij de gewenste school navragen wat ze bij de toelating eisen.
+- Bij de gewenste school navragen wat ze bij de toelating eisen. Vraag ook of de school programma I van het Staatsexamen vraagt of een eigen toets afneemt.
 - Bij dezelfde school navragen hoe het rekenexamen eruitziet: duur, aantal opgaven, en of een rekenkaart en een woordenboek mogen (voor het mbo niet landelijk vastgelegd).
 - Terugkoppeling van de leerder over de startmeting en de lessen.
 

@@ -194,6 +194,7 @@ Vragen van de bouwsessie die een eis raken, met het antwoord. Dit hoofdstuk groe
 |---|---|
 | `masterplan.md` | eisen, volgorde, rollen |
 | `didactisch-plan.md` | het fundament: leeruitkomsten, leerweg, onderbouwing met bronnen, eisen aan de motor |
+| `onderbouwing-nederlands.md` | Nederlands uitgediept: het Staatsexamen per onderdeel, de niveaus, het onderzoek, en de eisen N-M1 tot N-M9 aan de motor |
 | `onderbouwing-rekenen.md` | rekenen uitgediept: de officiële eisen per domein en niveau, het onderzoek, de leerlijn in zes stappen, werkvormen en de eisen R-M1 tot R-M8 aan de motor |
 | `wensen.md` | alles wat de eigenaar gevraagd heeft, met de stand |
 | `STATUS.md` | wat live is, wat lokaal klaarstaat, de dekkingstabel |

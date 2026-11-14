@@ -6,6 +6,8 @@ Status: **ontwerp, 14 november 2026. Akkoord van de eigenaar op alle besluiten o
 
 De route in de app toont nu een paar stappen zonder tijd. Dat is niet eerlijk: de weg naar het eerste examen duurt bij tien uur per week ruim een jaar, en bij drie en een half uur per week ongeveer drie jaar. De leerder en de begeleider moeten dat kunnen zien, en ook zien dat het korter wordt door vol te houden en langer door weinig te doen.
 
+> **Bijgesteld op 14 november 2026 (`onderbouwing-nederlands.md`):** het Staatsexamen Nt2 bestaat uit vier onderdelen die los van elkaar worden afgenomen, het hele jaar door, elk met een eigen certificaat dat onbeperkt geldig is. De route toont daarom **per onderdeel** een verwachte datum (lezen, luisteren, schrijven, spreken); op het thuisscherm staat de eerstvolgende. Lezen en luisteren kunnen eerder dan schrijven en spreken. De datum hangt aan de uitslag van de vierwekelijkse toets in examenvorm per onderdeel, niet alleen aan uren: er zijn geen betrouwbare cijfers over leertijd, en uren maken is niet hetzelfde als vooruitgaan.
+
 ## Wat de leerder ziet
 
 1. **Eén datum, prominent op het thuisscherm:** de naam van de eerstvolgende poort en de verwachte maand, bijvoorbeeld *Staatsexamen Nt2, programma I · verwacht februari 2028*. Eronder de bandbreedte (*tussen november 2027 en juni 2028*) en wat er sinds vorige maand veranderd is (*3 weken eerder* of *2 weken later*). Een tik opent de route.
@@ -65,7 +67,7 @@ Daar komt de marge voor aanmelden bij. Vanaf november 2026 betekent tien uur per
 | Uren per blok | `docs/leerroute.md`: Cambridge-uren per niveaustap met een marge voor taalafstand; rekenen eigen schatting. Schatting, wordt per leerder bijgesteld |
 | 60 / 30 / 10 | `docs/leerroute.md`, volgorde en prioriteit |
 | Vier weken voor het tempo | Aanname: kort genoeg om een verandering te zien, lang genoeg om een vakantieweek niet te zwaar te laten wegen |
-| Marge van acht weken voor aanmelden | Aanname; de werkelijke aanmeldtermijn van het examen moet worden nagevraagd en wordt dan ingevuld |
+| Marge van acht weken voor aanmelden | Bevestigd op 14 november 2026: aanmelden kan vanaf ongeveer acht weken vóór het examen, met minstens drie weken tussen aanmelden en afname; de uitslag komt drie tot ruim zes weken later (`onderbouwing-nederlands.md`) |
 | Bijstellen na een blok | Aanname: nieuwe schatting = het gemiddelde van de oude schatting en wat het blok werkelijk kostte, zodat één uitschieter niet alles verschuift |
 
 ## Generiek houden

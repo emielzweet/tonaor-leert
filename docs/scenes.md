@@ -105,6 +105,10 @@ Ook de keuzes in een gesprek (`talk`) krijgen bij `near` en `no` een `err`. Een 
 - **Zwaardere vorm:** een scène die af is, is opnieuw te spelen als `replay`: zonder steuntaal, met typen waar eerst kiezen stond, en op eigen record. Het pakket hoeft daar niets voor te bevatten behalve vragen met zowel `opts` als `answer`.
 - **Per hoofdstuk** (de vijf scènes samen): minstens één leestekst met vijf tot tien vragen in tekstvolgorde (geheel, detail, waarom, toepassen of woord), één luistertekst met de vragen vooraf, één stap `speak`, één stap `game`, en minstens twaalf verschillende werkvormen. Per scène minstens zes verschillende werkvormen, en nooit dezelfde vorm meer dan twee keer achter elkaar.
 
+### Een woord aantikken is een keuze (`onderbouwing-nederlands.md`, 2.1)
+
+Tikt de leerder in een tekst of gesprek een onbekend woord aan, dan toont de speler niet meteen de vertaling maar drie mogelijke betekenissen in de steuntaal; de leerder kiest, en ziet daarna de juiste met de omschrijving. Een juiste keuze telt als ontmoeting. In een tekening (`look`) blijft aantikken tonen en voorlezen: daar is het woord nog niet aangeboden. Het pakket hoeft hiervoor niets extra's te bevatten: de speler neemt de twee andere betekenissen uit woorden van hetzelfde hoofdstuk.
+
 ### Extra eisen voor de scènetest
 
 - Een scène Nederlands heeft minstens 18 momenten waarop de leerder antwoordt (zonder de open plekken).

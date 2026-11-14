@@ -93,6 +93,8 @@ Per onderdeel een certificaat; geslaagd bij een schaalscore van 500 of hoger. De
 
 ### Fase N3 — van B1 naar B2 (de stof van *De finale*)
 
+> **Bijgesteld op 14 november 2026 (`onderbouwing-nederlands.md`):** programma II van het Staatsexamen is bedoeld voor hbo en universiteit en is geen stap op de route naar mbo 4. Het doel van deze fase is het niveau dat de opleiding zelf toetst (3F), met de nadruk op verzorgd en correct schrijven; programma II is een keuze. De onderdelen van programma I worden los afgenomen en kunnen na elkaar worden gehaald. De woordenlijsten waar het examen uit put (de lijsten *Core* en *General* van het frequentiewoordenboek en de aanvullende lijst van de examencommissie) zijn de maat voor de woordenschatlijn.
+
 Negen thema's, van persoonlijk naar maatschappelijk (vrije tijd, vervoer, natuur, eten en drinken, milieu, veiligheid en gezondheid, gewoonten en tradities, economie en werk, klimaat).
 
 | Thema | Grammatica | Schrijven |
