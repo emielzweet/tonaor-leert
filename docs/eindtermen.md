@@ -27,15 +27,21 @@ Een code bestaat uit vak, niveau of programma, vaardigheid en een volgnummer: `n
 | nt2-I-spreken-1 | Inlichtingen geven en vragen, een gesprek beginnen en afsluiten, om verduidelijking vragen, beschrijven | I en II | [N1] D Spreken | ja |
 | nt2-I-spreken-2 | Standpunten en meningen genuanceerd weergeven en beargumenteren; beoordelen, bepleiten, klagen, onderhandelen | I en II (bij I over alledaagse onderwerpen) | [N1] D Spreken | ja |
 
-**Examenvorm** (voor masterplan G4: oefenen in de echte vorm). Uit het eerste onderzoek, volgens [N2] bijlagen 1 tot en met 4. **Gecontroleerd: nee** (de regeling was bij het nalezen niet bereikbaar); niet als harde eis gebruiken tot nagelezen.
+**Het doel is programma I.** Programma I is bedoeld voor werk of studie op mbo 3- of mbo 4-niveau; programma II (hbo en universiteit) is geen stap op de route naar mbo 4. De vier onderdelen worden los afgenomen, het hele jaar door; per gehaald onderdeel een certificaat dat onbeperkt geldig is. Daarom heeft de route vier verwachte data, één per onderdeel (`docs/route-en-prognose.md`). Bron: `docs/onderbouwing-nederlands.md` hoofdstuk 1 (ontwerpsessie; staatsexamensnt2.nl en Staatscourant 2024, 32587).
 
-| Onderdeel | Programma I | Programma II |
+**Examenvorm programma I** (voor masterplan G4: oefenen in de echte vorm, vanaf blok N2). Bron: `docs/onderbouwing-nederlands.md` hoofdstuk 1. **Gecontroleerd: nog niet door de bouwsessie** (de controle op staatsexamensnt2.nl loopt). Het eerste bronnenonderzoek gaf voor lezen "ongeveer 35 vragen" (Staatscourant 2022, 408); de onderbouwing zegt 36.
+
+| Onderdeel | Programma I | Wat het vraagt |
 |---|---|---|
-| Lezen | 6 teksten, ongeveer 35 meerkeuzevragen, 110 minuten | idem, 100 minuten |
-| Luisteren | audio- en videofragmenten, 37 tot 40 meerkeuzevragen, elk fragment één keer, hooguit 90 minuten | idem |
-| Schrijven | 8 zinsopgaven, 2 berichten of formulieren, 2 korte teksten; 100 minuten; één woordenboek Nt2, geen spellingscontrole | zinsopgaven, korte en middellange teksten; 100 minuten |
-| Spreken | 8 korte opdrachten (20 seconden) en 8 middellange (30 seconden), hooguit 25 minuten, aan de computer | ook een lange opdracht van 2 minuten |
-| Uitslag | 500 of hoger op de vaardigheidsschaal; het aantal punten daarvoor verschilt per examen | idem |
+| Lezen | 110 minuten; 36 meerkeuzevragen bij 6 teksten; teksten op papier, antwoorden op de computer; alleen het voorgeschreven pocketwoordenboek Nt2 | teksten over werk, studie en het dagelijks leven: onderwerp, bron of doelgroep; betekenis van een deel, verband tussen delen, conclusie; informatie opzoeken, ordenen en combineren |
+| Luisteren | 90 minuten; ongeveer 40 meerkeuzevragen bij 5 of meer fragmenten en 1 tot 3 filmpjes; één keer horen, niet pauzeren; 25 seconden om de vraag te lezen; geen woordenboek | echte opnamen met verschillende stemmen, accenten en achtergrondgeluid |
+| Schrijven | 100 minuten; zinnen afmaken, een brief, tekst of formulier aanvullen, een korte tekst; typen zonder spellingscontrole; het pocketwoordenboek mag | vooral werk en opleiding |
+| Spreken | ongeveer 25 minuten; 8 korte opdrachten (20 seconden spreektijd) en 8 middellange (30 seconden); tegen de computer, loopt automatisch door; geen woordenboek | – |
+| Uitslag | geslaagd bij een schaalscore van 500 of hoger; schrijven en spreken door twee beoordelaars | – |
+
+**Beoordeling van schrijven en spreken:** het officiële beoordelingsvoorschrift is nog niet gevonden (de zoektocht loopt). Voorlopig, uit een presentatie van de examencommissie uit 2017 (niet officieel): spreken op inhoud, woord- en zinsvorming, woordkeus, woordenschat, uitspraak en tempo; schrijven op begrijpelijkheid, grammaticale correctheid, spelling, woordgebruik en samenhang.
+
+**Woorden:** de meeste woorden in de opgaven staan in de lijsten Core en General van het frequentiewoordenboek van het Nederlands (Tiberius & Schoonheim) of in de aanvullende woordenlijst van de examencommissie. De woordenschatlijn van de app legt de eigen frequentiewoorden daarnaast.
 
 **Tussenniveaus A1 en A2** (de weg naar programma I). De beschrijvingen per vaardigheid volgen het ERK-zelfbeoordelingsraster [E1]; de app gebruikt ze als mijlpalen, niet als examen. **Gecontroleerd: nee.** Codes `nt2-A1-…` en `nt2-A2-…` per vaardigheid (lezen, luisteren, spreken, schrijven).
 

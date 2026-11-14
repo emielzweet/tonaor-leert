@@ -64,6 +64,22 @@ Uit `docs/onderbouwing-rekenen.md` hoofdstuk 3, aanvullend op M1 tot M12. Stand 
 
 Vragen aan de ontwerpsessie: mag de soort fout `model` erbij (R-M4), en wordt `tol` (marge) een veld van een `number`-vraag (R-M6)?
 
+## Nederlands: N-M1 tot N-M9
+
+Uit `docs/onderbouwing-nederlands.md` hoofdstuk 3, aanvullend op M1 tot M12. Stand in de code:
+
+| # | Eis | Wat er is | Wat ontbreekt |
+|---|---|---|---|
+| N-M1 | aantikken in een tekst: eerst kiezen uit drie betekenissen, juiste keuze = ontmoeting | aantikken in een tekening toont en leest voor (`sc_look`, `introduce`) | het kiezen in een tekst of gesprek (`docs/scenes.md`, "Een woord aantikken is een keuze"): een tikbaar woord in `read` en `talk`, drie betekenissen, `review` met de vorm `tik` |
+| N-M2 | zelf maken en afwegen zwaarder dan kiezen | bloei vraagt drie vormen waarvan één productief (typen, zin bouwen) | een gewicht per vorm in `MOTOR` (bijvoorbeeld kiezen 1, typen 1,5, zelf maken 2) dat de groei van de wachttijd bepaalt; aanname |
+| N-M3 | een regel in de eerste weken een korte tussentijd (twee tot vier dagen), daarna oplopend | dezelfde groei als bij woorden | `MOTOR.ruleEarlyDays` en `MOTOR.ruleEarlyMax` (aanname): voor een regel jonger dan een paar weken blijft de wachttijd tussen 2 en 4 dagen |
+| N-M4 | een regel pas beheerst na een eigen zin | `canBloom` voor een regel: drie oefeningen en minstens één keer zin bouwen | trede 3 (M5): een eigen zin (`make` zonder kader, `own`, spreken) goed |
+| N-M5 | bij een fout eerst een tweede poging met een aanwijzing | keuzes: opnieuw kiezen met de reden; typen: een tweede poging, hint in twee stappen | bij een gesprek en een tekstvraag de aanwijzing vóór de tweede poging, niet het antwoord |
+| N-M6 | elke dag lees- en luistertijd, apart geteld | de klok telt leertijd | hoort bij M6 (strengen): input apart tellen en elke dag inplannen |
+| N-M7 | tijd meten bij spreken en tempospellen, zonder straf, als eigen record | snelronde en spel met record; zwaardere vorm met record | de tijd bij `speak` (20 en 30 seconden zichtbaar, geen straf) |
+| N-M8 | per examenonderdeel de stand en een verwachte datum | – | hoort bij M10 en de route (stap 5): vier data, de eerstvolgende op het thuisscherm |
+| N-M9 | melden bij vier weken leertijd zonder vooruitgang op de toetsen | – | hoort bij de toets per vier weken (stap 8) en het scherm van de begeleider (stap 9) |
+
 ## Wat kan breken
 
 - M12 en M5 veranderen de opslag: migratie 6 → 7 met reservekopie, alleen toevoegen. De omvang van de opslag wordt bewaakt in `test-migratie` (een nagebootste opslag van drie jaar moet onder 1 MB blijven).
