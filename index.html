@@ -1791,9 +1791,10 @@ async function loadPacks(){
   const fromCache=u=>(typeof caches!=='undefined'?caches.match(u).then(json):Promise.resolve(null)).catch(()=>null);
   const withLimit=(p,ms)=>Promise.race([p,new Promise(res=>setTimeout(()=>res(null),ms))]);
   const one=u=>withLimit(fetch(u).then(json).catch(()=>null),PACK_TIMEOUT).then(p=>p||fromCache(u)).catch(()=>null);
-  const idx=await one(PACKINDEX),extra=(idx&&Array.isArray(idx.packs)?idx.packs:[]).filter(u=>typeof u==='string'&&/^content\/[a-z0-9-]+\.json$/.test(u)&&u!==PACKINDEX&&!BUILTIN.includes(u)).filter((u,i,a)=>a.indexOf(u)===i).slice(0,INDEXMAX);   /* lesstof los van de code: alleen eigen paden; zonder index alleen de basis */
-  const ALL=BUILTIN.concat(extra),got=await Promise.all(ALL.map(one));
-  const ok=got.filter(Boolean);
+  const pIdx=one(PACKINDEX),pBase=Promise.all(BUILTIN.map(one));   /* index en basis tegelijk (review 3a, K6) */
+  const idx=await pIdx,extra=(idx&&Array.isArray(idx.packs)?idx.packs:[]).filter(u=>typeof u==='string'&&/^content\/[a-z0-9-]+\.json$/.test(u)&&u!==PACKINDEX&&!BUILTIN.includes(u)).filter((u,i,a)=>a.indexOf(u)===i).slice(0,INDEXMAX);   /* lesstof los van de code: alleen eigen paden; zonder index alleen de basis */
+  const ALL=BUILTIN.concat(extra),got=(await pBase).concat(await Promise.all(extra.map(one)));
+  const seenId=new Set(),ok=got.map((p,i)=>{if(!p)return null;if(seenId.has(p.id)){PACK_MISSING.push(name(ALL[i]));return null}seenId.add(p.id);return p}).filter(Boolean);   /* twee pakketten met dezelfde id: het tweede valt weg en wordt gemeld (review 3a, K5) */
   got.forEach((p,i)=>{if(!p)PACK_MISSING.push(name(ALL[i]))});
   ok.forEach(p=>{const others=ok.filter(o=>o!==p),miss=(p.requires||[]).some(r=>!others.some(o=>o.id===r));
     const res=PC.checkPack(p,others,{lenient:miss});

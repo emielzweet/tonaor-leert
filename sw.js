@@ -3,7 +3,10 @@ const CACHE='tonaor-leert-v2-56';
 const SHELL=['./','./index.html','./tlsync.js','./pakketcheck.js','./content/rk-1.json','./content/nl-t1.json','./content/nl-basis.json','./content/index.json','./scene.js','./content/en-t1.json','./uitleg.js','./content/uitleg-rk.json','./content/uitleg-nl.json','./content/uitleg-en.json','./manifest.webmanifest','./icons/icon-180.png','./icons/icon-192.png','./icons/icon-512.png'];
 // Eigen bestanden altijd vers bij de server opvragen (cache: 'reload' bij installeren, 'no-cache' daarna), zodat de
 // HTTP-cache van de browser na een release nooit oude pakketten naast nieuwe code legt. Offline blijft de cache werken.
-self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL.map(u=>new Request(u,{cache:'reload'})))).then(()=>self.skipWaiting()))});
+// Hoofdstukken uit content/index.json gaan bij het installeren mee in de cache (anders ontbreken ze offline na de eerste installatie
+// en na elke nieuwe versie; review stap 3a, B1). Een pakket dat dan niet laadt, houdt de installatie niet tegen.
+const IDXPACKS=c=>fetch('./content/index.json',{cache:'reload'}).then(r=>r.ok?r.json():null).then(j=>Promise.all((j&&Array.isArray(j.packs)?j.packs:[]).filter(u=>typeof u==='string'&&/^content\/[a-z0-9-]+\.json$/.test(u)).slice(0,200).map(u=>c.add(new Request('./'+u,{cache:'reload'})).catch(()=>{})))).catch(()=>{});
+self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL.map(u=>new Request(u,{cache:'reload'}))).then(()=>IDXPACKS(c))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{
   const r=e.request;if(r.method!=='GET')return;

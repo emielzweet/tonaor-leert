@@ -109,7 +109,7 @@ ok('geen naambotsing tussen het pakketblok en de rest van de app (' + names.leng
 }
 
 // bij het weghalen van de oude inhoudslijsten verdween ooit 'let PL={}' (stand van de startmeting); die moet blijven bestaan
-ok('startmeting heeft zijn tussenstand (PL) nog', /\nlet PL=\{\};\nfunction startPlacement\(/.test(html));
+ok('startmeting heeft zijn tussenstand (PL) nog', /\r?\nlet PL=\{\};\r?\nfunction startPlacement\(/.test(html));
 
 // 5. BUILTIN = SHELL
 const sw = readFileSync(new URL('sw.js', ROOT), 'utf8');
@@ -124,6 +124,17 @@ ok('elk pakket in content/ staat in BUILTIN of in de index, en de index noemt al
   ok('index: vreemde paden en dubbele overgeslagen, het hoofdstuk geladen', g2.PACKS.some(p => p.id === 'nl-dokter') && g2.PACKS.length === bi.length + 1 && !g2.PACK_MISSING.length, g2.PACK_MISSING.join() + ' / ' + g2.PACKS.length);
   a = await boot({ missing: ['content/nl-dokter.json'] }); g2 = a.api.get();
   ok('index: een pakket uit de index dat niet laadt, wordt gemeld; de basis laadt', g2.PACK_MISSING.includes('nl-dokter') && g2.PACKS.length === bi.length);
+  const dok = JSON.parse(readFileSync(new URL('content/nl-dokter.json', ROOT), 'utf8'));
+  a = await boot({ override: { 'content/index.json': { v: 1, packs: ['content/nl-dokter.json', 'content/nl-dokter2.json'] }, 'content/nl-dokter2.json': dok } }); g2 = a.api.get();
+  ok('index: twee pakketten met dezelfde id: het tweede valt weg en wordt gemeld (review 3a, K5)', g2.PACKS.filter(p => p.id === 'nl-dokter').length === 1 && g2.PACK_MISSING.includes('nl-dokter2'), g2.PACK_MISSING.join());
+  // service worker: hoofdstukken uit de index gaan bij het installeren mee in de cache (review 3a, B1)
+  const added = []; let installP = null;
+  const swCtx = { self: { addEventListener: (ev, fn) => { if (ev === 'install') fn({ waitUntil: p => { installP = p; } }); }, skipWaiting: () => {}, clients: { claim() {} } },
+    caches: { open: () => Promise.resolve({ addAll: () => Promise.resolve(), add: r => { added.push(r.url); return Promise.resolve(); } }), keys: () => Promise.resolve([]) },
+    fetch: () => Promise.resolve({ ok: true, json: () => Promise.resolve({ v: 1, packs: ['content/nl-dokter.json', 'https://elders.example/x.json', 'content/../sw.json'] }) }),
+    Request: function (u) { this.url = u; }, URL, location: { origin: 'https://x' } };
+  (await import('node:vm')).runInNewContext(readFileSync(new URL('sw.js', ROOT), 'utf8'), swCtx); await installP;
+  ok('service worker: hoofdstukken uit de index bij het installeren in de cache, vreemde paden niet', added.length === 1 && added[0] === './content/nl-dokter.json', added.join());
 }
 ok('pakketcheck.js staat in SHELL en wordt vóór de app geladen', shell.includes('./pakketcheck.js') && html.indexOf('<script src="pakketcheck.js">') < html.indexOf('(async function(){'));
 ok('service worker vraagt eigen bestanden vers op: geen oud pakket uit de browsercache naast nieuwe code', sw.includes("SHELL.map(u=>new Request(u,{cache:'reload'}))") && sw.includes("fetch(r.url,{cache:'no-cache'") && !/fetch(r).then/.test(sw));
