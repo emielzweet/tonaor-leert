@@ -33,7 +33,7 @@ Stand: 14 november 2026. Dit is het fundament onder het masterplan: **waar de le
 |---|---|---|
 | Jaar 1 | rekenen met geld, tijd en maten; helft, kwart en tiende; 10, 25 en 50 procent; een rooster en een eenvoudige grafiek lezen | ongeveer 600 woorden herkennen; eenvoudige zinnen verstaan en lezen |
 | Jaar 2 | via 1 procent rekenen, van deel naar geheel, schaal, samengestelde eenheden, informatie uit meerdere bronnen combineren | ongeveer 1.500 woorden; lezen, luisteren, spreken en schrijven op A2 |
-| Jaar 3 | groeifactor, terugrekenen, meetfouten, cijfers beoordelen; het examen met rekenmachine en rekenkaart | ongeveer 3.000 woorden herkennen; teksten van 800 tot 1.200 woorden en fragmenten tot acht minuten |
+| Jaar 3 | groeifactor, terugrekenen, meetfouten, cijfers beoordelen; het examen met de rekenmachine, tussenstappen en schatten | ongeveer 3.000 woorden herkennen; teksten van 800 tot 1.200 woorden en fragmenten tot acht minuten |
 
 ## 2. De leerweg in één beeld
 
@@ -134,8 +134,10 @@ Per facet: wat het onderzoek zegt, en wat de app daarom doet. Bewijs: **sterk** 
 
 ### 3.11 Rekenen
 
+> **Uitgediept op 14 november 2026 in `onderbouwing-rekenen.md`**, met de officiële eisen per domein en niveau en ruim veertig bronnen. Wat daar staat gaat voor op deze paragraaf. De belangrijkste bijstellingen: niet één rekendidactiek (voor realistisch noch traditioneel rekenen is overtuigend bewijs; sturing werkt beter dan ontdekken); sommen door elkaar oefenen weegt zwaarder dan hier stond; de gewone schooltaal van een opgave is de hindernis, meer dan de rekenwoorden; en een app alleen is voor een zwakke rekenaar niet genoeg.
+
 - Begrip en vaardigheid versterken elkaar; geen van beide eerst (Rittle-Johnson e.a. 2001). *Sterk.*
-- Van een herkenbare situatie via een model naar de kale som: de lijn van het realistisch rekenonderwijs (Van den Heuvel-Panhuizen & Drijvers 2014) en van onderzoek naar concreet beginnen en stap voor stap abstracter worden (Fyfe e.a. 2014). *Redelijk.*
+- Van een herkenbare situatie via een model naar de kale som: de lijn van het realistisch rekenonderwijs (Van den Heuvel-Panhuizen & Drijvers 2014) en van onderzoek naar concreet beginnen en stap voor stap abstracter worden (Fyfe e.a. 2014). *Redelijk; als onderdeel, niet als complete didactiek.*
 - Uitgewerkte voorbeelden die afbouwen (3.8), soorten sommen door elkaar (Rohrer & Taylor 2007), en ophalen en spreiden (3.2) gelden voor rekenen net zo.
 - Wie rekent in een tweede taal heeft de taal van het rekenen nodig; taal en rekenen samen aanbieden werkt (Prediger & Wessel 2013). *Redelijk.*
 
@@ -181,7 +183,7 @@ Elke waarde in de motor (factoren, drempels, aantallen) staat op één plek in d
 | Leertijd van A2 naar B2 voor iemand met Thais als moedertaal | geen onderzoek; de uren komen van Cambridge (Engels) met een eigen marge | de route leert van de leerder zelf: na elk blok wordt de schatting bijgesteld |
 | Aantal woorden per niveau voor het Nederlands | geen officiële norm; afgeleid van het Engels en van één Nederlandse studie op hoger niveau | de voortgangstoets in examenvorm is de maat, niet het aantal woorden |
 | De waarden in het herhaalmodel | het onderzoek geeft richting, geen getallen voor deze leerder | M12: de gegevens bewaren en de waarden per kwartaal naast de werkelijke uitkomsten leggen |
-| Rekenen bij volwassenen | het meeste onderzoek is bij kinderen gedaan | de wettelijke niveaus als maat; elke module sluit met een toets in examenvorm |
+| Rekenen bij volwassenen | vrijwel geen effectonderzoek (24 studies in twintig jaar, van lage kwaliteit; geen bij tweedetaalleerders); uitgediept in `onderbouwing-rekenen.md` | de wettelijke niveaus als maat; elke module sluit met een toets in examenvorm; de begeleider heeft een vaste rol |
 | Schrijven en spreken beoordelen | de app kan het niet horen of lezen | checklist en voorbeeld, de begeleider, later AI (issues #11 en #12); voor het examen is een oefenexamen met een menselijke beoordelaar nodig |
 | Lesstof geschreven door AI | geen onderzoek naar de kwaliteit; Thais door niemand met kennis van de taal gezien | de poort, de onafhankelijke review, de meldknop, en een steekproef door een moedertaalspreker |
 | De 85-procentregel | een rekenmodel, geen klassenonderzoek | de tikken "te makkelijk, goed, te moeilijk" en de uitval naast elkaar leggen |

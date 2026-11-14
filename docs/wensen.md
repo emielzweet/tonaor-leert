@@ -72,7 +72,7 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 | 46 | Voorkom te veel herhaling: het mag nooit saai of een grind worden; progressief, uitdagend, met echte diepgang | 14 nov | plan | `docs/masterplan.md` groep H en B | bouw | de ervaringstest meet losse herhaling (hooguit een vijfde van de tijd) |
 | 47 | Algemene ontwikkeling als vrije encyclopedie van kennis en begrippen: moeilijke woorden, geschiedenis, aardrijkskunde, topografie, archeologie, oorlogen, economie, politiek, Europa, Azië, geopolitiek, geloof, atheïsme en alles wat eronder valt; geen stramien, uitdagend en verdiepend, mag de rest ondersteunen maar hoeft niet | 14 nov | plan | `docs/algemene-ontwikkeling.md` | ontwerp (kaart en tijdlijn), redactielijn (lessen), bouw (scherm Ontdek) | veertig vragen als begin van de wachtrij; stap 11 van het masterplan |
 | 48 | Toetsen en diagnostische checks in de app, voor alle vakken | 14 nov | plan | `docs/masterplan.md` E3, E4, G3; `docs/scenes.md` | bouw | instap en controle komen met de scènespeler; toetsen per thema en in examenvorm in stap 8 |
-| 49 | Eén didactisch plan in het groot, met alle facetten, waar de vier jaar op rust: leeruitkomsten en hoe ze bereikt worden. De motor moet didactisch kloppen: voor Nederlands op de drie boeken en op gedegen wetenschappelijk onderzoek, voor de andere vakken op een wetenschappelijke onderbouwing van methodiek, curriculum, werkvormen, inhoud en didactiek | 14 nov | deels | `docs/didactisch-plan.md`: zeventig bronnen nagezocht; eisen M1 tot M12 aan de motor | ontwerp (onderbouwing), bouw (motor) | per ijkmoment één facet volledig nalezen, eerst rekenen; stap 2b van het masterplan |
+| 49 | Eén didactisch plan in het groot, met alle facetten, waar de vier jaar op rust: leeruitkomsten en hoe ze bereikt worden. De motor moet didactisch kloppen: voor Nederlands op de drie boeken en op gedegen wetenschappelijk onderzoek, voor de andere vakken op een wetenschappelijke onderbouwing van methodiek, curriculum, werkvormen, inhoud en didactiek | 14 nov | deels | `docs/didactisch-plan.md` (zeventig bronnen nagezocht; eisen M1 tot M12); rekenen uitgediept in `docs/onderbouwing-rekenen.md` (officiële eisen volledig gelezen, ruim veertig bronnen, eisen R-M1 tot R-M8) | ontwerp (onderbouwing), bouw (motor) | hierna Nederlands uitdiepen, dan Engels; de vorm van het rekenexamen navragen bij de school |
 
 ## Eigen voorstellen van de ontwerpsessie (goedgekeurd op 13 november)
 
@@ -92,6 +92,7 @@ Stand: **live** (in de app op de telefoon) · **deels** · **plan** (ontworpen o
 - Wat aan de uitleg het meest stoort.
 - Video's kiezen of goedkeuren voor rekenen.
 - Bij de gewenste school navragen wat ze bij de toelating eisen.
+- Bij dezelfde school navragen hoe het rekenexamen eruitziet: duur, aantal opgaven, en of een rekenkaart en een woordenboek mogen (voor het mbo niet landelijk vastgelegd).
 - Terugkoppeling van de leerder over de startmeting en de lessen.
 
 ## Open issues die geen wens van deze week zijn

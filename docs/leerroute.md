@@ -129,7 +129,7 @@ De lijn bestaat uit: (1) de themawoorden; (2) een frequentielijst die de app naa
 
 ## Rekenen: de route
 
-Sinds 2022 gelden eigen mbo-rekenniveaus 2, 3 en 4, in vijf domeinen: grootheden en eenheden, oriëntatie in twee en drie dimensies, verhoudingen, procenten, en omgaan met kwantitatieve informatie. Getallen is geen apart domein maar ondersteunt alles. Het examen is een schoolexamen, digitaal, met rekenmachine, rekenkaart en woordenboek; de weg naar het antwoord telt mee. Het cijfer telt voor het diploma.
+Sinds 2022 gelden eigen mbo-rekenniveaus 2, 3 en 4, in vijf domeinen: grootheden en eenheden, oriëntatie in twee en drie dimensies, verhoudingen, procenten, en omgaan met kwantitatieve informatie. Getallen is geen apart domein maar ondersteunt alles. Het examen is een instellingsexamen: de school bepaalt de vorm. De rekenmachine mag altijd en de weg naar het antwoord telt mee; een rekenkaart en een woordenboek zijn voor het mbo niet bevestigd en moeten bij de school worden nagevraagd. Het cijfer telt voor het diploma. De eisen per domein en niveau en de onderbouwing van de aanpak staan in `onderbouwing-rekenen.md` (14 november 2026); R1 hieronder is daar geen module die eerst af moet, maar een lijn van ondersteunende vaardigheden door alle modules heen.
 
 Zes modules, van laag naar hoog:
 

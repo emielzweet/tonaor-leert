@@ -168,6 +168,7 @@ Bij een ijkmoment krijgt de ontwerpsessie de code en de lesstof, niet de conclus
 |---|---|
 | `masterplan.md` | eisen, volgorde, rollen |
 | `didactisch-plan.md` | het fundament: leeruitkomsten, leerweg, onderbouwing met bronnen, eisen aan de motor |
+| `onderbouwing-rekenen.md` | rekenen uitgediept: de officiële eisen per domein en niveau, het onderzoek, de leerlijn in zes stappen, werkvormen en de eisen R-M1 tot R-M8 aan de motor |
 | `wensen.md` | alles wat de eigenaar gevraagd heeft, met de stand |
 | `STATUS.md` | wat live is, wat lokaal klaarstaat, de dekkingstabel |
 | `kwaliteitskader.md`, `leerroute.md`, `uitleg.md`, `herhaalmodel.md`, `pakketformaat.md` | de inhoudelijke kaders; ongewijzigd van kracht |
