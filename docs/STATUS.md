@@ -28,6 +28,32 @@ Bijgewerkt: 14 november 2026.
 - Stap 2 van het masterplan, de rest (docs/ontwerp-stap2.md): elke bestaande oefenvorm als vraag in een scène (`build`, `gap`, `listen`, `money`, `clock`, `discount`; hetzelfde scherm als in de les, een fout telt in het foutprofiel); `hear-type` en `complete`; hint in twee stappen (goed na een hint telt als `'retry'`; niet bij instap, controle en de zwaardere vorm); stap `speak` (voorbeeld om te horen, checklist; opnemen volgt in stap 6); stap `game` met `dehet` (60 seconden, woorden van de scène en wat aan de beurt is, vorm `spel` telt niet voor bloei); de zwaardere vorm (een gespeelde scène opnieuw zonder steuntaal, typen waar een vraag ook `answer` heeft, eigen record in `S.world.best`, in dezelfde migratie 5 → 6). Hoofdstukcontrole `PakketCheck.checkChapter` (A6, B1, B2, C1, C2, E2, E3, G2), gebruikt door de poort en de scènetest. Migratie 5 → 6 getest. Getest in de browser op 375 px: spreken, spel, zwaarder met nieuw record.
 - Stap 2 is af als het proefhoofdstuk uit de redactielijn in `content/` staat en de hoofdstukcontrole haalt (de scènetest meldt het nu als "NOG"); dan volgt ijkmoment G1.
 
+## Nacht van 14 op 15 november 2026 (bouwsessie)
+
+De eigenaar sliep; de ontwerpsessie gaf zijn opdracht door om met de aanbevolen keuzes door te werken (docs/werkorder.md). De bouwsessie pusht niet zelf: zij zet een stand klaar en meldt de commit aan de ontwerpsessie, die pusht.
+
+**Besloten (door de ontwerpsessie, met de reden):**
+- Rust is geen eindpunt: telt niet als dorst, komt terug als het aan de beurt is (anders loopt de dorst-teller op en wordt vergeten nooit opgemerkt).
+- Rust pas na drie goede pogingen op drie dagen met zeven dagen ertussen (spreiding telt, didactisch plan 3.2).
+- H4: sommen met nieuwe getallen mogen aanvullen, hooguit een derde; een korte ronde wordt benoemd (nieuwe getallen zijn geen herhaling).
+- "pijn aan / pijn in" is één onderdeel (twee onderdelen rekenden elkaars antwoord fout).
+- purpose verplicht bij een hoofdstuk, zichtbaar bij begin en slot (masterplan G5).
+
+**Besloten door de bouwsessie (aanbevolen optie):**
+- De rem op nieuw laat elke dag twee nieuwe woorden door (H4 "elke dag iets nieuws" ging anders verloren bij veel herhaling).
+- Een ronde vult eerst aan met wat echt aan de beurt is, dan pas met nieuw of sommen.
+- Een hoofdstuk dat de hoofdstukcontrole niet haalt, staat helemaal buiten de app, ook zijn woorden (codereview B3).
+
+**Besloten door de eigenaar (gisteravond):** zonder reservekopie geen nieuwe vorm wegschrijven (gebouwd); nog één ronde voor het proefhoofdstuk.
+
+**Gebouwd en getest:** codereview stap 2/2b en nareview verwerkt (99154cc, 425126f); rust en H4 volgens besluit (09395f0); schakelaar Proefonderdelen op Ik, standaard uit, de scènes erachter (7b9472c); tolerant typen: geen fout om hoofdletter, accent of trema, behalve in het dictee (425126f). Alle 13 testsuites groen; op 375 px een volle les foutloos; migratie van schema 4 naar 6 in de browser met gelijke voortgang.
+
+**Klaar om uit te brengen: release A = 425126f (cache v2-44).** Gemeld aan de ontwerpsessie.
+
+**Redactielijn:** "bij de dokter" ronde 6 en samenvoegen pijn aan/in klaar (poort 0 fouten); review 4 loopt.
+
+**Blijft liggen:** de migratie op een kopie van een echte opslag (eigenaar levert eventueel aan); de rest van de werkorder volgt.
+
 ## Klaar om uit te brengen?
 
 Stand 99154cc, 14 november 2026. **Nog niet.** Gedaan: onafhankelijke codereview van stap 2 en 2b (geen beveiligingsproblemen; veilig tonen en opslag in orde), de fouten eruit verwerkt (A2, A3, B1, B2, B3, B5 en de kleine punten), alle tests groen, browsercontrole op 375 px en migratie 4 → 6 in de browser.
