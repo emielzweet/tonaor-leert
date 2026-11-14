@@ -8,7 +8,7 @@
   var LEARN = ['nl', 'en'];
   var FORMS = ['learn', 'recog', 'recall', 'build', 'gap', 'listen', 'dictee', 'mc', 'clock', 'money', 'discount'];
   var RESERVED = ['hear-type', 'complete', 'own', 'write', 'situation', 'match', 'spot'];
-  var TOP = ['format', 'id', 'type', 'version', 'scenes', 'place', 'goals', 'purpose', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests'];
+  var TOP = ['format', 'id', 'type', 'version', 'scenes', 'place', 'goals', 'purpose', 'review', 'learn', 'level', 'order', 'quality', 'requires', 'title', 'items', 'texts', 'cards', 'exercises', 'explain', 'lesson', 'lessonShort', 'tests'];
   var TAGS = /<\/?(b|i|u)>/g;
   // id's (pakket, item, tekst, kaart, oefening, groep): alleen letters, cijfers, punt, streepje, onderstreepje
   var ID = /^[A-Za-z0-9._-]+$/;
@@ -442,6 +442,7 @@
     var scenes = (p && p.scenes) || [];
     var goals = function (g, w) { if (!Array.isArray(g) || !g.length || g.some(function (x) { return typeof x !== 'string' || !x; })) err(w + ': goals (de eindtermen die het dient) ontbreekt'); };
     goals(p && p.goals, id);
+    var rv = p && p.review; if (!rv || typeof rv !== 'object' || rv.verdict !== 'goed' || typeof rv.model !== 'string' || !rv.model || !/^\d{4}-\d{2}-\d{2}$/.test(String(rv.date))) err(id + ': review ontbreekt: een hoofdstuk is pas zichtbaar na een review met oordeel goed door een groter model dan de schrijver ({ model, date: jjjj-mm-dd, verdict: "goed" }; masterplan, uitleg bij de eisen 12)');
     if (p && Array.isArray(p.goals) && p.goals.length && !p.purpose) err(id + ': purpose (waar het hoofdstuk voor dient, één zin in gewone taal) ontbreekt (masterplan G5)');
     var has = { read510: false, listen: false, speak: false, game: false, make: false, reken: false };
     scenes.forEach(function (sc) {
