@@ -178,4 +178,5 @@ ok('poort (uitleg bij de eisen 13, 14): dubbele vraag, tekst zonder typen, te we
 { const cx = {}; vm.createContext(cx); vm.runInContext(lineOf('const scNorm=') + ';' + fnBlock('scNum') + ';' + fnBlock('scLoose') + ';this.f=scLoose;this.n=scNorm;', cx);
   ok('zwaardere vorm: 3 x 4 en 3*4 tellen voor 3 × 4, 0,25 voor € 0,25, maar 0,30 niet', cx.n('3 x 4') === cx.n('3 × 4') && cx.n('3*4') === cx.n('3 × 4') && cx.f('€ 0,25', '0,25') && !cx.f('€ 0,25', '0,30'));
   ok('scènevraag: een woord uit also van het doel is geen fout', html.includes('/* review dokter 6: een woord uit also is in een scènevraag ook geen fout */')); }
+ok('poort (uitleg bij de eisen 16): een typvraag met een zin als antwoord is een fout', /hooguit twee woorden/.test(cc(p => { const q = p.scenes[0].steps[1].q[0]; q.form = 'type'; q.answer = 'Ik wil een afspraak maken.'; delete q.opts; })) && !/hooguit twee woorden/.test(cc(p => {})));
 console.log(fails ? fails + ' FOUT' : 'alles OK');

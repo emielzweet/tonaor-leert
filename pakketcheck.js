@@ -468,7 +468,7 @@
       steps.forEach(function (st) {
         if (st.type === 'look') ((sc.art && sc.art.things) || []).forEach(function (t) { if (t && t.hot && t.item) seenW[t.item] = 1; });
         var qs = (st.q || []).concat(st.turns ? [] : []);
-        qs.forEach(function (q) { if (!q) return; allQ.push(JSON.stringify([q.ask && (q.ask.nl || q.ask), q.form, q.answer != null ? q.answer : ((q.opts || []).find(function (o) { return o.r === 'ok'; }) || {}).t])); if (PROD.indexOf(q.form) >= 0) prod++;
+        qs.forEach(function (q) { if (!q) return; if (['type', 'complete', 'hear-type'].indexOf(q.form) >= 0 && q.answer != null && String(q.answer).trim().split(/\s+/).length > 2) err(w + ': een typvraag vraagt hooguit twee woorden (' + String(q.answer).slice(0, 40) + '); een zin is build (gesloten) of make (open), uitleg bij de eisen 16'); allQ.push(JSON.stringify([q.ask && (q.ask.nl || q.ask), q.form, q.answer != null ? q.answer : ((q.opts || []).find(function (o) { return o.r === 'ok'; }) || {}).t])); if (PROD.indexOf(q.form) >= 0) prod++;
           var tgt = (q.items || [])[0]; if (st.role !== 'instap' && st.type !== 'extra' && tgt && !offered(tgt)) err(w + ': vraag naar ' + tgt + ' voordat het is aangeboden (alleen in de instap mag dat)'); });
         (st.turns || []).forEach(function (t) { var tgt = (t.items || [])[0]; if (tgt && !offered(tgt)) err(w + ': gesprek vraagt ' + tgt + ' voordat het is aangeboden'); (t.items || []).forEach(function (x) { seenW[x] = 1; }); });
         if (['make', 'speak', 'do'].indexOf(st.type) >= 0 && (st.type !== 'do' || ['setclock', 'money', 'clock', 'discount', 'gap', 'build'].indexOf(st.form) >= 0)) prod++;
